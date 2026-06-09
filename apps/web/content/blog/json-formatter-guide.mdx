@@ -1,0 +1,49 @@
+---
+title: 'JSON Formatter and Validator: Fix Messy JSON in Seconds'
+slug: json-formatter-guide
+date: '2026-05-16'
+excerpt: 'Format, validate, and beautify JSON data instantly. Learn how to read JSON errors, understand JSON structure, and use our free online JSON formatter.'
+readTime: '6 min read'
+author: RoughTools Team
+category: Developer Tools
+keywords:
+  - json formatter
+  - json validator
+  - json beautifier
+  - format json
+  - json pretty print
+---
+
+## What Is JSON?
+
+JSON (JavaScript Object Notation) is the most widely used data interchange format on the internet. REST APIs, config files, databases, and web apps all communicate using JSON. Despite its simplicity, malformed JSON is one of the most common causes of API bugs and integration failures.
+
+## How to Format JSON (Step by Step)
+
+1. Paste your raw or minified JSON into the [RoughTools JSON Formatter](/tools/developer/json-formatter)
+2. Click "Format" to pretty-print with proper indentation
+3. Any syntax errors are highlighted immediately
+4. Copy or download the formatted result
+
+## Common JSON Errors and How to Fix Them
+
+| Error | Cause | Fix |
+|---|---|---|
+| Unexpected token | Trailing comma, missing quote | Remove trailing commas; use double quotes only |
+| Unexpected end of JSON | Missing closing bracket/brace | Check all {}, [] are balanced |
+| Property names must be strings | Unquoted keys | Add double quotes around all keys |
+| Invalid escape | Single backslash in strings | Use `\\` for literal backslashes |
+
+## JSON vs JSONC vs JSON5
+
+**JSON** — strict standard. No comments, no trailing commas, double quotes only. Used in APIs and data exchange.
+
+**JSONC** — JSON with comments. Used in VS Code settings files (settings.json). Comments start with `//` or `/* */`.
+
+**JSON5** — relaxed JSON. Allows single quotes, trailing commas, comments, unquoted keys. Used in some config files.
+
+## Minifying vs Formatting JSON
+
+Formatting (pretty-printing) adds whitespace for human readability — indentation, newlines. Use it during development and debugging.
+
+Minifying removes all whitespace, reducing file size. A 100KB formatted JSON file can shrink to 60KB minified. Use minification in production for faster API responses and smaller payload sizes.

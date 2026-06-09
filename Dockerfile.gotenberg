@@ -1,0 +1,24 @@
+# Dockerfile.gotenberg
+# ─────────────────────────────────────────────────────────────────────────────
+# Use this to deploy Gotenberg to Railway, Render, or Fly.io
+#
+# Build: docker build -f Dockerfile.gotenberg -t roughtools-gotenberg .
+# Run:   docker run -p 3030:3030 roughtools-gotenberg
+# ─────────────────────────────────────────────────────────────────────────────
+
+FROM gotenberg/gotenberg:8
+
+# Expose Gotenberg's default port
+EXPOSE 3030
+
+# Set production environment variables
+ENV CHROMIUM_ALLOW_LIST=".*"
+ENV LIBREOFFICE_MAX_QUEUE_SIZE="5"
+ENV CHROMIUM_MAX_QUEUE_SIZE="10"
+ENV API_TIMEOUT="60s"
+ENV LOG_LEVEL="INFO"
+ENV LOG_FORMAT="json"
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:3030/health || exit 1

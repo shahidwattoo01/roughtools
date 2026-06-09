@@ -1,0 +1,113 @@
+# ============================================================
+# .dockerignore — RoughTools
+# Everything listed here is excluded from the Docker build
+# context sent to the daemon. Smaller context = faster builds.
+# ============================================================
+
+# ─── Version control ──────────────────────────────────────
+.git
+.gitignore
+.gitattributes
+
+# ─── Node / pnpm ──────────────────────────────────────────
+node_modules
+**/node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# ─── Build output (rebuilt inside the image) ──────────────
+.next
+dist
+build
+*.tsbuildinfo
+
+# ─── Test & coverage ──────────────────────────────────────
+coverage
+.nyc_output
+**/__tests__
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+**/jest.config.*
+playwright-report
+test-results
+
+# ─── CI / GitHub Actions ──────────────────────────────────
+.github
+
+# ─── Local dev environment ────────────────────────────────
+.env
+.env.local
+.env.*.local
+# Keep .env.example out of the image — it has no runtime use
+.env.example
+.env.staging.example
+.env.production.example
+
+# ─── Editor & OS ──────────────────────────────────────────
+.DS_Store
+.idea
+.vscode
+*.swp
+*.swo
+Thumbs.db
+
+# ─── Claude Code / AI tools ───────────────────────────────
+# Skills, memory, session data — development-only AI tooling
+.claude/
+
+# ─── Python scripts — no Python runtime in the Node container
+*.py
+# graphify-out contains knowledge-graph audit files
+graphify-out/
+
+# ─── Documentation & audit reports ───────────────────────
+# These belong in version control but not in the container
+docs/
+ROUGHTOOLS-CODEBASE-AUDIT.md
+ROUGHTOOLS-PROJECT-COMPLETE.pdf
+RoughTools_Website_Audit_2026-05-30.pdf
+PROJECT-OVERVIEW.md
+CHANGELOG.md
+README.md
+LICENSE
+
+# ─── PDF / test artefacts ─────────────────────────────────
+test-*.pdf
+test-sample.pdf
+test-agv.pdf
+test-image.jpg
+
+# ─── Development scripts (PowerShell / shell) ─────────────
+# Never needed inside a production container
+*.ps1
+fix-*.ps1
+full-scan.ps1
+verify-*.ps1
+build-output*.txt
+
+# ─── Security research / phase deliverables ───────────────
+phase1-security/
+
+# ─── Backup files (written by scripts/backup.sh) ─────────
+backups/
+
+# ─── Local project context ────────────────────────────────
+project_context.txt
+
+# ─── Turbo / monorepo cache ───────────────────────────────
+.turbo
+
+# ─── Infrastructure config (not executed by the app) ──────
+# nginx and docker-compose are used by the host, not the container
+infrastructure/
+nginx/
+docker-compose*.yml
+Makefile
+
+# ─── Husky git hooks ──────────────────────────────────────
+.husky

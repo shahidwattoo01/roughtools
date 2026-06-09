@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# pnpm
+pnpm-debug.log*
+.pnpm-store/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Certificates
+certs/
+*.pem
+*.key
+*.crt
+*.pfx
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.env
+

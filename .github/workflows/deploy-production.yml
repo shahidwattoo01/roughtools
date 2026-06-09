@@ -1,0 +1,119 @@
+name: Deploy to Production
+
+on:
+  release:
+    types: [published]
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '8.15.0'
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/web
+
+jobs:
+  deploy-production:
+    name: Deploy Production
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://example.com
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=production-latest
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./apps/web/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            NODE_ENV=production
+            DATABASE_URL=${{ secrets.PRODUCTION_DATABASE_URL }}
+            NEXTAUTH_SECRET=${{ secrets.PRODUCTION_NEXTAUTH_SECRET }}
+            NEXTAUTH_URL=https://example.com
+            NEXT_PUBLIC_API_URL=https://api.example.com
+            NEXT_PUBLIC_APP_URL=https://example.com
+
+      - name: Create database backup
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USER }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          script: |
+            docker exec db pg_dump -U postgres app_db > /backups/pre-deploy-$(date +%Y%m%d%H%M%S).sql
+
+      - name: Deploy to production (blue-green)
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USER }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          script: |
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:production-latest
+            docker compose -f docker-compose.production.yml up -d --force-recreate --no-deps web
+            docker image prune -f
+
+      - name: Run smoke tests
+        run: |
+          sleep 15
+          curl -f https://example.com/api/health || exit 1
+          curl -f https://example.com/ || exit 1
+
+      - name: Rollback on failure
+        if: failure()
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USER }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          script: |
+            docker compose -f docker-compose.production.yml rollback web
+
+      - name: Notify deployment
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: |
+            🚀 Production deployment ${{ job.status }}
+            Version: ${{ github.event.release.tag_name }}
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()

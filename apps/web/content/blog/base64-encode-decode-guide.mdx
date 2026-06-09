@@ -1,0 +1,51 @@
+---
+title: 'Base64 Encode and Decode: What It Is and How to Use It'
+slug: base64-encode-decode-guide
+date: '2026-05-12'
+excerpt: 'Learn what Base64 encoding is, when to use it, and how to encode/decode data online for free. Covers base64 in URLs, emails, images, and APIs.'
+readTime: '5 min read'
+author: RoughTools Team
+category: Developer Tools
+keywords:
+  - base64 encoder
+  - base64 decoder
+  - base64 online
+  - encode base64
+  - decode base64
+---
+
+## What Is Base64 Encoding?
+
+Base64 is a binary-to-text encoding scheme that converts binary data (bytes) into a string of 64 printable ASCII characters (A–Z, a–z, 0–9, +, /). It's not encryption — it's encoding. Anyone can decode it. The purpose is to safely transport binary data through systems that only handle text.
+
+## When Is Base64 Used?
+
+- **Email attachments** — MIME protocol uses Base64 to embed files (images, PDFs) in email messages
+- **Data URLs** — Embed images directly in HTML/CSS: `src="data:image/png;base64,iVBOR..."`
+- **JWTs (JSON Web Tokens)** — The header and payload sections are Base64URL encoded
+- **API authentication** — HTTP Basic Auth: credentials encoded as Base64 in the Authorization header
+- **Configuration files** — Store binary data (certificates, keys) as Base64 strings in YAML/JSON configs
+
+## How to Encode Text to Base64
+
+Use the [RoughTools Base64 Encoder](/tools/developer/base64-encoder):
+
+1. Paste your text or upload a file
+2. Click "Encode"
+3. Copy the Base64 output
+
+In JavaScript: `btoa("Hello World")` returns `"SGVsbG8gV29ybGQ="`
+
+## Base64 vs Base64URL
+
+Standard Base64 uses `+` and `/` which are special characters in URLs. Base64URL replaces `+` with `-` and `/` with `_`, making it safe to use in URLs without percent-encoding. JWTs use Base64URL.
+
+## How Much Does Base64 Increase File Size?
+
+Base64 encoding inflates data by approximately 33%. Every 3 bytes of binary data becomes 4 characters of Base64. A 100KB image becomes ~133KB when Base64 encoded. This is why you should avoid inlining large images as Base64 in HTML — use external image URLs instead.
+
+| Original Size | Base64 Size | Increase |
+|---|---|---|
+| 10 KB | ~13.4 KB | +33% |
+| 100 KB | ~134 KB | +33% |
+| 1 MB | ~1.34 MB | +33% |

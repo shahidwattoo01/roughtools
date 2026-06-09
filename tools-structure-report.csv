@@ -1,0 +1,146 @@
+slug,name,category,status
+age-calculator,"Age Calculator",calculators,complete
+bmi-calculator,"BMI Calculator",calculators,complete
+body-fat-calculator,"Body Fat Calculator",calculators,complete
+calorie-calculator,"Calorie Calculator",calculators,complete
+compound-interest-calculator,"Compound Interest Calculator",calculators,complete
+currency-converter,"Currency Converter",calculators,complete
+date-difference-calculator,"Date Difference Calculator",calculators,complete
+discount-calculator,"Discount Calculator",calculators,complete
+due-date-calculator,"Due Date Calculator",calculators,complete
+gpa-calculator,"GPA Calculator",calculators,complete
+inflation-calculator,"Inflation Calculator",calculators,complete
+loan-calculator,"Loan Calculator",calculators,complete
+mortgage-calculator,"Mortgage Calculator",calculators,complete
+ovulation-calculator,"Ovulation Calculator",calculators,complete
+percentage-calculator,"Percentage Calculator",calculators,complete
+retirement-calculator,"Retirement Calculator",calculators,complete
+roi-calculator,"ROI Calculator",calculators,complete
+salary-calculator,"Salary Calculator",calculators,complete
+scientific-calculator,"Scientific Calculator",calculators,complete
+tax-calculator,"Tax Calculator",calculators,complete
+tip-calculator,"Tip Calculator",calculators,complete
+area-converter,"Area Converter",converters,complete
+digital-storage-converter,"Digital Storage Converter",converters,complete
+length-converter,"Length Converter",converters,complete
+speed-converter,"Speed Converter",converters,complete
+temperature-converter,"Temperature Converter",converters,complete
+time-converter,"Time Converter",converters,complete
+volume-converter,"Volume Converter",converters,complete
+weight-converter,"Weight Converter",converters,complete
+base64-encoder,"Base64 Encoder/Decoder",developer,complete
+chmod-calculator,"Chmod Calculator",developer,complete
+color-picker,"Color Picker",developer,complete
+cron-parser,"Cron Expression Parser",developer,complete
+css-minifier,"CSS Minifier",developer,complete
+diff-checker,"Diff Checker",developer,complete
+hash-generator,"Hash Generator",developer,complete
+html-encoder,"HTML Encoder/Decoder",developer,complete
+js-beautifier,"JavaScript Beautifier",developer,complete
+json-formatter,"JSON Formatter",developer,complete
+jwt-decoder,"JWT Decoder",developer,complete
+markdown-editor,"Markdown Editor",developer,complete
+regex-tester,"Regex Tester",developer,complete
+sql-formatter,"SQL Formatter",developer,complete
+timestamp-converter,"Unix Timestamp Converter",developer,complete
+url-encoder,"URL Encoder/Decoder",developer,complete
+uuid-generator,"UUID Generator",developer,complete
+xml-formatter,"XML Formatter",developer,complete
+yaml-validator,"YAML Validator",developer,complete
+add-border,"Add Border to Image",image-tools,complete
+add-watermark,"Add Watermark",image-tools,complete
+background-changer,"Background Changer",image-tools,complete
+background-remover,"Background Remover",image-tools,complete
+base64-to-image,"Base64 to Image",image-tools,complete
+blur-background,"Blur Background",image-tools,complete
+bulk-image-resizer,"Bulk Image Resizer",image-tools,complete
+dominant-color-extractor,"Dominant Color Extractor",image-tools,complete
+dpi-converter,"DPI Converter",image-tools,complete
+gif-maker,"GIF Maker",image-tools,complete
+grayscale-converter,"Grayscale Converter",image-tools,complete
+heic-to-jpg,"HEIC to JPG Converter",image-tools,complete
+id-card-photo-maker,"ID Card Photo Maker",image-tools,complete
+image-color-picker,"Image Color Picker",image-tools,complete
+image-colorizer,"Image Colorizer",image-tools,complete
+image-compressor,"Image Compressor",image-tools,complete
+image-converter,"Image Converter",image-tools,complete
+image-cropper,"Image Cropper",image-tools,complete
+image-enhancer,"Image Enhancer",image-tools,complete
+image-flipper-rotator,"Image Flipper & Rotator",image-tools,complete
+image-metadata-viewer,"Image Metadata Viewer",image-tools,complete
+image-resizer,"Image Resizer",image-tools,complete
+image-size-checker,"Image Size Checker",image-tools,complete
+image-to-base64,"Image to Base64",image-tools,complete
+image-to-text,"Image to Text (OCR)",image-tools,complete
+image-upscaler,"Image Upscaler",image-tools,complete
+jpg-to-png,"JPG to PNG Converter",image-tools,complete
+meme-generator,"Meme Generator",image-tools,complete
+passport-photo-maker,"Passport Photo Maker",image-tools,complete
+photo-collage-maker,"Photo Collage Maker",image-tools,complete
+photo-to-cartoon,"Photo to Cartoon",image-tools,complete
+pixel-density-calculator,"Pixel Density Calculator",image-tools,complete
+png-to-jpg,"PNG to JPG Converter",image-tools,complete
+remove-watermark,"Remove Watermark",image-tools,complete
+round-corner-image,"Round Corner Image",image-tools,complete
+screenshot-to-pdf,"Screenshot to PDF",image-tools,complete
+thumbnail-maker,"Thumbnail Maker",image-tools,complete
+white-background-maker,"White Background Maker",image-tools,complete
+cease-and-desist-generator,"Cease and Desist Letter Generator",legal-tools,complete
+employment-contract-generator,"Employment Contract Generator",legal-tools,complete
+lease-agreement-generator,"Lease Agreement Generator",legal-tools,complete
+nda-generator,"NDA Generator",legal-tools,complete
+power-of-attorney-generator,"Power of Attorney Generator",legal-tools,complete
+privacy-policy-generator,"Privacy Policy Generator",legal-tools,complete
+terms-of-service-generator,"Terms of Service Generator",legal-tools,complete
+will-generator,"Last Will & Testament Generator",legal-tools,complete
+dns-lookup,"DNS Lookup",network,complete
+http-headers-checker,"HTTP Headers Checker",network,complete
+ip-checker,"IP Address Checker",network,complete
+ping-tool,"Ping Tool",network,complete
+port-checker,"Port Checker",network,complete
+website-speed-test,"Website Speed Test",network,complete
+whois-lookup,"WHOIS Lookup",network,complete
+add-page-numbers,"Add Page Numbers to PDF",pdf,missing
+add-watermark,"Watermark PDF",pdf,missing
+compare-pdf,"Compare PDF",pdf,missing
+compress-pdf,"Compress PDF",pdf,missing
+crop-pdf,"Crop PDF",pdf,missing
+excel-to-pdf,"Excel to PDF",pdf,missing
+extract-pdf-pages,"Extract PDF Pages",pdf,missing
+jpg-to-pdf,"JPG to PDF",pdf,missing
+merge-pdf,"Merge PDF",pdf,missing
+ocr-pdf,"OCR PDF",pdf,missing
+organize-pdf,"Organize PDF",pdf,missing
+pdf-to-excel,"PDF to Excel",pdf,missing
+pdf-to-html,"PDF to HTML",pdf,missing
+pdf-to-jpg,"PDF to JPG",pdf,missing
+pdf-to-pdfa,"PDF to PDF/A",pdf,missing
+pdf-to-powerpoint,"PDF to PowerPoint",pdf,missing
+pdf-to-word,"PDF to Word",pdf,missing
+protect-pdf,"Protect PDF",pdf,missing
+redact-pdf,"Redact PDF",pdf,missing
+remove-pdf-pages,"Remove PDF Pages",pdf,missing
+repair-pdf,"Repair PDF",pdf,missing
+rotate-pdf,"Rotate PDF",pdf,missing
+sign-pdf,"Sign PDF",pdf,missing
+split-pdf,"Split PDF",pdf,missing
+unlock-pdf,"Unlock PDF",pdf,missing
+word-to-pdf,"Word to PDF",pdf,missing
+cap-rate-calculator,"Cap Rate Calculator",real-estate,complete
+closing-costs-calculator,"Closing Costs Calculator",real-estate,complete
+down-payment-calculator,"Down Payment Calculator",real-estate,complete
+home-affordability-calculator,"Home Affordability Calculator",real-estate,complete
+home-value-estimator,"Home Value Estimator",real-estate,complete
+property-tax-calculator,"Property Tax Calculator",real-estate,complete
+rent-vs-buy-calculator,"Rent vs Buy Calculator",real-estate,complete
+rental-yield-calculator,"Rental Yield Calculator",real-estate,complete
+case-converter,"Case Converter",text,complete
+find-replace,"Find and Replace",text,complete
+grammar-checker,"Grammar Checker",text,complete
+lorem-ipsum-generator,"Lorem Ipsum Generator",text,complete
+readability-score,"Readability Score",text,complete
+remove-duplicate-lines,"Remove Duplicate Lines",text,complete
+text-reverser,"Text Reverser",text,complete
+text-summarizer,"Text Summarizer",text,complete
+text-to-speech,"Text to Speech",text,complete
+word-counter,"Word Counter",text,complete

@@ -1,0 +1,15 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# railway.toml — Gotenberg service config for Railway deployment
+# Place this file in a separate gotenberg/ directory or service in Railway.
+# ─────────────────────────────────────────────────────────────────────────────
+
+[build]
+  builder = "DOCKERFILE"
+  dockerfilePath = "Dockerfile.gotenberg"
+
+[deploy]
+  startCommand = ""
+  healthcheckPath = "/health"
+  healthcheckTimeout = 30
+  restartPolicyType = "ON_FAILURE"
+  restartPolicyMaxRetries = 3

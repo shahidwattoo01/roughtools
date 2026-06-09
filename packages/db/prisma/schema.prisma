@@ -1,0 +1,529 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum ToolStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  username      String    @unique
+  passwordHash  String    @map("password_hash")
+  name          String?
+  avatar        String?
+  avatarUrl     String?   @map("avatar_url")
+  role          UserRole  @default(USER)
+  emailVerified Boolean   @default(false) @map("email_verified")
+  isActive      Boolean   @default(true) @map("is_active")
+  lastLoginAt   DateTime? @map("last_login_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  sessions  Session[]
+  favorites Favorite[]
+  tools     Tool[]
+  blogPosts BlogPost[]
+  comments  Comment[]
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  token     String   @unique
+  userAgent String?  @map("user_agent")
+  ipAddress String?  @map("ip_address")
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([token])
+  @@map("sessions")
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  name      String
+  sortOrder Int      @default(0) @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  tools Tool[]
+
+  @@map("categories")
+}
+
+model Tag {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  slug     String    @unique
+  toolTags ToolTag[]
+
+  @@map("tags")
+}
+
+model Tool {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  name        String
+  description String
+  categoryId  String     @map("category_id")
+  icon        String?
+  isPremium   Boolean    @default(false) @map("is_premium")
+  isActive    Boolean    @default(true) @map("is_active")
+  status      ToolStatus @default(DRAFT)
+  deletedAt   DateTime?  @map("deleted_at")
+  sortOrder   Int        @default(0) @map("sort_order")
+  viewCount   Int        @default(0) @map("view_count")
+  likeCount   Int        @default(0) @map("like_count")
+  features    Json?
+  authorId    String?    @map("author_id")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+
+  category  Category   @relation(fields: [categoryId], references: [id])
+  author    User?      @relation(fields: [authorId], references: [id])
+  favorites Favorite[]
+  toolTags  ToolTag[]
+  comments  Comment[]
+
+  @@index([categoryId])
+  @@index([slug])
+  @@index([status])
+  @@map("tools")
+}
+
+model ToolTag {
+  toolId String @map("tool_id")
+  tagId  String @map("tag_id")
+
+  tool Tool @relation(fields: [toolId], references: [id], onDelete: Cascade)
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([toolId, tagId])
+  @@map("tool_tags")
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  toolId    String   @map("tool_id")
+  authorId  String   @map("author_id")
+  content   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  tool   Tool @relation(fields: [toolId], references: [id], onDelete: Cascade)
+  author User @relation(fields: [authorId], references: [id])
+
+  @@index([toolId])
+  @@map("comments")
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  toolId    String   @map("tool_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tool Tool @relation(fields: [toolId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, toolId])
+  @@map("favorites")
+}
+
+model BlogPost {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  title       String
+  excerpt     String?
+  content     String
+  coverImage  String?    @map("cover_image")
+  authorId    String     @map("author_id")
+  status      BlogStatus @default(DRAFT)
+  isPublished Boolean    @default(false) @map("is_published")
+  publishedAt DateTime?  @map("published_at")
+  deletedAt   DateTime?  @map("deleted_at")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+
+  author User @relation(fields: [authorId], references: [id])
+
+  @@index([slug])
+  @@index([status])
+  @@map("blog_posts")
+}
+
+model ApiUsageLog {
+  id         String   @id @default(cuid())
+  userId     String?  @map("user_id")
+  toolSlug   String   @map("tool_slug")
+  userAgent  String?  @map("user_agent")
+  statusCode Int      @map("status_code")
+  durationMs Int      @map("duration_ms")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([toolSlug])
+  @@index([userId])
+  @@index([createdAt])
+  @@map("api_usage_logs")
+}
+
+model ToolUsage {
+  id         String   @id @default(cuid())
+  toolSlug   String   @map("tool_slug")
+  category   String
+  userId     String?  @map("user_id")
+  success    Boolean  @default(true)
+  durationMs Int?     @map("duration_ms")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([toolSlug])
+  @@index([createdAt])
+  @@map("tool_usage")
+}
+
+model WebVital {
+  id             String   @id @default(cuid())
+  name           String
+  value          Float
+  rating         String
+  path           String
+  navigationType String?  @map("navigation_type")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@index([name])
+  @@index([createdAt])
+  @@map("web_vitals")
+}
+
+model ToolRequest {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  category    String?
+  votes       Int      @default(1)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([votes])
+  @@map("tool_requests")
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  confirmed Boolean  @default(false)
+  token     String?  @unique
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("newsletter_subscribers")
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  email     String
+  category  String   @default("other")
+  message   String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([createdAt])
+  @@map("contact_messages")
+}
+
+// ─── Phase 8: Billing / Subscriptions ────────────────────────────────────────
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  TRIALING
+  INCOMPLETE
+}
+
+model Subscription {
+  id                   String             @id @default(cuid())
+  userId               String             @unique @map("user_id")
+  stripeCustomerId     String             @unique @map("stripe_customer_id")
+  stripeSubscriptionId String?            @unique @map("stripe_subscription_id")
+  plan                 String
+  status               SubscriptionStatus @default(TRIALING)
+  currentPeriodStart   DateTime?          @map("current_period_start")
+  currentPeriodEnd     DateTime?          @map("current_period_end")
+  cancelAtPeriodEnd    Boolean            @default(false) @map("cancel_at_period_end")
+  createdAt            DateTime           @default(now()) @map("created_at")
+  updatedAt            DateTime           @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@index([stripeCustomerId])
+  @@map("subscriptions")
+}
+
+// ─── Phase 8: Affiliate & Referral ───────────────────────────────────────────
+
+model AffiliateClick {
+  id           String   @id @default(cuid())
+  referralCode String   @map("referral_code")
+  ipHash       String?  @map("ip_hash")
+  userAgent    String?  @map("user_agent")
+  page         String?
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([referralCode])
+  @@index([createdAt])
+  @@map("affiliate_clicks")
+}
+
+model AffiliateConversion {
+  id              String    @id @default(cuid())
+  referralCode    String    @map("referral_code")
+  userId          String    @map("user_id")
+  plan            String?
+  amountCents     Int       @default(0) @map("amount_cents")
+  commissionCents Int       @default(0) @map("commission_cents")
+  paidAt          DateTime? @map("paid_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  @@index([referralCode])
+  @@index([userId])
+  @@map("affiliate_conversions")
+}
+
+model Referral {
+  id             String    @id @default(cuid())
+  referrerId     String    @map("referrer_id")
+  referredUserId String    @unique @map("referred_user_id")
+  code           String    @map("code")
+  rewardGranted  Boolean   @default(false) @map("reward_granted")
+  rewardType     String?   @map("reward_type")
+  rewardValue    Int?      @map("reward_value")
+  convertedAt    DateTime? @map("converted_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  @@index([referrerId])
+  @@index([code])
+  @@map("referrals")
+}
+
+// ─── Phase 6+: Per-User API Keys ─────────────────────────────────────────────
+
+model ApiKey {
+  id        String    @id @default(cuid())
+  userId    String    @map("user_id")
+  name      String
+  keyHash   String    @unique @map("key_hash")
+  keyPrefix String    @map("key_prefix")
+  lastUsed  DateTime? @map("last_used")
+  expiresAt DateTime? @map("expires_at")
+  isActive  Boolean   @default(true) @map("is_active")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([keyHash])
+  @@map("api_keys")
+}
+
+// ─── Phase 6: Referral Codes per User ────────────────────────────────────────
+
+model ReferralCode {
+  id        String   @id @default(cuid())
+  userId    String   @unique @map("user_id")
+  code      String   @unique
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([code])
+  @@map("referral_codes")
+}
+
+model ShortLink {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  originalUrl String    @map("original_url") @db.Text
+  userId      String?   @map("user_id")
+  clicks      Int       @default(0)
+  expiresAt   DateTime? @map("expires_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@index([slug])
+  @@index([userId])
+  @@map("short_links")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// IQ TEST
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum IqDomain {
+  FLUID_REASONING
+  CRYSTALLIZED_INTELLIGENCE
+  PROCESSING_SPEED
+  WORKING_MEMORY
+  SPATIAL_REASONING
+  QUANTITATIVE_REASONING
+}
+
+enum IqFormat {
+  MATRIX
+  SEQUENCE
+  ANALOGY
+  MEMORY
+  SPATIAL
+  DEDUCTION
+}
+
+enum IqSessionStatus {
+  INSTRUCTIONS
+  ACTIVE
+  PAUSED
+  COMPLETED
+  VOIDED
+  EXPIRED
+}
+
+enum IqAgeGroup {
+  AGE_18_24
+  AGE_25_34
+  AGE_35_44
+  AGE_45_54
+  AGE_55_64
+  AGE_65_PLUS
+}
+
+model IqQuestionBank {
+  id                   String   @id @default(cuid())
+  domain               IqDomain
+  difficulty           Int      // 1–10
+  format               IqFormat
+  content              Json     // discriminated by format
+  timeLimitSeconds     Int      @map("time_limit_seconds")
+  discriminationIndex  Float    @default(0.7) @map("discrimination_index")
+  difficultyCalibrated Boolean  @default(false) @map("difficulty_calibrated")
+  pilot                Boolean  @default(false)
+  isActive             Boolean  @default(true) @map("is_active")
+  version              Int      @default(1)
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+
+  responses  IqResponse[]
+  analytics  IqQuestionAnalytics?
+
+  @@index([domain, difficulty, isActive, pilot])
+  @@map("iq_question_bank")
+}
+
+model IqSession {
+  id                 String          @id @default(cuid())
+  userId             String?         @map("user_id")
+  sessionToken       String          @unique @map("session_token")
+  status             IqSessionStatus @default(ACTIVE)
+  ageGroup           IqAgeGroup      @map("age_group")
+  startedAt          DateTime        @default(now()) @map("started_at")
+  completedAt        DateTime?       @map("completed_at")
+  expiresAt          DateTime        @map("expires_at")
+  totalQuestions     Int             @default(0) @map("total_questions")
+  currentIndex       Int             @default(0) @map("current_index")
+  questionsOrder     Json            @default("[]") @map("questions_order")  // question IDs asked so far
+  thetaEstimates     Json            @default("{}") @map("theta_estimates")  // { domain: float }
+  stdErrors          Json            @default("{}") @map("std_errors")       // { domain: float }
+  focusLossCount     Int             @default(0) @map("focus_loss_count")
+  pauseCount         Int             @default(0) @map("pause_count")
+  ipAddressHash      String?         @map("ip_address_hash")
+  userAgent          String?         @map("user_agent")
+  invalidityFlags    Json            @default("[]") @map("invalidity_flags")
+  rawScore           Float?          @map("raw_score")
+  iqScore            Int?            @map("iq_score")
+  confidenceLower    Int?            @map("confidence_lower")
+  confidenceUpper    Int?            @map("confidence_upper")
+  percentile         Float?
+  domainScores       Json?           @map("domain_scores")
+  isValid            Boolean         @default(true) @map("is_valid")
+  normingVersion     String?         @map("norming_version")
+  reportReady        Boolean         @default(false) @map("report_ready")
+  reportUrl          String?         @map("report_url")
+
+  responses IqResponse[]
+
+  @@index([userId, status])
+  @@index([status, expiresAt])
+  @@map("iq_sessions")
+}
+
+model IqResponse {
+  id             String   @id @default(cuid())
+  sessionId      String   @map("session_id")
+  questionId     String   @map("question_id")
+  domain         IqDomain
+  difficulty     Int
+  presentedAt    DateTime @map("presented_at")
+  answeredAt     DateTime @map("answered_at")
+  timeTakenMs    Int      @map("time_taken_ms")
+  selectedOption Int?     @map("selected_option")
+  isCorrect      Boolean  @map("is_correct")
+  isTimeout      Boolean  @default(false) @map("is_timeout")
+  isPilot        Boolean  @default(false) @map("is_pilot")
+  weightedScore  Float    @map("weighted_score")
+  timePenalty    Float    @map("time_penalty")
+  finalScore     Float    @map("final_score")
+
+  session  IqSession       @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  question IqQuestionBank  @relation(fields: [questionId], references: [id])
+
+  @@index([sessionId])
+  @@index([questionId])
+  @@map("iq_responses")
+}
+
+model IqNormingSnapshot {
+  id              String     @id @default(cuid())
+  version         String
+  ageGroup        IqAgeGroup @map("age_group")
+  sampleSize      Int        @map("sample_size")
+  meanRaw         Float      @map("mean_raw")
+  stdDevRaw       Float      @map("std_dev_raw")
+  percentileTable Json       @map("percentile_table")
+  createdAt       DateTime   @default(now()) @map("created_at")
+  isActive        Boolean    @default(false) @map("is_active")
+
+  @@index([ageGroup, isActive])
+  @@map("iq_norming_snapshots")
+}
+
+model IqQuestionAnalytics {
+  questionId          String   @id @map("question_id")
+  totalPresentations  Int      @default(0) @map("total_presentations")
+  totalCorrect        Int      @default(0) @map("total_correct")
+  meanTimeMs          Float    @default(0) @map("mean_time_ms")
+  stdDevTimeMs        Float    @default(0) @map("std_dev_time_ms")
+  difficultyEmpirical Float?   @map("difficulty_empirical")
+  discriminationEmp   Float?   @map("discrimination_empirical")
+  exposureThisMonth   Int      @default(0) @map("exposure_this_month")
+  lastUpdated         DateTime @default(now()) @map("last_updated")
+
+  question IqQuestionBank @relation(fields: [questionId], references: [id])
+
+  @@map("iq_question_analytics")
+}

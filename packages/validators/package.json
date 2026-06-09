@@ -1,0 +1,23 @@
+{
+  "name": "@toolverse/validators",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tool": "./src/tool.ts",
+    "./auth": "./src/auth.ts",
+    "./blog": "./src/blog.ts",
+    "./comment": "./src/comment.ts"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf node_modules dist .turbo tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

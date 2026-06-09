@@ -1,0 +1,50 @@
+{
+  "monitors": [
+    {
+      "friendly_name": "RoughTools — Homepage",
+      "url": "https://roughtools.com",
+      "type": 1,
+      "interval": 60,
+      "http_method": "GET",
+      "keyword_type": 2,
+      "keyword_value": "RoughTools",
+      "alert_contacts": "CONTACT_ID_HERE"
+    },
+    {
+      "friendly_name": "RoughTools — API Health",
+      "url": "https://api.roughtools.com/health",
+      "type": 1,
+      "interval": 60,
+      "http_method": "GET",
+      "expected_status_codes": [200],
+      "alert_contacts": "CONTACT_ID_HERE"
+    },
+    {
+      "friendly_name": "RoughTools — SSL Certificate",
+      "url": "https://roughtools.com",
+      "type": 4,
+      "interval": 3600,
+      "alert_contacts": "CONTACT_ID_HERE",
+      "ssl_expiry_reminder_days": [7, 14, 30]
+    },
+    {
+      "friendly_name": "RoughTools — BMI Calculator",
+      "url": "https://roughtools.com/tools/calculators/bmi-calculator",
+      "type": 1,
+      "interval": 300,
+      "alert_contacts": "CONTACT_ID_HERE"
+    },
+    {
+      "friendly_name": "RoughTools — Password Generator",
+      "url": "https://roughtools.com/tools/security/password-generator",
+      "type": 1,
+      "interval": 300,
+      "alert_contacts": "CONTACT_ID_HERE"
+    }
+  ],
+  "status_page": {
+    "friendly_name": "RoughTools Status",
+    "custom_domain": "status.roughtools.com",
+    "monitors": "all"
+  }
+}

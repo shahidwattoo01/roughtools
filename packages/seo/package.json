@@ -1,0 +1,26 @@
+{
+    "name":  "@toolverse/seo",
+    "private":  true,
+    "type":  "module",
+    "exports":  {
+                    ".":  "./src/index.ts",
+                    "./slug":  "./src/slug.ts",
+                    "./meta":  "./src/meta.ts",
+                    "./og-image":  "./src/og-image.ts",
+                    "./jsonld":  "./src/jsonld.ts",
+                    "./sitemap":  "./src/sitemap.ts",
+                    "./robots":  "./src/robots.ts",
+                    "./redirects":  "./src/redirects.ts",
+                    "./content":  "./src/content.ts"
+                },
+    "scripts":  {
+                    "build":  "tsc --build",
+                    "clean":  "rm -rf node_modules dist .turbo tsconfig.tsbuildinfo"
+                },
+    "devDependencies":  {
+                            "typescript":  "^5.7.3"
+                        },
+    "main":  "./dist/index.js",
+    "module":  "./dist/index.mjs",
+    "types":  "./dist/index.d.ts"
+}

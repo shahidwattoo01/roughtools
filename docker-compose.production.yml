@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  web:
+    image: ghcr.io/${GITHUB_REPOSITORY:-workspace}/web:production-latest
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${PRODUCTION_DATABASE_URL}
+      - NEXTAUTH_SECRET=${PRODUCTION_NEXTAUTH_SECRET}
+      - NEXTAUTH_URL=https://example.com
+      - NEXT_PUBLIC_API_URL=https://api.example.com
+      - NEXT_PUBLIC_APP_URL=https://example.com
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: always
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.25'
+    healthcheck:
+      test: ['CMD', 'wget', '--no-verbose', '--tries=1', '--spider', 'http://localhost:3000/api/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${PRODUCTION_DB_USER}
+      POSTGRES_PASSWORD: ${PRODUCTION_DB_PASSWORD}
+      POSTGRES_DB: ${PRODUCTION_DB_NAME:-app_production}
+    volumes:
+      - production_postgres_data:/var/lib/postgresql/data
+      - ./backups:/backups
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${PRODUCTION_DB_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2.0'
+
+  redis:
+    image: redis:7-alpine
+    command: >
+      redis-server
+      --requirepass ${PRODUCTION_REDIS_PASSWORD}
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+    volumes:
+      - production_redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', '-a', '${PRODUCTION_REDIS_PASSWORD}', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - web
+    restart: always
+
+volumes:
+  production_postgres_data:
+  production_redis_data:

@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  web:
+    image: ghcr.io/${GITHUB_REPOSITORY:-workspace}/web:staging-latest
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=staging
+      - DATABASE_URL=${STAGING_DATABASE_URL}
+      - NEXTAUTH_SECRET=${STAGING_NEXTAUTH_SECRET}
+      - NEXTAUTH_URL=https://staging.example.com
+      - NEXT_PUBLIC_API_URL=https://staging-api.example.com
+      - NEXT_PUBLIC_APP_URL=https://staging.example.com
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${STAGING_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${STAGING_DB_PASSWORD}
+      POSTGRES_DB: ${STAGING_DB_NAME:-app_staging}
+    volumes:
+      - staging_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --requirepass ${STAGING_REDIS_PASSWORD}
+    volumes:
+      - staging_redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', '-a', '${STAGING_REDIS_PASSWORD}', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  staging_postgres_data:
+  staging_redis_data:

@@ -1,0 +1,72 @@
+{
+  "description": "Cloudflare Page Rules for roughtools.com",
+  "rules": [
+    {
+      "name": "Static assets — long cache",
+      "expression": "(starts_with(http.request.uri, \"/_next/static\")",
+      "action": "cache_everything",
+      "edge_cache": {
+        "enabled": true,
+        "ttl": 2592000
+      }
+    },
+    {
+      "name": "API responses — no cache",
+      "expression": "starts_with(http.request.uri, \"/api/\")",
+      "action": "bypass"
+    },
+    {
+      "name": "RSS/XML — short cache",
+      "expression": "(http.request.uri contains \".xml\")",
+      "action": "cache_everything",
+      "edge_cache": {
+        "enabled": true,
+        "ttl": 1800
+      }
+    },
+    {
+      "name": "Ads and sitemap — short cache",
+      "expression": "(http.request.uri contains \"/ads.txt\") or (http.request.uri contains \"/sitemap\")",
+      "action": "cache_everything",
+      "edge_cache": {
+        "enabled": true,
+        "ttl": 3600
+      }
+    },
+    {
+      "name": "Embed pages — no cache",
+      "expression": "starts_with(http.request.uri, \"/embed/\")",
+      "action": "bypass"
+    },
+    {
+      "name": "HTML pages — no cache (SSR)",
+      "expression: "(http.request.uri ends_with \".html\") or (http.request.uri eq \"/\")",
+      "action": "bypass"
+    },
+    {
+      "name": "Long cache for images",
+      "expression: "(http.request.uri contains \"/images/\") or (http.request.uri contains \"/favicon\")",
+      "action": "cache_everything",
+      "edge_cache": {
+        "enabled": true,
+        "ttl": 7776000
+      }
+    },
+    {
+      "name": "Security headers",
+      "expression": "*",
+      "action": "set_cache_control",
+      "cache_control": "no-store, no-cache"
+    },
+    {
+      "name": "Enable brotli",
+      "action": "set_cache_control",
+      "cache_control": "public, max-age=86400",
+      "edge_cache": {
+        "enabled": true,
+        "ttl": 86400,
+        "cache_by": "static"
+      }
+    }
+  ]
+}

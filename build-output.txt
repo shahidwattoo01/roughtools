@@ -1,0 +1,557 @@
+
+> @workspace/web@1.0.0 build C:\Users\shahid\ai-tools-platform\apps\web
+> node --max-old-space-size=8192 node_modules/next/dist/bin/next build
+
+  ▲ Next.js 14.2.35
+  - Environments: .env.local, .env.production
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+./src/app/security/file-encryptor/page.tsx
+121:29  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/security/metadata-remover/page.tsx
+137:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/security/qr-code-generator/page.tsx
+251:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/document-tools/add-watermark/page.tsx
+30:40  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/compare-pdf/page.tsx
+35:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/crop-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/excel-to-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/html-to-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/invoice-generator/page.tsx
+104:51  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/ocr-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-editor/page.tsx
+86:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+100:12  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+101:12  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+103:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+104:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+105:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+108:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+109:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+110:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+121:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+135:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+136:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+146:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+147:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+198:65  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+213:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+226:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+227:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+233:78  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+237:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+238:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+240:16  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+240:73  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+250:24  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+252:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+253:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+254:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+278:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+284:40  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+291:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+292:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+293:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+295:48  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+296:17  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+321:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+326:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+327:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+334:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+335:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+338:36  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+340:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+341:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+442:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+547:63  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-to-excel/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-to-jpg/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-to-pdfa/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-to-powerpoint/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-to-word/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/powerpoint-to-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/redact-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/repair-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/resume-builder/page.tsx
+605:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+640:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+676:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+884:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/document-tools/scan-to-pdf/page.tsx
+104:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/document-tools/sign-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/unlock-pdf/page.tsx
+37:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/word-to-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/image-tools/add-border/AddBorderClient.tsx
+68:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+97:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/add-watermark/AddWatermarkClient.tsx
+86:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+130:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/background-changer/BackgroundChangerClient.tsx
+150:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/background-remover/BackgroundRemoverClient.tsx
+74:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+95:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+109:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/base64-to-image/Base64ToImageClient.tsx
+86:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/blur-background/BlurBackgroundClient.tsx
+59:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+80:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/dominant-color-extractor/DominantColorClient.tsx
+95:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/dpi-converter/DpiConverterClient.tsx
+66:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+111:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/gif-maker/GifMakerClient.tsx
+85:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+99:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/grayscale-converter/GrayscaleClient.tsx
+83:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+107:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/id-card-photo-maker/IdCardPhotoClient.tsx
+84:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+116:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-colorizer/ImageColorizerClient.tsx
+86:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+128:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-compressor/ImageCompressorClient.tsx
+98:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-converter/ImageConverterClient.tsx
+85:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-cropper/ImageCropperClient.tsx
+48:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+61:274  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+80:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-enhancer/ImageEnhancerClient.tsx
+115:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+138:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-flipper-rotator/FlipperRotatorClient.tsx
+76:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+109:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-metadata-viewer/MetadataViewerClient.tsx
+93:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-resizer/ImageResizerClient.tsx
+73:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+129:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-size-checker/ImageSizeCheckerClient.tsx
+94:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-to-base64/ImageToBase64Client.tsx
+65:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-to-text/OcrClient.tsx
+89:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-upscaler/ImageUpscalerClient.tsx
+49:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+70:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/meme-generator/MemeGeneratorClient.tsx
+61:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+86:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/passport-photo-maker/PassportPhotoClient.tsx
+77:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+113:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/photo-collage-maker/CollageClient.tsx
+160:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/photo-to-cartoon/CartoonClient.tsx
+121:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+146:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/remove-watermark/RemoveWatermarkClient.tsx
+106:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+132:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/round-corner-image/RoundCornerClient.tsx
+72:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+100:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/screenshot-to-pdf/ScreenshotToPdfClient.tsx
+92:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/thumbnail-maker/ThumbnailMakerClient.tsx
+96:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+147:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/white-background-maker/WhiteBackgroundClient.tsx
+59:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+93:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/security/metadata-remover/page.tsx
+85:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/security/password-generator/page.tsx
+78:42  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/SearchBar.tsx
+171:11  Warning: Elements with the ARIA role "combobox" must have the following attributes defined: aria-controls,aria-expanded  jsx-a11y/role-has-required-aria-props
+
+./src/components/sections/Hero.tsx
+68:28  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+68:53  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+69:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+69:58  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/sections/Ticker.tsx
+28:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+ ⚠ Using edge runtime on a page currently disables static generation for that page
+   Generating static pages (0/466) ...
+   Generating static pages (116/466) 
+   Generating static pages (232/466) 
+   Generating static pages (349/466) 
+ ✓ Generating static pages (466/466)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                    Size     First Load JS
+┌ ○ /                                                          2.08 kB         121 kB
+├ ○ /_not-found                                                151 B          87.8 kB
+├ ○ /about                                                     2.1 kB         98.3 kB
+├ ○ /admin/analytics                                           118 kB          205 kB
+├ ○ /api-docs                                                  2.71 kB        91.9 kB
+├ ƒ /api/ai                                                    0 B                0 B
+├ ƒ /api/api-keys                                              0 B                0 B
+├ ƒ /api/api-keys/[id]                                         0 B                0 B
+├ ƒ /api/auth/me                                               0 B                0 B
+├ ƒ /api/auth/profile                                          0 B                0 B
+├ ƒ /api/auth/register                                         0 B                0 B
+├ ƒ /api/billing/checkout                                      0 B                0 B
+├ ƒ /api/health                                                0 B                0 B
+├ ƒ /api/users                                                 0 B                0 B
+├ ƒ /api/users/[id]                                            0 B                0 B
+├ ○ /billing/success                                           1.5 kB         97.8 kB
+├ ○ /blog                                                      2.36 kB         102 kB
+├ ● /blog/[slug]                                               1.37 kB         101 kB
+├   ├ /blog/how-to-compress-pdf-without-losing-quality
+├   ├ /blog/bmi-calculator-guide-what-your-bmi-means
+├   ├ /blog/mortgage-calculator-how-much-house-can-you-afford
+├   └ [+13 more paths]
+├ ○ /contact                                                   5.44 kB         102 kB
+├ ○ /dashboard                                                 2.15 kB        98.4 kB
+├ ○ /dashboard/api-keys                                        2.09 kB        89.8 kB
+├ ○ /dashboard/referral                                        1.25 kB        88.9 kB
+├ ○ /embed-generator                                           1.72 kB        90.9 kB
+├ ○ /link-to-us                                                2.04 kB        91.2 kB
+├ ○ /llms.txt                                                  0 B                0 B
+├ ○ /manifest.webmanifest                                      0 B                0 B
+├ ƒ /opengraph-image                                           0 B                0 B
+├ ○ /pricing                                                   2.98 kB          94 kB
+├ ○ /privacy-policy                                            2.1 kB         98.3 kB
+├ ○ /profile                                                   1.79 kB        89.5 kB
+├ ○ /robots.txt                                                0 B                0 B
+├ ƒ /search                                                    943 B           120 kB
+├ ○ /security/file-encryptor                                   3.17 kB        94.2 kB
+├ ○ /security/metadata-remover                                 3.12 kB        94.1 kB
+├ ○ /security/password-generator                               3.08 kB        94.1 kB
+├ ○ /security/qr-code-generator                                12.2 kB         103 kB
+├ ○ /security/ssl-checker                                      2.62 kB        93.7 kB
+├ ○ /security/temporary-email                                  3.05 kB        94.1 kB
+├ ○ /security/url-shortener                                    2.52 kB        93.5 kB
+├ ○ /security/vpn-checker                                      2.78 kB        93.8 kB
+├ ○ /settings                                                  1.81 kB        89.5 kB
+├ ○ /signin                                                    10.6 kB        98.3 kB
+├ ○ /signup                                                    1.27 kB        88.9 kB
+├ ○ /sitemap.xml                                               0 B                0 B
+├ ○ /terms-of-service                                          2.1 kB         98.3 kB
+├ ○ /tools                                                     2.83 kB         102 kB
+├ ● /tools/[category]                                          1.3 kB          109 kB
+├   ├ /tools/pdf
+├   ├ /tools/calculators
+├   ├ /tools/developer
+├   └ [+10 more paths]
+├ ● /tools/[category]/[tool]                                   1.38 kB         112 kB
+├   ├ /tools/pdf/compress-pdf
+├   ├ /tools/pdf/merge-pdf
+├   ├ /tools/pdf/split-pdf
+├   └ [+171 more paths]
+├ ƒ /tools/[category]/[tool]/opengraph-image                   0 B                0 B
+├ ○ /tools/business                                            524 B          96.8 kB
+├ ○ /tools/business/ad-creative-generator                      2.81 kB        99.1 kB
+├ ○ /tools/business/email-marketing-ai                         5.11 kB         101 kB
+├ ○ /tools/business/landing-page-builder                       4.82 kB         101 kB
+├ ○ /tools/business/sales-copy-ai                              4.04 kB         100 kB
+├ ○ /tools/business/seo-optimizer                              4.41 kB         101 kB
+├ ○ /tools/business/social-media-scheduler                     4.67 kB         101 kB
+├ ○ /tools/calculators                                         524 B          96.8 kB
+├ ● /tools/calculators/[slug]                                  4.38 kB         101 kB
+├   ├ /tools/calculators/auto-loan-calculator
+├   ├ /tools/calculators/interest-calculator
+├   ├ /tools/calculators/payment-calculator
+├   └ [+179 more paths]
+├ ○ /tools/calculators/age-calculator                          2.18 kB        93.2 kB
+├ ○ /tools/calculators/bmi-calculator                          2.47 kB        93.5 kB
+├ ○ /tools/calculators/body-fat-calculator                     2.45 kB        93.5 kB
+├ ○ /tools/calculators/calorie-calculator                      2.82 kB        93.9 kB
+├ ○ /tools/calculators/compound-interest-calculator            2.23 kB        93.3 kB
+├ ○ /tools/calculators/currency-converter                      2.52 kB        93.5 kB
+├ ○ /tools/calculators/date-difference-calculator              2.13 kB        93.2 kB
+├ ○ /tools/calculators/discount-calculator                     2.44 kB        93.5 kB
+├ ○ /tools/calculators/due-date-calculator                     2.58 kB        93.6 kB
+├ ○ /tools/calculators/gpa-calculator                          2.48 kB        93.5 kB
+├ ○ /tools/calculators/inflation-calculator                    2.33 kB        93.4 kB
+├ ○ /tools/calculators/loan-calculator                         2.51 kB        93.5 kB
+├ ○ /tools/calculators/mortgage-calculator                     2.19 kB        93.2 kB
+├ ○ /tools/calculators/ovulation-calculator                    2.47 kB        93.5 kB
+├ ○ /tools/calculators/percentage-calculator                   1.91 kB        92.9 kB
+├ ○ /tools/calculators/retirement-calculator                   2.47 kB        93.5 kB
+├ ○ /tools/calculators/roi-calculator                          2.05 kB        93.1 kB
+├ ○ /tools/calculators/salary-calculator                       2.61 kB        93.6 kB
+├ ○ /tools/calculators/scientific-calculator                   2.82 kB        93.8 kB
+├ ○ /tools/calculators/tax-calculator                          2.36 kB        93.4 kB
+├ ○ /tools/calculators/tip-calculator                          1.91 kB        92.9 kB
+├ ○ /tools/converters                                          3.28 kB        99.5 kB
+├ ○ /tools/converters/area-converter                           2.34 kB         102 kB
+├ ○ /tools/converters/digital-storage-converter                2.45 kB         102 kB
+├ ○ /tools/converters/length-converter                         2.29 kB         102 kB
+├ ○ /tools/converters/speed-converter                          2.24 kB         102 kB
+├ ○ /tools/converters/temperature-converter                    2.32 kB         102 kB
+├ ○ /tools/converters/time-converter                           2.35 kB         102 kB
+├ ○ /tools/converters/volume-converter                         2.42 kB         102 kB
+├ ○ /tools/converters/weight-converter                         2.28 kB         102 kB
+├ ○ /tools/developer                                           4.15 kB         100 kB
+├ ○ /tools/developer/base64-encoder                            2.15 kB         102 kB
+├ ○ /tools/developer/chmod-calculator                          2.67 kB         102 kB
+├ ○ /tools/developer/color-picker                              2.74 kB         102 kB
+├ ○ /tools/developer/cron-parser                               4.13 kB         104 kB
+├ ○ /tools/developer/css-minifier                              2.41 kB         102 kB
+├ ○ /tools/developer/diff-checker                              3.03 kB         103 kB
+├ ○ /tools/developer/hash-generator                            3.58 kB         103 kB
+├ ○ /tools/developer/html-encoder                              2.19 kB         102 kB
+├ ○ /tools/developer/js-beautifier                             3 kB            103 kB
+├ ○ /tools/developer/json-formatter                            2.17 kB         102 kB
+├ ○ /tools/developer/jwt-decoder                               3.12 kB         103 kB
+├ ○ /tools/developer/markdown-editor                           3.8 kB          103 kB
+├ ○ /tools/developer/regex-tester                              2.91 kB         103 kB
+├ ○ /tools/developer/sql-formatter                             2.61 kB         102 kB
+├ ○ /tools/developer/timestamp-converter                       2.65 kB         102 kB
+├ ○ /tools/developer/url-encoder                               2.28 kB         102 kB
+├ ○ /tools/developer/uuid-generator                            2.17 kB         102 kB
+├ ○ /tools/developer/xml-formatter                             2.89 kB         103 kB
+├ ○ /tools/developer/yaml-validator                            3.39 kB         103 kB
+├ ○ /tools/document-tools                                      3.61 kB        99.9 kB
+├ ○ /tools/document-tools/add-page-numbers                     2.05 kB         276 kB
+├ ○ /tools/document-tools/add-watermark                        2.28 kB         276 kB
+├ ○ /tools/document-tools/business-letter                      2.75 kB         102 kB
+├ ○ /tools/document-tools/compare-pdf                          2.44 kB        93.5 kB
+├ ○ /tools/document-tools/compress-pdf                         151 B          87.8 kB
+├ ○ /tools/document-tools/contract-creator                     2.98 kB         103 kB
+├ ○ /tools/document-tools/cover-letter-builder                 3.05 kB         103 kB
+├ ○ /tools/document-tools/crop-pdf                             2.41 kB        93.4 kB
+├ ○ /tools/document-tools/excel-to-pdf                         2.37 kB        93.4 kB
+├ ○ /tools/document-tools/expense-report                       2.87 kB         102 kB
+├ ○ /tools/document-tools/extract-pdf-pages                    2.34 kB         276 kB
+├ ○ /tools/document-tools/html-to-pdf                          2.37 kB        93.4 kB
+├ ○ /tools/document-tools/invoice-generator                    3.94 kB         104 kB
+├ ○ /tools/document-tools/jpg-to-pdf                           2.12 kB         276 kB
+├ ○ /tools/document-tools/meeting-minutes                      2.85 kB         102 kB
+├ ○ /tools/document-tools/merge-pdf                            2.22 kB         276 kB
+├ ○ /tools/document-tools/nda-generator                        2.86 kB         102 kB
+├ ○ /tools/document-tools/ocr-pdf                              2.45 kB        93.5 kB
+├ ○ /tools/document-tools/organize-pdf                         2.39 kB         277 kB
+├ ○ /tools/document-tools/pdf-converter                        2.5 kB          102 kB
+├ ○ /tools/document-tools/pdf-editor                           6.33 kB        97.4 kB
+├ ○ /tools/document-tools/pdf-to-excel                         2.38 kB        93.4 kB
+├ ○ /tools/document-tools/pdf-to-html                          2.89 kB        93.9 kB
+├ ○ /tools/document-tools/pdf-to-jpg                           2.43 kB        93.5 kB
+├ ○ /tools/document-tools/pdf-to-pdfa                          2.43 kB        93.5 kB
+├ ○ /tools/document-tools/pdf-to-powerpoint                    2.38 kB        93.4 kB
+├ ○ /tools/document-tools/pdf-to-word                          2.37 kB        93.4 kB
+├ ○ /tools/document-tools/powerpoint-to-pdf                    2.38 kB        93.4 kB
+├ ○ /tools/document-tools/proposal-generator                   2.9 kB          103 kB
+├ ○ /tools/document-tools/protect-pdf                          2.64 kB        93.7 kB
+├ ○ /tools/document-tools/redact-pdf                           2.41 kB        93.4 kB
+├ ○ /tools/document-tools/reference-letter                     2.91 kB         103 kB
+├ ○ /tools/document-tools/remove-pdf-pages                     2.35 kB         277 kB
+├ ○ /tools/document-tools/repair-pdf                           2.37 kB        93.4 kB
+├ ○ /tools/document-tools/resume-builder                       8.36 kB         105 kB
+├ ○ /tools/document-tools/rotate-pdf                           2.17 kB         276 kB
+├ ○ /tools/document-tools/scan-to-pdf                          2.6 kB          277 kB
+├ ○ /tools/document-tools/sign-pdf                             2.41 kB        93.4 kB
+├ ○ /tools/document-tools/split-pdf                            2.19 kB         276 kB
+├ ○ /tools/document-tools/terms-of-service                     2.9 kB          103 kB
+├ ○ /tools/document-tools/unlock-pdf                           2.42 kB        93.5 kB
+├ ○ /tools/document-tools/word-to-pdf                          2.37 kB        93.4 kB
+├ ○ /tools/environment                                         524 B          96.8 kB
+├ ○ /tools/environment/carbon-footprint-calculator             3.44 kB        99.7 kB
+├ ○ /tools/environment/ev-carbon-offset                        2.94 kB        99.2 kB
+├ ○ /tools/environment/flight-carbon-calculator                3.61 kB        99.9 kB
+├ ○ /tools/environment/home-energy-audit                       3.6 kB         99.9 kB
+├ ○ /tools/environment/solar-savings-calculator                2.87 kB        99.1 kB
+├ ○ /tools/environment/waste-reduction-planner                 3.48 kB        99.7 kB
+├ ○ /tools/image-tools                                         5.21 kB         101 kB
+├ ○ /tools/image-tools/add-border                              2.63 kB        93.7 kB
+├ ○ /tools/image-tools/add-watermark                           2.94 kB          94 kB
+├ ○ /tools/image-tools/background-changer                      3.31 kB        94.3 kB
+├ ○ /tools/image-tools/background-remover                      3.15 kB        94.2 kB
+├ ○ /tools/image-tools/base64-to-image                         2.72 kB        93.8 kB
+├ ○ /tools/image-tools/blur-background                         2.67 kB        93.7 kB
+├ ○ /tools/image-tools/bulk-image-resizer                      3.33 kB        94.4 kB
+├ ○ /tools/image-tools/dominant-color-extractor                3.06 kB        94.1 kB
+├ ○ /tools/image-tools/dpi-converter                           2.94 kB          94 kB
+├ ○ /tools/image-tools/gif-maker                               3.15 kB        94.2 kB
+├ ○ /tools/image-tools/grayscale-converter                     2.81 kB        93.8 kB
+├ ○ /tools/image-tools/heic-to-jpg                             3.14 kB        94.2 kB
+├ ○ /tools/image-tools/id-card-photo-maker                     2.99 kB          94 kB
+├ ○ /tools/image-tools/image-color-picker                      3.05 kB        94.1 kB
+├ ○ /tools/image-tools/image-colorizer                         3.02 kB          94 kB
+├ ○ /tools/image-tools/image-compressor                        3.11 kB        94.1 kB
+├ ○ /tools/image-tools/image-converter                         3.01 kB          94 kB
+├ ○ /tools/image-tools/image-cropper                           2.75 kB        93.8 kB
+├ ○ /tools/image-tools/image-enhancer                          3 kB             94 kB
+├ ○ /tools/image-tools/image-flipper-rotator                   2.85 kB        93.9 kB
+├ ○ /tools/image-tools/image-metadata-viewer                   2.79 kB        93.8 kB
+├ ○ /tools/image-tools/image-resizer                           3.27 kB        94.3 kB
+├ ○ /tools/image-tools/image-size-checker                      2.58 kB        93.6 kB
+├ ○ /tools/image-tools/image-to-base64                         2.75 kB        93.8 kB
+├ ○ /tools/image-tools/image-to-text                           3.36 kB        94.4 kB
+├ ○ /tools/image-tools/image-upscaler                          2.6 kB         93.6 kB
+├ ○ /tools/image-tools/jpg-to-png                              2.89 kB        93.9 kB
+├ ○ /tools/image-tools/meme-generator                          2.62 kB        93.6 kB
+├ ○ /tools/image-tools/passport-photo-maker                    3.14 kB        94.2 kB
+├ ○ /tools/image-tools/photo-collage-maker                     3.33 kB        94.4 kB
+├ ○ /tools/image-tools/photo-to-cartoon                        2.97 kB          94 kB
+├ ○ /tools/image-tools/pixel-density-calculator                2.95 kB          94 kB
+├ ○ /tools/image-tools/png-to-jpg                              3.05 kB        94.1 kB
+├ ○ /tools/image-tools/remove-watermark                        3.19 kB        94.2 kB
+├ ○ /tools/image-tools/round-corner-image                      2.79 kB        93.8 kB
+├ ○ /tools/image-tools/screenshot-to-pdf                       3.25 kB        94.3 kB
+├ ○ /tools/image-tools/thumbnail-maker                         3.36 kB        94.4 kB
+├ ○ /tools/image-tools/white-background-maker                  2.7 kB         93.7 kB
+├ ○ /tools/legal-tools                                         3.5 kB         99.7 kB
+├ ○ /tools/legal-tools/cease-and-desist-generator              3.66 kB         103 kB
+├ ○ /tools/legal-tools/employment-contract-generator           3.57 kB         103 kB
+├ ○ /tools/legal-tools/lease-agreement-generator               3.45 kB         103 kB
+├ ○ /tools/legal-tools/nda-generator                           3.38 kB         103 kB
+├ ○ /tools/legal-tools/power-of-attorney-generator             3.62 kB         103 kB
+├ ○ /tools/legal-tools/privacy-policy-generator                4.1 kB          104 kB
+├ ○ /tools/legal-tools/terms-of-service-generator              4.02 kB         104 kB
+├ ○ /tools/legal-tools/will-generator                          3.9 kB          104 kB
+├ ○ /tools/network                                             3.31 kB        99.6 kB
+├ ○ /tools/network/dns-lookup                                  2.82 kB         102 kB
+├ ○ /tools/network/http-headers-checker                        3.01 kB         103 kB
+├ ○ /tools/network/ip-checker                                  2.48 kB         102 kB
+├ ○ /tools/network/ping-tool                                   2.98 kB         103 kB
+├ ○ /tools/network/port-checker                                3.57 kB         103 kB
+├ ○ /tools/network/website-speed-test                          3.83 kB         103 kB
+├ ○ /tools/network/whois-lookup                                2.8 kB          102 kB
+├ ƒ /tools/opengraph-image                                     0 B                0 B
+├ ○ /tools/pdf                                                 524 B          96.8 kB
+├ ● /tools/pdf/[pdfTool]                                       4.83 kB         104 kB
+├   ├ /tools/pdf/compress-pdf
+├   ├ /tools/pdf/merge-pdf
+├   ├ /tools/pdf/split-pdf
+├   └ [+26 more paths]
+├ ○ /tools/real-estate                                         3.45 kB        99.7 kB
+├ ○ /tools/real-estate/cap-rate-calculator                     2.65 kB        93.7 kB
+├ ○ /tools/real-estate/closing-costs-calculator                2.68 kB        93.7 kB
+├ ○ /tools/real-estate/down-payment-calculator                 2.55 kB        93.6 kB
+├ ○ /tools/real-estate/home-affordability-calculator           2.59 kB        93.6 kB
+├ ○ /tools/real-estate/home-value-estimator                    2.72 kB        93.8 kB
+├ ○ /tools/real-estate/property-tax-calculator                 2.4 kB         93.4 kB
+├ ○ /tools/real-estate/rent-vs-buy-calculator                  2.78 kB        93.8 kB
+├ ○ /tools/real-estate/rental-yield-calculator                 2.46 kB        93.5 kB
+├ ○ /tools/resume                                              524 B          96.8 kB
+├ ○ /tools/security                                            3.46 kB        99.7 kB
+├ ○ /tools/security/file-encryptor                             2.42 kB        93.5 kB
+├ ○ /tools/security/metadata-remover                           2.26 kB        93.3 kB
+├ ○ /tools/security/password-generator                         2.25 kB        93.3 kB
+├ ○ /tools/security/qr-code-generator                          7.59 kB        98.6 kB
+├ ○ /tools/security/ssl-checker                                2.7 kB         93.7 kB
+├ ○ /tools/security/temporary-email                            2.05 kB        93.1 kB
+├ ○ /tools/security/url-shortener                              2.68 kB        93.7 kB
+├ ○ /tools/security/vpn-checker                                2.33 kB        93.4 kB
+├ ○ /tools/text                                                3.52 kB        99.8 kB
+├ ○ /tools/text/case-converter                                 2.3 kB          102 kB
+├ ○ /tools/text/find-replace                                   2.98 kB         103 kB
+├ ○ /tools/text/grammar-checker                                2.8 kB          102 kB
+├ ○ /tools/text/lorem-ipsum-generator                          2.71 kB         102 kB
+├ ○ /tools/text/readability-score                              2.83 kB         102 kB
+├ ○ /tools/text/remove-duplicate-lines                         2.47 kB         102 kB
+├ ○ /tools/text/text-reverser                                  2.61 kB         102 kB
+├ ○ /tools/text/text-summarizer                                2.82 kB         102 kB
+├ ○ /tools/text/text-to-speech                                 2.68 kB         102 kB
+└ ○ /tools/text/word-counter                                   2.19 kB         102 kB
++ First Load JS shared by all                                  87.7 kB
+  ├ chunks/8547-1b2215c219db9093.js                            31.9 kB
+  ├ chunks/fb1f1df2-0831464d8e53fb15.js                        53.6 kB
+  └ other shared chunks (total)                                2.12 kB
+
+
+ƒ Middleware                                                   25.2 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+

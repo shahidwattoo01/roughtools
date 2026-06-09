@@ -1,0 +1,283 @@
+
+> @workspace/web@1.0.0 build C:\Users\shahid\ai-tools-platform\apps\web
+> next build
+
+  ▲ Next.js 14.2.35
+  - Environments: .env.local, .env.production
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings
+
+../../node_modules/.pnpm/@opentelemetry+instrumentation@0.212.0_@opentelemetry+api@1.9.1/node_modules/@opentelemetry/instrumentation/build/esm/platform/node/instrumentation.js
+Critical dependency: the request of a dependency is an expression
+
+Import trace for requested module:
+../../node_modules/.pnpm/@opentelemetry+instrumentation@0.212.0_@opentelemetry+api@1.9.1/node_modules/@opentelemetry/instrumentation/build/esm/platform/node/instrumentation.js
+../../node_modules/.pnpm/@opentelemetry+instrumentation@0.212.0_@opentelemetry+api@1.9.1/node_modules/@opentelemetry/instrumentation/build/esm/platform/node/index.js
+../../node_modules/.pnpm/@opentelemetry+instrumentation@0.212.0_@opentelemetry+api@1.9.1/node_modules/@opentelemetry/instrumentation/build/esm/platform/index.js
+../../node_modules/.pnpm/@opentelemetry+instrumentation@0.212.0_@opentelemetry+api@1.9.1/node_modules/@opentelemetry/instrumentation/build/esm/index.js
+../../node_modules/.pnpm/@fastify+otel@0.18.0_@opentelemetry+api@1.9.1/node_modules/@fastify/otel/index.js
+../../node_modules/.pnpm/@sentry+node@10.53.1/node_modules/@sentry/node/build/cjs/integrations/tracing/fastify/index.js
+../../node_modules/.pnpm/@sentry+node@10.53.1/node_modules/@sentry/node/build/cjs/index.js
+../../node_modules/.pnpm/@sentry+nextjs@10.53.1_@opentelemetry+core@2.7.1_@opentelemetry+api@1.9.1__@opentelemetry+sdk_e7rlilyyzb6qfimvupsyzzlf5e/node_modules/@sentry/nextjs/build/cjs/index.server.js
+./src/app/error.tsx
+
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+Failed to compile.
+
+./src/app/security/file-encryptor/page.tsx
+121:29  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/security/metadata-remover/page.tsx
+137:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/security/qr-code-generator/page.tsx
+251:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/document-tools/add-watermark/page.tsx
+30:40  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/compare-pdf/page.tsx
+35:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/crop-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/excel-to-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/html-to-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/invoice-generator/page.tsx
+104:51  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/ocr-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-editor/page.tsx
+86:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+100:12  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+101:12  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+103:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+104:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+105:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+108:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+109:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+110:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+121:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+135:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+136:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+146:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+147:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+198:65  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+213:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+226:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+227:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+233:78  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+237:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+238:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+240:16  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+240:73  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+250:24  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+252:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+253:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+254:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+278:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+284:40  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+291:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+292:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+293:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+295:48  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+296:17  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+321:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+326:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+327:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+334:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+335:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+338:36  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+340:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+341:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+442:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+547:63  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-to-excel/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-to-jpg/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-to-pdfa/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-to-powerpoint/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/pdf-to-word/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/powerpoint-to-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/redact-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/repair-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/scan-to-pdf/page.tsx
+104:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/document-tools/sign-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/unlock-pdf/page.tsx
+37:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/document-tools/word-to-pdf/page.tsx
+34:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/tools/image-tools/add-border/AddBorderClient.tsx
+68:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+97:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/add-watermark/AddWatermarkClient.tsx
+86:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+130:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/background-changer/BackgroundChangerClient.tsx
+150:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/background-remover/BackgroundRemoverClient.tsx
+74:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+95:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+109:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/base64-to-image/Base64ToImageClient.tsx
+77:80  Error: Irregular whitespace not allowed.  no-irregular-whitespace
+85:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/blur-background/BlurBackgroundClient.tsx
+59:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+80:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/dominant-color-extractor/DominantColorClient.tsx
+95:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/dpi-converter/DpiConverterClient.tsx
+66:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+111:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/gif-maker/GifMakerClient.tsx
+85:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+99:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/grayscale-converter/GrayscaleClient.tsx
+83:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+107:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/id-card-photo-maker/IdCardPhotoClient.tsx
+84:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+116:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-colorizer/ImageColorizerClient.tsx
+86:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+128:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-compressor/ImageCompressorClient.tsx
+98:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-converter/ImageConverterClient.tsx
+85:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-cropper/ImageCropperClient.tsx
+48:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+61:274  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+80:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-enhancer/ImageEnhancerClient.tsx
+115:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+138:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-flipper-rotator/FlipperRotatorClient.tsx
+76:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+109:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-metadata-viewer/MetadataViewerClient.tsx
+93:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-resizer/ImageResizerClient.tsx
+73:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+129:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-size-checker/ImageSizeCheckerClient.tsx
+94:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-to-base64/ImageToBase64Client.tsx
+65:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-to-text/OcrClient.tsx
+88:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/image-upscaler/ImageUpscalerClient.tsx
+49:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+70:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/meme-generator/MemeGeneratorClient.tsx
+61:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+86:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/passport-photo-maker/PassportPhotoClient.tsx
+77:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+113:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/photo-collage-maker/CollageClient.tsx
+160:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/photo-to-cartoon/CartoonClient.tsx
+121:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+146:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/remove-watermark/RemoveWatermarkClient.tsx
+106:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+132:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/round-corner-image/RoundCornerClient.tsx
+72:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+100:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/screenshot-to-pdf/ScreenshotToPdfClient.tsx
+92:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/thumbnail-maker/ThumbnailMakerClient.tsx
+96:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+147:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/image-tools/white-background-maker/WhiteBackgroundClient.tsx
+59:22  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+93:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/security/metadata-remover/page.tsx
+85:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/tools/security/password-generator/page.tsx
+78:42  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/SearchBar.tsx
+171:11  Warning: Elements with the ARIA role "combobox" must have the following attributes defined: aria-controls,aria-expanded  jsx-a11y/role-has-required-aria-props
+
+./src/components/sections/Hero.tsx
+68:28  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+68:53  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+69:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+69:58  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/sections/Ticker.tsx
+28:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+C:\Users\shahid\ai-tools-platform\apps\web:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/web@1.0.0 build: `next build`
+Exit status 1

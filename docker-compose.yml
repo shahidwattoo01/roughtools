@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/app_dev
+      - NEXTAUTH_SECRET=dev-secret-change-me
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXT_PUBLIC_API_URL=http://localhost:3000/api
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./apps/web/src:/app/apps/web/src
+      - ./packages:/app/packages
+
+  db:
+    image: postgres:16-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app_dev
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  redis_data:

@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Running pre-commit checks..."
+
+# 1. Run lint-staged (ESLint + Prettier on staged files)
+npx lint-staged
+
+# 2. TypeScript check on both apps
+echo "⚙️  Type checking..."
+pnpm --filter @toolverse/api type-check
+pnpm --filter @toolverse/web type-check
+
+# 3. Block commit if unit tests fail
+echo "🧪 Running unit tests..."
+pnpm --filter @toolverse/calculators-core test --run
+
+echo "✅ All checks passed!"

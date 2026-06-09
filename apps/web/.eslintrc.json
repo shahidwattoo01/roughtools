@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "extends": ["../../packages/config/eslint/web"],
+  "ignorePatterns": ["node_modules/", ".next/", "dist/"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "warn",
+    "react/no-unescaped-entities": "warn",
+    "prefer-const": "warn",
+    "no-empty": "warn",
+    "no-irregular-whitespace": "warn",
+    "no-useless-escape": "warn",
+    "@typescript-eslint/no-unused-expressions": "warn"
+  }
+}

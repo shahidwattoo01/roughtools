@@ -1,0 +1,97 @@
+/**
+ * Print styles — import this in your app's global CSS.
+ * Hides navigation, footers, sidebars, and interactive elements.
+ * Only shows the .print-area content.
+ */
+
+@media print {
+  /* Hide everything except print areas */
+  body > *:not(.print-area) {
+    display: none !important;
+  }
+
+  .print-area {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+    color: black !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Show print-area children */
+  .print-area > * {
+    display: block !important;
+  }
+
+  /* Remove link colors */
+  .print-area a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+
+  .print-area a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #555;
+  }
+
+  /* Remove backgrounds from code blocks */
+  .print-area pre,
+  .print-area code {
+    background: #f5f5f5 !important;
+    border: 1px solid #ddd !important;
+    color: black !important;
+    font-size: 10pt !important;
+  }
+
+  /* Remove shadows and rounded corners */
+  .print-area * {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* Avoid page breaks inside these elements */
+  .print-area table,
+  .print-area pre,
+  .print-area blockquote {
+    page-break-inside: avoid;
+  }
+
+  /* Force page break before H2 headings */
+  .print-area h2 {
+    page-break-before: auto;
+  }
+
+  /* Hide buttons and interactive elements */
+  .print-area button,
+  .print-area [role="button"],
+  .print-area input,
+  .print-area select,
+  .print-area textarea {
+    display: none !important;
+  }
+
+  /* Page margins */
+  @page {
+    margin: 2cm;
+    size: A4;
+  }
+
+  /* Print header with page title */
+  .print-area::before {
+    content: attr(data-print-title);
+    display: block;
+    font-size: 18pt;
+    font-weight: bold;
+    margin-bottom: 12pt;
+    padding-bottom: 8pt;
+    border-bottom: 2pt solid black;
+  }
+}
