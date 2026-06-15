@@ -179,7 +179,7 @@ function Section({ title, icon, children, defaultOpen = true }: {
 
 // ─── Party Editor ─────────────────────────────────────────────
 
-function PartyEditor({ title, value, onChange, showLogo = false }: {
+function PartyEditor({ title: _title, value, onChange, showLogo = false }: {
   title: string; value: Party; onChange: (p: Party) => void; showLogo?: boolean
 }) {
   const set = (k: keyof Party, v: string) => onChange({ ...value, [k]: v })
@@ -306,7 +306,7 @@ function LineItemsEditor({ items, onChange, sym }: {
 // ─── Totals Panel ─────────────────────────────────────────────
 
 function TotalsPanel({ data, onChange }: { data: InvoiceData; onChange: (d: InvoiceData) => void }) {
-  const { subtotal, discAmt, afterDiscount, taxAmt, shipping, total } = calcTotals(data)
+  const { subtotal, discAmt, afterDiscount: _afterDiscount, taxAmt, shipping: _shipping, total } = calcTotals(data)
   const sym = data.currencySymbol
 
   return (
@@ -399,7 +399,7 @@ function TotalsPanel({ data, onChange }: { data: InvoiceData; onChange: (d: Invo
 // ─── PDF Generator ────────────────────────────────────────────
 
 function generateHTML(data: InvoiceData): string {
-  const { subtotal, discAmt, taxAmt, shipping, total } = calcTotals(data)
+  const { subtotal, discAmt, taxAmt, shipping: _shipping2, total } = calcTotals(data)
   const sym = data.currencySymbol
   const f = data.from; const t = data.to
 

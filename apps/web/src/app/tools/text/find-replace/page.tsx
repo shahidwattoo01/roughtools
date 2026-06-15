@@ -126,7 +126,9 @@ export default function Page() {
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Search and replace text with support for regular expressions, case-sensitive matching, and whole-word mode. All matches are highlighted in real time before you commit to any replacement. Runs entirely in your browser — no server, no data sent, no account required.
         </p>
+        <div data-print-section="calculator">
         <FindReplaceClient />
+        </div>
         <div style={{ marginTop: 12, marginBottom: 4 }}>
           <PDFExportButton toolName="Find and Replace" />
         </div>

@@ -1,0 +1,120 @@
+﻿---
+title: 'Color Picker and Color Converter: HEX, RGB, HSL, and CMYK Conversion Guide'
+slug: color-picker-guide
+date: '2026-09-07'
+excerpt: 'Learn how to convert between HEX, RGB, HSL, and CMYK color codes. Understand color models used in web design, printing, and image editing. Includes conversion formulas and color reference tables. Free color picker and converter included.'
+readTime: '7 min read'
+author: RoughTools Team
+category: Unit Converters
+keywords:
+  - color picker online
+  - hex to rgb converter
+  - color code converter
+  - RGB to hex calculator
+  - HEX color codes
+  - color converter tool
+---
+
+To convert a HEX color code to RGB: split the 6-digit hex code into pairs and convert each from hexadecimal to decimal. #FF8040: FF=255 (red), 80=128 (green), 40=64 (blue) → RGB(255, 128, 64). To convert RGB to HEX: convert each decimal value to two-digit hexadecimal. RGB(30, 144, 255) → 1E=30, 90=144, FF=255 → #1E90FF.
+
+Color codes are used everywhere in digital design — web development (CSS/HTML use hex and RGB), image editing (Photoshop uses HSB/RGB/CMYK), printing (CMYK for physical output), and design tools (Figma, Sketch, Canva). Understanding color models and how to convert between them is fundamental for designers, developers, and anyone working with digital or print media.
+
+Use the free [Color Picker](https://roughtools.com/tools/converters/color-picker) at RoughTools to pick colors visually and convert between HEX, RGB, HSL, and CMYK instantly.
+
+👉 **Free Color Picker and Converter — instant, no signup required.**
+→ https://roughtools.com/tools/converters/color-picker
+
+## The Four Main Color Models
+
+**HEX (Hexadecimal)**
+Used in: HTML, CSS, web development
+Format: #RRGGBB (6 hex digits) or #RGB (shorthand for #RRGGBB where digits repeat)
+Range: 00–FF for each channel
+Example: #3498DB (a medium blue)
+
+**RGB (Red, Green, Blue)**
+Used in: screens, monitors, cameras, image editing
+Format: rgb(R, G, B) where each is 0–255
+Additive color model: 0,0,0 = black; 255,255,255 = white
+Example: rgb(52, 152, 219) = same medium blue
+
+**HSL (Hue, Saturation, Lightness)**
+Used in: CSS (modern), design tools, more intuitive color adjustment
+Format: hsl(H, S%, L%)
+H = 0–360 (degrees on color wheel); S = 0–100%; L = 0–100%
+Example: hsl(204, 70%, 53%) = same medium blue
+
+**CMYK (Cyan, Magenta, Yellow, Key/Black)**
+Used in: print/offset printing
+Format: cmyk(C%, M%, Y%, K%)
+Subtractive model: ink on white paper absorbs light
+Example: cmyk(76%, 31%, 0%, 14%) = similar blue for print
+
+## Color Conversion Reference
+
+| Color Name | HEX | RGB | Meaning/Use |
+|-----------|-----|-----|-------------|
+| Black | #000000 | 0, 0, 0 | Text, borders |
+| White | #FFFFFF | 255, 255, 255 | Backgrounds |
+| Red | #FF0000 | 255, 0, 0 | Errors, alerts |
+| Green | #00FF00 | 0, 255, 0 | Pure (rarely used) |
+| Blue | #0000FF | 0, 0, 255 | Links (historical) |
+| Navy | #000080 | 0, 0, 128 | Corporate blue |
+| Gold | #FFD700 | 255, 215, 0 | Premium feel |
+| Gray (50%) | #808080 | 128, 128, 128 | Neutral, text |
+
+## HEX to RGB Conversion
+
+For #1A3C5E:
+- 1A (hex) = 1×16 + 10 = 26 (decimal) → R=26
+- 3C (hex) = 3×16 + 12 = 60 (decimal) → G=60
+- 5E (hex) = 5×16 + 14 = 94 (decimal) → B=94
+- Result: **RGB(26, 60, 94)**
+
+## RGB to HSL Conversion
+
+Given RGB(52, 152, 219) (0-1 scale: R=0.204, G=0.596, B=0.859):
+1. Max = 0.859 (B), Min = 0.204 (R), Range = 0.655
+2. Lightness L = (Max + Min) / 2 = 0.532 = **53.2%**
+3. Saturation S = Range / (1 - |2L - 1|) = 0.655 / 0.936 = **70%**
+4. Hue: since Max = B: H = 60 × ((R-G)/Range + 4) = 60 × ((-0.392/0.655) + 4) = 60 × 3.40 = 204°
+5. Result: **HSL(204, 70%, 53%)**
+
+The RoughTools color converter handles all conversions automatically.
+
+## When to Use Each Color Model
+
+**HEX/RGB:** Use for web development (CSS, HTML). Both are used interchangeably in web contexts. RGB is easier to understand and adjust; HEX is more compact.
+
+**HSL:** Use when you want to adjust colors intuitively. Changing lightness (L) makes a color lighter/darker while keeping the same hue — useful for creating color palettes with consistent hue but varying brightness.
+
+**CMYK:** Use when preparing files for offset printing. Screen colors (RGB) must be converted to CMYK for print. The conversion is not perfect — the CMYK gamut (range of reproducible colors) is smaller than RGB, so some vivid screen colors cannot be exactly reproduced in print.
+
+## Frequently Asked Questions
+
+**Why do colors look different on screen vs. printed?**
+Screens use RGB (additive light — mixing colors of light), while printers use CMYK (subtractive — mixing inks that absorb light). The CMYK color space is smaller than RGB — some saturated colors (vivid blues, greens) that display beautifully on screen cannot be reproduced in CMYK printing. This is called "gamut mapping." When preparing design files for print, always work in CMYK and proof on a calibrated monitor. Some print shops accept RGB files and convert internally, but results vary.
+
+**What is the difference between HSB/HSV and HSL?**
+Both represent color using Hue (color), Saturation, and either Brightness/Value (HSB/HSV) or Lightness (HSL). The key difference: in HSL, a lightness of 100% is always pure white regardless of saturation. In HSB/HSV, a value of 100% at full saturation gives the pure hue. HSL is used in CSS; Photoshop uses HSB; both are "natural" color selection models compared to RGB.
+
+**What is color contrast ratio and why does it matter for accessibility?**
+WCAG (Web Content Accessibility Guidelines) requires a minimum contrast ratio between text and background for readability: 4.5:1 for normal text, 3:1 for large text. Contrast ratio is calculated from relative luminance values derived from RGB. Black text on white: 21:1 (maximum contrast). Dark gray on light gray: might fail. Tools like the RoughTools color picker show the contrast ratio between two colors. Inaccessible contrast leads to poor readability for all users and fails WCAG compliance for legally regulated websites.
+
+**How many colors can an 8-bit display show?**
+Each color channel (R, G, B) in an 8-bit display uses 8 bits → 2⁸ = 256 values (0–255). Total colors: 256³ = 16,777,216 (~16.7 million colors). This is "True Color" and covers more distinct colors than the human eye can differentiate in adjacent patches. "Deep Color" (10-bit per channel) allows 10³ = 1,024 values per channel = 1.07 billion colors, relevant for HDR displays and professional photography.
+
+**What are Pantone colors and how are they different?**
+Pantone Matching System (PMS) is a standardized color reproduction system used in printing, manufacturing, and product design. Each Pantone color is a precisely formulated ink mixture, guaranteeing that "Pantone 485C" (a specific red) looks identical on any print job, any paper, anywhere in the world. HEX/RGB colors are screen approximations of Pantone colors — the same Pantone color may look slightly different on different screens. Brand style guides use Pantone codes for physical materials and hex/RGB codes for digital applications.
+
+## Related Free Tools on RoughTools
+
+- **[Image Color Extractor](https://roughtools.com/tools/image-tools/color-extractor)** — extract colors from any uploaded image
+- **[Color Contrast Checker](https://roughtools.com/tools/design-tools/contrast-checker)** — check WCAG accessibility contrast ratios
+- **[Gradient Generator](https://roughtools.com/tools/design-tools/gradient-generator)** — create CSS gradient code from colors
+
+## Convert Colors Now
+
+The free [Color Picker](https://roughtools.com/tools/converters/color-picker) at RoughTools provides a visual color picker, converts between HEX, RGB, HSL, and CMYK, shows color swatches, and includes a contrast ratio checker. No account needed, completely free.
+
+**[Free Color Picker and Converter →](https://roughtools.com/tools/converters/color-picker)**

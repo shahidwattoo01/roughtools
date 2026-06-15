@@ -579,7 +579,7 @@ export default function TaxCalculator() {
             </h3>
             <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
               <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>
-                Your <strong style={{ color: '#fb923c' }}>marginal rate is {pct(result.marginalRate, 0)}</strong> but your <strong style={{ color: '#10b981' }}>effective rate is only {pct(result.effectiveFedRate)}</strong> — this is because only income in the top bracket is taxed at {pct(result.marginalRate, 0)}. Getting a raise won't reduce your overall take-home pay.
+                Your <strong style={{ color: '#fb923c' }}>marginal rate is {pct(result.marginalRate, 0)}</strong> but your <strong style={{ color: '#10b981' }}>effective rate is only {pct(result.effectiveFedRate)}</strong> — this is because only income in the top bracket is taxed at {pct(result.marginalRate, 0)}. Getting a raise won&apos;t reduce your overall take-home pay.
               </li>
               {K401 + HSA < 23000 && GROSS > 50000 && (
                 <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>

@@ -1,0 +1,123 @@
+﻿---
+title: 'Standard Deviation Calculator: How to Calculate and Interpret Standard Deviation'
+slug: standard-deviation-calculator-guide
+date: '2026-10-19'
+excerpt: 'Learn how to calculate standard deviation and variance, the difference between population and sample standard deviation, what standard deviation tells you about data spread, and how to use it in real decisions. Free standard deviation calculator included.'
+readTime: '7 min read'
+author: RoughTools Team
+category: Math Calculators
+keywords:
+  - standard deviation calculator
+  - how to calculate standard deviation
+  - variance calculator
+  - population vs sample standard deviation
+  - what does standard deviation mean
+  - statistics calculator online
+---
+
+Standard deviation measures how spread out data points are from their mean (average). A low standard deviation means data clusters tightly around the mean; a high standard deviation means data is spread widely. For test scores [70, 80, 90]: mean = 80, standard deviation = 8.16. For scores [20, 80, 140]: mean = 80, standard deviation = 49. Same average, very different variability.
+
+Standard deviation is one of the most fundamental statistics in data analysis, research, finance, quality control, and science. It appears in investment risk measurement (portfolio volatility), academic grading (normal distribution and percentiles), quality control (Six Sigma process stability), medical research (clinical trial variability), and poll margin of error calculations.
+
+Use the free [Standard Deviation Calculator](https://roughtools.com/tools/calculators/standard-deviation-calculator) at RoughTools to calculate mean, variance, and standard deviation for any dataset.
+
+👉 **Free Standard Deviation Calculator — instant, no signup required.**
+→ https://roughtools.com/tools/calculators/standard-deviation-calculator
+
+## Standard Deviation Formula
+
+**Population Standard Deviation (σ):**
+```
+σ = √[Σ(xᵢ - μ)² / N]
+
+Where: μ = population mean, N = population size
+```
+
+**Sample Standard Deviation (s):**
+```
+s = √[Σ(xᵢ - x̄)² / (n-1)]
+
+Where: x̄ = sample mean, n = sample size, (n-1) = Bessel's correction
+```
+
+## Step-by-Step Calculation
+
+Data: [4, 7, 13, 16]
+
+**Step 1:** Calculate mean: (4+7+13+16)/4 = 40/4 = **10**
+
+**Step 2:** Calculate deviations from mean:
+- (4−10)² = 36
+- (7−10)² = 9
+- (13−10)² = 9
+- (16−10)² = 36
+
+**Step 3:** Sum of squared deviations = 36+9+9+36 = **90**
+
+**Step 4a — Population std dev:** σ = √(90/4) = √22.5 = **4.74**
+
+**Step 4b — Sample std dev:** s = √(90/3) = √30 = **5.48**
+
+## Population vs. Sample Standard Deviation
+
+**Population standard deviation (σ):** Use when you have data for every member of the group. Divides by N. Example: calculating test score variability for all 30 students in a class (all scores are known).
+
+**Sample standard deviation (s):** Use when your data is a sample of a larger population. Divides by n−1 (Bessel's correction, which corrects for the tendency of sample variance to underestimate population variance). Example: measuring the weight of 100 out of 10,000 manufactured parts to estimate the population variability. This is most commonly used in practice.
+
+**In Excel:** STDEV = sample (n−1); STDEVP = population (N). In most statistical contexts, use STDEV/sample standard deviation.
+
+## Interpreting Standard Deviation
+
+**In a normal distribution (bell curve):**
+- 68% of data falls within ±1 standard deviation of the mean
+- 95% within ±2 standard deviations
+- 99.7% within ±3 standard deviations
+
+This is the "68-95-99.7 rule" (Empirical Rule).
+
+**Investment example:** A stock fund with 10% average return and 15% standard deviation:
+- In ~68% of years: return between −5% and +25%
+- In ~95% of years: return between −20% and +40%
+- In ~99.7% of years: return between −35% and +55%
+A stable bond fund with 4% return and 3% standard deviation is much less volatile even though its expected return is lower.
+
+**Z-score:** How many standard deviations a data point is from the mean:
+```
+z = (x - mean) / std_dev
+```
+Score of 90 in a class with mean=75 and σ=10: z = (90−75)/10 = **1.5** (1.5 standard deviations above average = approximately 93rd percentile in a normal distribution).
+
+## Variance vs. Standard Deviation
+
+Variance = (Standard Deviation)². Variance is the average of squared deviations; standard deviation is the square root of variance, restoring the same units as the original data.
+
+If scores are in points, variance is in "points squared" — less intuitive. Standard deviation is in points — easy to interpret. Most presentations use standard deviation; variance is used in mathematical calculations (variances add; standard deviations don't).
+
+## Frequently Asked Questions
+
+**When would I use standard deviation vs. variance?**
+Standard deviation for reporting and interpretation — it's in the same units as the data and easier to communicate. Variance for mathematical analysis — variances from independent variables can be added directly (variances of independent random variables are additive; standard deviations are not). In statistics and probability calculations (ANOVA, regression), variance is often the working unit. In final results and data descriptions, report standard deviation.
+
+**What is the coefficient of variation (CV)?**
+CV = (Standard Deviation / Mean) × 100%. It expresses variability as a percentage of the mean, allowing comparison of variability between datasets with different units or different mean values. Example: Comparing the variability of heights (mean=170cm, SD=10cm, CV=5.9%) to variability of salaries (mean=$60,000, SD=$15,000, CV=25%). The salary distribution has much higher relative variability even though the absolute SD is much larger than the height SD.
+
+**How does sample size affect standard deviation?**
+Increasing sample size does not consistently decrease the standard deviation — it makes the estimate of standard deviation more reliable (more accurate estimate of the true population SD). However, the Standard Error of the Mean (SEM) = SD/√n decreases as sample size increases. Large samples give you a better estimate of the population's actual variability, and more precise estimates of the true mean. The SD itself reflects the actual spread in the data, which doesn't change just because you measure more of it.
+
+**What is a "normal" standard deviation?**
+There is no universally "normal" standard deviation — it's context-dependent. What's important is whether the standard deviation is appropriate for the application. In manufacturing (Six Sigma), processes aim for ±6 standard deviations from the target within specification limits — meaning less than 3.4 defects per million. In academic tests, a standard deviation equal to 10–15% of the possible score range is typical. In financial returns, annual standard deviations of 15–25% are normal for stock funds; 1–5% for bond funds.
+
+**How do outliers affect standard deviation?**
+Standard deviation is sensitive to outliers because it involves squaring deviations from the mean. A single extreme value greatly increases the standard deviation, potentially misrepresenting the typical spread of data. Example: incomes [30k, 35k, 40k, 45k, 50k] have SD=$7,906. Adding one outlier [$30k, $35k, $40k, $45k, $50k, $1,000,000] dramatically increases SD. In the presence of outliers, the interquartile range (IQR) or median absolute deviation (MAD) are more robust measures of spread.
+
+## Related Free Tools on RoughTools
+
+- **[Mean, Median, Mode Calculator](https://roughtools.com/tools/calculators/mean-median-mode-calculator)** — calculate central tendency measures
+- **[Statistical Significance Calculator](https://roughtools.com/tools/calculators/statistical-significance-calculator)** — use SD in hypothesis testing
+- **[Percentage Calculator](https://roughtools.com/tools/calculators/percentage-calculator)** — calculate percentage for coefficient of variation
+
+## Calculate Standard Deviation Now
+
+The free [Standard Deviation Calculator](https://roughtools.com/tools/calculators/standard-deviation-calculator) at RoughTools calculates mean, median, variance, population and sample standard deviation, and z-scores for any dataset. Enter comma-separated values for instant results. No account needed, completely free.
+
+**[Free Standard Deviation Calculator →](https://roughtools.com/tools/calculators/standard-deviation-calculator)**

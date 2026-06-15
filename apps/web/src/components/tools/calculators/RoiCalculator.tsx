@@ -161,7 +161,7 @@ export default function RoiCalculator() {
       gain25: s(INI * 1.25),
       gain50: s(INI * 1.50),
     }
-  }, [INI, FIN, EC, AI, YRS, MOS, TAX, result])
+  }, [INI, EC, AI, YRS, MOS, TAX, result])
 
   const guidance = useMemo(() => {
     if (!result) return []

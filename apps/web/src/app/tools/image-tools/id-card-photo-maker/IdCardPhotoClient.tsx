@@ -90,7 +90,7 @@ export default function IdCardPhotoClient() {
             <button key={i} onClick={() => setPresetIdx(i)}
               style={{ background: presetIdx===i ? 'linear-gradient(135deg,#7c3aed,#4f46e5)' : '#1e1e3f', color:'#e0e0ff', border:'none', borderRadius:8, padding:'10px', cursor:'pointer', textAlign:'left' }}>
               <div style={{ fontWeight:700, fontSize:13 }}>{p.name}</div>
-              <div style={{ fontSize:11, color: presetIdx===i ? 'rgba(255,255,255,0.7)' : '#888', marginTop:2 }}>{p.desc}</div>
+              <div style={{ fontSize:11, color: presetIdx===i ? 'var(--fg-2)' : 'var(--fg-3)', marginTop:2 }}>{p.desc}</div>
             </button>
           ))}
         </div>
@@ -115,7 +115,7 @@ export default function IdCardPhotoClient() {
           />
           <div style={{ ...card, marginTop:12 }}>
             <label style={lbl}>Result: {selectedPreset.name}</label>
-            <img src={result} alt="id card" style={{ maxWidth:'100%', borderRadius:8, marginBottom:12, border:'1px solid rgba(255,255,255,0.1)' }} />
+            <img src={result} alt="id card" style={{ maxWidth:'100%', borderRadius:8, marginBottom:12, border:'1px solid var(--line-strong)' }} />
             <a href={result} download="id-card-photo.jpg" style={{ display:'block', textAlign:'center', color:'#a78bfa', background:'rgba(124,58,237,0.15)', borderRadius:10, padding:'12px', textDecoration:'none', fontWeight:700 }}>Download JPG</a>
           </div>
           <SmartRecommendation currentSlug="id-card-photo-maker" />

@@ -183,7 +183,7 @@ export default function ToolPage({
           </header>
 
           {/* ─── TOOL UI PLACEHOLDER ─── */}
-          <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 mb-6 shadow-sm">
+          <div data-print-section="calculator" className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 mb-6 shadow-sm">
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <div className="text-5xl mb-4" aria-hidden="true">
                 {getToolEmoji(tool.category)}

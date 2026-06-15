@@ -11,7 +11,7 @@ const PANEL_HDR: CSSProperties = { padding: '14px 20px', borderBottom: '1px soli
 
 const EMAIL_TYPES     = ['Welcome Email', 'Nurture Sequence (5 emails)', 'Promotional / Sales Email', 'Cart Abandonment (3-email series)', 'Re-engagement', 'Newsletter', 'Onboarding Sequence (7 days)', 'Referral Request']
 const TONES           = ['Friendly', 'Professional', 'Urgent', 'Storytelling', 'Educational', 'Conversational', 'Empathetic']
-const SEQUENCE_LENGTHS = ['3 emails', '5 emails', '7 emails']
+const _SEQUENCE_LENGTHS = ['3 emails', '5 emails', '7 emails']
 
 // ─── Generation ───────────────────────────────────────────────────────────────
 function generateEmail(
@@ -346,7 +346,7 @@ export default function EmailMarketingClient() {
       <div style={CARD}>
         <div style={SECTION_HDR}>
           <h2 style={{ fontSize: 15, fontWeight: 700, color: '#fff', margin: 0 }}>Email Campaign Details</h2>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)', margin: '4px 0 0' }}>Fill in details — email updates live</p>
+          <p style={{ fontSize: 12, color: 'var(--fg-1)', margin: '4px 0 0' }}>Fill in details — email updates live</p>
         </div>
         <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 14 }}>
 

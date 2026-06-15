@@ -9,8 +9,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -19,7 +19,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -280,7 +280,7 @@ export default function PortCheckerClient() {
 
       {/* SECURITY NOTES */}
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 10px', fontSize: 13, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 10px', fontSize: 13, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Port Security Best Practices
         </h3>
         <ul style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -294,7 +294,7 @@ export default function PortCheckerClient() {
             <strong>SSH hardening:</strong> Disable password authentication, use SSH keys, restrict to specific IP ranges, and consider moving SSH to a non-standard port.
           </li>
           <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.6 }}>
-            <strong>Use a firewall:</strong> On Linux, <code style={{ color: '#c4b5fd' }}>ufw</code> or <code style={{ color: '#c4b5fd' }}>iptables</code>; on cloud providers, use security groups to whitelist only necessary ports.
+            <strong>Use a firewall:</strong> On Linux, <code style={{ color: 'var(--brand-2)' }}>ufw</code> or <code style={{ color: 'var(--brand-2)' }}>iptables</code>; on cloud providers, use security groups to whitelist only necessary ports.
           </li>
         </ul>
       </div>

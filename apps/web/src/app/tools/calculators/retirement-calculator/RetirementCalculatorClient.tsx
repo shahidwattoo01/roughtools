@@ -25,22 +25,6 @@ interface WithdrawRow {
   endBalance: number
 }
 
-interface RetirementResult {
-  // Accumulation
-  totalAtRetirement: number
-  totalContributions: number
-  totalEmployerMatch: number
-  totalGrowth: number
-  yearsToRetirement: number
-  accumSchedule: AccumRow[]
-  // Withdrawals
-  monthlyIncome4pct: number      // 4% rule
-  monthlyIncomeFixed: number     // fixed-years withdrawal
-  portfolioDepletionAge: number  // at 4% rule, or Infinity if perpetual
-  withdrawalSchedule: WithdrawRow[]
-  // Risk
-  adjustedForInflation?: number
-}
 
 // ─── Engines ─────────────────────────────────────────────────────────────────
 
@@ -156,13 +140,13 @@ const LABEL: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -179,7 +163,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   label: string; value: string; sub?: string; color?: string
 }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 22, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -282,7 +266,7 @@ export default function RetirementCalculatorClient() {
       tips.push(`Your employer match contributes ${$(totalMatch)} — free money that accounts for ${((totalMatch / (totalContrib - CS)) * 100).toFixed(0)}% of all your working contributions. Always contribute at least enough to capture the full match.`)
     }
 
-    const savingsRate = (MC * 12 / Math.max(1, MC * 12 / 0.15)) * 100
+    const _savingsRate = (MC * 12 / Math.max(1, MC * 12 / 0.15)) * 100
     tips.push(`Saving ${$(MC)}/month means ${((MC / Math.max(1, MC / 0.15)) * 100 < 15 ? 'you may be below' : 'you are at or above')} the recommended 15% of gross income savings rate for retirement. ` +
       `Even an additional $100/month now can add ${$((scenarios?.moreContrib ?? 0) - (scenarios?.base ?? 0))} to your retirement balance.`)
 
@@ -412,7 +396,7 @@ export default function RetirementCalculatorClient() {
           <div>
             <button
               onClick={() => setShowAccum(v => !v)}
-              style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
+              style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
               aria-expanded={showAccum}
             >
               {showAccum ? '▾' : '▸'} Year-by-Year Accumulation Schedule
@@ -500,7 +484,7 @@ export default function RetirementCalculatorClient() {
             <div>
               <button
                 onClick={() => setShowWithdraw(v => !v)}
-                style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
+                style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
                 aria-expanded={showWithdraw}
               >
                 {showWithdraw ? '▾' : '▸'} Retirement Withdrawal Schedule
@@ -568,7 +552,7 @@ export default function RetirementCalculatorClient() {
                       { label: `+$200/mo Contribution ($${(MC + 200).toFixed(0)}/mo)`, bal: scenarios.moreContrib, hi: false },
                     ].map(({ label, bal, hi }) => (
                       <tr key={label} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', background: hi ? 'rgba(139,92,246,0.08)' : 'transparent' }}>
-                        <td style={{ ...TD, textAlign: 'left', color: hi ? '#c4b5fd' : 'var(--fg-2)', fontWeight: hi ? 700 : 400 }}>{hi ? '★ ' : ''}{label}</td>
+                        <td style={{ ...TD, textAlign: 'left', color: hi ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: hi ? 700 : 400 }}>{hi ? '★ ' : ''}{label}</td>
                         <td style={{ ...TD, color: hi ? '#10b981' : 'var(--fg-2)', fontWeight: hi ? 700 : 400 }}>{$(bal)}</td>
                         <td style={TD}>{$((bal * WR / 100) / 12)}</td>
                         <td style={{ ...TD, color: bal > scenarios.base ? '#10b981' : bal < scenarios.base ? '#f87171' : 'var(--fg-3)' }}>
@@ -585,7 +569,7 @@ export default function RetirementCalculatorClient() {
           {/* ── TIER 4: GUIDANCE ── */}
           {guidance.length > 0 && (
             <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-              <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+              <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
                 💡 What Your Numbers Mean
               </h3>
               <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>

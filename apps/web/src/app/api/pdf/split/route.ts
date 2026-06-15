@@ -1,15 +1,19 @@
 ﻿export const dynamic = 'force-dynamic'
 
 import { NextRequest, NextResponse } from 'next/server'
+import { pdfGuard, pdfSizeGuard } from '../_lib/pdf-guards'
 import { PDFDocument } from 'pdf-lib'
 import JSZip from 'jszip'
 
 export async function POST(req: NextRequest) {
+  const guard = pdfGuard(req)
+  if (guard) return guard
   try {
     const form = await req.formData()
     const file = form.get('file') as File | null
     const splitAt = (form.get('splitAt') as string) || ''
-    if (!file) return NextResponse.json({ error: 'No file uploaded' }, { status: 400 })
+    const sizeGuard = pdfSizeGuard(file)
+    if (sizeGuard) return sizeGuard
 
     const buffer = Buffer.from(await file.arrayBuffer())
     const src = await PDFDocument.load(buffer, { ignoreEncryption: true })

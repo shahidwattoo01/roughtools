@@ -14,7 +14,7 @@ const CARD: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const BTN_PRIMARY: CSSProperties = {
@@ -247,7 +247,7 @@ export default function DominantColorClient() {
               }}>
                 <div style={{
                   width: 44, height: 44, borderRadius: 8, background: c.hex,
-                  border: '1px solid rgba(255,255,255,0.1)', flexShrink: 0,
+                  border: '1px solid var(--line-strong)', flexShrink: 0,
                 }} />
                 <div>
                   <div style={{ fontFamily: 'monospace', fontWeight: 700, color: 'var(--fg)', fontSize: 14 }}>{c.hex}</div>
@@ -264,7 +264,7 @@ export default function DominantColorClient() {
                   padding: '5px 12px', fontSize: 12,
                   background: copied === c.hex ? 'rgba(16,185,129,0.2)' : 'rgba(139,92,246,0.12)',
                   borderColor: copied === c.hex ? 'rgba(16,185,129,0.4)' : 'rgba(139,92,246,0.3)',
-                  color: copied === c.hex ? '#34d399' : '#c4b5fd',
+                  color: copied === c.hex ? '#34d399' : 'var(--brand-2)',
                 }} onClick={() => copy(c.hex)}>
                   {copied === c.hex ? '✓' : 'Copy'}
                 </button>
@@ -281,14 +281,14 @@ export default function DominantColorClient() {
                 { label: 'Light vs Dark', a: 'Light', b: 'Dark', pct: lightCount },
                 { label: 'Saturated vs Muted', a: 'Saturated', b: 'Muted', pct: satCount },
               ].map(({ label, a, b, pct }) => (
-                <div key={label} style={{ background: 'rgba(0,0,0,0.3)', borderRadius: 10, padding: '14px' }}>
+                <div key={label} style={{ background: 'var(--bg-2)', borderRadius: 10, padding: '14px' }}>
                   <div style={{ fontSize: 11, color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>{label}</div>
                   <div style={{ height: 8, borderRadius: 4, overflow: 'hidden', display: 'flex', marginBottom: 6 }}>
                     <div style={{ flex: pct, background: '#8b5cf6' }} />
                     <div style={{ flex: 100 - pct, background: 'rgba(255,255,255,0.1)' }} />
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
-                    <span style={{ color: '#c4b5fd' }}>{a}: {pct}%</span>
+                    <span style={{ color: 'var(--brand-2)' }}>{a}: {pct}%</span>
                     <span style={{ color: 'var(--fg-3)' }}>{b}: {100 - pct}%</span>
                   </div>
                 </div>

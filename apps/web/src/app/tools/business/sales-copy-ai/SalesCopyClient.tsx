@@ -6,7 +6,7 @@ const CARD: CSSProperties = { background: 'var(--bg-1)', border: '1px solid var(
 const LABEL: CSSProperties = { display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--fg-1)', marginBottom: 6 }
 const INPUT: CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 10, background: 'var(--bg-2)', border: '1px solid var(--line-strong)', color: 'var(--fg)', fontSize: 14, boxSizing: 'border-box', outline: 'none', fontFamily: 'inherit' }
 const SELECT: CSSProperties = { ...INPUT, cursor: 'pointer' }
-const BTN_PRIMARY: CSSProperties = { width: '100%', padding: '12px', borderRadius: 10, background: 'var(--brand-2)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', letterSpacing: 0.2 }
+const _BTN_PRIMARY: CSSProperties = { width: '100%', padding: '12px', borderRadius: 10, background: 'var(--brand-2)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', letterSpacing: 0.2 }
 const SECTION_HDR: CSSProperties = { background: 'linear-gradient(135deg,#7c5bf6,#9333ea)', padding: '16px 20px' }
 const PANEL_HDR: CSSProperties = { padding: '14px 20px', borderBottom: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }
 
@@ -282,7 +282,7 @@ export default function SalesCopyClient() {
       <div style={CARD}>
         <div style={SECTION_HDR}>
           <h2 style={{ fontSize: 15, fontWeight: 700, color: '#fff', margin: 0 }}>Describe Your Product</h2>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)', margin: '4px 0 0' }}>Fill in details — copy updates live as you type</p>
+          <p style={{ fontSize: 12, color: 'var(--fg-1)', margin: '4px 0 0' }}>Fill in details — copy updates live as you type</p>
         </div>
         <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 14 }}>
 

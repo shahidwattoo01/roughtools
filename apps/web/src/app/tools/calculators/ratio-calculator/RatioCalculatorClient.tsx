@@ -29,8 +29,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -39,7 +39,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -58,7 +58,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   label: string; value: string; sub?: string; color?: string
 }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 20, fontWeight: 900, color, fontFamily: 'monospace' }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -253,13 +253,13 @@ export default function RatioCalculatorClient() {
                 const setter = v === 'a' ? setPropA : v === 'b' ? setPropB : v === 'c' ? setPropC : setDVal
                 return (
                   <div key={v}>
-                    <label style={{ ...LABEL, color: isSolving ? '#c4b5fd' : 'var(--fg-3)' }}>
+                    <label style={{ ...LABEL, color: isSolving ? 'var(--brand-2)' : 'var(--fg-3)' }}>
                       {v.toUpperCase()} {isSolving ? '(solving)' : ''}
                     </label>
                     {isSolving && propSolve === 'd' ? (
                       <div style={{
                         ...INPUT_BOX, background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.4)',
-                        color: '#c4b5fd', fontWeight: 700, fontSize: 16,
+                        color: 'var(--brand-2)', fontWeight: 700, fontSize: 16,
                       }}>
                         {propSolved !== null ? fmt6(propSolved) : '—'}
                       </div>
@@ -352,7 +352,7 @@ export default function RatioCalculatorClient() {
             <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
               <ol style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <li style={{ fontSize: 13, color: 'var(--fg-2)' }}>Start with ratio {a}:{b}</li>
-                <li style={{ fontSize: 13, color: 'var(--fg-2)' }}>Find GCD({Math.abs(Math.round(a))}, {Math.abs(Math.round(b))}) using Euclid's algorithm = {g}</li>
+                <li style={{ fontSize: 13, color: 'var(--fg-2)' }}>Find GCD({Math.abs(Math.round(a))}, {Math.abs(Math.round(b))}) using Euclid&apos;s algorithm = {g}</li>
                 <li style={{ fontSize: 13, color: 'var(--fg-2)' }}>Divide both by GCD: {a}/{g} : {b}/{g} = {simpA} : {simpB}</li>
                 <li style={{ fontSize: 13, color: 'var(--fg-2)' }}>Decimal: {a} ÷ {b} = {decimal !== null ? fmt6(decimal) : '—'}</li>
                 <li style={{ fontSize: 13, color: 'var(--fg-2)' }}>As percentages: {fmtPct(pctA ?? 0)} and {fmtPct(pctB ?? 0)}</li>
@@ -442,7 +442,7 @@ export default function RatioCalculatorClient() {
                 <tbody>
                   {scenarioRows.map(row => (
                     <tr key={row.total} style={{ background: row.total === total ? 'rgba(139,92,246,0.08)' : 'transparent' }}>
-                      <td style={{ ...TD, textAlign: 'left', color: row.total === total ? '#c4b5fd' : 'var(--fg-2)', fontWeight: row.total === total ? 700 : 400 }}>
+                      <td style={{ ...TD, textAlign: 'left', color: row.total === total ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: row.total === total ? 700 : 400 }}>
                         {row.total === total ? '★ ' : ''}{row.total}
                       </td>
                       {row.parts.map((v, i) => <td key={i} style={TD}>{v.toFixed(4)}</td>)}

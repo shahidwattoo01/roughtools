@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import RentalYieldClient from './RentalYieldClient'
 import { ToolPageExtras } from '@/components/ToolPageExtras'
@@ -132,7 +132,7 @@ export default function Page() {
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold dark:text-white text-gray-900 mb-3">Rental Yield Calculator</h2>
           <p className="dark:text-green-200/80 text-green-900 text-sm sm:text-base leading-relaxed max-w-3xl">
-            Calculate the gross and net rental yield for any buy-to-let or investment property. Rental yield is the annual rental income expressed as a percentage of the property's purchase price — the primary metric used by landlords and property investors to evaluate whether an investment property generates an acceptable return. This calculator shows both gross yield (before expenses) and net yield (after all operating costs), giving you a realistic picture of actual investment performance rather than the headline figure often quoted by vendors and letting agents.
+            Calculate the gross and net rental yield for any buy-to-let or investment property. Rental yield is the annual rental income expressed as a percentage of the property&apos;s purchase price — the primary metric used by landlords and property investors to evaluate whether an investment property generates an acceptable return. This calculator shows both gross yield (before expenses) and net yield (after all operating costs), giving you a realistic picture of actual investment performance rather than the headline figure often quoted by vendors and letting agents.
           </p>
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mt-5">
             {[

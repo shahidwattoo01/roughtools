@@ -1,337 +1,297 @@
 import Link from 'next/link'
 import ToolAdUnit from '@/components/ToolAdUnit'
 import type { Metadata } from 'next'
-
+import { TOTAL_REAL_TOOLS, TOTAL_CALC_COUNT } from '@/lib/tool-counts'
 
 export const metadata: Metadata = {
-  title: 'All Tools — 175+ Free Online Tools | RoughTools',
-  description: '175+ free online tools across 18 categories: calculators, converters, developer tools, PDF tools, and more. No signup required.',
+  title: `All Tools — ${TOTAL_REAL_TOOLS}+ Free Online Tools | RoughTools`,
+  description: `${TOTAL_REAL_TOOLS}+ free online tools across 16 categories: calculators, converters, developer tools, PDF tools, and more. No signup required.`,
   alternates: { canonical: 'https://roughtools.com/tools' },
   openGraph: {
-    title: 'All Tools — 175+ Free Online Tools | RoughTools',
-    description: '175+ free online tools across 18 categories. No signup required.',
+    title: `All Tools — ${TOTAL_REAL_TOOLS}+ Free Online Tools | RoughTools`,
+    description: `${TOTAL_REAL_TOOLS}+ free online tools across 16 categories. No signup required.`,
     url: 'https://roughtools.com/tools',
     type: 'website',
     siteName: 'RoughTools',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'All Tools — 175+ Free Online Tools | RoughTools',
-    description: '175+ free online tools across 18 categories. No signup required.',
+    title: `All Tools — ${TOTAL_REAL_TOOLS}+ Free Online Tools | RoughTools`,
+    description: `${TOTAL_REAL_TOOLS}+ free online tools across 16 categories. No signup required.`,
   },
   robots: { index: true, follow: true },
 }
 
+// Counts must stay in sync with CategoryGrid.tsx and tool-counts.ts (sum = TOTAL_REAL_TOOLS)
 const ALL_CATEGORIES = [
   {
-    icon: '🧮',
     name: 'Calculators',
     desc: 'Tax, mortgage, BMI, loan, ROI and more',
     href: '/tools/calculators',
-    count: 20,
+    count: TOTAL_CALC_COUNT,
     accent: '#026fc7',
-    tag: '⭐ Most Popular',
   },
   {
-    icon: '⚖️',
-    name: 'Legal AI',
+    name: 'Medical & Health',
+    desc: 'BMI, calorie tracker, dosage, symptom checker',
+    href: '/tools/medical',
+    count: 113,
+    accent: '#0d9488',
+  },
+  {
+    name: 'Engineering',
+    desc: 'Unit converter, stress calc, circuit tools, CAD',
+    href: '/tools/engineering',
+    count: 126,
+    accent: '#0891b2',
+  },
+  {
+    name: 'Image Tools',
+    desc: 'Compress, resize, convert, background remover',
+    href: '/tools/image-tools',
+    count: 38,
+    accent: '#db2777',
+  },
+  {
+    name: 'PDF Tools',
+    desc: 'Merge, split, compress, convert, sign PDFs',
+    href: '/tools/pdf',
+    count: 31,
+    accent: '#e11d48',
+  },
+  {
+    name: 'Developer Tools',
+    desc: 'JSON, regex, API tester, color palette',
+    href: '/tools/developer',
+    count: 19,
+    accent: '#6d28d9',
+  },
+  {
+    name: 'Legal Tools',
     desc: 'Contracts, NDA, privacy policy, will creator',
     href: '/tools/legal-tools',
     count: 8,
     accent: '#dc2626',
-    tag: '💰 High CPC $100+',
   },
   {
-    icon: '🏠',
+    name: 'Document Tools',
+    desc: 'Resume, cover letter, invoice, contracts',
+    href: '/tools/document-tools',
+    count: 11,
+    accent: '#7c3aed',
+  },
+  {
     name: 'Real Estate',
     desc: 'Mortgage, rent vs buy, home affordability',
     href: '/tools/real-estate',
     count: 8,
     accent: '#d97706',
-    tag: '💰 High CPC $50',
   },
   {
-    icon: '📄',
-    name: 'Documents',
-    desc: 'PDF, resume, contracts, signatures, invoices',
-    href: '/tools/document-tools',
-    count: 12,
-    accent: '#7c3aed',
-    tag: null,
-  },
-  {
-    icon: '🔒',
     name: 'Security',
     desc: 'Password, QR code, URL shortener, encryption',
     href: '/tools/security',
-    count: 8,
+    count: 9,
     accent: '#059669',
-    tag: '1.5M searches',
   },
   {
-    icon: '🤖',
-    name: 'AI Intelligence',
-    desc: 'Chat, research, code generator, agents',
-    href: '/tools',
-    count: 10,
-    accent: '#026fc7',
-    tag: 'New',
+    name: 'Business',
+    desc: 'Sales copy, ad creative, email marketing, SEO',
+    href: '/tools/business',
+    count: 6,
+    accent: '#8b5cf6',
   },
   {
-    icon: '💻',
-    name: 'Developer Tools',
-    desc: 'JSON, regex, API tester, color palette',
-    href: '/tools',
-    count: 10,
-    accent: '#6d28d9',
-    tag: null,
-  },
-  {
-    icon: '🎨',
-    name: 'Media & Content',
-    desc: 'Image, video, audio, design, thumbnails',
-    href: '/tools',
-    count: 12,
-    accent: '#db2777',
-    tag: null,
-  },
-  {
-    icon: '⏱️',
-    name: 'Productivity',
-    desc: 'Pomodoro, habit tracker, meal planner',
-    href: '/tools',
-    count: 10,
-    accent: '#ea580c',
-    tag: null,
-  },
-  {
-    icon: '🎓',
-    name: 'Education',
-    desc: 'Flashcards, math solver, language tutor',
-    href: '/tools',
+    name: 'Text Tools',
+    desc: 'Word count, case converter, summarizer, translator',
+    href: '/tools/text',
     count: 10,
     accent: '#16a34a',
-    tag: null,
   },
   {
-    icon: '🏡',
-    name: 'Home & Family',
-    desc: 'Room planner, baby names, moving costs',
-    href: '/tools',
+    name: 'Converters',
+    desc: 'Unit, currency, file format, data converters',
+    href: '/tools/converters',
     count: 8,
-    accent: '#ca8a04',
-    tag: null,
+    accent: '#0284c7',
   },
   {
-    icon: '🎮',
-    name: 'Fun & Creative',
-    desc: 'Meme generator, story writer, name generator',
-    href: '/tools',
-    count: 6,
-    accent: '#db2777',
-    tag: '🔥 Viral',
+    name: 'Network Tools',
+    desc: 'IP lookup, DNS checker, ping, port scanner',
+    href: '/tools/network',
+    count: 7,
+    accent: '#2563eb',
   },
   {
-    icon: '🚗',
-    name: 'Automotive',
-    desc: 'Car loan, fuel cost, lease vs buy, EV savings',
-    href: '/tools',
-    count: 6,
-    accent: '#ea580c',
-    tag: '$1.2T market',
-  },
-  {
-    icon: '🌱',
-    name: 'Environmental',
+    name: 'Environment',
     desc: 'Carbon footprint, solar savings, EV offset',
-    href: '/tools',
+    href: '/tools/environment',
     count: 6,
     accent: '#16a34a',
-    tag: 'ESG $35T',
   },
   {
-    icon: '📊',
-    name: 'Data & Analytics',
-    desc: 'CSV visualizer, SQL builder, chart generator',
-    href: '/tools',
-    count: 10,
-    accent: '#2563eb',
-    tag: null,
-  },
-  {
-    icon: '🛒',
-    name: 'Commerce & Growth',
-    desc: 'Sales copy, ads, SEO, landing page builder',
-    href: '/tools',
-    count: 12,
+    name: 'IQ Test',
+    desc: 'Adaptive IQ test with full cognitive report',
+    href: '/tools/iq-test',
+    count: 1,
     accent: '#7c3aed',
-    tag: null,
   },
-  {
-    icon: '⚙️',
-    name: 'Engineering',
-    desc: 'Unit converter, stress calc, circuit tools, CAD',
-    href: '/tools',
-    count: 10,
-    accent: '#0891b2',
-    tag: '🔧 Technical',
-  },
-  {
-    icon: '🏥',
-    name: 'Medical & Health',
-    desc: 'BMI, calorie tracker, dosage, symptom checker',
-    href: '/tools',
-    count: 10,
-    accent: '#0d9488',
-    tag: '💊 High CPC $80',
-  },
-]
+] as const
+
+const CATEGORY_COUNT = ALL_CATEGORIES.length // 16
 
 export default function AllToolsPage() {
   return (
-    <>
-      <main className="flex-1 bg-[var(--bg-base)]">
+    <div className="min-h-screen bg-[#f5f5f3] dark:bg-[#121212]">
 
-        {/* Header */}
-        <div className="bg-[var(--bg-surface)] border-b border-[var(--border-subtle)]">
-          <div className="container py-12">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="block w-5 h-0.5 bg-[var(--primary)]" />
-              <span className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]">Browse</span>
-            </div>
-            <h1 className="font-display font-black text-[clamp(36px,5vw,64px)] leading-tight tracking-tight text-[var(--text-primary)] mb-4">
-              All{' '}
-              <span className="gradient-text italic">Categories</span>
-            </h1>
-            <p className="text-[var(--text-secondary)] max-w-lg">
-              175 free AI tools across 18 categories. No signup required.
-            </p>
-
-            {/* Quick stats */}
-            <div className="flex items-center gap-6 mt-6">
-              {[
-                { value: '175+', label: 'Tools' },
-                { value: '18', label: 'Categories' },
-                { value: 'Free', label: 'Always' },
-              ].map(s => (
-                <div key={s.label} className="flex items-center gap-2">
-                  <span className="font-display font-bold text-[var(--text-primary)]">{s.value}</span>
-                  <span className="text-sm text-[var(--text-muted)]">{s.label}</span>
-                </div>
-              ))}
-            </div>
+      {/* ── Hero ──────────────────────────────────────────── */}
+      <section className="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 text-center">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/80 mb-6">
+            Browse
           </div>
-        </div>
-
-        {/* Ad between header and grid */}
-        <div className="container pt-8">
-          <ToolAdUnit position="top" />
-        </div>
-
-        {/* Category grid */}
-        <div className="container py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {ALL_CATEGORIES.map((cat, i) => (
-              <Link
-                key={i}
-                href={cat.href}
-                className="card group relative overflow-hidden transition-all duration-200 hover:shadow-xl hover:-translate-y-1 animate-fade-in"
-                style={{
-                  animationDelay: `${i * 40}ms`,
-                  background: `linear-gradient(135deg, ${cat.accent}22 0%, ${cat.accent}0a 100%)`,
-                  borderColor: `${cat.accent}35`,
-                }}
-              >
-                {/* Background emoji watermark */}
-                <div
-                  className="absolute right-3 top-3 text-8xl pointer-events-none select-none leading-none"
-                  style={{ opacity: 0.18, color: cat.accent }}
-                >
-                  {cat.icon}
-                </div>
-
-                <div className="card-body relative">
-                  {/* Tag */}
-                  {cat.tag ? (
-                    <div
-                      className="inline-flex items-center text-[10px] font-bold px-2.5 py-1 rounded-full mb-3 border"
-                      style={{
-                        background: `${cat.accent}20`,
-                        color: cat.accent,
-                        borderColor: `${cat.accent}40`,
-                      }}
-                    >
-                      {cat.tag}
-                    </div>
-                  ) : (
-                    <div className="h-6 mb-3" />
-                  )}
-
-                  {/* Icon + name */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0 border"
-                      style={{
-                        background: `${cat.accent}25`,
-                        borderColor: `${cat.accent}40`,
-                      }}
-                    >
-                      {cat.icon}
-                    </div>
-                    <div>
-                      <div
-                        className="font-display font-extrabold text-[17px] leading-tight tracking-tight"
-                        style={{ color: '#0d111c' }}
-                      >
-                        {cat.name}
-                      </div>
-                      <div
-                        className="text-[11px] font-bold mt-1 uppercase tracking-widest"
-                        style={{ color: cat.accent }}
-                      >
-                        {cat.count} tools
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <p
-                    className="text-[13px] leading-relaxed mb-4"
-                    style={{ color: '#384168', fontWeight: 500 }}
-                  >
-                    {cat.desc}
-                  </p>
-
-                  {/* CTA */}
-                  <div
-                    className="flex items-center justify-between pt-3 border-t"
-                    style={{ borderColor: `${cat.accent}30` }}
-                  >
-                    <span
-                      className="text-[12px] font-bold tracking-wide uppercase"
-                      style={{ color: cat.accent }}
-                    >
-                      Browse tools
-                    </span>
-                    <svg
-                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                      style={{ color: cat.accent }}
-                      viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                  </div>
-                </div>
-              </Link>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4">
+            All{' '}
+            <span className="italic bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">
+              Categories
+            </span>
+          </h1>
+          <p className="text-lg text-white/70 max-w-xl mx-auto mb-8">
+            {TOTAL_REAL_TOOLS}+ free online tools across {CATEGORY_COUNT} categories. No signup required.
+          </p>
+          <div className="flex items-center justify-center gap-8">
+            {[
+              { value: `${TOTAL_REAL_TOOLS}+`, label: 'Tools' },
+              { value: `${CATEGORY_COUNT}`,    label: 'Categories' },
+              { value: 'Free',                 label: 'Always' },
+            ].map(s => (
+              <div key={s.label} className="text-center">
+                <div className="text-2xl font-black text-white">{s.value}</div>
+                <div className="text-xs text-white/50 uppercase tracking-widest mt-0.5">{s.label}</div>
+              </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Ad at bottom */}
-        <div className="container pb-8">
-          <ToolAdUnit position="bottom" />
+      {/* ── Trust bar ─────────────────────────────────────── */}
+      <div className="bg-white dark:bg-[#1a1a1a] border-b border-gray-200 dark:border-white/10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-center gap-6 text-xs text-gray-500 dark:text-[#999]">
+          {[
+            { icon: '⚡', text: 'All tools free forever' },
+            { icon: '🔒', text: 'No signup required' },
+            { icon: '🌐', text: 'Works in your browser' },
+            { icon: '📱', text: 'Mobile friendly' },
+            { icon: '🚫', text: 'No watermarks, ever' },
+          ].map(b => (
+            <span key={b.text} className="flex items-center gap-1.5 font-medium">
+              <span>{b.icon}</span>{b.text}
+            </span>
+          ))}
         </div>
-      </main>
-    </>
+      </div>
+
+      {/* ── Ad ────────────────────────────────────────────── */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-8">
+        <ToolAdUnit position="top" />
+      </div>
+
+      {/* ── Category grid ─────────────────────────────────── */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {ALL_CATEGORIES.map(cat => (
+            <Link
+              key={cat.name}
+              href={cat.href}
+              className="group flex flex-col p-5 rounded-2xl border bg-white dark:bg-[#1e1e1e] border-gray-200 dark:border-white/10 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 overflow-hidden relative"
+            >
+              {/* Subtle accent gradient */}
+              <div
+                className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08] pointer-events-none"
+                style={{ background: `linear-gradient(135deg, ${cat.accent} 0%, transparent 60%)` }}
+              />
+
+              <div className="relative flex flex-col flex-1">
+                {/* Name + count */}
+                <div className="mb-2">
+                  <h2 className="font-extrabold text-[17px] leading-tight tracking-tight text-gray-900 dark:text-white">
+                    {cat.name}
+                  </h2>
+                  <div
+                    className="text-[11px] font-bold mt-1 uppercase tracking-widest"
+                    style={{ color: cat.accent }}
+                  >
+                    {cat.count} {cat.count === 1 ? 'tool' : 'tools'}
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-[13px] text-gray-500 dark:text-[#999] leading-relaxed line-clamp-2 flex-1 mb-4">
+                  {cat.desc}
+                </p>
+
+                {/* CTA */}
+                <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-white/10">
+                  <span
+                    className="text-[12px] font-bold tracking-wide uppercase"
+                    style={{ color: cat.accent }}
+                  >
+                    Browse tools
+                  </span>
+                  <svg
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    style={{ color: cat.accent }}
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Ad bottom ─────────────────────────────────────── */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-8">
+        <ToolAdUnit position="bottom" />
+      </div>
+
+      {/* ── SEO section ───────────────────────────────────── */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+        <div className="bg-white dark:bg-[#1e1e1e] rounded-3xl border border-gray-100 dark:border-white/10 p-8 sm:p-10">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Why RoughTools?
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-6 text-sm text-gray-600 dark:text-[#aaa] leading-relaxed">
+            <div>
+              <p className="mb-3">
+                RoughTools gives you {TOTAL_REAL_TOOLS}+ professional-grade tools completely free — no paywalls,
+                no sign-up, no watermarks. Every tool runs entirely in your browser for maximum privacy.
+              </p>
+              <p>
+                From legal documents and medical calculators to image editing and developer utilities,
+                we cover every use case with tools designed to be fast, accurate, and beautiful.
+              </p>
+            </div>
+            <ul className="space-y-2">
+              {[
+                `${TOTAL_REAL_TOOLS}+ tools across ${CATEGORY_COUNT} categories`,
+                'All tools 100% free — no subscription needed',
+                'No account or sign-up required',
+                'Works entirely in your browser',
+                'Mobile-friendly and responsive',
+                'No watermarks on any output',
+              ].map(point => (
+                <li key={point} className="flex items-start gap-2">
+                  <span className="text-green-500 font-bold mt-0.5 flex-shrink-0">✓</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

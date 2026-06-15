@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import TipCalculator from '@/components/tools/calculators/TipCalculator'
 import ToolAdUnit from '@/components/ToolAdUnit'
 import { JsonLd } from '@/components/JsonLd'
@@ -197,12 +197,6 @@ export default function TipCalculatorPage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -266,7 +260,7 @@ export default function TipCalculatorPage() {
           </h3>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
             Tipping as a practice originated in 18th-century England, where coffeehouse patrons would leave extra coins
-            in a box labelled "To Insure Promptitude" — from which some derive the word &quot;tip.&quot; The practice
+            in a box labelled &quot;To Insure Promptitude&quot; — from which some derive the word &quot;tip.&quot; The practice
             spread to the United States in the 19th century. Today, tipping is deeply embedded in American service
             culture and serves as a significant portion of income for servers, bartenders, and other service workers,
             many of whom are legally paid a lower minimum wage (as low as $2.13/hour federally) with the expectation
@@ -284,6 +278,13 @@ export default function TipCalculatorPage() {
             for details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

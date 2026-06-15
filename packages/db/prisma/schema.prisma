@@ -28,7 +28,7 @@ model User {
   id            String    @id @default(cuid())
   email         String    @unique
   username      String    @unique
-  passwordHash  String    @map("password_hash")
+  passwordHash  String?   @map("password_hash")
   name          String?
   avatar        String?
   avatarUrl     String?   @map("avatar_url")
@@ -357,6 +357,14 @@ model ReferralCode {
 
   @@index([code])
   @@map("referral_codes")
+}
+
+model SiteConfig {
+  key       String   @id
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("site_config")
 }
 
 model ShortLink {

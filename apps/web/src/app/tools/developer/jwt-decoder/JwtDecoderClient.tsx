@@ -13,7 +13,7 @@ const textareaStyle: React.CSSProperties = {
   padding: '12px',
   borderRadius: 8,
   background: '#252540',
-  border: '1px solid rgba(255,255,255,0.1)',
+  border: '1px solid var(--line-strong)',
   color: '#e0e0ff',
   fontSize: 13,
   fontFamily: 'monospace',

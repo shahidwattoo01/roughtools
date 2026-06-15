@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import ToolAdUnit from '@/components/ToolAdUnit'
 import { JsonLd } from '@/components/JsonLd'
 import ScientificCalculatorClient from './ScientificCalculatorClient'
@@ -228,12 +228,6 @@ export default function ScientificCalculatorPage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -289,13 +283,13 @@ export default function ScientificCalculatorPage() {
             Constants: π and e
           </h3>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
-            <strong style={{ color: 'var(--fg)' }}>Pi (π ≈ 3.14159265358979)</strong> is the ratio of a circle's circumference
+            <strong style={{ color: 'var(--fg)' }}>Pi (π ≈ 3.14159265358979)</strong> is the ratio of a circle&apos;s circumference
             to its diameter. It is irrational (cannot be expressed as a fraction) and transcendental (not a root of any
             polynomial with integer coefficients). Pi appears in the area of circles (πr²), volume of spheres (4/3 πr³),
             Fourier transforms, the Gaussian normal distribution, and countless physics equations.
           </p>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
-            <strong style={{ color: 'var(--fg)' }}>Euler's number (e ≈ 2.71828182845904)</strong> is the base of the natural
+            <strong style={{ color: 'var(--fg)' }}>Euler&apos;s number (e ≈ 2.71828182845904)</strong> is the base of the natural
             logarithm and is defined as the limit of (1 + 1/n)ⁿ as n approaches infinity. The function eˣ is unique
             in that it equals its own derivative — making it the fundamental building block for modelling continuous
             growth and decay: compound interest, population dynamics, radioactive decay, and capacitor charge/discharge.
@@ -305,12 +299,19 @@ export default function ScientificCalculatorPage() {
             Privacy Notice
           </h3>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, margin: 0 }}>
-            All calculations run entirely in your browser using JavaScript's Math library. Nothing you enter is
+            All calculations run entirely in your browser using JavaScript&apos;s Math library. Nothing you enter is
             transmitted to any server or stored in any database. See our{' '}
             <a href="/privacy" style={{ color: '#8b5cf6', textDecoration: 'underline' }}>Privacy Policy</a>{' '}
             for full details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

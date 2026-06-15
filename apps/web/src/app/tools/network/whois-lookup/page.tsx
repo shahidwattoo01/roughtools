@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+﻿/* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/JsonLd'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -7,12 +7,12 @@ import Link from 'next/link'
 import { ToolPageExtras } from '@/components/ToolPageExtras'
 
 export const metadata: Metadata = {
-  title: 'WHOIS Lookup — Domain Registration Info | RoughTools',
-  description: 'Look up WHOIS information for any domain. Find registrar, registration date, expiry date, and nameservers via trusted WHOIS services — free, instant, no signup required.',
+  title: 'WHOIS Lookup â€” Domain Registration Info | RoughTools',
+  description: 'Look up WHOIS information for any domain. Find registrar, registration date, expiry date, and nameservers via trusted WHOIS services â€” free, instant, no signup required.',
   keywords: ['whois lookup', 'domain whois', 'domain registration', 'who owns domain', 'domain expiry', 'domain registrar lookup', 'whois search'],
   alternates: { canonical: 'https://roughtools.com/tools/network/whois-lookup' },
   openGraph: {
-    title: `WHOIS Lookup — Domain Registration Info | RoughTools`,
+    title: `WHOIS Lookup â€” Domain Registration Info | RoughTools`,
     description: `Look up WHOIS registration information for any domain. Find owner, registrar, expiry date, and nameservers. Free tool.`,
     url: 'https://roughtools.com/tools/network/whois-lookup',
     type: 'website',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `WHOIS Lookup — Domain Registration Info | RoughTools`,
+    title: `WHOIS Lookup â€” Domain Registration Info | RoughTools`,
     description: `Look up WHOIS registration information for any domain. Find owner, registrar, expiry date, and nameservers. Free tool.`,
   },
   robots: { index: true, follow: true },
@@ -53,19 +53,19 @@ const FAQ = [
   },
   {
     q: 'Can I use the WHOIS Lookup tool offline?',
-    a: 'No. WHOIS lookups require a live internet connection because the tool must connect to external WHOIS registry servers to retrieve domain registration data. WHOIS is inherently a network protocol — it cannot function without querying a remote database. If you need to perform WHOIS lookups from the command line, use the whois command on Linux or macOS: run whois example.com in your terminal to query the registry directly.',
+    a: 'No. WHOIS lookups require a live internet connection because the tool must connect to external WHOIS registry servers to retrieve domain registration data. WHOIS is inherently a network protocol â€” it cannot function without querying a remote database. If you need to perform WHOIS lookups from the command line, use the whois command on Linux or macOS: run whois example.com in your terminal to query the registry directly.',
   },
   {
     q: 'How do I look up WHOIS data for a domain? Step-by-step.',
-    a: 'Looking up domain WHOIS information is simple. Step one: open the WHOIS Lookup page on RoughTools. Step two: type the domain name you want to check into the input field — for example, example.com (without http:// or www). Step three: click the WHOIS Lookup button to launch the search on the authoritative ICANN WHOIS service with your domain pre-filled. Step four: on the WHOIS results page, review the registrar, registration date, expiry date, nameservers, and any available registrant contact information.',
+    a: 'Looking up domain WHOIS information is simple. Step one: open the WHOIS Lookup page on RoughTools. Step two: type the domain name you want to check into the input field â€” for example, example.com (without http:// or www). Step three: click the WHOIS Lookup button to launch the search on the authoritative ICANN WHOIS service with your domain pre-filled. Step four: on the WHOIS results page, review the registrar, registration date, expiry date, nameservers, and any available registrant contact information.',
   },
   {
     q: 'Why use RoughTools WHOIS Lookup instead of other websites?',
-    a: 'RoughTools routes you to the ICANN official WHOIS service — the most authoritative source for domain registration data — with your domain pre-filled, saving you from copying and pasting. The tool is clean and fast, without the aggressive upsell prompts and distracting ads that many WHOIS sites display. It is a focused utility that gets you to the registration data you need in one click without distraction.',
+    a: 'RoughTools routes you to the ICANN official WHOIS service â€” the most authoritative source for domain registration data â€” with your domain pre-filled, saving you from copying and pasting. The tool is clean and fast, without the aggressive upsell prompts and distracting ads that many WHOIS sites display. It is a focused utility that gets you to the registration data you need in one click without distraction.',
   },
   {
     q: 'How do I report a bug or suggest a new feature for this tool?',
-    a: 'Use the Contact page on RoughTools to report a bug or suggest an improvement. If the tool is not correctly routing to WHOIS services or the domain you entered is being malformed, include the domain name and what happened. Feature requests — such as support for additional WHOIS services, bulk domain lookup, or expiry date tracking — are welcome and reviewed by the development team for future releases.',
+    a: 'Use the Contact page on RoughTools to report a bug or suggest an improvement. If the tool is not correctly routing to WHOIS services or the domain you entered is being malformed, include the domain name and what happened. Feature requests â€” such as support for additional WHOIS services, bulk domain lookup, or expiry date tracking â€” are welcome and reviewed by the development team for future releases.',
   },
   {
     q: 'What is WHOIS and what information does it show?',
@@ -73,11 +73,11 @@ const FAQ = [
   },
   {
     q: 'Why is WHOIS data sometimes hidden or replaced with privacy information?',
-    a: 'Domain privacy protection (also called WHOIS privacy or proxy registration) replaces the registrant\'s personal contact details — name, email, phone number, and address — with generic contact information belonging to the registrar\'s privacy service. Registrants opt in to this service to protect personal information from spam, phishing, and harassment. Privacy protection became much more common after GDPR regulations took effect in May 2018, as European registrants are legally entitled to have personal data protected from public exposure.',
+    a: 'Domain privacy protection (also called WHOIS privacy or proxy registration) replaces the registrant\'s personal contact details â€” name, email, phone number, and address â€” with generic contact information belonging to the registrar\'s privacy service. Registrants opt in to this service to protect personal information from spam, phishing, and harassment. Privacy protection became much more common after GDPR regulations took effect in May 2018, as European registrants are legally entitled to have personal data protected from public exposure.',
   },
   {
     q: 'What does the domain expiry date mean and what happens if it expires?',
-    a: 'The domain expiry date is when the current registration period ends. If the registrant does not renew the domain before this date, the registration lapses. Most registrars offer a grace period of 0–45 days during which the registrant can still renew at the standard price. After the grace period, the domain enters a redemption period during which reclaiming it costs significantly more. After the redemption period — typically 30 days — the domain is deleted from the registry and becomes available for anyone to register. Domain expiry is closely monitored by domain investors who watch for valuable expired domains.',
+    a: 'The domain expiry date is when the current registration period ends. If the registrant does not renew the domain before this date, the registration lapses. Most registrars offer a grace period of 0â€“45 days during which the registrant can still renew at the standard price. After the grace period, the domain enters a redemption period during which reclaiming it costs significantly more. After the redemption period â€” typically 30 days â€” the domain is deleted from the registry and becomes available for anyone to register. Domain expiry is closely monitored by domain investors who watch for valuable expired domains.',
   },
 ]
 
@@ -89,7 +89,7 @@ const jsonLd = {
   applicationCategory: 'UtilitiesApplication',
   operatingSystem: 'Any',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-  description: 'Look up WHOIS registration data for any domain — registrar, registration date, expiry date, and nameservers. Routes to ICANN WHOIS with domain pre-filled. Free.',
+  description: 'Look up WHOIS registration data for any domain â€” registrar, registration date, expiry date, and nameservers. Routes to ICANN WHOIS with domain pre-filled. Free.',
 }
 const faqJsonLd = {
   '@context': 'https://schema.org',
@@ -118,14 +118,16 @@ export default function Page() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '24px 16px 64px' }}>
         <ToolAdUnit position="top" />
         <nav style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> ›{' '}
-          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> › WHOIS Lookup
+          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> â€º{' '}
+          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> â€º WHOIS Lookup
         </nav>
         <h1 style={{ fontSize: 'clamp(24px,4vw,36px)', fontWeight: 900, marginBottom: 8, letterSpacing: -1 }}>WHOIS Lookup</h1>
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
-          Find domain registration information — registrar, creation date, expiry date, nameservers, and registrant details. Enter a domain name and launch a WHOIS search via the ICANN authoritative registry in one click. Useful for domain due diligence, security research, and monitoring expiry dates. Free, no account required.
+          Find domain registration information â€” registrar, creation date, expiry date, nameservers, and registrant details. Enter a domain name and launch a WHOIS search via the ICANN authoritative registry in one click. Useful for domain due diligence, security research, and monitoring expiry dates. Free, no account required.
         </p>
+        <div data-print-section="calculator">
         <WhoisLookupClient />
+        </div>
         <ToolAdUnit position="middle" />
         <section style={{ marginTop: 40 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 12 }}>About WHOIS Lookup</h2>

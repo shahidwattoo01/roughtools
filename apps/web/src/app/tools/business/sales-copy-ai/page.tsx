@@ -143,7 +143,9 @@ export default function SalesCopyPage() {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-8">
 
         {/* Tool */}
+        <div data-print-section="calculator">
         <SalesCopyClient />
+        </div>
 
         {/* Trust cards */}
         <div className="grid grid-cols-3 gap-3">

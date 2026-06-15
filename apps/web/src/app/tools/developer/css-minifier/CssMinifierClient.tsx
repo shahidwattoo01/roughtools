@@ -11,8 +11,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 13, fontFamily: 'monospace',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 13, fontFamily: 'monospace',
   resize: 'vertical', minHeight: 200, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
@@ -22,13 +22,13 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const SELECT_BOX: CSSProperties = {
   padding: '8px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 13, cursor: 'pointer',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 13, cursor: 'pointer',
 }
 
 // ─── CSS processing engine ────────────────────────────────────────────────────
@@ -222,7 +222,7 @@ export default function CssMinifierClient() {
             { label: 'Lines In',  value: input.split('\n').length.toString(),  color: '#38bdf8' },
             { label: 'Lines Out', value: output.split('\n').length.toString(), color: '#38bdf8' },
           ].map(s => (
-            <div key={s.label} style={{ padding: '14px 12px', background: 'rgba(0,0,0,0.3)', borderRadius: 10, textAlign: 'center' }}>
+            <div key={s.label} style={{ padding: '14px 12px', background: 'var(--bg-2)', borderRadius: 10, textAlign: 'center' }}>
               <div style={{ fontSize: 20, fontWeight: 800, color: s.color }}>{s.value}</div>
               <div style={{ fontSize: 10, color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: 4 }}>{s.label}</div>
             </div>
@@ -264,7 +264,7 @@ export default function CssMinifierClient() {
           {/* Tab: Output */}
           {activeTab === 'output' && (
             <textarea
-              style={{ ...INPUT_BOX, minHeight: 240, color: '#c4b5fd' }}
+              style={{ ...INPUT_BOX, minHeight: 240, color: 'var(--brand-2)' }}
               value={output}
               readOnly
               spellCheck={false}
@@ -288,7 +288,7 @@ export default function CssMinifierClient() {
                       <div style={{ fontSize: 13, fontWeight: 700, color: '#fbbf24', fontFamily: 'monospace' }}>{h.prop}</div>
                       <div style={{ fontSize: 12, color: 'var(--fg-3)', marginTop: 4 }}>
                         Recommended prefixes: {h.prefixes.map(p => (
-                          <code key={p} style={{ background: 'rgba(0,0,0,0.4)', padding: '1px 6px', borderRadius: 4, marginRight: 6, fontFamily: 'monospace', color: '#c4b5fd' }}>{p}{h.prop}</code>
+                          <code key={p} style={{ background: 'var(--bg-2)', padding: '1px 6px', borderRadius: 4, marginRight: 6, fontFamily: 'monospace', color: 'var(--brand-2)' }}>{p}{h.prop}</code>
                         ))}
                       </div>
                     </div>

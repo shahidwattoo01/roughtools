@@ -160,8 +160,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 14, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 14, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -170,7 +170,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -187,7 +187,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   label: string; value: string; sub?: string; color?: string
 }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 20, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -339,7 +339,7 @@ export default function StatisticsCalculatorClient() {
                     { label: 'Max', value: result.max },
                   ].map(({ label, value }) => (
                     <div key={label} style={{ textAlign: 'center' }}>
-                      <div style={{ fontSize: 14, fontWeight: 700, color: '#c4b5fd' }}>{fmt2(value)}</div>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--brand-2)' }}>{fmt2(value)}</div>
                       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4 }}>{label}</div>
                     </div>
                   ))}
@@ -353,7 +353,7 @@ export default function StatisticsCalculatorClient() {
                     return (
                       <>
                         <div style={{ position: 'absolute', left: `${q1Pct}%`, width: `${q3Pct - q1Pct}%`, top: 0, height: '100%', background: 'rgba(139,92,246,0.4)', borderRadius: 4 }} />
-                        <div style={{ position: 'absolute', left: `${medPct}%`, width: 3, top: 0, height: '100%', background: '#c4b5fd' }} />
+                        <div style={{ position: 'absolute', left: `${medPct}%`, width: 3, top: 0, height: '100%', background: 'var(--brand-2)' }} />
                       </>
                     )
                   })()}
@@ -369,7 +369,7 @@ export default function StatisticsCalculatorClient() {
               style={{
                 width: '100%', textAlign: 'left', padding: '14px 20px',
                 background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-                borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer',
+                borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer',
               }}
               aria-expanded={showSorted}
             >
@@ -396,7 +396,7 @@ export default function StatisticsCalculatorClient() {
                       {displaySortedRows.map(row => (
                         <tr key={row.rank} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                           <td style={{ ...TD, color: 'var(--fg-3)' }}>{row.rank}</td>
-                          <td style={{ ...TD, color: '#c4b5fd', fontWeight: 600 }}>{row.value}</td>
+                          <td style={{ ...TD, color: 'var(--brand-2)', fontWeight: 600 }}>{row.value}</td>
                           <td style={{ ...TD, color: Math.abs(row.zScore) > 2 ? '#f87171' : Math.abs(row.zScore) > 1 ? '#f59e0b' : '#10b981' }}>
                             {fmt2(row.zScore)}
                           </td>
@@ -424,7 +424,7 @@ export default function StatisticsCalculatorClient() {
               style={{
                 width: '100%', textAlign: 'left', padding: '14px 20px',
                 background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-                borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer',
+                borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer',
               }}
               aria-expanded={showFreq}
             >
@@ -448,7 +448,7 @@ export default function StatisticsCalculatorClient() {
                     <tbody>
                       {result.freqRows.map(row => (
                         <tr key={row.value} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                          <td style={{ ...TD, color: '#c4b5fd', fontWeight: 600 }}>{row.value}</td>
+                          <td style={{ ...TD, color: 'var(--brand-2)', fontWeight: 600 }}>{row.value}</td>
                           <td style={TD}>{row.count}</td>
                           <td style={TD}>{(row.relFreq * 100).toFixed(1)}%</td>
                           <td style={TD}>{(row.cumFreq * 100).toFixed(1)}%</td>
@@ -466,7 +466,7 @@ export default function StatisticsCalculatorClient() {
 
           {/* Guidance */}
           <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-            <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               Interpretation Guide
             </h3>
             <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>

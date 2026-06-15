@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+﻿/* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/JsonLd'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -7,12 +7,12 @@ import Link from 'next/link'
 import { ToolPageExtras } from '@/components/ToolPageExtras'
 
 export const metadata: Metadata = {
-  title: 'Port Checker — Common Ports Reference & Port Status Tool | RoughTools',
+  title: 'Port Checker â€” Common Ports Reference & Port Status Tool | RoughTools',
   description: 'Look up common TCP/UDP port numbers and their services. Reference for well-known ports including HTTP, HTTPS, SSH, FTP, MySQL, PostgreSQL, Redis, and MongoDB. Free.',
   keywords: ['port checker', 'tcp port checker', 'open port checker', 'check if port is open', 'common port numbers', 'port number list', 'well-known ports'],
   alternates: { canonical: 'https://roughtools.com/tools/network/port-checker' },
   openGraph: {
-    title: `Port Checker — Check if Port is Open | RoughTools`,
+    title: `Port Checker â€” Check if Port is Open | RoughTools`,
     description: `Check if a specific port is open on any server or IP address. Free online port checker and scanner tool.`,
     url: 'https://roughtools.com/tools/network/port-checker',
     type: 'website',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Port Checker — Check if Port is Open | RoughTools`,
+    title: `Port Checker â€” Check if Port is Open | RoughTools`,
     description: `Check if a specific port is open on any server or IP address. Free online port checker and scanner tool.`,
   },
   robots: { index: true, follow: true },
@@ -37,7 +37,7 @@ const FAQ = [
   },
   {
     q: 'Does this tool store or log what I search?',
-    a: 'No. The port reference lookup is powered entirely by a static dataset stored in your browser — no search queries are sent to any server, and nothing you look up is logged or stored. The tool works like a local reference guide that runs entirely on your device. Your port searches and network diagnostic activities are completely private.',
+    a: 'No. The port reference lookup is powered entirely by a static dataset stored in your browser â€” no search queries are sent to any server, and nothing you look up is logged or stored. The tool works like a local reference guide that runs entirely on your device. Your port searches and network diagnostic activities are completely private.',
   },
   {
     q: 'Does the Port Checker work on mobile phones and tablets?',
@@ -57,7 +57,7 @@ const FAQ = [
   },
   {
     q: 'How do I look up a port number or check if a port is open? Step-by-step.',
-    a: 'Step one: open the Port Checker on this page. Step two: type a port number (like 3306) or a service name (like "mysql") into the search field to look up what service uses that port and whether it uses TCP, UDP, or both. Step three: to actually test if a specific port is open on a server, use the command-line instructions provided — on Linux or macOS run nc -zv hostname port, and on Windows run Test-NetConnection -ComputerName hostname -Port port in PowerShell. Step four: review the output to see whether the connection succeeded.',
+    a: 'Step one: open the Port Checker on this page. Step two: type a port number (like 3306) or a service name (like "mysql") into the search field to look up what service uses that port and whether it uses TCP, UDP, or both. Step three: to actually test if a specific port is open on a server, use the command-line instructions provided â€” on Linux or macOS run nc -zv hostname port, and on Windows run Test-NetConnection -ComputerName hostname -Port port in PowerShell. Step four: review the output to see whether the connection succeeded.',
   },
   {
     q: 'Why use RoughTools Port Checker instead of other websites?',
@@ -69,15 +69,15 @@ const FAQ = [
   },
   {
     q: 'What is a network port and how does it work?',
-    a: 'A network port is a 16-bit number (0 to 65535) that identifies a specific service or process running on a host. When a client connects to a server, it specifies both an IP address and a port number. The IP address routes traffic to the correct machine, and the port number routes it to the correct service on that machine. For example, connecting to port 80 reaches the web server, while connecting to port 22 reaches the SSH daemon — even though both services share the same IP address.',
+    a: 'A network port is a 16-bit number (0 to 65535) that identifies a specific service or process running on a host. When a client connects to a server, it specifies both an IP address and a port number. The IP address routes traffic to the correct machine, and the port number routes it to the correct service on that machine. For example, connecting to port 80 reaches the web server, while connecting to port 22 reaches the SSH daemon â€” even though both services share the same IP address.',
   },
   {
     q: 'What is the difference between TCP and UDP ports?',
-    a: 'TCP (Transmission Control Protocol) is a connection-oriented protocol that establishes a handshake before sending data and guarantees that packets arrive in order and without corruption. It is used for services where reliability matters — HTTP, HTTPS, SSH, FTP, and database connections. UDP (User Datagram Protocol) is connectionless and sends packets without guaranteeing delivery or order — it is faster and used where low latency matters more than perfect reliability, such as DNS lookups, video streaming, VoIP, and online games. A single port number can refer to both a TCP and UDP service independently.',
+    a: 'TCP (Transmission Control Protocol) is a connection-oriented protocol that establishes a handshake before sending data and guarantees that packets arrive in order and without corruption. It is used for services where reliability matters â€” HTTP, HTTPS, SSH, FTP, and database connections. UDP (User Datagram Protocol) is connectionless and sends packets without guaranteeing delivery or order â€” it is faster and used where low latency matters more than perfect reliability, such as DNS lookups, video streaming, VoIP, and online games. A single port number can refer to both a TCP and UDP service independently.',
   },
   {
     q: 'What does open, closed, or filtered mean for a port?',
-    a: 'An open port means a service is actively listening on that port and will accept incoming connections. A closed port means no service is currently listening, but the host is reachable and the operating system is responding — it actively sends a TCP RST packet. A filtered port means a firewall is blocking the connection entirely, so no response is received and the requester must wait for a timeout. Filtered ports are a common source of confusion because the lack of response can look like a slow server rather than a blocked port.',
+    a: 'An open port means a service is actively listening on that port and will accept incoming connections. A closed port means no service is currently listening, but the host is reachable and the operating system is responding â€” it actively sends a TCP RST packet. A filtered port means a firewall is blocking the connection entirely, so no response is received and the requester must wait for a timeout. Filtered ports are a common source of confusion because the lack of response can look like a slow server rather than a blocked port.',
   },
 ]
 
@@ -118,14 +118,16 @@ export default function Page() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '24px 16px 64px' }}>
         <ToolAdUnit position="top" />
         <nav style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> ›{' '}
-          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> › Port Checker
+          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> â€º{' '}
+          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> â€º Port Checker
         </nav>
         <h1 style={{ fontSize: 'clamp(24px,4vw,36px)', fontWeight: 900, marginBottom: 8, letterSpacing: -1 }}>Port Checker</h1>
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Search and look up common TCP/UDP port numbers and their associated services. Based on the IANA official port registry, covering HTTP, HTTPS, SSH, FTP, MySQL, PostgreSQL, Redis, MongoDB, and hundreds more. Includes command-line instructions for testing whether a specific port is open on any host. Free, no account required.
         </p>
+        <div data-print-section="calculator">
         <PortCheckerClient />
+        </div>
         <ToolAdUnit position="middle" />
         <section style={{ marginTop: 40 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 12 }}>About Port Checker</h2>
@@ -133,7 +135,7 @@ export default function Page() {
             Network ports are numbered communication channels that allow multiple services to run on a single IP address. When you deploy a web application, database, or any network service, it binds to a specific port number. Knowing which ports are assigned to which services is essential for network administration, security audits, firewall configuration, and troubleshooting connectivity issues.
           </p>
           <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12 }}>
-            Because browsers operate in a restricted security sandbox, they cannot make raw TCP connections to test port availability — this requires system-level tools like nmap, netcat, or PowerShell&apos;s Test-NetConnection. This reference guide covers all well-known IANA-assigned ports and provides ready-to-run command-line examples for checking port status from your terminal, making it useful for both quick reference and real network diagnostics.
+            Because browsers operate in a restricted security sandbox, they cannot make raw TCP connections to test port availability â€” this requires system-level tools like nmap, netcat, or PowerShell&apos;s Test-NetConnection. This reference guide covers all well-known IANA-assigned ports and provides ready-to-run command-line examples for checking port status from your terminal, making it useful for both quick reference and real network diagnostics.
           </p>
         </section>
         <section style={{ marginTop: 32 }}>

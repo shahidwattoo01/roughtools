@@ -77,33 +77,33 @@ function exportCSV() {
 // ─── Style Tokens ─────────────────────────────────────────────────────────────
 
 const CARD: CSSProperties = {
-  background: '#12121f', border: '1px solid rgba(255,255,255,0.1)',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
   borderRadius: 16, padding: '24px 28px',
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.1)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
-  color: 'rgba(255,255,255,0.45)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em',
+  color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em',
 }
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
   padding: '9px 12px', fontWeight: 700, fontSize: 11,
   textTransform: 'uppercase', letterSpacing: '0.07em',
-  color: 'rgba(255,255,255,0.45)', textAlign: 'right', background: 'rgba(99,102,241,0.1)',
+  color: 'var(--fg-3)', textAlign: 'right', background: 'rgba(99,102,241,0.1)',
   whiteSpace: 'nowrap',
 }
 const TD: CSSProperties = {
   padding: '6px 12px', fontSize: 12, textAlign: 'right',
-  color: 'rgba(255,255,255,0.65)', whiteSpace: 'nowrap',
+  color: 'var(--fg-2)', whiteSpace: 'nowrap',
 }
 
 function CopyBtn({ text }: { text: string }) {
@@ -128,7 +128,7 @@ export default function LengthConverterClient() {
   const [lastChanged, setLastChanged] = useState<UnitKey>('m')
   const [showMatrix, setShowMatrix] = useState(false)
 
-  const computed = useMemo<Record<UnitKey, number>>(() => {
+  const _computed = useMemo<Record<UnitKey, number>>(() => {
     const raw = parseFloat(values[lastChanged])
     if (isNaN(raw)) return UNITS.reduce((acc, u) => ({ ...acc, [u.key]: NaN }), {} as Record<UnitKey, number>)
     const meters = raw * UNIT_MAP[lastChanged].toM
@@ -184,7 +184,7 @@ export default function LengthConverterClient() {
                 />
                 <CopyBtn text={values[u.key]} />
               </div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 3 }}>{u.industry}</div>
+              <div style={{ fontSize: 11, color: 'var(--fg-2)', marginTop: 3 }}>{u.industry}</div>
             </div>
           ))}
         </div>
@@ -192,7 +192,7 @@ export default function LengthConverterClient() {
 
       {/* ── REFERENCE POINTS ── */}
       <div style={CARD}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--fg-1)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Real-World References
         </h3>
         <div style={{ overflowX: 'auto' }}>
@@ -213,7 +213,7 @@ export default function LengthConverterClient() {
                   onClick={() => applyQuick(ref.m, 'm')}
                   title="Click to load"
                 >
-                  <td style={{ ...TD, textAlign: 'left', color: '#c4b5fd', fontWeight: 600 }}>{ref.label}</td>
+                  <td style={{ ...TD, textAlign: 'left', color: 'var(--brand-2)', fontWeight: 600 }}>{ref.label}</td>
                   {(['m','km','mi','ft','in','nmi','ly','au'] as UnitKey[]).map(k => (
                     <td key={k} style={TD}>{fmt(ref.m / UNIT_MAP[k].toM)}</td>
                   ))}
@@ -222,21 +222,21 @@ export default function LengthConverterClient() {
             </tbody>
           </table>
         </div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 8 }}>Click any row to load into the converter.</div>
+        <div style={{ fontSize: 11, color: 'var(--fg-2)', marginTop: 8 }}>Click any row to load into the converter.</div>
       </div>
 
       {/* ── FULL CONVERSION MATRIX ── */}
       <div>
         <button
           onClick={() => setShowMatrix(v => !v)}
-          style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: '#12121f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
+          style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-2)', border: '1px solid var(--line-strong)', borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
           aria-expanded={showMatrix}
         >
           {showMatrix ? '▾' : '▸'} Full Conversion Matrix (1 of each unit → all others)
         </button>
         {showMatrix && (
           <div style={{ ...CARD, padding: 0, overflow: 'hidden', marginTop: 4 }}>
-            <div style={{ display: 'flex', gap: 10, padding: '14px 20px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ display: 'flex', gap: 10, padding: '14px 20px', borderBottom: '1px solid var(--line-strong)' }}>
               <button onClick={exportCSV} style={BTN_GHOST}>⬇ Export CSV</button>
             </div>
             <div style={{ overflowX: 'auto' }}>
@@ -250,7 +250,7 @@ export default function LengthConverterClient() {
                 <tbody>
                   {UNITS.map(from => (
                     <tr key={from.key} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                      <td style={{ ...TD, textAlign: 'left', color: '#c4b5fd', fontWeight: 700 }}>1 {from.symbol}</td>
+                      <td style={{ ...TD, textAlign: 'left', color: 'var(--brand-2)', fontWeight: 700 }}>1 {from.symbol}</td>
                       {UNITS.map(to => (
                         <td key={to.key} style={{ ...TD, background: from.key === to.key ? 'rgba(99,102,241,0.12)' : 'transparent' }}>
                           {from.key === to.key ? '1' : fmt(convert(1, from.key, to.key))}
@@ -267,24 +267,24 @@ export default function LengthConverterClient() {
 
       {/* ── INDUSTRY CONTEXT ── */}
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Industry Context
         </h3>
         <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Metric (SI)</strong> — Used in science, engineering, and 195+ countries. The meter is defined by the speed of light: 1 m = distance light travels in 1/299,792,458 of a second.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Metric (SI)</strong> — Used in science, engineering, and 195+ countries. The meter is defined by the speed of light: 1 m = distance light travels in 1/299,792,458 of a second.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Imperial / US Customary</strong> — The US remains one of only 3 countries not officially using SI. Construction, aviation (altitude in feet), and consumer products commonly use inches, feet, and miles.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Imperial / US Customary</strong> — The US remains one of only 3 countries not officially using SI. Construction, aviation (altitude in feet), and consumer products commonly use inches, feet, and miles.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Nautical Mile</strong> — Defined as 1 arc-minute of latitude (1/60th of a degree). 1 nautical mile = 1.852 km. Aviation and maritime navigation use knots (nautical miles per hour) for speed.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Nautical Mile</strong> — Defined as 1 arc-minute of latitude (1/60th of a degree). 1 nautical mile = 1.852 km. Aviation and maritime navigation use knots (nautical miles per hour) for speed.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Nanometer & Angstrom</strong> — Semiconductor transistors are now measured in nanometers (e.g., 3 nm process node). DNA double helix diameter ≈ 2 nm. Atomic radii are measured in Angstroms (1 Å = 0.1 nm).
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Nanometer & Angstrom</strong> — Semiconductor transistors are now measured in nanometers (e.g., 3 nm process node). DNA double helix diameter ≈ 2 nm. Atomic radii are measured in Angstroms (1 Å = 0.1 nm).
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Light Year</strong> — The distance light travels in one year: ~9.46 × 10¹⁵ m. The nearest star (Proxima Centauri) is 4.24 light years away. Not a unit of time.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Light Year</strong> — The distance light travels in one year: ~9.46 × 10¹⁵ m. The nearest star (Proxima Centauri) is 4.24 light years away. Not a unit of time.
           </li>
         </ul>
       </div>

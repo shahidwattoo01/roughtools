@@ -1,0 +1,194 @@
+﻿---
+title: 'How to Read a Loan Amortization Schedule'
+slug: how-to-read-a-loan-amortization-schedule
+date: '2026-04-29'
+excerpt: 'Learn how to read a loan amortization schedule with a step-by-step guide, worked example, and principal vs interest breakdown by month. Free calculator included.'
+readTime: '9 min read'
+author: RoughTools Team
+category: Financial Calculators
+keywords:
+  - how to read a loan amortization schedule
+  - amortization schedule explained
+  - loan amortization table
+  - principal vs interest breakdown
+  - amortization calculator
+  - early loan payoff
+---
+
+A loan amortization schedule is a table showing every payment you will make on a loan — broken down month by month into exactly how much goes toward interest and how much reduces your balance. Each row represents one payment period from the first month to the last.
+
+Most borrowers never look at their amortization schedule, which means they never see the number that would change how they think about their loan: on a standard 30-year mortgage, you can pay for 20 full years and still owe more than half the original balance. The math is not intuitive, and lenders do not advertise it. Understanding how to read a loan amortization schedule turns an abstract monthly payment into a repayment roadmap you can act on.
+
+Use the free [Loan Amortization Calculator](https://roughtools.com/tools/calculators/loan-calculator) at RoughTools to generate a complete amortization table for any loan instantly — or follow the step-by-step method below.
+
+## The Amortization Schedule Formula
+
+Each row in an amortization table is calculated using three formulas applied in sequence. The monthly payment stays the same throughout; what changes is the split between interest and principal.
+
+**Monthly payment (calculated once):**
+```
+M = P × [r(1+r)^n] / [(1+r)^n - 1]
+```
+
+**Interest portion for each period:**
+```
+Interest = Remaining balance × monthly rate
+```
+
+**Principal portion for each period:**
+```
+Principal = Monthly payment - Interest
+```
+
+**New balance after payment:**
+```
+New balance = Remaining balance - Principal paid
+```
+
+Where:
+- **M** — fixed monthly payment
+- **P** — original loan amount (principal)
+- **r** — monthly interest rate (annual rate ÷ 12)
+- **n** — total number of payments
+- **Remaining balance** — loan balance at the start of that specific month
+
+### Worked example: $247,500 at 6.875% for 30 years
+
+**Step 1 — Calculate monthly payment:**
+```
+r = 6.875% ÷ 12 = 0.572917% = 0.00572917
+n = 30 × 12 = 360
+M = 247,500 × [0.00572917 × 7.820] / [7.820 - 1]
+M ≈ $1,626 per month
+```
+
+**Step 2 — Build the first three rows of the amortization table:**
+
+| Month | Payment | Interest | Principal | Balance |
+|---|---|---|---|---|
+| 1 | $1,626 | $1,418 | $208 | $247,292 |
+| 2 | $1,626 | $1,417 | $209 | $247,083 |
+| 3 | $1,626 | $1,416 | $210 | $246,873 |
+
+In month 1, $1,418 of the $1,626 payment goes to interest — **87.2%** of the payment. Only $208 reduces the actual loan balance. This is why the balance barely moves in the early years.
+
+**Step 3 — Check the 15-year mark (month 180):**
+```
+Balance at month 180 ≈ $182,305
+```
+
+After paying $292,680 in total payments over 15 years, the balance is still $182,305 — 73.7% of the original loan. The total interest paid over the full 30 years on this loan is approximately **$337,860** — 37% more than the amount borrowed.
+
+## How to Read an Amortization Schedule Step by Step
+
+1. **Locate the five standard columns.** Every amortization table has the same structure: payment number (or date), payment amount, interest portion, principal portion, and remaining balance. Some lenders add a cumulative interest column showing total interest paid to date — this is the most alarming number on the page, and also the most useful for making early payoff decisions.
+
+2. **Read the first row carefully.** The first payment reveals your loan's interest loading. On the $247,500 example, $1,418 of the first $1,626 payment goes to interest. Divide: $1,418 ÷ $1,626 = 87.2% toward interest. This percentage decreases with every payment, but slowly in the early years.
+
+3. **Find the crossover point — where principal exceeds interest.** On a 30-year mortgage at 6.875%, this crossover happens around month 239 — year 20. Before that point, the majority of every payment is interest. After that point, the majority reduces principal. Knowing your crossover point tells you when your loan shifts from "mostly paying the bank" to "mostly building equity."
+
+4. **Use the remaining balance column to track real equity.** Equity is your home's value minus the remaining loan balance. If you paid $50,000 down and your balance has dropped by $5,265 over 2 years, your equity from loan paydown is $55,265 — plus any appreciation. The amortization schedule shows you exactly how much principal paydown you have accumulated at any point.
+
+5. **Check the cumulative interest column at key milestones.** Find your 5-year, 10-year, and 15-year rows. On the $247,500 loan, total interest paid by year 5 is approximately $83,200 — on a loan where total principal paid is only about $12,600. This comparison is the clearest way to see the cost of early-year interest loading.
+
+6. **Verify the last row zeroes out.** The final payment in a correctly calculated amortization schedule should bring the balance to exactly $0 (or within rounding — the last payment is often $1–$2 different from earlier payments due to rounding). If your amortization table does not end at zero, there is an error in the calculation.
+
+**Pro tip:** Print or save your amortization schedule the day you close your loan. When you receive a lump sum — tax refund, bonus, inheritance — pull up the schedule and look at how far down the table a single extra principal payment moves your payoff date. On most 30-year mortgages, one extra payment per year cuts the loan term by 4–6 years.
+
+## Why Do You Pay So Much Interest at the Start of a Loan?
+
+You pay the most interest at the start of a loan because interest is calculated on the outstanding balance — and the balance is highest at the beginning. This structure is called **front-loaded amortization**, and it is not a predatory design — it is the mathematically correct way to charge interest on a declining balance.
+
+Here is the logic in plain English: in month 1, the lender has your full $247,500 at risk. You owe interest on $247,500. By month 180, the balance is $182,305, so you owe interest on a smaller number. By month 359, the balance might be $1,623, so almost the entire payment goes to principal.
+
+The practical implication is significant:
+
+| Year | Cumulative principal paid | Cumulative interest paid | Balance remaining |
+|---|---|---|---|
+| Year 1 | $2,565 | $17,157 | $244,935 |
+| Year 5 | $13,345 | $84,415 | $234,155 |
+| Year 10 | $30,285 | $164,835 | $217,215 |
+| Year 15 | $52,370 | $241,450 | $195,130 |
+| Year 20 | $81,310 | $309,110 | $166,190 |
+| Year 30 | $247,500 | $337,860 | $0 |
+
+After 10 full years of payments, you have paid $164,835 in interest but reduced the balance by only $30,285. This is why refinancing even two years into a 30-year mortgage often makes financial sense if rates drop — you restart the amortization clock on a lower rate, which shifts the interest-to-principal ratio favorably from day one.
+
+## How Does Making Extra Payments Change Your Amortization Schedule?
+
+Extra principal payments permanently reduce your loan balance, which reduces the interest charged in every subsequent month, which shortens your payoff timeline — sometimes dramatically.
+
+On the $247,500 loan at 6.875%, the standard payoff is 360 months with $337,860 in total interest.
+
+What happens with extra payments:
+
+| Extra payment | Payoff time | Interest saved | Months saved |
+|---|---|---|---|
+| $100/month extra | ~27.5 years | ~$31,400 | 30 months |
+| $200/month extra | ~25.3 years | ~$57,600 | 56 months |
+| $500/month extra | ~21.1 years | ~$113,000 | 107 months |
+| 1 extra payment/year | ~26 years | ~$44,800 | 48 months |
+
+The key insight: every extra dollar of principal paid today eliminates all future interest that would have accrued on that dollar. A $200 extra payment in month 1 is not just $200 off the balance — it saves roughly $230 in interest that would have accumulated over 29 remaining years on that $200 of principal.
+
+Extra payments work best when applied directly to principal, not to future payments. Specify "apply to principal only" when making extra payments — some servicers will apply the excess to next month's payment instead, which does not reduce your balance in the same way. The [debt payoff calculator](/tools/calculators/debt-payoff-calculator) shows exactly how any extra payment amount changes your amortization timeline.
+
+## How Long Until You Owe Less Than Half Your Original Mortgage?
+
+On a standard 30-year mortgage, you owe less than half the original balance at approximately year 22–23, depending on the interest rate.
+
+On the $247,500 loan at 6.875%, the balance drops below $123,750 (50% of original) at approximately month 271 — year 22.6. At that point, you have made 75% of your scheduled payments but have only reduced the balance by 50%.
+
+Higher interest rates push this crossover later; lower rates pull it earlier. Here is how the 50% balance point shifts by rate on the same $247,500 30-year loan:
+
+| Interest rate | Month balance drops below 50% | Year |
+|---|---|---|
+| 4.0% | Month 252 | Year 21 |
+| 5.5% | Month 260 | Year 21.7 |
+| 6.875% | Month 271 | Year 22.6 |
+| 8.0% | Month 279 | Year 23.3 |
+
+This is why buyers who purchased at 7–8% rates and are now considering refinancing should look closely at their amortization schedule first. If you are in year 5 of a 30-year mortgage and refinance into a new 30-year loan, you reset the amortization clock — even at a lower rate, the first few years of the new loan will again be heavily weighted toward interest.
+
+## Common Mistakes to Avoid When Reading an Amortization Schedule
+
+- **Confusing the payment amount with the principal reduction.** The monthly payment is not how much you are paying off the loan. On the $247,500 example, the $1,626 monthly payment reduces the balance by only $208 in month 1. The balance paid off is the principal column, not the total payment column.
+
+- **Assuming the midpoint in time means the midpoint in balance.** After 15 years (half the loan term), the balance on a 30-year mortgage is roughly 73–75% of the original amount — not 50%. Many borrowers significantly underestimate how much they still owe at the halfway mark.
+
+- **Applying extra payments to "next month's payment" instead of principal.** Some loan servicers apply any amount above the regular payment to future scheduled payments, which advances your due date but does not reduce your balance any faster than normal. Always specify "principal only" when making extra payments, or verify in your account that the extra amount reduced the outstanding balance.
+
+- **Reading an amortization schedule for a loan with prepayment penalties.** Some personal loans and mortgages (particularly older ones) charge a fee for paying off early or making extra principal payments. Before accelerating payoff, check your loan agreement for prepayment penalty clauses. The interest saved by extra payments must exceed any penalty to make financial sense.
+
+- **Ignoring the amortization schedule when refinancing.** If you are in year 8 of a 30-year mortgage and refinance into a new 30-year mortgage, your total loan term becomes 38 years — not 30. Always compare the total interest cost of refinancing (new loan's total interest) against the remaining interest on your current schedule to evaluate whether refinancing actually saves money.
+
+## Frequently Asked Questions
+
+**What is an amortization schedule in simple terms?**
+An amortization schedule is a month-by-month payment table showing exactly how much of each payment goes to interest vs. principal, and what your remaining balance is after every payment. It is the receipt for your entire loan, printed in advance. Every payment amount is identical; what changes each month is how that payment splits between the bank's interest and your equity.
+
+**What if I make a large lump-sum payment — does the schedule update?**
+Yes — any extra principal payment requires recalculating the schedule from that point forward. The monthly payment amount stays the same (unless you recast the loan), but the balance is now lower, so each subsequent payment allocates more to principal and less to interest, shortening your payoff date. Ask your lender for an updated schedule after any significant extra payment to see the revised payoff date.
+
+**What is the difference between an amortization schedule and a loan statement?**
+An amortization schedule is a projected table calculated at loan origination, showing how all future payments will be allocated. A loan statement shows what actually happened — your actual payment, actual interest charged, and actual remaining balance after a specific payment. If you pay on time and never make extra payments, the two documents match exactly. Extra payments, late fees, or rate changes (on variable loans) cause them to diverge.
+
+**How much of my first mortgage payment goes to principal?**
+On a typical 30-year mortgage, only 10–15% of the first payment goes to principal. On the $247,500 loan at 6.875%, $208 of the $1,626 first payment — 12.8% — reduces the balance. The remaining $1,418 is pure interest. This ratio gradually shifts over time until the final payment is nearly 100% principal.
+
+**When should I request a new amortization schedule from my lender?**
+Request an updated schedule after making any extra principal payment, after a loan modification, or if you want to evaluate the impact of different payoff scenarios. Also pull the schedule before deciding to refinance — the remaining interest on your current schedule is the true cost you are comparing against the new loan's total interest. Use the [loan amortization calculator](https://roughtools.com/tools/calculators/loan-calculator) to model any scenario without contacting your lender.
+
+*These calculations are estimates for planning purposes. Actual payment allocations depend on your specific loan terms and payment history. Consult your lender for an official amortization schedule.*
+
+## Use the Free Loan Amortization Calculator
+
+The [Free Loan Amortization Calculator](https://roughtools.com/tools/calculators/loan-calculator) at RoughTools generates a complete month-by-month amortization table for any loan — mortgage, auto, personal, or student. Enter the loan amount, interest rate, and term, and the tool instantly produces every payment row, cumulative interest paid to date, and your remaining balance at any point in the loan. It also models extra payment scenarios, showing exactly how additional principal payments shorten your payoff timeline. No account needed, no data stored, completely free.
+
+**[Free Loan Amortization Calculator →](https://roughtools.com/tools/calculators/loan-calculator)**
+
+You might also need:
+- [Mortgage Calculator](/tools/calculators/mortgage-calculator) — calculate your full PITI payment with taxes and insurance
+- [Debt Payoff Calculator](/tools/calculators/debt-payoff-calculator) — model extra payment scenarios across multiple loans
+- [Refinance Calculator](/tools/calculators/refinance-calculator) — compare your current amortization against a new loan's schedule
+- [Compound Interest Calculator](/tools/calculators/compound-interest-calculator) — see what your extra payments could earn if invested instead

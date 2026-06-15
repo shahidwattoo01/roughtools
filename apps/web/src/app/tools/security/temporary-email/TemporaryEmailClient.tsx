@@ -78,7 +78,7 @@ export default function TemporaryEmail() {
 
   useEffect(() => {
     newAddress()
-  }, [domain])
+  }, [domain, newAddress])
 
   const copy = () => {
     navigator.clipboard.writeText(email)
@@ -127,8 +127,8 @@ export default function TemporaryEmail() {
           {/* Address display */}
           <div>
             <label className="block text-xs font-medium text-gray-400 mb-2">Your Temporary Email Address</label>
-            <div className="bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 flex items-center justify-between gap-4">
-              <p className="font-mono text-lg text-purple-300 break-all flex-1">{email}</p>
+            <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 flex items-center justify-between gap-4">
+              <p className="font-mono text-lg text-purple-700 dark:text-purple-300 break-all flex-1">{email}</p>
               <button
                 onClick={copy}
                 className={`flex-shrink-0 font-bold px-4 py-2 rounded-lg text-sm transition-colors ${copied ? 'bg-green-700 text-green-100' : 'bg-purple-600 hover:bg-purple-700 text-white'}`}
@@ -145,7 +145,7 @@ export default function TemporaryEmail() {
               <select
                 value={domain}
                 onChange={e => setDomain(e.target.value)}
-                className="w-full bg-gray-800 border border-gray-700 text-white rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
               >
                 {DOMAINS.map(d => <option key={d} value={d}>{d}</option>)}
               </select>
@@ -154,7 +154,7 @@ export default function TemporaryEmail() {
             <div className="flex items-end">
               <button
                 onClick={newAddress}
-                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-2.5 rounded-xl transition-colors text-sm flex items-center justify-center gap-2"
+                className="w-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-2.5 rounded-xl transition-colors text-sm flex items-center justify-center gap-2"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                 New Address
@@ -163,12 +163,12 @@ export default function TemporaryEmail() {
           </div>
 
           {/* Inbox placeholder */}
-          <div className="border-t border-gray-800 pt-4">
+          <div className="border-t border-gray-200 dark:border-gray-800 pt-4">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-semibold text-gray-300">Inbox</h3>
-              <span className="text-xs text-gray-600 bg-gray-800 px-2 py-0.5 rounded-full">0 messages</span>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Inbox</h3>
+              <span className="text-xs text-gray-600 bg-gray-200 dark:bg-gray-800 px-2 py-0.5 rounded-full">0 messages</span>
             </div>
-            <div className="bg-gray-800/50 rounded-xl p-10 text-center text-gray-500">
+            <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-10 text-center text-gray-500">
               <svg className="mx-auto h-12 w-12 text-gray-700 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -204,16 +204,16 @@ export default function TemporaryEmail() {
               { icon: '🔔', title: 'Blocking newsletters', desc: 'Sites that require email to remove a paywall or see content' },
               { icon: '🔒', title: 'Privacy-sensitive forms', desc: 'Any form where you do not want future marketing contact' },
             ].map(u => (
-              <div key={u.title} className="flex gap-3 p-3 bg-gray-800/50 rounded-xl">
+              <div key={u.title} className="flex gap-3 p-3 bg-gray-100 dark:bg-gray-800/50 rounded-xl">
                 <span className="text-xl flex-shrink-0">{u.icon}</span>
                 <div>
-                  <div className="text-white text-sm font-semibold">{u.title}</div>
+                  <div className="text-gray-900 dark:text-white text-sm font-semibold">{u.title}</div>
                   <div className="text-gray-500 text-xs mt-0.5">{u.desc}</div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-4 p-3 bg-yellow-900/20 border border-yellow-700/30 rounded-xl text-xs text-yellow-500/80">
+          <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-300 dark:border-yellow-700/30 rounded-xl text-xs text-yellow-700 dark:text-yellow-500/80">
             ⚠️ Do not use temporary email addresses for banking, government, healthcare, or any account that requires permanent email access for account recovery.
           </div>
         </div>

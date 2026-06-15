@@ -1,12 +1,12 @@
 ﻿// ============================================================
-// ROUGHTOOLS â€” INTERNAL LINKING SYSTEM (Phase 3.7)
+// ROUGHTOOLS — INTERNAL LINKING SYSTEM (Phase 3.7)
 // Maps every tool to 4 related tools for internal SEO linking
 // "Every page shows 4 related tools"
 // ============================================================
 
 import { ALL_TOOLS, Tool, ToolCategory, getToolsByCategory } from './tools-registry'
 
-// â”€â”€â”€ EXPLICIT RELATED TOOL MAPPINGS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── EXPLICIT RELATED TOOL MAPPINGS ─────────────────────────
 // Hand-curated for highest-traffic tools. Falls back to same-category.
 const RELATED_MAP: Record<string, string[]> = {
   // PDF
@@ -65,7 +65,7 @@ const RELATED_MAP: Record<string, string[]> = {
   'weight-converter': ['length-converter', 'area-converter', 'digital-storage-converter', 'speed-converter'],
 }
 
-// â”€â”€â”€ FEATURED TOOLS FOR HOMEPAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── FEATURED TOOLS FOR HOMEPAGE ────────────────────────────
 export const FEATURED_TOOL_SLUGS = [
   'pdf-to-word',
   'compress-pdf',
@@ -81,7 +81,7 @@ export const FEATURED_TOOL_SLUGS = [
   'regex-tester',
 ]
 
-// â”€â”€â”€ POPULAR TOOLS FOR HOMEPAGE HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── POPULAR TOOLS FOR HOMEPAGE HERO ────────────────────────
 export const POPULAR_TOOL_SLUGS_BY_CATEGORY: Record<ToolCategory, string[]> = {
   pdf: ['compress-pdf', 'merge-pdf', 'pdf-to-word', 'split-pdf'],
   calculators: ['bmi-calculator', 'mortgage-calculator', 'compound-interest-calculator', 'age-calculator'],
@@ -101,7 +101,7 @@ export const POPULAR_TOOL_SLUGS_BY_CATEGORY: Record<ToolCategory, string[]> = {
   'iq-test': [],
 }
 
-// â”€â”€â”€ CORE FUNCTIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── CORE FUNCTIONS ──────────────────────────────────────────
 
 /**
  * Get 4 related tools for a given tool slug.

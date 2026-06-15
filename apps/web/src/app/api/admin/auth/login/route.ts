@@ -51,5 +51,13 @@ export async function POST(req: NextRequest) {
     .setExpirationTime('4h')
     .sign(SECRET)
 
-  return NextResponse.json({ token })
+  const res = NextResponse.json({ success: true })
+  res.cookies.set('admin_token', token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge: 4 * 3600,
+    path: '/',
+  })
+  return res
 }

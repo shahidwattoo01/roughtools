@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { JsonLd } from '@/components/JsonLd'
 
@@ -372,13 +372,13 @@ function isDarkColor(hex: string): boolean {
 }
 
 // Picks a readable text accent: on dark bg use c1; on light bg prefer dark c1 else fall back to c2
-function accentTxt(c0: string, c1: string, c2: string): string {
+function _accentTxt(c0: string, c1: string, c2: string): string {
   if (isDarkColor(c0)) return c1
   return isDarkColor(c1) ? c1 : c2
 }
 
 // Compute pill width from skill label length
-function sw(s: string): number { return Math.max(18, Math.ceil(s.length * 2.25) + 8) }
+function _sw(s: string): number { return Math.max(18, Math.ceil(s.length * 2.25) + 8) }
 
 function getPersona(id: string): Persona {
   return PERSONAS[id.slice(0, 2).toUpperCase()] ?? PERSONAS['TE']
@@ -685,7 +685,7 @@ export default function ResumeTemplatesPage() {
     <>
       <JsonLd data={schemas} />
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f5f5f3] dark:bg-[#121212]">
 
         {/* ── Hero ──────────────────────────────────────────── */}
         <section className="bg-gradient-to-br from-indigo-700 via-purple-700 to-pink-700 text-white">
@@ -719,8 +719,8 @@ export default function ResumeTemplatesPage() {
         </section>
 
         {/* ── Trust bar ────────────────────────────────────── */}
-        <div className="bg-white border-b border-gray-200">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-center gap-6 text-xs text-gray-500">
+        <div className="bg-white dark:bg-[#1a1a1a] border-b border-gray-200 dark:border-white/10">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-center gap-6 text-xs text-gray-500 dark:text-[#999]">
             {[
               { icon: '🏆', text: 'Premium quality, 100% free' },
               { icon: '🤖', text: 'ATS-optimized layouts' },
@@ -765,20 +765,20 @@ export default function ResumeTemplatesPage() {
                 {cat.templates.map(template => (
                   <div
                     key={template.id}
-                    className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 group"
+                    className="bg-white dark:bg-[#1e1e1e] rounded-2xl border border-gray-200 dark:border-white/10 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 group"
                   >
                     {/* Mini resume preview */}
-                    <div className="w-full aspect-[3/4] overflow-hidden border-b border-gray-100">
+                    <div className="w-full aspect-[3/4] overflow-hidden border-b border-gray-100 dark:border-white/10">
                       <TemplatePreview t={template} />
                     </div>
 
                     <div className="p-4">
-                      <h3 className="font-bold text-gray-900 text-sm group-hover:text-indigo-700 transition-colors">
+                      <h3 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors">
                         {template.name}
                       </h3>
 
                       {/* Best for */}
-                      <p className="text-xs text-gray-500 mt-1 leading-snug line-clamp-1">
+                      <p className="text-xs text-gray-500 dark:text-[#999] mt-1 leading-snug line-clamp-1">
                         {template.best_for.slice(0, 2).join(' · ')}
                       </p>
 
@@ -812,9 +812,9 @@ export default function ResumeTemplatesPage() {
           ))}
 
           {/* ── SEO / About section ───────────────────────── */}
-          <section className="bg-white rounded-3xl border border-gray-100 p-8 sm:p-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why RoughTools Resume Templates?</h2>
-            <div className="grid sm:grid-cols-2 gap-6 text-sm text-gray-600 leading-relaxed">
+          <section className="bg-white dark:bg-[#1e1e1e] rounded-3xl border border-gray-100 dark:border-white/10 p-8 sm:p-10">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Why RoughTools Resume Templates?</h2>
+            <div className="grid sm:grid-cols-2 gap-6 text-sm text-gray-600 dark:text-[#aaa] leading-relaxed">
               <div>
                 <p className="mb-3">
                   Our {totalTemplates} resume templates are designed to a standard above Canva Pro — each one with a unique
@@ -842,8 +842,8 @@ export default function ResumeTemplatesPage() {
               </ul>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-gray-100">
-              <p className="text-sm font-semibold text-gray-700 mb-3">Other free tools you might need:</p>
+            <div className="mt-8 pt-6 border-t border-gray-100 dark:border-white/10">
+              <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Other free tools you might need:</p>
               <div className="flex flex-wrap gap-2">
                 {[
                   { href: '/tools/pdf', label: '📄 PDF Tools' },
@@ -855,7 +855,7 @@ export default function ResumeTemplatesPage() {
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="text-sm bg-gray-50 border border-gray-200 rounded-full px-4 py-1.5 text-gray-700 hover:border-indigo-300 hover:text-indigo-700 transition-colors"
+                    className="text-sm bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full px-4 py-1.5 text-gray-700 dark:text-gray-300 hover:border-indigo-300 dark:hover:border-indigo-500 hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors"
                   >
                     {l.label}
                   </Link>
@@ -868,3 +868,4 @@ export default function ResumeTemplatesPage() {
     </>
   )
 }
+

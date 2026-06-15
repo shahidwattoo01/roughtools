@@ -7,14 +7,14 @@ import { exportCalcPDF } from '@/lib/calcPdf'
 
 const CARD: CSSProperties = { background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 16, padding: '24px 28px' }
 const LABEL: CSSProperties = { display: 'block', marginBottom: 5, fontSize: 12, color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }
-const INPUT_BOX: CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 8, background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)', color: '#fff', fontSize: 15, boxSizing: 'border-box' }
-const BTN_GHOST: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13, fontWeight: 600, cursor: 'pointer' }
+const INPUT_BOX: CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 8, background: 'var(--bg-2)', border: '1px solid var(--line-strong)', color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box' }
+const BTN_GHOST: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13, fontWeight: 600, cursor: 'pointer' }
 const TH: CSSProperties = { padding: '9px 10px', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.07em', color: 'var(--fg-3)', textAlign: 'right', background: 'rgba(99,102,241,0.1)', whiteSpace: 'nowrap' }
 const TD: CSSProperties = { padding: '6px 10px', fontSize: 12, textAlign: 'right', color: 'var(--fg-2)', whiteSpace: 'nowrap' }
 
 function MetricCard({ label, value, sub, color = '#6366f1' }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div style={{ padding: '16px 12px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '16px 12px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 20, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 10, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -246,7 +246,7 @@ export default function ClosingCostsCalculatorClient() {
           {/* Itemized fee table */}
           <div>
             <button onClick={() => setShowItemized(v => !v)}
-              style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
+              style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
               aria-expanded={showItemized}>
               {showItemized ? '▾' : '▸'} Itemized Fee Table (Low / Typical / High)
             </button>
@@ -356,7 +356,7 @@ export default function ClosingCostsCalculatorClient() {
                       borderBottom: '1px solid rgba(255,255,255,0.05)',
                       background: s.dp === DP ? 'rgba(139,92,246,0.1)' : 'transparent',
                     }}>
-                      <td style={{ ...TD, textAlign: 'left', color: s.dp === DP ? '#c4b5fd' : 'var(--fg-2)', fontWeight: s.dp === DP ? 700 : 400 }}>
+                      <td style={{ ...TD, textAlign: 'left', color: s.dp === DP ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: s.dp === DP ? 700 : 400 }}>
                         {s.dp === DP ? '★ ' : ''}{s.dp}%
                       </td>
                       <td style={TD}>{fmt(s.downAmt)}</td>
@@ -374,16 +374,16 @@ export default function ClosingCostsCalculatorClient() {
 
           {/* Guidance */}
           <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-            <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               What Your Numbers Mean
             </h3>
             <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
               <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>
-                Your buyer closing costs are <strong style={{ color: '#6366f1' }}>{fmt(result.totalBuyerClosing)}</strong> ({pct(result.totalBuyerClosing / HP * 100, 1)} of purchase price). Combined with your {pct(DP, 0)} down payment of {fmt(result.downAmt)}, you'll need <strong style={{ color: '#f59e0b' }}>{fmt(result.totalFundsNeeded)}</strong> in cash at closing.
+                Your buyer closing costs are <strong style={{ color: '#6366f1' }}>{fmt(result.totalBuyerClosing)}</strong> ({pct(result.totalBuyerClosing / HP * 100, 1)} of purchase price). Combined with your {pct(DP, 0)} down payment of {fmt(result.downAmt)}, you&apos;ll need <strong style={{ color: '#f59e0b' }}>{fmt(result.totalFundsNeeded)}</strong> in cash at closing.
               </li>
               {DP < 20 && (
                 <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>
-                  With {pct(DP, 0)} down, PMI applies (LTV {(100 - DP).toFixed(1)}%). At 0.85% annually, that's ~{fmt(result.loanAmt * 0.0085 / 12)}/month until you reach 20% equity. Increasing your down payment to 20% would eliminate PMI entirely.
+                  With {pct(DP, 0)} down, PMI applies (LTV {(100 - DP).toFixed(1)}%). At 0.85% annually, that&apos;s ~{fmt(result.loanAmt * 0.0085 / 12)}/month until you reach 20% equity. Increasing your down payment to 20% would eliminate PMI entirely.
                 </li>
               )}
               {loanType === 'FHA' && (
@@ -396,7 +396,7 @@ export default function ClosingCostsCalculatorClient() {
               </li>
               {firstTimeBuyer && (
                 <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>
-                  As a first-time buyer, check your state's programs — many offer transfer tax exemptions or closing cost assistance that could reduce your out-of-pocket by thousands.
+                  As a first-time buyer, check your state&apos;s programs — many offer transfer tax exemptions or closing cost assistance that could reduce your out-of-pocket by thousands.
                 </li>
               )}
             </ul>

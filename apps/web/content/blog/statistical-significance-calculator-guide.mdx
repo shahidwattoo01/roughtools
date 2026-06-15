@@ -1,0 +1,110 @@
+﻿---
+title: 'Statistical Significance Calculator: How to Determine If Your Results Are Real'
+slug: statistical-significance-calculator-guide
+date: '2026-10-12'
+excerpt: 'Learn what statistical significance means, how to calculate p-values and confidence intervals for A/B tests, when results are statistically significant, and common mistakes in interpreting statistical tests. Free statistical significance calculator included.'
+readTime: '7 min read'
+author: RoughTools Team
+category: Math Calculators
+keywords:
+  - statistical significance calculator
+  - p-value calculator
+  - A/B test significance calculator
+  - how to determine statistical significance
+  - confidence interval calculator
+  - chi-square test calculator
+---
+
+A result is statistically significant when the probability of observing it by chance (the p-value) falls below the significance threshold (alpha, commonly α = 0.05). A/B test: if control converts 5.2% and variation converts 6.8% of visitors, is this real? With 1,000 visitors per group, a two-proportion z-test gives p ≈ 0.02 — below 0.05, so the result is statistically significant. The variation is likely a genuine improvement, not random chance.
+
+Statistical significance testing is the foundation of data-driven decision making in product development, marketing optimization, scientific research, and quality control. Without it, you cannot distinguish real effects from random variation. A/B testing platforms, analytics tools, and research papers all report statistical significance to help you decide whether observed differences are meaningful.
+
+Use the free [Statistical Significance Calculator](https://roughtools.com/tools/calculators/statistical-significance-calculator) at RoughTools to test A/B test results, calculate p-values, and determine sample size requirements.
+
+👉 **Free Statistical Significance Calculator — instant, no signup required.**
+→ https://roughtools.com/tools/calculators/statistical-significance-calculator
+
+## Key Concepts
+
+**P-value:** The probability of observing results at least as extreme as yours if the null hypothesis (no effect) were true. p=0.03 means there's a 3% chance of getting these results by random variation alone. Does not equal the probability the result is true.
+
+**Alpha (α):** The significance threshold — the acceptable false positive rate. Standard: α=0.05 (5% false positive rate). More stringent: α=0.01. For medical/safety decisions, α=0.001 or lower.
+
+**Statistical Significance:** When p < α. "Significant" in statistics means "unlikely to be due to chance" — NOT "large" or "important."
+
+**Confidence Interval (CI):** The range within which the true effect likely falls. A 95% CI of [+1.2% to +3.8% conversion rate increase] means you're 95% confident the true effect is within this range.
+
+**Statistical Power:** The probability of detecting a real effect when one exists. Standard target: 80% power. Low power means you might miss real effects (false negatives).
+
+## Two-Proportion Z-Test (for Conversion Rates)
+
+For A/B tests comparing conversion rates:
+
+```
+z = (p1 − p2) / √[p̂(1−p̂)(1/n1 + 1/n2)]
+
+Where:
+p1 = Conversion rate of Control
+p2 = Conversion rate of Variation
+p̂ = Pooled conversion rate = (Conversions1 + Conversions2) / (n1 + n2)
+n1, n2 = Sample sizes
+```
+
+**Worked example:**
+- Control: 1,000 visitors, 52 conversions (5.2%)
+- Variation: 1,000 visitors, 68 conversions (6.8%)
+- p̂ = (52+68)/(1000+1000) = 120/2000 = 0.06
+- z = (0.068 − 0.052) / √[0.06 × 0.94 × (1/1000 + 1/1000)]
+- z = 0.016 / √[0.0564 × 0.002] = 0.016 / 0.01061 = **1.51**
+- p-value (two-tailed) ≈ 0.13 → **Not statistically significant at α=0.05**
+
+With only 1,000 visitors per group, the test is underpowered to detect a 1.6 percentage point difference at p<0.05. Need ~4,000 per group for 80% power with this effect size.
+
+## Required Sample Size Calculation
+
+Before running an A/B test, calculate how many visitors you need:
+
+```
+n = 2 × (z_α/2 + z_β)² × p̄(1-p̄) / (p1-p2)²
+```
+
+For α=0.05 (two-tailed), 80% power: (z_α/2 + z_β)² = (1.96 + 0.84)² = 7.84
+
+**Required sample size examples** (per group, α=0.05, 80% power):
+
+| Base Rate | Minimum Detectable Effect | Sample per Group |
+|---------|--------------------------|-----------------|
+| 5% | 1% (absolute) | ~4,100 |
+| 5% | 2% | ~1,250 |
+| 10% | 2% | ~4,700 |
+| 10% | 5% | ~900 |
+| 30% | 5% | ~2,400 |
+
+## Frequently Asked Questions
+
+**What does p < 0.05 actually mean?**
+If the null hypothesis (no difference between control and variation) were true, you would see a result this extreme or more extreme only 5% of the time (1 in 20 experiments). p < 0.05 does not mean: "There's a 95% chance this result is true"; "The effect is large or important"; or "This study will replicate." It's a decision threshold to distinguish signal from noise, not a guarantee of truth.
+
+**How long should I run an A/B test?**
+Run the test until you reach your pre-calculated required sample size — stopping early when results "look significant" is called peeking and inflates the false positive rate. Run for at least one full business cycle (typically 2–4 weeks for most websites) to account for weekly seasonality. Don't run indefinitely — the longer a test runs, the more chances for external confounds. Set sample size and duration in advance, then run and read.
+
+**What is the difference between statistical and practical significance?**
+A result can be statistically significant without being practically meaningful. A website with 1 million visitors per week might show that a button color change produces a 0.01% conversion rate increase with p=0.0001 — statistically significant, but worth the engineering effort for 100 extra conversions per week? Practical significance asks: even if the effect is real, is it large enough to matter? Effect size measures (Cohen's d, relative lift %) help assess practical significance alongside p-values.
+
+**Why do I need to calculate sample size before the test?**
+Running a test until you get a significant result — then stopping — produces false positives at much higher than the nominal rate. If you check your test daily and stop when p<0.05, your actual false positive rate may be 20–30%, not 5%. This is the "peeking problem." Determine sample size required before starting, commit to running the test until that sample size is reached, and then read the result once.
+
+**What is Bayesian A/B testing?**
+Frequentist A/B testing (described above) uses p-values and fixed sample sizes. Bayesian A/B testing uses probability distributions to continuously update beliefs as data arrives, allowing more natural early stopping with proper statistical controls. Bayesian approaches output "probability that variation is better" rather than p-values. Both approaches are valid; Bayesian is gaining popularity in industry because the output is more intuitive. Most major A/B testing platforms (Optimizely, VWO) offer both approaches.
+
+## Related Free Tools on RoughTools
+
+- **[Percentage Calculator](https://roughtools.com/tools/calculators/percentage-calculator)** — calculate percentage changes and differences
+- **[Standard Deviation Calculator](https://roughtools.com/tools/calculators/standard-deviation-calculator)** — measure data variability
+- **[Scientific Calculator](https://roughtools.com/tools/calculators/scientific-calculator)** — perform statistical calculations
+
+## Test Your A/B Results Now
+
+The free [Statistical Significance Calculator](https://roughtools.com/tools/calculators/statistical-significance-calculator) at RoughTools tests conversion rate differences between control and variation, calculates required sample size for desired power, and outputs p-values and confidence intervals. No account needed, completely free.
+
+**[Free Statistical Significance Calculator →](https://roughtools.com/tools/calculators/statistical-significance-calculator)**

@@ -4,13 +4,6 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-interface Subscription {
-  plan: string
-  status: string
-  currentPeriodEnd?: string
-  cancelAtPeriodEnd?: boolean
-}
-
 interface ReferralStats {
   code: string | null
   totalReferrals: number
@@ -35,7 +28,6 @@ function SkeletonCard() {
 
 export default function DashboardPage() {
   const router = useRouter()
-  const [subscription, setSubscription] = useState<Subscription | null>(null)
   const [referral, setReferral] = useState<ReferralStats | null>(null)
   const [topTools, setTopTools] = useState<ToolUsage[]>([])
   const [loading, setLoading] = useState(true)
@@ -55,7 +47,6 @@ export default function DashboardPage() {
 
         if (subRes.status === 401) { router.push('/auth/signin'); return }
 
-        if (subRes.ok) setSubscription(await subRes.json())
         if (refRes.ok) setReferral(await refRes.json())
         if (analyticsRes.ok) {
           const data = await analyticsRes.json()
@@ -107,11 +98,7 @@ export default function DashboardPage() {
     )
   }
 
-  const planLabel = subscription?.plan ?? 'free'
-  const planBadgeColor =
-    planLabel === 'free' ? 'bg-gray-100 text-gray-700' :
-    planLabel === 'pro'  ? 'bg-blue-100 text-blue-700' :
-                           'bg-purple-100 text-purple-700'
+  const planLabel = 'Free Forever'
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -120,37 +107,18 @@ export default function DashboardPage() {
         <p className="text-gray-500 mb-8">Welcome back! Here&apos;s your account overview.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          {/* Subscription Card */}
+          {/* Plan Card */}
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
             <p className="text-sm font-medium text-gray-500 mb-1">Current Plan</p>
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-2xl font-bold text-gray-900 capitalize">{planLabel}</span>
-              <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${planBadgeColor}`}>
-                {subscription?.status ?? 'active'}
+              <span className="text-2xl font-bold text-gray-900">{planLabel}</span>
+              <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-green-100 text-green-700">
+                active
               </span>
             </div>
-            {subscription?.currentPeriodEnd && (
-              <p className="text-xs text-gray-400 mb-3">
-                {subscription.cancelAtPeriodEnd ? 'Cancels' : 'Renews'} on{' '}
-                {new Date(subscription.currentPeriodEnd).toLocaleDateString()}
-              </p>
-            )}
-            {planLabel === 'free' ? (
-              <Link href="/pricing" className="text-sm text-blue-600 font-medium hover:underline">
-                Upgrade to Pro →
-              </Link>
-            ) : (
-              <button
-                onClick={() =>
-                  fetch('/api/billing/create-portal', { method: 'POST', credentials: 'include' })
-                    .then(r => r.json())
-                    .then(d => d.url && window.open(d.url, '_blank'))
-                }
-                className="text-sm text-blue-600 font-medium hover:underline"
-              >
-                Manage billing →
-              </button>
-            )}
+            <p className="text-xs text-gray-400">
+              All 604+ tools, no signup required, no watermarks.
+            </p>
           </div>
 
           {/* Referral Card */}
@@ -176,7 +144,7 @@ export default function DashboardPage() {
                 { label: 'Profile', href: '/profile' },
                 { label: 'Settings', href: '/settings' },
                 { label: 'API Keys', href: '/dashboard/api-keys' },
-                { label: 'Billing', href: '/pricing' },
+                { label: 'All Tools', href: '/tools' },
               ].map(({ label, href }) => (
                 <Link key={href} href={href} className="flex items-center text-sm text-gray-700 hover:text-blue-600 transition-colors">
                   {label}

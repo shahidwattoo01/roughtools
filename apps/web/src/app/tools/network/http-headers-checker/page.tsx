@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+﻿/* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/JsonLd'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -7,12 +7,12 @@ import Link from 'next/link'
 import { ToolPageExtras } from '@/components/ToolPageExtras'
 
 export const metadata: Metadata = {
-  title: 'HTTP Headers Checker — View Response Headers Online | RoughTools',
-  description: 'Inspect HTTP response headers for any URL. Check status codes, content-type, cache-control, security headers, server info, and more — free, instant, no signup required.',
+  title: 'HTTP Headers Checker â€” View Response Headers Online | RoughTools',
+  description: 'Inspect HTTP response headers for any URL. Check status codes, content-type, cache-control, security headers, server info, and more â€” free, instant, no signup required.',
   keywords: ['http headers checker', 'response headers', 'check http headers', 'view server headers', 'http status code', 'content-type checker', 'cache-control header'],
   alternates: { canonical: 'https://roughtools.com/tools/network/http-headers-checker' },
   openGraph: {
-    title: `HTTP Headers Checker — Inspect HTTP Response Headers | RoughTools`,
+    title: `HTTP Headers Checker â€” Inspect HTTP Response Headers | RoughTools`,
     description: `Check HTTP response headers for any URL. Inspect security headers, redirects, and cache controls. Free online tool.`,
     url: 'https://roughtools.com/tools/network/http-headers-checker',
     type: 'website',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `HTTP Headers Checker — Inspect HTTP Response Headers | RoughTools`,
+    title: `HTTP Headers Checker â€” Inspect HTTP Response Headers | RoughTools`,
     description: `Check HTTP response headers for any URL. Inspect security headers, redirects, and cache controls. Free online tool.`,
   },
   robots: { index: true, follow: true },
@@ -49,7 +49,7 @@ const FAQ = [
   },
   {
     q: 'How accurate are the HTTP headers this tool returns?',
-    a: 'The headers returned reflect what the CORS proxy receives from the target server at the moment of the request. Because the request originates from a proxy rather than directly from your browser, some headers — particularly those set conditionally based on the User-Agent, IP address, or geographic location — may differ slightly from what your browser would receive directly. For most diagnostic purposes, the results accurately represent the server\'s configured header policy.',
+    a: 'The headers returned reflect what the CORS proxy receives from the target server at the moment of the request. Because the request originates from a proxy rather than directly from your browser, some headers â€” particularly those set conditionally based on the User-Agent, IP address, or geographic location â€” may differ slightly from what your browser would receive directly. For most diagnostic purposes, the results accurately represent the server\'s configured header policy.',
   },
   {
     q: 'Can I check HTTP headers offline?',
@@ -57,7 +57,7 @@ const FAQ = [
   },
   {
     q: 'How do I check HTTP response headers? Step-by-step instructions.',
-    a: 'Checking headers with this tool is fast and simple. Step one: open the HTTP Headers Checker on this page. Step two: paste the full URL you want to inspect into the input field, including the protocol (https://). Step three: click the Check Headers button. Step four: review the list of response headers returned — look for the HTTP status code, Content-Type, Cache-Control, and any security headers like Strict-Transport-Security or Content-Security-Policy. Step five: use the results to diagnose caching, redirects, or missing security configurations.',
+    a: 'Checking headers with this tool is fast and simple. Step one: open the HTTP Headers Checker on this page. Step two: paste the full URL you want to inspect into the input field, including the protocol (https://). Step three: click the Check Headers button. Step four: review the list of response headers returned â€” look for the HTTP status code, Content-Type, Cache-Control, and any security headers like Strict-Transport-Security or Content-Security-Policy. Step five: use the results to diagnose caching, redirects, or missing security configurations.',
   },
   {
     q: 'Why use RoughTools HTTP Headers Checker instead of other websites?',
@@ -69,7 +69,7 @@ const FAQ = [
   },
   {
     q: 'What are HTTP response headers and why do they matter?',
-    a: 'HTTP response headers are key-value pairs sent by a web server alongside every response, before the response body is delivered. They communicate metadata that controls how the browser handles the response — including the content type, caching instructions, security policies, redirect destinations, and whether the connection should be kept alive. Headers directly affect page performance, security posture, and SEO. Missing or misconfigured headers are one of the most common causes of caching bugs, security vulnerabilities, and unexpected browser behavior.',
+    a: 'HTTP response headers are key-value pairs sent by a web server alongside every response, before the response body is delivered. They communicate metadata that controls how the browser handles the response â€” including the content type, caching instructions, security policies, redirect destinations, and whether the connection should be kept alive. Headers directly affect page performance, security posture, and SEO. Missing or misconfigured headers are one of the most common causes of caching bugs, security vulnerabilities, and unexpected browser behavior.',
   },
   {
     q: 'What security headers should every website have?',
@@ -118,19 +118,21 @@ export default function Page() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '24px 16px 64px' }}>
         <ToolAdUnit position="top" />
         <nav style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> ›{' '}
-          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> › HTTP Headers Checker
+          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> â€º{' '}
+          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> â€º HTTP Headers Checker
         </nav>
         <h1 style={{ fontSize: 'clamp(24px,4vw,36px)', fontWeight: 900, marginBottom: 8, letterSpacing: -1 }}>HTTP Headers Checker</h1>
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
-          Inspect HTTP response headers for any public URL — status code, Content-Type, Cache-Control, security headers, and more. Instantly audit missing security protections, diagnose redirect chains, and verify caching configuration. Free, no account required.
+          Inspect HTTP response headers for any public URL â€” status code, Content-Type, Cache-Control, security headers, and more. Instantly audit missing security protections, diagnose redirect chains, and verify caching configuration. Free, no account required.
         </p>
+        <div data-print-section="calculator">
         <HttpHeadersCheckerClient />
+        </div>
         <ToolAdUnit position="middle" />
         <section style={{ marginTop: 40 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 12 }}>About HTTP Headers Checker</h2>
           <p style={{ color: 'var(--fg-2)', lineHeight: 1.7 }}>
-            HTTP headers are the hidden metadata layer of every web request and response. When a browser fetches a page, the server replies with dozens of headers before sending any content — specifying how the response should be cached, what security policies apply, whether a redirect is needed, and what kind of content is being delivered. Developers and webmasters use header inspection to diagnose caching problems, verify HTTPS redirects, and audit security configurations against best practices.
+            HTTP headers are the hidden metadata layer of every web request and response. When a browser fetches a page, the server replies with dozens of headers before sending any content â€” specifying how the response should be cached, what security policies apply, whether a redirect is needed, and what kind of content is being delivered. Developers and webmasters use header inspection to diagnose caching problems, verify HTTPS redirects, and audit security configurations against best practices.
           </p>
           <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12 }}>
             This tool uses a CORS proxy to fetch response headers from any public URL and displays them in a structured table. Security-critical headers like Strict-Transport-Security, Content-Security-Policy, and X-Frame-Options are highlighted so you can quickly spot missing protections. Results reflect what the server sends to standard HTTP requests, making this a fast alternative to running curl in a terminal.

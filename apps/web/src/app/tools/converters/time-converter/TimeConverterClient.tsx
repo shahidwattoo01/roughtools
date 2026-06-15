@@ -45,12 +45,12 @@ export default function TimeConverterClient() {
   }
   const labelStyle: React.CSSProperties = { color: '#888', fontSize: 13, marginBottom: 6, display: 'block' }
   const cardStyle: React.CSSProperties = {
-    background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
+    background: 'rgba(255,255,255,0.04)', border: '1px solid var(--line)',
     borderRadius: 12, padding: 20,
   }
 
   return (
-    <div style={{ background: '#12121f', borderRadius: 16, padding: 28, border: '1px solid rgba(255,255,255,0.08)' }}>
+    <div style={{ background: 'var(--bg-1)', borderRadius: 16, padding: 28, border: '1px solid var(--line)' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
         <div>
           <label style={labelStyle}>Value</label>

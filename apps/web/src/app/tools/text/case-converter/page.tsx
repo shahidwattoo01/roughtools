@@ -126,7 +126,9 @@ export default function Page() {
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Convert your text into any case format instantly — UPPER CASE, lower case, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, and alternating case. All processing happens locally in your browser with no server calls. Free, private, and no account required.
         </p>
+        <div data-print-section="calculator">
         <CaseConverterClient />
+        </div>
         <div style={{ marginTop: 12, marginBottom: 4 }}>
           <PDFExportButton toolName="Case Converter" />
         </div>

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import RandomNumberGeneratorClient from './RandomNumberGeneratorClient'
 import { getCalcSEO } from '../_components/calc-seo-configs'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -229,12 +229,6 @@ export default function RandomNumberGeneratorPage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -269,7 +263,7 @@ export default function RandomNumberGeneratorPage() {
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
             For the overwhelming majority of use cases — games, simulations, raffles, sampling, decision support —
             pseudorandom numbers are perfectly adequate and statistically indistinguishable from true random in any
-            practical test. This tool uses the browser's <strong style={{ color: 'var(--fg)' }}>crypto.getRandomValues()</strong> API
+            practical test. This tool uses the browser&apos;s <strong style={{ color: 'var(--fg)' }}>crypto.getRandomValues()</strong> API
             when available, which sources entropy from the operating system and is suitable for security applications
             (generating tokens, nonces, and session IDs).
           </p>
@@ -314,6 +308,13 @@ export default function RandomNumberGeneratorPage() {
             for full details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

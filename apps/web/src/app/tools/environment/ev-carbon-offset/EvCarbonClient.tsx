@@ -9,8 +9,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -19,7 +19,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -154,7 +154,7 @@ const t = (n: number) => (n / 1000).toFixed(2) + ' t'
 
 function MetricCard({ label, value, sub, color = '#6366f1' }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 22, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -304,7 +304,7 @@ export default function EvCarbonClient() {
                     { label: '100% Renewable Grid', co2: result.fullRenewableCO2, highlight: false },
                   ].map(({ label, co2, highlight }) => (
                     <tr key={label} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', background: highlight ? 'rgba(139,92,246,0.08)' : 'transparent' }}>
-                      <td style={{ ...TD, textAlign: 'left', color: highlight ? '#c4b5fd' : 'var(--fg-2)', fontWeight: highlight ? 700 : 400 }}>{highlight ? '★ ' : ''}{label}</td>
+                      <td style={{ ...TD, textAlign: 'left', color: highlight ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: highlight ? 700 : 400 }}>{highlight ? '★ ' : ''}{label}</td>
                       <td style={TD}>{kg(co2)}</td>
                       <td style={{ ...TD, color: '#f59e0b' }}>{kg(result.annualGasCO2kg)}</td>
                       <td style={{ ...TD, color: '#10b981', fontWeight: 600 }}>{kg(Math.max(0, result.annualGasCO2kg - co2))}</td>
@@ -319,7 +319,7 @@ export default function EvCarbonClient() {
           <div>
             <button
               onClick={() => setShowTable(v => !v)}
-              style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
+              style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
               aria-expanded={showTable}
             >
               {showTable ? '▾' : '▸'} Year-by-Year Comparison Table
@@ -364,7 +364,7 @@ export default function EvCarbonClient() {
 
           {/* Guidance */}
           <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-            <h3 style={{ margin: '0 0 12px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <h3 style={{ margin: '0 0 12px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               Key Insights
             </h3>
             <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 9 }}>

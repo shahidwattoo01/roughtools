@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+﻿/* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/JsonLd'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -7,12 +7,12 @@ import Link from 'next/link'
 import { ToolPageExtras } from '@/components/ToolPageExtras'
 
 export const metadata: Metadata = {
-  title: 'Website Speed Test — Page Speed Checker & Performance Hub | RoughTools',
+  title: 'Website Speed Test â€” Page Speed Checker & Performance Hub | RoughTools',
   description: 'Analyze your website\'s loading performance. Get Navigation Timing metrics plus quick-launch links to Google PageSpeed Insights and GTmetrix for in-depth speed analysis.',
   keywords: ['website speed test', 'page speed test', 'pagespeed insights', 'website performance', 'load time checker', 'ttfb test', 'core web vitals', 'gtmetrix'],
   alternates: { canonical: 'https://roughtools.com/tools/network/website-speed-test' },
   openGraph: {
-    title: `Website Speed Test — Test Page Load Speed | RoughTools`,
+    title: `Website Speed Test â€” Test Page Load Speed | RoughTools`,
     description: `Test the load speed of any website. Measure response time and identify performance bottlenecks. Free online speed test.`,
     url: 'https://roughtools.com/tools/network/website-speed-test',
     type: 'website',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Website Speed Test — Test Page Load Speed | RoughTools`,
+    title: `Website Speed Test â€” Test Page Load Speed | RoughTools`,
     description: `Test the load speed of any website. Measure response time and identify performance bottlenecks. Free online speed test.`,
   },
   robots: { index: true, follow: true },
@@ -37,7 +37,7 @@ const FAQ = [
   },
   {
     q: 'Does this tool store or share data about my website?',
-    a: 'RoughTools does not store or share any performance data. The Navigation Timing metrics are read directly from your browser\'s performance API and displayed locally — nothing is transmitted to or stored on RoughTools servers. When you click through to Google PageSpeed Insights or GTmetrix with a pre-filled URL, those external services handle your request under their own privacy policies.',
+    a: 'RoughTools does not store or share any performance data. The Navigation Timing metrics are read directly from your browser\'s performance API and displayed locally â€” nothing is transmitted to or stored on RoughTools servers. When you click through to Google PageSpeed Insights or GTmetrix with a pre-filled URL, those external services handle your request under their own privacy policies.',
   },
   {
     q: 'Does the Website Speed Test work on mobile phones and tablets?',
@@ -49,19 +49,19 @@ const FAQ = [
   },
   {
     q: 'How accurate are the speed metrics this tool measures?',
-    a: 'The Navigation Timing metrics — DOM Content Loaded, total page load time, and estimated Time to First Byte — are real measurements from your browser\'s performance subsystem, not estimates. They accurately represent what happened during this specific page load on your network and device. However, a single measurement is a snapshot. Page load times vary based on network conditions, server load, browser cache state, and background processes running on your device, so multiple tests give a more reliable picture.',
+    a: 'The Navigation Timing metrics â€” DOM Content Loaded, total page load time, and estimated Time to First Byte â€” are real measurements from your browser\'s performance subsystem, not estimates. They accurately represent what happened during this specific page load on your network and device. However, a single measurement is a snapshot. Page load times vary based on network conditions, server load, browser cache state, and background processes running on your device, so multiple tests give a more reliable picture.',
   },
   {
     q: 'Can I test my website speed offline?',
-    a: 'No. Testing a website\'s speed requires loading the page over the internet, so an active network connection is required. The Navigation Timing metrics are measured as part of an actual page load — they cannot be simulated offline. If you want to test performance without affecting production traffic, consider using browser DevTools to throttle your network speed and simulate different connection types while loading your site.',
+    a: 'No. Testing a website\'s speed requires loading the page over the internet, so an active network connection is required. The Navigation Timing metrics are measured as part of an actual page load â€” they cannot be simulated offline. If you want to test performance without affecting production traffic, consider using browser DevTools to throttle your network speed and simulate different connection types while loading your site.',
   },
   {
     q: 'How do I use the Website Speed Test? Step-by-step instructions.',
-    a: 'Using this tool is simple. Step one: open the Website Speed Test page on RoughTools — the tool automatically reads Navigation Timing metrics from your current page load and displays DOM Content Loaded, total load time, and estimated TTFB. Step two: to test a different URL, copy it into the PageSpeed Insights or GTmetrix quick-launch section and click the corresponding button to open a full speed analysis in a new tab. Step three: review the Lighthouse scores, Core Web Vitals, and waterfall chart from those services to identify specific performance bottlenecks.',
+    a: 'Using this tool is simple. Step one: open the Website Speed Test page on RoughTools â€” the tool automatically reads Navigation Timing metrics from your current page load and displays DOM Content Loaded, total load time, and estimated TTFB. Step two: to test a different URL, copy it into the PageSpeed Insights or GTmetrix quick-launch section and click the corresponding button to open a full speed analysis in a new tab. Step three: review the Lighthouse scores, Core Web Vitals, and waterfall chart from those services to identify specific performance bottlenecks.',
   },
   {
     q: 'Why use RoughTools Website Speed Test instead of other websites?',
-    a: 'RoughTools combines two layers of speed analysis in one place. First, it shows your real Navigation Timing metrics from the current page load — data you cannot get just by visiting PageSpeed Insights. Second, it provides pre-filled quick-launch buttons for both Google PageSpeed Insights and GTmetrix, so you can start an in-depth external analysis in one click rather than copying URLs manually. The page is lightweight and loads fast, which means less noise in your timing measurements.',
+    a: 'RoughTools combines two layers of speed analysis in one place. First, it shows your real Navigation Timing metrics from the current page load â€” data you cannot get just by visiting PageSpeed Insights. Second, it provides pre-filled quick-launch buttons for both Google PageSpeed Insights and GTmetrix, so you can start an in-depth external analysis in one click rather than copying URLs manually. The page is lightweight and loads fast, which means less noise in your timing measurements.',
   },
   {
     q: 'How do I report a bug or suggest a new feature for this tool?',
@@ -73,11 +73,11 @@ const FAQ = [
   },
   {
     q: 'What are Core Web Vitals and do they affect SEO?',
-    a: 'Core Web Vitals are a set of three user-experience metrics that Google measures and uses as a ranking signal in search results. Largest Contentful Paint (LCP) measures how quickly the main content of a page loads — good LCP is under 2.5 seconds. Cumulative Layout Shift (CLS) measures how much the page layout unexpectedly shifts during loading — good CLS is under 0.1. Interaction to Next Paint (INP) measures how quickly the page responds to user interactions — good INP is under 200 milliseconds. Pages that pass all three Core Web Vitals thresholds receive a performance ranking boost.',
+    a: 'Core Web Vitals are a set of three user-experience metrics that Google measures and uses as a ranking signal in search results. Largest Contentful Paint (LCP) measures how quickly the main content of a page loads â€” good LCP is under 2.5 seconds. Cumulative Layout Shift (CLS) measures how much the page layout unexpectedly shifts during loading â€” good CLS is under 0.1. Interaction to Next Paint (INP) measures how quickly the page responds to user interactions â€” good INP is under 200 milliseconds. Pages that pass all three Core Web Vitals thresholds receive a performance ranking boost.',
   },
   {
     q: 'What is the difference between DOM Content Loaded and page load time?',
-    a: 'DOM Content Loaded (DCL) fires when the browser has fully parsed the HTML document and built the DOM tree, but before stylesheets, images, and subframes have finished loading. It marks the point where JavaScript can start interacting with the document structure. Page load time (the Load event) fires after all resources referenced by the page — images, stylesheets, scripts, and iframes — have fully downloaded and processed. DCL is typically faster and is a better indicator of when the page becomes usable; the load time includes resource-heavy assets like large images.',
+    a: 'DOM Content Loaded (DCL) fires when the browser has fully parsed the HTML document and built the DOM tree, but before stylesheets, images, and subframes have finished loading. It marks the point where JavaScript can start interacting with the document structure. Page load time (the Load event) fires after all resources referenced by the page â€” images, stylesheets, scripts, and iframes â€” have fully downloaded and processed. DCL is typically faster and is a better indicator of when the page becomes usable; the load time includes resource-heavy assets like large images.',
   },
 ]
 
@@ -118,14 +118,16 @@ export default function Page() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '24px 16px 64px' }}>
         <ToolAdUnit position="top" />
         <nav style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> ›{' '}
-          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> › Website Speed Test
+          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> â€º{' '}
+          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> â€º Website Speed Test
         </nav>
         <h1 style={{ fontSize: 'clamp(24px,4vw,36px)', fontWeight: 900, marginBottom: 8, letterSpacing: -1 }}>Website Speed Test</h1>
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
-          Measure real page load performance using the Navigation Timing API — DOM Content Loaded, total load time, and estimated Time to First Byte — directly from your browser. Then launch in-depth speed analysis on any URL via Google PageSpeed Insights and GTmetrix with one click. Free, no account required.
+          Measure real page load performance using the Navigation Timing API â€” DOM Content Loaded, total load time, and estimated Time to First Byte â€” directly from your browser. Then launch in-depth speed analysis on any URL via Google PageSpeed Insights and GTmetrix with one click. Free, no account required.
         </p>
+        <div data-print-section="calculator">
         <WebsiteSpeedTestClient />
+        </div>
         <ToolAdUnit position="middle" />
         <section style={{ marginTop: 40 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 12 }}>About Website Speed Test</h2>

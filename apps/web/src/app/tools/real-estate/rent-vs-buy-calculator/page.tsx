@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import RentVsBuyClient from './RentVsBuyClient'
 import { ToolPageExtras } from '@/components/ToolPageExtras'
@@ -175,7 +175,7 @@ export default function Page() {
 
         {/* What's included */}
         <div className="dark:bg-gray-900 bg-white border dark:border-gray-800 border-gray-200 rounded-2xl p-6">
-          <h2 className="text-base font-bold dark:text-white text-gray-900 mb-4">What's Included in the Comparison</h2>
+          <h2 className="text-base font-bold dark:text-white text-gray-900 mb-4">What&apos;s Included in the Comparison</h2>
           <div className="grid sm:grid-cols-2 gap-4 text-sm">
             <div>
               <h3 className="text-teal-400 font-semibold mb-2">🏠 Buy Costs (deducted)</h3>

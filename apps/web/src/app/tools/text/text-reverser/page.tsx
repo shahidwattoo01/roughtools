@@ -126,7 +126,9 @@ export default function Page() {
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Reverse text character by character, flip word order, reverse line order, or create mirror text — all instantly in your browser. Four transformation modes in one tool. Processing is local, private, and requires no account or installation.
         </p>
+        <div data-print-section="calculator">
         <TextReverserClient />
+        </div>
         <div style={{ marginTop: 12, marginBottom: 4 }}>
           <PDFExportButton toolName="Text Reverser" />
         </div>

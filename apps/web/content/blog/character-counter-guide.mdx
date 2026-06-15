@@ -1,0 +1,105 @@
+﻿---
+title: 'Character Counter: Count Characters for Twitter, Instagram, SMS, and More'
+slug: character-counter-guide
+date: '2026-09-10'
+excerpt: 'Learn character limits for every major platform: Twitter/X, Instagram, SMS, TikTok, LinkedIn, and meta descriptions. Count characters and words in any text instantly. Free character counter included.'
+readTime: '6 min read'
+author: RoughTools Team
+category: Productivity Calculators
+keywords:
+  - character counter
+  - character count online
+  - how many characters in a tweet
+  - SMS character limit
+  - Instagram caption character limit
+  - meta description character limit
+---
+
+A character counter counts every individual character in a text, including letters, numbers, spaces, punctuation, and special characters. Twitter/X allows 280 characters per post. A standard SMS text message is 160 characters in GSM-7 encoding (70 characters if the message contains unicode characters). Meta descriptions (for SEO) should be 150–160 characters to avoid being cut off in search results.
+
+Character limits exist across social media platforms, advertising systems, SEO elements, form fields, and databases. Staying within limits prevents truncation, maintains formatting, and often affects visibility and engagement. Counting characters accurately is essential for content creators, marketers, SEO specialists, and developers.
+
+Use the free [Character Counter](https://roughtools.com/tools/text-tools/character-counter) at RoughTools to count characters and words in any text with live counting.
+
+👉 **Free Character Counter — instant, no signup required.**
+→ https://roughtools.com/tools/text-tools/character-counter
+
+## Character Limits by Platform
+
+| Platform / Use Case | Character Limit | Notes |
+|--------------------|----------------|-------|
+| Twitter/X post | 280 | Links = 23 chars; images free |
+| Twitter/X DM | 10,000 | Expanded in 2023 |
+| Instagram caption | 2,200 | Only first 125 shown in feed |
+| Instagram bio | 150 | |
+| Instagram username | 30 | |
+| TikTok caption | 2,200 | |
+| TikTok bio | 80 | |
+| Facebook post | 63,206 | Very long posts get truncated in feed |
+| LinkedIn post | 3,000 | |
+| LinkedIn headline | 220 | |
+| LinkedIn summary | 2,000 | |
+| YouTube title | 100 | Only 70 shown on search results |
+| YouTube description | 5,000 | First 150 shown before "more" |
+| SMS (standard) | 160 | GSM-7 characters only |
+| SMS (unicode) | 70 | Per segment if any unicode is used |
+| Email subject line | 50 (effective) | Gmail cuts at ~60, mobile at ~40 |
+| Meta title (SEO) | 60 | Google truncates; some up to 70 |
+| Meta description (SEO) | 155–160 | Truncated in SERPs beyond 160 |
+| Google Ads headline | 30 | Per headline; 3 headlines shown |
+| Google Ads description | 90 | Per description; 2 shown |
+
+## Characters vs. Bytes vs. Words
+
+**Characters:** Each letter, number, space, or symbol. "Hello world" = 11 characters (including the space).
+
+**Bytes:** In UTF-8 encoding, ASCII characters (letters, numbers, basic punctuation) = 1 byte. Some international characters (accented letters, Chinese, Arabic, emojis) = 2–4 bytes. Databases and systems with byte limits may reject text that fits in character count but exceeds byte limit.
+
+**Words:** Groups of characters separated by spaces. Character counters also show word count, useful for content planning.
+
+## The SMS Segmentation Problem
+
+This catches many people off guard. Standard SMS uses GSM-7 encoding (160 characters per message). If your message contains ANY character outside the basic GSM-7 set — including:
+- Emoji (😀) 
+- Smart/curly quotes (" " instead of " ")
+- Characters with accents (é, ñ, ü)
+- Non-Latin characters
+
+The entire message switches to UCS-2/UTF-16 encoding: **70 characters per segment**, and the message is split into segments. A "160-character SMS" with one emoji actually sends as 3 segments of 70 characters = charged as 3 messages. Marketing SMS platforms alert you when this happens; regular texting apps usually handle it invisibly but you may be charged per-segment.
+
+## SEO Character Limits
+
+**Title tag (meta title):** Google typically displays 50–60 characters. Google's algorithm sets pixel-width limits (approximately 600 pixels), not strict character counts — capital letters are wider. Safe practice: 50–55 characters. Titles longer than 70 characters may be rewritten by Google.
+
+**Meta description:** Shown in search results below the title. Google typically shows 155–160 characters. Longer descriptions get truncated. Unlike the title, the meta description doesn't directly affect rankings (it's not a ranking factor), but it affects click-through rate — a compelling 155-character description drives more clicks than a truncated one.
+
+**Alt text (image):** No hard character limit, but keep it under 125 characters for optimal screen reader reading experience and to avoid truncation in most tools. Be descriptive but concise.
+
+## Frequently Asked Questions
+
+**Do spaces count as characters?**
+Yes — in virtually all character counting contexts, spaces are counted as characters. Twitter counts spaces; SMS counts spaces; database fields count spaces. The only common exception is some "keyword" character limits (like Twitter's old SEO keyword count) that count words rather than characters including spaces. When in doubt, count spaces — the free character counter at RoughTools shows character count with and without spaces.
+
+**How do emojis count in Twitter's character limit?**
+Twitter counts most emoji as 2 characters (using code points from the supplemental Unicode planes). However, some compound emoji (like family emoji built with zero-width joiner sequences, or the 🧑‍💻 type with multiple parts) count as multiple character units. Twitter URLs (including links to images) always count as exactly 23 characters regardless of the actual URL length, thanks to Twitter's t.co URL shortener.
+
+**What happens if I exceed a platform's character limit?**
+Most platforms prevent submission or auto-truncate. Twitter grays out the "Post" button once you exceed 280 characters. SMS apps may split the message into multiple segments. SEO meta descriptions beyond ~160 characters will be truncated by Google in search results (replaced with "..."). Google Ads will not serve ads with headlines exceeding 30 characters. Form fields with maxlength attributes simply stop accepting additional input.
+
+**What are the character limits for SQL database fields?**
+Common SQL field types: VARCHAR(n) stores up to n characters; CHAR(n) is fixed-length n characters; TEXT stores up to 65,535 characters; MEDIUMTEXT up to 16,777,215 characters; LONGTEXT up to 4,294,967,295 characters. Frontend character limits on forms should match (or be slightly less than) the backend database field limit to prevent errors. A Twitter handle stored in VARCHAR(50) would be more than sufficient.
+
+**How is a "word" counted differently from a "character"?**
+Words are typically defined as sequences of characters separated by whitespace (spaces, tabs, newlines). "Hello, world!" has 2 words (some counters may count "Hello," as 1 word including the comma). Characters count each individual symbol: "Hello, world!" = 13 characters including the space, comma, and exclamation mark. Different tools may count words slightly differently based on how they handle punctuation, hyphens, contractions, and numbers.
+
+## Related Free Tools on RoughTools
+
+- **[Word Counter](https://roughtools.com/tools/text-tools/word-counter)** — count words with detailed stats
+- **[Email Subject Line Analyzer](https://roughtools.com/tools/productivity/email-subject-analyzer)** — analyze email subject line length
+- **[Reading Speed Calculator](https://roughtools.com/tools/calculators/reading-speed-calculator)** — estimate reading time from word count
+
+## Count Characters Now
+
+The free [Character Counter](https://roughtools.com/tools/text-tools/character-counter) at RoughTools shows live character count (with and without spaces), word count, sentence count, and platform limit warnings as you type. Paste or type any text for instant results. No account needed, completely free.
+
+**[Free Character Counter →](https://roughtools.com/tools/text-tools/character-counter)**

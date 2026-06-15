@@ -37,12 +37,15 @@ function parseFile(filename: string): BlogPost {
 }
 
 export function getAllPosts(): BlogPostMeta[] {
+  const today = new Date()
+  today.setHours(23, 59, 59, 999)
   const files = fs.readdirSync(CONTENT_DIR).filter(f => /\.mdx?$/.test(f))
   return files
     .map(f => {
       const { content: _content, ...meta } = parseFile(f)
       return meta
     })
+    .filter(post => new Date(post.date) <= today)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
 

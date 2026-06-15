@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { SignJWT, jwtVerify } from 'jose'
-import type { IqSession } from '@prisma/client'
+import type { IqSession } from '@platform/db'
 import { prisma } from './db'
 
 const SECRET = new TextEncoder().encode(

@@ -1,0 +1,124 @@
+﻿---
+title: 'Working Days Calculator: Count Business Days and Add Business Days to a Date'
+slug: working-days-calculator-guide
+date: '2026-10-05'
+excerpt: 'Learn how to count business days between two dates, add working days to find a deadline date, and understand how weekends and holidays affect business day calculations. Free working days calculator included.'
+readTime: '6 min read'
+author: RoughTools Team
+category: Daily Calculators
+keywords:
+  - working days calculator
+  - business days calculator
+  - add business days to date
+  - how many business days between dates
+  - net 30 business days calculator
+  - weekdays calculator
+---
+
+To count business days between two dates, exclude Saturdays and Sundays (and optionally holidays). From Monday June 15 to Friday June 26, 2026 (12 calendar days): removing 2 weekends (4 days) = **8 business days**. To add 30 business days to June 15, 2026: count forward 30 Mon–Fri days = August 25, 2026 (approximately 6 weeks).
+
+Business day calculations matter for: legal response deadlines ("answer within 30 business days"), payment and shipping terms ("ships within 3 business days"), contract notice periods, project management timelines, and any process that pauses on weekends and holidays.
+
+Use the free [Working Days Calculator](https://roughtools.com/tools/calculators/working-days-calculator) at RoughTools to count business days between dates and find future business day dates.
+
+👉 **Free Working Days Calculator — instant, no signup required.**
+→ https://roughtools.com/tools/calculators/working-days-calculator
+
+## How Business Day Calculation Works
+
+**Counting business days between two dates:**
+```
+Business Days = Calendar Days - (Saturdays + Sundays in range) - Holidays
+```
+
+For each week in the range: 5 business days. For partial weeks at start and end, count only weekdays in those partial weeks.
+
+**Adding N business days to a date:**
+Start on the start date. Count forward only on Mon–Fri. Skip Sat, Sun, and any holidays. Count N weekday steps.
+
+**Example — June 14, 2026 (Sunday) + 10 business days:**
+
+| Business Day | Date |
+|-------------|------|
+| 1 | June 15 (Mon) |
+| 2 | June 16 (Tue) |
+| 3 | June 17 (Wed) |
+| 4 | June 18 (Thu) |
+| 5 | June 19 (Fri) |
+| [skip weekend] | Jun 20-21 |
+| 6 | June 22 (Mon) |
+| 7 | June 23 (Tue) |
+| 8 | June 24 (Wed) |
+| 9 | June 25 (Thu) |
+| 10 | June 26 (Fri) |
+
+**10 business days from June 14 = June 26, 2026**
+
+## Business Days vs. Calendar Days Reference
+
+| Calendar Days | Approx Business Days | Business Days | Approx Calendar Days |
+|-------------|---------------------|--------------|---------------------|
+| 7 (1 week) | 5 | 5 | 7 |
+| 14 (2 weeks) | 10 | 10 | 14 |
+| 30 | 21–23 | 30 | 42 (6 weeks) |
+| 60 | 43–45 | 60 | 84 (12 weeks) |
+| 90 | 65–67 | 90 | 126 (18 weeks) |
+
+The ratio varies slightly based on which day you start and how many holidays fall in the range.
+
+## US Federal Holidays (2026)
+
+| Holiday | Date (2026) |
+|---------|------------|
+| New Year's Day | January 1 (Thu) |
+| MLK Jr. Day | January 19 (Mon) |
+| Presidents' Day | February 16 (Mon) |
+| Memorial Day | May 25 (Mon) |
+| Juneteenth | June 19 (Fri) |
+| Independence Day | July 4 (Sat) → July 3 (observed) |
+| Labor Day | September 7 (Mon) |
+| Columbus Day | October 12 (Mon) |
+| Veterans Day | November 11 (Wed) |
+| Thanksgiving | November 26 (Thu) |
+| Christmas | December 25 (Fri) |
+
+Adding these 11 holidays to a working days calculation reduces the available business days per year to approximately 250 (from 261 weekdays).
+
+## Applications by Industry
+
+**Legal:** Response deadlines in litigation are usually specified in business days (Federal Rules of Civil Procedure, state court rules). "30 days to respond" in California state court means calendar days; "30 days" in federal court may mean business days — always check the specific rule.
+
+**Shipping:** "Ships within 2 business days" means processing starts immediately but Saturdays, Sundays, and holidays are excluded. An order placed Friday evening typically ships by Tuesday (2 business days from Monday when processing begins).
+
+**HR/Employment:** Notice periods in employment contracts are usually calendar days ("30 days written notice"). Severance pay periods, benefits continuation, and COBRA eligibility windows are typically calendar days.
+
+**Finance:** US stock trades settle T+1 (trade date plus 1 business day). T+1 settlement means a stock sold Monday settles Tuesday; a stock sold Friday settles Monday.
+
+## Frequently Asked Questions
+
+**What day is 30 business days from today?**
+From June 14, 2026 (Sunday): 30 business days starts counting from June 15 (Monday). 30 business days from June 15 = August 25, 2026 (assuming standard holidays — Juneteenth June 19 reduces count by 1, so July 4 weekend removes 2 calendar days that aren't counted anyway). For the most accurate result, use the Working Days Calculator at RoughTools, which accounts for all US federal holidays.
+
+**Do "business days" always exclude Saturday?**
+Conventionally, yes — US business days are Monday through Friday, excluding weekends and federal holidays. However, some industries operate differently: retail businesses operate on weekends; "business days" for banking purposes (ACH transfers) in some contexts may include Saturday; some contracts explicitly define "business days" to include or exclude specific days. Always check the contract or regulatory language for the specific definition being used.
+
+**How do I calculate shipping delivery date?**
+Carrier transit time in business days + order processing time. If an item ships in "1–2 business days" and carrier transit is "3–5 business days": total = 4–7 business days from order. If ordered Monday, shipping starts Tuesday–Wednesday; delivery: the following week. Add holiday delays — FedEx and UPS don't deliver on major holidays, and packages in transit may be delayed 1–2 days around Thanksgiving and Christmas.
+
+**How many working days are in a year?**
+In the US: 365 calendar days − 104 weekend days (52 Saturdays + 52 Sundays) − 11 federal holidays = **250 working days** (approximately). In leap years: 251 or 252 business days depending on whether Feb 29 is a weekend. Note: 2026 has July 4 on Saturday, so the observed holiday is July 3 (Friday), resulting in 250 business days.
+
+**What is the EXCEL formula for calculating business days?**
+NETWORKDAYS function: `=NETWORKDAYS(start_date, end_date, holidays)` returns the number of business days between two dates, including start and end dates. To add business days: `=WORKDAY(start_date, days, holidays)`. Example: `=WORKDAY(DATE(2026,6,14), 30)` returns August 24, 2026 (without holidays). With holiday list in A1:A11: `=WORKDAY(DATE(2026,6,14), 30, A1:A11)`.
+
+## Related Free Tools on RoughTools
+
+- **[Date Calculator](https://roughtools.com/tools/calculators/date-calculator)** — add calendar days, weeks, months to any date
+- **[Days Between Dates Calculator](https://roughtools.com/tools/calculators/days-between-dates)** — count both calendar and business days between dates
+- **[Countdown Timer](https://roughtools.com/tools/productivity/countdown-timer)** — countdown to any deadline
+
+## Calculate Business Days Now
+
+The free [Working Days Calculator](https://roughtools.com/tools/calculators/working-days-calculator) at RoughTools counts business days between two dates, adds business days to find a future date, and accounts for US federal holidays. No account needed, completely free.
+
+**[Free Working Days Calculator →](https://roughtools.com/tools/calculators/working-days-calculator)**

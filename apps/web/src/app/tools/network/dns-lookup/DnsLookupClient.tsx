@@ -33,8 +33,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -49,7 +49,7 @@ const BTN_PRIMARY: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -222,9 +222,9 @@ export default function DnsLookupClient() {
                         {isExpanded && (
                           <div style={{ marginTop: 10, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: 6 }}>
                             {soaParsed.map(([k, v]) => (
-                              <div key={k} style={{ padding: '6px 8px', background: 'rgba(0,0,0,0.35)', borderRadius: 6 }}>
+                              <div key={k} style={{ padding: '6px 8px', background: 'var(--bg-2)', borderRadius: 6 }}>
                                 <div style={{ fontSize: 10, color: 'var(--fg-3)', textTransform: 'uppercase', fontWeight: 700, marginBottom: 2 }}>{k}</div>
-                                <div style={{ fontSize: 12, color: '#c4b5fd', fontFamily: 'monospace' }}>{v}</div>
+                                <div style={{ fontSize: 12, color: 'var(--brand-2)', fontFamily: 'monospace' }}>{v}</div>
                               </div>
                             ))}
                           </div>
@@ -252,7 +252,7 @@ export default function DnsLookupClient() {
                   </td>
                   <td style={{ ...TD, color: 'var(--fg-3)', fontSize: 12, whiteSpace: 'nowrap' }}>
                     {ttlHuman(rec.ttl)}
-                    <span style={{ marginLeft: 4, fontSize: 10, color: 'rgba(255,255,255,0.18)' }}>{rec.ttl}s</span>
+                    <span style={{ marginLeft: 4, fontSize: 10, color: 'var(--fg-3)' }}>{rec.ttl}s</span>
                   </td>
                   <td style={{ ...TD, width: 36, padding: '8px 6px' }}>
                     <CopyButton text={rec.data} />
@@ -307,7 +307,7 @@ export default function DnsLookupClient() {
                   padding: '5px 11px', borderRadius: 6, fontSize: 12, fontWeight: 700, cursor: 'pointer',
                   border: `1px solid ${active ? (TYPE_COLORS[t] ?? 'rgba(139,92,246,0.5)') : 'var(--line-strong)'}`,
                   background: active ? `${TYPE_COLORS[t] ?? '#6366f1'}22` : 'rgba(0,0,0,0.25)',
-                  color: active ? (TYPE_COLORS[t] ?? '#c4b5fd') : 'var(--fg-3)',
+                  color: active ? (TYPE_COLORS[t] ?? 'var(--brand-2)') : 'var(--fg-3)',
                 }}
               >
                 {t}
@@ -320,7 +320,7 @@ export default function DnsLookupClient() {
               ...BTN_GHOST, fontSize: 12, padding: '5px 13px',
               background: mode === 'all' ? 'rgba(16,185,129,0.15)' : BTN_GHOST.background,
               borderColor: mode === 'all' ? 'rgba(16,185,129,0.45)' : 'rgba(139,92,246,0.3)',
-              color: mode === 'all' ? '#34d399' : '#c4b5fd',
+              color: mode === 'all' ? '#34d399' : 'var(--brand-2)',
             }}
           >
             All Records
@@ -344,7 +344,7 @@ export default function DnsLookupClient() {
             ...(result ? [{ label: 'Status', value: result.statusText, color: result.status === 0 ? '#10b981' : '#ef4444' }] : []),
             ...(result?.authenticated ? [{ label: 'DNSSEC', value: 'Validated ✓', color: '#34d399' }] : []),
           ].map(({ label, value, color }) => (
-            <div key={label} style={{ padding: '16px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+            <div key={label} style={{ padding: '16px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
               <div style={{ fontSize: 16, fontWeight: 900, color, wordBreak: 'break-all' }}>{value}</div>
               <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
             </div>
@@ -427,7 +427,7 @@ export default function DnsLookupClient() {
 
       {/* ── REFERENCE ───────────────────────────────────────────────────── */}
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 13, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 13, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           DNS Record Types Reference
         </h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))', gap: 8 }}>
@@ -451,7 +451,7 @@ export default function DnsLookupClient() {
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 16, padding: '10px 14px', borderRadius: 8, background: 'rgba(0,0,0,0.2)', fontSize: 12, color: 'var(--fg-3)', lineHeight: 1.6 }}>
+        <div style={{ marginTop: 16, padding: '10px 14px', borderRadius: 8, background: 'var(--bg-2)', fontSize: 12, color: 'var(--fg-3)', lineHeight: 1.6 }}>
           <strong style={{ color: 'var(--fg-2)' }}>About TTL:</strong> Time To Live controls how long resolvers cache a record.
           Low TTL (300s) → faster change propagation, more DNS queries.
           High TTL (86400s) → better performance, slower propagation.

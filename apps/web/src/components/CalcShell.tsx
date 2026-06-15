@@ -136,7 +136,7 @@ function HowToUse({ steps }: { steps: string[] }) {
 
 function FormulaSection({ formula }: { formula: FormulaInfo }) {
   return (
-    <section style={{ marginTop: 40 }}>
+    <section data-print-section="formula" style={{ marginTop: 40 }}>
       <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--fg)', marginBottom: 12 }}>
         📐 How This Is Calculated
       </h2>
@@ -290,7 +290,7 @@ export default function CalcShell({
       <TrustBadges badge={badge} />
 
       {/* ── Calculator ── */}
-      <div id="calc-content">
+      <div id="calc-content" data-print-section="calculator">
         {children}
       </div>
 
@@ -322,7 +322,7 @@ export default function CalcShell({
 
       {/* Results guide */}
       {resultsGuide && resultsGuide.length > 0 && (
-        <section style={{ marginTop: 40 }}>
+        <section data-print-section="reference" style={{ marginTop: 40 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--fg)', marginBottom: 14 }}>
             Understanding Your Results
           </h2>

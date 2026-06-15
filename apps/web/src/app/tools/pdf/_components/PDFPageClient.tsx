@@ -91,7 +91,7 @@ export default function PDFPageClient() {
     : PDF_SUBCATEGORIES
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f5f5f3] dark:bg-[#121212]">
 
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="bg-gradient-to-b from-red-600 to-red-700 text-white">
@@ -128,8 +128,8 @@ export default function PDFPageClient() {
       {/* ── Category Cards ────────────────────────────────────── */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         <div className="text-center mb-7">
-          <p className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-1">Browse by Category</p>
-          <h2 className="text-2xl font-extrabold text-gray-900">Choose what you need to do</h2>
+          <p className="text-sm font-semibold text-gray-500 dark:text-[#777] uppercase tracking-widest mb-1">Browse by Category</p>
+          <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white">Choose what you need to do</h2>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -141,16 +141,16 @@ export default function PDFPageClient() {
               hover:-translate-y-0.5 hover:shadow-lg cursor-pointer
               ${active === null
                 ? 'bg-gray-900 border-gray-900 text-white shadow-lg -translate-y-0.5'
-                : 'bg-white border-gray-200 text-gray-700 hover:border-gray-400'
+                : 'bg-white dark:bg-[#1e1e1e] border-gray-200 dark:border-white/10 text-gray-700 dark:text-[#ddd] hover:border-gray-400 dark:hover:border-white/25'
               }
             `}
           >
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${active === null ? 'bg-white/15' : 'bg-gray-100'}`}>
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${active === null ? 'bg-white/15' : 'bg-gray-100 dark:bg-white/8'}`}>
               📄
             </div>
             <div>
               <div className="font-bold text-[14px] leading-tight">All PDF Tools</div>
-              <div className={`text-[11px] mt-0.5 font-semibold ${active === null ? 'text-white/70' : 'text-gray-400'}`}>
+              <div className={`text-[11px] mt-0.5 font-semibold ${active === null ? 'text-white/70' : 'text-gray-400 dark:text-[#777]'}`}>
                 31 tools
               </div>
             </div>
@@ -178,11 +178,11 @@ export default function PDFPageClient() {
                 </div>
                 <div>
                   <div className="font-bold text-[14px] leading-tight">{sc.label}</div>
-                  <div className={`text-[11px] mt-0.5 font-semibold ${isActive ? 'text-white/70' : 'text-gray-400'}`}>
+                  <div className={`text-[11px] mt-0.5 font-semibold ${isActive ? 'text-white/70' : 'text-gray-400 dark:text-[#777]'}`}>
                     {sc.tools.length} tools
                   </div>
                 </div>
-                <p className={`text-[11px] leading-snug ${isActive ? 'text-white/80' : 'text-gray-500'}`}>
+                <p className={`text-[11px] leading-snug ${isActive ? 'text-white/80' : 'text-gray-500 dark:text-[#999]'}`}>
                   {sc.description}
                 </p>
 
@@ -202,8 +202,8 @@ export default function PDFPageClient() {
         {/* Active filter label */}
         {active && (
           <div className="flex items-center justify-between mt-5 px-1">
-            <p className="text-sm text-gray-600">
-              Showing <span className="font-semibold text-gray-900">
+            <p className="text-sm text-gray-600 dark:text-[#aaa]">
+              Showing <span className="font-semibold text-gray-900 dark:text-white">
                 {PDF_SUBCATEGORIES.find(s => s.id === active)?.label}
               </span> tools
             </p>
@@ -221,8 +221,8 @@ export default function PDFPageClient() {
       </section>
 
       {/* ── Trust bar ─────────────────────────────────────────── */}
-      <div className="bg-white border-y border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-center gap-6 text-xs text-gray-500">
+      <div className="bg-white dark:bg-[#161616] border-y border-gray-100 dark:border-white/8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-center gap-6 text-xs text-gray-500 dark:text-[#888]">
           {TRUST.map(b => (
             <span key={b.text} className="flex items-center gap-1.5 font-medium">
               <span>{b.icon}</span>{b.text}
@@ -249,10 +249,10 @@ export default function PDFPageClient() {
                   {sc.icon}
                 </div>
                 <div>
-                  <h2 id={`heading-${sc.id}`} className="text-xl font-bold text-gray-900">
+                  <h2 id={`heading-${sc.id}`} className="text-xl font-bold text-gray-900 dark:text-white">
                     {sc.label}
                   </h2>
-                  <p className="text-sm text-gray-500">{sc.description}</p>
+                  <p className="text-sm text-gray-500 dark:text-[#999]">{sc.description}</p>
                 </div>
                 <span className={`ml-auto text-xs font-semibold px-2.5 py-1 rounded-full text-white ${pal.badge}`}>
                   {sc.tools.length} {sc.tools.length === 1 ? 'tool' : 'tools'}
@@ -270,7 +270,7 @@ export default function PDFPageClient() {
                       href={`/tools/pdf/${slug}`}
                       className={`
                         group flex items-start gap-4 p-4 rounded-2xl border-2 transition-all duration-200
-                        ${pal.toolBg} ${pal.toolBorder}
+                        ${pal.toolBg} ${pal.toolBorder} dark:bg-[#1e1e1e] dark:border-white/10
                         hover:shadow-md hover:-translate-y-0.5
                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
                       `}
@@ -282,15 +282,15 @@ export default function PDFPageClient() {
                         }
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h3 className={`font-semibold text-gray-900 group-hover:${pal.text} transition-colors leading-snug`}>
+                        <h3 className={`font-semibold text-gray-900 dark:text-white group-hover:${pal.text} transition-colors leading-snug`}>
                           {cfg.title}
                         </h3>
-                        <p className="text-xs text-gray-500 mt-0.5 leading-relaxed line-clamp-2">
+                        <p className="text-xs text-gray-500 dark:text-[#999] mt-0.5 leading-relaxed line-clamp-2">
                           {cfg.description}
                         </p>
                       </div>
                       <svg
-                        className={`w-4 h-4 flex-shrink-0 text-gray-300 ${pal.arrow} transition-colors mt-1 group-hover:translate-x-0.5 transition-transform`}
+                        className={`w-4 h-4 flex-shrink-0 text-gray-300 dark:text-[#666] ${pal.arrow} transition-colors mt-1 group-hover:translate-x-0.5 transition-transform`}
                         fill="none" viewBox="0 0 24 24" stroke="currentColor"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -304,8 +304,8 @@ export default function PDFPageClient() {
         })}
 
         {/* ── Why RoughTools for PDF? ───────────────────────── */}
-        <section className="bg-white rounded-3xl border border-gray-100 p-8 sm:p-10" aria-labelledby="why-roughtools">
-          <h2 id="why-roughtools" className="text-2xl font-bold text-gray-900 mb-6">
+        <section className="bg-white dark:bg-[#1a1a1a] rounded-3xl border border-gray-100 dark:border-white/8 p-8 sm:p-10" aria-labelledby="why-roughtools">
+          <h2 id="why-roughtools" className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
             Why Use RoughTools for PDF?
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -315,16 +315,16 @@ export default function PDFPageClient() {
               { icon: '🔒', title: 'Secure & Private', desc: 'All transfers use HTTPS encryption. Your files are automatically deleted from our servers within one hour of processing.' },
               { icon: '📱', title: 'Works Everywhere', desc: 'Fully responsive and tested on Chrome, Firefox, Safari, and Edge on desktop, tablet, and mobile.' },
             ].map(b => (
-              <div key={b.title} className="p-5 bg-gray-50 rounded-2xl border border-gray-100">
+              <div key={b.title} className="p-5 bg-gray-50 dark:bg-white/5 rounded-2xl border border-gray-100 dark:border-white/8">
                 <div className="text-2xl mb-2">{b.icon}</div>
-                <h3 className="font-bold text-gray-900 text-sm mb-1">{b.title}</h3>
-                <p className="text-xs text-gray-600 leading-relaxed">{b.desc}</p>
+                <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-1">{b.title}</h3>
+                <p className="text-xs text-gray-600 dark:text-[#aaa] leading-relaxed">{b.desc}</p>
               </div>
             ))}
           </div>
 
           {/* Intro text */}
-          <div className="prose prose-sm max-w-none text-gray-600 mb-8 space-y-3">
+          <div className="prose prose-sm max-w-none text-gray-600 dark:text-[#aaa] mb-8 space-y-3">
             <p>
               PDF is the universal document format — used for contracts, invoices, reports, academic papers, and
               everything in between. But working with PDFs has traditionally required expensive desktop software

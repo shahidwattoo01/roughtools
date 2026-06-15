@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import MeanMedianModeClient from './MeanMedianModeClient'
 import { getCalcSEO } from '../_components/calc-seo-configs'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -230,12 +230,6 @@ export default function MeanMedianModePage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -252,8 +246,8 @@ export default function MeanMedianModePage() {
 
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
             The Mean Median Mode Calculator computes all three classical measures of central tendency
-            for any list of numbers you provide. Central tendency measures answer the question: "what
-            is a typical value in this dataset?" Each of the three answers that question differently,
+            for any list of numbers you provide. Central tendency measures answer the question: &quot;what
+            is a typical value in this dataset?&quot; Each of the three answers that question differently,
             and together they provide a complete picture of where data is centred and how that centre
             should be interpreted.
           </p>
@@ -292,7 +286,7 @@ export default function MeanMedianModePage() {
             Resistance to Outliers — A Real Example
           </h3>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
-            Consider seven workers' annual salaries: $30k, $31k, $29k, $32k, $30k, $31k, $500k
+            Consider seven workers&apos; annual salaries: $30k, $31k, $29k, $32k, $30k, $31k, $500k
             (the owner). Mean = $97.6k — higher than six out of seven people earn. Median = $31k —
             the value that splits the group in half and accurately reflects what a typical worker earns.
             Mode = $30k — the most common salary. This example illustrates why government income
@@ -331,6 +325,13 @@ export default function MeanMedianModePage() {
             for full details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

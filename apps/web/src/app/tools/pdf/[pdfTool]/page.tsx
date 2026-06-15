@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { PDF_TOOL_CONFIGS, PDF_SUBCATEGORIES } from '../_components/pdf-tool-configs'
+import { PDF_TOOL_CONFIGS } from '../_components/pdf-tool-configs'
 import PDFToolClient from '../_components/PDFToolClient'
 import PDFToolShell from '@/components/PDFToolShell'
 import { pdfTools } from '@/data/pdfTools'

@@ -20,7 +20,7 @@ async function generateUniqueUsername(emailPrefix: string): Promise<string> {
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  const { allowed, resetAt } = rateLimit(ip, 5, 15 * 60 * 1000); // 5 attempts per 15 min
+  const { allowed, resetAt } = rateLimit(ip, 10, 15 * 60 * 1000); // 10 registrations per 15 min — blocks bots, not users
 
   if (!allowed) {
     return NextResponse.json(

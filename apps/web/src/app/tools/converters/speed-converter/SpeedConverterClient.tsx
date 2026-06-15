@@ -47,19 +47,19 @@ const REFERENCE_POINTS = [
   { label: 'Speed of light',          ms: 299792458 },
 ]
 
-const CARD: CSSProperties = { background: '#12121f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 16, padding: '24px 28px' }
-const INPUT_BOX: CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 8, background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', fontSize: 15, boxSizing: 'border-box' }
-const LABEL: CSSProperties = { display: 'block', marginBottom: 5, fontSize: 12, color: 'rgba(255,255,255,0.45)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }
-const BTN_GHOST: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13, fontWeight: 600, cursor: 'pointer' }
-const TH: CSSProperties = { padding: '9px 12px', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.07em', color: 'rgba(255,255,255,0.45)', textAlign: 'right', background: 'rgba(99,102,241,0.1)', whiteSpace: 'nowrap' }
-const TD: CSSProperties = { padding: '6px 12px', fontSize: 12, textAlign: 'right', color: 'rgba(255,255,255,0.65)', whiteSpace: 'nowrap' }
+const CARD: CSSProperties = { background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 16, padding: '24px 28px' }
+const INPUT_BOX: CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 8, background: 'var(--bg-2)', border: '1px solid var(--line-strong)', color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box' }
+const LABEL: CSSProperties = { display: 'block', marginBottom: 5, fontSize: 12, color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }
+const BTN_GHOST: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13, fontWeight: 600, cursor: 'pointer' }
+const TH: CSSProperties = { padding: '9px 12px', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.07em', color: 'var(--fg-3)', textAlign: 'right', background: 'rgba(99,102,241,0.1)', whiteSpace: 'nowrap' }
+const TD: CSSProperties = { padding: '6px 12px', fontSize: 12, textAlign: 'right', color: 'var(--fg-2)', whiteSpace: 'nowrap' }
 const COLORS = ['#6366f1','#f59e0b','#10b981','#38bdf8','#e879f9','#fb923c','#a78bfa','#34d399','#f472b6','#60a5fa','#4ade80','#fbbf24']
 
 function MetricCard({ label, value, color = '#6366f1' }: { label: string; value: string; color?: string }) {
   return (
-    <div style={{ padding: '16px 12px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '16px 12px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 16, fontWeight: 900, color, wordBreak: 'break-all' }}>{value}</div>
-      <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.45)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
+      <div style={{ fontSize: 10, color: 'var(--fg-2)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
     </div>
   )
 }
@@ -100,7 +100,7 @@ export default function SpeedConverterClient() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       <div style={CARD}>
-        <p style={{ margin: '0 0 16px', fontSize: 13, color: 'rgba(255,255,255,0.45)' }}>Type in any field — all others update instantly. Mach is at sea level (343 m/s).</p>
+        <p style={{ margin: '0 0 16px', fontSize: 13, color: 'var(--fg-2)' }}>Type in any field — all others update instantly. Mach is at sea level (343 m/s).</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: 12 }}>
           {UNITS.map(u => {
             const color = COLORS[UNITS.findIndex(x => x.key === u.key) % COLORS.length]
@@ -110,9 +110,9 @@ export default function SpeedConverterClient() {
                 <label style={LABEL}>{u.label}<span style={{ marginLeft: 6, color, fontWeight: 700 }}>{u.symbol}</span></label>
                 <div style={{ display: 'flex', gap: 6 }}>
                   <input type="number" value={displayVal} onChange={e => handleChange(u.key, e.target.value)} placeholder="0" style={{ ...INPUT_BOX, flex: 1 }} aria-label={u.label} />
-                  <button onClick={() => copyValue(u.key)} style={{ ...BTN_GHOST, padding: '0 10px', fontSize: 12, background: copied === u.key ? 'rgba(16,185,129,0.15)' : 'rgba(139,92,246,0.12)', color: copied === u.key ? '#34d399' : '#c4b5fd' }} title="Copy">{copied === u.key ? '✓' : '⎘'}</button>
+                  <button onClick={() => copyValue(u.key)} style={{ ...BTN_GHOST, padding: '0 10px', fontSize: 12, background: copied === u.key ? 'rgba(16,185,129,0.15)' : 'rgba(139,92,246,0.12)', color: copied === u.key ? '#34d399' : 'var(--brand-2)' }} title="Copy">{copied === u.key ? '✓' : '⎘'}</button>
                 </div>
-                <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.45)', marginTop: 4 }}>{u.industry}</div>
+                <div style={{ fontSize: 10, color: 'var(--fg-2)', marginTop: 4 }}>{u.industry}</div>
               </div>
             )
           })}
@@ -129,7 +129,7 @@ export default function SpeedConverterClient() {
 
       <div style={CARD}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 8 }}>
-          <h3 style={{ margin: 0, fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Conversion Matrix</h3>
+          <h3 style={{ margin: 0, fontSize: 14, fontWeight: 700, color: 'var(--fg-1)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Conversion Matrix</h3>
           <button onClick={exportCSV} style={BTN_GHOST}>⬇ Export CSV</button>
         </div>
         <div style={{ overflowX: 'auto' }}>
@@ -162,7 +162,7 @@ export default function SpeedConverterClient() {
       </div>
 
       <div style={CARD}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Real-World Reference Speeds</h3>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--fg-1)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Real-World Reference Speeds</h3>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
             <thead>
@@ -174,7 +174,7 @@ export default function SpeedConverterClient() {
             <tbody>
               {REFERENCE_POINTS.map((rp, i) => (
                 <tr key={rp.label} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)', background: i % 2 === 0 ? 'rgba(255,255,255,0.01)' : 'transparent' }}>
-                  <td style={{ ...TD, textAlign: 'left', color: 'rgba(255,255,255,0.9)', fontWeight: 600 }}>{rp.label}</td>
+                  <td style={{ ...TD, textAlign: 'left', color: 'var(--fg)', fontWeight: 600 }}>{rp.label}</td>
                   {(['ms','kmh','mph','kn','mach'] as UnitKey[]).map(k => <td key={k} style={TD}>{fmt(rp.ms / UNIT_MAP[k].toMs)}</td>)}
                 </tr>
               ))}
@@ -184,7 +184,7 @@ export default function SpeedConverterClient() {
       </div>
 
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Industry Standards</h3>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Industry Standards</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
           {[
             { title: 'Aviation / Maritime', desc: 'Knots are universal in aviation and maritime. 1 knot = 1 nautical mile/hour = 1.852 km/h. Aircraft altimeters and speedometers use knots worldwide.' },
@@ -192,9 +192,9 @@ export default function SpeedConverterClient() {
             { title: 'Physics', desc: 'Speed of light (c) is the cosmic speed limit: 299,792,458 m/s exactly. GPS satellites need relativistic speed corrections. Mach 1 varies with altitude and temperature.' },
             { title: 'Aerospace', desc: 'Mach 1 = 343 m/s at sea level. Mach 5+ is hypersonic. Low Earth orbit requires ~7.9 km/s. Escape velocity from Earth is 11.2 km/s (Mach 32.6).' },
           ].map(item => (
-            <div key={item.title} style={{ padding: '14px', background: 'rgba(0,0,0,0.2)', borderRadius: 10 }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.9)', marginBottom: 6 }}>{item.title}</div>
-              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>{item.desc}</div>
+            <div key={item.title} style={{ padding: '14px', background: 'var(--bg-2)', borderRadius: 10 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--fg)', marginBottom: 6 }}>{item.title}</div>
+              <div style={{ fontSize: 12, color: 'var(--fg-1)', lineHeight: 1.7 }}>{item.desc}</div>
             </div>
           ))}
         </div>

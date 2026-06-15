@@ -8,7 +8,7 @@ const TO_EMAIL = 'shahidwattoo0111@gmail.com'
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  const { allowed, resetAt } = rateLimit(`contact:${ip}`, 3, 60 * 60 * 1000); // 3 messages/hour
+  const { allowed, resetAt } = rateLimit(`contact:${ip}`, 5, 60 * 60 * 1000); // 5 messages/hour — spam protection only
   if (!allowed) {
     return NextResponse.json(
       { error: 'Too many messages. Please try again later.' },
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 
     const resend = new Resend(process.env.RESEND_API_KEY)
     const { error } = await resend.emails.send({
-      from: 'RoughTools Contact <onboarding@resend.dev>',
+      from: process.env.RESEND_FROM_EMAIL ?? 'RoughTools Contact <onboarding@resend.dev>',
       to: TO_EMAIL,
       reply_to: email,
       subject: `[RoughTools Contact] ${subject}`,

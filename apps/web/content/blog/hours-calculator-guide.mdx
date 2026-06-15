@@ -1,0 +1,115 @@
+﻿---
+title: 'Hours Calculator: Add, Subtract, and Convert Time in Hours and Minutes'
+slug: hours-calculator-guide
+date: '2026-08-31'
+excerpt: 'Learn how to add and subtract time in hours and minutes, convert between time formats, calculate total work hours for payroll, and convert decimal hours to hours and minutes. Free hours calculator included.'
+readTime: '6 min read'
+author: RoughTools Team
+category: Daily Calculators
+keywords:
+  - hours calculator
+  - add hours and minutes calculator
+  - time calculator online
+  - work hours calculator
+  - convert decimal hours to minutes
+  - total hours worked calculator
+---
+
+To add hours and minutes: sum the minutes separately, convert every 60 minutes to 1 hour, then add the resulting hours. 3:45 + 2:30 = 5 hours 75 minutes = 6 hours 15 minutes. To convert decimal hours to hours and minutes: the whole number is hours; multiply the decimal by 60 for minutes. 7.75 hours = 7 hours 45 minutes. 2.333 hours = 2 hours 20 minutes.
+
+Time calculations are tricky because time uses base-60 (not base-10) — you cannot simply add 3.45 + 2.30 in decimal and expect the right answer. A timesheet showing 3 hours 45 minutes must be converted to 3.75 hours (or handled as 3h45m) for arithmetic operations.
+
+Use the free [Hours Calculator](https://roughtools.com/tools/calculators/hours-calculator) at RoughTools to add and subtract times, calculate total work hours, and convert between time formats.
+
+👉 **Free Hours Calculator — instant, no signup required.**
+→ https://roughtools.com/tools/calculators/hours-calculator
+
+## Adding Hours and Minutes
+
+**Method 1: Add hours and minutes separately**
+```
+  8 h 45 min
++ 6 h 50 min
+-----------
+ 14 h 95 min = 14 h + 1 h 35 min = 15 h 35 min
+```
+
+**Method 2: Convert everything to minutes first**
+8h 45m = 525 min
+6h 50m = 410 min
+Total: 935 min = 935/60 = 15h 35min
+
+**Timesheet calculation example:**
+
+| Day | Clock In | Clock Out | Lunch | Hours Worked |
+|-----|---------|---------|-------|-------------|
+| Mon | 8:00 AM | 5:30 PM | 30 min | 9:00 |
+| Tue | 8:15 AM | 5:00 PM | 45 min | 8:00 |
+| Wed | 7:45 AM | 6:00 PM | 30 min | 9:45 |
+| Thu | 8:30 AM | 5:30 PM | 60 min | 8:00 |
+| Fri | 8:00 AM | 4:30 PM | 30 min | 8:00 |
+| **Total** | | | | **42:45** |
+
+42 hours 45 minutes = 42.75 hours for payroll purposes.
+
+## Decimal Hours vs. Hours:Minutes
+
+Payroll, billing, and project management systems often use **decimal hours** (3.5 hours) instead of hours:minutes (3:30). Conversion:
+
+```
+Hours:Minutes → Decimal: Decimal = Hours + (Minutes / 60)
+Decimal → Hours:Minutes: Minutes = Decimal fractional part × 60
+```
+
+**Quick reference:**
+
+| Hours:Min | Decimal | Hours:Min | Decimal |
+|---------|---------|---------|---------|
+| 0:15 | 0.25 | 4:00 | 4.00 |
+| 0:30 | 0.50 | 4:30 | 4.50 |
+| 0:45 | 0.75 | 5:00 | 5.00 |
+| 1:00 | 1.00 | 7:30 | 7.50 |
+| 1:30 | 1.50 | 7:45 | 7.75 |
+| 2:00 | 2.00 | 8:00 | 8.00 |
+
+## Calculating Pay from Hours
+
+```
+Regular pay = Hours worked × Hourly rate
+Overtime = Max(0, Hours − 40) × Hourly rate × 1.5
+Total pay = Regular hours pay + Overtime pay
+```
+
+For 42.75 hours at $20/hour:
+- Regular: 40 hours × $20 = $800
+- Overtime: 2.75 hours × $30 = $82.50
+- **Total: $882.50**
+
+## Frequently Asked Questions
+
+**Why can't I just add 3:45 + 2:30 = 6:15 in Excel?**
+Spreadsheet programs store time as a fraction of 24 hours — 1 hour = 1/24 = 0.04167. When you add time cells, you're adding these fractions, which works correctly for times within a day. For elapsed hours totaling over 24, format the result cell as [h]:mm (with brackets around h) to show total hours rather than wrapping around midnight. Otherwise 25 hours would display as 1:00 (1 AM the next day).
+
+**How do I calculate hours worked from clock-in/clock-out times?**
+Clock-out − Clock-in = total duration. Subtract any unpaid break time. For example: Clock in 8:00 AM, Clock out 5:30 PM = 9.5 hours total. Minus 30-minute lunch = 9.0 hours worked = 9:00. Be consistent about whether break time is paid or unpaid — the FLSA requires tracking compensable time but does not dictate how breaks are recorded.
+
+**How many hours is a part-time job vs. full-time?**
+Under the Affordable Care Act, full-time employment is defined as 30+ hours per week for benefits eligibility purposes. For traditional purposes, full-time is typically 35–40 hours/week. Part-time is anything under full-time, commonly 15–30 hours/week. Overtime pay under the FLSA kicks in at 40+ hours/week (not 35+) for non-exempt employees.
+
+**How do I convert between time zones for scheduling?**
+Time zone conversion is not just addition/subtraction — it also involves Daylight Saving Time (DST) transitions. For example, New York is UTC−5 (EST) in winter and UTC−4 (EDT) in summer. London is UTC+0 (GMT) in winter and UTC+1 (BST) in summer. The offset between them changes at DST transitions. For reliable conversion, use a time zone converter tool that accounts for DST.
+
+**How many hours are in a year?**
+365 days × 24 hours = 8,760 hours/year. In a leap year: 366 × 24 = 8,784 hours. A standard work year (40 hours/week × 52 weeks) = 2,080 hours. Accounting for 10 paid holidays: 2,080 − (10 × 8) = 2,000 billable hours. This is why consultants often quote rates with "up to 2,000 billable hours/year" as the practical maximum.
+
+## Related Free Tools on RoughTools
+
+- **[Time Zone Converter](https://roughtools.com/tools/converters/time-zone-converter)** — convert times between time zones
+- **[Paycheck Calculator](https://roughtools.com/tools/calculators/paycheck-calculator)** — calculate pay from hours worked
+- **[Countdown Timer](https://roughtools.com/tools/productivity/countdown-timer)** — measure time intervals
+
+## Calculate Hours Now
+
+The free [Hours Calculator](https://roughtools.com/tools/calculators/hours-calculator) at RoughTools adds and subtracts multiple time entries, calculates total work hours from clock-in/clock-out times, converts decimal hours to hours:minutes, and computes pay at a given rate. No account needed, completely free.
+
+**[Free Hours Calculator →](https://roughtools.com/tools/calculators/hours-calculator)**

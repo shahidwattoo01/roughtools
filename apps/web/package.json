@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node --max-old-space-size=8192 node_modules/next/dist/bin/next build",
+    "prebuild": "prisma generate --schema=../../packages/db/prisma/schema.prisma",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -19,6 +20,8 @@
     "clean": "rm -rf .next .turbo node_modules"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@platform/db": "workspace:*",
     "@platform/iq-engine": "workspace:*",
     "@prisma/client": "^5.22.0",
     "@tabler/icons-react": "^3.44.0",
@@ -75,6 +78,7 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "autoprefixer": "^10.4.0",
+    "cross-env": "^10.1.0",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.1.0",
     "eslint-config-prettier": "^10.1.8",

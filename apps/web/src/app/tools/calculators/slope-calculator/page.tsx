@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import SlopeCalculatorClient from './SlopeCalculatorClient'
 import { getCalcSEO } from '../_components/calc-seo-configs'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -228,9 +228,6 @@ export default function SlopeCalculatorPage() {
         <SlopeCalculatorClient />
         <ToolAdUnit position="middle" />
 
-        <QuickReferenceTable rows={QUICK_REF} />
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
         <section
           style={{ marginTop: 40, padding: '28px 32px', background: 'var(--bg-1)', borderRadius: 16, border: '1px solid var(--line-strong)' }}
           aria-labelledby="about-heading"
@@ -249,7 +246,7 @@ export default function SlopeCalculatorPage() {
             {'Slope:     m = (y₂ − y₁) / (x₂ − x₁)\nDistance:  d = √[(x₂−x₁)² + (y₂−y₁)²]\nMidpoint:  M = ((x₁+x₂)/2, (y₁+y₂)/2)\nEquation:  y = mx + b  where  b = y₁ − m×x₁'}
           </div>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
-            The slope formula is derived from the definition of slope as "rise over run" — the vertical change divided
+            The slope formula is derived from the definition of slope as &quot;rise over run&quot; — the vertical change divided
             by the horizontal change. The distance formula is an application of the Pythagorean theorem: the two points
             and their horizontal/vertical projections form a right triangle, and the distance is the hypotenuse.
           </p>
@@ -274,6 +271,10 @@ export default function SlopeCalculatorPage() {
             See our <a href="/privacy" style={{ color: '#8b5cf6', textDecoration: 'underline' }}>Privacy Policy</a>.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        
 
         <ProTipsSection tips={PRO_TIPS} />
         <CalculatorFAQ faqs={FAQS} />

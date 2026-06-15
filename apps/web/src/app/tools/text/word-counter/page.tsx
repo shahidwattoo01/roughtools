@@ -126,7 +126,9 @@ export default function Page() {
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Paste or type your text to instantly count words, characters (with and without spaces), sentences, paragraphs, and get reading and speaking time estimates — all updating live as you type. Processing is local, private, and requires no account or app installation.
         </p>
+        <div data-print-section="calculator">
         <WordCounterClient />
+        </div>
         <div style={{ marginTop: 12, marginBottom: 4 }}>
           <PDFExportButton toolName="Word Counter" />
         </div>

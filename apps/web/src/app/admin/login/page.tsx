@@ -27,9 +27,7 @@ export default function AdminLoginPage() {
         setError(d.message ?? 'Login failed')
         return
       }
-      const { token } = await res.json()
-      // Store in cookie (middleware reads this)
-      document.cookie = `admin_token=${token}; path=/; max-age=${4 * 3600}; SameSite=Strict`
+      // Cookie is set HttpOnly by the server — just redirect
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       router.push(next as any)
       router.refresh()

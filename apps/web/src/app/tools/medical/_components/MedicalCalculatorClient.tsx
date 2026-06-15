@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import type { OutputField, MedInputField, CalculationResult, MedicalConfig } from './medical-configs'
+import type { OutputField, CalculationResult, MedicalConfig } from './medical-configs'
 import { MEDICAL_CONFIGS, getFallbackConfig, getMedicalConfigById } from './medical-configs'
 import type { MedicalCalcConfig } from './medical-configs'
 import { exportCalcPDF } from '@/lib/calcPdf'

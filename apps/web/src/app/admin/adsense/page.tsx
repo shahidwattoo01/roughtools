@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, LineChart, Line } from 'recharts'
+import { useState } from 'react'
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 import { ALL_TOOLS } from '@/lib/tools-registry'
 
 const TT = { contentStyle: { background: '#1a1a1a', border: '1px solid #333', borderRadius: 6, fontSize: 11 } }

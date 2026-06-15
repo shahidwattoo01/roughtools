@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState, useCallback } from 'react'
 import CalcShell from '@/components/CalcShell'
 import { Card, InputField, ResultRow } from '@/components/ui'
@@ -109,13 +109,13 @@ export default function PermCombClient() {
       {valid && P !== null && C !== null ? (
         <Card accent style={{ marginTop: 16 }}>
           <div style={{ textAlign: 'center', padding: '16px 0 12px' }}>
-            <div style={{ fontSize: 28, fontWeight: 800, color: '#c4b5fd', letterSpacing: -0.5 }}>P({nn},{rn}) = {P.toLocaleString()}</div>
+            <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--brand-2)', letterSpacing: -0.5 }}>P({nn},{rn}) = {P.toLocaleString()}</div>
             <div style={{ fontSize: 13, color: 'var(--fg-3)', marginTop: 4 }}>Permutations — ordered arrangements (order matters)</div>
           </div>
           <div style={{ height: 1, background: 'rgba(255,255,255,0.08)', margin: '8px 0' }} />
           <div style={{ textAlign: 'center', padding: '12px 0 16px' }}>
             <div style={{ fontSize: 28, fontWeight: 800, color: '#a78bfa', letterSpacing: -0.5 }}>C({nn},{rn}) = {C.toLocaleString()}</div>
-            <div style={{ fontSize: 13, color: 'var(--fg-3)', marginTop: 4 }}>Combinations — unordered selections (order doesn't matter)</div>
+            <div style={{ fontSize: 13, color: 'var(--fg-3)', marginTop: 4 }}>Combinations — unordered selections (order doesn&apos;t matter)</div>
           </div>
           <ResultRow label="n!" value={factorial(nn).toLocaleString()} />
           <ResultRow label="r!" value={factorial(rn).toLocaleString()} />
@@ -132,7 +132,7 @@ export default function PermCombClient() {
         <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--fg-3)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>Factorial Reference (0! to 15!)</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px,1fr))', gap: 6 }}>
           {Array.from({ length: 16 }, (_, i) => (
-            <div key={i} style={{ fontFamily: 'monospace', fontSize: 12, color: '#c4b5fd', background: 'rgba(139,92,246,0.08)', borderRadius: 6, padding: '4px 8px' }}>
+            <div key={i} style={{ fontFamily: 'monospace', fontSize: 12, color: 'var(--brand-2)', background: 'rgba(139,92,246,0.08)', borderRadius: 6, padding: '4px 8px' }}>
               {i}! = {factorial(i).toLocaleString()}
             </div>
           ))}

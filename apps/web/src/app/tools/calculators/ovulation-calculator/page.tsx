@@ -124,8 +124,6 @@ export default function OvulationCalculatorPage() {
         />
 
         <ToolAdUnit position="middle" />
-        <QuickReferenceTable rows={QUICK_REF} />
-        <WhenToUseCards cards={WHEN_TO_USE} />
         <section style={{ marginTop: 40, padding: '28px 32px', background: 'var(--bg-1)', borderRadius: 16, border: '1px solid var(--line-strong)' }} aria-labelledby="about-heading">
           <h2 id="about-heading" style={{ fontSize: 20, fontWeight: 800, color: 'var(--fg)', marginTop: 0, marginBottom: 16 }}>About This Ovulation Calculator</h2>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
@@ -160,6 +158,9 @@ export default function OvulationCalculatorPage() {
             See our <a href="/privacy" style={{ color: '#8b5cf6', textDecoration: 'underline' }}>Privacy Policy</a>.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+        <WhenToUseCards cards={WHEN_TO_USE} />
+        
         <ProTipsSection tips={PRO_TIPS} />
         <CalculatorFAQ faqs={FAQS} />
         <RelatedCalculators calculators={RELATED} />

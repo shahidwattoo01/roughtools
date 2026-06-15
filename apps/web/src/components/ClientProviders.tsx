@@ -9,8 +9,8 @@ import Providers from '@/components/Providers'
 // Lazy-load non-critical features to prevent blocking initial render
 const CookieConsent = dynamic(() => import('@/components/CookieConsent'), { ssr: false })
 const ChatbotLoader = dynamic(() => import('@/components/ChatbotLoader'), { ssr: false })
-const Toaster = dynamic(() => import('@/components/Toaster'), { ssr: false })
-const ScrollReveal = dynamic(() => import('@/components/ScrollReveal'), { ssr: false })
+const Toaster = dynamic(() => import('@/components/Toaster').then(m => ({ default: m.Toaster })), { ssr: false })
+const ScrollReveal = dynamic(() => import('@/components/ScrollReveal').then(m => ({ default: m.ScrollReveal })), { ssr: false })
 
 // Optional: analytics can load later too
 const Analytics = dynamic(() => import('@vercel/analytics/react').then(m => ({ default: m.Analytics })), { ssr: false })

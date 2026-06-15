@@ -1,8 +1,15 @@
 // ============================================================
 // ROUGHTOOLS — TOOLS REGISTRY
-// Single source of truth for all ~415 tools
+// Single source of truth for ALL tools.
+//
+// Calculators are NOT hand-listed here. The full set of 203 lives in
+// calculator-tool-configs.ts (CALC_SUBCATEGORIES) and is derived into
+// ALL_TOOLS at the bottom of this file, so any consumer (sitemap,
+// relatedTools, SEO metadata, nav, counts) always sees every calculator.
 // Used by: sitemap, relatedTools, SEO metadata, nav
 // ============================================================
+
+import { CALC_SUBCATEGORIES } from '@/app/tools/calculators/_components/calculator-tool-configs'
 
 export type ToolCategory =
   | 'pdf'
@@ -35,7 +42,10 @@ export interface Tool {
   priority?: number
 }
 
-export const ALL_TOOLS: Tool[] = [
+// Curated registry entries. Calculators here are only the ~21 with rich,
+// hand-tuned metadata (featured/popular flags, custom keywords/priority).
+// The remaining calculators are derived from CALC_SUBCATEGORIES below.
+const REGISTRY_TOOLS: Tool[] = [
   // ─── PDF TOOLS ──────────────────────────────────────────────
   {
     slug: 'compress-pdf',
@@ -1614,6 +1624,39 @@ export const ALL_TOOLS: Tool[] = [
     priority: 0.95,
   },
 ]
+
+// ─── DERIVED CALCULATOR TOOLS ────────────────────────────────
+// The calculators hub (/tools/calculators/[slug]) serves all 203
+// calculators from CALC_SUBCATEGORIES. Only ~21 were historically
+// mirrored into the registry, so every consumer of ALL_TOOLS
+// (sitemap, SEO, relatedTools, nav, counts) silently under-counted
+// calculators by ~182. We now derive the remaining ones from that
+// single source so ALL_TOOLS is always complete and self-maintaining:
+// adding a calculator to calculator-tool-configs.ts is enough.
+//
+// We dedup only against existing *calculator-category* slugs. Some
+// calculator slugs (e.g. bmi-calculator, password-generator) also exist
+// in the registry under another category — those are distinct pages
+// (/tools/calculators/<slug> vs /tools/<other>/<slug>) and must still be
+// present as calculators, so they are intentionally kept.
+const _registryCalcSlugs = new Set(
+  REGISTRY_TOOLS.filter((t) => t.category === 'calculators').map((t) => t.slug),
+)
+const DERIVED_CALCULATORS: Tool[] = CALC_SUBCATEGORIES.flatMap((sub) =>
+  sub.tools
+    .filter((c) => !_registryCalcSlugs.has(c.slug))
+    .map((c) => ({
+      slug: c.slug,
+      name: c.name,
+      category: 'calculators' as const,
+      description: c.description,
+      keywords: [c.name.toLowerCase(), 'calculator', 'free online tool'],
+      priority: 0.7,
+    })),
+)
+
+/** Complete tool list: curated registry + all derived calculators. */
+export const ALL_TOOLS: Tool[] = [...REGISTRY_TOOLS, ...DERIVED_CALCULATORS]
 
 // ─── HELPER FUNCTIONS ────────────────────────────────────────
 

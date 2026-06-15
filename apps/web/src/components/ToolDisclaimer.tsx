@@ -12,13 +12,14 @@ interface ToolDisclaimerProps {
   toolName?: string
 }
 
-const DISCLAIMER_CONTENT: Record<DisclaimerType, { icon: string; label: string; color: string; border: string; bg: string; text: string }> = {
+const DISCLAIMER_CONTENT: Record<DisclaimerType, { icon: string; label: string; color: string; border: string; bg: string; text: string; labelClass: string }> = {
   general: {
     icon: 'ℹ️',
     label: 'Disclaimer',
     color: '#3b82f6',
     border: 'rgba(59,130,246,0.35)',
     bg: 'rgba(59,130,246,0.06)',
+    labelClass: 'text-blue-700 dark:text-blue-400',
     text: 'Results produced by this tool are estimates or approximations and should not be used as a substitute for professional judgement. The site owner is not liable for any decisions made based on this tool\'s output. Always verify important results independently before acting on them.',
   },
   financial: {
@@ -27,6 +28,7 @@ const DISCLAIMER_CONTENT: Record<DisclaimerType, { icon: string; label: string; 
     color: '#f59e0b',
     border: 'rgba(245,158,11,0.35)',
     bg: 'rgba(245,158,11,0.06)',
+    labelClass: 'text-amber-700 dark:text-amber-400',
     text: 'Results are estimates only and do not constitute financial, tax, investment, or legal advice. Figures should not be relied upon for financial decision-making without consulting a qualified financial adviser, accountant, or other licensed professional. Actual results will vary based on your individual circumstances.',
   },
   legal: {
@@ -35,6 +37,7 @@ const DISCLAIMER_CONTENT: Record<DisclaimerType, { icon: string; label: string; 
     color: '#facc15',
     border: 'rgba(250,204,21,0.35)',
     bg: 'rgba(250,204,21,0.06)',
+    labelClass: 'text-amber-800 dark:text-yellow-300',
     text: 'The output of this tool does not constitute legal advice and should not be treated as such. You should not rely on this tool as a substitute for advice from a qualified solicitor, barrister, or attorney licensed in your jurisdiction. Always seek professional legal counsel before acting on any legal document or decision.',
   },
   medical: {
@@ -43,6 +46,7 @@ const DISCLAIMER_CONTENT: Record<DisclaimerType, { icon: string; label: string; 
     color: '#14b8a6',
     border: 'rgba(20,184,166,0.35)',
     bg: 'rgba(20,184,166,0.06)',
+    labelClass: 'text-teal-700 dark:text-teal-400',
     text: 'This tool is provided for informational and educational purposes only. It does not constitute medical advice, diagnosis, or treatment. Do not make clinical or health decisions based solely on this tool\'s output. Always consult a qualified healthcare professional — your doctor, nurse practitioner, or other licensed clinician — before making decisions about your health.',
   },
 }
@@ -64,7 +68,7 @@ export function ToolDisclaimer({ type = 'general', toolName }: ToolDisclaimerPro
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
         <span aria-hidden="true" style={{ fontSize: 16 }}>{d.icon}</span>
-        <span style={{ fontSize: 12, fontWeight: 700, color: d.color, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+        <span className={d.labelClass} style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
           {d.label}
         </span>
       </div>

@@ -1,60 +1,57 @@
 /**
- * Footer — matches roughtools_homepage_fixed.html spec exactly
- * Dark bg #1a1a1a · Green CTA banner · 4-column grid · Social links
+ * Footer — dark bg #1a1a1a · Green CTA banner · 4-column grid · Social links
+ * Social icons always render; grayed + non-linking when URL not yet set.
  */
 
 import Link from 'next/link'
-import { SOCIAL_LINKS } from '@/lib/social-config'
-import { TOTAL_REAL_TOOLS } from '@/lib/tools-registry'
+import { getSocialLinks } from '@/lib/site-config-db'
+import { TOTAL_REAL_TOOLS, TOTAL_CALC_COUNT } from '@/lib/tool-counts'
 import {
   IconBrandX,
   IconBrandGithub,
-  IconBrandInstagram,
   IconBrandLinkedin,
 } from '@tabler/icons-react'
 
 const ALL_CATS = [
-  { label: 'PDF Tools',         count: 26,  href: '/tools/pdf' },
-  { label: 'Calculators',       count: 21,  href: '/tools/calculators' },
-  { label: 'Medical & Health',  count: 113, href: '/tools/medical' },
-  { label: 'Engineering',       count: 126, href: '/tools/engineering' },
-  { label: 'Image Tools',       count: 38,  href: '/tools/image-tools' },
-  { label: 'Developer Tools',   count: 19,  href: '/tools/developer' },
-  { label: 'Document Tools',    count: 9,   href: '/tools/document-tools' },
+  { label: 'PDF Tools',         count: 31,               href: '/tools/pdf' },
+  { label: 'Calculators',       count: TOTAL_CALC_COUNT,  href: '/tools/calculators' },
+  { label: 'Medical & Health',  count: 113,              href: '/tools/medical' },
+  { label: 'Engineering',       count: 126,              href: '/tools/engineering' },
+  { label: 'Image Tools',       count: 38,               href: '/tools/image-tools' },
+  { label: 'Developer Tools',   count: 19,               href: '/tools/developer' },
+  { label: 'Document Tools',    count: 11,               href: '/tools/document-tools' },
 ]
 
 const POPULAR = [
-  { label: 'Compress PDF',          href: '/tools/pdf/compress-pdf' },
-  { label: 'PDF to Word',           href: '/tools/pdf/pdf-to-word' },
-  { label: 'Merge PDF',             href: '/tools/pdf/merge-pdf' },
-  { label: 'Remove Background',     href: '/tools/image-tools/background-remover' },
-  { label: 'BMI Calculator',        href: '/tools/calculators/bmi-calculator' },
-  { label: 'eGFR Calculator',       href: '/tools/medical/egfr-ckd-epi-calculator' },
-  { label: "Ohm's Law Calculator",  href: '/tools/engineering/ohms-law-calculator' },
+  { label: 'Compress PDF',         href: '/tools/pdf/compress-pdf' },
+  { label: 'PDF to Word',          href: '/tools/pdf/pdf-to-word' },
+  { label: 'Merge PDF',            href: '/tools/pdf/merge-pdf' },
+  { label: 'Remove Background',    href: '/tools/image-tools/background-remover' },
+  { label: 'BMI Calculator',       href: '/tools/calculators/bmi-calculator' },
+  { label: 'eGFR Calculator',      href: '/tools/medical/egfr-ckd-epi-calculator' },
+  { label: "Ohm's Law Calculator", href: '/tools/engineering/ohms-law-calculator' },
 ]
 
 const COMPANY = [
-  { label: 'About',           href: '/about' },
-  { label: 'Blog',            href: '/blog' },
-  { label: 'Privacy Policy',  href: '/privacy-policy' },
-  { label: 'Terms of Service',href: '/terms-of-service' },
-  { label: 'Contact',         href: '/contact' },
-  { label: 'Sitemap',         href: '/sitemap.xml' },
+  { label: 'About',            href: '/about' },
+  { label: 'Blog',             href: '/blog' },
+  { label: 'Privacy Policy',   href: '/privacy-policy' },
+  { label: 'Terms of Service', href: '/terms-of-service' },
+  { label: 'Contact',          href: '/contact' },
+  { label: 'Sitemap',          href: '/sitemap.xml' },
 ]
 
-const SOCIALS = [
-  { icon: IconBrandX,         href: SOCIAL_LINKS.twitter,   label: 'Twitter / X' },
-  { icon: IconBrandGithub,    href: SOCIAL_LINKS.github,    label: 'GitHub' },
-  { icon: IconBrandInstagram, href: SOCIAL_LINKS.instagram, label: 'Instagram' },
-  { icon: IconBrandLinkedin,  href: SOCIAL_LINKS.linkedin,  label: 'LinkedIn' },
-].filter(s => s.href)
+export default async function Footer() {
+  const social = await getSocialLinks()
 
-export default function Footer() {
+  const SOCIALS = [
+    { icon: IconBrandX,        href: social.twitter,  label: 'X / Twitter' },
+    { icon: IconBrandGithub,   href: social.github,   label: 'GitHub' },
+    { icon: IconBrandLinkedin, href: social.linkedin, label: 'LinkedIn' },
+  ]
+
   return (
-    <footer
-      className="mt-12 pt-10 pb-6"
-      style={{ background: '#1a1a1a' }}
-    >
+    <footer className="mt-12 pt-10 pb-6" style={{ background: '#1a1a1a' }}>
       <div className="px-8 max-w-screen-xl mx-auto">
 
         {/* ── Green CTA banner ── */}
@@ -102,8 +99,8 @@ export default function Footer() {
             <div className="flex gap-2 mt-3">
               {[
                 { n: `${TOTAL_REAL_TOOLS}+`, l: 'Free tools' },
-                { n: '15',             l: 'Categories' },
-                { n: '100%',           l: 'Free forever' },
+                { n: '16',                    l: 'Categories' },
+                { n: '100%',                  l: 'Free forever' },
               ].map(({ n, l }) => (
                 <div
                   key={l}
@@ -175,25 +172,34 @@ export default function Footer() {
           <p className="text-xs" style={{ color: '#666' }}>
             © 2026 RoughTools.com · All rights reserved
           </p>
+
+          {/* Social icons — always visible, grayed when link not set */}
           <div className="flex gap-2">
-            {SOCIALS.map(({ icon: Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="w-[30px] h-[30px] rounded-[7px] flex items-center justify-center transition-colors
-                           text-[#aaa] hover:text-white
-                           hover:[background:rgba(255,255,255,0.12)]"
-                style={{
-                  background: 'rgba(255,255,255,0.07)',
-                  border: '0.5px solid rgba(255,255,255,0.12)',
-                }}
-              >
-                <Icon size={14} aria-hidden="true" />
-              </a>
-            ))}
+            {SOCIALS.map(({ icon: Icon, href, label }) =>
+              href ? (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-[30px] h-[30px] rounded-[7px] flex items-center justify-center transition-colors text-[#aaa] hover:text-white hover:[background:rgba(255,255,255,0.12)]"
+                  style={{ background: 'rgba(255,255,255,0.07)', border: '0.5px solid rgba(255,255,255,0.12)' }}
+                >
+                  <Icon size={14} aria-hidden="true" />
+                </a>
+              ) : (
+                <span
+                  key={label}
+                  aria-label={`${label} (not configured)`}
+                  title={`${label} — add link in Admin → Settings → Social`}
+                  className="w-[30px] h-[30px] rounded-[7px] flex items-center justify-center cursor-default"
+                  style={{ background: 'rgba(255,255,255,0.03)', border: '0.5px solid rgba(255,255,255,0.06)', color: '#333' }}
+                >
+                  <Icon size={14} aria-hidden="true" />
+                </span>
+              )
+            )}
           </div>
         </div>
 

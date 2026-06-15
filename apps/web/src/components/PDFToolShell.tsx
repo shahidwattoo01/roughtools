@@ -208,23 +208,23 @@ export default function PDFToolShell({
           {/* Top ad */}
           <ToolAdUnit position="top" />
 
-          {/* Tool widget */}
+          {/* ① TOOL WIDGET — first, above the fold */}
           {children}
 
-          {/* How-to steps */}
+          {/* ② HOW-TO STEPS — usage instructions (formula equivalent for PDF tools) */}
           {howToSteps && howToSteps.length > 0 && <HowToSection steps={howToSteps} />}
 
           {/* Middle ad */}
           <ToolAdUnit position="middle" />
 
-          {/* FAQ accordion */}
+          {/* ③ ABOUT — informational context about the tool */}
+          <AboutSection toolName={toolName} description={description} aboutHTML={aboutHTML} />
+
+          {/* ④ FAQ — reference information */}
           <FAQSection faqs={faqs} />
 
-          {/* Related PDF tools grid */}
+          {/* ⑤ RELATED PDF TOOLS */}
           {relatedTools.length > 0 && <RelatedSection tools={relatedTools} />}
-
-          {/* About section */}
-          <AboutSection toolName={toolName} description={description} aboutHTML={aboutHTML} />
 
           {/* Star rating widget */}
           <StarRating toolSlug={toolSlug} ratingValue={ratingValue} reviewCount={reviewCount} />

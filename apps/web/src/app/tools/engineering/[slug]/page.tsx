@@ -1187,12 +1187,12 @@ export default function EngineeringToolPage({ params }: Props) {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
 
         {/* ① CALCULATOR — always first */}
-        <section id="calculator" className="mb-8">
+        <section data-print-section="calculator" id="calculator" className="mb-8">
           <EngineeringCalculatorClient slug={params.slug} toolName={tool.name} />
         </section>
 
         {/* ② FORMULA — immediately after calculator */}
-        <section className="mb-8 bg-white rounded-2xl border border-gray-200 p-6" id="formula">
+        <section data-print-section="formula" className="mb-8 bg-white rounded-2xl border border-gray-200 p-6" id="formula">
           <h2 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
             <span>🧮</span> {formulaInfo.title}
           </h2>

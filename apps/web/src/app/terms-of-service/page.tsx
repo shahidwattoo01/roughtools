@@ -1,6 +1,4 @@
 import type { Metadata } from 'next'
-import SiteHeader from '@/components/SiteHeader'
-import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Terms of Service | RoughTools',
@@ -10,7 +8,6 @@ export const metadata: Metadata = {
 export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <SiteHeader />
       <main className="max-w-4xl mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Terms of Service</h1>
 
@@ -116,14 +113,13 @@ export default function TermsOfService() {
               If you have any questions about these Terms of Service, please contact us at:
               <br />
               Email:{' '}
-              <a href="mailto:support@roughtools.com" className="text-indigo-600 hover:underline">
-                support@roughtools.com
+              <a href="mailto:shahidwattoo0111@gmail.com" className="text-indigo-600 hover:underline">
+                shahidwattoo0111@gmail.com
               </a>
             </p>
           </section>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

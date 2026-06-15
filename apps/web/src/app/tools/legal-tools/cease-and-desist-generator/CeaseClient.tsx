@@ -93,7 +93,7 @@ function Field({ label, value, onChange, placeholder, type = 'text', hint }: { l
   )
 }
 
-function Select({ label, value, onChange, options }: { label: string; value: string; onChange: (v: string) => void; options: { value: string; label: string }[] }) {
+function _Select({ label, value, onChange, options }: { label: string; value: string; onChange: (v: string) => void; options: { value: string; label: string }[] }) {
   return (
     <div>
       <label style={LABEL}>{label}</label>

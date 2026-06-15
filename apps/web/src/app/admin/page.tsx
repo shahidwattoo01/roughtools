@@ -35,7 +35,7 @@ interface DashData {
 // ─── Metric card ──────────────────────────────────────────────────────────────
 
 function MetricCard({
-  label, value, sub, delta, color = '#1a6b3c',
+  label, value, sub, delta, color: _color = '#1a6b3c',
 }: {
   label: string; value: string | number; sub?: string; delta?: number | null; color?: string
 }) {

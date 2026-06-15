@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import type { CSSProperties } from 'react'
 import { exportCalcPDF } from '@/lib/calcPdf'
 
@@ -18,8 +18,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -28,7 +28,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const BTN_PRIMARY: CSSProperties = {
@@ -80,7 +80,7 @@ function exportCSV(values: (number | string)[], label: string) {
 
 function MetricCard({ label, value, color = '#6366f1' }: { label: string; value: string; color?: string }) {
   return (
-    <div style={{ padding: '14px 12px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '14px 12px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 20, fontWeight: 900, color, fontFamily: 'monospace' }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
     </div>
@@ -212,6 +212,18 @@ export default function RandomNumberGeneratorClient() {
     })
   }
 
+  const diceTotal = diceRolls.reduce((s, r) => s + r.value, 0)
+
+  const intStats = useMemo(() => {
+    const vals = mode === 'integer' && output.length > 0
+      ? (output as number[]).filter(v => typeof v === 'number') : []
+    return vals.length > 0 ? {
+      min: Math.min(...vals), max: Math.max(...vals),
+      mean: vals.reduce((a, b) => a + b, 0) / vals.length,
+      sorted: [...vals].sort((a, b) => a - b),
+    } : null
+  }, [mode, output])
+
   const handlePDF = useCallback(async () => {
     if (output.length === 0) return
     await exportCalcPDF({
@@ -227,17 +239,7 @@ export default function RandomNumberGeneratorClient() {
         ] : []),
       ],
     })
-  }, [output, mode, outputLabel])
-
-  const diceTotal = diceRolls.reduce((s, r) => s + r.value, 0)
-
-  const intVals = mode === 'integer' && output.length > 0
-    ? (output as number[]).filter(v => typeof v === 'number') : []
-  const intStats = intVals.length > 0 ? {
-    min: Math.min(...intVals), max: Math.max(...intVals),
-    mean: intVals.reduce((a, b) => a + b, 0) / intVals.length,
-    sorted: [...intVals].sort((a, b) => a - b),
-  } : null
+  }, [output, mode, outputLabel, intStats])
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -312,7 +314,7 @@ export default function RandomNumberGeneratorClient() {
                 <button key={p} onClick={() => setLottoPreset(p)} style={{
                   ...BTN_GHOST,
                   background: lottoPreset === p ? 'rgba(99,102,241,0.3)' : 'rgba(139,92,246,0.12)',
-                  color: lottoPreset === p ? '#fff' : '#c4b5fd',
+                  color: lottoPreset === p ? '#fff' : 'var(--brand-2)',
                 }}>
                   {p === 'powerball' ? 'Powerball' : p === 'megamillions' ? 'Mega Millions' : 'Custom'}
                 </button>
@@ -369,7 +371,7 @@ export default function RandomNumberGeneratorClient() {
                       background: 'rgba(99,102,241,0.2)', border: '2px solid rgba(99,102,241,0.4)',
                       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     }}>
-                      <div style={{ fontSize: 18, fontWeight: 900, color: '#c4b5fd', fontFamily: 'monospace' }}>{r.value}</div>
+                      <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--brand-2)', fontFamily: 'monospace' }}>{r.value}</div>
                       <div style={{ fontSize: 9, color: 'var(--fg-3)', textTransform: 'uppercase' }}>{r.die}</div>
                     </div>
                   ))}
@@ -386,14 +388,14 @@ export default function RandomNumberGeneratorClient() {
                     display: 'inline-block', padding: '6px 14px', borderRadius: 24,
                     background: String(v).startsWith('+') ? 'rgba(251,191,36,0.2)' : 'rgba(99,102,241,0.2)',
                     border: `1px solid ${String(v).startsWith('+') ? 'rgba(251,191,36,0.4)' : 'rgba(99,102,241,0.4)'}`,
-                    color: String(v).startsWith('+') ? '#fbbf24' : '#c4b5fd',
+                    color: String(v).startsWith('+') ? '#fbbf24' : 'var(--brand-2)',
                     fontWeight: 700, fontSize: 16, fontFamily: 'monospace',
                   }}>{v}</span>
                 ))}
               </div>
             ) : (
               <div style={{
-                padding: '14px 16px', background: 'rgba(0,0,0,0.3)', borderRadius: 10,
+                padding: '14px 16px', background: 'var(--bg-2)', borderRadius: 10,
                 fontFamily: 'monospace', fontSize: 14, color: 'var(--fg)', lineHeight: 1.8, wordBreak: 'break-word',
               }}>
                 {output.join(', ')}
@@ -408,7 +410,7 @@ export default function RandomNumberGeneratorClient() {
                 <MetricCard label="Min"   value={String(intStats.min)}       color="#10b981" />
                 <MetricCard label="Max"   value={String(intStats.max)}       color="#ef4444" />
                 <MetricCard label="Mean"  value={intStats.mean.toFixed(2)}   color="#6366f1" />
-                <MetricCard label="Count" value={String(intVals.length)}     color="#38bdf8" />
+                <MetricCard label="Count" value={String(intStats.sorted.length)}     color="#38bdf8" />
               </div>
               {intStats.sorted.length > 1 && (
                 <div style={{ ...CARD, padding: '16px 20px' }}>

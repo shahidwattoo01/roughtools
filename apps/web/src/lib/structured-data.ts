@@ -24,11 +24,6 @@ export function getWebsiteSchema() {
       },
       'query-input': 'required name=search_term_string',
     },
-    sameAs: [
-      'https://twitter.com/roughtools',
-      'https://github.com/roughtools',
-      'https://www.producthunt.com/posts/roughtools',
-    ],
   }
 }
 
@@ -231,26 +226,10 @@ export function getPricingSchema() {
     offers: [
       {
         '@type': 'Offer',
-        name: 'Free Plan',
+        name: 'Free Forever',
         price: '0',
         priceCurrency: 'USD',
-        description: '20 uses/day per tool, 10MB max file size',
-      },
-      {
-        '@type': 'Offer',
-        name: 'Pro Plan',
-        price: '9',
-        priceCurrency: 'USD',
-        billingIncrement: 'P1M',
-        description: 'Unlimited uses, 200MB files, no watermarks',
-      },
-      {
-        '@type': 'Offer',
-        name: 'Team Plan',
-        price: '29',
-        priceCurrency: 'USD',
-        billingIncrement: 'P1M',
-        description: '5 team members, admin dashboard, shared history',
+        description: '604+ tools, no signup required, no watermarks',
       },
     ],
   }

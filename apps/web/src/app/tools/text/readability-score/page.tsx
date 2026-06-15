@@ -126,7 +126,9 @@ export default function Page() {
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Analyze your text with industry-standard readability formulas including Flesch Reading Ease and Flesch-Kincaid Grade Level. Scores update in real time as you write. All analysis runs locally in your browser — no server, no data sent, no account required.
         </p>
+        <div data-print-section="calculator">
         <ReadabilityScoreClient />
+        </div>
         <div style={{ marginTop: 12, marginBottom: 4 }}>
           <PDFExportButton toolName="Readability Score" />
         </div>

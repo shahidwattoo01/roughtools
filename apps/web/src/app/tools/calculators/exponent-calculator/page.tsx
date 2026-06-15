@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import ExponentCalculatorClient from './ExponentCalculatorClient'
 import { getCalcSEO } from '../_components/calc-seo-configs'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -234,12 +234,6 @@ export default function ExponentCalculatorPage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -286,7 +280,7 @@ export default function ExponentCalculatorPage() {
           </h3>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
             Scientific notation expresses numbers as a coefficient times a power of 10: the speed of light is 3 × 10⁸ m/s,
-            Avogadro's number is 6.022 × 10²³, and a nanometre is 10⁻⁹ metres. Exponentiation also drives compound interest
+            Avogadro&apos;s number is 6.022 × 10²³, and a nanometre is 10⁻⁹ metres. Exponentiation also drives compound interest
             (A = P(1+r)ⁿ), population growth models (P = P₀eʳᵗ), radioactive decay (N = N₀e⁻ᵏᵗ), and digital storage
             (1 GB = 2³⁰ bytes). Wherever growth or decay happens at a constant percentage rate, exponents are the tool.
           </p>
@@ -296,7 +290,7 @@ export default function ExponentCalculatorPage() {
           </h3>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
             The logarithm is the inverse operation of exponentiation. If bⁿ = x, then log_b(x) = n. This means: exponents
-            answer "what is the result of raising b to the n?", while logarithms answer "what power of b gives x?". They are
+            answer &quot;what is the result of raising b to the n?&quot;, while logarithms answer &quot;what power of b gives x?&quot;. They are
             mirror images, used together constantly in physics, information theory, and finance.
           </p>
 
@@ -310,6 +304,13 @@ export default function ExponentCalculatorPage() {
             for full details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

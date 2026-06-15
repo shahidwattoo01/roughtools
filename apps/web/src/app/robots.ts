@@ -33,14 +33,14 @@ export default function robots(): MetadataRoute.Robots {
     ],
     sitemap: [
       `${BASE_URL}/sitemap.xml`,
-      `${BASE_URL}/sitemap-calculators.xml`,
       `${BASE_URL}/sitemap-pdf.xml`,
-      `${BASE_URL}/sitemap-developer.xml`,
-      `${BASE_URL}/sitemap-text.xml`,
+      `${BASE_URL}/sitemap-calculators.xml`,
       `${BASE_URL}/sitemap-converters.xml`,
+      `${BASE_URL}/sitemap-developer.xml`,
       `${BASE_URL}/sitemap-legal-tools.xml`,
       `${BASE_URL}/sitemap-network.xml`,
       `${BASE_URL}/sitemap-real-estate.xml`,
+      `${BASE_URL}/sitemap-text.xml`,
     ],
     host: BASE_URL,
   }

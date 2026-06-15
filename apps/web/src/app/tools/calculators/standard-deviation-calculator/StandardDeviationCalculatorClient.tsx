@@ -140,8 +140,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 14, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 14, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -150,7 +150,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -167,7 +167,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   label: string; value: string; sub?: string; color?: string
 }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 22, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -260,7 +260,7 @@ export default function StandardDeviationCalculatorClient() {
                     padding: '8px 16px', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer',
                     border: type === t ? '1px solid rgba(139,92,246,0.6)' : '1px solid var(--line-strong)',
                     background: type === t ? 'rgba(139,92,246,0.18)' : 'rgba(0,0,0,0.2)',
-                    color: type === t ? '#c4b5fd' : 'var(--fg-3)',
+                    color: type === t ? 'var(--brand-2)' : 'var(--fg-3)',
                   }}
                 >
                   {t === 'sample' ? 'Sample (÷n−1)' : 'Population (÷N)'}
@@ -334,9 +334,9 @@ export default function StandardDeviationCalculatorClient() {
                 <MetricCard label="P50 (median)" value={fmt2(result.p50)} color="#6366f1" />
                 <MetricCard label="P75" value={fmt2(result.p75)} color="#6366f1" />
               </div>
-              <div style={{ marginTop: 16, padding: '12px 16px', background: 'rgba(0,0,0,0.2)', borderRadius: 10 }}>
+              <div style={{ marginTop: 16, padding: '12px 16px', background: 'var(--bg-2)', borderRadius: 10 }}>
                 <div style={{ fontSize: 12, color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>Mode</div>
-                <div style={{ fontSize: 14, color: '#c4b5fd', fontFamily: 'monospace' }}>{result.mode}</div>
+                <div style={{ fontSize: 14, color: 'var(--brand-2)', fontFamily: 'monospace' }}>{result.mode}</div>
               </div>
             </div>
           )}
@@ -363,8 +363,8 @@ export default function StandardDeviationCalculatorClient() {
                     ].map(({ label, s, p }) => (
                       <tr key={label} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                         <td style={{ ...TD, textAlign: 'left', color: 'var(--fg-2)', fontWeight: 600 }}>{label}</td>
-                        <td style={{ ...TD, color: type === 'sample' ? '#c4b5fd' : 'var(--fg-2)', fontWeight: type === 'sample' ? 700 : 400 }}>{fmt6(s)}</td>
-                        <td style={{ ...TD, color: type === 'population' ? '#c4b5fd' : 'var(--fg-2)', fontWeight: type === 'population' ? 700 : 400 }}>{fmt6(p)}</td>
+                        <td style={{ ...TD, color: type === 'sample' ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: type === 'sample' ? 700 : 400 }}>{fmt6(s)}</td>
+                        <td style={{ ...TD, color: type === 'population' ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: type === 'population' ? 700 : 400 }}>{fmt6(p)}</td>
                         <td style={{ ...TD, color: '#f59e0b' }}>{fmt6(Math.abs(s - p))}</td>
                       </tr>
                     ))}
@@ -372,7 +372,7 @@ export default function StandardDeviationCalculatorClient() {
                 </table>
               </div>
               <div style={{ marginTop: 12, fontSize: 12, color: 'var(--fg-3)', lineHeight: 1.6 }}>
-                Sample SD uses n−1 (Bessel's correction) to produce an unbiased estimate of the true population SD.
+                Sample SD uses n−1 (Bessel&apos;s correction) to produce an unbiased estimate of the true population SD.
                 Population SD uses N — use only when your data is the entire population.
               </div>
             </div>
@@ -385,7 +385,7 @@ export default function StandardDeviationCalculatorClient() {
               style={{
                 width: '100%', textAlign: 'left', padding: '14px 20px',
                 background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-                borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14,
+                borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14,
                 cursor: 'pointer',
               }}
               aria-expanded={showTable}
@@ -421,7 +421,7 @@ export default function StandardDeviationCalculatorClient() {
                       {displayRows.map(row => (
                         <tr key={row.index} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                           <td style={{ ...TD, color: 'var(--fg-3)' }}>{row.index}</td>
-                          <td style={{ ...TD, color: '#c4b5fd', fontWeight: 600 }}>{row.value}</td>
+                          <td style={{ ...TD, color: 'var(--brand-2)', fontWeight: 600 }}>{row.value}</td>
                           <td style={{ ...TD, color: row.deviation >= 0 ? '#10b981' : '#f87171' }}>
                             {row.deviation >= 0 ? '+' : ''}{fmt6(row.deviation)}
                           </td>
@@ -460,7 +460,7 @@ export default function StandardDeviationCalculatorClient() {
 
           {/* Formula reference */}
           <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-            <h3 style={{ margin: '0 0 12px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <h3 style={{ margin: '0 0 12px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               Formula Reference
             </h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
@@ -473,7 +473,7 @@ export default function StandardDeviationCalculatorClient() {
                   background: active ? 'rgba(139,92,246,0.15)' : 'rgba(0,0,0,0.2)',
                   border: active ? '1px solid rgba(139,92,246,0.4)' : '1px solid transparent',
                 }}>
-                  <div style={{ fontSize: 11, color: active ? '#c4b5fd' : 'var(--fg-3)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>
+                  <div style={{ fontSize: 11, color: active ? 'var(--brand-2)' : 'var(--fg-3)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>
                     {label} {active ? '(current)' : ''}
                   </div>
                   <div style={{ fontFamily: 'monospace', fontSize: 13, color: active ? '#e9d5ff' : 'var(--fg-3)' }}>{formula}</div>

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState, useMemo } from 'react'
 import type { CSSProperties } from 'react'
 
@@ -76,33 +76,33 @@ function exportCSV() {
 // ─── Style Tokens ─────────────────────────────────────────────────────────────
 
 const CARD: CSSProperties = {
-  background: '#12121f', border: '1px solid rgba(255,255,255,0.1)',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
   borderRadius: 16, padding: '24px 28px',
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.1)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
-  color: 'rgba(255,255,255,0.45)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em',
+  color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em',
 }
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
   padding: '9px 12px', fontWeight: 700, fontSize: 11,
   textTransform: 'uppercase', letterSpacing: '0.07em',
-  color: 'rgba(255,255,255,0.45)', textAlign: 'right', background: 'rgba(99,102,241,0.1)',
+  color: 'var(--fg-3)', textAlign: 'right', background: 'rgba(99,102,241,0.1)',
   whiteSpace: 'nowrap',
 }
 const TD: CSSProperties = {
   padding: '6px 12px', fontSize: 12, textAlign: 'right',
-  color: 'rgba(255,255,255,0.65)', whiteSpace: 'nowrap',
+  color: 'var(--fg-2)', whiteSpace: 'nowrap',
 }
 
 function CopyBtn({ text }: { text: string }) {
@@ -127,7 +127,7 @@ export default function WeightConverterClient() {
   const [lastChanged, setLastChanged] = useState<UnitKey>('kg')
   const [showMatrix, setShowMatrix] = useState(false)
 
-  const computed = useMemo<Record<UnitKey, number>>(() => {
+  const _computed = useMemo<Record<UnitKey, number>>(() => {
     const raw = parseFloat(values[lastChanged])
     if (isNaN(raw)) return UNITS.reduce((acc, u) => ({ ...acc, [u.key]: NaN }), {} as Record<UnitKey, number>)
     const grams = raw * UNIT_MAP[lastChanged].toG
@@ -183,7 +183,7 @@ export default function WeightConverterClient() {
                 />
                 <CopyBtn text={values[u.key]} />
               </div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 3 }}>{u.industry}</div>
+              <div style={{ fontSize: 11, color: 'var(--fg-2)', marginTop: 3 }}>{u.industry}</div>
             </div>
           ))}
         </div>
@@ -191,7 +191,7 @@ export default function WeightConverterClient() {
 
       {/* ── REFERENCE POINTS ── */}
       <div style={CARD}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--fg-1)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Real-World References
         </h3>
         <div style={{ overflowX: 'auto' }}>
@@ -211,7 +211,7 @@ export default function WeightConverterClient() {
                   onClick={() => applyQuick(ref.g, 'g')}
                   title="Click to load"
                 >
-                  <td style={{ ...TD, textAlign: 'left', color: '#c4b5fd', fontWeight: 600 }}>{ref.label}</td>
+                  <td style={{ ...TD, textAlign: 'left', color: 'var(--brand-2)', fontWeight: 600 }}>{ref.label}</td>
                   {(['mg','g','kg','lb','oz','st','mt','toz'] as UnitKey[]).map(k => (
                     <td key={k} style={TD}>{fmt(ref.g / UNIT_MAP[k].toG)}</td>
                   ))}
@@ -220,21 +220,21 @@ export default function WeightConverterClient() {
             </tbody>
           </table>
         </div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 8 }}>Click any row to load into the converter.</div>
+        <div style={{ fontSize: 11, color: 'var(--fg-2)', marginTop: 8 }}>Click any row to load into the converter.</div>
       </div>
 
       {/* ── FULL CONVERSION MATRIX ── */}
       <div>
         <button
           onClick={() => setShowMatrix(v => !v)}
-          style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: '#12121f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
+          style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-2)', border: '1px solid var(--line-strong)', borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
           aria-expanded={showMatrix}
         >
           {showMatrix ? '▾' : '▸'} Full Conversion Matrix (1 of each unit → all others)
         </button>
         {showMatrix && (
           <div style={{ ...CARD, padding: 0, overflow: 'hidden', marginTop: 4 }}>
-            <div style={{ display: 'flex', gap: 10, padding: '14px 20px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ display: 'flex', gap: 10, padding: '14px 20px', borderBottom: '1px solid var(--line-strong)' }}>
               <button onClick={exportCSV} style={BTN_GHOST}>⬇ Export CSV</button>
             </div>
             <div style={{ overflowX: 'auto' }}>
@@ -248,7 +248,7 @@ export default function WeightConverterClient() {
                 <tbody>
                   {UNITS.map(from => (
                     <tr key={from.key} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                      <td style={{ ...TD, textAlign: 'left', color: '#c4b5fd', fontWeight: 700 }}>1 {from.symbol}</td>
+                      <td style={{ ...TD, textAlign: 'left', color: 'var(--brand-2)', fontWeight: 700 }}>1 {from.symbol}</td>
                       {UNITS.map(to => (
                         <td key={to.key} style={{ ...TD, background: from.key === to.key ? 'rgba(99,102,241,0.12)' : 'transparent' }}>
                           {from.key === to.key ? '1' : fmt(convert(1, from.key, to.key))}
@@ -265,24 +265,24 @@ export default function WeightConverterClient() {
 
       {/* ── INDUSTRY CONTEXT ── */}
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Industry Context
         </h3>
         <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Kilogram</strong> — The SI base unit of mass. Since 2019, defined by fixing Planck's constant. 1 kg = 1000 g. Note: technically "mass" not "weight" — weight is mass × gravity.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Kilogram</strong> — The SI base unit of mass. Since 2019, defined by fixing Planck&apos;s constant. 1 kg = 1000 g. Note: technically &quot;mass&quot; not &quot;weight&quot; — weight is mass × gravity.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Pound vs Kilogram</strong> — 1 lb = 453.592 g. The US uses pounds for body weight; the UK uses stone+pounds. Most of the world uses kg for body weight.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Pound vs Kilogram</strong> — 1 lb = 453.592 g. The US uses pounds for body weight; the UK uses stone+pounds. Most of the world uses kg for body weight.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Tons: Short vs Long vs Metric</strong> — Short ton (US) = 2000 lb ≈ 907 kg. Long ton (UK) = 2240 lb ≈ 1016 kg. Metric ton = exactly 1000 kg. Always specify which "ton" in contracts.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Tons: Short vs Long vs Metric</strong> — Short ton (US) = 2000 lb ≈ 907 kg. Long ton (UK) = 2240 lb ≈ 1016 kg. Metric ton = exactly 1000 kg. Always specify which &quot;ton&quot; in contracts.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Troy Ounce</strong> — Precious metals (gold, silver, platinum) are always quoted in troy ounces. 1 troy oz = 31.1035 g, heavier than the avoirdupois ounce (28.35 g).
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Troy Ounce</strong> — Precious metals (gold, silver, platinum) are always quoted in troy ounces. 1 troy oz = 31.1035 g, heavier than the avoirdupois ounce (28.35 g).
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Carat</strong> — Gem weight unit. 1 ct = 0.2 g (metric carat). A 1-carat diamond weighs 200 mg. Not to be confused with karat (gold purity).
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Carat</strong> — Gem weight unit. 1 ct = 0.2 g (metric carat). A 1-carat diamond weighs 200 mg. Not to be confused with karat (gold purity).
           </li>
         </ul>
       </div>

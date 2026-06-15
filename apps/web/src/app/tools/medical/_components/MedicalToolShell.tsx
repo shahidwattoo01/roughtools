@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import MedicalDisclaimer from '@/components/MedicalDisclaimer'
@@ -473,7 +473,7 @@ function WhenToUseSection({ cards }: { cards: WhenToUseCard[] }) {
 
 function QuickReferenceSection({ rows }: { rows: QuickRefRow[] }) {
   return (
-    <section className="mt-8 bg-white rounded-2xl border border-gray-200 overflow-hidden" aria-labelledby="quickref-heading">
+    <section data-print-section="reference" className="mt-8 bg-white rounded-2xl border border-gray-200 overflow-hidden" aria-labelledby="quickref-heading">
       <div className="p-6 pb-3">
         <h2 id="quickref-heading" className="text-base font-bold text-gray-900 flex items-center gap-2">
           <span>📊</span> Quick Reference
@@ -572,7 +572,7 @@ const ABOUT_PARAGRAPHS: Record<string, (toolName: string) => string[]> = {
     `The exact formula used by this calculator — including the specific equation, weight convention (actual, ideal, or adjusted body weight), and dose parameters — is displayed in the Formula section below. For high-alert medications, verify that you are applying the correct weight type before using the calculated dose: using actual body weight instead of ideal body weight for aminoglycoside dosing in an obese patient can produce a dose 50–100% higher than intended.`,
     `Critical safety requirements: all doses calculated by this tool must be independently verified by a licensed pharmacist before prescribing, preparation, and administration. This is a non-negotiable patient safety requirement, not a suggestion. For chemotherapy, opioids, and anticoagulants specifically, many institutions require a second independent check by a second pharmacist or the treating physician. The presence of a calculator does not reduce the need for human verification — it supports it.`,
     `All calculations run entirely in your browser. No patient weight, age, renal function values, drug names, or dose parameters are transmitted to any server or stored in any database. This privacy protection is important for compliance with healthcare data regulations when using the tool at the patient bedside.`,
-    `The ${n} provides a starting-point dose that must be contextualised with the patient\'s full clinical picture: current organ function, concurrent medications and interactions, allergy history, treatment goals, and institutional protocol requirements. For complex dosing situations — including renally or hepatically impaired patients, extremes of body weight, or patients requiring therapeutic drug monitoring — consult a clinical pharmacist with experience in the relevant drug class.`,
+    `The ${n} provides a starting-point dose that must be contextualised with the patient's full clinical picture: current organ function, concurrent medications and interactions, allergy history, treatment goals, and institutional protocol requirements. For complex dosing situations — including renally or hepatically impaired patients, extremes of body weight, or patients requiring therapeutic drug monitoring — consult a clinical pharmacist with experience in the relevant drug class.`,
   ],
   obstetrics: (n) => [
     `The ${n} is a standard obstetric calculation tool used to derive pregnancy dating parameters, assess fetal growth, evaluate labour readiness, or estimate obstetric outcomes using validated formulas and reference data. Accurate obstetric calculations are fundamental to safe antenatal care — errors in gestational age, estimated fetal weight, or induction readiness assessment directly affect clinical decisions about screening test timing, corticosteroid administration, delivery planning, and neonatal management.`,
@@ -612,7 +612,7 @@ const ABOUT_PARAGRAPHS: Record<string, (toolName: string) => string[]> = {
     `The specific formula, dose parameters, or reference charts used by this calculator are shown in the Formula section below. For paediatric drug dosing specifically, formula transparency is critical: a clinician who understands whether a dose is based on mg/kg, mg/m², or a fixed age-banded dose is better equipped to identify when a result seems unexpectedly high or low and to verify it before prescribing.`,
     `Critical dosing safety rules: all paediatric drug doses have an upper "adult maximum" ceiling — if a weight-based calculated dose exceeds the adult dose for that drug, give the adult dose, not the calculated weight-based dose. This ceiling protects against overdosing in large children and adolescents. Additionally, for children under 3 years and neonates, always verify doses with a paediatric pharmacist — physiological maturation means that standard weight-based doses appropriate for older children can be toxic in young infants.`,
     `For premature infants and neonates, always use corrected (adjusted) gestational age for growth chart plotting and developmental assessment until at least 2 years corrected age (for infants born before 32 weeks). Using chronological age for a premature infant generates false concerns about growth faltering and developmental delay — the correction accounts for the developmental stage appropriate to the infant's maturity, not the calendar age since birth.`,
-    `All calculations run in your browser only. No child weight, date of birth, gestational age, or clinical data is transmitted to any server or stored in any database. These tools are designed for use by healthcare professionals in clinical settings. Parents using these tools for guidance should always confirm doses and developmental assessments with their child\'s paediatrician or pharmacist before acting on any result. When in doubt about a child\'s health, always seek immediate medical assessment.`,
+    `All calculations run in your browser only. No child weight, date of birth, gestational age, or clinical data is transmitted to any server or stored in any database. These tools are designed for use by healthcare professionals in clinical settings. Parents using these tools for guidance should always confirm doses and developmental assessments with their child's paediatrician or pharmacist before acting on any result. When in doubt about a child's health, always seek immediate medical assessment.`,
   ],
   'consumer-health': (n) => [
     `The ${n} helps you assess an important personal health metric using validated, evidence-based formulas referenced to guidelines from the World Health Organisation (WHO), American College of Sports Medicine (ACSM), United States Department of Agriculture (USDA), Centers for Disease Control and Prevention (CDC), and other major public health authorities. The calculator takes personal inputs — typically age, sex, height, weight, and activity level — and applies a validated equation to produce a health metric with the corresponding reference range and interpretation.`,
@@ -626,7 +626,7 @@ const ABOUT_PARAGRAPHS: Record<string, (toolName: string) => string[]> = {
 
 function AboutContent({
   toolName,
-  description,
+  description: _description,
   specialty,
   reference,
 }: {
@@ -739,30 +739,13 @@ export default function MedicalToolShell({
       {/* ── Main content ────────────────────────────────────────────────── */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
 
-        {/* About section */}
-        <section className="mb-8 bg-white rounded-2xl border border-gray-200 p-6" aria-labelledby="about-heading">
-          <h2 id="about-heading" className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span>ℹ️</span> About This Calculator
-          </h2>
-          <AboutContent toolName={toolName} description={description} specialty={specialty} reference={reference} />
-        </section>
-
-        {/* ── 3. How to Use steps ───────────────────────────────────────── */}
-        <HowToStepsSection steps={howToSteps} />
-
-        {/* ── 4. When to Use cards ─────────────────────────────────────── */}
-        <WhenToUseSection cards={whenToCards} />
-
-        {/* ── 5. Quick Reference table ─────────────────────────────────── */}
-        <QuickReferenceSection rows={quickRefRows} />
-
-        {/* ── 6. Calculator widget — loaded client-side to avoid RSC chunking issues */}
-        <div className="mt-8">
+        {/* ── 1. Calculator widget ── first above the fold ────────────────── */}
+        <div data-print-section="calculator" className="mb-8">
           <MedicalCalculatorClient slug={toolSlug} toolName={toolName} />
         </div>
 
-        {/* ── 7. Formula display ────────────────────────────────────────── */}
-        <section className="mt-8 bg-white rounded-2xl border border-gray-200 p-6">
+        {/* ── 2. Formula display ───────────────────────────────────────────── */}
+        <section data-print-section="formula" className="bg-white rounded-2xl border border-gray-200 p-6">
           <h2 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
             <span>🧮</span> {formulaDisplay.title}
           </h2>
@@ -795,18 +778,35 @@ export default function MedicalToolShell({
           )}
         </section>
 
-        {/* ── 8. Pro Tips ───────────────────────────────────────────────── */}
+        {/* ── 3. Quick Reference table ─────────────────────────────────────── */}
+        <QuickReferenceSection rows={quickRefRows} />
+
+        {/* ── 4. About section ─────────────────────────────────────────────── */}
+        <section className="mt-8 bg-white rounded-2xl border border-gray-200 p-6" aria-labelledby="about-heading">
+          <h2 id="about-heading" className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span>ℹ️</span> About This Calculator
+          </h2>
+          <AboutContent toolName={toolName} description={description} specialty={specialty} reference={reference} />
+        </section>
+
+        {/* ── 5. How to Use steps ──────────────────────────────────────────── */}
+        <HowToStepsSection steps={howToSteps} />
+
+        {/* ── 6. When to Use cards ─────────────────────────────────────────── */}
+        <WhenToUseSection cards={whenToCards} />
+
+        {/* ── 7. Pro Tips ──────────────────────────────────────────────────── */}
         <ProTipsSection tips={proTips} />
 
-        {/* ── 9. Medical Disclaimer ─────────────────────────────────────── */}
+        {/* ── 8. Medical Disclaimer ────────────────────────────────────────── */}
         <div className="mt-8">
           <MedicalDisclaimer formula={formulaDisplay.formula} />
         </div>
 
-        {/* ── 10. FAQ section — lazy loaded, below the fold ─────────────── */}
+        {/* ── 9. FAQ section — lazy loaded, below the fold ─────────────────── */}
         <MedicalFAQSection faqs={faqs} />
 
-        {/* ── 11. Related tools grid ────────────────────────────────────── */}
+        {/* ── 10. Related tools grid ───────────────────────────────────────── */}
         {relatedTools.length > 0 && (
           <section className="mt-12" aria-labelledby="related-heading">
             <h2 id="related-heading" className="text-lg font-bold text-gray-900 mb-4">
@@ -833,7 +833,7 @@ export default function MedicalToolShell({
           </section>
         )}
 
-        {/* ── 12. Compliance extras ─────────────────────────────────────── */}
+        {/* ── 11. Compliance extras ────────────────────────────────────────── */}
         <ToolPageExtras
           toolName={toolName}
           toolSlug={toolSlug}

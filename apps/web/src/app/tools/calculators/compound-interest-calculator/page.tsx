@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import CompoundInterestCalculator from '@/components/tools/calculators/CompoundInterestCalculator'
 import ToolAdUnit from '@/components/ToolAdUnit'
 import { JsonLd } from '@/components/JsonLd'
@@ -233,12 +233,6 @@ export default function CompoundInterestPage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -258,7 +252,7 @@ export default function CompoundInterestPage() {
             including the effect of regular contributions, over any time period and compounding frequency. It is one of
             the most important financial tools you can use, because compound interest — interest earned on interest —
             is the fundamental engine behind long-term wealth building. Albert Einstein reportedly called it the
-            "eighth wonder of the world," and while that attribution is disputed, the math is undeniably powerful.
+            &quot;eighth wonder of the world,&quot; and while that attribution is disputed, the math is undeniably powerful.
           </p>
 
           <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--brand-2)', margin: '20px 0 10px' }}>
@@ -335,6 +329,13 @@ export default function CompoundInterestPage() {
             for full details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

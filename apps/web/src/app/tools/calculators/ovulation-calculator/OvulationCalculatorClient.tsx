@@ -13,8 +13,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -23,7 +23,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -40,7 +40,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   label: string; value: string; sub?: string; color?: string
 }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 20, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -137,8 +137,7 @@ function Field({ label, value, onChange, type = 'number', min, max, hint }: {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function OvulationCalculatorClient() {
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
+  const today = useMemo(() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d }, [])
   const todayStr = today.toISOString().slice(0, 10)
 
   const [lmpStr,      setLmpStr]      = useState(todayStr)
@@ -153,7 +152,7 @@ export default function OvulationCalculatorClient() {
   const lmp = useMemo(() => {
     const d = new Date(lmpStr + 'T00:00:00')
     return isNaN(d.getTime()) ? today : d
-  }, [lmpStr])
+  }, [lmpStr, today])
 
   const cl = Math.min(Math.max(parseInt(cycleLen)    || 28, 20), 40)
   const lp = Math.min(Math.max(parseInt(lutealPhase) || 14, 10), 16)
@@ -236,7 +235,7 @@ export default function OvulationCalculatorClient() {
           <div>Ovulation day = LMP + (cycle_length − luteal_phase) = LMP + ({effectiveCl} − {lp}) = day <strong style={{ color: '#e879f9' }}>{effectiveCl - lp}</strong> of cycle</div>
           <div>Fertile start = Ovulation − 5 days <span style={{ color: 'var(--fg-3)' }}>(sperm survive up to 5 days)</span></div>
           <div>Fertile end = Ovulation + 1 day <span style={{ color: 'var(--fg-3)' }}>(egg viable ~12–24 hours after ovulation)</span></div>
-          <div style={{ color: '#c4b5fd', marginTop: 4 }}>
+          <div style={{ color: 'var(--brand-2)', marginTop: 4 }}>
             Peak fertility: {fmtDate(addDays(result.ovulationDate, -2))} – {fmtDate(addDays(result.ovulationDate, -1))}
             <span style={{ color: 'var(--fg-3)', marginLeft: 8, fontSize: 12 }}>(2 days before ovulation)</span>
           </div>
@@ -281,7 +280,7 @@ export default function OvulationCalculatorClient() {
             <tbody>
               {calendar.map(cycle => (
                 <tr key={cycle.cycleNum} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                  <td style={{ ...TD, color: '#c4b5fd', fontWeight: 700 }}>Cycle {cycle.cycleNum}</td>
+                  <td style={{ ...TD, color: 'var(--brand-2)', fontWeight: 700 }}>Cycle {cycle.cycleNum}</td>
                   <td style={{ ...TD, color: '#38bdf8' }}>{fmtDate(cycle.periodStart)}</td>
                   <td style={{ ...TD, color: '#6366f1' }}>{fmtShort(cycle.fertileStart)} – {fmtShort(cycle.fertileEnd)}</td>
                   <td style={{ ...TD, color: '#e879f9', fontWeight: 600 }}>{fmtDate(cycle.ovulationDate)}</td>
@@ -313,7 +312,7 @@ export default function OvulationCalculatorClient() {
                     { phase: 'Ovulation',      bbt: 'Dip then sustained rise',    note: 'Rise of 0.2–0.5°C confirms ovulation' },
                     { phase: 'Luteal',         bbt: '36.6–37.1°C / 97.9–98.8°F', note: 'Stays elevated until period' },
                   ].map(row => (
-                    <div key={row.phase} style={{ padding: '8px 12px', background: 'rgba(0,0,0,0.2)', borderRadius: 8 }}>
+                    <div key={row.phase} style={{ padding: '8px 12px', background: 'var(--bg-2)', borderRadius: 8 }}>
                       <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--fg-2)' }}>{row.phase}</div>
                       <div style={{ fontSize: 11, color: '#f59e0b' }}>{row.bbt}</div>
                       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{row.note}</div>
@@ -333,7 +332,7 @@ export default function OvulationCalculatorClient() {
                     { phase: 'Peak fertility',       cm: 'Clear, stretchy, egg-white', fertility: 'Highest' },
                     { phase: 'Post-ovulation',       cm: 'Thickens, then disappears', fertility: 'Low' },
                   ].map(row => (
-                    <div key={row.phase} style={{ padding: '8px 12px', background: 'rgba(0,0,0,0.2)', borderRadius: 8 }}>
+                    <div key={row.phase} style={{ padding: '8px 12px', background: 'var(--bg-2)', borderRadius: 8 }}>
                       <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--fg-2)' }}>{row.phase}</div>
                       <div style={{ fontSize: 11, color: '#6366f1' }}>{row.cm}</div>
                       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>Fertility: <strong>{row.fertility}</strong></div>
@@ -351,7 +350,7 @@ export default function OvulationCalculatorClient() {
 
       {/* ── INTERPRETATION ── */}
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.05)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Understanding Your Cycle
         </h3>
         <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>

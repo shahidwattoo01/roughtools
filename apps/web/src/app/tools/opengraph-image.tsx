@@ -64,7 +64,7 @@ export default async function Image({ params }: Params) {
             marginBottom: '48px',
           }}
         >
-          <span style={{ fontSize: '28px', fontWeight: '700', color: 'rgba(255,255,255,0.9)' }}>
+          <span style={{ fontSize: '28px', fontWeight: '700', color: 'var(--fg)' }}>
             🛠️ {SEO_CONFIG.siteName}
           </span>
           <div
@@ -117,7 +117,7 @@ export default async function Image({ params }: Params) {
         <p
           style={{
             fontSize: '28px',
-            color: 'rgba(255,255,255,0.85)',
+            color: 'var(--fg)',
             margin: '0 0 auto',
             lineHeight: '1.4',
             maxWidth: '900px',

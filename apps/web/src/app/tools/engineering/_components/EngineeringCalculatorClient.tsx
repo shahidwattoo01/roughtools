@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import type { OutputField, EngineeringResult, EngineeringCalcConfig } from './engineering-configs'
+import type { EngineeringResult, EngineeringCalcConfig } from './engineering-configs'
 import { getEngineeringConfig } from './engineering-registry'
 import EngineeringResultDisplay from './EngineeringResultDisplay'
 

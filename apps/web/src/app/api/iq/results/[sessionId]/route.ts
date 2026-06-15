@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '../../_lib/db'
 import { requireSession } from '../../_lib/session'
 
 function iqClassification(iq: number): string {

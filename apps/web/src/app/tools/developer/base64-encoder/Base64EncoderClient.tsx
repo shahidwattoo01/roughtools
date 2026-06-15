@@ -11,8 +11,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 13, fontFamily: 'monospace', boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 13, fontFamily: 'monospace', boxSizing: 'border-box',
   resize: 'vertical',
 }
 const LABEL: CSSProperties = {
@@ -22,7 +22,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '8px 16px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '8px 16px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap',
 }
 const BTN_ACTIVE: CSSProperties = { ...BTN_GHOST, background: 'rgba(139,92,246,0.3)', border: '1px solid rgba(139,92,246,0.6)' }
@@ -63,7 +63,7 @@ function byteSize(n: number): string {
   return `${(n / 1024).toFixed(1)} KB`
 }
 
-function isLikelyBase64(s: string): boolean {
+function _isLikelyBase64(s: string): boolean {
   return /^[A-Za-z0-9+/\-_=\n\r]+$/.test(s.trim()) && s.trim().length > 0
 }
 
@@ -75,7 +75,7 @@ function detectImageMime(b64: string): string | null {
     if (codes[0] === 0x89 && bytes[1] === 'P') return 'image/png'
     if (bytes.slice(0, 6) === 'GIF89a' || bytes.slice(0, 6) === 'GIF87a') return 'image/gif'
     if (bytes.slice(0, 4) === 'RIFF') return 'image/webp'
-  } catch {}
+  } catch { /* intentional */ }
   return null
 }
 
@@ -268,7 +268,7 @@ export default function Base64EncoderClient() {
             <textarea style={{ ...INPUT_BOX, minHeight: 100 }} value={urlSafeOut} onChange={e => { setUrlSafeOut(e.target.value); setError('') }} placeholder="URL-safe Base64 here..." spellCheck={false} />
           </div>
           <div style={{ padding: '10px 14px', borderRadius: 8, background: 'rgba(99,102,241,0.08)', border: '1px solid rgba(99,102,241,0.2)', fontSize: 12, color: 'var(--fg-3)' }}>
-            URL-safe Base64 replaces <code style={{ color: '#c4b5fd' }}>+</code> with <code style={{ color: '#c4b5fd' }}>-</code>, <code style={{ color: '#c4b5fd' }}>/</code> with <code style={{ color: '#c4b5fd' }}>_</code>, and removes <code style={{ color: '#c4b5fd' }}>=</code> padding. Safe to use in URLs and filenames.
+            URL-safe Base64 replaces <code style={{ color: 'var(--brand-2)' }}>+</code> with <code style={{ color: 'var(--brand-2)' }}>-</code>, <code style={{ color: 'var(--brand-2)' }}>/</code> with <code style={{ color: 'var(--brand-2)' }}>_</code>, and removes <code style={{ color: 'var(--brand-2)' }}>=</code> padding. Safe to use in URLs and filenames.
           </div>
         </div>
       )}
@@ -280,7 +280,7 @@ export default function Base64EncoderClient() {
             style={{
               ...CARD,
               border: isDragging ? '2px dashed #8b5cf6' : '2px dashed var(--line-strong)',
-              background: isDragging ? 'rgba(139,92,246,0.1)' : 'rgba(0,0,0,0.2)',
+              background: isDragging ? 'rgba(139,92,246,0.1)' : 'var(--bg-2)',
               textAlign: 'center', padding: '32px', cursor: 'pointer',
             }}
             onDragOver={e => { e.preventDefault(); setIsDragging(true) }}

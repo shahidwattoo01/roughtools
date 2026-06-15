@@ -3,7 +3,7 @@ import { SEO_CONFIG, CATEGORY_SEO } from './seo-config'
 import { Tool, ToolCategory } from './tools-registry'
 
 // ============================================================
-// ROUGHTOOLS â€” SEO UTILITIES
+// ROUGHTOOLS — SEO UTILITIES
 // Generates consistent metadata for all pages
 // ============================================================
 
@@ -40,7 +40,7 @@ export function generateHomeMetadata(): Metadata {
           url: `${siteUrl}/og-image.png`,
           width: 1200,
           height: 630,
-          alt: `${siteName} â€” Free Online Tools`,
+          alt: `${siteName} — Free Online Tools`,
         },
       ],
     },
@@ -122,8 +122,8 @@ export function generateCategoryMetadata(category: ToolCategory): Metadata {
 export function generateToolMetadata(tool: Tool): Metadata {
   const canonicalUrl = `${siteUrl}/tools/${tool.category}/${tool.slug}`
 
-  // Title pattern: "[Tool Name] â€” Free Online Tool | RoughTools"
-  const title = `${tool.name} â€” Free Online Tool | ${siteName}`
+  // Title pattern: "[Tool Name] — Free Online Tool | RoughTools"
+  const title = `${tool.name} — Free Online Tool | ${siteName}`
   const description = tool.description
 
   return {
@@ -221,7 +221,7 @@ export function generateBlogMetadata(params: {
 
 /** Generate metadata for pricing page */
 export function generatePricingMetadata(): Metadata {
-  const title = `Pricing â€” Free vs Pro vs Team | ${siteName}`
+  const title = `Pricing — Free vs Pro vs Team | ${siteName}`
   const description =
     'Start free. Upgrade to Pro for $9/month for unlimited uses, 200MB files, no watermarks, and full history. Team plan at $29/month for 5 seats.'
   const canonicalUrl = `${siteUrl}/pricing`

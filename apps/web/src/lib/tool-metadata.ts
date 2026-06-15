@@ -1,5 +1,5 @@
 ﻿// ============================================================
-// ROUGHTOOLS â€” Per-Tool Metadata Helper
+// ROUGHTOOLS — Per-Tool Metadata Helper
 // Use in every tool's page.tsx generateMetadata function
 // ============================================================
 
@@ -136,7 +136,7 @@ export const DEFAULT_FAQS: Record<string, Array<{ question: string; answer: stri
     },
     {
       question: 'What is a healthy BMI?',
-      answer: 'A BMI between 18.5 and 24.9 is considered healthy. Below 18.5 is underweight, 25â€“29.9 is overweight, and 30+ is obese.',
+      answer: 'A BMI between 18.5 and 24.9 is considered healthy. Below 18.5 is underweight, 25–29.9 is overweight, and 30+ is obese.',
     },
     {
       question: 'Is BMI accurate?',

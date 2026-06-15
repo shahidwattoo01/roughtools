@@ -60,7 +60,7 @@ export default function AdminUsersPage() {
           <tbody>
             {loading ? (
               <tr><td colSpan={7} className="px-4 py-8 text-center text-[#555]">Loading…</td></tr>
-            ) : !data?.users.length ? (
+            ) : !data?.users?.length ? (
               <tr><td colSpan={7} className="px-4 py-8 text-center text-[#555]">No users found.</td></tr>
             ) : data.users.map(u => (
               <tr key={u.id} className="border-b border-white/4 hover:bg-white/2">

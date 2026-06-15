@@ -1,5 +1,5 @@
 ﻿// ============================================================
-// ROUGHTOOLS â€” CANONICAL URL UTILITIES
+// ROUGHTOOLS — CANONICAL URL UTILITIES
 // Prevent duplicate content issues
 // ============================================================
 
@@ -56,8 +56,8 @@ export function normaliseCanonical(url: string): string {
 
 /**
  * Pagination canonical helpers.
- * Page 1 â†’ canonical = base URL (no ?page=1)
- * Page N â†’ canonical = base URL + ?page=N
+ * Page 1 → canonical = base URL (no ?page=1)
+ * Page N → canonical = base URL + ?page=N
  */
 export function paginatedCanonical(baseUrl: string, page: number): string {
   if (page <= 1) return baseUrl

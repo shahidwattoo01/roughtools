@@ -82,6 +82,7 @@ export function HomeSearchBar() {
           spellCheck={false}
           aria-label="Search tools"
           aria-expanded={open}
+          aria-controls="home-searchbar-listbox"
           role="combobox"
           aria-haspopup="listbox"
           className="flex-1 border-none bg-transparent outline-none text-[15px] text-[#1a1a1a] dark:text-[#f0f0f0] placeholder:text-[#555] dark:placeholder:text-[#aaa]"
@@ -94,6 +95,7 @@ export function HomeSearchBar() {
       {/* Dropdown results */}
       {open && (
         <div
+          id="home-searchbar-listbox"
           role="listbox"
           className="absolute top-full left-0 right-0 z-50 mt-1.5 bg-white dark:bg-[#1e1e1e] border border-black/[0.08] dark:border-white/[0.08] rounded-xl shadow-xl overflow-hidden"
         >

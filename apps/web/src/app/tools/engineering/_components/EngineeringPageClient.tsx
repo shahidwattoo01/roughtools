@@ -250,7 +250,7 @@ export default function EngineeringPageClient() {
     : DISCIPLINES
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#f5f5f3] dark:bg-[#121212]">
 
       {/* ── Hero ──────────────────────────────────────────────── */}
       <div className="bg-gradient-to-br from-sky-600 via-blue-700 to-indigo-800 text-white">
@@ -286,11 +286,11 @@ export default function EngineeringPageClient() {
       </div>
 
       {/* ── Trust badges ──────────────────────────────────────── */}
-      <div className="border-b border-gray-100 bg-gray-50">
+      <div className="border-b border-gray-100 dark:border-white/8 bg-gray-50 dark:bg-[#161616]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
             {TRUST.map(t => (
-              <span key={t.label} className="flex items-center gap-1.5 text-sm text-gray-600">
+              <span key={t.label} className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-[#888]">
                 <span>{t.icon}</span>{t.label}
               </span>
             ))}
@@ -300,8 +300,8 @@ export default function EngineeringPageClient() {
 
       {/* ── Discipline Filter Cards ────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <h2 className="text-xl font-bold text-gray-900 mb-2">Browse by Discipline</h2>
-        <p className="text-sm text-gray-500 mb-6">Click a discipline to filter tools — or scroll to browse all {TOTAL}+</p>
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Browse by Discipline</h2>
+        <p className="text-sm text-gray-500 dark:text-[#999] mb-6">Click a discipline to filter tools — or scroll to browse all {TOTAL}+</p>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-4">
           {/* All card */}
@@ -310,7 +310,7 @@ export default function EngineeringPageClient() {
             className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all cursor-pointer text-center ${
               active === null
                 ? 'bg-sky-600 border-sky-600 text-white shadow-lg shadow-sky-200'
-                : 'bg-white border-gray-200 hover:border-sky-300 hover:shadow-sm text-gray-700'
+                : 'bg-white dark:bg-[#1e1e1e] border-gray-200 dark:border-white/10 hover:border-sky-300 hover:shadow-sm text-gray-700 dark:text-[#ddd]'
             }`}
           >
             <span className={`text-2xl w-10 h-10 rounded-xl flex items-center justify-center ${
@@ -320,7 +320,7 @@ export default function EngineeringPageClient() {
               <p className={`text-sm font-bold leading-tight ${active === null ? 'text-white' : 'text-gray-900'}`}>
                 All Disciplines
               </p>
-              <p className={`text-xs mt-0.5 ${active === null ? 'text-sky-100' : 'text-gray-500'}`}>
+              <p className={`text-xs mt-0.5 ${active === null ? 'text-sky-100' : 'text-gray-500 dark:text-[#999]'}`}>
                 {TOTAL} tools
               </p>
             </div>
@@ -340,7 +340,7 @@ export default function EngineeringPageClient() {
                 className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all cursor-pointer text-center ${
                   isActive
                     ? `${pal.cardActive} ${pal.borderActive} text-white shadow-lg`
-                    : `bg-white ${pal.border} hover:shadow-sm text-gray-700`
+                    : `bg-white dark:bg-[#1e1e1e] ${pal.border} dark:border-white/10 hover:shadow-sm text-gray-700 dark:text-[#ddd]`
                 }`}
               >
                 <span className={`text-2xl w-10 h-10 rounded-xl flex items-center justify-center ${
@@ -350,7 +350,7 @@ export default function EngineeringPageClient() {
                   <p className={`text-sm font-bold leading-tight ${isActive ? 'text-white' : 'text-gray-900'}`}>
                     {disc.label}
                   </p>
-                  <p className={`text-xs mt-0.5 ${isActive ? 'text-white/80' : 'text-gray-500'}`}>
+                  <p className={`text-xs mt-0.5 ${isActive ? 'text-white/80' : 'text-gray-500 dark:text-[#999]'}`}>
                     {disc.tools.length} tools
                   </p>
                 </div>
@@ -382,18 +382,18 @@ export default function EngineeringPageClient() {
           return (
             <div key={disc.id} id={disc.id} className="mb-14">
               {/* Section header */}
-              <div className="flex items-start gap-4 mb-6 pb-4 border-b border-gray-100">
+              <div className="flex items-start gap-4 mb-6 pb-4 border-b border-gray-100 dark:border-white/8">
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 ${pal.icon}`}>
                   {disc.icon}
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-3 flex-wrap">
-                    <h2 className="text-xl font-bold text-gray-900">{disc.label}</h2>
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">{disc.label}</h2>
                     <span className={`text-xs font-semibold rounded-full px-2.5 py-0.5 ${pal.text} bg-gray-100`}>
                       {disc.tools.length} tools
                     </span>
                   </div>
-                  <p className="text-sm text-gray-500 mt-0.5">{disc.description}</p>
+                  <p className="text-sm text-gray-500 dark:text-[#999] mt-0.5">{disc.description}</p>
                 </div>
                 <button
                   onClick={() => selectCategory(disc.id)}
@@ -413,16 +413,16 @@ export default function EngineeringPageClient() {
                   <Link
                     key={tool.href}
                     href={tool.href}
-                    className={`group flex items-start gap-3 p-4 rounded-xl border bg-white hover:shadow-md transition-all ${pal.border} hover:${pal.borderActive}`}
+                    className={`group flex items-start gap-3 p-4 rounded-xl border bg-white dark:bg-[#1e1e1e] hover:shadow-md transition-all ${pal.border} dark:border-white/10 hover:${pal.borderActive} dark:hover:border-sky-500`}
                   >
                     <span className={`w-9 h-9 rounded-lg flex items-center justify-center text-xl flex-shrink-0 ${pal.toolIconBg}`}>
                       {tool.icon}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className={`text-sm font-semibold text-gray-900 group-hover:${pal.text} transition-colors leading-snug`}>
+                      <p className={`text-sm font-semibold text-gray-900 dark:text-white group-hover:${pal.text} transition-colors leading-snug`}>
                         {tool.name}
                       </p>
-                      <p className="text-xs text-gray-400 mt-0.5 line-clamp-2 leading-relaxed">
+                      <p className="text-xs text-gray-400 dark:text-[#777] mt-0.5 line-clamp-2 leading-relaxed">
                         {tool.description}
                       </p>
                     </div>
@@ -435,12 +435,12 @@ export default function EngineeringPageClient() {
       </section>
 
       {/* ── SEO About section ─────────────────────────────────── */}
-      <section className="bg-gray-50 border-t border-gray-100">
+      <section className="bg-[#f5f5f3] dark:bg-[#1a1a1a] border-t border-gray-100 dark:border-white/8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
             Why Engineers Trust Our Free Online Calculators
           </h2>
-          <p className="text-sm text-gray-600 leading-relaxed mb-6">
+          <p className="text-sm text-gray-600 dark:text-[#aaa] leading-relaxed mb-6">
             Our engineering tool suite covers all major disciplines with formulas validated against
             industry standards including ASCE 7, ACI 318, ASME, NEC, API 520/521, IEC and ASHRAE.
             Each calculator shows the formula used so you can verify results.

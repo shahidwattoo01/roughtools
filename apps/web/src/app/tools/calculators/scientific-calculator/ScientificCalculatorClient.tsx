@@ -14,7 +14,7 @@ const BASE: React.CSSProperties = {
   background: 'rgba(255,255,255,0.05)', color: 'var(--fg)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer', transition: 'background 0.15s',
 }
-const OP: React.CSSProperties  = { ...BASE, background: 'rgba(139,92,246,0.2)', border: '1px solid rgba(139,92,246,0.3)', color: '#c4b5fd' }
+const OP: React.CSSProperties  = { ...BASE, background: 'rgba(139,92,246,0.2)', border: '1px solid rgba(139,92,246,0.3)', color: 'var(--brand-2)' }
 const EQ: React.CSSProperties  = { ...BASE, background: 'rgba(139,92,246,0.7)', border: '1px solid rgba(139,92,246,0.8)', color: '#fff' }
 const CLR: React.CSSProperties = { ...BASE, color: '#f87171' }
 
@@ -204,13 +204,13 @@ export default function ScientificCalculatorClient() {
     >
       {/* Display */}
       <div style={{
-        background: 'rgba(0,0,0,0.4)', borderRadius: 12, padding: '14px 18px',
+        background: 'var(--bg-3)', borderRadius: 12, padding: '14px 18px',
         marginBottom: 12, border: '1px solid var(--line-strong)',
       }}>
         <div style={{ fontSize: 11, color: 'var(--fg-3)', minHeight: 16, fontFamily: 'monospace' }}>{expr || ' '}</div>
         <div style={{
           fontSize: 36, fontWeight: 700, fontFamily: 'monospace', textAlign: 'right',
-          color: error ? '#f87171' : '#e0e0ff', wordBreak: 'break-all', lineHeight: 1.2,
+          color: error ? '#f87171' : 'var(--fg)', wordBreak: 'break-all', lineHeight: 1.2,
         }}>
           {display}
         </div>
@@ -232,7 +232,7 @@ export default function ScientificCalculatorClient() {
             <button onClick={() => setHistory([])} style={{ fontSize: 11, color: 'var(--fg-3)', background: 'none', border: 'none', cursor: 'pointer' }}>Clear</button>
           </div>
           {history.map((h, i) => (
-            <div key={i} style={{ fontFamily: 'monospace', fontSize: 12, color: i===0?'#c4b5fd':'#444', padding: '3px 0', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>{h}</div>
+            <div key={i} style={{ fontFamily: 'monospace', fontSize: 12, color: i===0?'var(--brand-2)':'#444', padding: '3px 0', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>{h}</div>
           ))}
         </div>
       )}

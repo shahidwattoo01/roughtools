@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import BinaryCalculatorClient from './BinaryCalculatorClient'
 import { getCalcSEO } from '../_components/calc-seo-configs'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -229,12 +229,6 @@ export default function BinaryCalculatorPage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -288,7 +282,7 @@ export default function BinaryCalculatorPage() {
           </h3>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
             Bitwise operations manipulate individual bits. AND is used to clear specific bits (masking). OR is used to set specific bits. XOR
-            is used to toggle bits or detect differences (also used in simple encryption). NOT flips all bits to produce the one's complement.
+            is used to toggle bits or detect differences (also used in simple encryption). NOT flips all bits to produce the one&apos;s complement.
             Left shift (≪) multiplies by 2 per shift; right shift (≫) divides by 2 per shift — making shifts the fastest way to scale by
             powers of 2 in low-level code. These operations are essential in systems programming, graphics, cryptography, and embedded firmware.
           </p>
@@ -303,6 +297,13 @@ export default function BinaryCalculatorPage() {
             for full details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

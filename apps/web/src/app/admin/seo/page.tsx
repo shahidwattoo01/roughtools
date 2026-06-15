@@ -48,9 +48,9 @@ export default function AdminSeoPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold">SEO Health</h1>
         <div className="flex items-center gap-4 text-[13px]">
-          <span className="text-[#6fcf97]">● {data?.buckets.green ?? 0} good</span>
-          <span className="text-[#fbbf24]">● {data?.buckets.yellow ?? 0} ok</span>
-          <span className="text-[#f87171]">● {data?.buckets.red ?? 0} poor</span>
+          <span className="text-[#6fcf97]">● {data?.buckets?.green ?? 0} good</span>
+          <span className="text-[#fbbf24]">● {data?.buckets?.yellow ?? 0} ok</span>
+          <span className="text-[#f87171]">● {data?.buckets?.red ?? 0} poor</span>
           <span className="text-[#aaa] ml-2">Avg: <strong className="text-white">{data?.avgScore ?? 0}/100</strong></span>
         </div>
       </div>
@@ -78,8 +78,8 @@ export default function AdminSeoPage() {
             { label: 'Description Out of Range', count: (data?.allTools ?? []).filter(t => !t.descOk).length, color: '#fbbf24' },
             { label: 'Title Out of Range',       count: (data?.allTools ?? []).filter(t => !t.titleOk).length, color: '#fbbf24' },
             { label: 'Not Indexed',              count: (data?.allTools ?? []).filter(t => !t.isIndexed).length, color: '#f87171' },
-            { label: 'Duplicate Title Prefix',   count: data?.duplicates.length ?? 0, color: '#f97316' },
-            { label: 'Score 80+',                count: data?.buckets.green ?? 0, color: '#6fcf97' },
+            { label: 'Duplicate Title Prefix',   count: data?.duplicates?.length ?? 0, color: '#f97316' },
+            { label: 'Score 80+',                count: data?.buckets?.green ?? 0, color: '#6fcf97' },
           ].map(({ label, count, color }) => (
             <div key={label} className="bg-[#1a1a1a] border border-white/8 rounded-xl p-3">
               <div className="text-xl font-semibold" style={{ color }}>{count}</div>
@@ -166,7 +166,7 @@ export default function AdminSeoPage() {
       {tab === 'duplicates' && (
         <div className="bg-[#1a1a1a] border border-white/8 rounded-xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/6 text-[13px] font-medium">
-            Duplicate Title Prefixes — {data?.duplicates.length ?? 0} found
+            Duplicate Title Prefixes — {data?.duplicates?.length ?? 0} found
           </div>
           {(data?.duplicates ?? []).length === 0 ? (
             <div className="px-4 py-8 text-center text-[#555]">No duplicate titles detected ✓</div>
@@ -191,7 +191,7 @@ export default function AdminSeoPage() {
         <div className="space-y-4">
           <div className="bg-[#1a1a1a] border border-white/8 rounded-xl p-5">
             <h3 className="text-sm font-semibold mb-3">Sitemap Manager</h3>
-            <p className="text-[12px] text-[#888] mb-4">Your sitemap is auto-generated at <code className="font-mono text-[#aaa]">/sitemap.xml</code> by Next.js. It includes all {data?.allTools.length ?? 0}+ tool pages.</p>
+            <p className="text-[12px] text-[#888] mb-4">Your sitemap is auto-generated at <code className="font-mono text-[#aaa]">/sitemap.xml</code> by Next.js. It includes all {data?.allTools?.length ?? 0}+ tool pages.</p>
             <div className="flex gap-3">
               <a href="/sitemap.xml" target="_blank"
                 className="text-[12px] border border-white/10 rounded-lg px-4 py-2 text-[#aaa] hover:text-white hover:border-[#1a6b3c] transition-colors">

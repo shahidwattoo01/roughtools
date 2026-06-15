@@ -314,7 +314,7 @@ export default function LandingPageClient() {
       <div style={CARD}>
         <div style={SECTION_HDR}>
           <h2 style={{ fontSize: 15, fontWeight: 700, color: '#fff', margin: 0 }}>Page Details</h2>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)', margin: '4px 0 0' }}>Fill in the basics — full page structure updates live</p>
+          <p style={{ fontSize: 12, color: 'var(--fg-1)', margin: '4px 0 0' }}>Fill in the basics — full page structure updates live</p>
         </div>
         <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 14 }}>
 

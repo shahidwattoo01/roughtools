@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import ConfidenceIntervalClient from './ConfidenceIntervalClient'
 import { getCalcSEO } from '../_components/calc-seo-configs'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -237,12 +237,6 @@ export default function ConfidenceIntervalPage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -321,7 +315,7 @@ export default function ConfidenceIntervalPage() {
             Applications in Research and Industry
           </h3>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
-            Confidence intervals are reported in opinion polling (the "±3%" margin of error in political surveys),
+            Confidence intervals are reported in opinion polling (the &quot;±3%&quot; margin of error in political surveys),
             clinical trials (the range of plausible treatment effect sizes), A/B testing (the range of conversion
             rate improvements), manufacturing quality control (confirming a process mean is within specification),
             and academic research (providing effect size estimates alongside significance tests). The American
@@ -340,6 +334,13 @@ export default function ConfidenceIntervalPage() {
             for full details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

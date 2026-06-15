@@ -2,8 +2,11 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { PDFDocument } from 'pdf-lib'
+import { pdfGuard } from '../_lib/pdf-guards'
 
 export async function POST(req: NextRequest) {
+  const guard = pdfGuard(req)
+  if (guard) return guard
   try {
     const form = await req.formData()
     const files = form.getAll('files') as File[]

@@ -70,7 +70,7 @@ function buildPrivacyPolicy(f: {
   const entity = f.companyType === 'individual' ? 'I' : 'we'
   const entityPossessive = f.companyType === 'individual' ? 'my' : 'our'
 
-  let doc = `PRIVACY POLICY
+  const doc = `PRIVACY POLICY
 
 Last Updated: ${date}
 
@@ -198,7 +198,7 @@ export default function PrivacyPolicyClient() {
   const [email, setEmail] = useState('')
   const [companyType, setCompanyType] = useState('company')
   const [state, setState] = useState('California')
-  const [country, setCountry] = useState('US')
+  const [country, _setCountry] = useState('US')
   const [effectiveDate, setEffectiveDate] = useState('')
   const [contactAddress, setContactAddress] = useState('')
 

@@ -98,33 +98,33 @@ function exportCSV(baseC: number) {
 // ─── Style Tokens ─────────────────────────────────────────────────────────────
 
 const CARD: CSSProperties = {
-  background: '#12121f', border: '1px solid rgba(255,255,255,0.1)',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
   borderRadius: 16, padding: '24px 28px',
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.1)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
-  color: 'rgba(255,255,255,0.45)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em',
+  color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em',
 }
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
   padding: '9px 12px', fontWeight: 700, fontSize: 11,
   textTransform: 'uppercase', letterSpacing: '0.07em',
-  color: 'rgba(255,255,255,0.45)', textAlign: 'right', background: 'rgba(99,102,241,0.1)',
+  color: 'var(--fg-3)', textAlign: 'right', background: 'rgba(99,102,241,0.1)',
   whiteSpace: 'nowrap',
 }
 const TD: CSSProperties = {
   padding: '6px 12px', fontSize: 12, textAlign: 'right',
-  color: 'rgba(255,255,255,0.65)', whiteSpace: 'nowrap',
+  color: 'var(--fg-2)', whiteSpace: 'nowrap',
 }
 
 // ─── Copy helper ──────────────────────────────────────────────────────────────
@@ -212,7 +212,7 @@ export default function TemperatureConverterClient() {
                 />
                 <CopyBtn text={values[u.key]} />
               </div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 3 }}>{u.industry}</div>
+              <div style={{ fontSize: 11, color: 'var(--fg-2)', marginTop: 3 }}>{u.industry}</div>
             </div>
           ))}
         </div>
@@ -220,7 +220,7 @@ export default function TemperatureConverterClient() {
 
       {/* ── REFERENCE POINTS ── */}
       <div style={CARD}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--fg-1)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Reference Points
         </h3>
         <div style={{ overflowX: 'auto' }}>
@@ -237,7 +237,7 @@ export default function TemperatureConverterClient() {
                   onClick={() => applyQuick(ref.c, 'c')}
                   title={`Click to load ${ref.label}`}
                 >
-                  <td style={{ ...TD, textAlign: 'left', color: '#c4b5fd', fontWeight: 600 }}>{ref.label}</td>
+                  <td style={{ ...TD, textAlign: 'left', color: 'var(--brand-2)', fontWeight: 600 }}>{ref.label}</td>
                   {UNITS.map(u => (
                     <td key={u.key} style={TD}>{fmt(fromCelsius(ref.c, u.key))}</td>
                   ))}
@@ -246,21 +246,21 @@ export default function TemperatureConverterClient() {
             </tbody>
           </table>
         </div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 8 }}>Click any row to load that reference point into the converter.</div>
+        <div style={{ fontSize: 11, color: 'var(--fg-2)', marginTop: 8 }}>Click any row to load that reference point into the converter.</div>
       </div>
 
       {/* ── FULL CONVERSION MATRIX ── */}
       <div>
         <button
           onClick={() => setShowMatrix(v => !v)}
-          style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: '#12121f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
+          style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-2)', border: '1px solid var(--line-strong)', borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
           aria-expanded={showMatrix}
         >
           {showMatrix ? '▾' : '▸'} Full Conversion Matrix (1 unit of each → all others)
         </button>
         {showMatrix && (
           <div style={{ ...CARD, padding: 0, overflow: 'hidden', marginTop: 4 }}>
-            <div style={{ display: 'flex', gap: 10, padding: '14px 20px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ display: 'flex', gap: 10, padding: '14px 20px', borderBottom: '1px solid var(--line-strong)' }}>
               <button onClick={() => exportCSV(baseC)} style={BTN_GHOST} aria-label="Export matrix CSV">
                 ⬇ Export CSV
               </button>
@@ -276,7 +276,7 @@ export default function TemperatureConverterClient() {
                 <tbody>
                   {UNITS.map(from => (
                     <tr key={from.key} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                      <td style={{ ...TD, textAlign: 'left', color: '#c4b5fd', fontWeight: 700 }}>1 {from.symbol}</td>
+                      <td style={{ ...TD, textAlign: 'left', color: 'var(--brand-2)', fontWeight: 700 }}>1 {from.symbol}</td>
                       {UNITS.map(to => (
                         <td key={to.key} style={{ ...TD, background: from.key === to.key ? 'rgba(99,102,241,0.12)' : 'transparent' }}>
                           {from.key === to.key ? '1' : fmt(convert(1, from.key, to.key))}
@@ -293,27 +293,27 @@ export default function TemperatureConverterClient() {
 
       {/* ── INDUSTRY CONTEXT ── */}
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Industry & Science Context
         </h3>
         <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Celsius (°C)</strong> — The international standard for everyday temperature. Used by 195+ countries. 0°C = water freezes, 100°C = water boils at sea level.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Celsius (°C)</strong> — The international standard for everyday temperature. Used by 195+ countries. 0°C = water freezes, 100°C = water boils at sea level.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Fahrenheit (°F)</strong> — Standard in the United States. Human body temperature (98.6°F) and key weather benchmarks are well-represented on this scale.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Fahrenheit (°F)</strong> — Standard in the United States. Human body temperature (98.6°F) and key weather benchmarks are well-represented on this scale.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Kelvin (K)</strong> — The SI base unit of thermodynamic temperature. 0 K = absolute zero, the coldest possible temperature. Critical in physics, chemistry, and astronomy. Note: no degree symbol.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Kelvin (K)</strong> — The SI base unit of thermodynamic temperature. 0 K = absolute zero, the coldest possible temperature. Critical in physics, chemistry, and astronomy. Note: no degree symbol.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Rankine (°R)</strong> — Absolute temperature scale using Fahrenheit degrees. Used in some US engineering fields (thermodynamics, aerospace). 0°R = absolute zero.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Rankine (°R)</strong> — Absolute temperature scale using Fahrenheit degrees. Used in some US engineering fields (thermodynamics, aerospace). 0°R = absolute zero.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Delisle, Newton, Réaumur, Rømer</strong> — Historical scales from the 1700s. Réaumur (°Ré) was once widely used in France and Germany, particularly in food/dairy contexts. All are now obsolete in practice.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Delisle, Newton, Réaumur, Rømer</strong> — Historical scales from the 1700s. Réaumur (°Ré) was once widely used in France and Germany, particularly in food/dairy contexts. All are now obsolete in practice.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>−40°</strong> — The unique crossover point where Celsius and Fahrenheit are equal: −40°C = −40°F.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>−40°</strong> — The unique crossover point where Celsius and Fahrenheit are equal: −40°C = −40°F.
           </li>
         </ul>
       </div>

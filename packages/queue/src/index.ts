@@ -1,10 +1,11 @@
-import { Queue, Worker, type Job, type Processor } from "bullmq";
+import { Queue, Worker, type Job, type Processor, type ConnectionOptions } from "bullmq";
 import { Redis } from "ioredis";
 
+// Cast to ConnectionOptions to absorb minor ioredis patch-version type drift
 const connection = new Redis(
   process.env.REDIS_URL ?? "redis://localhost:6379",
-  { maxRetriesPerRequest: null }, // Required by BullMQ
-);
+  { maxRetriesPerRequest: null, lazyConnect: true }, // Required by BullMQ; lazyConnect prevents eager connect at module load
+) as unknown as ConnectionOptions;
 
 // ─── Type-safe job definitions ───────────────────────────
 
@@ -39,7 +40,7 @@ export interface JobPayloads {
 
 // ─── Queue ───────────────────────────────────────────────
 
-export const jobQueue = new Queue<any, unknown, string>("toolverse-jobs", {
+export const jobQueue = new Queue("toolverse-jobs", {
   connection,
   defaultJobOptions: {
     attempts: 3,
@@ -51,7 +52,8 @@ export const jobQueue = new Queue<any, unknown, string>("toolverse-jobs", {
 
 // ─── Processor registry ──────────────────────────────────
 
-const processors = new Map<JobType, Processor>();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const processors = new Map<JobType, Processor<any>>();
 
 export function registerProcessor<T extends JobType>(
   type: T,
@@ -62,14 +64,15 @@ export function registerProcessor<T extends JobType>(
 
 // ─── Worker lifecycle ────────────────────────────────────
 
-let workers: Worker[] = [];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let workers: Worker<any, any, any>[] = [];
 
 export function startWorkers(concurrency: number = 3) {
   stopWorkers();
 
-  const worker = new Worker<any, unknown, string>(
+  const worker = new Worker(
     "toolverse-jobs",
-    async (job) => {
+    async (job: Job) => {
       const handler = processors.get(job.name as JobType);
       if (!handler) {
         throw new Error(`No processor registered for: ${job.name}`);
@@ -188,4 +191,3 @@ export async function enqueueIqSessionExpiry() {
     { jobId: `iq-expiry:${Date.now()}`, priority: 10 },
   );
 }
-

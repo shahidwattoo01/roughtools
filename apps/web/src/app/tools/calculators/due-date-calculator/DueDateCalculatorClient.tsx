@@ -13,8 +13,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -23,7 +23,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -95,7 +95,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   label: string; value: string; sub?: string; color?: string
 }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 20, fontWeight: 900, color, lineHeight: 1.2 }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -111,7 +111,7 @@ function TabBar({ tabs, active, onChange }: { tabs: string[]; active: string; on
           padding: '8px 16px', borderRadius: 8, fontWeight: 600, fontSize: 13, cursor: 'pointer',
           background: active === t ? 'rgba(99,102,241,0.25)' : 'transparent',
           border: active === t ? '1px solid rgba(99,102,241,0.6)' : '1px solid var(--line-strong)',
-          color: active === t ? '#c4b5fd' : 'var(--fg-3)',
+          color: active === t ? 'var(--brand-2)' : 'var(--fg-3)',
         }}>{t}</button>
       ))}
     </div>
@@ -246,7 +246,7 @@ export default function DueDateCalculatorClient() {
                 <input type="number" style={INPUT_BOX} value={cycleLength} min={20} max={45}
                   onChange={e => setCycleLength(e.target.value)} placeholder="28" />
                 <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4 }}>
-                  Adjusts Naegele's Rule (default: 28-day cycle = 280 days)
+                  Adjusts Naegele&apos;s Rule (default: 28-day cycle = 280 days)
                 </div>
               </div>
             </>
@@ -278,7 +278,7 @@ export default function DueDateCalculatorClient() {
                       flex: 1, padding: '9px 0', borderRadius: 8, cursor: 'pointer', fontWeight: 600, fontSize: 13,
                       background: ivfDay === d ? 'rgba(99,102,241,0.25)' : 'transparent',
                       border: ivfDay === d ? '1px solid rgba(99,102,241,0.6)' : '1px solid var(--line-strong)',
-                      color: ivfDay === d ? '#c4b5fd' : 'var(--fg-3)',
+                      color: ivfDay === d ? 'var(--brand-2)' : 'var(--fg-3)',
                     }}>Day {d} Blastocyst</button>
                   ))}
                 </div>
@@ -301,7 +301,7 @@ export default function DueDateCalculatorClient() {
                 <input type="number" style={INPUT_BOX} value={gestDays} min={0} max={6}
                   onChange={e => setGestDays(e.target.value)} placeholder="0" />
                 <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4 }}>
-                  E.g. "8 weeks and 3 days" → weeks=8, days=3
+                  E.g. &quot;8 weeks and 3 days&quot; → weeks=8, days=3
                 </div>
               </div>
             </>
@@ -385,7 +385,7 @@ export default function DueDateCalculatorClient() {
           <button onClick={() => setShowMilestones(v => !v)} style={{
             width: '100%', textAlign: 'left', padding: '14px 20px',
             background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-            borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer',
+            borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer',
           }} aria-expanded={showMilestones}>
             {showMilestones ? '▾' : '▸'} Pregnancy Milestone Timeline ({MILESTONES.length} milestones)
           </button>
@@ -422,7 +422,7 @@ export default function DueDateCalculatorClient() {
                               color: TRIMESTER_COLORS[m.category],
                             }}>{m.category}</span>
                           </td>
-                          <td style={{ ...TD, color: isCurrentWeek ? '#c4b5fd' : m.isPast ? 'var(--fg-3)' : 'var(--fg-2)' }}>
+                          <td style={{ ...TD, color: isCurrentWeek ? 'var(--brand-2)' : m.isPast ? 'var(--fg-3)' : 'var(--fg-2)' }}>
                             {m.isPast && !isCurrentWeek ? '✓ ' : ''}{m.label}
                           </td>
                         </tr>
@@ -438,7 +438,7 @@ export default function DueDateCalculatorClient() {
           <button onClick={() => setShowMonths(v => !v)} style={{
             width: '100%', textAlign: 'left', padding: '14px 20px',
             background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-            borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer',
+            borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer',
           }} aria-expanded={showMonths}>
             {showMonths ? '▾' : '▸'} Month-by-Month Development Summary
           </button>

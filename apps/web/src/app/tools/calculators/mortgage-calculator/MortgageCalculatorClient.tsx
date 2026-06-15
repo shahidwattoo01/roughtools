@@ -98,7 +98,7 @@ function calcMortgage(
     if (pmiDropMonth < 0 && currentLTV <= 0.80 && month > 1) pmiDropMonth = month
 
     const interestPmt = balance * r
-    let principalPmt  = piPayment - interestPmt
+    const principalPmt  = piPayment - interestPmt
     const extra = Math.min(extraMonthly, Math.max(0, balance - principalPmt))
     const totalPrincipalPmt = principalPmt + extra
     const isFinal = totalPrincipalPmt >= balance - 0.005
@@ -209,14 +209,14 @@ function exportCSV(schedule: AmortRow[], filename: string) {
 
 const CARD: CSSProperties = { background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 16, padding: '24px 28px' }
 const LABEL: CSSProperties = { display: 'block', marginBottom: 5, fontSize: 12, color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }
-const INPUT_BOX: CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 8, background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)', color: '#fff', fontSize: 15, boxSizing: 'border-box' }
-const BTN_GHOST: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13, fontWeight: 600, cursor: 'pointer' }
+const INPUT_BOX: CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 8, background: 'var(--bg-2)', border: '1px solid var(--line-strong)', color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box' }
+const BTN_GHOST: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13, fontWeight: 600, cursor: 'pointer' }
 const TH: CSSProperties = { padding: '9px 10px', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.07em', color: 'var(--fg-3)', textAlign: 'right', background: 'rgba(99,102,241,0.1)', whiteSpace: 'nowrap' }
 const TD: CSSProperties = { padding: '5px 10px', fontSize: 11, textAlign: 'right', color: 'var(--fg-2)', whiteSpace: 'nowrap' }
 
 function MetricCard({ label, value, sub, color = '#6366f1' }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div style={{ padding: '16px 12px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '16px 12px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 20, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 10, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -388,7 +388,7 @@ export default function MortgageCalculatorClient() {
                   <button key={m} onClick={() => setDownMode(m)} style={{
                     padding: '2px 8px', fontSize: 11, borderRadius: 4, cursor: 'pointer',
                     background: downMode === m ? 'rgba(139,92,246,0.3)' : 'transparent',
-                    border: '1px solid rgba(139,92,246,0.3)', color: '#c4b5fd',
+                    border: '1px solid rgba(139,92,246,0.3)', color: 'var(--brand-2)',
                   }}>{m === 'pct' ? '%' : '$'}</button>
                 ))}
               </div>
@@ -514,7 +514,7 @@ export default function MortgageCalculatorClient() {
           {/* TIER 2: AMORTIZATION SCHEDULE */}
           <div>
             <button onClick={() => setShowSched(v => !v)}
-              style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
+              style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
               aria-expanded={showSched}>
               {showSched ? '▾' : '▸'} Full Amortization Schedule
               <span style={{ fontWeight: 400, fontSize: 12, color: 'var(--fg-3)', marginLeft: 8 }}>({result.payoffMonths} payments)</span>
@@ -640,7 +640,7 @@ export default function MortgageCalculatorClient() {
                       { label: 'Extra $500/month', r: scenarios.extra500, hi: false },
                     ].filter(({ r }) => r !== null).map(({ label, r, hi }) => r ? (
                       <tr key={label} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', background: hi ? 'rgba(139,92,246,0.08)' : 'transparent' }}>
-                        <td style={{ ...TD, textAlign: 'left', color: hi ? '#c4b5fd' : 'var(--fg-2)', fontWeight: hi ? 700 : 400 }}>{hi ? '★ ' : ''}{label}</td>
+                        <td style={{ ...TD, textAlign: 'left', color: hi ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: hi ? 700 : 400 }}>{hi ? '★ ' : ''}{label}</td>
                         <td style={{ ...TD, fontWeight: hi ? 700 : 400, color: hi ? '#6366f1' : 'var(--fg-2)' }}>{$2(r.piPayment)}</td>
                         <td style={TD}>{$(r.totalInterest)}</td>
                         <td style={TD}>{r.totalPMI > 0 ? $(r.totalPMI) : '—'}</td>
@@ -659,7 +659,7 @@ export default function MortgageCalculatorClient() {
           {/* TIER 4: GUIDANCE */}
           {guidance.length > 0 && (
             <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-              <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+              <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
                 💡 What Your Numbers Mean
               </h3>
               <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>

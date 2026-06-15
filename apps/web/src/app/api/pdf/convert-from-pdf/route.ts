@@ -1,7 +1,7 @@
 ﻿export const dynamic = 'force-dynamic'
 
 import { NextRequest, NextResponse } from 'next/server'
-import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
+import { pdfGuard, pdfSizeGuard } from '../_lib/pdf-guards'
 import { extractPdfText } from '../_lib/extract-text'
 
 /* ── PDF → Word (.docx) ─────────────────────────────────────────── */
@@ -86,10 +86,19 @@ async function toHtml(buffer: Buffer, baseName: string): Promise<NextResponse> {
 
 /* ── PDF → JPG (renders each page with canvas) ───────────────────── */
 async function toJpg(buffer: Buffer, baseName: string, dpi: number): Promise<NextResponse> {
+  // canvas is a native C++ addon — not available in all serverless environments
+  let createCanvas: (w: number, h: number) => unknown
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    createCanvas = require('canvas').createCanvas
+  } catch {
+    return NextResponse.json(
+      { error: 'PDF to image conversion requires a self-hosted server with native dependencies. This feature is not available in the current deployment environment.' },
+      { status: 501 }
+    )
+  }
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const pdfjsLib = require('pdfjs-dist/legacy/build/pdf.js')
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { createCanvas } = require('canvas')
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const JSZip = require('jszip')
 
@@ -107,7 +116,8 @@ async function toJpg(buffer: Buffer, baseName: string, dpi: number): Promise<Nex
   for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i)
     const viewport = page.getViewport({ scale })
-    const canvas = createCanvas(Math.round(viewport.width), Math.round(viewport.height))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const canvas = (createCanvas as any)(Math.round(viewport.width), Math.round(viewport.height))
     const ctx = canvas.getContext('2d')
 
     await page.render({
@@ -190,12 +200,15 @@ async function toPptx(buffer: Buffer, baseName: string): Promise<NextResponse> {
 
 /* ── Main handler ────────────────────────────────────────────────── */
 export async function POST(req: NextRequest) {
+  const guard = pdfGuard(req)
+  if (guard) return guard
   try {
     const form = await req.formData()
     const file = form.get('file') as File | null
     const format = ((form.get('format') as string) || 'txt').toLowerCase()
     const dpi = parseInt((form.get('dpi') as string) || '150', 10)
-    if (!file) return NextResponse.json({ error: 'No file uploaded' }, { status: 400 })
+    const sizeGuard = pdfSizeGuard(file)
+    if (sizeGuard) return sizeGuard
 
     const buffer = Buffer.from(await file.arrayBuffer())
     const baseName = file.name.replace(/\.pdf$/i, '')

@@ -1,5 +1,5 @@
 ﻿import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { JsonLd } from '@/components/JsonLd'
@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import { AdSenseScript } from '@/components/analytics/AdSense'
 import Footer from '@/components/Footer'
+import { FontLoader } from '@/components/FontLoader'
 import SiteHeader from '@/components/SiteHeader'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { CommandPaletteProvider } from '@/components/CommandPalette'
@@ -19,13 +20,18 @@ import Providers from '@/components/Providers'
 import './globals.css'
 
 // ─── FONTS ────────────────────────────────────────────────────
-const inter = Inter({
-  subsets: ['latin'],
+// ⚡ PERF: 3 weights instead of 5 (removes 2 font-file round-trips).
+// 600 is covered by 700 at browser fallback; 800 only used in a few
+// headings and barely differs from 700 visually.
+const inter = localFont({
+  src: [
+    { path: '../../public/fonts/inter-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/inter-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/inter-latin-700-normal.woff2', weight: '700', style: 'normal' },
+  ],
   display: 'swap',
   variable: '--font-inter',
   preload: true,
-  weight: ['400', '500', '600', '700', '800'],
-  adjustFontFallback: true,
 })
 
 // ─── LAZY-LOADED non-critical UI ──────────────────────────────
@@ -58,19 +64,26 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
         {/* DNS prefetch for external services */}
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//plausible.io" />
         <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
 
-        {/* Preconnect to critical origins */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/*
+          ⚡ PERF: The render-blocking <link rel="stylesheet"> for
+          Instrument Serif / JetBrains Mono / DM Serif Display was removed.
+          Those decorative fonts are used on a handful of pages only.
+          They are now loaded with rel="preload" as="style" + onLoad swap
+          so they NEVER block the First Contentful Paint.
+          Pages that need them should use next/font locally instead.
+        */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-        {/* Instrument Serif + JetBrains Mono + DM Serif Display — runtime loaded */}
+        {/* Non-blocking font load: fetch async, apply on load */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Serif+Display&display=swap"
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Serif+Display&display=optional"
         />
+        <FontLoader />
 
         {/* Favicons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />

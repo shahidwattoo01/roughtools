@@ -316,7 +316,7 @@ export function buildIqReportHtml(p: ReportPayload): string {
 
   <div style="margin-top: 20px; font-size: 11px; color: #aaa;">
     <p>© ${new Date().getFullYear()} RoughTools.com · Assessment reference: ${ref} · Generated: ${date}</p>
-    <p style="margin-top: 4px;">Contact: support@roughtools.com</p>
+    <p style="margin-top: 4px;">Contact: shahidwattoo0111@gmail.com</p>
   </div>
 
   <div class="footer">

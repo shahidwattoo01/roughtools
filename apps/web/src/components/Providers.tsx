@@ -14,8 +14,11 @@ interface ProvidersProps {
 }
 
 export default function Providers({ children, session }: ProvidersProps) {
+  // ⚡ PERF: refetchOnWindowFocus=true was causing a /api/auth/session
+  // network request every time the tab regained focus — perceptible
+  // latency on every page switch. Raised interval to 30 min + disabled.
   return (
-    <SessionProvider session={session} refetchInterval={5 * 60} refetchOnWindowFocus={true}>
+    <SessionProvider session={session} refetchInterval={30 * 60} refetchOnWindowFocus={false}>
       {children}
     </SessionProvider>
   )

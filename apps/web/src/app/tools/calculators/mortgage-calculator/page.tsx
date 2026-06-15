@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import MortgageCalculatorClient from './MortgageCalculatorClient'
 import ToolAdUnit from '@/components/ToolAdUnit'
 import { JsonLd } from '@/components/JsonLd'
@@ -233,12 +233,6 @@ export default function MortgageCalculatorPage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -256,7 +250,7 @@ export default function MortgageCalculatorPage() {
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
             The Mortgage Calculator computes your estimated monthly principal and interest payment for any home loan,
             and shows you the full amortisation schedule — how every dollar of every payment is split between repaying
-            the loan balance and paying the lender's interest charge. For most people, a mortgage is the largest
+            the loan balance and paying the lender&apos;s interest charge. For most people, a mortgage is the largest
             financial commitment of their lives, which makes understanding the true cost of different loan scenarios
             essential before signing anything.
           </p>
@@ -305,7 +299,7 @@ export default function MortgageCalculatorPage() {
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
             This tool is ideal for first-time home buyers who want to understand how much house they can afford before
             speaking to a lender. Existing homeowners considering refinancing can quickly compare their current payment
-            to a new rate scenario. Real estate investors can assess whether a property's rental income will cover its
+            to a new rate scenario. Real estate investors can assess whether a property&apos;s rental income will cover its
             financing costs. Anyone comparing different loan structures — 15-year vs. 30-year, different down payment
             amounts, or different interest rates — can use this tool to instantly quantify the financial trade-offs.
           </p>
@@ -331,6 +325,13 @@ export default function MortgageCalculatorPage() {
             for full details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

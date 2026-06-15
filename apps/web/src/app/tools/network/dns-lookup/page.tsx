@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+﻿/* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/JsonLd'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -7,12 +7,12 @@ import Link from 'next/link'
 import { ToolPageExtras } from '@/components/ToolPageExtras'
 
 export const metadata: Metadata = {
-  title: 'DNS Lookup Tool — Free Online DNS Record Checker | RoughTools',
+  title: 'DNS Lookup Tool â€” Free Online DNS Record Checker | RoughTools',
   description: 'Look up DNS records for any domain instantly. Check A, AAAA, CNAME, MX, TXT, NS, and SOA records using Google\'s public DNS API. Free, no signup, results in seconds.',
   keywords: ['dns lookup', 'dns checker', 'check dns records', 'mx record lookup', 'a record lookup', 'txt record checker', 'cname lookup', 'ns lookup'],
   alternates: { canonical: 'https://roughtools.com/tools/network/dns-lookup' },
   openGraph: {
-    title: `DNS Lookup — Query DNS Records Online | RoughTools`,
+    title: `DNS Lookup â€” Query DNS Records Online | RoughTools`,
     description: `Look up DNS records for any domain: A, AAAA, MX, TXT, NS, CNAME. Free online DNS lookup and query tool.`,
     url: 'https://roughtools.com/tools/network/dns-lookup',
     type: 'website',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `DNS Lookup — Query DNS Records Online | RoughTools`,
+    title: `DNS Lookup â€” Query DNS Records Online | RoughTools`,
     description: `Look up DNS records for any domain: A, AAAA, MX, TXT, NS, CNAME. Free online DNS lookup and query tool.`,
   },
   robots: { index: true, follow: true },
@@ -57,11 +57,11 @@ const FAQ = [
   },
   {
     q: 'How do I look up DNS records? Step-by-step guide.',
-    a: 'Using the DNS Lookup tool takes under 10 seconds. Step one: open the DNS Lookup page on RoughTools. Step two: type the domain name you want to check into the input field — for example, example.com (without http:// or www). Step three: select the DNS record type from the dropdown — choose A for the IP address, MX for mail servers, TXT for verification records, CNAME for aliases, or NS for nameservers. Step four: click the Lookup button. Step five: review the returned records, including the value and TTL for each entry.',
+    a: 'Using the DNS Lookup tool takes under 10 seconds. Step one: open the DNS Lookup page on RoughTools. Step two: type the domain name you want to check into the input field â€” for example, example.com (without http:// or www). Step three: select the DNS record type from the dropdown â€” choose A for the IP address, MX for mail servers, TXT for verification records, CNAME for aliases, or NS for nameservers. Step four: click the Lookup button. Step five: review the returned records, including the value and TTL for each entry.',
   },
   {
     q: 'Why use RoughTools DNS Lookup instead of other websites?',
-    a: 'RoughTools queries Google\'s Public DNS-over-HTTPS API directly from your browser, which means no server-side relay, no additional latency, and results that reflect what the world\'s most widely used DNS resolver sees. The interface supports all major record types — A, AAAA, CNAME, MX, TXT, NS, SOA — in a single lookup without switching tabs. The page loads fast and results appear instantly.',
+    a: 'RoughTools queries Google\'s Public DNS-over-HTTPS API directly from your browser, which means no server-side relay, no additional latency, and results that reflect what the world\'s most widely used DNS resolver sees. The interface supports all major record types â€” A, AAAA, CNAME, MX, TXT, NS, SOA â€” in a single lookup without switching tabs. The page loads fast and results appear instantly.',
   },
   {
     q: 'How do I report a bug or suggest a new feature?',
@@ -73,7 +73,7 @@ const FAQ = [
   },
   {
     q: 'What is an MX record and why does it matter for email?',
-    a: 'An MX (Mail Exchanger) record specifies which mail servers are responsible for receiving email sent to a domain. Without correctly configured MX records, email sent to addresses at your domain will fail to deliver. Each MX record has a priority value — lower numbers mean higher priority. Many domains have multiple MX records pointing to different mail servers for redundancy, so that if the primary server is unreachable, email is delivered to a backup server.',
+    a: 'An MX (Mail Exchanger) record specifies which mail servers are responsible for receiving email sent to a domain. Without correctly configured MX records, email sent to addresses at your domain will fail to deliver. Each MX record has a priority value â€” lower numbers mean higher priority. Many domains have multiple MX records pointing to different mail servers for redundancy, so that if the primary server is unreachable, email is delivered to a backup server.',
   },
   {
     q: 'How long do DNS changes take to propagate worldwide?',
@@ -118,14 +118,16 @@ export default function Page() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '24px 16px 64px' }}>
         <ToolAdUnit position="top" />
         <nav style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> ›{' '}
-          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> › DNS Lookup
+          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> â€º{' '}
+          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> â€º DNS Lookup
         </nav>
         <h1 style={{ fontSize: 'clamp(24px,4vw,36px)', fontWeight: 900, marginBottom: 8, letterSpacing: -1 }}>DNS Lookup</h1>
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
-          Check DNS records for any domain — A, AAAA, CNAME, MX, TXT, NS, and SOA — powered by Google Public DNS. Verify DNS propagation, diagnose email delivery problems, audit CDN configurations, and inspect nameserver assignments in seconds. Free, no account required.
+          Check DNS records for any domain â€” A, AAAA, CNAME, MX, TXT, NS, and SOA â€” powered by Google Public DNS. Verify DNS propagation, diagnose email delivery problems, audit CDN configurations, and inspect nameserver assignments in seconds. Free, no account required.
         </p>
+        <div data-print-section="calculator">
         <DnsLookupClient />
+        </div>
         <ToolAdUnit position="middle" />
         <section style={{ marginTop: 40 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 12 }}>About DNS Lookup</h2>
@@ -133,7 +135,7 @@ export default function Page() {
             The Domain Name System is the internet&apos;s phonebook, translating human-readable domain names into the IP addresses that computers use to communicate. This tool queries Google&apos;s Public DNS-over-HTTPS API (dns.google) to fetch live DNS records for any domain you enter, letting you inspect exactly how a domain is configured without installing any command-line tools like nslookup or dig.
           </p>
           <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12 }}>
-            Use this tool to verify that your DNS changes have propagated, diagnose email delivery issues by checking MX and SPF records, confirm CDN configurations through CNAME records, or audit a domain&apos;s nameserver assignments. The results reflect what Google&apos;s resolvers see — a useful reference point since billions of users rely on Google&apos;s 8.8.8.8 resolver daily.
+            Use this tool to verify that your DNS changes have propagated, diagnose email delivery issues by checking MX and SPF records, confirm CDN configurations through CNAME records, or audit a domain&apos;s nameserver assignments. The results reflect what Google&apos;s resolvers see â€” a useful reference point since billions of users rely on Google&apos;s 8.8.8.8 resolver daily.
           </p>
         </section>
         <section style={{ marginTop: 32 }}>

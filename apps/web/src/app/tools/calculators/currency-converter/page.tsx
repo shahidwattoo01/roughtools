@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import ToolAdUnit from '@/components/ToolAdUnit'
 import { JsonLd } from '@/components/JsonLd'
 import CurrencyConverterClient from './CurrencyConverterClient'
@@ -229,12 +229,6 @@ export default function CurrencyConverterPage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -294,7 +288,7 @@ export default function CurrencyConverterPage() {
             Every institution that offers currency exchange needs to profit from the transaction. They do this by:
             (1) applying a spread to the exchange rate, (2) charging flat fees or commissions, or (3) a combination of both.
             When comparing providers, always calculate the total amount received in the target currency — not just the advertised rate.
-            A provider offering a "0% commission" may embed a 3% spread into the rate, effectively charging more than
+            A provider offering a &quot;0% commission&quot; may embed a 3% spread into the rate, effectively charging more than
             a provider with a transparent $10 fee and a tighter rate.
           </p>
 
@@ -309,6 +303,13 @@ export default function CurrencyConverterPage() {
             for full details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

@@ -250,7 +250,7 @@ export default function MedicalPageClient() {
     : SPECIALTIES
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#f5f5f3] dark:bg-[#121212]">
 
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="bg-gradient-to-b from-emerald-600 via-teal-700 to-cyan-800 text-white">
@@ -283,8 +283,8 @@ export default function MedicalPageClient() {
       {/* ── Category Cards ────────────────────────────────────── */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         <div className="text-center mb-7">
-          <p className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-1">Browse by Specialty</p>
-          <h2 className="text-2xl font-extrabold text-gray-900">Choose your medical specialty</h2>
+          <p className="text-sm font-semibold text-gray-500 dark:text-[#777] uppercase tracking-widest mb-1">Browse by Specialty</p>
+          <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white">Choose your medical specialty</h2>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
@@ -296,16 +296,16 @@ export default function MedicalPageClient() {
               hover:-translate-y-0.5 hover:shadow-lg cursor-pointer
               ${active === null
                 ? 'bg-gray-900 border-gray-900 text-white shadow-lg -translate-y-0.5'
-                : 'bg-white border-gray-200 text-gray-700 hover:border-gray-400'
+                : 'bg-white dark:bg-[#1e1e1e] border-gray-200 dark:border-white/10 text-gray-700 dark:text-[#ddd] hover:border-gray-400 dark:hover:border-white/25'
               }
             `}
           >
-            <div className={`w-11 h-11 rounded-xl flex items-center justify-center text-2xl ${active === null ? 'bg-white/15' : 'bg-gray-100'}`}>
+            <div className={`w-11 h-11 rounded-xl flex items-center justify-center text-2xl ${active === null ? 'bg-white/15' : 'bg-gray-100 dark:bg-white/8'}`}>
               🩺
             </div>
             <div>
               <div className="font-bold text-[13px] leading-tight">All Medical Tools</div>
-              <div className={`text-[11px] mt-0.5 font-semibold ${active === null ? 'text-white/70' : 'text-gray-400'}`}>
+              <div className={`text-[11px] mt-0.5 font-semibold ${active === null ? 'text-white/70' : 'text-gray-400 dark:text-[#777]'}`}>
                 {TOTAL} tools
               </div>
             </div>
@@ -332,7 +332,7 @@ export default function MedicalPageClient() {
                 </div>
                 <div>
                   <div className="font-bold text-[12px] leading-tight">{sp.label}</div>
-                  <div className={`text-[11px] mt-0.5 font-semibold ${isActive ? 'text-white/70' : 'text-gray-400'}`}>
+                  <div className={`text-[11px] mt-0.5 font-semibold ${isActive ? 'text-white/70' : 'text-gray-400 dark:text-[#777]'}`}>
                     {sp.tools.length} tools
                   </div>
                 </div>
@@ -350,8 +350,8 @@ export default function MedicalPageClient() {
 
         {active && (
           <div className="flex items-center justify-between mt-5 px-1">
-            <p className="text-sm text-gray-600">
-              Showing <span className="font-semibold text-gray-900">
+            <p className="text-sm text-gray-600 dark:text-[#aaa]">
+              Showing <span className="font-semibold text-gray-900 dark:text-white">
                 {SPECIALTIES.find(s => s.id === active)?.label}
               </span> tools
             </p>
@@ -370,7 +370,7 @@ export default function MedicalPageClient() {
 
       {/* ── Trust bar ─────────────────────────────────────────── */}
       <div className="bg-gray-50 border-y border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-center gap-6 text-xs text-gray-500">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-center gap-6 text-xs text-gray-500 dark:text-[#888]">
           {TRUST.map(b => (
             <span key={b.text} className="flex items-center gap-1.5 font-medium">
               <span>{b.icon}</span>{b.text}
@@ -391,7 +391,7 @@ export default function MedicalPageClient() {
                   {sp.icon}
                 </div>
                 <div>
-                  <h2 id={`heading-${sp.id}`} className="text-xl font-bold text-gray-900">{sp.label}</h2>
+                  <h2 id={`heading-${sp.id}`} className="text-xl font-bold text-gray-900 dark:text-white">{sp.label}</h2>
                   <p className="text-sm text-gray-500">{sp.description}</p>
                 </div>
                 <span className={`ml-auto text-xs font-semibold px-2.5 py-1 rounded-full text-white ${pal.badge}`}>
@@ -405,7 +405,7 @@ export default function MedicalPageClient() {
                     key={tool.href}
                     href={tool.href}
                     className={`group flex items-start gap-4 p-4 rounded-2xl border-2 transition-all duration-200
-                      ${pal.toolBg} ${pal.toolBorder}
+                      ${pal.toolBg} ${pal.toolBorder} dark:bg-[#1e1e1e] dark:border-white/10 dark:bg-[#1e1e1e] dark:border-white/10
                       hover:shadow-md hover:-translate-y-0.5
                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2`}
                   >
@@ -413,10 +413,10 @@ export default function MedicalPageClient() {
                       {tool.icon}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h3 className={`font-semibold text-gray-900 group-hover:${pal.text} transition-colors leading-snug text-sm`}>
+                      <h3 className={`font-semibold text-gray-900 dark:text-white group-hover:${pal.text} transition-colors leading-snug text-sm`}>
                         {tool.name}
                       </h3>
-                      <p className="text-xs text-gray-500 mt-0.5 leading-relaxed line-clamp-2">
+                      <p className="text-xs text-gray-500 dark:text-[#999] mt-0.5 leading-relaxed line-clamp-2">
                         {tool.description}
                       </p>
                     </div>
@@ -433,7 +433,7 @@ export default function MedicalPageClient() {
 
         {/* ── SEO / About ──────────────────────────────────────── */}
         <section className="bg-gray-50 rounded-3xl border border-gray-100 p-8 sm:p-10">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             Why Clinicians &amp; Patients Trust Our Free Medical Calculators
           </h2>
           <div className="grid sm:grid-cols-2 gap-6 text-sm text-gray-600 leading-relaxed">

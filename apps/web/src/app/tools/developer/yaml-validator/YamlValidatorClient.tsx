@@ -180,7 +180,7 @@ function renderTree(obj: { [k: string]: YamlValue } | YamlValue[], depth = 0): R
 
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '12px', borderRadius: 8,
-  background: '#252540', border: '1px solid rgba(255,255,255,0.1)',
+  background: '#252540', border: '1px solid var(--line-strong)',
   color: '#e0e0ff', fontSize: 13, fontFamily: 'monospace',
   resize: 'vertical', minHeight: 180, boxSizing: 'border-box',
 }

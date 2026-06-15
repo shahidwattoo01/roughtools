@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '../../../_lib/db'
 import { requireSession, decodeQuestionToken, formatQuestion } from '../../../_lib/session'
-import { processAnswer, pickNextQuestion, estimateTotalQuestions, shouldEndTest, stateFromSession } from '../../../_lib/adaptive-state'
+import { processAnswer, pickNextQuestion, estimateTotalQuestions, shouldEndTest } from '../../../_lib/adaptive-state'
 import { scoreResponse } from '@platform/iq-engine'
 
 export async function POST(

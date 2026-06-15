@@ -6,7 +6,7 @@ import { getFeaturedTools } from '@/lib/relatedTools'
 
 export const metadata: Metadata = {
   title: '404 — Page Not Found | RoughTools',
-  description: 'This page could not be found. Try searching for a tool or browse our 600+ free online tools.',
+  description: 'This page could not be found. Try searching for a tool or browse our 604+ free online tools.',
   robots: { index: false, follow: true },
 }
 
@@ -14,27 +14,27 @@ export default function NotFound() {
   const popularTools = getFeaturedTools(6)
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#121212] flex flex-col">
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-16 text-center">
         {/* 404 visual */}
-        <div className="text-8xl font-black text-indigo-100 mb-2 select-none" aria-hidden="true">
+        <div className="text-8xl font-black text-indigo-100 dark:text-white/5 mb-2 select-none" aria-hidden="true">
           404
         </div>
 
-        <h1 className="text-2xl font-bold text-gray-900 mb-3">Page not found</h1>
-        <p className="text-gray-500 max-w-md mb-8">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Page not found</h1>
+        <p className="text-gray-500 dark:text-white/50 max-w-md mb-8">
           The page you&apos;re looking for doesn&apos;t exist or may have moved.
           Try searching for a tool below.
         </p>
 
         {/* Search */}
         <div className="w-full max-w-xl mb-12">
-          <SearchBar placeholder="Search 415+ tools..." size="lg" />
+          <SearchBar placeholder="Search 604+ tools..." size="lg" />
         </div>
 
         {/* Popular tools */}
         <div className="w-full max-w-4xl">
-          <h2 className="text-lg font-semibold text-gray-700 mb-5">
+          <h2 className="text-lg font-semibold text-gray-700 dark:text-white/70 mb-5">
             Popular tools you might be looking for
           </h2>
           <ToolGrid tools={popularTools} columns={3} showDescription={false} />

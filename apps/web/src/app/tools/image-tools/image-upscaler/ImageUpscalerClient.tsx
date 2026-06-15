@@ -155,7 +155,7 @@ export default function ImageUpscalerClient() {
 
       {processing && (
         <div style={card}>
-          <div style={{ fontSize: 14, color: '#c4b5fd', marginBottom: 10, fontWeight: 600 }}>Upscaling with Lanczos-3… {progress}%</div>
+          <div style={{ fontSize: 14, color: 'var(--brand-2)', marginBottom: 10, fontWeight: 600 }}>Upscaling with Lanczos-3… {progress}%</div>
           <div style={{ background: '#0d0d1f', borderRadius: 8, overflow: 'hidden', height: 10 }}>
             <div style={{ height: '100%', background: 'linear-gradient(90deg,#7c3aed,#ec4899)', width: `${progress}%`, transition: 'width 0.2s', borderRadius: 8 }} />
           </div>

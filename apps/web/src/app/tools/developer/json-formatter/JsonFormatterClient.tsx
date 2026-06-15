@@ -8,8 +8,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 13, fontFamily: 'monospace', boxSizing: 'border-box', resize: 'vertical',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 13, fontFamily: 'monospace', boxSizing: 'border-box', resize: 'vertical',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -18,7 +18,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '8px 16px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '8px 16px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap',
 }
 const BTN_ACTIVE: CSSProperties = {
@@ -33,7 +33,7 @@ function syntaxHighlight(json: string): string {
       /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g,
       (match) => {
         if (/^"/.test(match)) {
-          if (/:$/.test(match)) return `<span style="color:#c4b5fd">${match}</span>`
+          if (/:$/.test(match)) return `<span style="color:var(--brand-2)">${match}</span>`
           return `<span style="color:#86efac">${match}</span>`
         }
         if (/true|false/.test(match)) return `<span style="color:#f59e0b">${match}</span>`
@@ -86,7 +86,7 @@ function jsonToYaml(obj: unknown, indent = 0): string {
   if (typeof obj === 'boolean') return obj ? 'true' : 'false'
   if (typeof obj === 'number') return String(obj)
   if (typeof obj === 'string') {
-    if (/[:#\[\]{},|>&*!'"@%]/.test(obj) || obj.includes('\n')) return `"${obj.replace(/"/g, '\\"')}"`
+    if (/[:#[\]{},|>&*!'"@%]/.test(obj) || obj.includes('\n')) return `"${obj.replace(/"/g, '\\"')}"`
     return obj
   }
   if (Array.isArray(obj)) {
@@ -150,7 +150,7 @@ function TreeNode({ k, v, depth }: { k: string | null; v: unknown; depth: number
   const [open, setOpen] = useState(depth < 2)
   const isObj = v !== null && typeof v === 'object'
   const isArr = Array.isArray(v)
-  const label = k !== null ? <span style={{ color: '#c4b5fd', fontWeight: 600 }}>{k}: </span> : null
+  const label = k !== null ? <span style={{ color: 'var(--brand-2)', fontWeight: 600 }}>{k}: </span> : null
   if (!isObj) {
     const color = v === null ? '#f87171' : typeof v === 'boolean' ? '#f59e0b' : typeof v === 'number' ? '#38bdf8' : '#86efac'
     return (
@@ -362,10 +362,10 @@ export default function JsonFormatterClient() {
                   <div
                     key={path}
                     onClick={() => copy(path, path)}
-                    style={{ display: 'flex', gap: 12, padding: '7px 10px', borderRadius: 6, background: 'rgba(0,0,0,0.2)', cursor: 'pointer', fontFamily: 'monospace', fontSize: 12, alignItems: 'center' }}
+                    style={{ display: 'flex', gap: 12, padding: '7px 10px', borderRadius: 6, background: 'var(--bg-2)', cursor: 'pointer', fontFamily: 'monospace', fontSize: 12, alignItems: 'center' }}
                     title="Click to copy path"
                   >
-                    <span style={{ color: '#c4b5fd', flex: 1 }}>{path}</span>
+                    <span style={{ color: 'var(--brand-2)', flex: 1 }}>{path}</span>
                     <span style={{ color: '#86efac', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{value}</span>
                     {copied === path && <span style={{ color: '#4ade80', fontSize: 11 }}>Copied!</span>}
                   </div>

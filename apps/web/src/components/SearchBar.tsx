@@ -175,6 +175,7 @@ export function SearchBar({
           type="search"
           role="combobox"
           aria-expanded={isOpen}
+          aria-controls="searchbar-listbox"
           aria-haspopup="listbox"
           aria-autocomplete="list"
           aria-label="Search tools"
@@ -216,6 +217,7 @@ export function SearchBar({
       {/* Results dropdown */}
       {isOpen && !redirectToPage && (
         <div
+          id="searchbar-listbox"
           role="listbox"
           aria-label="Search results"
           className={cn(

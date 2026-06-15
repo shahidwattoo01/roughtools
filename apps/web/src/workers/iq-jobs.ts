@@ -8,14 +8,13 @@
 //   startWorkers(3)
 
 import { registerProcessor } from '@toolverse/queue'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@platform/db'
 import { upload } from '@toolverse/storage'
 import { buildIqReportHtml, generatePdfFromHtml } from '@/lib/iq-pdf-template'
 import {
   computeDomainScores,
   computeIqScore,
   getDomainInsight,
-  DEFAULT_NORMS,
   type ScoredResponse,
 } from '@platform/iq-engine'
 
@@ -154,7 +153,7 @@ registerProcessor('iq-analytics-update', async (job) => {
 // ─── Job 3: iq-norming-recalculate ───────────────────────────────────────────
 // Compute new mean_raw / std_dev_raw per age group from all valid sessions.
 
-registerProcessor('iq-norming-recalculate', async (job) => {
+registerProcessor('iq-norming-recalculate', async (_job) => {
   const sessions = await prisma.iqSession.findMany({
     where: { status: 'COMPLETED', isValid: true, rawScore: { not: null } },
     select: { ageGroup: true, rawScore: true },

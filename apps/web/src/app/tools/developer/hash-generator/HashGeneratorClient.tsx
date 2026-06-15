@@ -8,8 +8,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 13, fontFamily: 'monospace', boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 13, fontFamily: 'monospace', boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -18,7 +18,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '8px 16px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '8px 16px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap',
 }
 
@@ -224,7 +224,7 @@ export default function HashGeneratorClient() {
               style={{
                 border: `2px dashed ${dragOver ? '#6366f1' : 'rgba(139,92,246,0.3)'}`,
                 borderRadius: 10, padding: '36px 24px', textAlign: 'center', cursor: 'pointer',
-                background: dragOver ? 'rgba(99,102,241,0.08)' : 'rgba(0,0,0,0.2)',
+                background: dragOver ? 'rgba(99,102,241,0.08)' : 'var(--bg-2)',
                 color: 'var(--fg-3)', fontSize: 14, transition: 'all 0.15s',
               }}
             >
@@ -286,9 +286,9 @@ export default function HashGeneratorClient() {
               const match2 = hashes2.find(h => h.label === label)
               const compareStatus = match2 ? formatHash(match2.hex) === val ? 'match' : 'differ' : null
               return (
-                <div key={label} style={{ padding: '10px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 10, border: `1px solid ${compareStatus === 'match' ? 'rgba(74,222,128,0.3)' : compareStatus === 'differ' ? 'rgba(248,113,113,0.3)' : 'var(--line-strong)'}` }}>
+                <div key={label} style={{ padding: '10px 14px', background: 'var(--bg-2)', borderRadius: 10, border: `1px solid ${compareStatus === 'match' ? 'rgba(74,222,128,0.3)' : compareStatus === 'differ' ? 'rgba(248,113,113,0.3)' : 'var(--line-strong)'}` }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                    <span style={{ fontSize: 11, color: '#c4b5fd', fontWeight: 700 }}>{label}</span>
+                    <span style={{ fontSize: 11, color: 'var(--brand-2)', fontWeight: 700 }}>{label}</span>
                     <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                       {compareStatus && (
                         <span style={{ fontSize: 11, fontWeight: 700, color: compareStatus === 'match' ? '#4ade80' : '#f87171' }}>
@@ -308,7 +308,7 @@ export default function HashGeneratorClient() {
           {mode === 'hmac' && hmacResult && (
             <div style={{ marginTop: 12, padding: '10px 14px', background: 'rgba(99,102,241,0.1)', borderRadius: 10, border: '1px solid rgba(99,102,241,0.3)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                <span style={{ fontSize: 11, color: '#c4b5fd', fontWeight: 700 }}>HMAC-SHA256</span>
+                <span style={{ fontSize: 11, color: 'var(--brand-2)', fontWeight: 700 }}>HMAC-SHA256</span>
                 <button onClick={() => copy(formatHash(hmacResult), 'hmac')} style={{ ...BTN_GHOST, padding: '3px 10px', fontSize: 11 }}>
                   {copied === 'hmac' ? 'Copied!' : 'Copy'}
                 </button>

@@ -29,7 +29,7 @@ function Stat({ label, value, sub, warn }: { label: string; value: string | numb
 
 export default function AdminMonitoringPage() {
   const [data, setData] = useState<MonitorData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [_loading, setLoading] = useState(true)
 
   const load = useCallback(async () => {
     const res = await fetch('/api/admin/monitoring')
@@ -50,10 +50,10 @@ export default function AdminMonitoringPage() {
       <div>
         <h2 className="text-[13px] font-medium text-[#888] mb-3 uppercase tracking-wide">Database</h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-          <Stat label="DB Latency" value={`${data?.db.latencyMs ?? '—'}ms`} warn={(data?.db.latencyMs ?? 0) > 100} sub="PostgreSQL round-trip" />
-          <Stat label="Tables" value={data?.db.tableStats.length ?? '—'} sub="user tables" />
-          <Stat label="Largest Table" value={data?.db.tableStats[0]?.name ?? '—'} sub={`${(data?.db.tableStats[0]?.rows ?? 0).toLocaleString()} rows`} />
-          <Stat label="DB Status" value={data?.db.latencyMs ? 'Connected' : '—'} />
+          <Stat label="DB Latency" value={`${data?.db?.latencyMs ?? '—'}ms`} warn={(data?.db?.latencyMs ?? 0) > 100} sub="PostgreSQL round-trip" />
+          <Stat label="Tables" value={data?.db?.tableStats?.length ?? '—'} sub="user tables" />
+          <Stat label="Largest Table" value={data?.db?.tableStats?.[0]?.name ?? '—'} sub={`${(data?.db?.tableStats?.[0]?.rows ?? 0).toLocaleString()} rows`} />
+          <Stat label="DB Status" value={data?.db?.latencyMs ? 'Connected' : '—'} />
         </div>
 
         <div className="bg-[#1a1a1a] border border-white/8 rounded-xl overflow-hidden">
@@ -64,7 +64,7 @@ export default function AdminMonitoringPage() {
               <th className="text-left px-4 py-2 text-[10px] uppercase text-[#444]">Rows (estimate)</th>
             </tr></thead>
             <tbody>
-              {(data?.db.tableStats ?? []).map(t => (
+              {(data?.db?.tableStats ?? []).map(t => (
                 <tr key={t.name} className="border-b border-white/4 hover:bg-white/2">
                   <td className="px-4 py-2.5 font-mono text-[#aaa]">{t.name}</td>
                   <td className="px-4 py-2.5 tabular-nums">{t.rows.toLocaleString()}</td>
@@ -79,9 +79,9 @@ export default function AdminMonitoringPage() {
       <div>
         <h2 className="text-[13px] font-medium text-[#888] mb-3 uppercase tracking-wide">BullMQ Queues</h2>
         <div className="grid grid-cols-3 gap-3">
-          <Stat label="PDF Reports Pending"   value={data?.queues.pdfPending ?? '—'}       warn={(data?.queues.pdfPending ?? 0) > 5} sub="iq-pdf-generate" />
-          <Stat label="Active IQ Sessions"    value={data?.queues.sessionsPending ?? '—'}  sub="ACTIVE status" />
-          <Stat label="Completed Today"       value={data?.queues.completedToday ?? '—'}   sub="IQ sessions" />
+          <Stat label="PDF Reports Pending"   value={data?.queues?.pdfPending ?? '—'}       warn={(data?.queues?.pdfPending ?? 0) > 5} sub="iq-pdf-generate" />
+          <Stat label="Active IQ Sessions"    value={data?.queues?.sessionsPending ?? '—'}  sub="ACTIVE status" />
+          <Stat label="Completed Today"       value={data?.queues?.completedToday ?? '—'}   sub="IQ sessions" />
         </div>
       </div>
 
@@ -111,8 +111,8 @@ export default function AdminMonitoringPage() {
       {/* Sentry */}
       <div>
         <h2 className="text-[13px] font-medium text-[#888] mb-3 uppercase tracking-wide">Error Tracking (Sentry)</h2>
-        <div className={`bg-[#1a1a1a] border rounded-xl p-5 ${data?.sentry.connected ? 'border-[#1a6b3c]/30' : 'border-[#fbbf24]/30'}`}>
-          {data?.sentry.connected ? (
+        <div className={`bg-[#1a1a1a] border rounded-xl p-5 ${data?.sentry?.connected ? 'border-[#1a6b3c]/30' : 'border-[#fbbf24]/30'}`}>
+          {data?.sentry?.connected ? (
             <div className="flex items-center justify-between">
               <div>
                 <div className="text-sm font-medium text-[#6fcf97]">✓ Sentry connected</div>

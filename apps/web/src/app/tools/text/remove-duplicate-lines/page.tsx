@@ -126,7 +126,9 @@ export default function Page() {
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Paste any list or text and instantly remove all duplicate lines. Configure case sensitivity and whitespace trimming to handle edge cases in email lists, keyword lists, log files, and exported data. Shows a count of removed duplicates. Free, private, and no account required.
         </p>
+        <div data-print-section="calculator">
         <RemoveDuplicateLinesClient />
+        </div>
         <div style={{ marginTop: 12, marginBottom: 4 }}>
           <PDFExportButton toolName="Remove Duplicate Lines" />
         </div>

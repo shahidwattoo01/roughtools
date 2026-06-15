@@ -229,7 +229,7 @@ export default function PoaClient() {
   const [agentCompensation, setAgentCompensation] = useState('none')
   const [effectiveDate, setEffectiveDate] = useState('')
   const [expiryDate, setExpiryDate] = useState('')
-  const [witnessNotarization, setWitnessNotarization] = useState(true)
+  const [witnessNotarization, _setWitnessNotarization] = useState(true)
   const [copied, setCopied] = useState(false)
 
   const togglePower = (id: string) => setSelectedPowers(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id])

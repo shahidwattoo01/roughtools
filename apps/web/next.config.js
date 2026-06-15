@@ -38,11 +38,11 @@ const nextConfig = {
             value: [
               "default-src 'self'",
               "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://adservice.google.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google",
-              "style-src 'self' 'unsafe-inline'",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: https: blob:",
               "font-src 'self' https://fonts.gstatic.com",
               "frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com",
-              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com",
+              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://adservice.google.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google",
             ].join('; '),
           },
         ],
@@ -160,7 +160,45 @@ const nextConfig = {
   },
 
   experimental: {
-    optimizePackageImports: ['@workspace/ui', 'lucide-react'],
+    // ── Turbopack-specific module resolution rules ─────────────
+    // These mirror what webpack resolves so switching --turbo is seamless.
+    turbo: {
+      resolveAlias: {
+        // keep canvas as server-only (same as webpack externals below)
+        canvas: './empty-module.js',
+      },
+      rules: {
+        // Turbopack tree-shakes these the same way optimizePackageImports
+        // does for webpack — no separate list needed here; handled below.
+      },
+    },
+
+    // ── Barrel-export tree-shaking ─────────────────────────────
+    // Tell Next.js which barrel-export packages to tree-shake.
+    // Without this, Next.js must parse ALL exports (e.g. all 5 000+
+    // @tabler icons) on every page — the single biggest dev-mode culprit.
+    optimizePackageImports: [
+      '@workspace/ui',
+      'lucide-react',
+      '@tabler/icons-react',        // 5 000+ icons — critical
+      'recharts',                    // large chart lib
+      '@tanstack/react-table',
+      '@tanstack/react-virtual',
+      'date-fns',
+    ],
+
+    // ── Server-only heavy packages ─────────────────────────────
+    // Pre-bundle so each cold-start doesn't re-parse them.
+    serverComponentsExternalPackages: [
+      'pdfjs-dist', 'canvas', 'pdf-parse',
+      'mammoth', 'docx', 'xlsx', 'jszip',
+      'pdf-lib', 'pptxgenjs', 'fabric',
+    ],
+
+    // ── Webpack fallback (when not using --turbo) ──────────────
+    // Runs webpack in a separate worker thread — keeps the main
+    // Next.js process responsive during compilation.
+    webpackBuildWorker: true,
   },
 
   compiler: {

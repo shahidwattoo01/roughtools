@@ -36,8 +36,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -46,7 +46,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -102,7 +102,7 @@ function enrichIpInfo(raw: RawIpInfo): IpInfo {
 
 function MetricCard({ label, value, sub, color = '#6366f1' }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 16, fontWeight: 900, color, wordBreak: 'break-all' }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -299,7 +299,7 @@ export default function IpCheckerClient() {
           {displayInfo.lat != null && displayInfo.lon != null && (
             <div style={{ ...CARD, padding: '18px 22px' }}>
               <div style={{ fontSize: 12, color: 'var(--fg-3)', marginBottom: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Approximate Location</div>
-              <div style={{ height: 160, borderRadius: 10, background: 'rgba(0,0,0,0.4)', border: '1px solid var(--line-strong)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+              <div style={{ height: 160, borderRadius: 10, background: 'var(--bg-2)', border: '1px solid var(--line-strong)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                 <div style={{ fontSize: 32 }}>📍</div>
                 <div style={{ fontSize: 15, color: 'var(--fg-2)', fontWeight: 700 }}>
                   {[displayInfo.city, displayInfo.region, displayInfo.country].filter(Boolean).join(', ')}
@@ -327,7 +327,7 @@ export default function IpCheckerClient() {
               <tbody>
                 {history.map((h, i) => (
                   <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)', cursor: 'pointer' }} onClick={() => setQuery(h.ip)}>
-                    <td style={{ ...TD, color: '#c4b5fd', fontWeight: 600, fontFamily: 'monospace' }}>{h.ip}</td>
+                    <td style={{ ...TD, color: 'var(--brand-2)', fontWeight: 600, fontFamily: 'monospace' }}>{h.ip}</td>
                     <td style={TD}>{h.city ?? '—'}</td>
                     <td style={TD}>{h.country ?? '—'}</td>
                     <td style={{ ...TD, color: 'var(--fg-3)' }}>{h.at}</td>
@@ -341,7 +341,7 @@ export default function IpCheckerClient() {
 
       {/* ── GUIDE ─────────────────────────────────────────────────────────── */}
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 12px', fontSize: 13, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>About IP Addresses</h3>
+        <h3 style={{ margin: '0 0 12px', fontSize: 13, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>About IP Addresses</h3>
         <ul style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 8 }}>
           <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.6 }}>Geolocation is approximate — accurate to city level for most IPs, but may show the ISP hub rather than your exact location.</li>
           <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.6 }}>VPN, proxy, and Tor users will see the server&apos;s location, not their real physical location.</li>

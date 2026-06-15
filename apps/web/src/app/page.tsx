@@ -3,8 +3,7 @@ import Link from 'next/link'
 import { generateHomeMetadata } from '@/lib/seo'
 import { JsonLd } from '@/components/JsonLd'
 import { getWebsiteSchema, getOrganizationSchema, getPricingSchema } from '@/lib/structured-data'
-import { TOTAL_REAL_TOOLS } from '@/lib/tools-registry'
-import { HomeSearchBar } from '@/components/HomeSearchBar'
+import { TOTAL_REAL_TOOLS } from '@/lib/tool-counts'
 import { CategoryGrid } from '@/components/CategoryGrid'
 import {
   IconStar,
@@ -15,16 +14,22 @@ import {
 export const metadata: Metadata = generateHomeMetadata()
 
 const POPULAR_TOOLS = [
-  { label: 'Compress PDF',        href: '/tools/pdf/compress-pdf' },
-  { label: 'PDF to Word',         href: '/tools/pdf/pdf-to-word' },
-  { label: 'Merge PDF',           href: '/tools/pdf/merge-pdf' },
-  { label: 'Remove Background',   href: '/tools/image-tools/background-remover' },
-  { label: 'QR Code Generator',   href: '/tools/security/qr-code-generator' },
-  { label: 'BMI Calculator',      href: '/tools/calculators/bmi-calculator' },
-  { label: 'eGFR Calculator',     href: '/tools/medical/egfr-ckd-epi-calculator' },
-  { label: "Ohm's Law Calculator",href: '/tools/engineering/ohms-law-calculator' },
-  { label: 'JSON Formatter',      href: '/tools/developer/json-formatter' },
-  { label: 'Password Generator',  href: '/tools/security/password-generator' },
+  // PDF — highest global search volume
+  { label: 'Compress PDF',          href: '/tools/pdf/compress-pdf' },
+  { label: 'PDF to Word',           href: '/tools/pdf/pdf-to-word' },
+  { label: 'Merge PDF',             href: '/tools/pdf/merge-pdf' },
+  { label: 'JPG to PDF',            href: '/tools/pdf/jpg-to-pdf' },
+  // Calculators — universally searched
+  { label: 'BMI Calculator',        href: '/tools/calculators/bmi-calculator' },
+  { label: 'Percentage Calculator',  href: '/tools/calculators/percentage-calculator' },
+  { label: 'Age Calculator',         href: '/tools/calculators/age-calculator' },
+  { label: 'Loan Calculator',        href: '/tools/calculators/loan-calculator' },
+  // Image — high traffic / AI-trending
+  { label: 'Background Remover',    href: '/tools/image-tools/background-remover' },
+  { label: 'Image Compressor',      href: '/tools/image-tools/image-compressor' },
+  // Text & Developer essentials
+  { label: 'Word Counter',           href: '/tools/text/word-counter' },
+  { label: 'JSON Formatter',         href: '/tools/developer/json-formatter' },
 ]
 
 export default function HomePage() {
@@ -46,22 +51,13 @@ export default function HomePage() {
           </div>
 
           {/* H1 */}
-          <h1 className="text-[42px] font-medium leading-[1.15] text-[#1a1a1a] dark:text-[#f0f0f0] mb-4 max-w-[580px]">
+          <h1 className="text-[42px] font-medium leading-[1.15] text-[#1a1a1a] dark:text-[#f0f0f0] mb-6 max-w-[580px]">
             Your all-in-one<br />
             <em className="not-italic text-[#1a6b3c] dark:text-[#6fcf97]">online toolbox</em>
           </h1>
 
-          {/* Subheading */}
-          <p className="text-base text-[#555] dark:text-[#aaa] max-w-[540px] mb-6 leading-[1.6]">
-            Convert, calculate, edit, and transform — everything you need in one place.
-            No downloads, no login, just instant results.
-          </p>
-
-          {/* Search bar */}
-          <HomeSearchBar />
-
           {/* Buttons */}
-          <div className="flex gap-2.5 mt-5 flex-wrap">
+          <div className="flex gap-2.5 flex-wrap">
             <Link
               href="/tools"
               className="inline-flex items-center gap-2 bg-[#1a6b3c] hover:bg-[#145230] text-white rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"

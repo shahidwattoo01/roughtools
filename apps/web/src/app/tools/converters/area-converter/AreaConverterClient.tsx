@@ -75,33 +75,33 @@ function exportCSV() {
 // ─── Style Tokens ─────────────────────────────────────────────────────────────
 
 const CARD: CSSProperties = {
-  background: '#12121f', border: '1px solid rgba(255,255,255,0.1)',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
   borderRadius: 16, padding: '24px 28px',
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.1)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
-  color: 'rgba(255,255,255,0.45)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em',
+  color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em',
 }
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
   padding: '9px 12px', fontWeight: 700, fontSize: 11,
   textTransform: 'uppercase', letterSpacing: '0.07em',
-  color: 'rgba(255,255,255,0.45)', textAlign: 'right', background: 'rgba(99,102,241,0.1)',
+  color: 'var(--fg-3)', textAlign: 'right', background: 'rgba(99,102,241,0.1)',
   whiteSpace: 'nowrap',
 }
 const TD: CSSProperties = {
   padding: '6px 12px', fontSize: 12, textAlign: 'right',
-  color: 'rgba(255,255,255,0.65)', whiteSpace: 'nowrap',
+  color: 'var(--fg-2)', whiteSpace: 'nowrap',
 }
 
 function CopyBtn({ text }: { text: string }) {
@@ -126,7 +126,7 @@ export default function AreaConverterClient() {
   const [lastChanged, setLastChanged] = useState<UnitKey>('m2')
   const [showMatrix, setShowMatrix] = useState(false)
 
-  const computed = useMemo<Record<UnitKey, number>>(() => {
+  const _computed = useMemo<Record<UnitKey, number>>(() => {
     const raw = parseFloat(values[lastChanged])
     if (isNaN(raw)) return UNITS.reduce((acc, u) => ({ ...acc, [u.key]: NaN }), {} as Record<UnitKey, number>)
     const sqm = raw * UNIT_MAP[lastChanged].toM2
@@ -182,7 +182,7 @@ export default function AreaConverterClient() {
                 />
                 <CopyBtn text={values[u.key]} />
               </div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 3 }}>{u.industry}</div>
+              <div style={{ fontSize: 11, color: 'var(--fg-2)', marginTop: 3 }}>{u.industry}</div>
             </div>
           ))}
         </div>
@@ -190,7 +190,7 @@ export default function AreaConverterClient() {
 
       {/* ── REFERENCE POINTS ── */}
       <div style={CARD}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--fg-1)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Real-World References
         </h3>
         <div style={{ overflowX: 'auto' }}>
@@ -210,7 +210,7 @@ export default function AreaConverterClient() {
                   onClick={() => applyQuick(ref.m2, 'm2')}
                   title="Click to load"
                 >
-                  <td style={{ ...TD, textAlign: 'left', color: '#c4b5fd', fontWeight: 600 }}>{ref.label}</td>
+                  <td style={{ ...TD, textAlign: 'left', color: 'var(--brand-2)', fontWeight: 600 }}>{ref.label}</td>
                   {(['m2','ft2','yd2','ac','ha','km2','mi2'] as UnitKey[]).map(k => (
                     <td key={k} style={TD}>{fmt(ref.m2 / UNIT_MAP[k].toM2)}</td>
                   ))}
@@ -219,21 +219,21 @@ export default function AreaConverterClient() {
             </tbody>
           </table>
         </div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 8 }}>Click any row to load into the converter.</div>
+        <div style={{ fontSize: 11, color: 'var(--fg-2)', marginTop: 8 }}>Click any row to load into the converter.</div>
       </div>
 
       {/* ── FULL CONVERSION MATRIX ── */}
       <div>
         <button
           onClick={() => setShowMatrix(v => !v)}
-          style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: '#12121f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
+          style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-2)', border: '1px solid var(--line-strong)', borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
           aria-expanded={showMatrix}
         >
           {showMatrix ? '▾' : '▸'} Full Conversion Matrix (1 of each unit → all others)
         </button>
         {showMatrix && (
           <div style={{ ...CARD, padding: 0, overflow: 'hidden', marginTop: 4 }}>
-            <div style={{ display: 'flex', gap: 10, padding: '14px 20px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ display: 'flex', gap: 10, padding: '14px 20px', borderBottom: '1px solid var(--line-strong)' }}>
               <button onClick={exportCSV} style={BTN_GHOST}>⬇ Export CSV</button>
             </div>
             <div style={{ overflowX: 'auto' }}>
@@ -247,7 +247,7 @@ export default function AreaConverterClient() {
                 <tbody>
                   {UNITS.map(from => (
                     <tr key={from.key} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                      <td style={{ ...TD, textAlign: 'left', color: '#c4b5fd', fontWeight: 700 }}>1 {from.symbol}</td>
+                      <td style={{ ...TD, textAlign: 'left', color: 'var(--brand-2)', fontWeight: 700 }}>1 {from.symbol}</td>
                       {UNITS.map(to => (
                         <td key={to.key} style={{ ...TD, background: from.key === to.key ? 'rgba(99,102,241,0.12)' : 'transparent' }}>
                           {from.key === to.key ? '1' : fmt(convert(1, from.key, to.key))}
@@ -264,21 +264,21 @@ export default function AreaConverterClient() {
 
       {/* ── INDUSTRY CONTEXT ── */}
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Industry Context
         </h3>
         <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Real Estate</strong> — US/UK agents use sq ft and acres. Continental Europe uses m² for floors and hectares for land. Middle East uses dunams (1000 m²).
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Real Estate</strong> — US/UK agents use sq ft and acres. Continental Europe uses m² for floors and hectares for land. Middle East uses dunams (1000 m²).
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Agriculture</strong> — Farmers in the US measure in acres (1 ac ≈ 4047 m²). Internationally, the hectare is standard (1 ha = 10,000 m² = 2.47 acres). A football field is about 1.32 acres.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Agriculture</strong> — Farmers in the US measure in acres (1 ac ≈ 4047 m²). Internationally, the hectare is standard (1 ha = 10,000 m² = 2.47 acres). A football field is about 1.32 acres.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Acre vs Hectare</strong> — 1 acre = 0.4047 ha. 1 hectare = 2.471 acres. The acre comes from the area a yoke of oxen could plough in a day.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Acre vs Hectare</strong> — 1 acre = 0.4047 ha. 1 hectare = 2.471 acres. The acre comes from the area a yoke of oxen could plough in a day.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Country Sizes</strong> — The Vatican (0.44 km²) vs Russia (17.1 million km²). The US is 9.834 million km²; Texas alone is 696,000 km².
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Country Sizes</strong> — The Vatican (0.44 km²) vs Russia (17.1 million km²). The US is 9.834 million km²; Texas alone is 696,000 km².
           </li>
         </ul>
       </div>

@@ -1,16 +1,20 @@
 ﻿export const dynamic = 'force-dynamic'
 
 import { NextRequest, NextResponse } from 'next/server'
+import { pdfGuard, pdfSizeGuard } from '../_lib/pdf-guards'
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib'
 
 export async function POST(req: NextRequest) {
+  const guard = pdfGuard(req)
+  if (guard) return guard
   try {
     const form = await req.formData()
     const file = form.get('file') as File | null
     const password = (form.get('password') as string) || ''
     const permissions = (form.get('permissions') as string) || 'none'
 
-    if (!file) return NextResponse.json({ error: 'No file uploaded' }, { status: 400 })
+    const sizeGuard = pdfSizeGuard(file)
+    if (sizeGuard) return sizeGuard
     if (!password) return NextResponse.json({ error: 'Password is required' }, { status: 400 })
 
     const buffer = Buffer.from(await file.arrayBuffer())
@@ -25,7 +29,7 @@ export async function POST(req: NextRequest) {
 
     // Add a protection notice stamp on every page
     pdf.getPages().forEach(page => {
-      const { width, height } = page.getSize()
+      const { width } = page.getSize()
       const stampW = 260, stampH = 44
       const x = width - stampW - 16
       const y = 12

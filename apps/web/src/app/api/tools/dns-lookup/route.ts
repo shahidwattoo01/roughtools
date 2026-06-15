@@ -28,7 +28,7 @@ const DNS_STATUS: Record<number, string> = {
 
 export async function GET(request: NextRequest) {
   const ip = getClientIp(request)
-  const { allowed } = rateLimit(`dns:${ip}`, 30, 60_000)
+  const { allowed } = rateLimit(`dns:${ip}`, 200, 60_000)
   if (!allowed) return NextResponse.json({ error: 'Rate limit exceeded. Try again shortly.' }, { status: 429 })
 
   const { searchParams } = new URL(request.url)

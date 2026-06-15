@@ -56,7 +56,7 @@ const BADGE_CLASSES: Record<string, string> = {
 
 export default function CategoryHubLayout({ config }: { config: CategoryHubConfig }) {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f5f5f3] dark:bg-[#121212]">
 
       {/* ── Hero ─────────────────────────────────────────────── */}
       <div className={`bg-gradient-to-r ${config.gradient} text-white`}>
@@ -82,10 +82,10 @@ export default function CategoryHubLayout({ config }: { config: CategoryHubConfi
       </div>
 
       {/* ── Trust bar ────────────────────────────────────────── */}
-      <div className="bg-white border-b border-gray-100 shadow-sm">
+      <div className="bg-white dark:bg-[#161616] border-b border-gray-100 dark:border-white/8">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-center gap-x-6 gap-y-2">
           {config.trust.map(item => (
-            <span key={item.label} className="flex items-center gap-1.5 text-xs text-gray-600 font-medium">
+            <span key={item.label} className="flex items-center gap-1.5 text-xs text-gray-600 dark:text-[#888] font-medium">
               <span>{item.icon}</span>{item.label}
             </span>
           ))}
@@ -104,8 +104,8 @@ export default function CategoryHubLayout({ config }: { config: CategoryHubConfi
                 {group.icon}
               </div>
               <div className="flex-1 min-w-0">
-                <h2 className="text-base font-bold text-gray-900 leading-snug">{group.title}</h2>
-                <p className="text-xs text-gray-500 mt-0.5">{group.subtitle}</p>
+                <h2 className="text-base font-bold text-gray-900 dark:text-white leading-snug">{group.title}</h2>
+                <p className="text-xs text-gray-500 dark:text-[#999] mt-0.5">{group.subtitle}</p>
               </div>
               <span className={`text-xs font-bold px-2.5 py-1 rounded-full flex-shrink-0 ${config.accentGroupCount}`}>
                 {group.tools.length} tools
@@ -118,7 +118,7 @@ export default function CategoryHubLayout({ config }: { config: CategoryHubConfi
                 <Link
                   key={tool.href}
                   href={tool.href}
-                  className={`group bg-white rounded-2xl border border-gray-200 p-4 ${config.accentBorder} hover:shadow-md transition-all duration-200 block`}
+                  className={`group bg-white dark:bg-[#1e1e1e] rounded-2xl border border-gray-200 dark:border-white/10 p-4 ${config.accentBorder} hover:shadow-md transition-all duration-200 block`}
                 >
                   <div className="flex items-start gap-3">
                     <div className={`w-10 h-10 rounded-xl ${config.accentBg} flex items-center justify-center text-lg flex-shrink-0 shadow-sm`}>
@@ -126,7 +126,7 @@ export default function CategoryHubLayout({ config }: { config: CategoryHubConfi
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap mb-0.5">
-                        <span className="font-semibold text-sm text-gray-900 leading-snug">
+                        <span className="font-semibold text-sm text-gray-900 dark:text-white leading-snug">
                           {tool.name}
                         </span>
                         {tool.badge && (
@@ -135,11 +135,11 @@ export default function CategoryHubLayout({ config }: { config: CategoryHubConfi
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-gray-500 leading-relaxed">{tool.description}</p>
+                      <p className="text-xs text-gray-500 dark:text-[#999] leading-relaxed">{tool.description}</p>
                       {tool.tags && tool.tags.length > 0 && (
                         <div className="flex flex-wrap gap-1 mt-1.5">
                           {tool.tags.map(tag => (
-                            <span key={tag} className="text-xs bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded-md">
+                            <span key={tag} className="text-xs bg-gray-100 dark:bg-white/8 text-gray-500 dark:text-[#999] px-1.5 py-0.5 rounded-md">
                               {tag}
                             </span>
                           ))}
@@ -157,21 +157,21 @@ export default function CategoryHubLayout({ config }: { config: CategoryHubConfi
         ))}
 
         {/* ── SEO section ──────────────────────────────────── */}
-        <section className="bg-white rounded-2xl border border-gray-100 p-6 sm:p-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-3">{config.seoTitle}</h2>
-          <p className="text-sm text-gray-600 leading-relaxed">{config.seoBody}</p>
+        <section className="bg-white dark:bg-[#1a1a1a] rounded-2xl border border-gray-100 dark:border-white/8 p-6 sm:p-8">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{config.seoTitle}</h2>
+          <p className="text-sm text-gray-600 dark:text-[#aaa] leading-relaxed">{config.seoBody}</p>
           {config.seoBullets && config.seoBullets.length > 0 && (
             <ul className="mt-4 space-y-2">
               {config.seoBullets.map(b => (
-                <li key={b} className="flex items-start gap-2 text-sm text-gray-600">
+                <li key={b} className="flex items-start gap-2 text-sm text-gray-600 dark:text-[#aaa]">
                   <span className="text-green-500 font-bold flex-shrink-0 mt-0.5">✓</span>
                   <span>{b}</span>
                 </li>
               ))}
             </ul>
           )}
-          <div className="mt-6 pt-5 border-t border-gray-100">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">
+          <div className="mt-6 pt-5 border-t border-gray-100 dark:border-white/8">
+            <p className="text-xs font-semibold text-gray-400 dark:text-[#666] uppercase tracking-wide mb-3">
               Explore other free tools
             </p>
             <div className="flex flex-wrap gap-2">
@@ -190,7 +190,7 @@ export default function CategoryHubLayout({ config }: { config: CategoryHubConfi
 
         {/* Back link */}
         <div className="pb-4">
-          <Link href="/tools" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-800 font-medium transition-colors">
+          <Link href="/tools" className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-[#888] hover:text-gray-800 dark:hover:text-white font-medium transition-colors">
             ← Back to All Tools
           </Link>
         </div>

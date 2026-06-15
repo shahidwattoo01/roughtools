@@ -113,7 +113,7 @@ export default function MetadataRemover() {
     const url = URL.createObjectURL(cleanBlob)
     const a = document.createElement('a')
     a.href = url
-    const ext = originalName.match(/\.[^.]+$/)
+    const _ext = originalName.match(/\.[^.]+$/)
     a.download = `clean_${originalName.replace(/\.[^.]+$/, '')}.jpg`
     a.click()
     URL.revokeObjectURL(url)
@@ -165,7 +165,7 @@ export default function MetadataRemover() {
             onDragLeave={() => setDragging(false)}
             onDrop={handleDrop}
             onClick={() => inputRef.current?.click()}
-            className={`border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-all ${dragging ? 'border-teal-500 bg-teal-900/20' : 'border-gray-700 hover:border-teal-600 hover:bg-gray-800/50'}`}
+            className={`border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-all ${dragging ? 'border-teal-500 bg-teal-900/20' : 'border-gray-300 dark:border-gray-700 hover:border-teal-500 dark:hover:border-teal-600 hover:bg-teal-50 dark:hover:bg-gray-800/50'}`}
           >
             <input
               ref={inputRef}
@@ -177,7 +177,7 @@ export default function MetadataRemover() {
             {processing ? (
               <div className="flex flex-col items-center gap-2">
                 <span className="w-8 h-8 border-2 border-teal-500/30 border-t-teal-500 rounded-full animate-spin"/>
-                <p className="text-teal-300 text-sm">Processing image…</p>
+                <p className="text-teal-600 dark:text-teal-300 text-sm">Processing image…</p>
               </div>
             ) : preview ? (
               <div className="text-sm">
@@ -187,7 +187,7 @@ export default function MetadataRemover() {
             ) : (
               <div>
                 <div className="text-4xl mb-3">🖼️</div>
-                <p className="text-gray-300 font-medium">Drag & drop your image here</p>
+                <p className="text-gray-600 dark:text-gray-300 font-medium">Drag & drop your image here</p>
                 <p className="text-gray-600 text-sm mt-1">or click to browse · JPEG, PNG, WebP supported</p>
                 <p className="text-gray-700 text-xs mt-2">Your image never leaves your browser</p>
               </div>
@@ -202,7 +202,7 @@ export default function MetadataRemover() {
                   <p className="text-gray-500 text-xs mb-2 font-medium">BEFORE (original)</p>
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-gray-600 dark:text-gray-400">Size</span>
-                    <span className="text-white">{(originalSize / 1024).toFixed(0)} KB</span>
+                    <span className="text-gray-900 dark:text-white">{(originalSize / 1024).toFixed(0)} KB</span>
                   </div>
                   <div className="flex items-center justify-between text-xs mt-1">
                     <span className="text-gray-600 dark:text-gray-400">Metadata</span>
@@ -213,7 +213,7 @@ export default function MetadataRemover() {
                   <p className="text-gray-500 text-xs mb-2 font-medium">AFTER (clean)</p>
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-gray-600 dark:text-gray-400">Size</span>
-                    <span className="text-white">{(cleanSize / 1024).toFixed(0)} KB {sizeSaving > 0 && <span className="text-green-400">(-{sizeSaving}%)</span>}</span>
+                    <span className="text-gray-900 dark:text-white">{(cleanSize / 1024).toFixed(0)} KB {sizeSaving > 0 && <span className="text-green-600 dark:text-green-400">(-{sizeSaving}%)</span>}</span>
                   </div>
                   <div className="flex items-center justify-between text-xs mt-1">
                     <span className="text-gray-600 dark:text-gray-400">Metadata</span>
@@ -274,7 +274,7 @@ export default function MetadataRemover() {
               '💻 Software Used', '©️ Copyright Strings', '👤 Author Information',
               '🔢 Camera Serial Number', '🖼️ Embedded Thumbnail', '📊 Color Profile Data',
             ].map(item => (
-              <div key={item} className="flex items-center gap-2 p-2 bg-gray-800/50 rounded-lg text-xs text-gray-400">
+              <div key={item} className="flex items-center gap-2 p-2 bg-gray-100 dark:bg-gray-800/50 rounded-lg text-xs text-gray-600 dark:text-gray-400">
                 {item}
               </div>
             ))}

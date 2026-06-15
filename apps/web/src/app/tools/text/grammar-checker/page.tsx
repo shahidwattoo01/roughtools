@@ -126,7 +126,9 @@ export default function Page() {
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Catch common typos, double spaces, repeated words, and capitalization errors instantly — all in your browser without any API calls or server transmission. Color-coded highlights identify error types at a glance so you can proofread faster. Free, completely private, no account required.
         </p>
+        <div data-print-section="calculator">
         <GrammarCheckerClient />
+        </div>
         <div style={{ marginTop: 12, marginBottom: 4 }}>
           <PDFExportButton toolName="Grammar Checker" />
         </div>

@@ -104,11 +104,6 @@ function buildJsonLd(
     applicationCategory: appCategory,
     operatingSystem: 'Any',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '1024',
-    },
   }
 
   const breadcrumb = {
@@ -224,9 +219,12 @@ export default function GenericCalculatorPage({ params }: Props) {
       {/* ── Calculator ─────────────────────────────────────── */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
 
-        {/* ── Page description (H2) ────────────────────────── */}
+        {/* ① CALCULATOR (includes Formula + Reference/Disclaimer inside) */}
+        <GenericCalculatorClient tool={tool} />
+
+        {/* ② ABOUT — after calculator + formula + reference */}
         {seo?.pageDescription && (
-          <section className="mb-8 bg-white rounded-2xl border border-gray-200 px-6 py-5">
+          <section className="mt-8 bg-white rounded-2xl border border-gray-200 px-6 py-5">
             <h2 className="text-base font-bold text-gray-900 mb-2">
               About the {tool.name}
             </h2>
@@ -234,9 +232,7 @@ export default function GenericCalculatorPage({ params }: Props) {
           </section>
         )}
 
-        <GenericCalculatorClient tool={tool} />
-
-        {/* ── How to use (H2) ──────────────────────────────── */}
+        {/* ③ HOW TO USE */}
         {seo?.howToUse && seo.howToUse.length > 0 && (
           <section className="mt-10 bg-white rounded-2xl border border-gray-200 px-6 py-5">
             <div className="flex items-center gap-2 mb-4">

@@ -12,7 +12,7 @@ const LLMS_TXT = `# RoughTools — Free Online Tools
 - Tools available: 250+
 - No account required: Yes
 - Privacy: Most tools run entirely in your browser — your data never leaves your device
-- Pricing: Free (core tools) | Pro ($9/mo) | Team ($29/mo)
+- Pricing: Free forever — all 604+ tools, no signup required, no watermarks
 - Blog: ${BASE_URL}/blog — guides, tutorials, tips for using free online tools
 
 ## Tool Categories
@@ -93,7 +93,7 @@ Password generator (customizable rules), QR code generator (URL/WiFi/vCard/text,
 - Privacy Policy: ${BASE_URL}/privacy-policy
 - Terms of Service: ${BASE_URL}/terms-of-service
 - Contact: ${BASE_URL}/contact
-- Support: support@roughtools.com
+- Support: shahidwattoo0111@gmail.com
 `
 
 export function GET() {

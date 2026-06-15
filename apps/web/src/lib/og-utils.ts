@@ -1,5 +1,5 @@
 ﻿// ============================================================
-// ROUGHTOOLS â€” OG IMAGE UTILITIES
+// ROUGHTOOLS — OG IMAGE UTILITIES
 // Helpers for dynamic Open Graph image generation
 // ============================================================
 
@@ -25,22 +25,22 @@ export const OG_CATEGORY_GRADIENTS: Record<ToolCategory, { from: string; to: str
 }
 
 export const OG_CATEGORY_EMOJIS: Record<ToolCategory, string> = {
-  pdf: 'ðŸ“„',
-  calculators: 'ðŸ§®',
-  developer: 'ðŸ’»',
-  text: 'âœï¸',
-  converters: 'ðŸ”„',
-  network: 'ðŸŒ',
-  'legal-tools': 'âš–ï¸',
-  'real-estate': 'ðŸ ',
-  'image-tools': 'ðŸ–¼ï¸',
-  security: 'ðŸ”’',
-  'document-tools': 'ðŸ“‹',
-  environment: 'ðŸŒ±',
-  business: 'ðŸ’¼',
-  engineering: 'âš™ï¸',
-  medical: 'ðŸ©º',
-  'iq-test': 'ðŸ§ ',
+  pdf: '📄',
+  calculators: '🧮',
+  developer: '💻',
+  text: '✏️',
+  converters: '📄',
+  network: '🌐',
+  'legal-tools': '⚖️',
+  'real-estate': '🏠',
+  'image-tools': '🖼',
+  security: '🔒',
+  'document-tools': '📋',
+  environment: '🌱',
+  business: '💼',
+  engineering: '⚙️',
+  medical: '🩺',
+  'iq-test': '🧠',
 }
 
 export const OG_CATEGORY_LABELS: Record<ToolCategory, string> = {
@@ -59,7 +59,7 @@ export const OG_CATEGORY_LABELS: Record<ToolCategory, string> = {
   business: 'Business & Marketing Tools',
   engineering: 'Engineering Tools',
   medical: 'Medical & Health Tools',
-  'iq-test': 'IQ Test â€” Cognitive Assessment',
+  'iq-test': 'IQ Test — Cognitive Assessment',
 }
 
 /** Get OG image URL for a tool */

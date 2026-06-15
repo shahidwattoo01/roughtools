@@ -7,14 +7,14 @@ import { exportCalcPDF } from '@/lib/calcPdf'
 
 const CARD: CSSProperties = { background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 16, padding: '24px 28px' }
 const LABEL: CSSProperties = { display: 'block', marginBottom: 5, fontSize: 12, color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }
-const INPUT_BOX: CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 8, background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)', color: '#fff', fontSize: 15, boxSizing: 'border-box' }
-const BTN_GHOST: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13, fontWeight: 600, cursor: 'pointer' }
+const INPUT_BOX: CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 8, background: 'var(--bg-2)', border: '1px solid var(--line-strong)', color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box' }
+const BTN_GHOST: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13, fontWeight: 600, cursor: 'pointer' }
 const TH: CSSProperties = { padding: '9px 10px', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.07em', color: 'var(--fg-3)', textAlign: 'right', background: 'rgba(99,102,241,0.1)', whiteSpace: 'nowrap' }
 const TD: CSSProperties = { padding: '6px 10px', fontSize: 12, textAlign: 'right', color: 'var(--fg-2)', whiteSpace: 'nowrap' }
 
 function MetricCard({ label, value, sub, color = '#6366f1' }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div style={{ padding: '16px 12px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '16px 12px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 20, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 10, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -157,7 +157,7 @@ export default function DownPaymentCalculatorClient() {
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
               <span style={LABEL as CSSProperties}>Down Payment</span>
-              <span style={{ fontSize: 14, fontWeight: 700, color: '#c4b5fd' }}>{DP}%</span>
+              <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--brand-2)' }}>{DP}%</span>
             </div>
             <input type="range" min={0} max={40} step={0.5} value={downPct}
               onChange={e => setDownPct(e.target.value)}
@@ -240,7 +240,7 @@ export default function DownPaymentCalculatorClient() {
             <div style={{ fontSize: 12, color: 'var(--fg-3)', marginBottom: 8, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               Loan-to-Value Ratio: {pct(result.ltv * 100)} — {result.pmiRequired ? 'PMI Required' : 'No PMI'}
             </div>
-            <div style={{ height: 16, borderRadius: 8, overflow: 'hidden', display: 'flex', background: 'rgba(0,0,0,0.3)' }}>
+            <div style={{ height: 16, borderRadius: 8, overflow: 'hidden', display: 'flex', background: 'var(--bg-2)' }}>
               <div style={{ width: `${(1 - result.ltv) * 100}%`, background: '#8b5cf6', minWidth: 2 }} title={`Down: ${pct(DP)}`} />
               <div style={{ flex: 1, background: result.pmiRequired ? '#e879f9' : '#10b981' }} title={`Loan: ${pct(result.ltv * 100)}`} />
             </div>
@@ -296,7 +296,7 @@ export default function DownPaymentCalculatorClient() {
                       borderBottom: '1px solid rgba(255,255,255,0.05)',
                       background: row.dp === DP ? 'rgba(139,92,246,0.1)' : 'transparent',
                     }}>
-                      <td style={{ ...TD, textAlign: 'left', color: row.dp === DP ? '#c4b5fd' : 'var(--fg-2)', fontWeight: row.dp === DP ? 700 : 400 }}>
+                      <td style={{ ...TD, textAlign: 'left', color: row.dp === DP ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: row.dp === DP ? 700 : 400 }}>
                         {row.dp === DP ? '★ ' : ''}{row.dp}%
                       </td>
                       <td style={TD}>{fmt(row.downAmt)}</td>
@@ -344,7 +344,7 @@ export default function DownPaymentCalculatorClient() {
 
           {/* Guidance */}
           <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-            <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               What Your Numbers Mean
             </h3>
             <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>

@@ -1,0 +1,135 @@
+﻿---
+title: 'Number Base Converter: Binary, Decimal, Hexadecimal, and Octal Conversion Guide'
+slug: number-base-converter-guide
+date: '2026-08-20'
+excerpt: 'Learn how to convert numbers between binary (base-2), decimal (base-10), hexadecimal (base-16), and octal (base-8). Includes step-by-step conversion methods with worked examples. Free number base converter included.'
+readTime: '8 min read'
+author: RoughTools Team
+category: Math Calculators
+keywords:
+  - number base converter
+  - binary to decimal converter
+  - decimal to binary conversion
+  - hexadecimal to decimal
+  - base converter calculator
+  - binary hex octal decimal
+---
+
+To convert a binary number to decimal, multiply each binary digit by 2 raised to its position power (counting from right, starting at 0), then sum all results. Binary 1011 = (1×2³) + (0×2²) + (1×2¹) + (1×2⁰) = 8 + 0 + 2 + 1 = **11** in decimal. To convert decimal to binary, repeatedly divide by 2 and read the remainders from bottom to top.
+
+Number base systems are fundamental in computing, networking, and electronics. Decimal (base-10) is what humans use daily. Binary (base-2) is the internal language of all digital computers — every piece of data, every instruction, every pixel is ultimately stored as 0s and 1s. Hexadecimal (base-16) provides a compact, human-readable way to represent binary data. Octal (base-8) appears in Unix/Linux file permissions.
+
+Use the free [Number Base Converter](https://roughtools.com/tools/converters/number-base-converter) at RoughTools to convert between binary, decimal, hexadecimal, and octal instantly.
+
+👉 **Free Number Base Converter — instant, no signup required.**
+→ https://roughtools.com/tools/converters/number-base-converter
+
+## How to Use the Number Base Converter
+
+1. **Enter the number.** Type any number in any base.
+2. **Select the source base.** Binary (2), Octal (8), Decimal (10), Hexadecimal (16), or any custom base.
+3. **Read all conversions simultaneously.** The converter displays the equivalent value in all common bases at once.
+
+## The Four Common Number Bases
+
+| Base | Name | Digits Used | Example |
+|------|------|------------|---------|
+| 2 | Binary | 0, 1 | 1010 |
+| 8 | Octal | 0–7 | 12 |
+| 10 | Decimal | 0–9 | 10 |
+| 16 | Hexadecimal | 0–9, A–F | A |
+
+All four represent the same number — ten. In each system, the positional value increases by the base from right to left.
+
+## Step-by-Step Conversion Methods
+
+### Binary to Decimal
+Multiply each bit by 2^position (right=0, left increases):
+```
+10110 = (1×16) + (0×8) + (1×4) + (1×2) + (0×1) = 16+0+4+2+0 = 22
+```
+
+### Decimal to Binary
+Repeatedly divide by 2, record remainders, read upward:
+```
+22 ÷ 2 = 11 R 0
+11 ÷ 2 = 5  R 1
+5  ÷ 2 = 2  R 1
+2  ÷ 2 = 1  R 0
+1  ÷ 2 = 0  R 1
+Reading remainders upward: 10110
+```
+
+### Decimal to Hexadecimal
+Divide by 16, convert remainders using A=10, B=11, C=12, D=13, E=14, F=15:
+```
+255 ÷ 16 = 15 R 15 → F
+15  ÷ 16 = 0  R 15 → F
+Reading upward: FF
+```
+So decimal 255 = FF in hexadecimal (also written as 0xFF)
+
+### Hexadecimal to Decimal
+Multiply each digit by 16^position:
+```
+3F = (3×16) + (15×1) = 48 + 15 = 63
+```
+
+## Common Conversion Reference Table
+
+| Decimal | Binary | Octal | Hexadecimal |
+|---------|--------|-------|-------------|
+| 0 | 0 | 0 | 0 |
+| 1 | 1 | 1 | 1 |
+| 4 | 100 | 4 | 4 |
+| 8 | 1000 | 10 | 8 |
+| 10 | 1010 | 12 | A |
+| 15 | 1111 | 17 | F |
+| 16 | 10000 | 20 | 10 |
+| 32 | 100000 | 40 | 20 |
+| 64 | 1000000 | 100 | 40 |
+| 128 | 10000000 | 200 | 80 |
+| 255 | 11111111 | 377 | FF |
+| 256 | 100000000 | 400 | 100 |
+
+## Why Hexadecimal is Used in Computing
+
+One hexadecimal digit represents exactly 4 binary bits (a "nibble"). Two hex digits represent 8 bits (one byte). This makes hex notation extremely compact compared to binary:
+
+- A 32-bit integer: 10110101001101110101001110101010 (32 digits in binary)
+- Same in hex: B534E8AA (8 digits in hex)
+
+Hexadecimal appears in: memory addresses (0x1A2B3C4D), color codes in web/design (#FF5733 = RGB 255, 87, 51), MAC addresses (00:1A:2B:3C:4D:5E), error codes, file hex editors, SHA hashes, and cryptographic keys.
+
+## Octal and Unix Permissions
+
+Octal (base-8) is used in Unix/Linux to represent file permissions. The command `chmod 755 file.sh` uses octal: 7=111 (read+write+execute for owner), 5=101 (read+execute for group), 5=101 (read+execute for others). Each octal digit maps to 3 binary bits representing the r, w, x permissions.
+
+## Frequently Asked Questions
+
+**Why do computers use binary instead of decimal?**
+Computers use binary because electronic circuits have two stable states: on (voltage present = 1) and off (no voltage = 0). It is technically possible to build ternary computers (three states), and some experimental and neuromorphic computing systems explore this — but binary transistors are extremely reliable, fast, and manufacturable. Base-10 would require 10 distinct voltage levels to be stable — far more complex and error-prone.
+
+**What does 0x mean before a number?**
+The prefix 0x (zero-x) is the standard programming notation for hexadecimal numbers. 0xFF = decimal 255; 0x1A = decimal 26; 0x00 = decimal 0. The prefix avoids ambiguity — without it, you would not know if "FF" is hexadecimal or just letters. Some languages also use # for hex (HTML color codes), & (assembly), or H suffix.
+
+**How do I convert hex color codes to RGB?**
+HTML colors like #FF8040 split into three hex pairs: FF (red) = 255, 80 (green) = 128, 40 (blue) = 64. So #FF8040 = RGB(255, 128, 64). Each pair converts from hexadecimal to decimal to get the 0–255 value for each color channel. The RoughTools converter handles color hex to RGB conversion directly.
+
+**What is the maximum value of a byte?**
+1 byte = 8 bits. Maximum unsigned value: all 8 bits = 1 → binary 11111111 = decimal 255 = hex FF. Signed bytes (where one bit indicates positive/negative) range from −128 to +127. This is why file size limits, color values, and many data types use 255 as a maximum — it's the largest number in 8 binary bits.
+
+**What are bits, nibbles, bytes, and words?**
+1 bit = one binary digit (0 or 1). 4 bits = 1 nibble = 1 hex digit. 8 bits = 1 byte = 2 hex digits. 16 bits = 1 word (in 16-bit computing). 32 bits = 1 dword (double word). 64 bits = 1 qword (quad word). Memory addresses, data types, and processor architectures are all described in these units.
+
+## Related Free Tools on RoughTools
+
+- **[ASCII / Unicode Converter](https://roughtools.com/tools/converters/ascii-converter)** — convert characters to ASCII codes (decimal/hex/binary)
+- **[Color Converter](https://roughtools.com/tools/converters/color-converter)** — convert hex color codes to RGB, HSL, HSV
+- **[Scientific Calculator](https://roughtools.com/tools/calculators/scientific-calculator)** — perform calculations in different bases
+
+## Convert Number Bases Now
+
+The free [Number Base Converter](https://roughtools.com/tools/converters/number-base-converter) at RoughTools converts between binary, octal, decimal, hexadecimal, and any custom base. Enter once, see all conversions simultaneously. No account needed, completely free.
+
+**[Free Number Base Converter →](https://roughtools.com/tools/converters/number-base-converter)**

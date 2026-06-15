@@ -7,7 +7,7 @@ import ToolAdUnit from '@/components/ToolAdUnit'
 
 type QRType = 'url' | 'text' | 'email' | 'phone' | 'sms' | 'wifi' | 'vcard'
 type ErrorLevel = 'L' | 'M' | 'Q' | 'H'
-type WifiSecurity = 'WPA' | 'WEP' | 'nopass'
+type _WifiSecurity = 'WPA' | 'WEP' | 'nopass'
 
 const TYPES: { id: QRType; label: string; icon: string; desc: string }[] = [
   { id: 'url', label: 'URL / Link', icon: '🌐', desc: 'Website, deep link, or any URL' },
@@ -147,13 +147,13 @@ export default function QRCodeGenerator() {
 
             {/* Type selector */}
             <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5">
-              <h3 className="text-sm font-semibold text-gray-300 mb-3">QR Code Type</h3>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">QR Code Type</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {TYPES.map(t => (
                   <button key={t.id} onClick={() => setType(t.id)}
-                    className={`p-3 rounded-xl border text-left transition-all ${type === t.id ? 'border-cyan-500 bg-cyan-900/30' : 'border-gray-700 hover:border-gray-500 bg-gray-800/50'}`}>
+                    className={`p-3 rounded-xl border text-left transition-all ${type === t.id ? 'border-cyan-500 bg-cyan-900/30' : 'border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-800/50'}`}>
                     <div className="text-lg mb-1">{t.icon}</div>
-                    <div className="font-semibold text-xs text-white">{t.label}</div>
+                    <div className="font-semibold text-xs text-gray-900 dark:text-white">{t.label}</div>
                     <div className="text-xs text-gray-500 mt-0.5">{t.desc}</div>
                   </button>
                 ))}
@@ -162,7 +162,7 @@ export default function QRCodeGenerator() {
 
             {/* Content fields */}
             <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 space-y-3">
-              <h3 className="text-sm font-semibold text-gray-300">Content</h3>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Content</h3>
 
               {type === 'url' && (
                 <div><label className={LBL}>URL</label><input value={fields.url||''} onChange={e=>set('url',e.target.value)} placeholder="https://example.com" className={CLS}/></div>
@@ -223,7 +223,7 @@ export default function QRCodeGenerator() {
 
             {/* Settings */}
             <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 space-y-4">
-              <h3 className="text-sm font-semibold text-gray-300">Appearance & Settings</h3>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Appearance & Settings</h3>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <div className="flex justify-between mb-2"><label className={LBL}>Size</label><span className="text-xs text-cyan-400 font-bold">{size}×{size}px</span></div>
@@ -238,14 +238,14 @@ export default function QRCodeGenerator() {
                 <div>
                   <label className={LBL}>Foreground Colour</label>
                   <div className="flex gap-2 items-center">
-                    <input type="color" value={fgColor} onChange={e=>setFgColor(e.target.value)} className="w-10 h-10 rounded border border-gray-700 cursor-pointer bg-transparent"/>
+                    <input type="color" value={fgColor} onChange={e=>setFgColor(e.target.value)} className="w-10 h-10 rounded border border-gray-300 dark:border-gray-700 cursor-pointer bg-transparent"/>
                     <input value={fgColor} onChange={e=>setFgColor(e.target.value)} className={`${CLS} flex-1`} placeholder="#000000"/>
                   </div>
                 </div>
                 <div>
                   <label className={LBL}>Background Colour</label>
                   <div className="flex gap-2 items-center">
-                    <input type="color" value={bgColor} onChange={e=>setBgColor(e.target.value)} className="w-10 h-10 rounded border border-gray-700 cursor-pointer bg-transparent"/>
+                    <input type="color" value={bgColor} onChange={e=>setBgColor(e.target.value)} className="w-10 h-10 rounded border border-gray-300 dark:border-gray-700 cursor-pointer bg-transparent"/>
                     <input value={bgColor} onChange={e=>setBgColor(e.target.value)} className={`${CLS} flex-1`} placeholder="#ffffff"/>
                   </div>
                 </div>
@@ -256,7 +256,7 @@ export default function QRCodeGenerator() {
           {/* Right: QR Preview */}
           <div className="space-y-4">
             <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sticky top-20">
-              <h3 className="text-sm font-semibold text-gray-300 mb-4">Preview</h3>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">Preview</h3>
               <div ref={svgRef} className="flex justify-center mb-4 p-4 rounded-xl" style={{ background: bgColor }}>
                 {qrValue ? (
                   <QRCodeSVG
@@ -278,7 +278,7 @@ export default function QRCodeGenerator() {
                   ⬇️ Download PNG
                 </button>
                 <button onClick={downloadSVG} disabled={!qrValue}
-                  className="w-full bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-600 text-white font-bold py-2.5 rounded-xl transition-colors text-sm">
+                  className="w-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:text-gray-400 dark:disabled:text-gray-600 text-gray-800 dark:text-white font-bold py-2.5 rounded-xl transition-colors text-sm">
                   ⬇️ Download SVG
                 </button>
               </div>

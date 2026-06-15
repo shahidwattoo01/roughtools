@@ -59,7 +59,7 @@ function tcpProbe(
 
 export async function GET(request: NextRequest) {
   const clientIp = getClientIp(request)
-  const { allowed } = rateLimit(`port:${clientIp}`, 20, 60_000)
+  const { allowed } = rateLimit(`port:${clientIp}`, 200, 60_000)
   if (!allowed) return NextResponse.json({ error: 'Rate limit exceeded. Try again shortly.' }, { status: 429 })
 
   const { searchParams } = new URL(request.url)

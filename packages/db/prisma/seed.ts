@@ -142,25 +142,6 @@ async function main() {
     }
   }
 
-  const adminEmail = 'admin@roughtools.com';
-  const existingAdmin = await prisma.user.findUnique({ where: { email: adminEmail } });
-  if (!existingAdmin) {
-    await prisma.user.create({
-      data: {
-        email: adminEmail,
-        username: 'admin',
-        passwordHash: 'REPLACE_WITH_BCRYPT_HASH_OF_Admin123!',
-        name: 'Admin User',
-        role: 'ADMIN',
-        emailVerified: true,
-        isActive: true,
-      },
-    });
-    console.log('  Created admin user (admin@roughtools.com)');
-  } else {
-    console.log('  Admin user already exists');
-  }
-
   console.log('Seeding complete!');
 }
 

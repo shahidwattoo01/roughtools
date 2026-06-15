@@ -6,7 +6,7 @@ const inputStyle: React.CSSProperties = {
   padding: '10px 14px',
   borderRadius: 8,
   background: '#252540',
-  border: '1px solid rgba(255,255,255,0.1)',
+  border: '1px solid var(--line-strong)',
   color: '#e0e0ff',
   fontSize: 14,
   fontFamily: 'monospace',
@@ -48,7 +48,7 @@ export default function RegexTesterClient() {
       let m2: RegExpExecArray | null
       while ((m2 = gRe2.exec(testStr)) !== null) {
         result += escHtml(testStr.slice(last, m2.index))
-        result += `<mark style="background:#a78bfa33;color:#c4b5fd;border-radius:3px;padding:0 2px">${escHtml(m2[0])}</mark>`
+        result += `<mark style="background:#a78bfa33;color:var(--brand-2);border-radius:3px;padding:0 2px">${escHtml(m2[0])}</mark>`
         last = m2.index + m2[0].length
         if (!flagStr.includes('g')) break
         if (m2[0].length === 0) { result += escHtml(testStr[last] ?? ''); last++; gRe2.lastIndex = last }
@@ -99,7 +99,7 @@ export default function RegexTesterClient() {
       {testStr && pattern && !error && (
         <div style={{ marginBottom: 14 }}>
           <label style={{ display: 'block', marginBottom: 6, fontSize: 13, color: '#a78bfa', fontWeight: 600 }}>Match Highlighting</label>
-          <div style={{ padding: '12px 14px', background: '#252540', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', fontFamily: 'monospace', fontSize: 13, color: '#e0e0ff', whiteSpace: 'pre-wrap', lineHeight: 1.8 }}
+          <div style={{ padding: '12px 14px', background: '#252540', borderRadius: 8, border: '1px solid var(--line-strong)', fontFamily: 'monospace', fontSize: 13, color: '#e0e0ff', whiteSpace: 'pre-wrap', lineHeight: 1.8 }}
             dangerouslySetInnerHTML={{ __html: highlighted }} />
           <div style={{ marginTop: 8, fontSize: 13, color: matches.length > 0 ? '#4ade80' : '#f87171' }}>
             {matches.length > 0 ? `${matches.length} match${matches.length !== 1 ? 'es' : ''} found` : 'No matches'}
@@ -118,7 +118,7 @@ export default function RegexTesterClient() {
                 {m.groups.length > 0 && m.groups.some(g => g !== undefined) && (
                   <div style={{ marginTop: 6, paddingLeft: 16, borderLeft: '2px solid rgba(167,139,250,0.2)' }}>
                     {m.groups.map((g, gi) => (
-                      <div key={gi} style={{ color: '#c4b5fd', fontSize: 12 }}>Group {gi + 1}: {g !== undefined ? `"${g}"` : 'undefined'}</div>
+                      <div key={gi} style={{ color: 'var(--brand-2)', fontSize: 12 }}>Group {gi + 1}: {g !== undefined ? `"${g}"` : 'undefined'}</div>
                     ))}
                   </div>
                 )}

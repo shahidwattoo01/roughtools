@@ -3,6 +3,9 @@ import { useState, useMemo } from 'react'
 import type { CSSProperties } from 'react'
 import { exportCalcPDF } from '@/lib/calcPdf'
 
+const N_TABLE_SIZES = [10, 25, 50, 100, 250, 500, 1000]
+const SCENARIO_CLS = ['80', '90', '95', '99']
+
 // ─── Style tokens ─────────────────────────────────────────────────────────────
 
 const CARD: CSSProperties = {
@@ -13,8 +16,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -23,7 +26,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -77,7 +80,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   label: string; value: string; sub?: string; color?: string
 }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 20, fontWeight: 900, color, fontFamily: 'monospace' }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -118,10 +121,9 @@ export default function ConfidenceIntervalClient() {
   const width = upper - lower
 
   // Effect-of-n table
-  const nTableSizes = [10, 25, 50, 100, 250, 500, 1000]
   const nTableRows = useMemo(() => {
     if (!valid) return []
-    return nTableSizes.map(sz => {
+    return N_TABLE_SIZES.map(sz => {
       const seSz = sdn / Math.sqrt(sz)
       const distT = sz < 30
       const cv = distT ? getTCrit(sz - 1, cl) : (Z_CRITS[cl] ?? 1.96)
@@ -131,10 +133,9 @@ export default function ConfidenceIntervalClient() {
   }, [valid, sdn, cl, mn])
 
   // Scenario: same data at 4 confidence levels
-  const scenarioCLs = ['80', '90', '95', '99']
   const scenarioRows = useMemo(() => {
     if (!valid) return []
-    return scenarioCLs.map(level => {
+    return SCENARIO_CLS.map(level => {
       const cv = useDistT ? getTCrit(df, level) : (Z_CRITS[level] ?? 1.96)
       const meSc = cv * se
       return { level, cv, me: meSc, lower: mn - meSc, upper: mn + meSc, width: meSc * 2 }
@@ -194,9 +195,9 @@ export default function ConfidenceIntervalClient() {
         </button>
 
         {showAdv && (
-          <div style={{ marginTop: 14, padding: '14px', borderRadius: 10, background: 'rgba(0,0,0,0.25)', fontSize: 12, color: 'var(--fg-3)', lineHeight: 2, fontFamily: 'monospace' }}>
-            <div>SE = σ/√n = {fmt(sdn)}/√{nn} = <strong style={{ color: '#c4b5fd' }}>{fmt(se, 6)}</strong></div>
-            <div>Critical value ({useDistT ? `t, df=${df}` : 'Z'}, {cl}%) = <strong style={{ color: '#c4b5fd' }}>{fmt(critVal, 4)}</strong></div>
+          <div style={{ marginTop: 14, padding: '14px', borderRadius: 10, background: 'var(--bg-2)', fontSize: 12, color: 'var(--fg-3)', lineHeight: 2, fontFamily: 'monospace' }}>
+            <div>SE = σ/√n = {fmt(sdn)}/√{nn} = <strong style={{ color: 'var(--brand-2)' }}>{fmt(se, 6)}</strong></div>
+            <div>Critical value ({useDistT ? `t, df=${df}` : 'Z'}, {cl}%) = <strong style={{ color: 'var(--brand-2)' }}>{fmt(critVal, 4)}</strong></div>
             <div>ME = {useDistT ? 't' : 'Z'} × SE = {fmt(critVal, 4)} × {fmt(se, 6)} = <strong style={{ color: '#f59e0b' }}>{fmt(me, 6)}</strong></div>
             <div>CI = x̄ ± ME = {fmt(mn, 4)} ± {fmt(me, 4)} = <strong style={{ color: '#10b981' }}>[{fmt(lower, 4)}, {fmt(upper, 4)}]</strong></div>
           </div>
@@ -221,7 +222,7 @@ export default function ConfidenceIntervalClient() {
             <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--fg-3)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 14 }}>
               Confidence Interval Visualization
             </div>
-            <div style={{ position: 'relative', height: 36, borderRadius: 8, background: 'rgba(0,0,0,0.3)', overflow: 'hidden', marginBottom: 8 }}>
+            <div style={{ position: 'relative', height: 36, borderRadius: 8, background: 'var(--bg-2)', overflow: 'hidden', marginBottom: 8 }}>
               <div style={{
                 position: 'absolute', top: 0, bottom: 0,
                 left: '10%', right: '10%',
@@ -242,7 +243,7 @@ export default function ConfidenceIntervalClient() {
             {/* Interpretation */}
             <div style={{ marginTop: 16, padding: '12px 16px', background: 'rgba(99,102,241,0.08)', borderRadius: 8, borderLeft: '3px solid #6366f1' }}>
               <p style={{ fontSize: 13, color: 'var(--fg-2)', margin: 0, lineHeight: 1.7 }}>
-                We are <strong style={{ color: '#c4b5fd' }}>{cl}% confident</strong> that the true population mean lies between{' '}
+                We are <strong style={{ color: 'var(--brand-2)' }}>{cl}% confident</strong> that the true population mean lies between{' '}
                 <strong style={{ color: '#6366f1', fontFamily: 'monospace' }}>{fmt(lower, 3)}</strong> and{' '}
                 <strong style={{ color: '#6366f1', fontFamily: 'monospace' }}>{fmt(upper, 3)}</strong> (width: {fmt(width, 3)}).
               </p>
@@ -269,7 +270,7 @@ export default function ConfidenceIntervalClient() {
                       borderBottom: '1px solid rgba(255,255,255,0.04)',
                       background: r.level === cl ? 'rgba(99,102,241,0.08)' : 'transparent',
                     }}>
-                      <td style={{ ...TD, textAlign: 'left', color: r.level === cl ? '#c4b5fd' : 'var(--fg-2)', fontWeight: r.level === cl ? 700 : 400 }}>
+                      <td style={{ ...TD, textAlign: 'left', color: r.level === cl ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: r.level === cl ? 700 : 400 }}>
                         {r.level === cl ? '★ ' : ''}{r.level}%
                       </td>
                       <td style={{ ...TD, fontFamily: 'monospace' }}>{fmt(r.cv, 3)}</td>
@@ -288,7 +289,7 @@ export default function ConfidenceIntervalClient() {
           <button onClick={() => setShowNtbl(v => !v)} style={{
             width: '100%', textAlign: 'left', padding: '14px 20px',
             background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-            borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer',
+            borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer',
           }} aria-expanded={showNtbl}>
             {showNtbl ? '▾' : '▸'} Effect of Sample Size on CI Width
           </button>
@@ -310,7 +311,7 @@ export default function ConfidenceIntervalClient() {
                         borderBottom: '1px solid rgba(255,255,255,0.04)',
                         background: r.n === nn ? 'rgba(99,102,241,0.08)' : 'transparent',
                       }}>
-                        <td style={{ ...TD, textAlign: 'left', color: r.n === nn ? '#c4b5fd' : 'var(--fg-2)', fontWeight: r.n === nn ? 700 : 400 }}>
+                        <td style={{ ...TD, textAlign: 'left', color: r.n === nn ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: r.n === nn ? 700 : 400 }}>
                           {r.n === nn ? '★ ' : ''}{r.n}
                         </td>
                         <td style={{ ...TD, fontFamily: 'monospace' }}>{fmt(r.se, 4)}</td>
@@ -362,15 +363,15 @@ export default function ConfidenceIntervalClient() {
 
           {/* Interpretation guide */}
           <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-            <h3 style={{ margin: '0 0 12px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <h3 style={{ margin: '0 0 12px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               How to Interpret This Result
             </h3>
             <ul style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 8 }}>
               <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>
-                <strong style={{ color: '#c4b5fd' }}>Correct interpretation:</strong> If you repeated this study many times, {cl}% of the resulting confidence intervals would contain the true population mean. This specific interval [{fmt(lower, 3)}, {fmt(upper, 3)}] either does or does not — we just don't know which.
+                <strong style={{ color: 'var(--brand-2)' }}>Correct interpretation:</strong> If you repeated this study many times, {cl}% of the resulting confidence intervals would contain the true population mean. This specific interval [{fmt(lower, 3)}, {fmt(upper, 3)}] either does or does not — we just don&apos;t know which.
               </li>
               <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>
-                <strong style={{ color: '#f87171' }}>Common mistake:</strong> A {cl}% CI does NOT mean "there is a {cl}% probability the true mean is in this range." Probability applies to the procedure, not to a specific computed interval.
+                <strong style={{ color: '#f87171' }}>Common mistake:</strong> A {cl}% CI does NOT mean &quot;there is a {cl}% probability the true mean is in this range.&quot; Probability applies to the procedure, not to a specific computed interval.
               </li>
               <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>
                 <strong style={{ color: '#10b981' }}>Wider CI = more uncertainty.</strong> Increase n to narrow the interval. Quadrupling sample size halves the margin of error (√n relationship).

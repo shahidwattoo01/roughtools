@@ -75,7 +75,7 @@ const inputStyle: React.CSSProperties = {
   padding: '12px',
   borderRadius: 8,
   background: '#252540',
-  border: '1px solid rgba(255,255,255,0.1)',
+  border: '1px solid var(--line-strong)',
   color: '#e0e0ff',
   fontSize: 13,
   fontFamily: 'monospace',
@@ -124,7 +124,7 @@ export default function SqlFormatterClient() {
         <select
           value={dialect}
           onChange={e => setDialect(e.target.value)}
-          style={{ padding: '6px 12px', borderRadius: 8, background: '#252540', border: '1px solid rgba(255,255,255,0.1)', color: '#e0e0ff', fontSize: 13 }}
+          style={{ padding: '6px 12px', borderRadius: 8, background: '#252540', border: '1px solid var(--line-strong)', color: '#e0e0ff', fontSize: 13 }}
         >
           <option value="standard">Standard SQL</option>
           <option value="mysql">MySQL</option>

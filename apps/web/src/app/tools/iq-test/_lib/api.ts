@@ -5,10 +5,17 @@ import type {
   FocusLossResponse,
   Question,
 } from './types'
-import { MOCK_START_SESSION, MOCK_NEXT_QUESTION, mockQuestionIndex } from './mock-data'
+import {
+  MOCK_START_SESSION,
+  MOCK_NEXT_QUESTION,
+  mockQuestionIndex,
+  mockAnswers,
+  calculateMockResult,
+} from './mock-data'
 
 const BASE = '/api/iq'
 const TOKEN_KEY = 'iq_session_token'
+const MOCK_AGE_KEY = 'iq_mock_age_group'
 
 function getToken(): string {
   if (typeof window === 'undefined') return ''
@@ -56,6 +63,8 @@ async function get<T>(path: string): Promise<T> {
 export async function startSession(ageGroup: AgeGroup): Promise<StartSessionResponse> {
   if (USE_MOCK) {
     mockQuestionIndex.value = 0
+    mockAnswers.length = 0
+    if (typeof window !== 'undefined') sessionStorage.setItem(MOCK_AGE_KEY, ageGroup)
     return MOCK_START_SESSION(ageGroup)
   }
   clearToken()
@@ -76,6 +85,13 @@ export async function submitAnswer(
   timeTakenMs: number,
 ): Promise<SubmitAnswerResponse> {
   if (USE_MOCK) {
+    // Record correctness before advancing index
+    const currentQ = MOCK_NEXT_QUESTION()
+    const isCorrect = currentQ
+      ? selectedOption === (currentQ.content as { correct?: number }).correct
+      : false
+    mockAnswers.push({ correct: isCorrect, timeTakenMs, domain: currentQ?.domain ?? 'FLUID_REASONING' })
+
     mockQuestionIndex.value += 1
     const next = MOCK_NEXT_QUESTION()
     if (!next) return { complete: true }
@@ -94,6 +110,10 @@ export async function submitTimeout(
   timeTakenMs: number,
 ): Promise<SubmitAnswerResponse> {
   if (USE_MOCK) {
+    // Timeouts count as incorrect
+    const currentQ = MOCK_NEXT_QUESTION()
+    mockAnswers.push({ correct: false, timeTakenMs, domain: currentQ?.domain ?? 'FLUID_REASONING' })
+
     mockQuestionIndex.value += 1
     const next = MOCK_NEXT_QUESTION()
     if (!next) return { complete: true }
@@ -116,6 +136,15 @@ export async function pauseSession(sessionId: string): Promise<void> {
 }
 
 export async function completeSession(sessionId: string): Promise<{ redirectUrl: string }> {
-  if (USE_MOCK) return { redirectUrl: `/tools/iq-test/results/${sessionId}` }
+  if (USE_MOCK) {
+    const ageGroup = typeof window !== 'undefined'
+      ? (sessionStorage.getItem(MOCK_AGE_KEY) ?? 'ADULT')
+      : 'ADULT'
+    const result = calculateMockResult(sessionId, [...mockAnswers], ageGroup)
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem(`mock-result-${sessionId}`, JSON.stringify(result))
+    }
+    return { redirectUrl: `/tools/iq-test/results/${sessionId}?token=mock` }
+  }
   return post<{ redirectUrl: string }>(`/session/${sessionId}/complete`)
 }

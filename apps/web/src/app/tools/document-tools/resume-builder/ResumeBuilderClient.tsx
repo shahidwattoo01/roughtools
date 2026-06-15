@@ -918,9 +918,6 @@ const TEMPLATE_GALLERY = [
   },
 ]
 
-interface GalleryTemplate {
-  id: Template; name: string; accent: string; layout: string; tags: string[]
-}
 
 function TemplateGallery({ onSelect, onContinue, hasSavedData }: {
   onSelect: (t: Template, accent: string, name: string) => void

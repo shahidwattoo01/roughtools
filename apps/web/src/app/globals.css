@@ -48,6 +48,9 @@
   --accent-biz-a: #c084fc;   --accent-biz-b: #a855f7;
   --accent-env-a: #a3e635;   --accent-env-b: #84cc16;
 
+  --diff-added-text: #166534;
+  --diff-removed-text: #991b1b;
+
   --radius-sm: 8px;
   --radius: 14px;
   --radius-lg: 20px;
@@ -100,6 +103,9 @@ html.dark {
 
   --shadow-soft: 0 12px 30px -12px rgba(0, 0, 0, 0.6);
   --shadow-card: 0 24px 60px -24px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+
+  --diff-added-text: #86efac;
+  --diff-removed-text: #fca5a5;
 }
 
 /* ============================================================
@@ -111,7 +117,6 @@ html {
   background: var(--bg-0);
   color-scheme: light;
   scroll-behavior: smooth;
-  transition: background 0.25s ease, color 0.25s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;

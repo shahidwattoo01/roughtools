@@ -81,7 +81,7 @@ function minifyXML(xml: string): { result: string; error: string } {
 
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '12px', borderRadius: 8,
-  background: '#252540', border: '1px solid rgba(255,255,255,0.1)',
+  background: '#252540', border: '1px solid var(--line-strong)',
   color: '#e0e0ff', fontSize: 13, fontFamily: 'monospace',
   resize: 'vertical', minHeight: 160, boxSizing: 'border-box',
 }
@@ -136,7 +136,7 @@ export default function XmlFormatterClient() {
         <select
           value={indentSize}
           onChange={e => setIndentSize(Number(e.target.value))}
-          style={{ padding: '6px 12px', borderRadius: 8, background: '#252540', border: '1px solid rgba(255,255,255,0.1)', color: '#e0e0ff', fontSize: 13 }}
+          style={{ padding: '6px 12px', borderRadius: 8, background: '#252540', border: '1px solid var(--line-strong)', color: '#e0e0ff', fontSize: 13 }}
         >
           <option value={2}>2 spaces</option>
           <option value={4}>4 spaces</option>

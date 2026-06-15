@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState } from 'react'
 
 // ── Mini-Calculator Definitions ──────────────────────────────────────────────
@@ -383,7 +383,7 @@ function MiniCalc({ calc }: { calc: typeof MINI_CALCS[0] }) {
           borderRadius: 6,
           padding: '8px 12px',
           fontSize: 13,
-          color: '#c4b5fd',
+          color: 'var(--brand-2)',
           fontFamily: 'monospace',
           wordBreak: 'break-word',
         }}>
@@ -442,7 +442,7 @@ export default function CalculatorsHubClient() {
 
       {filtered.length === 0 && (
         <p style={{ color: 'var(--fg-3)', textAlign: 'center', marginTop: 40 }}>
-          No calculators match "{search}"
+          No calculators match &quot;{search}&quot;
         </p>
       )}
     </div>

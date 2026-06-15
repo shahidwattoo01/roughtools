@@ -6,9 +6,9 @@
 export const SEO_CONFIG = {
   siteName: 'RoughTools',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://roughtools.com',
-  defaultTitle: 'RoughTools — 600+ Free Online Tools: PDF, Calculators & More',
+  defaultTitle: 'RoughTools — 604+ Free Online Tools: PDF, Calculators & More',
   defaultDescription:
-    'Free online tools for everyone. 600+ tools — PDF converter, 203 calculators, developer tools, unit converters, IQ test, and more. No signup required.',
+    'Free online tools for everyone. 604+ tools — PDF converter, 203 calculators, developer tools, unit converters, IQ test, and more. No signup required.',
   defaultKeywords: [
     'free online tools',
     'pdf tools',
@@ -116,26 +116,30 @@ export const CATEGORY_SEO: Record<
     ],
   },
   'legal-tools': {
-    title: 'Free Legal Tool Directory — Find Legal Software | RoughTools',
+    title: 'Free Legal Tools — NDA, Privacy Policy, Will Creator & More | RoughTools',
     description:
-      'Find and compare the best legal tools and software. Reviews, pricing, features and alternatives for 50+ legal tech tools.',
+      'Free online legal tools: NDA generator, privacy policy builder, will creator, contract templates, terms of service generator and more. No signup required.',
     keywords: [
       'legal tools',
-      'legal software',
-      'legal tech',
-      'law firm software',
-      'legal document tools',
+      'nda generator',
+      'privacy policy generator',
+      'will creator',
+      'contract generator',
+      'terms of service generator',
+      'free legal documents',
     ],
   },
   'real-estate': {
-    title: 'Free Real Estate Tools Directory — Property Software | RoughTools',
+    title: 'Free Real Estate Tools — Mortgage, Rent vs Buy & More | RoughTools',
     description:
-      'Find and compare the best real estate tools and software. Reviews, pricing, features for 42+ real estate tech tools.',
+      'Free online real estate tools: mortgage calculator, rent vs buy calculator, home affordability calculator, property ROI and more. No signup required.',
     keywords: [
       'real estate tools',
-      'real estate software',
-      'property management',
-      'real estate tech',
+      'mortgage calculator',
+      'rent vs buy calculator',
+      'home affordability calculator',
+      'property roi calculator',
+      'real estate calculators',
     ],
   },
   'image-tools': {

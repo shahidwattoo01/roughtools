@@ -48,8 +48,11 @@ export async function GET(req: NextRequest) {
   }
 
   if (action === 'redis') {
+    if (!process.env.REDIS_URL) {
+      return NextResponse.json({ connected: false, error: 'REDIS_URL is not configured' })
+    }
     try {
-      const redis = new Redis(process.env.REDIS_URL ?? 'redis://localhost:6379', { lazyConnect: true, connectTimeout: 3000 })
+      const redis = new Redis(process.env.REDIS_URL, { lazyConnect: true, connectTimeout: 3000 })
       await redis.connect()
       const [info, dbsize] = await Promise.all([redis.info('memory'), redis.dbsize()])
       await redis.quit()
@@ -60,7 +63,7 @@ export async function GET(req: NextRequest) {
       // Scan key prefixes
       const prefixes = ['iq:session', 'iq:norms', 'iq:qbank', 'iq:percentiles', 'tool:', 'cache:']
       const counts: Record<string, number> = {}
-      const redis2 = new Redis(process.env.REDIS_URL ?? 'redis://localhost:6379', { lazyConnect: true, connectTimeout: 3000 })
+      const redis2 = new Redis(process.env.REDIS_URL, { lazyConnect: true, connectTimeout: 3000 })
       await redis2.connect()
       for (const prefix of prefixes) {
         let cursor = '0'

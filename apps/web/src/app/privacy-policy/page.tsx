@@ -1,6 +1,4 @@
 ﻿import type { Metadata } from 'next'
-import SiteHeader from '@/components/SiteHeader'
-import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | RoughTools',
@@ -35,7 +33,6 @@ export default function PrivacyPolicy() {
 
   return (
     <div className="min-h-screen bg-[#0a0a1a]">
-      <SiteHeader />
     <main style={prose}>
       {/* Breadcrumb */}
       <nav style={{ fontSize: 13, color: '#555878', marginBottom: 28 }} aria-label="Breadcrumb">
@@ -239,7 +236,7 @@ export default function PrivacyPolicy() {
       </ul>
       <p style={ps}>
         To exercise any of these rights, email us at{' '}
-        <a href="mailto:privacy@roughtools.com" style={{ color: '#7c8bff' }}>privacy@roughtools.com</a>.
+        <a href="mailto:shahidwattoo0111@gmail.com" style={{ color: '#7c8bff' }}>shahidwattoo0111@gmail.com</a>.
         We will respond within 30 days. You also have the right to lodge a complaint with your local
         data protection authority (e.g. ICO in the UK, your national DPA in the EU).
       </p>
@@ -252,7 +249,7 @@ export default function PrivacyPolicy() {
         The Site is not directed at children under 13, and we do not knowingly collect personal data
         from children. If you believe we have inadvertently collected data from a child, please
         contact us immediately at{' '}
-        <a href="mailto:privacy@roughtools.com" style={{ color: '#7c8bff' }}>privacy@roughtools.com</a>.
+        <a href="mailto:shahidwattoo0111@gmail.com" style={{ color: '#7c8bff' }}>shahidwattoo0111@gmail.com</a>.
       </p>
 
       <hr style={divider} />
@@ -281,10 +278,9 @@ export default function PrivacyPolicy() {
       <h2 style={h2s}>12. Contact Us</h2>
       <p style={ps}>
         Questions about this policy? Reach us at:{' '}
-        <a href="mailto:privacy@roughtools.com" style={{ color: '#7c8bff' }}>privacy@roughtools.com</a>
+        <a href="mailto:shahidwattoo0111@gmail.com" style={{ color: '#7c8bff' }}>shahidwattoo0111@gmail.com</a>
       </p>
     </main>
-      <Footer />
     </div>
   )
 }

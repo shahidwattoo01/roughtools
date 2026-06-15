@@ -39,7 +39,7 @@ export default function AdminReportsPage() {
 
       {/* Weekly snapshot */}
       <div className="bg-[#1a1a1a] border border-white/8 rounded-xl p-5">
-        <h2 className="text-[14px] font-semibold mb-4">This Week's Summary</h2>
+        <h2 className="text-[14px] font-semibold mb-4">This Week&apos;s Summary</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
           {[
             { label: 'Sessions this week', value: s?.sessionsThisWeek ?? '—' },
@@ -94,7 +94,7 @@ export default function AdminReportsPage() {
       {/* Norming history */}
       <div className="bg-[#1a1a1a] border border-white/8 rounded-xl overflow-hidden">
         <div className="px-4 py-3 border-b border-white/6 text-[13px] font-medium">Norming Snapshot History</div>
-        {!data?.snapshots.length ? (
+        {!data?.snapshots?.length ? (
           <div className="px-4 py-6 text-center text-[#555] text-[12px]">No snapshots yet — run norming recalculation first.</div>
         ) : (
           <table className="w-full text-[12px]">

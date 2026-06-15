@@ -9,8 +9,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -19,7 +19,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 
@@ -67,7 +67,7 @@ async function singlePing(url: string, timeoutMs = 8000): Promise<number | null>
 
 function MetricCard({ label, value, color, sub }: { label: string; value: string; color: string; sub?: string }) {
   return (
-    <div style={{ padding: '16px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '16px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 22, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -258,7 +258,7 @@ export default function PingToolClient() {
             { label: 'Acceptable', range: '100–200ms', color: '#f59e0b', desc: 'Cross-continent connections' },
             { label: 'Poor', range: '> 200ms', color: '#ef4444', desc: 'Distant or congested servers' },
           ].map(({ label, range, color, desc }) => (
-            <div key={label} style={{ padding: '10px 12px', background: 'rgba(0,0,0,0.3)', borderRadius: 8, borderLeft: `3px solid ${color}` }}>
+            <div key={label} style={{ padding: '10px 12px', background: 'var(--bg-2)', borderRadius: 8, borderLeft: `3px solid ${color}` }}>
               <div style={{ fontSize: 13, fontWeight: 700, color }}>{label}</div>
               <div style={{ fontSize: 12, color: 'var(--fg-3)', marginTop: 2 }}>{range}</div>
               <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{desc}</div>
@@ -297,7 +297,7 @@ export default function PingToolClient() {
 
       {/* TROUBLESHOOTING */}
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 10px', fontSize: 13, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 10px', fontSize: 13, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Troubleshooting Guide
         </h3>
         <ul style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -311,7 +311,7 @@ export default function PingToolClient() {
             <strong>Inconsistent results:</strong> Variable latency (jitter) is normal for cross-continent connections. High variance can indicate network instability or load balancer routing changes.
           </li>
           <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.6 }}>
-            <strong>For true ICMP ping:</strong> Use <code style={{ color: '#c4b5fd' }}>ping hostname</code> from your terminal — browsers cannot send ICMP packets.
+            <strong>For true ICMP ping:</strong> Use <code style={{ color: 'var(--brand-2)' }}>ping hostname</code> from your terminal — browsers cannot send ICMP packets.
           </li>
         </ul>
       </div>

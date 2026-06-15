@@ -12,8 +12,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box', fontFamily: 'monospace',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box', fontFamily: 'monospace',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -22,12 +22,12 @@ const LABEL: CSSProperties = {
 const _BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const BTN_OP: CSSProperties = {
   padding: '7px 14px', borderRadius: 8, border: '1px solid var(--line-strong)',
-  background: 'rgba(0,0,0,0.3)', color: 'var(--fg-2)', fontSize: 13, fontWeight: 700, cursor: 'pointer',
+  background: 'var(--bg-2)', color: 'var(--fg-2)', fontSize: 13, fontWeight: 700, cursor: 'pointer',
 }
 const TH: CSSProperties = {
   padding: '9px 12px', fontWeight: 700, fontSize: 11,
@@ -107,12 +107,12 @@ function rgbToCmyk(r: number, g: number, b: number): { c: number; m: number; y: 
 
 function TabBar({ tabs, active, onChange }: { tabs: string[]; active: string; onChange: (t: string) => void }) {
   return (
-    <div style={{ display: 'flex', gap: 4, background: 'rgba(0,0,0,0.3)', padding: 4, borderRadius: 10, flexWrap: 'wrap' }}>
+    <div style={{ display: 'flex', gap: 4, background: 'var(--bg-2)', padding: 4, borderRadius: 10, flexWrap: 'wrap' }}>
       {tabs.map(t => (
         <button key={t} onClick={() => onChange(t)} style={{
           padding: '7px 16px', borderRadius: 8, border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600,
           background: active === t ? 'rgba(99,102,241,0.25)' : 'transparent',
-          color: active === t ? '#c4b5fd' : 'var(--fg-3)',
+          color: active === t ? 'var(--brand-2)' : 'var(--fg-3)',
         }}>{t}</button>
       ))}
     </div>
@@ -261,8 +261,8 @@ export default function HexCalculatorClient() {
               {(['hex', 'dec', 'oct', 'bin'] as const).map(b => (
                 <button key={b} onClick={() => setConvBase(b)} style={{
                   ...BTN_OP,
-                  background: convBase === b ? 'rgba(99,102,241,0.25)' : 'rgba(0,0,0,0.3)',
-                  color: convBase === b ? '#c4b5fd' : 'var(--fg-3)',
+                  background: convBase === b ? 'rgba(99,102,241,0.2)' : 'var(--bg-3)',
+                  color: convBase === b ? 'var(--brand-2)' : 'var(--fg-3)',
                   border: convBase === b ? '1px solid rgba(99,102,241,0.4)' : '1px solid var(--line-strong)',
                 }}>
                   {b.toUpperCase()}
@@ -288,7 +288,7 @@ export default function HexCalculatorClient() {
                   { label: 'Octal', val: '0o' + convResult.oct, color: '#f59e0b' },
                   { label: 'Binary', val: '0b' + convResult.bin, color: '#38bdf8' },
                 ].map(({ label, val, color }) => (
-                  <div key={label} style={{ padding: '14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12 }}>
+                  <div key={label} style={{ padding: '14px', background: 'var(--bg-2)', borderRadius: 12 }}>
                     <div style={{ fontSize: 11, color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>{label}</div>
                     <div style={{ fontSize: 16, fontWeight: 700, color, wordBreak: 'break-all', fontFamily: 'monospace' }}>{val}</div>
                   </div>
@@ -362,7 +362,7 @@ export default function HexCalculatorClient() {
                   { label: 'HSV', val: `hsv(${colorResult.hsv.h}, ${colorResult.hsv.s}%, ${colorResult.hsv.v}%)`, color: '#f59e0b' },
                   { label: 'CMYK', val: `cmyk(${colorResult.cmyk.c}%, ${colorResult.cmyk.m}%, ${colorResult.cmyk.y}%, ${colorResult.cmyk.k}%)`, color: '#38bdf8' },
                 ].map(({ label, val, color }) => (
-                  <div key={label} style={{ padding: '14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12 }}>
+                  <div key={label} style={{ padding: '14px', background: 'var(--bg-2)', borderRadius: 12 }}>
                     <div style={{ fontSize: 11, color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>{label}</div>
                     <div style={{ fontSize: 13, fontWeight: 700, color, fontFamily: 'monospace', wordBreak: 'break-word' }}>{val}</div>
                   </div>
@@ -371,7 +371,7 @@ export default function HexCalculatorClient() {
 
               <div style={{ ...CARD, padding: '14px 20px', background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
                 <div style={{ fontSize: 12, color: 'var(--fg-3)', marginBottom: 6, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>CSS Output</div>
-                <div style={{ fontFamily: 'monospace', fontSize: 13, color: '#c4b5fd', lineHeight: 2 }}>
+                <div style={{ fontFamily: 'monospace', fontSize: 13, color: 'var(--brand-2)', lineHeight: 2 }}>
                   <div>color: {colorHex.toUpperCase()};</div>
                   <div>color: rgb({colorResult.rgb.r}, {colorResult.rgb.g}, {colorResult.rgb.b});</div>
                   <div>color: hsl({colorResult.hsl.h}, {colorResult.hsl.s}%, {colorResult.hsl.l}%);</div>
@@ -388,7 +388,7 @@ export default function HexCalculatorClient() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {WEB_COLORS.map(([hex, name]) => (
                 <button key={hex} onClick={() => setColorHex(hex)}
-                  style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '5px 10px', borderRadius: 6, border: '1px solid var(--line-strong)', background: 'rgba(0,0,0,0.3)', cursor: 'pointer' }}>
+                  style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '5px 10px', borderRadius: 6, border: '1px solid var(--line-strong)', background: 'var(--bg-2)', cursor: 'pointer' }}>
                   <span style={{ width: 14, height: 14, borderRadius: 3, background: hex, display: 'inline-block' }} />
                   <span style={{ fontSize: 11, color: 'var(--fg-3)' }}>{name}</span>
                 </button>
@@ -411,8 +411,8 @@ export default function HexCalculatorClient() {
                 {['+', '-', '×', '÷'].map(op => (
                   <button key={op} onClick={() => setArithOp(op)} style={{
                     ...BTN_OP, fontSize: 16,
-                    background: arithOp === op ? 'rgba(99,102,241,0.25)' : 'rgba(0,0,0,0.3)',
-                    color: arithOp === op ? '#c4b5fd' : 'var(--fg-2)',
+                    background: arithOp === op ? 'rgba(99,102,241,0.2)' : 'var(--bg-3)',
+                    color: arithOp === op ? 'var(--brand-2)' : 'var(--fg-2)',
                     border: arithOp === op ? '1px solid rgba(99,102,241,0.4)' : '1px solid var(--line-strong)',
                   }}>{op}</button>
                 ))}
@@ -459,15 +459,15 @@ export default function HexCalculatorClient() {
                   {['AND', 'OR', 'XOR', 'NOT'].map(op => (
                     <button key={op} onClick={() => setBwOp(op)} style={{
                       ...BTN_OP, fontSize: 12,
-                      background: bwOp === op ? 'rgba(99,102,241,0.25)' : 'rgba(0,0,0,0.3)',
-                      color: bwOp === op ? '#c4b5fd' : 'var(--fg-2)',
+                      background: bwOp === op ? 'rgba(99,102,241,0.2)' : 'var(--bg-3)',
+                      color: bwOp === op ? 'var(--brand-2)' : 'var(--fg-2)',
                     }}>{op}</button>
                   ))}
                 </div>
               </div>
             </div>
             {bwResult && (
-              <div style={{ padding: '12px 16px', background: 'rgba(0,0,0,0.3)', borderRadius: 10, fontFamily: 'monospace', fontSize: 13, lineHeight: 2 }}>
+              <div style={{ padding: '12px 16px', background: 'var(--bg-2)', borderRadius: 10, fontFamily: 'monospace', fontSize: 13, lineHeight: 2 }}>
                 <div style={{ color: 'var(--fg-3)' }}>Result: <strong style={{ color: '#10b981', fontSize: 16 }}>0x{bwResult.hexR}</strong> ({parseInt(bwResult.hexR, 16)} decimal)</div>
                 <div style={{ color: 'var(--fg-3)', fontSize: 11 }}>Binary: {bwResult.binR}</div>
               </div>
@@ -484,8 +484,8 @@ export default function HexCalculatorClient() {
               {(['text-to-hex', 'hex-to-text'] as const).map(d => (
                 <button key={d} onClick={() => setAsciiDir(d)} style={{
                   ...BTN_OP,
-                  background: asciiDir === d ? 'rgba(99,102,241,0.25)' : 'rgba(0,0,0,0.3)',
-                  color: asciiDir === d ? '#c4b5fd' : 'var(--fg-3)',
+                  background: asciiDir === d ? 'rgba(99,102,241,0.2)' : 'var(--bg-3)',
+                  color: asciiDir === d ? 'var(--brand-2)' : 'var(--fg-3)',
                   border: asciiDir === d ? '1px solid rgba(99,102,241,0.4)' : '1px solid var(--line-strong)',
                 }}>
                   {d === 'text-to-hex' ? 'Text → Hex' : 'Hex → Text'}
@@ -509,7 +509,7 @@ export default function HexCalculatorClient() {
             <>
               <div style={{ ...CARD, padding: '14px 20px', background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
                 <div style={{ fontSize: 12, color: 'var(--fg-3)', marginBottom: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Hex String</div>
-                <div style={{ fontFamily: 'monospace', fontSize: 14, color: '#c4b5fd', wordBreak: 'break-all' }}>{asciiResult.hexStr}</div>
+                <div style={{ fontFamily: 'monospace', fontSize: 14, color: 'var(--brand-2)', wordBreak: 'break-all' }}>{asciiResult.hexStr}</div>
                 {asciiDir === 'hex-to-text' && (
                   <div style={{ fontFamily: 'monospace', fontSize: 16, color: '#10b981', marginTop: 8 }}>
                     {asciiResult.chars.map(c => c.char).join('')}

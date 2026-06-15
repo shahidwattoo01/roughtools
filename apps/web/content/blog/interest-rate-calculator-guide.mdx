@@ -1,0 +1,129 @@
+﻿---
+title: 'Interest Rate Calculator: How to Calculate Simple and Compound Interest'
+slug: interest-rate-calculator-guide
+date: '2026-10-12'
+excerpt: 'Learn how to calculate simple and compound interest, the effect of compounding frequency, and how to compare loan and savings APR vs APY. Includes worked examples and interest growth tables. Free interest rate calculator included.'
+readTime: '7 min read'
+author: RoughTools Team
+category: Financial Calculators
+keywords:
+  - interest rate calculator
+  - simple interest calculator
+  - compound interest rate calculator
+  - APR vs APY calculator
+  - how to calculate interest
+  - loan interest calculator
+---
+
+Simple interest = Principal × Rate × Time. $10,000 at 5% for 3 years: $10,000 × 0.05 × 3 = **$1,500 interest**. Compound interest reinvests earned interest, producing exponential growth. $10,000 at 5% compounded annually for 3 years: $10,000 × (1.05)³ = $11,576 → **$1,576 interest** ($76 more than simple interest). The difference grows dramatically over longer periods and higher rates.
+
+Understanding interest rate calculations is fundamental to personal finance: evaluating savings accounts, CDs, loans, credit cards, mortgages, and investment returns all require understanding how interest is calculated and how compounding frequency affects the real cost or growth.
+
+Use the free [Interest Rate Calculator](https://roughtools.com/tools/calculators/interest-rate-calculator) at RoughTools to calculate simple or compound interest, project future values, and compare interest rates.
+
+👉 **Free Interest Rate Calculator — instant, no signup required.**
+→ https://roughtools.com/tools/calculators/interest-rate-calculator
+
+## Simple vs. Compound Interest Formulas
+
+**Simple Interest:**
+```
+I = P × r × t
+A = P + I = P(1 + rt)
+
+Where: P = Principal, r = Annual rate (decimal), t = Time (years)
+```
+
+**Compound Interest:**
+```
+A = P × (1 + r/n)^(nt)
+I = A - P
+
+Where: n = Compounding periods per year
+```
+
+Compounding frequencies:
+- Annual: n = 1
+- Semi-annual: n = 2
+- Quarterly: n = 4
+- Monthly: n = 12
+- Daily: n = 365
+
+**Continuous compounding:**
+```
+A = P × e^(rt)
+```
+
+## Compounding Frequency Comparison
+
+$10,000 at 5% annual rate for 10 years:
+
+| Compounding | n | Formula | Final Value | Interest Earned |
+|------------|---|---------|-------------|----------------|
+| Annual | 1 | 10,000(1.05)¹⁰ | $16,289 | $6,289 |
+| Semi-annual | 2 | 10,000(1.025)²⁰ | $16,386 | $6,386 |
+| Monthly | 12 | 10,000(1.00417)¹²⁰ | $16,470 | $6,470 |
+| Daily | 365 | 10,000(1.000137)³⁶⁵⁰ | $16,487 | $6,487 |
+| Continuous | ∞ | 10,000×e⁰·⁵ | $16,487 | $6,487 |
+
+Increasing compounding from annual to monthly adds $181; from monthly to daily adds only $17. Beyond monthly compounding, diminishing returns are significant.
+
+## APR vs. APY: The Critical Difference
+
+**APR (Annual Percentage Rate):** The nominal interest rate, ignoring compounding effects within the year. Used for loans (mortgages, credit cards, car loans) to show the annual rate you're charged.
+
+**APY (Annual Percentage Yield):** The effective annual rate that includes the effect of compounding within the year. Used for savings accounts and CDs to show actual growth.
+
+```
+APY = (1 + APR/n)^n - 1
+```
+
+A savings account with 5.00% APR compounded monthly: APY = (1 + 0.05/12)¹² − 1 = (1.004167)¹² − 1 = **5.116% APY**.
+
+A credit card with 24% APR compounded daily: APY = (1 + 0.24/365)³⁶⁵ − 1 = **27.11% APY** (the real cost).
+
+**Rule:** For savings, higher APY = more growth. For loans, higher APR = higher cost. Always compare the same measure (APY to APY) when evaluating similar products.
+
+## Interest Growth Over Time
+
+$5,000 invested at 7% annual compound interest:
+
+| Year | Balance | Interest That Year |
+|------|---------|-------------------|
+| 1 | $5,350 | $350 |
+| 5 | $7,013 | $459 |
+| 10 | $9,836 | $644 |
+| 20 | $19,348 | $1,266 |
+| 30 | $38,061 | $2,490 |
+| 40 | $74,872 | $4,895 |
+
+By year 40, the investment earns more interest in a single year ($4,895) than the original principal ($5,000). This is the power of compounding over long periods.
+
+## Frequently Asked Questions
+
+**What is the Rule of 72?**
+The Rule of 72 estimates how long it takes to double money at compound interest: Years to Double = 72 ÷ Annual Interest Rate. At 6%: 72/6 = 12 years to double. At 8%: 9 years. At 12%: 6 years. This approximation works best for rates between 5–15%. For more precision, use the exact formula: t = ln(2) / ln(1 + r) = 0.693 / ln(1.08) = 0.693 / 0.0770 = 9.0 years at 8%.
+
+**What is the difference between nominal and real interest rate?**
+Nominal interest rate is the stated rate. Real interest rate adjusts for inflation: Real Rate ≈ Nominal Rate − Inflation Rate (Fisher equation: exact formula is (1 + nominal) / (1 + inflation) − 1). If your savings account earns 4.5% APY and inflation is 3.2%, your real return is approximately 1.3%. This is the actual increase in purchasing power. During periods of high inflation, even relatively good nominal interest rates may produce negative real returns (your money buys less despite growing numerically).
+
+**How does credit card interest actually get calculated?**
+Credit card companies typically charge interest daily on the outstanding balance: Daily Periodic Rate = APR / 365. Monthly interest = Average Daily Balance × DPR × Days in Month. A $3,000 average balance at 24% APR: DPR = 24%/365 = 0.0658%. Monthly interest = $3,000 × 0.000658 × 30 = **$59.20**. The insidious part: unpaid interest is added to the principal, and next month's interest is calculated on the higher balance (interest on interest). This is why minimum payment strategies take so long — most of the payment goes to interest, barely reducing principal.
+
+**What is negative interest?**
+Negative interest rates occur when central banks set benchmark rates below zero, meaning banks pay to hold money (or more precisely, central banks charge banks for depositing reserves). Some European countries (Switzerland, Japan) implemented negative rates to stimulate lending. Retail depositors rarely see negative rates — banks typically lower rates to 0% rather than charging customers. Negative real interest rates (nominal rate below inflation) are more common and effectively erode the real value of savings.
+
+**How do I calculate the interest on a savings account monthly statement?**
+Find the monthly statement showing: opening balance, APY (or APR), and interest earned. Verify: Opening balance × (APY/12) ≈ interest earned for the month (approximate, since APY is annualized). If opening balance = $8,000 at 4.5% APY: monthly interest ≈ $8,000 × 0.045/12 = $30. Small differences from actual paid interest arise from daily compounding (the actual method) vs. this monthly approximation.
+
+## Related Free Tools on RoughTools
+
+- **[Compound Interest Calculator](https://roughtools.com/tools/calculators/compound-interest-calculator)** — detailed compounding calculator with regular contributions
+- **[Loan Payment Calculator](https://roughtools.com/tools/calculators/loan-payment-calculator)** — calculate monthly loan payments and total interest
+- **[Savings Rate Calculator](https://roughtools.com/tools/calculators/savings-rate-calculator)** — calculate how much to save for goals
+
+## Calculate Interest Now
+
+The free [Interest Rate Calculator](https://roughtools.com/tools/calculators/interest-rate-calculator) at RoughTools calculates simple and compound interest, projects future value at any compounding frequency, and converts between APR and APY. No account needed, completely free.
+
+**[Free Interest Rate Calculator →](https://roughtools.com/tools/calculators/interest-rate-calculator)**

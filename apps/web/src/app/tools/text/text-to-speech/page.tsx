@@ -126,7 +126,9 @@ export default function Page() {
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Convert any text to speech directly in your browser using your operating system&apos;s built-in voices. Choose from all available system voices, adjust speaking rate and pitch, and listen instantly. Useful for proofreading, accessibility, and hands-free reading. Free, no account required.
         </p>
+        <div data-print-section="calculator">
         <TextToSpeechClient />
+        </div>
         <div style={{ marginTop: 12, marginBottom: 4 }}>
           <PDFExportButton toolName="Text to Speech" />
         </div>

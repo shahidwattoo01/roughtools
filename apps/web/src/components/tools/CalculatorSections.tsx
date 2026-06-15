@@ -152,7 +152,7 @@ interface QuickReferenceTableProps {
 
 export function QuickReferenceTable({ rows, title = 'Quick Reference' }: QuickReferenceTableProps) {
   return (
-    <section style={{ ...card, padding: '24px 0', overflow: 'hidden' }} aria-labelledby="quick-ref-heading">
+    <section data-print-section="reference" style={{ ...card, padding: '24px 0', overflow: 'hidden' }} aria-labelledby="quick-ref-heading">
       <h2 id="quick-ref-heading" style={{ ...h2Style, padding: '0 32px' }}>{title}</h2>
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>

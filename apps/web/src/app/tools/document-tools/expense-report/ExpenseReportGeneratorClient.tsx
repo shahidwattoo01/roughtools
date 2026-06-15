@@ -95,7 +95,7 @@ Format it as a professional document suitable for submission to an accounts paya
 function printReport(d: ExpenseData) {
   const win=window.open('','_blank'); if(!win) return
   const validItems = d.items.filter(i=>i.description||i.amount)
-  const total = validItems.reduce((s,i)=>s+(parseFloat(i.amount)||0),0)
+  const _total = validItems.reduce((s,i)=>s+(parseFloat(i.amount)||0),0)
   win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Expense Report — ${d.employeeName}</title>
 <style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,sans-serif;color:#1a1a1a;line-height:1.6;font-size:13px}@page{size:A4;margin:0}@media print{body{width:210mm}}</style></head><body>
 <div style="max-width:800px;margin:0 auto">

@@ -848,7 +848,7 @@ function getFields(type: FormulaType): Field[] {
 }
 
 // ─── Chart helpers ────────────────────────────────────────────
-const CHART_COLORS = ['#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd', '#ddd6fe']
+const CHART_COLORS = ['#6366f1', '#8b5cf6', '#a78bfa', 'var(--brand-2)', '#ddd6fe']
 
 function parseChartData(result: string): { name: string; value: number }[] {
   return result

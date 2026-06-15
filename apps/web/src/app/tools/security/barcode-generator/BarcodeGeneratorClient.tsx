@@ -180,7 +180,7 @@ export default function BarcodeGenerator() {
   const [faqOpen, setFaqOpen] = useState<number|null>(null)
   const [error, setError] = useState('')
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const previewRef = useRef<HTMLCanvasElement>(null)
+  const _previewRef = useRef<HTMLCanvasElement>(null)
 
   const currentFormat = FORMATS.find(f => f.id === format)!
 
@@ -287,13 +287,13 @@ export default function BarcodeGenerator() {
 
             {/* Format selector */}
             <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5">
-              <h3 className="text-sm font-semibold text-gray-300 mb-3">Barcode Format</h3>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Barcode Format</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {FORMATS.map(f => (
                   <button key={f.id} onClick={() => { setFormat(f.id); setInput(f.example) }}
-                    className={`p-3 rounded-xl border text-left transition-all ${format === f.id ? 'border-orange-500 bg-orange-900/30' : 'border-gray-700 hover:border-gray-500 bg-gray-800/50'}`}>
+                    className={`p-3 rounded-xl border text-left transition-all ${format === f.id ? 'border-orange-500 bg-orange-900/30' : 'border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-800/50'}`}>
                     <div className="flex items-center gap-2 mb-1">
-                      <span className={`text-xs font-bold px-2 py-0.5 rounded ${format === f.id ? 'bg-orange-600 text-white' : 'bg-gray-700 text-gray-300'}`}>{f.name}</span>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded ${format === f.id ? 'bg-orange-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'}`}>{f.name}</span>
                     </div>
                     <div className="text-xs text-gray-400">{f.desc}</div>
                   </button>
@@ -303,7 +303,7 @@ export default function BarcodeGenerator() {
 
             {/* Input */}
             <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 space-y-3">
-              <h3 className="text-sm font-semibold text-gray-300">Barcode Data</h3>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Barcode Data</h3>
               <div>
                 <input
                   value={input}
@@ -323,7 +323,7 @@ export default function BarcodeGenerator() {
 
             {/* Settings */}
             <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 space-y-4">
-              <h3 className="text-sm font-semibold text-gray-300">Appearance</h3>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Appearance</h3>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <div className="flex justify-between text-xs text-gray-400 mb-1.5"><span>Scale / Resolution</span><span className="text-orange-400 font-bold">{scale}×</span></div>
@@ -342,14 +342,14 @@ export default function BarcodeGenerator() {
                 <div>
                   <div className="text-xs text-gray-400 mb-1.5">Bar Colour</div>
                   <div className="flex gap-2 items-center">
-                    <input type="color" value={fgColor} onChange={e=>setFgColor(e.target.value)} className="w-10 h-10 rounded border border-gray-700 cursor-pointer bg-transparent"/>
+                    <input type="color" value={fgColor} onChange={e=>setFgColor(e.target.value)} className="w-10 h-10 rounded border border-gray-300 dark:border-gray-700 cursor-pointer bg-transparent"/>
                     <input value={fgColor} onChange={e=>setFgColor(e.target.value)} className={`${CLS} flex-1`}/>
                   </div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-400 mb-1.5">Background Colour</div>
                   <div className="flex gap-2 items-center">
-                    <input type="color" value={bgColor} onChange={e=>setBgColor(e.target.value)} className="w-10 h-10 rounded border border-gray-700 cursor-pointer bg-transparent"/>
+                    <input type="color" value={bgColor} onChange={e=>setBgColor(e.target.value)} className="w-10 h-10 rounded border border-gray-300 dark:border-gray-700 cursor-pointer bg-transparent"/>
                     <input value={bgColor} onChange={e=>setBgColor(e.target.value)} className={`${CLS} flex-1`}/>
                   </div>
                 </div>
@@ -360,7 +360,7 @@ export default function BarcodeGenerator() {
           {/* Right: Preview */}
           <div className="space-y-4">
             <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sticky top-20">
-              <h3 className="text-sm font-semibold text-gray-300 mb-4">Preview</h3>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">Preview</h3>
               <div className="flex justify-center mb-4 p-4 rounded-xl overflow-auto" style={{ background: bgColor, minHeight: 120 }}>
                 <canvas ref={canvasRef} className="max-w-full" style={{ imageRendering: 'pixelated' }} />
               </div>
@@ -370,7 +370,7 @@ export default function BarcodeGenerator() {
                   ⬇️ Download PNG
                 </button>
                 <button onClick={downloadSVG} disabled={!!error || !input}
-                  className="w-full bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-600 text-white font-bold py-2.5 rounded-xl transition-colors text-sm">
+                  className="w-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:text-gray-400 dark:disabled:text-gray-600 text-gray-800 dark:text-white font-bold py-2.5 rounded-xl transition-colors text-sm">
                   ⬇️ Download SVG
                 </button>
               </div>

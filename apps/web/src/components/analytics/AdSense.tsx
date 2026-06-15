@@ -142,7 +142,7 @@ export function AdUnit({ slot, format = 'auto', style, label: _label, className 
     return () => observer.disconnect()
   }, [slot, format])
 
-  if (!ADSENSE_CLIENT) return null
+  if (!ADSENSE_CLIENT || !slot) return null
 
   return (
     <div className={className}>

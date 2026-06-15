@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+﻿/* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/JsonLd'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -8,11 +8,11 @@ import { ToolPageExtras } from '@/components/ToolPageExtras'
 
 export const metadata: Metadata = {
   title: 'What Is My IP Address? | Free IP Checker & Lookup | RoughTools',
-  description: 'Find your public IP address instantly and look up detailed geolocation info for any IP — country, city, ISP, timezone, and coordinates. Free, no signup required.',
+  description: 'Find your public IP address instantly and look up detailed geolocation info for any IP â€” country, city, ISP, timezone, and coordinates. Free, no signup required.',
   keywords: ['what is my ip', 'ip address checker', 'ip lookup', 'ip geolocation', 'my ip address', 'find my ip', 'ip location finder'],
   alternates: { canonical: 'https://roughtools.com/tools/network/ip-checker' },
   openGraph: {
-    title: `IP Address Checker — Find Your IP Address | RoughTools`,
+    title: `IP Address Checker â€” Find Your IP Address | RoughTools`,
     description: `Find your public IP address, ISP, location, and network details instantly. Free online IP address lookup tool.`,
     url: 'https://roughtools.com/tools/network/ip-checker',
     type: 'website',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `IP Address Checker — Find Your IP Address | RoughTools`,
+    title: `IP Address Checker â€” Find Your IP Address | RoughTools`,
     description: `Find your public IP address, ISP, location, and network details instantly. Free online IP address lookup tool.`,
   },
   robots: { index: true, follow: true },
@@ -33,15 +33,15 @@ const FAQ = [
   },
   {
     q: 'Do I need to create an account to find my IP address?',
-    a: 'No account or registration is required. Open the IP Checker page and your public IP address is displayed automatically within seconds — no input needed. To look up a different IP, simply type it into the search field. There is no email, password, or profile required at any point. RoughTools is designed for instant answers without sign-up friction.',
+    a: 'No account or registration is required. Open the IP Checker page and your public IP address is displayed automatically within seconds â€” no input needed. To look up a different IP, simply type it into the search field. There is no email, password, or profile required at any point. RoughTools is designed for instant answers without sign-up friction.',
   },
   {
     q: 'Does this tool store or share my IP address?',
-    a: 'RoughTools does not store your IP address or any lookup history. Your IP is retrieved from the ipapi.co public geolocation API, which has its own privacy policy. The tool is designed to display your IP to you — not to collect or log it. You can freely use this tool to verify your VPN connection, check your public-facing address, or look up IPs from server logs without any data retention concern on our end.',
+    a: 'RoughTools does not store your IP address or any lookup history. Your IP is retrieved from the ipapi.co public geolocation API, which has its own privacy policy. The tool is designed to display your IP to you â€” not to collect or log it. You can freely use this tool to verify your VPN connection, check your public-facing address, or look up IPs from server logs without any data retention concern on our end.',
   },
   {
     q: 'Does the IP Checker work on mobile phones and tablets?',
-    a: 'Yes. The IP Address Checker is fully responsive and works correctly on smartphones, tablets, and desktop computers. The layout adapts to all screen sizes so you can view your IP and full geolocation details on any device. It works in Chrome for Android, Safari for iOS, and all modern mobile browsers. Your mobile device\'s public IP — assigned by your carrier or Wi-Fi network — is automatically detected and displayed.',
+    a: 'Yes. The IP Address Checker is fully responsive and works correctly on smartphones, tablets, and desktop computers. The layout adapts to all screen sizes so you can view your IP and full geolocation details on any device. It works in Chrome for Android, Safari for iOS, and all modern mobile browsers. Your mobile device\'s public IP â€” assigned by your carrier or Wi-Fi network â€” is automatically detected and displayed.',
   },
   {
     q: 'Which browsers are supported by this IP lookup tool?',
@@ -49,7 +49,7 @@ const FAQ = [
   },
   {
     q: 'How accurate is the IP geolocation data?',
-    a: 'IP geolocation is based on registration data, routing tables, and network mapping — not GPS. Accuracy varies by region and ISP. For most residential connections, the country and region are accurate but the city may be off by 50–200 miles. ISPs sometimes register IP blocks in a different city than where customers are located. VPNs and proxy services show the server\'s location, not the user\'s actual physical location.',
+    a: 'IP geolocation is based on registration data, routing tables, and network mapping â€” not GPS. Accuracy varies by region and ISP. For most residential connections, the country and region are accurate but the city may be off by 50â€“200 miles. ISPs sometimes register IP blocks in a different city than where customers are located. VPNs and proxy services show the server\'s location, not the user\'s actual physical location.',
   },
   {
     q: 'Can I use this IP Checker offline?',
@@ -57,15 +57,15 @@ const FAQ = [
   },
   {
     q: 'How do I look up my IP address and location? Step-by-step.',
-    a: 'Using the IP Checker is immediate. Step one: open the IP Checker page on RoughTools — your public IP address is detected and displayed automatically within a few seconds. Step two: review the geolocation data shown, including country, region, city, ISP name, ASN number, timezone, and approximate coordinates. Step three: to look up a different IP address (for example, one you found in server logs), type it into the lookup field and press Enter. Step four: the tool displays full geolocation details for the queried IP.',
+    a: 'Using the IP Checker is immediate. Step one: open the IP Checker page on RoughTools â€” your public IP address is detected and displayed automatically within a few seconds. Step two: review the geolocation data shown, including country, region, city, ISP name, ASN number, timezone, and approximate coordinates. Step three: to look up a different IP address (for example, one you found in server logs), type it into the lookup field and press Enter. Step four: the tool displays full geolocation details for the queried IP.',
   },
   {
     q: 'Why use RoughTools IP Checker instead of other websites?',
-    a: 'RoughTools detects your IP automatically the moment the page loads — no button to press. It shows comprehensive geolocation data including ISP, ASN, timezone, and coordinates in a single view without navigating multiple pages. The page is lightweight and loads fast, giving you your IP in under two seconds. You can also look up any other IP by typing it directly, making it useful for both self-lookup and server log investigation.',
+    a: 'RoughTools detects your IP automatically the moment the page loads â€” no button to press. It shows comprehensive geolocation data including ISP, ASN, timezone, and coordinates in a single view without navigating multiple pages. The page is lightweight and loads fast, giving you your IP in under two seconds. You can also look up any other IP by typing it directly, making it useful for both self-lookup and server log investigation.',
   },
   {
     q: 'How do I report a bug or suggest a new feature?',
-    a: 'Use the Contact page on RoughTools to report bugs or suggest improvements. When reporting an issue, describe what you expected to see (for example, your correct city), what was actually displayed, and any context that might explain the discrepancy such as using a VPN, mobile carrier network, or corporate proxy. Feature requests are also welcome — describe the use case and the team will evaluate it for a future release.',
+    a: 'Use the Contact page on RoughTools to report bugs or suggest improvements. When reporting an issue, describe what you expected to see (for example, your correct city), what was actually displayed, and any context that might explain the discrepancy such as using a VPN, mobile carrier network, or corporate proxy. Feature requests are also welcome â€” describe the use case and the team will evaluate it for a future release.',
   },
   {
     q: 'What is a public IP address and how is it assigned?',
@@ -73,7 +73,7 @@ const FAQ = [
   },
   {
     q: 'What is the difference between IPv4 and IPv6 addresses?',
-    a: 'IPv4 addresses are 32-bit numbers written as four groups of digits separated by dots — for example, 203.0.113.42. The IPv4 address space contains approximately 4.3 billion addresses, which have been exhausted globally. IPv6 addresses are 128-bit numbers written in hexadecimal notation separated by colons — for example, 2001:db8::1. IPv6 provides a vastly larger address space with approximately 340 undecillion unique addresses. Many modern networks support both protocols simultaneously, known as a dual-stack configuration.',
+    a: 'IPv4 addresses are 32-bit numbers written as four groups of digits separated by dots â€” for example, 203.0.113.42. The IPv4 address space contains approximately 4.3 billion addresses, which have been exhausted globally. IPv6 addresses are 128-bit numbers written in hexadecimal notation separated by colons â€” for example, 2001:db8::1. IPv6 provides a vastly larger address space with approximately 340 undecillion unique addresses. Many modern networks support both protocols simultaneously, known as a dual-stack configuration.',
   },
   {
     q: 'Why does my IP address location show the wrong city?',
@@ -89,7 +89,7 @@ const jsonLd = {
   applicationCategory: 'UtilitiesApplication',
   operatingSystem: 'Any',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-  description: 'Find your public IP address and look up geolocation info — country, city, ISP, timezone, and coordinates. Free, instant, no signup.',
+  description: 'Find your public IP address and look up geolocation info â€” country, city, ISP, timezone, and coordinates. Free, instant, no signup.',
 }
 const faqJsonLd = {
   '@context': 'https://schema.org',
@@ -118,22 +118,24 @@ export default function Page() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '24px 16px 64px' }}>
         <ToolAdUnit position="top" />
         <nav style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> ›{' '}
-          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> › IP Checker
+          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> â€º{' '}
+          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> â€º IP Checker
         </nav>
         <h1 style={{ fontSize: 'clamp(24px,4vw,36px)', fontWeight: 900, marginBottom: 8, letterSpacing: -1 }}>IP Address Checker</h1>
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
-          Instantly find your public IP address and look up geolocation details for any IP — country, city, ISP, ASN, timezone, and coordinates. Your IP is detected automatically on page load. Useful for verifying VPN connections, investigating server logs, and diagnosing routing issues. Free, no account required.
+          Instantly find your public IP address and look up geolocation details for any IP â€” country, city, ISP, ASN, timezone, and coordinates. Your IP is detected automatically on page load. Useful for verifying VPN connections, investigating server logs, and diagnosing routing issues. Free, no account required.
         </p>
+        <div data-print-section="calculator">
         <IpCheckerClient />
+        </div>
         <ToolAdUnit position="middle" />
         <section style={{ marginTop: 40 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 12 }}>About IP Checker</h2>
           <p style={{ color: 'var(--fg-2)', lineHeight: 1.7 }}>
-            Every device connected to the internet has a public IP address assigned by its Internet Service Provider. This tool uses the ipapi.co public API to instantly retrieve your current public IP along with geolocation metadata — including country, region, city, ISP name, ASN, timezone, and approximate latitude/longitude coordinates. The lookup happens directly in your browser with no server-side logging on RoughTools.
+            Every device connected to the internet has a public IP address assigned by its Internet Service Provider. This tool uses the ipapi.co public API to instantly retrieve your current public IP along with geolocation metadata â€” including country, region, city, ISP name, ASN, timezone, and approximate latitude/longitude coordinates. The lookup happens directly in your browser with no server-side logging on RoughTools.
           </p>
           <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12 }}>
-            You can also look up any IP address manually by entering it in the search field. This is useful for identifying the owner of an IP that appears in your server logs, diagnosing routing issues, or verifying that a VPN is masking your real location. Note that geolocation accuracy is typically city-level — exact street addresses are never exposed by public IP geolocation data.
+            You can also look up any IP address manually by entering it in the search field. This is useful for identifying the owner of an IP that appears in your server logs, diagnosing routing issues, or verifying that a VPN is masking your real location. Note that geolocation accuracy is typically city-level â€” exact street addresses are never exposed by public IP geolocation data.
           </p>
         </section>
         <section style={{ marginTop: 32 }}>

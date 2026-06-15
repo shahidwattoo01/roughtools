@@ -1,0 +1,14 @@
+{
+  "name": "@platform/core-logic",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./tools-data.ts",
+  "types": "./tools-data.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}

@@ -10,7 +10,7 @@ exports.enqueueSync = enqueueSync;
 exports.enqueueReport = enqueueReport;
 const bullmq_1 = require("bullmq");
 const ioredis_1 = require("ioredis");
-const connection = new ioredis_1.Redis(process.env.REDIS_URL ?? "redis://localhost:6379", { maxRetriesPerRequest: null });
+const connection = new ioredis_1.Redis(process.env.REDIS_URL ?? "redis://localhost:6379", { maxRetriesPerRequest: null, lazyConnect: true });
 // ─── Queue ───────────────────────────────────────────────
 exports.jobQueue = new bullmq_1.Queue("toolverse-jobs", {
     connection,

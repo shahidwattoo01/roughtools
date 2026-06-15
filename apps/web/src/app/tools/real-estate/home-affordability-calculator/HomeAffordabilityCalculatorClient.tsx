@@ -7,14 +7,14 @@ import { exportCalcPDF } from '@/lib/calcPdf'
 
 const CARD: CSSProperties = { background: 'var(--bg-1)', border: '1px solid var(--line-strong)', borderRadius: 16, padding: '24px 28px' }
 const LABEL: CSSProperties = { display: 'block', marginBottom: 5, fontSize: 12, color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }
-const INPUT_BOX: CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 8, background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)', color: '#fff', fontSize: 15, boxSizing: 'border-box' }
-const BTN_GHOST: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13, fontWeight: 600, cursor: 'pointer' }
+const INPUT_BOX: CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 8, background: 'var(--bg-2)', border: '1px solid var(--line-strong)', color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box' }
+const BTN_GHOST: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13, fontWeight: 600, cursor: 'pointer' }
 const TH: CSSProperties = { padding: '9px 10px', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.07em', color: 'var(--fg-3)', textAlign: 'right', background: 'rgba(99,102,241,0.1)', whiteSpace: 'nowrap' }
 const TD: CSSProperties = { padding: '6px 10px', fontSize: 12, textAlign: 'right', color: 'var(--fg-2)', whiteSpace: 'nowrap' }
 
 function MetricCard({ label, value, sub, color = '#6366f1' }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div style={{ padding: '16px 12px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '16px 12px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 20, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 10, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -313,7 +313,7 @@ export default function HomeAffordabilityCalculatorClient() {
                       borderBottom: '1px solid rgba(255,255,255,0.05)',
                       background: hi ? 'rgba(139,92,246,0.1)' : 'transparent',
                     }}>
-                      <td style={{ ...TD, textAlign: 'left', color: hi ? '#c4b5fd' : 'var(--fg-2)', fontWeight: hi ? 700 : 400 }}>{rule}</td>
+                      <td style={{ ...TD, textAlign: 'left', color: hi ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: hi ? 700 : 400 }}>{rule}</td>
                       <td style={{ ...TD, color: 'var(--fg-3)' }}>{limit}</td>
                       <td style={TD}>{fmt(Math.max(0, maxMo))}/mo</td>
                       <td style={{ ...TD, fontWeight: hi ? 700 : 400, color: hi ? '#6366f1' : 'var(--fg-2)' }}>{fmt(Math.max(0, maxPrice))}</td>
@@ -387,7 +387,7 @@ export default function HomeAffordabilityCalculatorClient() {
                       borderBottom: '1px solid rgba(255,255,255,0.05)',
                       background: row.rate === rate ? 'rgba(139,92,246,0.1)' : 'transparent',
                     }}>
-                      <td style={{ ...TD, textAlign: 'left', color: row.rate === rate ? '#c4b5fd' : 'var(--fg-2)', fontWeight: row.rate === rate ? 700 : 400 }}>
+                      <td style={{ ...TD, textAlign: 'left', color: row.rate === rate ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: row.rate === rate ? 700 : 400 }}>
                         {row.rate === rate ? '★ ' : ''}{pct(row.rate, 2)}
                       </td>
                       <td style={{ ...TD, color: row.rate === rate ? '#6366f1' : 'var(--fg-2)', fontWeight: row.rate === rate ? 700 : 400 }}>{fmt(row.maxConv)}</td>
@@ -402,7 +402,7 @@ export default function HomeAffordabilityCalculatorClient() {
 
           {/* Guidance */}
           <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-            <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               What Your Numbers Mean
             </h3>
             <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -414,11 +414,11 @@ export default function HomeAffordabilityCalculatorClient() {
               </li>
               {saved < result.downAmt && (
                 <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>
-                  You've saved {fmt(saved)}, but need {fmt(result.downAmt)} for a {pct(DP, 0)} down payment on the max price. You're {fmt(result.downAmt - saved)} short — consider a lower price point or increasing your savings rate.
+                  You&apos;ve saved {fmt(saved)}, but need {fmt(result.downAmt)} for a {pct(DP, 0)} down payment on the max price. You&apos;re {fmt(result.downAmt - saved)} short — consider a lower price point or increasing your savings rate.
                 </li>
               )}
               <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>
-                Every 1% increase in interest rate reduces your buying power by approximately {fmt(result.maxPriceConv - (rateScenarios.find(r => r.rate === rate + 1)?.maxConv ?? result.maxPriceConv))}. Lock your rate as soon as you're under contract.
+                Every 1% increase in interest rate reduces your buying power by approximately {fmt(result.maxPriceConv - (rateScenarios.find(r => r.rate === rate + 1)?.maxConv ?? result.maxPriceConv))}. Lock your rate as soon as you&apos;re under contract.
               </li>
             </ul>
           </div>

@@ -160,7 +160,7 @@ export default function SampleSizeClient() {
                 <tr key={m} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '5px 8px', textAlign: 'right', color: 'var(--fg-3)' }}>{mode === 'proportion' ? `${m}%` : m}</td>
                   <td style={{ padding: '5px 8px', textAlign: 'right', color: 'var(--fg)' }}>{calcN(1.645).toLocaleString()}</td>
-                  <td style={{ padding: '5px 8px', textAlign: 'right', color: '#c4b5fd', fontWeight: 700 }}>{calcN(1.960).toLocaleString()}</td>
+                  <td style={{ padding: '5px 8px', textAlign: 'right', color: 'var(--brand-2)', fontWeight: 700 }}>{calcN(1.960).toLocaleString()}</td>
                   <td style={{ padding: '5px 8px', textAlign: 'right', color: 'var(--fg)' }}>{calcN(2.576).toLocaleString()}</td>
                 </tr>
               )

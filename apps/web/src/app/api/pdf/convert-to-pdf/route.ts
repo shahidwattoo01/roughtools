@@ -2,6 +2,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
+import { pdfGuard } from '../_lib/pdf-guards'
 
 /* ── DOCX → PDF via mammoth ──────────────────────────────────────── */
 async function docxToPdf(file: File): Promise<NextResponse> {
@@ -295,6 +296,8 @@ async function pptxToPdf(file: File): Promise<NextResponse> {
 
 /* ── Main handler ────────────────────────────────────────────────── */
 export async function POST(req: NextRequest) {
+  const guard = pdfGuard(req)
+  if (guard) return guard
   try {
     const form = await req.formData()
     const format = ((form.get('format') as string) || '').toLowerCase()

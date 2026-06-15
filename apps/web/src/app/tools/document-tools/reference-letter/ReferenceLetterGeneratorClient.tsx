@@ -148,7 +148,7 @@ Closing endorsement: ${d.closingStatement || 'Enthusiastic recommendation withou
 
 Format: ${d.template === 'academic' ? 'Academic letterhead style with formal salutation — Dear Admissions Committee / Selection Panel' : 'Standard professional letter with "To Whom It May Concern" or specific addressee if target org is given'}
 
-Write the complete reference letter including: the date, writer\'s contact details, salutation, opening paragraph (how the writer knows the candidate and for how long), 2-3 substantive body paragraphs (specific strengths, key achievement/project, and personal qualities), a closing endorsement paragraph with an offer to provide further information, and a professional sign-off. Length: 350-500 words. Do not use placeholder brackets. Make it sound genuinely written by a real person who knows and respects the candidate.`
+Write the complete reference letter including: the date, writer's contact details, salutation, opening paragraph (how the writer knows the candidate and for how long), 2-3 substantive body paragraphs (specific strengths, key achievement/project, and personal qualities), a closing endorsement paragraph with an offer to provide further information, and a professional sign-off. Length: 350-500 words. Do not use placeholder brackets. Make it sound genuinely written by a real person who knows and respects the candidate.`
 }
 
 // ─── PDF Generator ────────────────────────────────────────────
@@ -436,7 +436,7 @@ export default function ReferenceLetterGenerator() {
 
         {/* Content */}
         <Section title="Strengths, Achievements & Qualities" icon="⭐">
-          <p className="text-xs text-gray-500 mb-3 -mt-1">The more specific you are, the stronger the letter. Generic praise ("hard worker") is the most common weakness of ineffective reference letters.</p>
+          <p className="text-xs text-gray-500 mb-3 -mt-1">The more specific you are, the stronger the letter. Generic praise (&quot;hard worker&quot;) is the most common weakness of ineffective reference letters.</p>
           <div className="grid grid-cols-3 gap-3 mb-3">
             <F label="Core Strength #1" value={data.strength1} onChange={v => set('strength1', v)} placeholder="Analytical problem-solving under pressure" />
             <F label="Core Strength #2" value={data.strength2} onChange={v => set('strength2', v)} placeholder="Cross-functional leadership and communication" />

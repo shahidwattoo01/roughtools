@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState, useMemo } from 'react'
 import type { CSSProperties } from 'react'
 
@@ -80,33 +80,33 @@ function exportCSV() {
 // ─── Style Tokens ─────────────────────────────────────────────────────────────
 
 const CARD: CSSProperties = {
-  background: '#12121f', border: '1px solid rgba(255,255,255,0.1)',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
   borderRadius: 16, padding: '24px 28px',
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.1)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
-  color: 'rgba(255,255,255,0.45)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em',
+  color: 'var(--fg-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em',
 }
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
   padding: '9px 12px', fontWeight: 700, fontSize: 11,
   textTransform: 'uppercase', letterSpacing: '0.07em',
-  color: 'rgba(255,255,255,0.45)', textAlign: 'right', background: 'rgba(99,102,241,0.1)',
+  color: 'var(--fg-3)', textAlign: 'right', background: 'rgba(99,102,241,0.1)',
   whiteSpace: 'nowrap',
 }
 const TD: CSSProperties = {
   padding: '6px 12px', fontSize: 12, textAlign: 'right',
-  color: 'rgba(255,255,255,0.65)', whiteSpace: 'nowrap',
+  color: 'var(--fg-2)', whiteSpace: 'nowrap',
 }
 
 function CopyBtn({ text }: { text: string }) {
@@ -131,7 +131,7 @@ export default function VolumeConverterClient() {
   const [lastChanged, setLastChanged] = useState<UnitKey>('l')
   const [showMatrix, setShowMatrix] = useState(false)
 
-  const computed = useMemo<Record<UnitKey, number>>(() => {
+  const _computed = useMemo<Record<UnitKey, number>>(() => {
     const raw = parseFloat(values[lastChanged])
     if (isNaN(raw)) return UNITS.reduce((acc, u) => ({ ...acc, [u.key]: NaN }), {} as Record<UnitKey, number>)
     const ml = raw * UNIT_MAP[lastChanged].toML
@@ -187,7 +187,7 @@ export default function VolumeConverterClient() {
                 />
                 <CopyBtn text={values[u.key]} />
               </div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 3 }}>{u.industry}</div>
+              <div style={{ fontSize: 11, color: 'var(--fg-2)', marginTop: 3 }}>{u.industry}</div>
             </div>
           ))}
         </div>
@@ -195,7 +195,7 @@ export default function VolumeConverterClient() {
 
       {/* ── REFERENCE POINTS ── */}
       <div style={CARD}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--fg-1)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Real-World References
         </h3>
         <div style={{ overflowX: 'auto' }}>
@@ -215,7 +215,7 @@ export default function VolumeConverterClient() {
                   onClick={() => applyQuick(ref.ml, 'ml')}
                   title="Click to load"
                 >
-                  <td style={{ ...TD, textAlign: 'left', color: '#c4b5fd', fontWeight: 600 }}>{ref.label}</td>
+                  <td style={{ ...TD, textAlign: 'left', color: 'var(--brand-2)', fontWeight: 600 }}>{ref.label}</td>
                   {(['ml','l','usgal','usfloz','ft3','ukpt','bbl'] as UnitKey[]).map(k => (
                     <td key={k} style={TD}>{fmt(ref.ml / UNIT_MAP[k].toML)}</td>
                   ))}
@@ -224,21 +224,21 @@ export default function VolumeConverterClient() {
             </tbody>
           </table>
         </div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 8 }}>Click any row to load into the converter.</div>
+        <div style={{ fontSize: 11, color: 'var(--fg-2)', marginTop: 8 }}>Click any row to load into the converter.</div>
       </div>
 
       {/* ── FULL CONVERSION MATRIX ── */}
       <div>
         <button
           onClick={() => setShowMatrix(v => !v)}
-          style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: '#12121f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
+          style={{ width: '100%', textAlign: 'left', padding: '14px 20px', background: 'var(--bg-2)', border: '1px solid var(--line-strong)', borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
           aria-expanded={showMatrix}
         >
           {showMatrix ? '▾' : '▸'} Full Conversion Matrix (1 of each unit → all others)
         </button>
         {showMatrix && (
           <div style={{ ...CARD, padding: 0, overflow: 'hidden', marginTop: 4 }}>
-            <div style={{ display: 'flex', gap: 10, padding: '14px 20px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ display: 'flex', gap: 10, padding: '14px 20px', borderBottom: '1px solid var(--line-strong)' }}>
               <button onClick={exportCSV} style={BTN_GHOST}>⬇ Export CSV</button>
             </div>
             <div style={{ overflowX: 'auto' }}>
@@ -252,7 +252,7 @@ export default function VolumeConverterClient() {
                 <tbody>
                   {UNITS.map(from => (
                     <tr key={from.key} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                      <td style={{ ...TD, textAlign: 'left', color: '#c4b5fd', fontWeight: 700 }}>1 {from.symbol}</td>
+                      <td style={{ ...TD, textAlign: 'left', color: 'var(--brand-2)', fontWeight: 700 }}>1 {from.symbol}</td>
                       {UNITS.map(to => (
                         <td key={to.key} style={{ ...TD, background: from.key === to.key ? 'rgba(99,102,241,0.12)' : 'transparent' }}>
                           {from.key === to.key ? '1' : fmt(convert(1, from.key, to.key))}
@@ -269,24 +269,24 @@ export default function VolumeConverterClient() {
 
       {/* ── INDUSTRY CONTEXT ── */}
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           Industry Context
         </h3>
         <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>US vs Imperial gallons</strong> — 1 US gallon = 3.785 L; 1 Imperial gallon = 4.546 L. They differ by ~20%. Always check which gallon is meant in recipes, fuel prices, and regulations.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>US vs Imperial gallons</strong> — 1 US gallon = 3.785 L; 1 Imperial gallon = 4.546 L. They differ by ~20%. Always check which gallon is meant in recipes, fuel prices, and regulations.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Oil Barrel</strong> — The standard oil barrel is 42 US gallons (158.987 L), established in Pennsylvania in 1872. Global oil production is quoted in "barrels per day" (bbl/day).
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Oil Barrel</strong> — The standard oil barrel is 42 US gallons (158.987 L), established in Pennsylvania in 1872. Global oil production is quoted in &quot;barrels per day&quot; (bbl/day).
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Beer Barrel</strong> — The US beer barrel = 31 US gallons (117.35 L) = 2 half-barrels (kegs). Craft breweries measure output in barrels; US total production is ~200 million barrels/year.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Beer Barrel</strong> — The US beer barrel = 31 US gallons (117.35 L) = 2 half-barrels (kegs). Craft breweries measure output in barrels; US total production is ~200 million barrels/year.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>UK Pint</strong> — The Imperial pint (568 mL) is 20% larger than the US pint (473 mL). Ordering a "pint" in a UK pub gives you noticeably more than in a US bar.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>UK Pint</strong> — The Imperial pint (568 mL) is 20% larger than the US pint (473 mL). Ordering a &quot;pint&quot; in a UK pub gives you noticeably more than in a US bar.
           </li>
-          <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Cooking conversions</strong> — 1 US cup = 16 tbsp = 48 tsp = 8 fl oz = 236.6 mL. The metric equivalent is 250 mL for "1 cup" in Australian/UK recipes.
+          <li style={{ fontSize: 13, color: 'var(--fg-1)', lineHeight: 1.7 }}>
+            <strong style={{ color: 'var(--fg)' }}>Cooking conversions</strong> — 1 US cup = 16 tbsp = 48 tsp = 8 fl oz = 236.6 mL. The metric equivalent is 250 mL for &quot;1 cup&quot; in Australian/UK recipes.
           </li>
         </ul>
       </div>

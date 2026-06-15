@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import HomeValueClient from './HomeValueClient'
 import { ToolPageExtras } from '@/components/ToolPageExtras'
@@ -132,7 +132,7 @@ export default function Page() {
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold dark:text-white text-gray-900 mb-3">Home Value Estimator</h2>
           <p className="text-violet-200/80 text-sm sm:text-base leading-relaxed max-w-3xl">
-            Estimate the current market value of any home based on its purchase price, annual appreciation rate, and how long it has been owned. Using compound appreciation — the same mathematics used by professional appraisers for trend modelling — this calculator gives you a realistic estimate range of your home's current worth. Use it to gauge how much equity you have built, plan a refinancing decision, estimate inheritance value, or evaluate a potential investment property without needing to provide an address to a third-party valuation platform.
+            Estimate the current market value of any home based on its purchase price, annual appreciation rate, and how long it has been owned. Using compound appreciation — the same mathematics used by professional appraisers for trend modelling — this calculator gives you a realistic estimate range of your home&apos;s current worth. Use it to gauge how much equity you have built, plan a refinancing decision, estimate inheritance value, or evaluate a potential investment property without needing to provide an address to a third-party valuation platform.
           </p>
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mt-5">
             {[

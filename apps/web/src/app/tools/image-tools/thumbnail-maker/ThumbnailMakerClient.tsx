@@ -106,7 +106,7 @@ export default function ThumbnailMakerClient() {
             <button key={i} onClick={() => togglePreset(i)}
               style={{ background: selected.includes(i) ? 'linear-gradient(135deg,#7c3aed,#4f46e5)' : '#1e1e3f', color:'#e0e0ff', border:'none', borderRadius:8, padding:'10px', cursor:'pointer', textAlign:'left' }}>
               <div style={{ fontWeight:700, fontSize:13 }}>{p.name}</div>
-              <div style={{ fontSize:11, color: selected.includes(i) ? 'rgba(255,255,255,0.7)' : '#888', marginTop:2 }}>{p.w}×{p.h}</div>
+              <div style={{ fontSize:11, color: selected.includes(i) ? 'var(--fg-2)' : 'var(--fg-3)', marginTop:2 }}>{p.w}×{p.h}</div>
             </button>
           ))}
         </div>

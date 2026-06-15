@@ -55,6 +55,11 @@
       "prettier --write"
     ]
   },
+  "pnpm": {
+    "overrides": {
+      "ioredis": "5.11.1"
+    }
+  },
   "packageManager": "pnpm@8.15.0",
   "engines": {
     "node": ">=18.17.0"

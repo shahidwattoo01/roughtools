@@ -1,0 +1,183 @@
+﻿---
+title: 'How to Check SSL Certificate Validity Online'
+slug: how-to-check-ssl-certificate
+date: '2026-05-29'
+excerpt: 'Learn how to check SSL certificate validity and expiry online. Step-by-step guide with HTTPS security tips and a free SSL checker tool. No signup required.'
+readTime: '9 min read'
+author: RoughTools Team
+category: Developer Tools
+keywords:
+  - how to check SSL certificate
+  - SSL checker online
+  - SSL certificate validity
+  - HTTPS certificate check
+  - website security checker
+  - SSL expiry date
+---
+
+To check an SSL certificate, visit the site in any browser, click the padlock icon in the address bar, and select "Connection is secure" → "Certificate is valid." This shows the certificate's issuer, the domain it covers, and the exact expiry date — in under 10 seconds, no tools required.
+
+For a more complete check — including certificate chain validity, Subject Alternative Names, key strength, and days remaining — the browser's built-in view is insufficient. A misconfigured certificate can show a padlock while still failing on mobile browsers, certain CDN edge nodes, or API clients. According to a 2023 study by Sectigo, 80% of certificate-related outages are caused by expired certificates that were not actively monitored.
+
+Use the free [SSL Certificate Checker](https://roughtools.com/tools/security/ssl-checker) at RoughTools to inspect any domain's full certificate details instantly — or follow the step-by-step method below.
+
+## How SSL Certificate Validation Works — What Browsers Actually Check
+
+An SSL certificate is not a single file — it is a **chain of trust**. Understanding what the browser validates helps you know what to look for when a certificate fails.
+
+When a browser connects to a site over HTTPS, it performs four checks in sequence:
+
+```
+Check 1 — Validity period:
+  Not Before  ≤  Today  ≤  Not After
+  (e.g., 2024-11-14 ≤ 2025-03-22 ≤ 2025-11-14)  ✓ Valid
+
+Check 2 — Domain match:
+  Requested domain must match Common Name (CN) or SANs
+  (e.g., shop.acmecorp.com matches *.acmecorp.com)  ✓ Match
+
+Check 3 — Trusted issuer:
+  Certificate must be signed by a CA in the browser's trust store
+  (e.g., signed by DigiCert TLS RSA SHA256 2020 CA1)  ✓ Trusted
+
+Check 4 — Revocation status:
+  Certificate must not appear on CRL or OCSP response
+  (e.g., OCSP status: Good)  ✓ Not revoked
+```
+
+Here is what a complete, healthy certificate looks like when inspected by an SSL checker:
+
+```
+Domain:           shop.acmecorp.com
+Certificate For:  *.acmecorp.com
+Issued By:        DigiCert TLS RSA SHA256 2020 CA1
+Root Authority:   DigiCert Global Root CA
+Valid From:       2024-11-14
+Valid Until:      2025-11-14
+Days Remaining:   237 days
+Key Algorithm:    RSA 2048-bit
+SANs:             *.acmecorp.com, acmecorp.com
+OCSP Status:      Good (not revoked)
+```
+
+Each field matters. The **Subject Alternative Names (SANs)** — the list of domains the certificate explicitly covers — are what modern browsers actually check for domain matching. The Common Name (CN) field is deprecated for this purpose; a certificate that only sets CN and omits SANs will fail in Chrome 58 and later.
+
+The **days remaining** figure is the most operationally important number. Let's Encrypt certificates expire every 90 days; commercial certificates from DigiCert, Sectigo, and GlobalSign last up to 398 days (the maximum allowed since 2020). A certificate with fewer than 30 days remaining needs immediate attention.
+
+The practical takeaway: a green padlock means the browser passed all four checks at the moment of the page load. It does not mean the certificate is healthy for your monitoring purposes — it could expire tomorrow and the padlock would still show green today.
+
+## How to Check an SSL Certificate Step by Step
+
+1. **Identify the domain you want to check.** Use the exact subdomain that serves your site — `shop.example.com` and `www.example.com` may have different certificates even if they belong to the same organization. Wildcard certificates cover `*.example.com` but not `example.com` itself (the apex domain), so check both if your site is accessible at both addresses.
+
+2. **Open the [SSL Certificate Checker](https://roughtools.com/tools/security/ssl-checker) and enter the domain.** Type the domain without `https://` or trailing slashes — just the hostname: `shop.example.com`. The tool connects to the server, retrieves the certificate chain, and returns all certificate fields within 3–5 seconds.
+
+3. **Check the validity period and days remaining.** Look at "Valid Until" and "Days Remaining." Anything under 30 days requires immediate action — renewing a certificate takes 1–4 hours on average including DNS propagation if domain validation is required. Set a renewal reminder for 45 days before expiry so you have a comfortable buffer.
+
+4. **Verify the domain coverage under SANs.** Confirm that your exact domain appears in the Subject Alternative Names list. If you are checking `shop.acmecorp.com` and the SANs only list `*.acmecorp.com`, that is correct — the wildcard covers all single-level subdomains. If your domain does not appear in the SANs, users will see a certificate mismatch warning even if the padlock is showing on your device (due to browser caching).
+
+5. **Check the issuer and chain.** A valid certificate is signed by an intermediate CA, which is in turn signed by a root CA in the browser's trust store. The checker shows this full chain. If the intermediate certificate is missing — a common misconfiguration called a "chain gap" — some clients (particularly Android and API clients) will reject the connection even though desktop Chrome accepts it.
+
+6. **Verify the OCSP revocation status.** A "Good" OCSP status confirms the certificate has not been revoked by the issuing CA. A revoked certificate produces a hard browser error that no user can bypass, even if the certificate is otherwise valid and unexpired. If OCSP returns "Revoked," the certificate must be replaced immediately — there is no workaround.
+
+**Pro tip:** Check SSL certificates on vendor sites and payment processors you depend on, not just your own domain. If your payment processor's certificate expires and you have not noticed, your checkout may silently fail for users while the error logs point to a connection timeout rather than a certificate issue.
+
+## How Do I Check if My SSL Certificate Is Expired?
+
+An expired SSL certificate is immediately visible to every visitor on your site — browsers display a full-page warning that most users will not bypass. The fastest way to check whether an SSL certificate has expired is to enter the domain into the [SSL checker](https://roughtools.com/tools/security/ssl-checker) and look at the "Valid Until" field and "Days Remaining."
+
+If the days remaining shows a negative number — for example, "−14 days" — the certificate expired 14 days ago.
+
+Here is what expiry looks like compared to a healthy certificate:
+
+| Status | Valid Until | Days Remaining | Browser behavior |
+|---|---|---|---|
+| Healthy | 2025-11-14 | 237 days | Green padlock |
+| Expiring soon | 2025-04-18 | 27 days | Green padlock (for now) |
+| Expired | 2025-02-22 | −28 days | Full-page red warning |
+| Revoked | Any date | Any number | Full-page red warning |
+
+A certificate in the "expiring soon" window still shows a green padlock to users — but it will flip to a red warning the moment midnight passes on the expiry date. Browser warning pages typically cause 95%+ of users to abandon the site immediately.
+
+To check expiry from the command line without any external tool, use OpenSSL:
+
+```bash
+echo | openssl s_client -connect yourdomain.com:443 2>/dev/null \
+  | openssl x509 -noout -dates
+```
+
+This returns `notBefore` and `notAfter` dates directly from the server's certificate. Useful for scripted monitoring in CI pipelines or server health checks.
+
+## What Happens When an SSL Certificate Expires?
+
+When an SSL certificate expires, every major browser immediately blocks access to the site and displays a full-page error — typically "Your connection is not private" in Chrome or "Warning: Potential Security Risk Ahead" in Firefox. The error code in Chrome is `NET::ERR_CERT_DATE_INVALID`.
+
+Users cannot reach your site without manually clicking through the warning — which Chrome and Firefox make deliberately difficult. Most users leave immediately.
+
+The business impact goes beyond lost traffic. Search engines continue to crawl sites with expired certificates, but Google Search Console flags HTTPS issues and may reduce crawl frequency. API integrations and mobile apps that make HTTPS calls to your domain will start returning connection errors — often silently, with no obvious error message in the application logs.
+
+An expired certificate is also a compliance issue. PCI DSS (the payment card security standard) requires that merchants maintain valid TLS certificates at all times. An expired certificate on a checkout page constitutes a compliance violation, regardless of whether any breach occurred.
+
+The fix is straightforward — renew the certificate — but the outage clock starts the moment expiry hits. Most certificate authorities issue renewed certificates within minutes for domain-validated (DV) certificates. Organization-validated (OV) and Extended Validation (EV) certificates can take 1–3 business days to process. For any site that cannot afford downtime, set renewal reminders at 45, 30, and 14 days before expiry.
+
+## What Is the Difference Between SSL and TLS?
+
+SSL (Secure Sockets Layer) and TLS (Transport Layer Security) are both encryption protocols for securing web connections — but SSL is obsolete and TLS is what every modern site actually uses.
+
+SSL was the original protocol, developed by Netscape in the 1990s. SSL 2.0 and SSL 3.0 are both deprecated due to critical vulnerabilities (POODLE, DROWN). No modern browser supports SSL. When people say "SSL certificate," they are using the colloquial term — the certificate itself is the same; what changed is the protocol layer beneath it.
+
+The current standard is TLS 1.3, released in 2018. TLS 1.2 is still widely supported and acceptable. TLS 1.0 and 1.1 were formally deprecated by the IETF in 2021 and are blocked by major browsers.
+
+A quick comparison:
+
+| Protocol | Status | Browser support |
+|---|---|---|
+| SSL 2.0 | Deprecated 2011 | None |
+| SSL 3.0 | Deprecated 2015 | None |
+| TLS 1.0 | Deprecated 2021 | Blocked by Chrome, Firefox, Safari |
+| TLS 1.1 | Deprecated 2021 | Blocked by Chrome, Firefox, Safari |
+| TLS 1.2 | Current | Universally supported |
+| TLS 1.3 | Current (preferred) | Chrome 70+, Firefox 63+, Safari 12.1+ |
+
+The [SSL Certificate Checker](https://roughtools.com/tools/security/ssl-checker) at RoughTools reports the TLS version negotiated during the handshake, so you can confirm your server is not accepting deprecated protocol versions. Servers that still accept TLS 1.0 connections should be reconfigured — even if no one is connecting via TLS 1.0 today.
+
+## Common Mistakes to Avoid When Checking SSL Certificates
+
+- **Checking the www subdomain but not the apex domain (or vice versa).** A wildcard certificate `*.example.com` covers `www.example.com` but not `example.com`. If your site redirects from apex to www, both domains make HTTPS connections and both need valid certificates. Check both separately — the apex domain may show a different certificate (or no certificate) than the www version.
+
+- **Assuming a green padlock means the certificate is healthy for monitoring purposes.** A padlock means the certificate passed validation at this moment. It reveals nothing about expiry timeline, chain completeness for all clients, or OCSP status. A certificate expiring in 48 hours shows a green padlock. Use the SSL checker to see the days remaining — not just whether the padlock is green.
+
+- **Ignoring intermediate certificate chain issues.** The most common SSL misconfiguration is a missing intermediate certificate. Desktop Chrome fetches missing intermediates automatically via AIA chaining — so the site works in Chrome but breaks for Android 7 and below, iOS API calls, and server-to-server HTTPS requests. The SSL checker validates the full chain and flags gaps that desktop browsers silently hide.
+
+- **Treating self-signed certificates as functionally equivalent to CA-signed certificates.** A self-signed certificate encrypts traffic but is not trusted by any browser. Any visitor to a site with a self-signed certificate sees the same red warning page as an expired certificate. Self-signed certificates are appropriate only for internal tools on private networks where every client device has the certificate explicitly installed as trusted. For any public-facing site, use a CA-signed certificate — free options like Let's Encrypt take under 10 minutes to set up.
+
+- **Not monitoring certificate expiry automatically.** A one-time SSL check is useful for diagnosis, but it does not protect against expiry. Set up automated expiry monitoring — most DNS and uptime monitoring services (UptimeRobot, Datadog, Pingdom) include SSL expiry alerts at no extra cost. Configure alerts at 30 and 14 days before expiry. A certificate that is checked once and forgotten will eventually expire at the worst possible time.
+
+## Frequently Asked Questions
+
+**How do I check the SSL certificate of a website I don't own?**
+Enter any domain into the [SSL Certificate Checker](https://roughtools.com/tools/security/ssl-checker) — you do not need to own or control the site to inspect its certificate. The checker retrieves the certificate during a standard TLS handshake, which any client can initiate. This is useful for verifying that a payment processor, vendor API, or third-party service your business depends on has a valid, unexpired certificate before you complete an integration.
+
+**What if my SSL certificate is valid but users still see a security warning?**
+This usually means the certificate is valid but the chain is incomplete. If the intermediate certificate is not served by your web server, some clients cannot build the trust chain and show a warning — even though the certificate itself is legitimate. Check the "Certificate Chain" section of the SSL checker: if it shows only one certificate instead of two or three (leaf + intermediate + root), your server is missing the intermediate. Download the intermediate bundle from your certificate authority and add it to your server configuration.
+
+**What is the difference between a DV, OV, and EV certificate?**
+Domain Validated (DV) certificates verify only that you control the domain — the cheapest and fastest to issue (minutes). Organization Validated (OV) certificates verify the domain and the legal existence of the company — takes 1–3 days. Extended Validation (EV) certificates undergo the most rigorous vetting — company identity, physical address, and authorization — and historically showed a green company name bar in browsers. Chrome and Firefox removed the EV visual indicator in 2019, so EV now offers minimal user-visible difference from OV. For most sites, DV is sufficient; OV adds credibility for business-to-business contexts.
+
+**How often do SSL certificates need to be renewed?**
+The current maximum certificate validity is 398 days, enforced by all major browsers since September 2020. Let's Encrypt certificates expire every 90 days — they are designed for automated renewal via the ACME protocol (Certbot). Commercial certificates from DigiCert, Sectigo, and GlobalSign typically last 1 year (365 days). Regardless of which you use, set renewal alerts at 45 days before expiry — renewal does not restart the clock from the expiry date, it issues a new certificate from the current date.
+
+**When should I use the SSL checker vs. just looking at the padlock in Chrome?**
+Use the padlock for a quick visual confirmation that HTTPS is active. Use the [SSL checker](https://roughtools.com/tools/security/ssl-checker) for any of the following: verifying the exact expiry date and days remaining, checking SAN coverage for all your subdomains, confirming the full certificate chain is correctly served, checking which TLS versions the server accepts, auditing a third-party site before integrating with it, or diagnosing why some users see SSL warnings while others do not. The browser padlock is a pass/fail indicator — the SSL checker gives you the full report.
+
+## Use the Free SSL Certificate Checker
+
+The [Free SSL Certificate Checker](https://roughtools.com/tools/security/ssl-checker) at RoughTools inspects any domain's complete certificate details in seconds — enter a hostname and get the full report: validity period, days remaining, issuer chain, SANs, TLS version, and OCSP revocation status. It flags chain gaps that desktop browsers hide, identifies expiring certificates before users see an error, and works on any domain you need to inspect. No account required, no data stored, completely free.
+
+**[Free SSL Certificate Checker →](https://roughtools.com/tools/security/ssl-checker)**
+
+You might also need:
+- [VPN Checker](https://roughtools.com/tools/security/vpn-checker) — verify whether your connection is routed through a VPN before transmitting sensitive data
+- [Password Generator](https://roughtools.com/tools/security/password-generator) — generate a cryptographically random password for server admin and certificate management accounts
+- [DNS Lookup](https://roughtools.com/tools/network/dns-lookup) — verify DNS records and propagation when reconfiguring a domain after certificate renewal
+- [WHOIS Lookup](https://roughtools.com/tools/network/whois-lookup) — check domain registration and expiry alongside your SSL certificate audit

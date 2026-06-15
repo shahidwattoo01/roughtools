@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react'
 import {
-  AreaChart, Area, BarChart, Bar,
+  AreaChart, Area,
   PieChart, Pie, Cell, XAxis, YAxis, Tooltip,
   ResponsiveContainer, CartesianGrid,
 } from 'recharts'
@@ -60,7 +60,7 @@ export default function AdminAnalyticsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-semibold">Analytics</h1>
-          {d?.summary.ga4Connected === false && (
+          {d?.summary?.ga4Connected === false && (
             <p className="text-[11px] text-[#fbbf24] mt-0.5">⚠ Estimated data — connect GA4 in Settings for live data</p>
           )}
         </div>
@@ -76,12 +76,12 @@ export default function AdminAnalyticsPage() {
 
       {/* KPI row */}
       <div className="grid grid-cols-3 lg:grid-cols-6 gap-3">
-        <Num n={fmt(d?.summary.totalPageviews ?? 0)} label="Pageviews" />
-        <Num n={fmt(d?.summary.totalSessions ?? 0)} label="Sessions" />
-        <Num n={fmt(d?.summary.totalUsers ?? 0)} label="Users" />
-        <Num n={`${d?.summary.avgBounceRate ?? 0}%`} label="Bounce Rate" />
-        <Num n={`${d?.summary.avgSessionDuration ?? 0}s`} label="Avg Duration" />
-        <Num n={d?.summary.pagesPerSession ?? 0} label="Pages/Session" />
+        <Num n={fmt(d?.summary?.totalPageviews ?? 0)} label="Pageviews" />
+        <Num n={fmt(d?.summary?.totalSessions ?? 0)} label="Sessions" />
+        <Num n={fmt(d?.summary?.totalUsers ?? 0)} label="Users" />
+        <Num n={`${d?.summary?.avgBounceRate ?? 0}%`} label="Bounce Rate" />
+        <Num n={`${d?.summary?.avgSessionDuration ?? 0}s`} label="Avg Duration" />
+        <Num n={d?.summary?.pagesPerSession ?? 0} label="Pages/Session" />
       </div>
 
       {/* Main area chart */}

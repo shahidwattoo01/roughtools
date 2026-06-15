@@ -15,7 +15,7 @@ function generateApiKey(): string {
   return 'rt_' + crypto.randomBytes(32).toString('hex')
 }
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   const session = await getServerSession(authOptions)
   if (!session?.user?.email) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })

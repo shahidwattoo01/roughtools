@@ -106,7 +106,7 @@ export default function ColorPickerClient() {
             <label style={{ display: 'block', fontSize: 12, color: '#a78bfa', fontWeight: 600, marginBottom: 4 }}>HEX</label>
             <div style={{ display: 'flex', gap: 8 }}>
               <input
-                style={{ flex: 1, padding: '8px 12px', borderRadius: 8, background: '#252540', border: '1px solid rgba(255,255,255,0.1)', color: '#e0e0ff', fontSize: 13, fontFamily: 'monospace' }}
+                style={{ flex: 1, padding: '8px 12px', borderRadius: 8, background: '#252540', border: '1px solid var(--line-strong)', color: '#e0e0ff', fontSize: 13, fontFamily: 'monospace' }}
                 value={hexInput}
                 onChange={e => setHexInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && applyHexInput()}
@@ -119,7 +119,7 @@ export default function ColorPickerClient() {
             <label style={{ display: 'block', fontSize: 12, color: '#a78bfa', fontWeight: 600, marginBottom: 4 }}>RGB</label>
             <div style={{ display: 'flex', gap: 8 }}>
               <input
-                style={{ flex: 1, padding: '8px 12px', borderRadius: 8, background: '#252540', border: '1px solid rgba(255,255,255,0.1)', color: '#e0e0ff', fontSize: 13, fontFamily: 'monospace' }}
+                style={{ flex: 1, padding: '8px 12px', borderRadius: 8, background: '#252540', border: '1px solid var(--line-strong)', color: '#e0e0ff', fontSize: 13, fontFamily: 'monospace' }}
                 value={rgbInput}
                 onChange={e => setRgbInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && applyRgbInput()}

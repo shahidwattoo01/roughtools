@@ -146,7 +146,7 @@ interface Props {
   showImperial?: boolean
 }
 
-export default function EngineeringResultDisplay({ result, outputs, toolName, showImperial }: Props) {
+export default function EngineeringResultDisplay({ result, outputs, toolName: _toolName, showImperial }: Props) {
   return (
     <div className="space-y-4">
 

@@ -1,0 +1,192 @@
+﻿---
+title: "Ohm's Law Explained — Calculator and Formula Guide"
+slug: ohms-law-explained
+date: '2026-06-08'
+excerpt: "Ohm's law explained simply with V=IR formula, worked examples, and a free calculator. Find voltage, current, or resistance instantly. No signup required."
+readTime: '9 min read'
+author: RoughTools Team
+category: Math Calculators
+keywords:
+  - Ohm's law explained
+  - Ohm's law calculator
+  - voltage current resistance formula
+  - V=IR calculator
+  - electrical circuit calculator
+  - watts formula
+---
+
+Ohm's law states that voltage equals current multiplied by resistance: V = I × R. Rearranged, it gives you three formulas — one for each variable — so you can solve for voltage, current, or resistance as long as you know the other two values.
+
+This single relationship underlies virtually every basic circuit calculation. Whether you are sizing a resistor for an LED, checking whether a wire gauge can handle a load, or troubleshooting why a motor draws too much current, Ohm's law is the starting point. Electrical engineers, electronics students, and hobbyists use it dozens of times per project.
+
+Use the free [Ohm's Law Calculator](https://roughtools.com/tools/calculators/ohms-law-calculator) at RoughTools to solve for voltage, current, or resistance instantly — or follow the step-by-step method below.
+
+## The Ohm's Law Formula (V = IR)
+
+Ohm's law links three electrical quantities with one elegant equation. Each variable can be solved for by rearranging the formula.
+
+**The three forms of Ohm's law:**
+
+```
+Voltage:    V = I × R
+Current:    I = V / R
+Resistance: R = V / I
+```
+
+Where:
+- **V** — voltage in volts (V), the electrical "pressure" driving current through a circuit
+- **I** — current in amperes (A), the rate of electron flow through the circuit
+- **R** — resistance in ohms (Ω), the opposition to current flow in the circuit
+
+A helpful memory device: think of water in a pipe. Voltage is the water pressure, current is the flow rate, and resistance is how narrow the pipe is. Higher pressure (voltage) drives more flow (current). A narrower pipe (higher resistance) restricts it.
+
+### Worked example: calculating the resistor for an LED circuit
+
+A hobbyist is wiring a red LED to a 9V battery. The LED has a forward voltage of 2.1V — the voltage it consumes — and needs 18 mA (0.018 A) of current to operate correctly. What resistor value is needed?
+
+The voltage available for the resistor is the supply voltage minus the LED's forward voltage:
+
+```
+Step 1 — Find available voltage across the resistor:
+  V_R = V_supply - V_LED
+  V_R = 9V - 2.1V
+  V_R = 6.9V
+
+Step 2 — Solve for resistance (R = V / I):
+  R = 6.9V / 0.018A
+  R = 383.3Ω
+
+Step 3 — Round to nearest standard resistor value:
+  Standard value: 390Ω (closest common resistor above 383.3Ω)
+
+Step 4 — Verify actual current with 390Ω:
+  I = V / R = 6.9 / 390 = 0.01769A = 17.7mA
+
+Step 5 — Check power dissipated in the resistor:
+  P = I² × R = (0.01769)² × 390 = 0.122W = 122mW
+```
+
+The result: a **390Ω resistor** limits current to 17.7mA — close enough to the 18mA target. The resistor dissipates 122mW, well within the rating of a standard 1/4W (250mW) resistor. The LED lights up correctly without burning out.
+
+This four-step workflow — find available voltage, calculate resistance, round to standard value, verify — is the same process used every time an LED is wired into a circuit.
+
+## How to Use Ohm's Law Step by Step
+
+1. **Identify which two values you know and which one you need to find.** Ohm's law has three variables — voltage (V), current (I), and resistance (R). You always need two to solve for the third. Write down the known values with their units before touching the formula. Unit mismatches (milliamps instead of amps, kilohms instead of ohms) are the most common source of errors.
+
+2. **Convert all values to base units before calculating.** Voltage in volts, current in amperes (not milliamps), resistance in ohms (not kilohms). If your current is 47 mA, convert to 0.047 A. If your resistance is 4.7 kΩ, convert to 4,700 Ω. Skipping this step produces answers that are off by factors of 1,000.
+
+3. **Select the correct form of the formula for your unknown.** Solving for voltage: V = I × R. Solving for current: I = V / R. Solving for resistance: R = V / I. Write the formula before substituting numbers — this prevents the common mistake of dividing when you should multiply.
+
+4. **Substitute your values and calculate.** Plug in the two known values and solve for the unknown. Keep the units with the numbers as you work: "12V / 8Ω = 1.5A" is clearer than just "12 / 8 = 1.5" and makes unit errors obvious.
+
+5. **Check your answer against the [Ohm's Law Calculator](https://roughtools.com/tools/calculators/ohms-law-calculator).** Enter your two known values and confirm the calculator produces the same result. A mismatch of more than a rounding difference means a calculation error — recheck your unit conversions.
+
+6. **Verify the answer makes physical sense.** Higher voltage with the same resistance should produce higher current. Higher resistance with the same voltage should produce lower current. If you changed the voltage from 9V to 12V and your calculated current went down, something is wrong. Use sanity checks — not just arithmetic — to validate circuit calculations.
+
+**Pro tip:** When working with real components, use the next higher standard resistor value, not the exact calculated value. This keeps current at or below the LED's rated maximum rather than above it. Standard resistor values follow the E12 or E24 series — a quick search for "E12 resistor series" shows all common values.
+
+## What Is Ohm's Law in Simple Terms?
+
+Ohm's law says that the current flowing through a conductor is directly proportional to the voltage across it and inversely proportional to its resistance. In plain English: more voltage pushes more current; more resistance restricts it.
+
+The relationship is linear and predictable. If you double the voltage across a fixed resistor, the current exactly doubles. If you double the resistance while keeping voltage the same, the current exactly halves. This predictability is what makes Ohm's law so useful — it lets you design circuits reliably before building them.
+
+A practical example most people can relate to: a standard US wall outlet provides 120V. A 60W incandescent light bulb draws about 0.5A of current. What is the filament's resistance while lit?
+
+```
+R = V / I = 120V / 0.5A = 240Ω
+```
+
+The bulb's tungsten filament has approximately 240 ohms of resistance at operating temperature. At room temperature (before it heats up), the resistance is about 10 times lower — around 18Ω — which is why the initial inrush current when you flip the switch is much higher than the steady-state current. This is why bulbs burn out more often at the moment of switching on than when running.
+
+Ohm's law applies to resistors, wire, motor windings, heating elements, and most conductors under normal conditions. It does not apply to non-ohmic devices like diodes, transistors, and LEDs, which have nonlinear voltage-current relationships.
+
+## How Do You Find Current Using Ohm's Law?
+
+To find current using Ohm's law, divide voltage by resistance: I = V / R. The result is in amperes when voltage is in volts and resistance is in ohms.
+
+A common practical scenario: you want to know how much current a 220Ω resistor draws when connected to a 5V microcontroller pin.
+
+```
+I = V / R
+I = 5V / 220Ω
+I = 0.02273A
+I = 22.7mA
+```
+
+Most microcontroller output pins (Arduino, Raspberry Pi GPIO) can safely source or sink 20–40mA per pin. At 22.7mA, a 220Ω resistor is right at the edge of the safe range for a typical Arduino pin, which has a 40mA absolute maximum. Knowing this calculation prevents burning out GPIO pins — a mistake that requires replacing the microcontroller.
+
+The same formula scales up. A 240V circuit with a heating element rated at 12Ω draws:
+
+```
+I = 240V / 12Ω = 20A
+```
+
+Twenty amps is significant — this circuit requires 12 AWG wire minimum in the US (rated for 20A in most residential wiring codes) and a 20A breaker. Running 20A through undersized 14 AWG wire (rated for 15A) is a fire hazard. Ohm's law, combined with wire gauge charts, tells you exactly what conductors the circuit needs.
+
+## What Is the Difference Between Ohm's Law and the Power Formula?
+
+Ohm's law (V = IR) relates voltage, current, and resistance. The power formula (P = V × I) relates power, voltage, and current. They are separate laws that complement each other — neither is a subset of the other.
+
+Together, they produce a complete set of 12 relationships between the four electrical quantities (V, I, R, P):
+
+| To find | Formula 1 | Formula 2 | Formula 3 |
+|---|---|---|---|
+| Voltage (V) | V = I × R | V = P / I | V = √(P × R) |
+| Current (I) | I = V / R | I = P / V | I = √(P / R) |
+| Resistance (R) | R = V / I | R = V² / P | R = P / I² |
+| Power (P) | P = V × I | P = I² × R | P = V² / R |
+
+This table is sometimes called the "Ohm's Law Wheel" or "Power Wheel." Given any two of the four values, you can find the other two.
+
+The practical implication: you do not always need both voltage and current to find power. If you know that a heating element has 8.5Ω of resistance and draws 15A:
+
+```
+P = I² × R = (15)² × 8.5 = 225 × 8.5 = 1,912.5W ≈ 1.9 kW
+```
+
+No voltage measurement needed. This is particularly useful when voltage is difficult to measure directly but current and resistance are known.
+
+The [watt calculator](https://roughtools.com/tools/calculators/watt-calculator) handles the power formulas alongside the Ohm's law calculator for cases where you need all four variables.
+
+## Common Mistakes to Avoid When Applying Ohm's Law
+
+- **Not converting milliamps to amps before calculating.** If current is given as 47 mA and you enter 47 instead of 0.047, your resistance calculation will be 1,000 times too small. Always convert to base units first: mA ÷ 1,000 = A, kΩ × 1,000 = Ω, mV ÷ 1,000 = V. This is the most frequent arithmetic error in circuit calculations at every level from student to professional.
+
+- **Applying Ohm's law to non-ohmic components.** Ohm's law only holds for ohmic conductors — resistors, wire, and most passive components. Diodes, LEDs, transistors, and zener diodes are non-ohmic: their resistance changes with voltage and current. Treating an LED as a simple resistor and applying V = IR directly will give you meaningless results. For LEDs, use the forward voltage and rated current to calculate the series resistor, as in the worked example above.
+
+- **Forgetting that component values change with temperature.** A resistor's value shifts with temperature — typically ±100 ppm/°C for carbon film, ±50 ppm/°C for metal film. At normal temperatures this is negligible. But motor windings, heating elements, and light bulb filaments have resistance that varies dramatically between cold and operating temperature. Calculating inrush current for a motor using its hot resistance will significantly underestimate the startup current.
+
+- **Using total circuit voltage instead of the voltage across a specific component.** In a series circuit, total voltage is split across components. If you have a 12V supply, a 330Ω resistor, and an LED with 2.0V forward voltage in series, the voltage across the resistor is 12 − 2.0 = 10V, not 12V. Using 12V gives a current of 36.4mA; using 10V correctly gives 30.3mA. The LED manufacturer's maximum current rating is what matters — the error could blow the LED.
+
+- **Assuming Ohm's law works for AC and DC interchangeably without modification.** For DC circuits and purely resistive AC loads, Ohm's law applies directly. For AC circuits with capacitors or inductors, the resistance-equivalent is called **impedance** (Z) — which includes both resistance and reactance. The formula becomes V = I × Z, where Z is a complex number. Applying simple Ohm's law to an AC motor circuit ignores inductive reactance and produces incorrect current estimates.
+
+## Frequently Asked Questions
+
+**What does Ohm's law tell you?**
+Ohm's law tells you the relationship between the voltage across a conductor, the current flowing through it, and its resistance. Knowing any two of these three values lets you calculate the third. It is used to design circuits, size components, check wire ratings, and diagnose faults — any time you need to predict or measure electrical behavior in a resistive circuit.
+
+**What if I have a short circuit — zero resistance — what does Ohm's law predict?**
+If resistance approaches zero, Ohm's law predicts current approaches infinity: I = V / 0 → ∞. In practice, a short circuit produces extremely high current limited only by the source's internal resistance and wire resistance (which are small but not zero). This is why short circuits blow fuses and trip breakers — the current spike is high enough to cause heat damage in milliseconds. Fuses and breakers are sized based on this exact calculation: they interrupt the circuit before the current reaches dangerous levels.
+
+**What is the difference between resistance and impedance?**
+Resistance (R) is the opposition to current flow in a purely resistive component — it does not change with frequency. Impedance (Z) is the total opposition to current in an AC circuit that includes both resistance and reactance — the opposition from capacitors and inductors, which does change with frequency. For DC circuits and AC circuits with only resistors, R and Z are equal. For AC circuits with capacitors or inductors, you must use impedance in place of resistance. The [Ohm's Law Calculator](https://roughtools.com/tools/calculators/ohms-law-calculator) solves the DC/resistive case; AC impedance requires additional calculations.
+
+**How many ohms of resistance does household wiring have?**
+Copper wire has very low resistance — approximately 1.68 × 10⁻⁸ ohm-meters at room temperature (its resistivity). In practice, 14 AWG copper wire (common household branch circuit wiring) has about 0.0025Ω per foot — about 0.25Ω for a 100-foot run. At 15A, this causes a voltage drop of I × R = 15 × 0.25 = 3.75V — meaningful for long runs to appliances. This is why NEC code specifies wire gauge minimums by circuit ampacity, and why long runs sometimes need the next larger wire gauge to keep voltage drop under 3%.
+
+**When should I use the Ohm's Law Calculator vs. doing it by hand?**
+Use the [Ohm's Law Calculator](https://roughtools.com/tools/calculators/ohms-law-calculator) for any quick lookup, for verifying manual calculations, or when working through multiple components rapidly. Do it by hand when you are learning — working through the algebra yourself builds intuition about how changing one variable affects the others. For complex multi-component circuits with series and parallel elements, the calculator handles individual branches quickly while you manage the overall circuit topology manually or with circuit simulation software.
+
+## Use the Free Ohm's Law Calculator
+
+The [Free Ohm's Law Calculator](https://roughtools.com/tools/calculators/ohms-law-calculator) at RoughTools solves for voltage, current, or resistance in seconds — enter any two known values and select the unit (V, mA, kΩ, etc.) and the calculator converts and computes automatically. It also shows the power dissipated using P = V × I, so you get a complete picture of the circuit in one step. No account needed, works on any device, completely free.
+
+**[Free Ohm's Law Calculator →](https://roughtools.com/tools/calculators/ohms-law-calculator)**
+
+You might also need:
+- [Watt Calculator](https://roughtools.com/tools/calculators/watt-calculator) — calculate power dissipation using P = V × I, P = I²R, or P = V²/R
+- [Electrical Load Calculator](https://roughtools.com/tools/calculators/electrical-load-calculator) — calculate total circuit load and verify breaker and wire gauge requirements
+- [Voltage Divider Calculator](https://roughtools.com/tools/calculators/voltage-divider-calculator) — calculate output voltage for two-resistor voltage divider circuits using Ohm's law
+- [Scientific Calculator](https://roughtools.com/tools/calculators/scientific-calculator) — perform square roots, powers, and unit conversions for complex circuit calculations

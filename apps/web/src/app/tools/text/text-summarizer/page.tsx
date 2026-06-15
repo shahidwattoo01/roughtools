@@ -126,7 +126,9 @@ export default function Page() {
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Automatically extract the most important sentences from any article or document using browser-based extractive summarization — no AI API, no server, and no data transmission. Choose 1 to 10 summary sentences. Completely private and free with no account required.
         </p>
+        <div data-print-section="calculator">
         <TextSummarizerClient />
+        </div>
         <div style={{ marginTop: 12, marginBottom: 4 }}>
           <PDFExportButton toolName="Text Summarizer" />
         </div>

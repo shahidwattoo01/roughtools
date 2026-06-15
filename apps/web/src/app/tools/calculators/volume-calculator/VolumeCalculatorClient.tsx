@@ -10,8 +10,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -20,7 +20,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -34,7 +34,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   label: string; value: string; sub?: string; color?: string
 }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 20, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -113,7 +113,7 @@ const UNITS = [
   { label: 'liters',  factor: 1000 },
 ]
 
-const REALWORLD = [
+const _REALWORLD = [
   { threshold: 1000, label: '≈ 1 liter (1000 cm³)', condition: (v: number) => Math.abs(v - 1000) < 500 },
   { threshold: 330,  label: '≈ standard soda can (330 cm³)', condition: (v: number) => v > 250 && v < 400 },
 ]
@@ -131,13 +131,13 @@ export default function VolumeCalculatorClient() {
   const allFilled = current.fields.every(f => parseFloat(vals[f.id] ?? '') > 0)
   const result = allFilled ? calc(shape, numVals) : null
 
-  const selectedUnit = UNITS.find(u => u.label === unit)!
+  const _selectedUnit = UNITS.find(u => u.label === unit)!
   // convert: user enters in selected unit linear => volume in that unit; treat as raw number
   const volumeInUnit = result?.volume ?? 0
   const surfaceInUnit = result?.surface ?? 0
 
   // Convert to other units (assuming input is in selected unit = cm³ for display)
-  const conversions = useMemo(() => {
+  const _conversions = useMemo(() => {
     if (!result) return []
     const toCm3 = result.volume  // treat raw as cm³
     return UNITS.filter(u => u.label !== unit).slice(0, 4).map(u => ({
@@ -212,13 +212,13 @@ export default function VolumeCalculatorClient() {
         </div>
 
         {/* Formula display */}
-        <div style={{ padding: '10px 14px', background: 'rgba(0,0,0,0.25)', borderRadius: 8, fontSize: 13, color: 'var(--fg-3)' }}>
+        <div style={{ padding: '10px 14px', background: 'var(--bg-2)', borderRadius: 8, fontSize: 13, color: 'var(--fg-3)' }}>
           <span style={{ color: '#8b5cf6', fontWeight: 700 }}>V: </span>{current.formulaV}
           <span style={{ marginLeft: 20, color: '#10b981', fontWeight: 700 }}>SA: </span>{current.formulaSA}
         </div>
 
         <div style={{ marginTop: 14, display: 'flex', gap: 8 }}>
-          <button onClick={() => setVals({})} style={{ ...BTN_GHOST, background: 'rgba(0,0,0,0.2)', color: 'var(--fg-3)' }}>Reset</button>
+          <button onClick={() => setVals({})} style={{ ...BTN_GHOST, background: 'var(--bg-2)', color: 'var(--fg-3)' }}>Reset</button>
           {result && <button onClick={handleExportPDF} style={BTN_GHOST}>Export PDF</button>}
         </div>
       </div>
@@ -240,7 +240,7 @@ export default function VolumeCalculatorClient() {
               {UNITS.filter(u => u.label !== unit).map(u => {
                 const converted = volumeInUnit * (UNITS.find(x => x.label === unit)!.factor) / u.factor
                 return (
-                  <div key={u.label} style={{ padding: '12px', background: 'rgba(0,0,0,0.25)', borderRadius: 10, textAlign: 'center' }}>
+                  <div key={u.label} style={{ padding: '12px', background: 'var(--bg-2)', borderRadius: 10, textAlign: 'center' }}>
                     <div style={{ fontSize: 15, fontWeight: 700, color: '#a5b4fc' }}>{fmtV(converted)}</div>
                     <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 3 }}>{u.label}</div>
                   </div>
@@ -270,7 +270,7 @@ export default function VolumeCalculatorClient() {
                 <tbody>
                   {scaleScenarios.map(s => (
                     <tr key={s.scale} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', background: s.scale === 1 ? 'rgba(99,102,241,0.08)' : 'transparent' }}>
-                      <td style={{ ...TD, textAlign: 'center', fontWeight: s.scale === 1 ? 700 : 400, color: s.scale === 1 ? '#c4b5fd' : 'var(--fg-2)' }}>{s.scale}× {s.scale === 1 ? '(base)' : ''}</td>
+                      <td style={{ ...TD, textAlign: 'center', fontWeight: s.scale === 1 ? 700 : 400, color: s.scale === 1 ? 'var(--brand-2)' : 'var(--fg-2)' }}>{s.scale}× {s.scale === 1 ? '(base)' : ''}</td>
                       <td style={{ ...TD, textAlign: 'center', fontFamily: 'monospace' }}>{fmtV(s.volume)}</td>
                       <td style={{ ...TD, textAlign: 'center', fontFamily: 'monospace' }}>{fmtV(s.surface)}</td>
                       <td style={{ ...TD, textAlign: 'center', color: '#f59e0b' }}>{s.scale ** 3}×</td>

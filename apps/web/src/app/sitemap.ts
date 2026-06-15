@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const categoryPages: MetadataRoute.Sitemap = [
     'calculators', 'developer', 'text', 'converters', 'network', 'security',
     'document-tools', 'legal-tools', 'real-estate', 'image-tools',
-    'pdf', 'medical', 'engineering', 'business', 'environment', 'iq-test',
+    'pdf', 'medical', 'engineering', 'business', 'environment', 'iq-test', 'resume',
   ].map(path => ({
     url: `${BASE_URL}/tools/${path}`,
     lastModified: now, changeFrequency: 'weekly' as const, priority: 0.85,

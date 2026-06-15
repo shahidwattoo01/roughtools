@@ -1,11 +1,8 @@
-import SiteHeader from '@/components/SiteHeader'
-import Footer from '@/components/Footer'
 import Link from 'next/link'
 
 export default function About() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <SiteHeader />
       <main className="max-w-4xl mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">About RoughTools</h1>
 
@@ -22,7 +19,7 @@ export default function About() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">What We Offer</h2>
             <p className="text-gray-700 mb-4">
-              Our platform features 600+ free tools across multiple categories:
+              Our platform features 604+ free tools across multiple categories:
             </p>
             <ul className="list-disc list-inside text-gray-700 mb-4">
               <li><strong>PDF Tools:</strong> Convert, compress, merge, split, and edit PDFs</li>
@@ -76,7 +73,6 @@ export default function About() {
           </section>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

@@ -90,7 +90,7 @@ export default function ImageSizeCheckerClient() {
       {infos.map((info, i) => (
         <div key={i} style={card}>
           <div style={{ display:'flex', gap:16, alignItems:'flex-start', marginBottom:16 }}>
-            <img src={previews[i]} alt={info.name} style={{ width:80, height:80, objectFit:'cover', borderRadius:8, flexShrink:0, border:'1px solid rgba(255,255,255,0.1)' }} />
+            <img src={previews[i]} alt={info.name} style={{ width:80, height:80, objectFit:'cover', borderRadius:8, flexShrink:0, border:'1px solid var(--line-strong)' }} />
             <div style={{ flex:1 }}>
               <div style={{ color:'#e0e0ff', fontWeight:700, marginBottom:4, wordBreak:'break-all' }}>{info.name}</div>
               <div style={{ color:'#a78bfa', fontSize:13 }}>{info.width} × {info.height}px • {fmt(info.size)}</div>

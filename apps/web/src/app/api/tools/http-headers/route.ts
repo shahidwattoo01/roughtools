@@ -22,7 +22,7 @@ function isPrivateUrl(url: string): boolean {
 
 export async function GET(request: NextRequest) {
   const ip = getClientIp(request)
-  const { allowed } = rateLimit(`headers:${ip}`, 15, 60_000)
+  const { allowed } = rateLimit(`headers:${ip}`, 200, 60_000)
   if (!allowed) return NextResponse.json({ error: 'Rate limit exceeded. Try again shortly.' }, { status: 429 })
 
   const { searchParams } = new URL(request.url)

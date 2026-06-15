@@ -266,7 +266,7 @@ function getFAQs(specialtyId: string, toolName: string): FAQ[] {
     'neurology-psychiatry': [
       {
         q: `What does the ${toolName} measure?`,
-        a: `The ${toolName} is a standardised neurological or psychiatric assessment tool that quantifies symptoms, cognitive function, or neurological deficits using a validated scoring system. Scores are interpreted according to published cutoffs from the tool\'s original validation studies and current clinical guidelines.`,
+        a: `The ${toolName} is a standardised neurological or psychiatric assessment tool that quantifies symptoms, cognitive function, or neurological deficits using a validated scoring system. Scores are interpreted according to published cutoffs from the tool's original validation studies and current clinical guidelines.`,
       },
       {
         q: 'Are these psychiatric screening tools diagnostic?',
@@ -310,7 +310,7 @@ function getFAQs(specialtyId: string, toolName: string): FAQ[] {
     pharmacology: [
       {
         q: `How does the ${toolName} work?`,
-        a: `The ${toolName} applies validated pharmacokinetic principles or evidence-based clinical dosing algorithms to calculate drug doses, concentration targets, or infusion rates. Results are based on population pharmacokinetic data and must always be verified against current drug references and the patient\'s full clinical status before prescribing or administering.`,
+        a: `The ${toolName} applies validated pharmacokinetic principles or evidence-based clinical dosing algorithms to calculate drug doses, concentration targets, or infusion rates. Results are based on population pharmacokinetic data and must always be verified against current drug references and the patient's full clinical status before prescribing or administering.`,
       },
       {
         q: 'How do I adjust drug doses for renal impairment?',
@@ -470,7 +470,7 @@ function getFAQs(specialtyId: string, toolName: string): FAQ[] {
     },
     {
       q: 'How accurate is this calculator?',
-      a: `The ${toolName} uses formulas from peer-reviewed literature. Accuracy depends on the precision of values entered and the equation\'s validated accuracy in its original derivation cohort. Always interpret results alongside a full clinical assessment — no calculator replaces clinical judgment.`,
+      a: `The ${toolName} uses formulas from peer-reviewed literature. Accuracy depends on the precision of values entered and the equation's validated accuracy in its original derivation cohort. Always interpret results alongside a full clinical assessment — no calculator replaces clinical judgment.`,
     },
     {
       q: 'Can I use this result to make clinical decisions?',
@@ -478,7 +478,7 @@ function getFAQs(specialtyId: string, toolName: string): FAQ[] {
     },
     {
       q: 'Who should I consult regarding this result?',
-      a: `For results from the ${toolName} that indicate elevated risk, disease, or abnormal values, consult a qualified physician or specialist in the relevant field. The tool\'s specialty is identified in the breadcrumb navigation above — the appropriate specialist for that field is the right person to advise on clinical action.`,
+      a: `For results from the ${toolName} that indicate elevated risk, disease, or abnormal values, consult a qualified physician or specialist in the relevant field. The tool's specialty is identified in the breadcrumb navigation above — the appropriate specialist for that field is the right person to advise on clinical action.`,
     },
     {
       q: 'What guidelines does this tool follow?',

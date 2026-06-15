@@ -97,7 +97,7 @@ export default function AdminToolsPage() {
 
   const toggleCol = (col: Col) => setVisibleCols(prev => {
     const next = new Set(prev)
-    next.has(col) ? next.delete(col) : next.add(col)
+    if (next.has(col)) { next.delete(col) } else { next.add(col) }
     return next
   })
 
@@ -264,7 +264,7 @@ export default function AdminToolsPage() {
                       <input type="checkbox" checked={selected.has(t.slug)}
                         onChange={() => setSelected(prev => {
                           const next = new Set(prev)
-                          next.has(t.slug) ? next.delete(t.slug) : next.add(t.slug)
+                          if (next.has(t.slug)) { next.delete(t.slug) } else { next.add(t.slug) }
                           return next
                         })}
                         className="rounded accent-[#1a6b3c]" />

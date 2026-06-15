@@ -9,8 +9,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -19,7 +19,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -110,7 +110,7 @@ function getStatusColor(code: number): string {
 
 function MetricBadge({ label, value, color }: { label: string; value: string; color: string }) {
   return (
-    <div style={{ padding: '10px 16px', background: 'rgba(0,0,0,0.3)', borderRadius: 10, textAlign: 'center' }}>
+    <div style={{ padding: '10px 16px', background: 'var(--bg-2)', borderRadius: 10, textAlign: 'center' }}>
       <div style={{ fontSize: 18, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 3, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
     </div>
@@ -164,7 +164,7 @@ export default function HttpHeadersCheckerClient() {
         responseTime: data.status?.response_time ?? elapsed,
         url: target,
       })
-    } catch (e) {
+    } catch {
       setError('Could not fetch headers. The site may block external requests or the URL is invalid. Try adding https:// if not present.')
     } finally {
       setLoading(false)
@@ -313,7 +313,7 @@ export default function HttpHeadersCheckerClient() {
                     {!present && (
                       <>
                         <p style={{ margin: '0 0 6px', fontSize: 12, color: 'var(--fg-3)', lineHeight: 1.6 }}>{h.description}</p>
-                        <code style={{ display: 'block', padding: '6px 10px', background: 'rgba(0,0,0,0.4)', borderRadius: 6, fontSize: 11, color: '#c4b5fd', fontFamily: 'monospace', wordBreak: 'break-all' }}>
+                        <code style={{ display: 'block', padding: '6px 10px', background: 'var(--bg-2)', borderRadius: 6, fontSize: 11, color: 'var(--brand-2)', fontFamily: 'monospace', wordBreak: 'break-all' }}>
                           {h.howToAdd}
                         </code>
                       </>
@@ -363,13 +363,13 @@ export default function HttpHeadersCheckerClient() {
 
           {/* Guidance */}
           <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-            <h3 style={{ margin: '0 0 10px', fontSize: 13, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <h3 style={{ margin: '0 0 10px', fontSize: 13, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               About HTTP Headers
             </h3>
             <ul style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 8 }}>
               <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.6 }}>Security headers are free to add and can prevent a large class of web attacks including XSS, clickjacking, and MIME-sniffing.</li>
               <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.6 }}>Results fetched via CORS proxy may show fewer security headers than are actually served — test with curl or browser DevTools for authoritative results.</li>
-              <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.6 }}>Use <code style={{ color: '#c4b5fd' }}>curl -I https://example.com</code> from terminal for a direct header inspection without any proxy.</li>
+              <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.6 }}>Use <code style={{ color: 'var(--brand-2)' }}>curl -I https://example.com</code> from terminal for a direct header inspection without any proxy.</li>
             </ul>
           </div>
         </>

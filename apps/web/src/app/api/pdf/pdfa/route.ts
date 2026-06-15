@@ -1,15 +1,19 @@
 ﻿export const dynamic = 'force-dynamic'
 
 import { NextRequest, NextResponse } from 'next/server'
+import { pdfGuard, pdfSizeGuard } from '../_lib/pdf-guards'
 import { PDFDocument } from 'pdf-lib'
 
 // PDF/A conversion requires full color profile embedding (ICC) and XMP metadata.
 // We apply XMP metadata + clean save as a best-effort lightweight PDF/A-like output.
 export async function POST(req: NextRequest) {
+  const guard = pdfGuard(req)
+  if (guard) return guard
   try {
     const form = await req.formData()
     const file = form.get('file') as File | null
-    if (!file) return NextResponse.json({ error: 'No file uploaded' }, { status: 400 })
+    const sizeGuard = pdfSizeGuard(file)
+    if (sizeGuard) return sizeGuard
 
     const buffer = Buffer.from(await file.arrayBuffer())
     const pdf = await PDFDocument.load(buffer, { ignoreEncryption: true })

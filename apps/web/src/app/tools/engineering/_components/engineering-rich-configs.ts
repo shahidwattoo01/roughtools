@@ -469,7 +469,7 @@ export const wireCableSizeRich: EngineeringCalcConfig = {
     const I_required = I / corrFactor
 
     const selected = table.find(([, amp]) => amp >= I_required) ?? table[table.length - 1]
-    const [label, ampacity, area] = selected
+    const [_label, ampacity, area] = selected
 
     // Voltage drop
     const rho = isCu ? 0.01724e-6 : 0.02827e-6 // Ω·m
@@ -510,7 +510,7 @@ export const wireCableSizeRich: EngineeringCalcConfig = {
     else if (ambient <= 30) tempCorr = 1.0
     else tempCorr = Math.max(1 - (ambient - 30) * 0.012, 0.50)
 
-    let fillCorr = conductorCount <= 3 ? 1.0 : conductorCount <= 6 ? 0.80 : conductorCount <= 9 ? 0.70 : 0.50
+    const fillCorr = conductorCount <= 3 ? 1.0 : conductorCount <= 6 ? 0.80 : conductorCount <= 9 ? 0.70 : 0.50
     const corrFactor = tempCorr * fillCorr
     const I_required = I / corrFactor
 

@@ -87,7 +87,7 @@ export default function ScreenshotToPdfClient() {
           {pages.map((p, i) => (
             <div key={i} style={{ display:'flex', alignItems:'center', gap:10, background:'#0d0d1f', borderRadius:8, padding:'8px 12px', marginBottom:8 }}>
               <div style={{ color:'#a78bfa', fontWeight:900, fontSize:16, width:28, textAlign:'center' }}>{i+1}</div>
-              <img src={p.url} alt={p.name} style={{ width:60, height:45, objectFit:'cover', borderRadius:4, border:'1px solid rgba(255,255,255,0.1)' }} />
+              <img src={p.url} alt={p.name} style={{ width:60, height:45, objectFit:'cover', borderRadius:4, border:'1px solid var(--line-strong)' }} />
               <div style={{ flex:1, color:'#e0e0ff', fontSize:13, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{p.name}</div>
               <div style={{ display:'flex', gap:6 }}>
                 <button onClick={() => moveUp(i)} style={{ background:'rgba(255,255,255,0.08)', color:'#e0e0ff', border:'none', borderRadius:4, padding:'4px 8px', cursor:'pointer', fontSize:12 }}>↑</button>

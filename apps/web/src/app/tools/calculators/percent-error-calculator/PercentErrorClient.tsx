@@ -118,7 +118,7 @@ export default function PercentErrorClient() {
           <ResultRow label="Signed Error (m − a)" value={error!.toFixed(8)} />
           <ResultRow label="Relative Error" value={relativeError!.toFixed(8)} />
           {pctDiff !== null && <ResultRow label="Percent Difference" value={`${pctDiff.toFixed(6)}%`} />}
-          <div style={{ marginTop: 10, padding: '8px 12px', background: 'rgba(0,0,0,0.2)', borderRadius: 8, fontSize: 13, color: qualityColor }}>
+          <div style={{ marginTop: 10, padding: '8px 12px', background: 'var(--bg-2)', borderRadius: 8, fontSize: 13, color: qualityColor }}>
             Quality: {quality}
           </div>
         </Card>

@@ -58,8 +58,36 @@ export async function isDatabaseHealthy(): Promise<boolean> {
   }
 }
 
-// Re-export Prisma types for convenience
+// Re-export Prisma types — consumers should import from @platform/db, not @prisma/client directly
 export type { PrismaClient };
-
 export const db = prisma;
-export type { Prisma } from '@prisma/client';
+export type { Prisma, IqSession } from '@prisma/client';
+// Re-export all generated model types so consumers don't need @prisma/client as a direct dep
+export type {
+  User,
+  Session,
+  Category,
+  Tag,
+  Tool,
+  ToolTag,
+  Comment,
+  Favorite,
+  BlogPost,
+  ApiUsageLog,
+  ToolUsage,
+  WebVital,
+  ToolRequest,
+  NewsletterSubscriber,
+  ContactMessage,
+  Subscription,
+  AffiliateClick,
+  AffiliateConversion,
+  Referral,
+  ApiKey,
+  ReferralCode,
+  ShortLink,
+  IqQuestionBank,
+  IqResponse,
+  IqNormingSnapshot,
+  IqQuestionAnalytics,
+} from '@prisma/client';

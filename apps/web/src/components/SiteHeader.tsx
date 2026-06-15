@@ -9,11 +9,10 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
-import { useScrolled } from '@/hooks/useScrolled'
+import { useSession } from 'next-auth/react'
 import { CommandPaletteTrigger } from '@/components/CommandPalette'
 import { SOCIAL_LINKS } from '@/lib/social-config'
-import { TOTAL_REAL_TOOLS } from '@/lib/tools-registry'
-import { TOTAL_CALC_COUNT } from '@/app/tools/calculators/_components/calculator-tool-configs'
+import { TOTAL_REAL_TOOLS, TOTAL_CALC_COUNT } from '@/lib/tool-counts'
 import {
   IconLayoutGrid,
   IconBrandX,
@@ -53,6 +52,7 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [mounted, setMounted]   = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
+  const { data: session, status } = useSession()
   const drawerRef               = useRef<HTMLDivElement>(null)
 
   useEffect(() => { setMounted(true) }, [])
@@ -84,18 +84,27 @@ export default function SiteHeader() {
         className="sticky top-0 z-50 h-14 flex items-center justify-between px-8"
         style={{ background: '#1a1a1a' }}
       >
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 flex-shrink-0" aria-label="RoughTools home">
-          <div
-            className="w-[34px] h-[34px] rounded-lg flex items-center justify-center text-white font-bold text-sm"
-            style={{ background: '#1a6b3c' }}
+        {/* Logo + Home */}
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <Link href="/" className="flex items-center gap-2.5" aria-label="RoughTools home">
+            <div
+              className="w-[34px] h-[34px] rounded-lg flex items-center justify-center text-white font-bold text-sm"
+              style={{ background: '#1a6b3c' }}
+            >
+              RT
+            </div>
+            <span className="text-white text-[16px] font-semibold leading-none">
+              RoughTools<span className="text-[#aaa] font-normal text-sm">.com</span>
+            </span>
+          </Link>
+          <Link
+            href="/"
+            className="hidden md:flex items-center px-3 py-1.5 rounded-lg text-[#ccc] hover:text-white text-sm transition-colors"
+            style={{ background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.12)' }}
           >
-            RT
-          </div>
-          <span className="text-white text-[16px] font-semibold leading-none">
-            RoughTools<span className="text-[#aaa] font-normal text-sm">.com</span>
-          </span>
-        </Link>
+            Home
+          </Link>
+        </div>
 
         {/* Centre search — opens command palette */}
         <CommandPaletteTrigger
@@ -163,6 +172,37 @@ export default function SiteHeader() {
               : <IconMoon size={15} aria-hidden="true" />
             }
           </button>
+
+          {/* Auth buttons */}
+          {mounted && status !== 'loading' && (
+            session ? (
+              <Link
+                href="/account"
+                className="w-[34px] h-[34px] rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
+                style={{ background: '#1a6b3c' }}
+                aria-label="My account"
+              >
+                {session.user?.name?.[0]?.toUpperCase() ?? session.user?.email?.[0]?.toUpperCase() ?? 'U'}
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/signin"
+                  className="hidden sm:flex items-center px-3 py-1.5 rounded-lg text-[#ccc] hover:text-white text-sm transition-colors"
+                  style={{ background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.12)' }}
+                >
+                  Log in
+                </Link>
+                <Link
+                  href="/signup"
+                  className="hidden sm:flex items-center px-3 py-1.5 rounded-lg text-white text-sm font-medium"
+                  style={{ background: '#1a6b3c' }}
+                >
+                  Sign up
+                </Link>
+              </>
+            )
+          )}
 
           {/* Menu */}
           <button

@@ -153,8 +153,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -163,7 +163,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -184,7 +184,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   label: string; value: string; sub?: string; color?: string
 }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 22, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -192,7 +192,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   )
 }
 
-function FractionDisplay({ whole, num, den, color = '#c4b5fd' }: {
+function FractionDisplay({ whole, num, den, color = 'var(--brand-2)' }: {
   whole?: number; num: number; den: number; color?: string
 }) {
   return (
@@ -396,7 +396,7 @@ export default function FractionCalculatorClient() {
                     cursor: 'pointer', textAlign: 'center',
                     background: op === o ? 'rgba(139,92,246,0.25)' : 'rgba(0,0,0,0.25)',
                     border: op === o ? '2px solid rgba(139,92,246,0.6)' : '1px solid var(--line-strong)',
-                    color: op === o ? '#c4b5fd' : 'var(--fg-3)',
+                    color: op === o ? 'var(--brand-2)' : 'var(--fg-3)',
                   }}
                   aria-label={o}
                   aria-pressed={op === o}
@@ -440,7 +440,7 @@ export default function FractionCalculatorClient() {
               {' '}<span style={{ color: 'var(--fg-3)' }}>{opSymbol}</span>{' '}
               <span style={{ color: '#a78bfa' }}>{fracStr(fracB)}</span>
               <span style={{ color: 'var(--fg-3)' }}> = </span>
-              <span style={{ color: '#c4b5fd', fontWeight: 900 }}>{fracStr(result.answer)}</span>
+              <span style={{ color: 'var(--brand-2)', fontWeight: 900 }}>{fracStr(result.answer)}</span>
             </span>
             {result.isMixed && (
               <span style={{ fontSize: 13, color: 'var(--fg-3)' }}>
@@ -470,7 +470,7 @@ export default function FractionCalculatorClient() {
         <>
           {/* ── TIER 1: KEY METRICS ── */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12 }}>
-            <MetricCard label="Simplified Fraction" value={fracStr(result.answer)} color="#c4b5fd" />
+            <MetricCard label="Simplified Fraction" value={fracStr(result.answer)} color="var(--brand-2)" />
             <MetricCard
               label="Mixed Number"
               value={result.isMixed ? `${result.mixedWhole} ${result.mixedNum}/${result.mixedDen}` : fracStr(result.answer)}
@@ -489,7 +489,7 @@ export default function FractionCalculatorClient() {
               style={{
                 width: '100%', textAlign: 'left', padding: '14px 20px',
                 background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-                borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14,
+                borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14,
                 cursor: 'pointer',
               }}
               aria-expanded={showSteps}
@@ -499,7 +499,7 @@ export default function FractionCalculatorClient() {
 
             {showSteps && (
               <div style={{ ...CARD, marginTop: 4, padding: '20px 24px' }}>
-                <div style={{ fontSize: 13, marginBottom: 8, fontWeight: 700, color: '#c4b5fd' }}>
+                <div style={{ fontSize: 13, marginBottom: 8, fontWeight: 700, color: 'var(--brand-2)' }}>
                   Solving: {fracStr(fracA)} {opSymbol} {fracStr(fracB)} = ?
                 </div>
                 <ol style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -517,7 +517,7 @@ export default function FractionCalculatorClient() {
                   ))}
                 </ol>
                 <div style={{ marginTop: 16, padding: '12px 16px', background: 'rgba(99,102,241,0.1)', borderRadius: 8, border: '1px solid rgba(99,102,241,0.2)' }}>
-                  <span style={{ fontSize: 13, color: '#c4b5fd', fontWeight: 700 }}>Answer: </span>
+                  <span style={{ fontSize: 13, color: 'var(--brand-2)', fontWeight: 700 }}>Answer: </span>
                   <span style={{ fontSize: 16, color: '#fff', fontWeight: 900, fontFamily: 'monospace' }}>
                     {fracStr(fracA)} {opSymbol} {fracStr(fracB)} = {fracStr(result.answer)}
                     {result.isMixed ? ` = ${result.mixedWhole} ${result.mixedNum}/${result.mixedDen}` : ''}
@@ -535,7 +535,7 @@ export default function FractionCalculatorClient() {
                 style={{
                   width: '100%', textAlign: 'left', padding: '14px 20px',
                   background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-                  borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14,
+                  borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14,
                   cursor: 'pointer',
                 }}
                 aria-expanded={showAllOps}
@@ -606,13 +606,13 @@ export default function FractionCalculatorClient() {
                             <tr key={opName} style={{
                               background: isCurrent ? 'rgba(139,92,246,0.08)' : 'transparent',
                             }}>
-                              <td style={{ ...TD, color: isCurrent ? '#c4b5fd' : 'var(--fg-2)', fontWeight: isCurrent ? 700 : 400 }}>
+                              <td style={{ ...TD, color: isCurrent ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: isCurrent ? 700 : 400 }}>
                                 {isCurrent ? '★ ' : ''}{opName}
                               </td>
                               <td style={{ ...TD, fontFamily: 'monospace', color: '#a78bfa' }}>
                                 {fracStr(fracA)} {symbol} {fracStr(fracB)}
                               </td>
-                              <td style={{ ...TD, fontWeight: 700, color: isCurrent ? '#c4b5fd' : 'var(--fg-2)' }}>
+                              <td style={{ ...TD, fontWeight: 700, color: isCurrent ? 'var(--brand-2)' : 'var(--fg-2)' }}>
                                 {r ? fracStr(r) : <span style={{ color: 'var(--fg-3)' }}>undefined</span>}
                               </td>
                               <td style={TD}>
@@ -642,7 +642,7 @@ export default function FractionCalculatorClient() {
               style={{
                 width: '100%', textAlign: 'left', padding: '14px 20px',
                 background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-                borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14,
+                borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14,
                 cursor: 'pointer',
               }}
               aria-expanded={showTable}
@@ -665,7 +665,7 @@ export default function FractionCalculatorClient() {
                     <tbody>
                       {commonFractions.map(({ frac, dec, pct }) => (
                         <tr key={frac}>
-                          <td style={{ ...TD, fontWeight: 700, color: '#c4b5fd', fontFamily: 'monospace' }}>{frac}</td>
+                          <td style={{ ...TD, fontWeight: 700, color: 'var(--brand-2)', fontFamily: 'monospace' }}>{frac}</td>
                           <td style={{ ...TD, fontFamily: 'monospace' }}>{dec.toFixed(8).replace(/\.?0+$/, '')}</td>
                           <td style={{ ...TD }}>{pct.toFixed(3)}%</td>
                           <td style={{ ...TD, minWidth: 120 }}>
@@ -686,7 +686,7 @@ export default function FractionCalculatorClient() {
 
           {/* ── TIER 5: GUIDANCE ── */}
           <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-            <h3 style={{ margin: '0 0 12px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <h3 style={{ margin: '0 0 12px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               Understanding Your Result
             </h3>
             <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>

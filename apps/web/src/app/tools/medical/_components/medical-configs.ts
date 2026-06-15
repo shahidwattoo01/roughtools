@@ -1,6 +1,6 @@
 ﻿// ============================================================
-// ROUGHTOOLS â€” MEDICAL CALCULATOR CONFIGS
-// Pure data file â€” NO 'use client' directive.
+// ROUGHTOOLS — MEDICAL CALCULATOR CONFIGS
+// Pure data file — NO 'use client' directive.
 // Safe to import from both Server and Client components.
 // ============================================================
 
@@ -35,24 +35,24 @@ export interface MedicalCalcConfig {
   calculate: (vals: Record<string, number | string>) => Record<string, number>
 }
 
-// â”€â”€â”€ Configs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Configs ─────────────────────────────────────────────────
 
 export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
 
-  // â”€â”€ BMI Calculator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── BMI Calculator ────────────────────────────────────────
   'bmi-calculator': {
     slug: 'bmi-calculator',
     name: 'BMI Calculator',
-    icon: 'âš–ï¸',
+    icon: '⚖️',
     description: 'Calculate Body Mass Index from weight and height. Includes WHO classification.',
-    formula: 'BMI = weight(kg) / height(m)Â²',
+    formula: 'BMI = weight(kg) / height(m)²',
     reference: 'WHO BMI Classification 2000',
     inputs: [
       { id: 'weight', label: 'Weight', unit: 'kg', default: 70, min: 1, step: 0.1 },
       { id: 'height', label: 'Height', unit: 'cm', default: 170, min: 50, step: 0.1 },
     ],
     outputs: [
-      { id: 'bmi', label: 'BMI', unit: 'kg/mÂ²', decimals: 1 },
+      { id: 'bmi', label: 'BMI', unit: 'kg/m²', decimals: 1 },
       { id: 'category', label: 'BMI Category', decimals: 0 },
     ],
     calculate(v) {
@@ -63,13 +63,13 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ eGFR CKD-EPI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── eGFR CKD-EPI ─────────────────────────────────────────
   'egfr-ckd-epi-calculator': {
     slug: 'egfr-ckd-epi-calculator',
     name: 'eGFR Calculator (CKD-EPI)',
-    icon: 'ðŸ«˜',
+    icon: '🫘',
     description: 'Estimate glomerular filtration rate using the 2021 CKD-EPI creatinine equation.',
-    formula: 'eGFR = 142 Ã— min(Scr/Îº,1)^Î± Ã— max(Scr/Îº,1)^âˆ’1.200 Ã— 0.9938^Age',
+    formula: 'eGFR = 142 × min(Scr/κ,1)^α × max(Scr/κ,1)^−1.200 × 0.9938^Age',
     reference: 'Inker et al. NEJM 2021 (race-free CKD-EPI)',
     inputs: [
       { id: 'creatinine', label: 'Serum Creatinine', unit: 'mg/dL', default: 1.0, min: 0.1, step: 0.01 },
@@ -77,7 +77,7 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
       { id: 'sex', label: 'Biological Sex', type: 'select', default: '1', options: [{ value: '1', label: 'Male' }, { value: '0', label: 'Female' }] },
     ],
     outputs: [
-      { id: 'egfr', label: 'eGFR', unit: 'mL/min/1.73mÂ²', decimals: 1 },
+      { id: 'egfr', label: 'eGFR', unit: 'mL/min/1.73m²', decimals: 1 },
       { id: 'ckd_stage', label: 'CKD Stage', decimals: 0 },
     ],
     calculate(v) {
@@ -93,13 +93,13 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Creatinine Clearance (Cockcroft-Gault) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Creatinine Clearance (Cockcroft-Gault) ────────────────
   'creatinine-clearance-cockcroft-gault': {
     slug: 'creatinine-clearance-cockcroft-gault',
     name: 'Creatinine Clearance (Cockcroft-Gault)',
-    icon: 'ðŸ«˜',
+    icon: '🫘',
     description: 'Calculate estimated creatinine clearance for drug dosing adjustment.',
-    formula: 'CrCl = [(140 âˆ’ Age) Ã— Weight] / (72 Ã— SCr) Ã— 0.85 if female',
+    formula: 'CrCl = [(140 − Age) × Weight] / (72 × SCr) × 0.85 if female',
     reference: 'Cockcroft & Gault, Nephron 1976',
     inputs: [
       { id: 'age', label: 'Age', unit: 'years', default: 55, min: 18, step: 1 },
@@ -117,35 +117,35 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Glasgow Coma Scale â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Glasgow Coma Scale ────────────────────────────────────
   'glasgow-coma-scale': {
     slug: 'glasgow-coma-scale',
     name: 'Glasgow Coma Scale (GCS)',
-    icon: 'ðŸ§ ',
+    icon: '🧠',
     description: 'Assess level of consciousness after brain injury using eye, verbal, and motor responses.',
-    formula: 'GCS = Eye (1â€“4) + Verbal (1â€“5) + Motor (1â€“6)',
+    formula: 'GCS = Eye (1–4) + Verbal (1–5) + Motor (1–6)',
     reference: 'Teasdale & Jennett, Lancet 1974',
     inputs: [
       { id: 'eye', label: 'Eye Opening', type: 'select', default: '4', options: [
-        { value: '4', label: '4 â€” Spontaneous' },
-        { value: '3', label: '3 â€” To voice' },
-        { value: '2', label: '2 â€” To pain' },
-        { value: '1', label: '1 â€” None' },
+        { value: '4', label: '4 — Spontaneous' },
+        { value: '3', label: '3 — To voice' },
+        { value: '2', label: '2 — To pain' },
+        { value: '1', label: '1 — None' },
       ]},
       { id: 'verbal', label: 'Verbal Response', type: 'select', default: '5', options: [
-        { value: '5', label: '5 â€” Oriented' },
-        { value: '4', label: '4 â€” Confused' },
-        { value: '3', label: '3 â€” Words only' },
-        { value: '2', label: '2 â€” Sounds' },
-        { value: '1', label: '1 â€” None' },
+        { value: '5', label: '5 — Oriented' },
+        { value: '4', label: '4 — Confused' },
+        { value: '3', label: '3 — Words only' },
+        { value: '2', label: '2 — Sounds' },
+        { value: '1', label: '1 — None' },
       ]},
       { id: 'motor', label: 'Motor Response', type: 'select', default: '6', options: [
-        { value: '6', label: '6 â€” Obeys commands' },
-        { value: '5', label: '5 â€” Localizes pain' },
-        { value: '4', label: '4 â€” Withdraws' },
-        { value: '3', label: '3 â€” Flexion' },
-        { value: '2', label: '2 â€” Extension' },
-        { value: '1', label: '1 â€” None' },
+        { value: '6', label: '6 — Obeys commands' },
+        { value: '5', label: '5 — Localizes pain' },
+        { value: '4', label: '4 — Withdraws' },
+        { value: '3', label: '3 — Flexion' },
+        { value: '2', label: '2 — Extension' },
+        { value: '1', label: '1 — None' },
       ]},
     ],
     outputs: [
@@ -159,24 +159,24 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ PHQ-9 Depression Screen â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── PHQ-9 Depression Screen ───────────────────────────────
   'phq9-depression-screen': {
     slug: 'phq9-depression-screen',
     name: 'PHQ-9 Depression Screening',
-    icon: 'ðŸ§ ',
+    icon: '🧠',
     description: 'Screen for depression severity using the Patient Health Questionnaire-9.',
-    formula: 'PHQ-9 total = sum of 9 items (0â€“3 each), max 27',
+    formula: 'PHQ-9 total = sum of 9 items (0–3 each), max 27',
     reference: 'Kroenke & Spitzer, Gen Hosp Psychiatry 2002',
     inputs: [
-      { id: 'q1', label: 'Little interest or pleasure in doing things', type: 'select', default: '0', options: [{ value: '0', label: '0 â€” Not at all' }, { value: '1', label: '1 â€” Several days' }, { value: '2', label: '2 â€” More than half' }, { value: '3', label: '3 â€” Nearly every day' }] },
-      { id: 'q2', label: 'Feeling down, depressed, or hopeless', type: 'select', default: '0', options: [{ value: '0', label: '0 â€” Not at all' }, { value: '1', label: '1 â€” Several days' }, { value: '2', label: '2 â€” More than half' }, { value: '3', label: '3 â€” Nearly every day' }] },
-      { id: 'q3', label: 'Trouble falling/staying asleep, or sleeping too much', type: 'select', default: '0', options: [{ value: '0', label: '0 â€” Not at all' }, { value: '1', label: '1 â€” Several days' }, { value: '2', label: '2 â€” More than half' }, { value: '3', label: '3 â€” Nearly every day' }] },
-      { id: 'q4', label: 'Feeling tired or having little energy', type: 'select', default: '0', options: [{ value: '0', label: '0 â€” Not at all' }, { value: '1', label: '1 â€” Several days' }, { value: '2', label: '2 â€” More than half' }, { value: '3', label: '3 â€” Nearly every day' }] },
-      { id: 'q5', label: 'Poor appetite or overeating', type: 'select', default: '0', options: [{ value: '0', label: '0 â€” Not at all' }, { value: '1', label: '1 â€” Several days' }, { value: '2', label: '2 â€” More than half' }, { value: '3', label: '3 â€” Nearly every day' }] },
-      { id: 'q6', label: 'Feeling bad about yourself', type: 'select', default: '0', options: [{ value: '0', label: '0 â€” Not at all' }, { value: '1', label: '1 â€” Several days' }, { value: '2', label: '2 â€” More than half' }, { value: '3', label: '3 â€” Nearly every day' }] },
-      { id: 'q7', label: 'Trouble concentrating on things', type: 'select', default: '0', options: [{ value: '0', label: '0 â€” Not at all' }, { value: '1', label: '1 â€” Several days' }, { value: '2', label: '2 â€” More than half' }, { value: '3', label: '3 â€” Nearly every day' }] },
-      { id: 'q8', label: 'Moving/speaking so slowly or being fidgety/restless', type: 'select', default: '0', options: [{ value: '0', label: '0 â€” Not at all' }, { value: '1', label: '1 â€” Several days' }, { value: '2', label: '2 â€” More than half' }, { value: '3', label: '3 â€” Nearly every day' }] },
-      { id: 'q9', label: 'Thoughts of being better off dead or hurting yourself', type: 'select', default: '0', options: [{ value: '0', label: '0 â€” Not at all' }, { value: '1', label: '1 â€” Several days' }, { value: '2', label: '2 â€” More than half' }, { value: '3', label: '3 â€” Nearly every day' }] },
+      { id: 'q1', label: 'Little interest or pleasure in doing things', type: 'select', default: '0', options: [{ value: '0', label: '0 — Not at all' }, { value: '1', label: '1 — Several days' }, { value: '2', label: '2 — More than half' }, { value: '3', label: '3 — Nearly every day' }] },
+      { id: 'q2', label: 'Feeling down, depressed, or hopeless', type: 'select', default: '0', options: [{ value: '0', label: '0 — Not at all' }, { value: '1', label: '1 — Several days' }, { value: '2', label: '2 — More than half' }, { value: '3', label: '3 — Nearly every day' }] },
+      { id: 'q3', label: 'Trouble falling/staying asleep, or sleeping too much', type: 'select', default: '0', options: [{ value: '0', label: '0 — Not at all' }, { value: '1', label: '1 — Several days' }, { value: '2', label: '2 — More than half' }, { value: '3', label: '3 — Nearly every day' }] },
+      { id: 'q4', label: 'Feeling tired or having little energy', type: 'select', default: '0', options: [{ value: '0', label: '0 — Not at all' }, { value: '1', label: '1 — Several days' }, { value: '2', label: '2 — More than half' }, { value: '3', label: '3 — Nearly every day' }] },
+      { id: 'q5', label: 'Poor appetite or overeating', type: 'select', default: '0', options: [{ value: '0', label: '0 — Not at all' }, { value: '1', label: '1 — Several days' }, { value: '2', label: '2 — More than half' }, { value: '3', label: '3 — Nearly every day' }] },
+      { id: 'q6', label: 'Feeling bad about yourself', type: 'select', default: '0', options: [{ value: '0', label: '0 — Not at all' }, { value: '1', label: '1 — Several days' }, { value: '2', label: '2 — More than half' }, { value: '3', label: '3 — Nearly every day' }] },
+      { id: 'q7', label: 'Trouble concentrating on things', type: 'select', default: '0', options: [{ value: '0', label: '0 — Not at all' }, { value: '1', label: '1 — Several days' }, { value: '2', label: '2 — More than half' }, { value: '3', label: '3 — Nearly every day' }] },
+      { id: 'q8', label: 'Moving/speaking so slowly or being fidgety/restless', type: 'select', default: '0', options: [{ value: '0', label: '0 — Not at all' }, { value: '1', label: '1 — Several days' }, { value: '2', label: '2 — More than half' }, { value: '3', label: '3 — Nearly every day' }] },
+      { id: 'q9', label: 'Thoughts of being better off dead or hurting yourself', type: 'select', default: '0', options: [{ value: '0', label: '0 — Not at all' }, { value: '1', label: '1 — Several days' }, { value: '2', label: '2 — More than half' }, { value: '3', label: '3 — Nearly every day' }] },
     ],
     outputs: [
       { id: 'score', label: 'PHQ-9 Score', unit: '/ 27', decimals: 0 },
@@ -189,11 +189,11 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Framingham Risk Score â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Framingham Risk Score ─────────────────────────────────
   'framingham-risk-score': {
     slug: 'framingham-risk-score',
     name: 'Framingham 10-Year CVD Risk',
-    icon: 'â¤ï¸',
+    icon: '❤️',
     description: 'Estimate 10-year cardiovascular disease risk based on Framingham Heart Study.',
     formula: 'Points-based from age, TC, HDL, SBP, smoking, diabetes',
     reference: 'Wilson et al. Circulation 1998',
@@ -242,13 +242,13 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Mean Arterial Pressure â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Mean Arterial Pressure ────────────────────────────────
   'mean-arterial-pressure-calculator': {
     slug: 'mean-arterial-pressure-calculator',
     name: 'Mean Arterial Pressure (MAP)',
-    icon: 'ðŸ«€',
+    icon: '🫀',
     description: 'Calculate mean arterial pressure from systolic and diastolic blood pressure.',
-    formula: 'MAP = DBP + (SBP âˆ’ DBP) / 3',
+    formula: 'MAP = DBP + (SBP − DBP) / 3',
     reference: 'Clinical standard formula',
     inputs: [
       { id: 'sbp', label: 'Systolic BP', unit: 'mmHg', default: 120, min: 60, step: 1 },
@@ -263,13 +263,13 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ HbA1c â†” Glucose Converter â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── HbA1c ↔ Glucose Converter ────────────────────────────
   'hba1c-glucose-converter': {
     slug: 'hba1c-glucose-converter',
-    name: 'HbA1c â†” Average Glucose Converter',
-    icon: 'ðŸ©¸',
+    name: 'HbA1c ↔ Average Glucose Converter',
+    icon: '🩸',
     description: 'Convert between HbA1c (%) and estimated average plasma glucose (eAG).',
-    formula: 'eAG (mg/dL) = 28.7 Ã— A1C âˆ’ 46.7',
+    formula: 'eAG (mg/dL) = 28.7 × A1C − 46.7',
     reference: 'Nathan et al. Diabetes Care 2008',
     inputs: [
       { id: 'hba1c', label: 'HbA1c', unit: '%', default: 7.0, min: 4, step: 0.1 },
@@ -285,20 +285,20 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ CURB-65 Pneumonia Score â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── CURB-65 Pneumonia Score ───────────────────────────────
   'curb-65-pneumonia-score': {
     slug: 'curb-65-pneumonia-score',
     name: 'CURB-65 Pneumonia Severity Score',
-    icon: 'ðŸ«',
+    icon: '🫁',
     description: 'Predict 30-day mortality in community-acquired pneumonia to guide admission decisions.',
-    formula: 'CURB-65 = sum of 5 binary criteria (0â€“5)',
+    formula: 'CURB-65 = sum of 5 binary criteria (0–5)',
     reference: 'Lim et al. Thorax 2003',
     inputs: [
-      { id: 'confusion', label: 'Confusion (new disorientation)', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'urea', label: 'Urea > 7 mmol/L (BUN > 19 mg/dL)', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'rr', label: 'RR â‰¥ 30 breaths/min', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'bp', label: 'BP < 90/60 mmHg', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'age65', label: 'Age â‰¥ 65 years', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
+      { id: 'confusion', label: 'Confusion (new disorientation)', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'urea', label: 'Urea > 7 mmol/L (BUN > 19 mg/dL)', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'rr', label: 'RR ≥ 30 breaths/min', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'bp', label: 'BP < 90/60 mmHg', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'age65', label: 'Age ≥ 65 years', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
     ],
     outputs: [
       { id: 'score', label: 'CURB-65 Score', unit: '/ 5', decimals: 0 },
@@ -311,18 +311,18 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Anion Gap â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Anion Gap ─────────────────────────────────────────────
   'anion-gap-calculator': {
     slug: 'anion-gap-calculator',
     name: 'Anion Gap Calculator',
-    icon: 'ðŸ§ª',
+    icon: '🧪',
     description: 'Calculate anion gap to differentiate causes of metabolic acidosis.',
-    formula: 'AG = Na âˆ’ (Cl + HCOâ‚ƒ)',
+    formula: 'AG = Na − (Cl + HCO₃)',
     reference: 'Clinical chemistry standard',
     inputs: [
-      { id: 'na', label: 'Sodium (Naâº)', unit: 'mEq/L', default: 140, min: 100, step: 1 },
-      { id: 'cl', label: 'Chloride (Clâ»)', unit: 'mEq/L', default: 104, min: 70, step: 1 },
-      { id: 'hco3', label: 'Bicarbonate (HCOâ‚ƒâ»)', unit: 'mEq/L', default: 24, min: 5, step: 1 },
+      { id: 'na', label: 'Sodium (Na⁻º)', unit: 'mEq/L', default: 140, min: 100, step: 1 },
+      { id: 'cl', label: 'Chloride (Cl⁻)', unit: 'mEq/L', default: 104, min: 70, step: 1 },
+      { id: 'hco3', label: 'Bicarbonate (HCO₃⁻)', unit: 'mEq/L', default: 24, min: 5, step: 1 },
       { id: 'albumin', label: 'Albumin (for correction)', unit: 'g/dL', default: 4.0, min: 0.5, step: 0.1 },
     ],
     outputs: [
@@ -336,14 +336,14 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Due Date / EDD Calculator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Due Date / EDD Calculator ─────────────────────────────
   'due-date-edd-calculator': {
     slug: 'due-date-edd-calculator',
     name: 'Due Date (EDD) Calculator',
-    icon: 'ðŸ¤°',
+    icon: '🤰',
     description: 'Calculate estimated due date and gestational age from last menstrual period.',
     formula: 'EDD = LMP + 280 days (Naegele\'s Rule)',
-    reference: 'Naegele\'s rule â€” ACOG',
+    reference: 'Naegele\'s rule — ACOG',
     inputs: [
       { id: 'lmp_date', label: 'Last Menstrual Period (LMP)', type: 'date', default: '' },
     ],
@@ -365,13 +365,13 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Weight-Based Drug Dose Calculator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Weight-Based Drug Dose Calculator ─────────────────────
   'weight-based-drug-dose-calculator': {
     slug: 'weight-based-drug-dose-calculator',
     name: 'Weight-Based Drug Dose Calculator',
-    icon: 'ðŸ’Š',
+    icon: '💊',
     description: 'Calculate drug dose based on patient weight and dose per kg.',
-    formula: 'Dose = Weight Ã— Dose/kg',
+    formula: 'Dose = Weight × Dose/kg',
     reference: 'Pediatric and adult pharmacology standard',
     inputs: [
       { id: 'weight', label: 'Patient Weight', unit: 'kg', default: 70, min: 0.5, step: 0.1 },
@@ -389,13 +389,13 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ MELD Score â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── MELD Score ────────────────────────────────────────────
   'meld-score-calculator': {
     slug: 'meld-score-calculator',
     name: 'MELD Score Calculator',
-    icon: 'ðŸ«€',
+    icon: '🫀',
     description: 'Calculate Model for End-Stage Liver Disease score for liver transplant listing.',
-    formula: 'MELD = 3.78Ã—ln(Bili) + 11.2Ã—ln(INR) + 9.57Ã—ln(Cr) + 6.43',
+    formula: 'MELD = 3.78×ln(Bili) + 11.2×ln(INR) + 9.57×ln(Cr) + 6.43',
     reference: 'Kamath et al. Hepatology 2001',
     inputs: [
       { id: 'bilirubin', label: 'Bilirubin', unit: 'mg/dL', default: 1.0, min: 0.1, step: 0.1 },
@@ -416,21 +416,21 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ SOFA Sepsis Score â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── SOFA Sepsis Score ─────────────────────────────────────
   'sofa-sepsis-score': {
     slug: 'sofa-sepsis-score',
     name: 'SOFA Sepsis Score',
-    icon: 'ðŸ¥',
+    icon: '🏥',
     description: 'Sequential Organ Failure Assessment score for ICU mortality prediction.',
-    formula: 'SOFA = Respiratory + Coagulation + Liver + CV + CNS + Renal (each 0â€“4)',
+    formula: 'SOFA = Respiratory + Coagulation + Liver + CV + CNS + Renal (each 0–4)',
     reference: 'Vincent et al. Intensive Care Med 1996',
     inputs: [
-      { id: 'resp', label: 'PaO2/FiO2', type: 'select', default: '0', options: [{ value: '0', label: 'â‰¥400 â€” 0 pts' }, { value: '1', label: '300â€“399 â€” 1 pt' }, { value: '2', label: '200â€“299 â€” 2 pts' }, { value: '3', label: '100â€“199 + vent â€” 3 pts' }, { value: '4', label: '<100 + vent â€” 4 pts' }] },
-      { id: 'plt', label: 'Platelets', type: 'select', default: '0', options: [{ value: '0', label: 'â‰¥150 â€” 0 pts' }, { value: '1', label: '100â€“149 â€” 1 pt' }, { value: '2', label: '50â€“99 â€” 2 pts' }, { value: '3', label: '20â€“49 â€” 3 pts' }, { value: '4', label: '<20 â€” 4 pts' }] },
-      { id: 'bili', label: 'Bilirubin (mg/dL)', type: 'select', default: '0', options: [{ value: '0', label: '<1.2 â€” 0 pts' }, { value: '1', label: '1.2â€“1.9 â€” 1 pt' }, { value: '2', label: '2.0â€“5.9 â€” 2 pts' }, { value: '3', label: '6.0â€“11.9 â€” 3 pts' }, { value: '4', label: 'â‰¥12.0 â€” 4 pts' }] },
-      { id: 'cv', label: 'Cardiovascular', type: 'select', default: '0', options: [{ value: '0', label: 'MAP â‰¥70 â€” 0 pts' }, { value: '1', label: 'MAP <70 â€” 1 pt' }, { value: '2', label: 'Dopa â‰¤5 â€” 2 pts' }, { value: '3', label: 'Dopa >5 â€” 3 pts' }, { value: '4', label: 'Epi >0.1 â€” 4 pts' }] },
-      { id: 'gcs_pts', label: 'GCS Score', type: 'select', default: '0', options: [{ value: '0', label: '15 â€” 0 pts' }, { value: '1', label: '13â€“14 â€” 1 pt' }, { value: '2', label: '10â€“12 â€” 2 pts' }, { value: '3', label: '6â€“9 â€” 3 pts' }, { value: '4', label: '<6 â€” 4 pts' }] },
-      { id: 'cr', label: 'Creatinine/Urine Output', type: 'select', default: '0', options: [{ value: '0', label: '<1.2 mg/dL â€” 0 pts' }, { value: '1', label: '1.2â€“1.9 â€” 1 pt' }, { value: '2', label: '2.0â€“3.4 â€” 2 pts' }, { value: '3', label: '3.5â€“4.9 â€” 3 pts' }, { value: '4', label: '>5.0 â€” 4 pts' }] },
+      { id: 'resp', label: 'PaO2/FiO2', type: 'select', default: '0', options: [{ value: '0', label: '≥400 — 0 pts' }, { value: '1', label: '300–399 — 1 pt' }, { value: '2', label: '200–299 — 2 pts' }, { value: '3', label: '100–199 + vent — 3 pts' }, { value: '4', label: '<100 + vent — 4 pts' }] },
+      { id: 'plt', label: 'Platelets', type: 'select', default: '0', options: [{ value: '0', label: '≥150 — 0 pts' }, { value: '1', label: '100–149 — 1 pt' }, { value: '2', label: '50–99 — 2 pts' }, { value: '3', label: '20–49 — 3 pts' }, { value: '4', label: '<20 — 4 pts' }] },
+      { id: 'bili', label: 'Bilirubin (mg/dL)', type: 'select', default: '0', options: [{ value: '0', label: '<1.2 — 0 pts' }, { value: '1', label: '1.2–1.9 — 1 pt' }, { value: '2', label: '2.0–5.9 — 2 pts' }, { value: '3', label: '6.0–11.9 — 3 pts' }, { value: '4', label: '≥12.0 — 4 pts' }] },
+      { id: 'cv', label: 'Cardiovascular', type: 'select', default: '0', options: [{ value: '0', label: 'MAP ≥70 — 0 pts' }, { value: '1', label: 'MAP <70 — 1 pt' }, { value: '2', label: 'Dopa ≤5 — 2 pts' }, { value: '3', label: 'Dopa >5 — 3 pts' }, { value: '4', label: 'Epi >0.1 — 4 pts' }] },
+      { id: 'gcs_pts', label: 'GCS Score', type: 'select', default: '0', options: [{ value: '0', label: '15 — 0 pts' }, { value: '1', label: '13–14 — 1 pt' }, { value: '2', label: '10–12 — 2 pts' }, { value: '3', label: '6–9 — 3 pts' }, { value: '4', label: '<6 — 4 pts' }] },
+      { id: 'cr', label: 'Creatinine/Urine Output', type: 'select', default: '0', options: [{ value: '0', label: '<1.2 mg/dL — 0 pts' }, { value: '1', label: '1.2–1.9 — 1 pt' }, { value: '2', label: '2.0–3.4 — 2 pts' }, { value: '3', label: '3.5–4.9 — 3 pts' }, { value: '4', label: '>5.0 — 4 pts' }] },
     ],
     outputs: [
       { id: 'sofa', label: 'SOFA Score', unit: '/ 24', decimals: 0 },
@@ -443,20 +443,20 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Child-Pugh Score â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Child-Pugh Score ──────────────────────────────────────
   'child-pugh-score-calculator': {
     slug: 'child-pugh-score-calculator',
     name: 'Child-Pugh Score',
-    icon: 'ðŸ«€',
+    icon: '🫀',
     description: 'Assess severity of chronic liver disease for surgical risk and prognosis.',
-    formula: 'Score = Bilirubin + Albumin + PT/INR + Ascites + Encephalopathy (each 1â€“3)',
+    formula: 'Score = Bilirubin + Albumin + PT/INR + Ascites + Encephalopathy (each 1–3)',
     reference: 'Child & Turcotte 1964; Pugh et al. 1973',
     inputs: [
-      { id: 'bili', label: 'Bilirubin (mg/dL)', type: 'select', default: '1', options: [{ value: '1', label: '<2 mg/dL â€” 1 pt' }, { value: '2', label: '2â€“3 mg/dL â€” 2 pts' }, { value: '3', label: '>3 mg/dL â€” 3 pts' }] },
-      { id: 'albumin', label: 'Albumin (g/dL)', type: 'select', default: '1', options: [{ value: '1', label: '>3.5 â€” 1 pt' }, { value: '2', label: '2.8â€“3.5 â€” 2 pts' }, { value: '3', label: '<2.8 â€” 3 pts' }] },
-      { id: 'pt', label: 'Prothrombin Time', type: 'select', default: '1', options: [{ value: '1', label: '<4 sec prolonged â€” 1 pt' }, { value: '2', label: '4â€“6 sec â€” 2 pts' }, { value: '3', label: '>6 sec â€” 3 pts' }] },
-      { id: 'ascites', label: 'Ascites', type: 'select', default: '1', options: [{ value: '1', label: 'None â€” 1 pt' }, { value: '2', label: 'Mild â€” 2 pts' }, { value: '3', label: 'Severe â€” 3 pts' }] },
-      { id: 'enceph', label: 'Encephalopathy', type: 'select', default: '1', options: [{ value: '1', label: 'None â€” 1 pt' }, { value: '2', label: 'Grade Iâ€“II â€” 2 pts' }, { value: '3', label: 'Grade IIIâ€“IV â€” 3 pts' }] },
+      { id: 'bili', label: 'Bilirubin (mg/dL)', type: 'select', default: '1', options: [{ value: '1', label: '<2 mg/dL — 1 pt' }, { value: '2', label: '2–3 mg/dL — 2 pts' }, { value: '3', label: '>3 mg/dL — 3 pts' }] },
+      { id: 'albumin', label: 'Albumin (g/dL)', type: 'select', default: '1', options: [{ value: '1', label: '>3.5 — 1 pt' }, { value: '2', label: '2.8–3.5 — 2 pts' }, { value: '3', label: '<2.8 — 3 pts' }] },
+      { id: 'pt', label: 'Prothrombin Time', type: 'select', default: '1', options: [{ value: '1', label: '<4 sec prolonged — 1 pt' }, { value: '2', label: '4–6 sec — 2 pts' }, { value: '3', label: '>6 sec — 3 pts' }] },
+      { id: 'ascites', label: 'Ascites', type: 'select', default: '1', options: [{ value: '1', label: 'None — 1 pt' }, { value: '2', label: 'Mild — 2 pts' }, { value: '3', label: 'Severe — 3 pts' }] },
+      { id: 'enceph', label: 'Encephalopathy', type: 'select', default: '1', options: [{ value: '1', label: 'None — 1 pt' }, { value: '2', label: 'Grade I–II — 2 pts' }, { value: '3', label: 'Grade III–IV — 3 pts' }] },
     ],
     outputs: [
       { id: 'score', label: 'Child-Pugh Score', decimals: 0 },
@@ -471,24 +471,24 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Wells Score DVT/PE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Wells Score DVT/PE ────────────────────────────────────
   'wells-score-dvt-pe': {
     slug: 'wells-score-dvt-pe',
     name: 'Wells Score (DVT/PE)',
-    icon: 'ðŸ«',
+    icon: '🫁',
     description: 'Estimate pre-test probability of deep vein thrombosis or pulmonary embolism.',
     formula: 'Wells Score = sum of clinical criteria points',
     reference: 'Wells et al. Lancet 1997 (DVT), Wells et al. Thromb Haemost 2000 (PE)',
     inputs: [
-      { id: 'cancer', label: 'Active cancer', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'paralysis', label: 'Paralysis or recent immobilization of leg', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'bedridden', label: 'Bedridden >3 days OR major surgery <12 wks', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'tenderness', label: 'Localized tenderness along deep venous system', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'swelling', label: 'Entire leg swollen', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'calf', label: 'Calf swelling >3cm vs other leg', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'pitting', label: 'Pitting oedema (symptomatic leg only)', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'collateral', label: 'Collateral superficial veins', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '1', label: 'Yes â€” 1 pt' }] },
-      { id: 'alt_dx', label: 'Alternative diagnosis as likely or more likely', type: 'select', default: '0', options: [{ value: '0', label: 'No â€” 0 pts' }, { value: '-2', label: 'Yes â€” âˆ’2 pts' }] },
+      { id: 'cancer', label: 'Active cancer', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'paralysis', label: 'Paralysis or recent immobilization of leg', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'bedridden', label: 'Bedridden >3 days OR major surgery <12 wks', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'tenderness', label: 'Localized tenderness along deep venous system', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'swelling', label: 'Entire leg swollen', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'calf', label: 'Calf swelling >3cm vs other leg', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'pitting', label: 'Pitting oedema (symptomatic leg only)', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'collateral', label: 'Collateral superficial veins', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '1', label: 'Yes — 1 pt' }] },
+      { id: 'alt_dx', label: 'Alternative diagnosis as likely or more likely', type: 'select', default: '0', options: [{ value: '0', label: 'No — 0 pts' }, { value: '-2', label: 'Yes — −2 pts' }] },
     ],
     outputs: [
       { id: 'score', label: 'Wells Score', decimals: 0 },
@@ -501,25 +501,25 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ BMR / TDEE Calculator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── BMR / TDEE Calculator ─────────────────────────────────
   'bmr-tdee-calculator': {
     slug: 'bmr-tdee-calculator',
     name: 'BMR & TDEE Calculator',
-    icon: 'ðŸ”¥',
+    icon: '🔥',
     description: 'Calculate Basal Metabolic Rate and Total Daily Energy Expenditure.',
-    formula: 'BMR (Mifflin-St Jeor) = 10Ã—W + 6.25Ã—H âˆ’ 5Ã—A Â± 5 (sex)',
+    formula: 'BMR (Mifflin-St Jeor) = 10×W + 6.25×H − 5×A ± 5 (sex)',
     reference: 'Mifflin et al. AJCN 1990',
     inputs: [
       { id: 'weight', label: 'Weight', unit: 'kg', default: 70, min: 20, step: 0.1 },
       { id: 'height', label: 'Height', unit: 'cm', default: 170, min: 100, step: 0.5 },
       { id: 'age', label: 'Age', unit: 'years', default: 30, min: 15, step: 1 },
-      { id: 'sex', label: 'Sex', type: 'select', default: '1', options: [{ value: '1', label: 'Male (+5)' }, { value: '0', label: 'Female (âˆ’161)' }] },
+      { id: 'sex', label: 'Sex', type: 'select', default: '1', options: [{ value: '1', label: 'Male (+5)' }, { value: '0', label: 'Female (−161)' }] },
       { id: 'activity', label: 'Activity Level', type: 'select', default: '1.55', options: [
-        { value: '1.2', label: 'Sedentary (Ã—1.2)' },
-        { value: '1.375', label: 'Light (Ã—1.375)' },
-        { value: '1.55', label: 'Moderate (Ã—1.55)' },
-        { value: '1.725', label: 'Active (Ã—1.725)' },
-        { value: '1.9', label: 'Very Active (Ã—1.9)' },
+        { value: '1.2', label: 'Sedentary (×1.2)' },
+        { value: '1.375', label: 'Light (×1.375)' },
+        { value: '1.55', label: 'Moderate (×1.55)' },
+        { value: '1.725', label: 'Active (×1.725)' },
+        { value: '1.9', label: 'Very Active (×1.9)' },
       ]},
     ],
     outputs: [
@@ -534,13 +534,13 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ IV Drip Rate Calculator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── IV Drip Rate Calculator ───────────────────────────────
   'iv-drip-rate-mcg-kg-min': {
     slug: 'iv-drip-rate-mcg-kg-min',
     name: 'IV Drip Rate Calculator (mcg/kg/min)',
-    icon: 'ðŸ’‰',
+    icon: '💉',
     description: 'Calculate IV infusion rate in mL/hr from dose per kg per minute.',
-    formula: 'Rate (mL/hr) = Dose Ã— Weight Ã— 60 / Concentration',
+    formula: 'Rate (mL/hr) = Dose × Weight × 60 / Concentration',
     reference: 'Clinical pharmacology standard',
     inputs: [
       { id: 'dose', label: 'Desired dose', unit: 'mcg/kg/min', default: 5, min: 0.01, step: 0.01 },
@@ -556,13 +556,13 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Ideal Body Weight â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Ideal Body Weight ─────────────────────────────────────
   'ideal-body-weight-calculator': {
     slug: 'ideal-body-weight-calculator',
     name: 'Ideal Body Weight (IBW) Calculator',
-    icon: 'âš–ï¸',
+    icon: '⚖️',
     description: 'Calculate ideal body weight using Devine formula for drug dosing.',
-    formula: 'IBW male = 50 + 2.3Ã—(inches > 60) | female = 45.5 + 2.3Ã—(inches > 60)',
+    formula: 'IBW male = 50 + 2.3×(inches > 60) | female = 45.5 + 2.3×(inches > 60)',
     reference: 'Devine BJ 1974',
     inputs: [
       { id: 'height', label: 'Height', unit: 'cm', default: 170, min: 130, step: 0.5 },
@@ -582,13 +582,13 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ QTc Interval Calculator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── QTc Interval Calculator ───────────────────────────────
   'qtc-interval-calculator': {
     slug: 'qtc-interval-calculator',
     name: 'QTc Interval Calculator',
-    icon: 'ðŸ«€',
+    icon: '🫀',
     description: 'Correct QT interval for heart rate using Bazett or Fridericia formula.',
-    formula: 'Bazett: QTc = QT / âˆš(RR) | Fridericia: QTc = QT / âˆ›(RR)',
+    formula: 'Bazett: QTc = QT / √(RR) | Fridericia: QTc = QT / ∛(RR)',
     reference: 'Bazett 1920; Fridericia 1920',
     inputs: [
       { id: 'qt', label: 'QT Interval', unit: 'ms', default: 400, min: 200, step: 1 },
@@ -609,21 +609,21 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Chemotherapy Dose (BSA) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Chemotherapy Dose (BSA) ───────────────────────────────
   'chemotherapy-dose-bsa-calculator': {
     slug: 'chemotherapy-dose-bsa-calculator',
     name: 'Chemotherapy Dose (BSA) Calculator',
-    icon: 'ðŸ’Š',
+    icon: '💊',
     description: 'Calculate chemotherapy dose based on body surface area using Mosteller formula.',
-    formula: 'BSA (mÂ²) = âˆš(Height(cm) Ã— Weight(kg) / 3600) â€” Mosteller',
+    formula: 'BSA (m²) = √(Height(cm) × Weight(kg) / 3600) — Mosteller',
     reference: 'Mosteller RD. NEJM 1987',
     inputs: [
       { id: 'weight', label: 'Weight', unit: 'kg', default: 70, min: 10, step: 0.1 },
       { id: 'height', label: 'Height', unit: 'cm', default: 170, min: 100, step: 0.5 },
-      { id: 'dose_per_m2', label: 'Drug Dose', unit: 'mg/mÂ²', default: 85, min: 1, step: 0.1 },
+      { id: 'dose_per_m2', label: 'Drug Dose', unit: 'mg/m²', default: 85, min: 1, step: 0.1 },
     ],
     outputs: [
-      { id: 'bsa', label: 'BSA', unit: 'mÂ²', decimals: 2 },
+      { id: 'bsa', label: 'BSA', unit: 'm²', decimals: 2 },
       { id: 'total_dose', label: 'Total Dose', unit: 'mg', decimals: 1 },
     ],
     calculate(v) {
@@ -633,11 +633,11 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Pediatric Fever Dose â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Pediatric Fever Dose ──────────────────────────────────
   'fever-dose-calculator': {
     slug: 'fever-dose-calculator',
     name: 'Pediatric Fever Dose Calculator',
-    icon: 'ðŸŒ¡ï¸',
+    icon: '🌡',
     description: 'Calculate pediatric doses of paracetamol/ibuprofen based on child weight.',
     formula: 'Paracetamol: 15 mg/kg | Ibuprofen: 10 mg/kg',
     reference: 'BNF for Children; AAP Guidelines',
@@ -655,24 +655,24 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Opioid Equianalgesic Converter â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Opioid Equianalgesic Converter ────────────────────────
   'opioid-equianalgesic-converter': {
     slug: 'opioid-equianalgesic-converter',
     name: 'Opioid Equianalgesic Converter',
-    icon: 'ðŸ’Š',
+    icon: '💊',
     description: 'Convert between opioid doses to oral morphine equivalents (OME).',
-    formula: 'OME = Dose (mg) Ã— Potency factor relative to oral morphine',
+    formula: 'OME = Dose (mg) × Potency factor relative to oral morphine',
     reference: 'DCMS Opioid Prescribing Guidelines 2016',
     inputs: [
       { id: 'dose', label: 'Current Dose', unit: 'mg', default: 10, min: 0.01, step: 0.01 },
       { id: 'drug', label: 'Current Opioid', type: 'select', default: '1', options: [
-        { value: '1',    label: 'Morphine â€” oral (reference)' },
-        { value: '3',    label: 'Morphine â€” IV/SC (3Ã— potent)' },
-        { value: '7.5',  label: 'Hydromorphone â€” oral (7.5Ã— potent)' },
-        { value: '100',  label: 'Fentanyl â€” patch mcg/hr (100Ã— potent)' },
-        { value: '0.15', label: 'Codeine â€” oral (0.15Ã— potent)' },
-        { value: '1.5',  label: 'Oxycodone â€” oral (1.5Ã— potent)' },
-        { value: '0.1',  label: 'Tramadol â€” oral (0.1Ã— potent)' },
+        { value: '1',    label: 'Morphine — oral (reference)' },
+        { value: '3',    label: 'Morphine — IV/SC (3× potent)' },
+        { value: '7.5',  label: 'Hydromorphone — oral (7.5× potent)' },
+        { value: '100',  label: 'Fentanyl — patch mcg/hr (100× potent)' },
+        { value: '0.15', label: 'Codeine — oral (0.15× potent)' },
+        { value: '1.5',  label: 'Oxycodone — oral (1.5× potent)' },
+        { value: '0.1',  label: 'Tramadol — oral (0.1× potent)' },
       ]},
     ],
     outputs: [
@@ -684,11 +684,11 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Burn Surface Area (Rule of 9s) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Burn Surface Area (Rule of 9s) ────────────────────────
   'burn-surface-area-rule-of-9s': {
     slug: 'burn-surface-area-rule-of-9s',
     name: 'Burn Surface Area (Rule of 9s)',
-    icon: 'ðŸ”¥',
+    icon: '🔥',
     description: 'Estimate total body surface area (TBSA) burned using the Rule of 9s.',
     formula: 'Head 9%, Each Arm 9%, Trunk 36%, Each Leg 18%, Perineum 1%',
     reference: 'Wallace AB 1951; ABA guidelines',
@@ -719,13 +719,13 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
     },
   },
 
-  // â”€â”€ Blood Pressure Classification â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Blood Pressure Classification ────────────────────────
   'blood-pressure-classification': {
     slug: 'blood-pressure-classification',
     name: 'Blood Pressure Classification',
-    icon: 'ðŸ©¸',
+    icon: '🩸',
     description: 'Classify blood pressure reading using ACC/AHA 2017 guidelines.',
-    formula: 'ACC/AHA 2017: Normal <120/<80, Elevated 120â€“129/<80, Stage 1: 130â€“139/80â€“89, Stage 2: â‰¥140/â‰¥90',
+    formula: 'ACC/AHA 2017: Normal <120/<80, Elevated 120–129/<80, Stage 1: 130–139/80–89, Stage 2: ≥140/≥90',
     reference: 'Whelton et al. JACC 2018 (ACC/AHA Hypertension Guidelines)',
     inputs: [
       { id: 'sbp', label: 'Systolic BP', unit: 'mmHg', default: 125, min: 60, step: 1 },
@@ -749,13 +749,13 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
   },
 }
 
-// â”€â”€â”€ Fallback config for tools without explicit config â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Fallback config for tools without explicit config ────────
 export function getFallbackConfig(slug: string, name: string): MedicalCalcConfig {
   return {
     slug,
     name,
-    icon: 'ðŸ©º',
-    description: `${name} â€” clinical calculator for professional reference.`,
+    icon: '🩺',
+    description: `${name} — clinical calculator for professional reference.`,
     formula: 'See reference for formula details.',
     inputs: [
       { id: 'value1', label: 'Input Value 1', unit: '', default: 1, min: 0, step: 0.01 },
@@ -770,9 +770,9 @@ export function getFallbackConfig(slug: string, name: string): MedicalCalcConfig
   }
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// EXTENDED MEDICAL CONFIGS â€” 113 tools across 12 specialties
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════════════
+// EXTENDED MEDICAL CONFIGS — 113 tools across 12 specialties
+// ═══════════════════════════════════════════════════════════════
 
 export type MedInputField = {
   id: string; label: string; type: 'number' | 'select';
@@ -823,7 +823,7 @@ ${config.inputs.map(f=>`<tr><td>${f.label}${f.unit?' ('+f.unit+')':''}</td><td>$
   w.document.close(); w.print()
 }
 
-// â”€â”€â”€ CARDIOLOGY (12) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── CARDIOLOGY (12) ─────────────────────────────────────────
 export const cardiologyConfigs: MedicalConfig[] = [
   // 1. CHA₂DS₂-VASc Score
   {

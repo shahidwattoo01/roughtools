@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ReportDownloadButton } from './_components/ReportDownloadButton'
+import MockResultsClient from './_components/MockResultsClient'
 
-function iqClassification(iq: number): string {
+function _iqClassification(iq: number): string {
   if (iq >= 130) return 'Very Superior'
   if (iq >= 120) return 'Superior'
   if (iq >= 110) return 'High Average'
@@ -222,6 +223,12 @@ export default async function IqResultsPage({
   searchParams: { token?: string; _t?: string }
 }) {
   const token = searchParams.token ?? null
+
+  // Mock sessions are handled entirely client-side via sessionStorage
+  if (token === 'mock' && params.sessionId.startsWith('mock-')) {
+    return <MockResultsClient sessionId={params.sessionId} />
+  }
+
   const result = await fetchResult(params.sessionId, token)
 
   if (!result) notFound()

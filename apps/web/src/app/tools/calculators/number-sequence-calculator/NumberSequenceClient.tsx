@@ -160,7 +160,7 @@ export default function NumberSequenceClient() {
           {seq.map((val, i) => (
             <div key={i} style={{ background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: 6, padding: '6px 8px', textAlign: 'center' }}>
               <div style={{ color: 'var(--fg-3)', fontSize: 10 }}>n={i+1}</div>
-              <div style={{ color: '#c4b5fd', fontFamily: 'monospace', fontWeight: 600, fontSize: 12 }}>
+              <div style={{ color: 'var(--brand-2)', fontFamily: 'monospace', fontWeight: 600, fontSize: 12 }}>
                 {isNaN(val) ? '∞' : val.toLocaleString()}
               </div>
             </div>

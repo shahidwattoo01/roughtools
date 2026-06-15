@@ -126,7 +126,9 @@ export default function Page() {
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Generate Lorem Ipsum placeholder text in seconds. Choose between paragraphs, sentences, or words with full control over the output length. All generation happens locally in your browser — instant, offline-capable, and no account required.
         </p>
+        <div data-print-section="calculator">
         <LoremIpsumClient />
+        </div>
         <div style={{ marginTop: 12, marginBottom: 4 }}>
           <PDFExportButton toolName="Lorem Ipsum Generator" />
         </div>

@@ -1,0 +1,119 @@
+﻿---
+title: 'Scientific Notation Calculator: How to Convert and Calculate with Scientific Notation'
+slug: scientific-notation-calculator-guide
+date: '2026-08-24'
+excerpt: 'Learn how to convert numbers to scientific notation, multiply and divide in scientific notation, and when scientists use this format for very large and very small numbers. Free scientific notation calculator included.'
+readTime: '6 min read'
+author: RoughTools Team
+category: Math Calculators
+keywords:
+  - scientific notation calculator
+  - how to write scientific notation
+  - convert to scientific notation
+  - scientific notation examples
+  - E notation calculator
+  - standard form calculator
+---
+
+Scientific notation expresses numbers as a coefficient between 1 and 10 multiplied by a power of ten. The number 0.0000045 in scientific notation is 4.5 × 10⁻⁶. The number 6,700,000 is 6.7 × 10⁶. To convert: move the decimal point until one non-zero digit is to the left of it; the number of places moved becomes the exponent (positive if you moved left, negative if you moved right).
+
+Scientific notation is essential for working with the extreme scales in physics, astronomy, chemistry, and biology — scales where ordinary decimal notation is impractical. The mass of a proton is 0.0000000000000000000000000016726 kg — written as 1.6726 × 10⁻²⁷ kg in scientific notation. The distance from Earth to the Sun is 149,600,000,000 meters — written as 1.496 × 10¹¹ m.
+
+Use the free [Scientific Notation Calculator](https://roughtools.com/tools/calculators/scientific-notation-calculator) at RoughTools to convert to/from scientific notation and perform arithmetic operations.
+
+👉 **Free Scientific Notation Calculator — instant, no signup required.**
+→ https://roughtools.com/tools/calculators/scientific-notation-calculator
+
+## Converting to Scientific Notation
+
+**Standard form → Scientific notation:**
+1. Move the decimal point to create a coefficient between 1 and 10
+2. Count the positions moved
+3. If moved left (large numbers): positive exponent
+4. If moved right (small numbers): negative exponent
+
+**Examples:**
+
+| Standard Form | Steps | Scientific Notation |
+|---------------|-------|---------------------|
+| 45,000 | Decimal moves 4 left | 4.5 × 10⁴ |
+| 0.0023 | Decimal moves 3 right | 2.3 × 10⁻³ |
+| 1,000,000 | Decimal moves 6 left | 1.0 × 10⁶ |
+| 0.000000092 | Decimal moves 8 right | 9.2 × 10⁻⁸ |
+| 700 | Decimal moves 2 left | 7.0 × 10² |
+
+## Arithmetic in Scientific Notation
+
+**Multiplication:** Multiply the coefficients; add the exponents:
+```
+(3 × 10⁴) × (2 × 10³) = (3×2) × 10^(4+3) = 6 × 10⁷
+```
+
+**Division:** Divide the coefficients; subtract the exponents:
+```
+(8 × 10⁶) ÷ (2 × 10²) = (8÷2) × 10^(6−2) = 4 × 10⁴
+```
+
+**Addition/Subtraction:** First convert to matching exponents, then add/subtract coefficients:
+```
+(3.5 × 10⁵) + (2.1 × 10⁴)
+= (3.5 × 10⁵) + (0.21 × 10⁵)
+= (3.5 + 0.21) × 10⁵
+= 3.71 × 10⁵
+```
+
+After arithmetic, check that the coefficient is still between 1 and 10. If not, adjust:
+```
+15 × 10³ → 1.5 × 10⁴ (adjusted)
+```
+
+## E Notation (Calculator Notation)
+
+Scientific calculators and programming languages often use E notation instead of × 10^:
+- 3.7 × 10⁸ → 3.7E8 or 3.7e8
+- 2.5 × 10⁻⁴ → 2.5E-4 or 2.5e-4
+
+In Python, JavaScript, and other languages: `1.5e6 = 1,500,000`. This is identical to scientific notation, just using "E" instead of "× 10^".
+
+## Scientific Scale Reference
+
+| Quantity | Scientific Notation |
+|----------|---------------------|
+| Distance to Moon | 3.84 × 10⁸ m |
+| Distance to Sun | 1.496 × 10¹¹ m |
+| Distance to nearest star | 4.07 × 10¹⁶ m |
+| Speed of light | 2.998 × 10⁸ m/s |
+| Mass of Earth | 5.972 × 10²⁴ kg |
+| Avogadro's number | 6.022 × 10²³ |
+| Mass of electron | 9.109 × 10⁻³¹ kg |
+| Diameter of atom | ~1 × 10⁻¹⁰ m |
+| Human hair width | ~7 × 10⁻⁵ m |
+
+## Frequently Asked Questions
+
+**What does a negative exponent mean in scientific notation?**
+A negative exponent means the number is less than 1. 10⁻⁶ = one millionth = 0.000001. So 2.5 × 10⁻⁶ = 0.0000025. The negative exponent tells you how many places to move the decimal left from the coefficient. Think of it this way: 10³ = 1,000; 10⁰ = 1; 10⁻³ = 0.001. Each step down the exponent moves the decimal one place left.
+
+**How many significant figures should I use?**
+Significant figures (sig figs) in a measurement reflect the precision of the instrument. In scientific notation, all digits in the coefficient are significant. If a measurement has 3 sig figs (e.g., 3.72 × 10⁵), you should express answers in 3 sig figs. When multiplying or dividing, your answer has as many sig figs as the least precise measurement. When adding/subtracting, the answer has as many decimal places as the least precise measurement.
+
+**When do calculators use scientific notation automatically?**
+Most calculators switch to scientific (E) notation for numbers with more than 10 digits or for very small numbers (fewer than 10⁻⁴). This is why when you multiply large numbers the display shows "1.5E12" instead of 1,500,000,000,000. Scientific calculators have a MODE setting to display results in normal, scientific, or engineering notation.
+
+**What is engineering notation?**
+Engineering notation is a variant of scientific notation where the exponent is always a multiple of 3 (matching metric prefixes: kilo=10³, mega=10⁶, giga=10⁹, milli=10⁻³, micro=10⁻⁶). The coefficient is between 1 and 999. 45,000 in engineering notation: 45 × 10³ (45 kilo). This aligns with SI units used in engineering and electronics.
+
+**How do I type scientific notation on a keyboard?**
+For documents and code: use E notation (3.7e8) — universally understood in math and programming contexts. For superscripts in Word/Google Docs: type the number, select it, and apply superscript formatting. For web/HTML: use `<sup>` tags: 3.7 × 10`<sup>`8`</sup>`. The RoughTools calculator accepts E notation input (3.7e8) and displays results in standard scientific notation format.
+
+## Related Free Tools on RoughTools
+
+- **[Number Base Converter](https://roughtools.com/tools/converters/number-base-converter)** — convert between binary, decimal, hex
+- **[Quadratic Formula Calculator](https://roughtools.com/tools/calculators/quadratic-calculator)** — solve quadratic equations with potentially large roots
+- **[Percentage Calculator](https://roughtools.com/tools/calculators/percentage-calculator)** — calculate percentages for scientific comparisons
+
+## Calculate Scientific Notation Now
+
+The free [Scientific Notation Calculator](https://roughtools.com/tools/calculators/scientific-notation-calculator) at RoughTools converts between standard and scientific notation, performs arithmetic (add, subtract, multiply, divide) with scientific notation numbers, and handles E notation input. No account needed, completely free.
+
+**[Free Scientific Notation Calculator →](https://roughtools.com/tools/calculators/scientific-notation-calculator)**

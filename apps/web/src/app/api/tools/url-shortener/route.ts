@@ -31,7 +31,7 @@ function isValidUrl(url: string): boolean {
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request)
-  const { allowed } = rateLimit(`shorten:${ip}`, 10, 60 * 1000)
+  const { allowed } = rateLimit(`shorten:${ip}`, 200, 60 * 1000)
   if (!allowed) {
     return NextResponse.json({ error: { message: 'Rate limit exceeded.' } }, { status: 429 })
   }

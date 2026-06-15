@@ -169,7 +169,7 @@ export default function MeanMedianModeClient() {
             <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--fg-3)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>Frequency Distribution</div>
             {Object.entries(stats.freq).sort(([a],[b]) => +a - +b).map(([val, count]) => (
               <div key={val} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '4px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                <span style={{ fontFamily: 'monospace', color: '#c4b5fd', width: 64, textAlign: 'right' }}>{val}</span>
+                <span style={{ fontFamily: 'monospace', color: 'var(--brand-2)', width: 64, textAlign: 'right' }}>{val}</span>
                 <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', borderRadius: 4, height: 8, overflow: 'hidden' }}>
                   <div style={{ height: '100%', background: '#8b5cf6', borderRadius: 4, width: `${(count / stats.n) * 100}%` }} />
                 </div>

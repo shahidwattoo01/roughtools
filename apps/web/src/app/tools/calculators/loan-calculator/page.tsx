@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import ToolAdUnit from '@/components/ToolAdUnit'
 import { JsonLd } from '@/components/JsonLd'
 import LoanCalculatorClient from './LoanCalculatorClient'
@@ -232,12 +232,6 @@ export default function LoanCalculatorPage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -254,7 +248,7 @@ export default function LoanCalculatorPage() {
 
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
             The Loan Calculator computes the monthly payment, total amount paid, and total interest cost for any
-            fixed-rate instalment loan — whether it's a personal loan, auto loan, student loan, boat loan, or any
+            fixed-rate instalment loan — whether it&apos;s a personal loan, auto loan, student loan, boat loan, or any
             other fixed-term borrowing. It also generates the full amortisation schedule, showing exactly how each
             payment is divided between principal repayment and interest for every month of the loan term.
             Understanding this breakdown is essential for making informed borrowing decisions.
@@ -303,7 +297,7 @@ export default function LoanCalculatorPage() {
           </h3>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
             This calculator is useful for anyone considering or managing a fixed-rate loan. If you are about to
-            take out a personal loan, it helps you compare multiple offers in seconds by entering each lender's
+            take out a personal loan, it helps you compare multiple offers in seconds by entering each lender&apos;s
             terms and seeing total interest side by side. If you are shopping for a car and weighing a 48-month
             vs. 72-month term, this tool instantly shows you the trade-off between monthly payment size and total
             interest paid. Students can model their loan repayment schedule before graduation. Anyone managing
@@ -332,6 +326,13 @@ export default function LoanCalculatorPage() {
             for full details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

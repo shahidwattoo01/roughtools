@@ -1,7 +1,6 @@
 'use client'
 import { useState, useMemo } from 'react'
 import type { CSSProperties } from 'react'
-import { exportCalcPDF } from '@/lib/calcPdf'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -104,8 +103,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -114,7 +113,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -131,7 +130,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   label: string; value: string; sub?: string; color?: string
 }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 22, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -239,7 +238,7 @@ export default function ExponentCalculatorClient() {
                 ...BTN_GHOST,
                 background: mode === m ? 'rgba(139,92,246,0.3)' : 'rgba(139,92,246,0.06)',
                 borderColor: mode === m ? 'rgba(139,92,246,0.8)' : 'rgba(139,92,246,0.2)',
-                color: mode === m ? '#e9d5ff' : '#c4b5fd',
+                color: mode === m ? '#e9d5ff' : 'var(--brand-2)',
               }}
               aria-pressed={mode === m}
             >
@@ -290,7 +289,7 @@ export default function ExponentCalculatorClient() {
 
           {/* Step-by-step */}
           <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-            <h3 style={{ margin: '0 0 12px', fontSize: 13, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <h3 style={{ margin: '0 0 12px', fontSize: 13, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               Step-by-Step
             </h3>
             <ol style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -307,7 +306,7 @@ export default function ExponentCalculatorClient() {
               style={{
                 width: '100%', textAlign: 'left', padding: '14px 20px',
                 background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-                borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer',
+                borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer',
               }}
               aria-expanded={showSeqTable}
             >
@@ -329,7 +328,7 @@ export default function ExponentCalculatorClient() {
                       {seqTable.map(row => (
                         <tr key={row.power} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                           <td style={{ ...TD, textAlign: 'left', color: 'var(--fg-3)', fontFamily: 'monospace' }}>{seqBase}^{row.power}</td>
-                          <td style={{ ...TD, color: '#c4b5fd', fontFamily: 'monospace', fontWeight: 600 }}>{fmtNum(row.value)}</td>
+                          <td style={{ ...TD, color: 'var(--brand-2)', fontFamily: 'monospace', fontWeight: 600 }}>{fmtNum(row.value)}</td>
                           <td style={{ ...TD, fontFamily: 'monospace' }}>{row.value.toExponential(4)}</td>
                           <td style={{ ...TD, fontFamily: 'monospace', fontSize: 11 }}>{toEngineering(row.value)}</td>
                         </tr>
@@ -358,7 +357,7 @@ export default function ExponentCalculatorClient() {
           style={{
             width: '100%', textAlign: 'left', padding: '14px 20px',
             background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-            borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer',
+            borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer',
           }}
           aria-expanded={showLaws}
         >
@@ -379,7 +378,7 @@ export default function ExponentCalculatorClient() {
                   {LAWS.map(row => (
                     <tr key={row.name} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                       <td style={{ ...TD, textAlign: 'left', color: 'var(--fg-3)', fontWeight: 600 }}>{row.name}</td>
-                      <td style={{ ...TD, textAlign: 'left', fontFamily: 'monospace', color: '#c4b5fd', fontSize: 14 }}>{row.law}</td>
+                      <td style={{ ...TD, textAlign: 'left', fontFamily: 'monospace', color: 'var(--brand-2)', fontSize: 14 }}>{row.law}</td>
                       <td style={{ ...TD, textAlign: 'left', color: '#10b981', fontFamily: 'monospace', fontSize: 12 }}>{row.example}</td>
                     </tr>
                   ))}
@@ -397,7 +396,7 @@ export default function ExponentCalculatorClient() {
           style={{
             width: '100%', textAlign: 'left', padding: '14px 20px',
             background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-            borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer',
+            borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer',
           }}
           aria-expanded={showPowTable}
         >
@@ -418,7 +417,7 @@ export default function ExponentCalculatorClient() {
                 <tbody>
                   {powersTable.map(row => (
                     <tr key={row.x} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                      <td style={{ ...TD, textAlign: 'left', color: '#c4b5fd', fontWeight: 700 }}>{row.x}</td>
+                      <td style={{ ...TD, textAlign: 'left', color: 'var(--brand-2)', fontWeight: 700 }}>{row.x}</td>
                       {row.powers.map((p, i) => (
                         <td key={i} style={{ ...TD, color: i === 0 ? '#f59e0b' : 'var(--fg-2)' }}>
                           {p >= 1e9 ? p.toExponential(2) : p.toLocaleString()}

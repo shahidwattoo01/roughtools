@@ -1,5 +1,5 @@
-﻿'use client'
-import { useState, useCallback } from 'react'
+'use client'
+import { useState, useCallback, useMemo } from 'react'
 import CalcShell from '@/components/CalcShell'
 import { Card, InputField, ResultRow } from '@/components/ui'
 import { exportCalcPDF } from '@/lib/calcPdf'
@@ -12,7 +12,7 @@ export default function QuadraticCalculatorClient() {
 
   const an = parseFloat(a)||0, bn = parseFloat(b)||0, cn = parseFloat(c)||0
   const disc = bn*bn - 4*an*cn
-  const vertex = an !== 0 ? { x: -bn/(2*an), y: cn - bn*bn/(4*an) } : null
+  const vertex = useMemo(() => an !== 0 ? { x: -bn/(2*an), y: cn - bn*bn/(4*an) } : null, [an, bn, cn])
   const axisX  = an !== 0 ? -bn/(2*an) : null
   const r1 = disc>=0 && an!==0 ? (-bn+Math.sqrt(disc))/(2*an) : null
   const r2 = disc>=0 && an!==0 ? (-bn-Math.sqrt(disc))/(2*an) : null
@@ -90,7 +90,7 @@ export default function QuadraticCalculatorClient() {
       ]}
     >
       <Card>
-        <div style={{ textAlign: 'center', fontFamily: 'serif', fontSize: 18, color: '#c4b5fd', marginBottom: 16 }}>
+        <div style={{ textAlign: 'center', fontFamily: 'serif', fontSize: 18, color: 'var(--brand-2)', marginBottom: 16 }}>
           {an||'a'}x² {bn>=0?'+':''}{bn||'b'}x {cn>=0?'+':''}{cn||'c'} = 0
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
@@ -105,7 +105,7 @@ export default function QuadraticCalculatorClient() {
       </Card>
 
       {an === 0 ? (
-        <div style={{ marginTop: 12, color: '#f87171', fontSize: 13 }}>⚠ Coefficient "a" cannot be zero — that would make it a linear equation, not quadratic.</div>
+        <div style={{ marginTop: 12, color: '#f87171', fontSize: 13 }}>⚠ Coefficient &quot;a&quot; cannot be zero — that would make it a linear equation, not quadratic.</div>
       ) : (
         <Card accent style={{ marginTop: 16 }}>
           <ResultRow label="Discriminant (Δ = b²−4ac)" value={disc.toFixed(6)} highlight />

@@ -15,7 +15,7 @@ const ALLOWED_MODELS = new Set([
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  const { allowed, resetAt } = rateLimit(`ai:${ip}`, 20, 60 * 1000); // 20 req/min per IP
+  const { allowed, resetAt } = rateLimit(`ai:${ip}`, 60, 60 * 1000); // 60 req/min — humans can't hit this, blocks scrapers
   if (!allowed) {
     return NextResponse.json(
       { error: 'Rate limit exceeded. Please slow down.' },

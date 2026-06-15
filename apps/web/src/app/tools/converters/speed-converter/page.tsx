@@ -104,39 +104,39 @@ export default function Page() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webappLd) }} />
 
-      <div className="bg-gray-900 border-b border-gray-800 sticky top-0 z-20">
+      <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-20">
         <div className="max-w-4xl mx-auto px-4 h-14 flex items-center gap-3">
-          <Link href="/tools/converters" className="text-sm text-gray-400 hover:text-white flex items-center gap-1">
+          <Link href="/tools/converters" className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white flex items-center gap-1">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
             Unit Converters
           </Link>
-          <span className="text-gray-700">|</span>
-          <h1 className="font-bold text-white text-sm">Speed Converter</h1>
-          <span className="ml-auto text-xs bg-cyan-900/50 text-cyan-400 border border-cyan-800 px-2 py-0.5 rounded-full">🚀 km/h · mph · knots · m/s</span>
+          <span className="text-gray-300 dark:text-gray-700">|</span>
+          <h1 className="font-bold text-gray-900 dark:text-white text-sm">Speed Converter</h1>
+          <span className="ml-auto text-xs bg-cyan-50 dark:bg-cyan-900/50 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800 px-2 py-0.5 rounded-full">🚀 km/h · mph · knots · m/s</span>
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-cyan-900/60 to-blue-900/60 border-b border-cyan-800/30">
+      <div className="bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-cyan-900/60 dark:to-blue-900/60 border-b border-cyan-200/30 dark:border-cyan-800/30">
         <div className="max-w-4xl mx-auto px-4 py-10">
           <div className="flex flex-wrap gap-2 mb-3">
             {['km/h', 'mph', 'm/s', 'Knots', 'ft/s', 'All at Once', 'Free'].map(b => (
-              <span key={b} className="text-xs bg-cyan-900/50 text-cyan-300 border border-cyan-700/40 rounded-full px-3 py-1">{b}</span>
+              <span key={b} className="text-xs bg-cyan-50 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/40 rounded-full px-3 py-1">{b}</span>
             ))}
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">Speed Converter</h2>
-          <p className="text-cyan-200/80 text-sm sm:text-base leading-relaxed max-w-3xl">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white mb-3">Speed Converter</h2>
+          <p className="text-cyan-700 dark:text-cyan-200/80 text-sm sm:text-base leading-relaxed max-w-3xl">
             Convert between all major speed units instantly — kilometers per hour, miles per hour, meters per second, knots, and feet per second. Results update in real time showing all units simultaneously. Used for road travel, aviation, maritime navigation, weather data, and physics. All conversions are based on exact international definitions, ensuring precision across all scientific and everyday applications.
           </p>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
-        <div className="bg-[#12121f] border border-purple-900/20 rounded-2xl p-1">
+        <div className="bg-white dark:bg-[#12121f] border border-gray-200 dark:border-purple-900/20 rounded-2xl p-1" data-print-section="calculator">
           <SpeedConverterClient />
         <div style={{ marginTop: 16, marginBottom: 8 }}>
           <PDFExportButton toolName="Speed Converter" />
@@ -149,16 +149,16 @@ export default function Page() {
             { icon: '🎯', title: 'Exact', desc: 'Based on internationally defined conversion factors' },
             { icon: '🔒', title: 'Private', desc: 'All calculations run locally in your browser' },
           ].map(c => (
-            <div key={c.title} className="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center">
+            <div key={c.title} className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 text-center">
               <div className="text-2xl mb-2">{c.icon}</div>
-              <div className="font-bold text-white text-xs mb-1">{c.title}</div>
+              <div className="font-bold text-gray-900 dark:text-white text-xs mb-1">{c.title}</div>
               <div className="text-gray-500 text-xs leading-relaxed">{c.desc}</div>
             </div>
           ))}
         </div>
 
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6">
-          <h2 className="text-base font-bold text-white mb-4">Quick Reference: Common Speed Conversions</h2>
+        <div data-print-section="reference" className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
+          <h2 className="text-base font-bold text-gray-900 dark:text-white mb-4">Quick Reference: Common Speed Conversions</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
             {[
               ['100 km/h', '= 62.14 mph'],
@@ -171,31 +171,31 @@ export default function Page() {
               ['120 km/h', '= 74.56 mph'],
               ['1 knot', '= 1.151 mph'],
             ].map(([from, to]) => (
-              <div key={from} className="flex justify-between items-center p-2.5 bg-gray-800/50 rounded-lg">
-                <span className="text-gray-300 font-mono text-xs">{from}</span>
-                <span className="text-cyan-400 font-mono text-xs">{to}</span>
+              <div key={from} className="flex justify-between items-center p-2.5 bg-gray-100 dark:bg-gray-800/50 rounded-lg">
+                <span className="text-gray-700 dark:text-gray-300 font-mono text-xs">{from}</span>
+                <span className="text-cyan-600 dark:text-cyan-400 font-mono text-xs">{to}</span>
               </div>
             ))}
           </div>
         </div>
 
         <section>
-          <h2 className="text-xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
           <div className="space-y-3">
             {FAQS.map((faq, i) => (
-              <details key={i} className="border border-gray-800 rounded-xl overflow-hidden bg-gray-900">
-                <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none bg-gray-800/50 hover:bg-gray-800 transition-colors">
-                  <h3 className="text-sm font-semibold text-white text-left pr-4">{faq.q}</h3>
-                  <span className="text-cyan-400 font-bold text-lg flex-shrink-0">+</span>
+              <details key={i} className="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-white dark:bg-gray-900">
+                <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                  <h3 className="text-sm font-semibold text-gray-900 dark:text-white text-left pr-4">{faq.q}</h3>
+                  <span className="text-cyan-500 dark:text-cyan-400 font-bold text-lg flex-shrink-0">+</span>
                 </summary>
-                <div className="px-5 pb-5 pt-3 text-sm text-gray-400 leading-relaxed border-t border-gray-800">{faq.a}</div>
+                <div className="px-5 pb-5 pt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-200 dark:border-gray-800">{faq.a}</div>
               </details>
             ))}
           </div>
         </section>
 
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6">
-          <h2 className="text-sm font-bold text-white mb-3">Other Unit Converters</h2>
+        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
+          <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-3">Other Unit Converters</h2>
           <div className="flex flex-wrap gap-2">
             {[
               { href: '/tools/converters/length-converter', label: '📏 Length' },
@@ -206,7 +206,7 @@ export default function Page() {
               { href: '/tools/converters/time-converter', label: '⏱️ Time' },
               { href: '/tools/converters/digital-storage-converter', label: '💾 Digital Storage' },
             ].map(l => (
-              <Link key={l.href} href={l.href} className="text-sm bg-gray-800 border border-gray-700 rounded-full px-4 py-1.5 text-gray-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">{l.label}</Link>
+              <Link key={l.href} href={l.href} className="text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full px-4 py-1.5 text-gray-700 dark:text-gray-300 hover:border-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">{l.label}</Link>
             ))}
           </div>
         </div>
@@ -222,3 +222,4 @@ export default function Page() {
     </div>
   )
 }
+

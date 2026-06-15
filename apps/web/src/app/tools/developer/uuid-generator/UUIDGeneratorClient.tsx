@@ -52,7 +52,7 @@ export default function UUIDGeneratorClient() {
             max={100}
             value={count}
             onChange={e => setCount(Math.min(100, Math.max(1, Number(e.target.value))))}
-            style={{ width: 100, padding: '10px 12px', borderRadius: 8, background: '#252540', border: '1px solid rgba(255,255,255,0.1)', color: '#e0e0ff', fontSize: 14 }}
+            style={{ width: 100, padding: '10px 12px', borderRadius: 8, background: '#252540', border: '1px solid var(--line-strong)', color: '#e0e0ff', fontSize: 14 }}
           />
         </div>
         <button style={btnStyle(true)} onClick={generate}>Generate</button>

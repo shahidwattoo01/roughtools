@@ -13,8 +13,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -23,7 +23,7 @@ const LABEL: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TH: CSSProperties = {
@@ -59,7 +59,7 @@ function MetricCard({ label, value, sub, color = '#6366f1' }: {
   label: string; value: string; sub?: string; color?: string
 }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 22, fontWeight: 900, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>{sub}</div>}
@@ -137,7 +137,7 @@ export default function CalorieCalculatorClient() {
   // ── Scenario comparison (3 activity levels) ──
   const scenarios = useMemo(() => {
     if (!result) return []
-    const a = parseInt(age) || 0
+    const _a = parseInt(age) || 0
     return [0, 2, 4].map(i => {
       const mult = ACTIVITY_LEVELS[i].multiplier
       const tdee = Math.round(result.bmrMSJ * mult)
@@ -174,7 +174,7 @@ export default function CalorieCalculatorClient() {
                   flex: 1, padding: '9px 0', borderRadius: 8, cursor: 'pointer', fontWeight: 600, fontSize: 13,
                   background: gender === g ? 'rgba(99,102,241,0.25)' : 'transparent',
                   border: gender === g ? '1px solid rgba(99,102,241,0.6)' : '1px solid var(--line-strong)',
-                  color: gender === g ? '#c4b5fd' : 'var(--fg-3)',
+                  color: gender === g ? 'var(--brand-2)' : 'var(--fg-3)',
                 }}>{g === 'male' ? 'Male' : 'Female'}</button>
               ))}
             </div>
@@ -214,7 +214,7 @@ export default function CalorieCalculatorClient() {
                 textAlign: 'left', padding: '10px 14px', borderRadius: 8, cursor: 'pointer',
                 background: activityIdx === i ? 'rgba(99,102,241,0.15)' : 'transparent',
                 border: activityIdx === i ? '1px solid rgba(99,102,241,0.5)' : '1px solid var(--line-strong)',
-                color: activityIdx === i ? '#c4b5fd' : 'var(--fg-3)',
+                color: activityIdx === i ? 'var(--brand-2)' : 'var(--fg-3)',
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
               }}>
                 <span style={{ fontWeight: 600, fontSize: 13 }}>{a.label}</span>
@@ -279,7 +279,7 @@ export default function CalorieCalculatorClient() {
           <button onClick={() => setShowMacros(v => !v)} style={{
             width: '100%', textAlign: 'left', padding: '14px 20px',
             background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-            borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer',
+            borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer',
           }} aria-expanded={showMacros}>
             {showMacros ? '▾' : '▸'} Macro Breakdown per Goal
           </button>
@@ -318,7 +318,7 @@ export default function CalorieCalculatorClient() {
           <button onClick={() => setShowScenario(v => !v)} style={{
             width: '100%', textAlign: 'left', padding: '14px 20px',
             background: 'var(--bg-1)', border: '1px solid var(--line-strong)',
-            borderRadius: 12, color: '#c4b5fd', fontWeight: 700, fontSize: 14, cursor: 'pointer',
+            borderRadius: 12, color: 'var(--brand-2)', fontWeight: 700, fontSize: 14, cursor: 'pointer',
           }} aria-expanded={showScenario}>
             {showScenario ? '▾' : '▸'} Activity Level Comparison
           </button>
@@ -340,7 +340,7 @@ export default function CalorieCalculatorClient() {
                         borderBottom: '1px solid rgba(255,255,255,0.04)',
                         background: s.multiplier === result.multiplier ? 'rgba(99,102,241,0.08)' : 'transparent',
                       }}>
-                        <td style={{ ...TD, color: s.multiplier === result.multiplier ? '#c4b5fd' : 'var(--fg-2)', fontWeight: s.multiplier === result.multiplier ? 700 : 400 }}>
+                        <td style={{ ...TD, color: s.multiplier === result.multiplier ? 'var(--brand-2)' : 'var(--fg-2)', fontWeight: s.multiplier === result.multiplier ? 700 : 400 }}>
                           {s.multiplier === result.multiplier ? '★ ' : ''}{s.label}
                         </td>
                         <td style={{ ...TD, textAlign: 'right' }}>×{s.multiplier}</td>
@@ -381,12 +381,12 @@ export default function CalorieCalculatorClient() {
 
           {/* Interpretation */}
           <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-            <h3 style={{ margin: '0 0 12px', fontSize: 14, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+            <h3 style={{ margin: '0 0 12px', fontSize: 14, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               What These Numbers Mean
             </h3>
             <ul style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 8 }}>
               <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>
-                <strong style={{ color: '#c4b5fd' }}>BMR ({result.bmrMSJ.toLocaleString()} kcal)</strong> is the energy your body burns at complete rest — breathing, circulation, and organ function. You would burn this many calories even if you stayed in bed all day.
+                <strong style={{ color: 'var(--brand-2)' }}>BMR ({result.bmrMSJ.toLocaleString()} kcal)</strong> is the energy your body burns at complete rest — breathing, circulation, and organ function. You would burn this many calories even if you stayed in bed all day.
               </li>
               <li style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.7 }}>
                 <strong style={{ color: '#10b981' }}>TDEE ({result.tdee.toLocaleString()} kcal)</strong> is your Total Daily Energy Expenditure — BMR scaled by your activity level (×{result.multiplier}). Eat at TDEE to maintain your current weight.

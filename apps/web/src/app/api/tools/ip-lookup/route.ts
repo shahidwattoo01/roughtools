@@ -12,7 +12,7 @@ import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function GET(request: NextRequest) {
   const clientIp = getClientIp(request)
-  const { allowed } = rateLimit(`ip-lookup:${clientIp}`, 20, 60_000)
+  const { allowed } = rateLimit(`ip-lookup:${clientIp}`, 200, 60_000)
   if (!allowed) return NextResponse.json({ error: 'Rate limit exceeded. Try again shortly.' }, { status: 429 })
 
   const { searchParams } = new URL(request.url)

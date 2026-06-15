@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import ProbabilityCalculatorClient from './ProbabilityCalculatorClient'
 import { getCalcSEO } from '../_components/calc-seo-configs'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -230,12 +230,6 @@ export default function ProbabilityCalculatorPage() {
         <ToolAdUnit position="middle" />
 
         {/* Quick Reference */}
-        <QuickReferenceTable rows={QUICK_REF} />
-
-        {/* When to Use */}
-        <WhenToUseCards cards={WHEN_TO_USE} />
-
-        {/* About section */}
         <section
           style={{
             marginTop: 40,
@@ -280,7 +274,7 @@ export default function ProbabilityCalculatorPage() {
             data from experiments: if a machine produces 7 defective parts out of 200, the empirical
             probability of a defect is 7/200 = 3.5%.
             <strong style={{ color: 'var(--fg)' }}> Subjective probability</strong> is an expert estimate
-            when no frequency data exists — a doctor's assessment that a treatment has a 70% chance of
+            when no frequency data exists — a doctor&apos;s assessment that a treatment has a 70% chance of
             success based on clinical experience.
           </p>
 
@@ -301,10 +295,10 @@ export default function ProbabilityCalculatorPage() {
             Complementary Events
           </h3>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.75, marginBottom: 14 }}>
-            The complement of event A (written "not A" or A') includes every outcome where A does
+            The complement of event A (written &quot;not A&quot; or A&apos;) includes every outcome where A does
             NOT occur. Since every outcome is either A or not A: P(A) + P(not A) = 1, therefore
-            P(not A) = 1 − P(A). The complement rule is especially useful for "at least one" problems.
-            For example: "What is the probability of rolling at least one six in four rolls of a die?"
+            P(not A) = 1 − P(A). The complement rule is especially useful for &quot;at least one&quot; problems.
+            For example: &quot;What is the probability of rolling at least one six in four rolls of a die?&quot;
             Rather than summing many terms, compute P(no sixes) = (5/6)⁴ ≈ 0.482, so
             P(at least one six) = 1 − 0.482 ≈ 0.518.
           </p>
@@ -320,6 +314,13 @@ export default function ProbabilityCalculatorPage() {
             for full details.
           </p>
         </section>
+        <QuickReferenceTable rows={QUICK_REF} />
+
+        {/* When to Use */}
+        <WhenToUseCards cards={WHEN_TO_USE} />
+
+        {/* About section */}
+        
 
         {/* Pro Tips */}
         <ProTipsSection tips={PRO_TIPS} />

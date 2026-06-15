@@ -8,7 +8,7 @@ import {
   type QuestionMeta,
 } from '@platform/iq-engine'
 import { prisma } from './db'
-import type { IqSession } from '@prisma/client'
+import type { IqSession } from '@platform/db'
 
 /** Deserialise AdaptiveState from session DB columns */
 export function stateFromSession(session: IqSession): AdaptiveState {

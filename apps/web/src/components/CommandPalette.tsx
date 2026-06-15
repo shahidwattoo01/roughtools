@@ -11,13 +11,17 @@
 import {
   useState,
   useEffect,
+  useMemo,
   useRef,
   useCallback,
   createContext,
   useContext,
 } from 'react'
 import { useRouter } from 'next/navigation'
-import { ALL_TOOLS, type Tool, type ToolCategory } from '@/lib/tools-registry'
+// ⚡ PERF: Only import the types (erased at build time), not the 1 663-line
+// ALL_TOOLS array. The actual data is loaded lazily in a dynamic import
+// the first time the palette opens — keeping it out of the initial bundle.
+import type { Tool, ToolCategory } from '@/lib/tools-registry'
 import { cn } from '@/lib/utils'
 
 // ─── Constants ────────────────────────────────────────────────
@@ -137,10 +141,11 @@ const CAT_COLORS: Record<ToolCategory, string> = {
 }
 
 // ─── Search logic ─────────────────────────────────────────────
-function searchTools(query: string, limit = 8): Tool[] {
-  if (!query.trim()) return []
+// ⚡ PERF: tools array passed in (not captured from module scope)
+function searchTools(query: string, tools: Tool[], limit = 8): Tool[] {
+  if (!query.trim() || !tools.length) return []
   const q = query.toLowerCase().trim()
-  const scored = ALL_TOOLS.map((tool) => {
+  const scored = tools.map((tool) => {
     let score = 0
     const name = tool.name.toLowerCase()
     const desc = tool.description.toLowerCase()
@@ -178,13 +183,13 @@ function Highlight({ text, query }: { text: string; query: string }) {
 }
 
 // ─── Recent searches (localStorage) ──────────────────────────
-function getRecent(): Tool[] {
+function getRecent(tools: Tool[]): Tool[] {
   try {
     const raw = localStorage.getItem(RECENT_KEY)
     if (!raw) return []
     const slugs: string[] = JSON.parse(raw)
     return slugs
-      .map((s) => ALL_TOOLS.find((t) => t.slug === s))
+      .map((s) => tools.find((t) => t.slug === s))
       .filter(Boolean) as Tool[]
   } catch { return [] }
 }
@@ -274,29 +279,47 @@ function CommandPaletteModal({ open, onClose }: { open: boolean; onClose: () => 
   const [results, setResults] = useState<Tool[]>([])
   const [active,  setActive]  = useState(-1)
   const [recent,  setRecent]  = useState<Tool[]>([])
+  // ⚡ PERF: tools loaded lazily on first open — not in the initial JS bundle
+  const [allTools, setAllTools] = useState<Tool[]>([])
 
-  // Popular tools (constant list)
-  const popular = POPULAR_SLUGS
-    .map((s) => ALL_TOOLS.find((t) => t.slug === s))
-    .filter(Boolean) as Tool[]
+  // Load ALL_TOOLS dynamically the first time the palette opens
+  useEffect(() => {
+    if (open && allTools.length === 0) {
+      import('@/lib/tools-registry').then(m => setAllTools(m.ALL_TOOLS))
+    }
+  }, [open, allTools.length])
+
+  // Popular tools — computed once tools are loaded
+  const popular = useMemo(
+    () => allTools.length
+      ? (POPULAR_SLUGS.map((s) => allTools.find((t) => t.slug === s)).filter(Boolean) as Tool[])
+      : [],
+    [allTools]
+  )
 
   // Reset state on open/close
   useEffect(() => {
     if (open) {
       setQuery(''); setResults([]); setActive(-1)
-      setRecent(getRecent())
+      if (allTools.length) setRecent(getRecent(allTools))
       const t = setTimeout(() => inputRef.current?.focus(), 50)
       return () => clearTimeout(t)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
+
+  // Update recent when tools finish loading
+  useEffect(() => {
+    if (open && allTools.length) setRecent(getRecent(allTools))
+  }, [allTools, open])
 
   // Live search
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value
     setQuery(val)
     setActive(-1)
-    setResults(searchTools(val))
-  }, [])
+    setResults(searchTools(val, allTools))
+  }, [allTools])
 
   // Navigate to tool
   const navigate = useCallback((tool: Tool) => {
@@ -369,7 +392,7 @@ function CommandPaletteModal({ open, onClose }: { open: boolean; onClose: () => 
           <input
             ref={inputRef}
             type="text" role="combobox"
-            aria-expanded="true" aria-haspopup="listbox" aria-autocomplete="list"
+            aria-expanded="true" aria-controls="command-palette-listbox" aria-haspopup="listbox" aria-autocomplete="list"
             aria-label="Search tools"
             placeholder="Search 400+ tools…"
             autoComplete="off" spellCheck={false}
@@ -409,7 +432,7 @@ function CommandPaletteModal({ open, onClose }: { open: boolean; onClose: () => 
 
           {/* List */}
           {displayList.length > 0 ? (
-            <ul ref={listRef} role="listbox" aria-label="Search results"
+            <ul id="command-palette-listbox" ref={listRef} role="listbox" aria-label="Search results"
               className="max-h-[360px] overflow-y-auto pb-2">
               {displayList.map((tool, i) => {
                 const href = `/tools/${tool.category}/${tool.slug}`

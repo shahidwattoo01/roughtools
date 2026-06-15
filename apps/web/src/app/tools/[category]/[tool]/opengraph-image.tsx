@@ -64,7 +64,7 @@ export default async function Image({
             >
               🛠️
             </div>
-            <span style={{ fontSize: '26px', fontWeight: 700, color: 'rgba(255,255,255,0.9)' }}>
+            <span style={{ fontSize: '26px', fontWeight: 700, color: 'var(--fg)' }}>
               RoughTools
             </span>
           </div>
@@ -121,7 +121,7 @@ export default async function Image({
         <p
           style={{
             fontSize: '26px',
-            color: 'rgba(255,255,255,0.82)',
+            color: 'var(--fg-1)',
             margin: '0 0 auto',
             lineHeight: 1.4,
             maxWidth: '820px',
@@ -141,7 +141,7 @@ export default async function Image({
                 borderRadius: '10px',
                 padding: '10px 18px',
                 fontSize: '18px',
-                color: 'rgba(255,255,255,0.9)',
+                color: 'var(--fg)',
                 fontWeight: 600,
                 border: '1px solid rgba(255,255,255,0.2)',
               }}

@@ -33,7 +33,7 @@ export default function ImageCompressorClient() {
   }
 
   // Keyboard shortcut: Enter to compress
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+  const _handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey && files.length > 0 && !processing) {
       compress()
     }

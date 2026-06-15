@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+﻿/* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/JsonLd'
 import ToolAdUnit from '@/components/ToolAdUnit'
@@ -7,12 +7,12 @@ import Link from 'next/link'
 import { ToolPageExtras } from '@/components/ToolPageExtras'
 
 export const metadata: Metadata = {
-  title: 'Online Ping Tool — Test Website Connectivity & Response Time | RoughTools',
+  title: 'Online Ping Tool â€” Test Website Connectivity & Response Time | RoughTools',
   description: 'Test website reachability and measure HTTP response times with our online ping tool. Run multiple requests and see average, min, and max response times. Free and instant.',
   keywords: ['online ping tool', 'ping website', 'test website connectivity', 'http ping', 'website response time', 'check website up', 'latency test online'],
   alternates: { canonical: 'https://roughtools.com/tools/network/ping-tool' },
   openGraph: {
-    title: `Ping Tool — Online Ping Test | RoughTools`,
+    title: `Ping Tool â€” Online Ping Test | RoughTools`,
     description: `Test the reachability of any host with an online ping tool. Check latency and packet loss. Free online ping test.`,
     url: 'https://roughtools.com/tools/network/ping-tool',
     type: 'website',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Ping Tool — Online Ping Test | RoughTools`,
+    title: `Ping Tool â€” Online Ping Test | RoughTools`,
     description: `Test the reachability of any host with an online ping tool. Check latency and packet loss. Free online ping test.`,
   },
   robots: { index: true, follow: true },
@@ -33,11 +33,11 @@ const FAQ = [
   },
   {
     q: 'Do I need to create an account to ping a website?',
-    a: 'No account or registration is required. Open the Online Ping Tool, type the URL or hostname you want to test, and start the ping immediately. There is no email address, password, or profile needed at any point. RoughTools is designed for fast, frictionless network diagnostics — you get response time data in seconds without any sign-up step.',
+    a: 'No account or registration is required. Open the Online Ping Tool, type the URL or hostname you want to test, and start the ping immediately. There is no email address, password, or profile needed at any point. RoughTools is designed for fast, frictionless network diagnostics â€” you get response time data in seconds without any sign-up step.',
   },
   {
     q: 'Does this tool store or log the URLs I ping?',
-    a: 'RoughTools does not store or log the URLs or hostnames you test with the ping tool. All requests are made directly from your browser to the target URL — no intermediary server on RoughTools retains your query history. Use this tool freely to test internal staging servers (if publicly reachable), external APIs, and production websites without any concern about your query data being recorded.',
+    a: 'RoughTools does not store or log the URLs or hostnames you test with the ping tool. All requests are made directly from your browser to the target URL â€” no intermediary server on RoughTools retains your query history. Use this tool freely to test internal staging servers (if publicly reachable), external APIs, and production websites without any concern about your query data being recorded.',
   },
   {
     q: 'Does the ping tool work on mobile phones and tablets?',
@@ -57,27 +57,27 @@ const FAQ = [
   },
   {
     q: 'How do I ping a website using this tool? Step-by-step guide.',
-    a: 'Using the ping tool is straightforward. Step one: open the Online Ping Tool on this page. Step two: type the full URL or hostname you want to test — for example, https://example.com or just example.com. Step three: click the Ping button to start the test. Step four: the tool sends four sequential HTTP requests to the target and records the response time for each. Step five: review the results — the average, minimum, and maximum response times are displayed, giving you a clear picture of the server\'s responsiveness from your network.',
+    a: 'Using the ping tool is straightforward. Step one: open the Online Ping Tool on this page. Step two: type the full URL or hostname you want to test â€” for example, https://example.com or just example.com. Step three: click the Ping button to start the test. Step four: the tool sends four sequential HTTP requests to the target and records the response time for each. Step five: review the results â€” the average, minimum, and maximum response times are displayed, giving you a clear picture of the server\'s responsiveness from your network.',
   },
   {
     q: 'Why use RoughTools Ping Tool instead of other websites?',
-    a: 'RoughTools measures response times directly from your browser using real HTTP requests — so results reflect actual latency from your specific network location, not from a remote testing server in another country. This makes the results immediately actionable for diagnosing whether a slowness issue is coming from your connection or from the server itself. The tool sends four requests and calculates average, min, and max, giving a more reliable picture than a single measurement.',
+    a: 'RoughTools measures response times directly from your browser using real HTTP requests â€” so results reflect actual latency from your specific network location, not from a remote testing server in another country. This makes the results immediately actionable for diagnosing whether a slowness issue is coming from your connection or from the server itself. The tool sends four requests and calculates average, min, and max, giving a more reliable picture than a single measurement.',
   },
   {
     q: 'How do I report a bug or suggest a new feature for this tool?',
-    a: 'Use the Contact page on RoughTools to report bugs or submit feature requests. When reporting a bug, include the URL you were testing, the response you received, your browser and operating system, and what you expected to happen. For feature requests such as custom request counts, HEAD vs GET selection, or HTTPS vs HTTP comparison — describe your use case clearly and the team will evaluate it for a future release.',
+    a: 'Use the Contact page on RoughTools to report bugs or submit feature requests. When reporting a bug, include the URL you were testing, the response you received, your browser and operating system, and what you expected to happen. For feature requests such as custom request counts, HEAD vs GET selection, or HTTPS vs HTTP comparison â€” describe your use case clearly and the team will evaluate it for a future release.',
   },
   {
     q: 'Why is this HTTP-based ping and not ICMP ping?',
-    a: 'Traditional ping uses ICMP (Internet Control Message Protocol) echo requests, which operate at the network layer below HTTP. Browsers run in a security sandbox and cannot send raw ICMP packets — doing so requires operating system-level privileges that browsers deliberately do not have for security reasons. This tool uses HTTP fetch requests instead, which measures the time for a full HTTP round-trip. For web services, HTTP-based latency is actually more relevant than ICMP latency because it reflects the complete request processing time.',
+    a: 'Traditional ping uses ICMP (Internet Control Message Protocol) echo requests, which operate at the network layer below HTTP. Browsers run in a security sandbox and cannot send raw ICMP packets â€” doing so requires operating system-level privileges that browsers deliberately do not have for security reasons. This tool uses HTTP fetch requests instead, which measures the time for a full HTTP round-trip. For web services, HTTP-based latency is actually more relevant than ICMP latency because it reflects the complete request processing time.',
   },
   {
     q: 'What does it mean if a website times out during the ping test?',
-    a: 'A timeout during the ping test can mean several things: the host is unreachable or offline, a firewall is blocking requests from your IP or network, the server does not respond to the specific request type the tool uses, or the server is severely overloaded and taking too long to respond. Some servers are configured to reject HEAD requests or block known proxy services. A timeout in this tool does not always mean the site is completely down — it may simply be blocking the specific request type used by browser-based ping tools.',
+    a: 'A timeout during the ping test can mean several things: the host is unreachable or offline, a firewall is blocking requests from your IP or network, the server does not respond to the specific request type the tool uses, or the server is severely overloaded and taking too long to respond. Some servers are configured to reject HEAD requests or block known proxy services. A timeout in this tool does not always mean the site is completely down â€” it may simply be blocking the specific request type used by browser-based ping tools.',
   },
   {
     q: 'What is the difference between latency and bandwidth?',
-    a: 'Latency is the time it takes for a single request to travel to a server and back, measured in milliseconds. It reflects the physical distance to the server and the number of network hops between you and it. Bandwidth is the maximum amount of data that can be transferred per second, measured in Mbps or Gbps. A connection can have high bandwidth but high latency — for example, a satellite internet connection can download large files quickly but feels sluggish for real-time interactive tasks because every action requires a 600ms round trip.',
+    a: 'Latency is the time it takes for a single request to travel to a server and back, measured in milliseconds. It reflects the physical distance to the server and the number of network hops between you and it. Bandwidth is the maximum amount of data that can be transferred per second, measured in Mbps or Gbps. A connection can have high bandwidth but high latency â€” for example, a satellite internet connection can download large files quickly but feels sluggish for real-time interactive tasks because every action requires a 600ms round trip.',
   },
 ]
 
@@ -118,14 +118,16 @@ export default function Page() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '24px 16px 64px' }}>
         <ToolAdUnit position="top" />
         <nav style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> ›{' '}
-          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> › Ping Tool
+          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link> â€º{' '}
+          <Link href="/tools/network" style={{ color: '#888', textDecoration: 'none' }}>Network Tools</Link> â€º Ping Tool
         </nav>
         <h1 style={{ fontSize: 'clamp(24px,4vw,36px)', fontWeight: 900, marginBottom: 8, letterSpacing: -1 }}>Online Ping Tool</h1>
         <p style={{ color: '#888', marginBottom: 24, fontSize: 15 }}>
           Test website reachability and measure HTTP response times directly from your browser. Sends four sequential requests to the target and reports average, minimum, and maximum latency. Useful for diagnosing connectivity issues, comparing server performance, and verifying uptime. Free, no account required.
         </p>
+        <div data-print-section="calculator">
         <PingToolClient />
+        </div>
         <ToolAdUnit position="middle" />
         <section style={{ marginTop: 40 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 12 }}>About Ping Tool</h2>
@@ -133,7 +135,7 @@ export default function Page() {
             Traditional ping uses ICMP echo requests, a protocol that operates below HTTP at the network layer. Because browsers are sandboxed and cannot send raw ICMP packets, this tool uses HTTP fetch requests with the Performance Timing API to measure response times for web services. It sends four sequential requests to the target and records the time taken for each, then calculates the average, minimum, and maximum response times.
           </p>
           <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12 }}>
-            HTTP-based ping is particularly useful for testing the availability and performance of web services and APIs. While it doesn&apos;t bypass HTTP infrastructure like ICMP ping does, it gives a real-world measurement of how quickly the server responds to actual web requests from your browser&apos;s network connection. The first request is often slower due to DNS lookup and TCP connection setup — subsequent requests benefit from connection reuse.
+            HTTP-based ping is particularly useful for testing the availability and performance of web services and APIs. While it doesn&apos;t bypass HTTP infrastructure like ICMP ping does, it gives a real-world measurement of how quickly the server responds to actual web requests from your browser&apos;s network connection. The first request is often slower due to DNS lookup and TCP connection setup â€” subsequent requests benefit from connection reuse.
           </p>
         </section>
         <section style={{ marginTop: 32 }}>

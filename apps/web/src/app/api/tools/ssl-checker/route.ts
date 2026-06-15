@@ -11,7 +11,7 @@ import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function GET(request: NextRequest) {
   const ip = getClientIp(request)
-  const { allowed } = rateLimit(`ssl:${ip}`, 20, 60 * 1000)
+  const { allowed } = rateLimit(`ssl:${ip}`, 200, 60 * 1000)
   if (!allowed) {
     return NextResponse.json({ success: false, error: 'Rate limit exceeded.' }, { status: 429 })
   }

@@ -151,7 +151,7 @@ export default function WebsiteSpeedTestClient() {
         <p style={{ fontSize: 13, color: '#666', marginBottom: 14 }}>Enter a URL to launch it in top speed testing services — each opens pre-filled with your URL.</p>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
           <input
-            style={{ flex: 1, padding: '10px 14px', borderRadius: 8, background: '#252540', border: '1px solid rgba(255,255,255,0.1)', color: '#e0e0ff', fontSize: 14, outline: 'none', minWidth: 0 }}
+            style={{ flex: 1, padding: '10px 14px', borderRadius: 8, background: '#252540', border: '1px solid var(--line-strong)', color: '#e0e0ff', fontSize: 14, outline: 'none', minWidth: 0 }}
             type="text"
             placeholder="https://yoursite.com"
             value={url}

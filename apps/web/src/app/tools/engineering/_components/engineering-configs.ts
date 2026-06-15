@@ -393,7 +393,7 @@ export const ENGINEERING_CONFIGS: Record<string, EngineeringCalcConfig> = {
       { id: 'area_mm2', label: 'Recommended Area', unit: 'mm²', decimals: 1 },
       { id: 'vd', label: 'Voltage Drop (3-phase)', unit: 'V', decimals: 2 },
     ],
-    calculate: ({ I, Df, Vd_pct, V, L }) => {
+    calculate: ({ I, Df, Vd_pct: _Vd_pct, V: _V, L }) => {
       const I_design = Number(I) / Number(Df)
       const area_mm2 = I_design / 3.5
       const Rl = 22.5 / area_mm2
@@ -451,7 +451,7 @@ export const ENGINEERING_CONFIGS: Record<string, EngineeringCalcConfig> = {
       { id: 'kw', label: 'Cooling Load', unit: 'kW', decimals: 2 },
       { id: 'tr', label: 'Tonnage', unit: 'TR', decimals: 2 },
     ],
-    calculate: ({ area, height, dT, persons, lighting }) => {
+    calculate: ({ area, height: _height, dT, persons, lighting }) => {
       const envelope = Number(area) * Number(dT) * 1.2
       const occup = Number(persons) * 100
       const light = Number(area) * Number(lighting)
@@ -1908,7 +1908,7 @@ export const ENGINEERING_CONFIGS: Record<string, EngineeringCalcConfig> = {
       const v = q / A
       const Re = Number(rho) * v * d / mu
       const eps_rel = (Number(epsilon) / 1000) / d
-      let f = Re < 2300 ? 64 / Re : 0.25 / Math.pow(Math.log10(eps_rel / 3.7 + 5.74 / Math.pow(Re, 0.9)), 2)
+      const f = Re < 2300 ? 64 / Re : 0.25 / Math.pow(Math.log10(eps_rel / 3.7 + 5.74 / Math.pow(Re, 0.9)), 2)
       const h_f = f * (Number(L) / d) * v ** 2 / (2 * g)
       const h_minor = Number(K_minor) * v ** 2 / (2 * g)
       const H_total = Number(H_static) + h_f + h_minor
@@ -2717,9 +2717,9 @@ export const ENGINEERING_CONFIGS: Record<string, EngineeringCalcConfig> = {
       }
       const hg = 2501 + 1.86 * T_sat - 2.3 * T_sat
       const hf = 4.18 * T_sat
-      const hfg = hg - hf
+      const _hfg = hg - hf
       const T_actual = Number(T_sup) > T_sat ? Number(T_sup) : T_sat
-      const h_sup = hg + 2.0 * (T_actual - T_sat)
+      const _h_sup = hg + 2.0 * (T_actual - T_sat)
       return { T_sat, P_sat, hg: 2676 + 0.5 * T_sat, hf: 4.18 * T_sat, hfg: 2676 + 0.5 * T_sat - 4.18 * T_sat, h_sup: 2676 + 0.5 * T_sat + 2.0 * (T_actual - T_sat) }
     },
   },
@@ -4107,7 +4107,7 @@ export const ENGINEERING_CONFIGS: Record<string, EngineeringCalcConfig> = {
       const LF_D = project_duration
       const LS_E = LF_E - d5
       const LS_D = LF_D - d4
-      const LF_B = Math.min(LS_E, LS_D)
+      const _LF_B = Math.min(LS_E, LS_D)
       const LF_C = LS_E
       const LS_C = LF_C - d3
       const float_C = Math.max(0, LS_C - EF_A)

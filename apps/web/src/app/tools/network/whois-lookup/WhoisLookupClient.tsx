@@ -32,8 +32,8 @@ const CARD: CSSProperties = {
 }
 const INPUT_BOX: CSSProperties = {
   width: '100%', padding: '10px 12px', borderRadius: 8,
-  background: 'rgba(0,0,0,0.35)', border: '1px solid var(--line-strong)',
-  color: '#fff', fontSize: 15, boxSizing: 'border-box',
+  background: 'var(--bg-2)', border: '1px solid var(--line-strong)',
+  color: 'var(--fg)', fontSize: 15, boxSizing: 'border-box',
 }
 const LABEL: CSSProperties = {
   display: 'block', marginBottom: 5, fontSize: 12,
@@ -47,7 +47,7 @@ const BTN_PRIMARY: CSSProperties = {
 const BTN_GHOST: CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)',
-  borderRadius: 8, padding: '9px 18px', color: '#c4b5fd', fontSize: 13,
+  borderRadius: 8, padding: '9px 18px', color: 'var(--brand-2)', fontSize: 13,
   fontWeight: 600, cursor: 'pointer',
 }
 const TD: CSSProperties = { padding: '9px 12px', fontSize: 13, color: 'var(--fg-2)' }
@@ -177,7 +177,7 @@ function parseRdap(data: Record<string, unknown>, query: string): ParsedWhois {
 
 function MetricCard({ label, value, sub, color = '#6366f1' }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div style={{ padding: '18px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 12, textAlign: 'center' }}>
+    <div style={{ padding: '18px 14px', background: 'var(--bg-2)', borderRadius: 12, textAlign: 'center' }}>
       <div style={{ fontSize: 18, fontWeight: 900, color, wordBreak: 'break-all' }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
       {sub && <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 3 }}>{sub}</div>}
@@ -313,7 +313,7 @@ export default function WhoisLookupClient() {
 
             {showRaw ? (
               <pre style={{
-                margin: 0, padding: '14px', background: 'rgba(0,0,0,0.4)', borderRadius: 8,
+                margin: 0, padding: '14px', background: 'var(--bg-2)', borderRadius: 8,
                 fontSize: 11, color: '#34d399', fontFamily: 'monospace', overflowX: 'auto',
                 maxHeight: 500, overflowY: 'auto', lineHeight: 1.5,
               }}>
@@ -353,9 +353,9 @@ export default function WhoisLookupClient() {
               </h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 8 }}>
                 {result.nameServers.map((ns, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'rgba(0,0,0,0.3)', borderRadius: 8, border: '1px solid rgba(255,255,255,0.05)' }}>
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'var(--bg-2)', borderRadius: 8, border: '1px solid rgba(255,255,255,0.05)' }}>
                     <span style={{ width: 24, height: 24, borderRadius: 6, background: 'rgba(99,102,241,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#a5b4fc', fontWeight: 800, flexShrink: 0 }}>{i + 1}</span>
-                    <span style={{ fontSize: 13, color: '#c4b5fd', fontFamily: 'monospace', wordBreak: 'break-all' }}>{ns}</span>
+                    <span style={{ fontSize: 13, color: 'var(--brand-2)', fontFamily: 'monospace', wordBreak: 'break-all' }}>{ns}</span>
                   </div>
                 ))}
               </div>
@@ -372,7 +372,7 @@ export default function WhoisLookupClient() {
                 {result.status.map((s, i) => {
                   const info = STATUS_INFO[s.toLowerCase()]
                   return (
-                    <div key={i} style={{ padding: '10px 16px', background: 'rgba(0,0,0,0.3)', borderRadius: 8, borderLeft: `3px solid ${info?.color ?? '#888'}` }}>
+                    <div key={i} style={{ padding: '10px 16px', background: 'var(--bg-2)', borderRadius: 8, borderLeft: `3px solid ${info?.color ?? '#888'}` }}>
                       <div style={{ fontSize: 13, color: info?.color ?? '#a5b4fc', fontWeight: 700, fontFamily: 'monospace', marginBottom: info?.desc ? 4 : 0 }}>{s}</div>
                       {info?.desc && <div style={{ fontSize: 12, color: 'var(--fg-3)', lineHeight: 1.5 }}>{info.desc}</div>}
                     </div>
@@ -402,7 +402,7 @@ export default function WhoisLookupClient() {
 
       {/* ── INFO CARD ─────────────────────────────────────────────────────── */}
       <div style={{ ...CARD, background: 'rgba(99,102,241,0.06)', borderColor: 'rgba(99,102,241,0.2)' }}>
-        <h3 style={{ margin: '0 0 12px', fontSize: 13, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+        <h3 style={{ margin: '0 0 12px', fontSize: 13, fontWeight: 700, color: 'var(--brand-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           About WHOIS &amp; RDAP
         </h3>
         <ul style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 8 }}>

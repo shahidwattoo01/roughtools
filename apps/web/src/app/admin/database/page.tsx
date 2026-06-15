@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback, useRef } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 
 type Tab = 'tables' | 'query' | 'redis'
 
@@ -82,7 +82,7 @@ export default function AdminDatabasePage() {
       {tab === 'tables' && (
         <div className="bg-[#1a1a1a] border border-white/8 rounded-xl overflow-hidden">
           <div className="px-4 py-3 border-b border-white/6 flex justify-between items-center">
-            <span className="text-[13px] font-medium">Tables — {db?.tables.length ?? 0} user tables</span>
+            <span className="text-[13px] font-medium">Tables — {db?.tables?.length ?? 0} user tables</span>
           </div>
           <table className="w-full text-[12px]">
             <thead>
