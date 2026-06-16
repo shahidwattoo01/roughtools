@@ -6,13 +6,12 @@ echo "🔍 Running pre-commit checks..."
 # 1. Run lint-staged (ESLint + Prettier on staged files)
 npx lint-staged
 
-# 2. TypeScript check on both apps
+# 2. TypeScript check on the web app
 echo "⚙️  Type checking..."
-pnpm --filter @toolverse/api type-check
-pnpm --filter @toolverse/web type-check
+pnpm --filter @workspace/web typecheck
 
 # 3. Block commit if unit tests fail
 echo "🧪 Running unit tests..."
-pnpm --filter @toolverse/calculators-core test --run
+pnpm --filter @workspace/web test
 
 echo "✅ All checks passed!"
