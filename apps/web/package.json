@@ -17,7 +17,8 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "test:ci": "jest --ci --coverage --forceExit",
-    "clean": "rm -rf .next .turbo node_modules"
+    "clean": "rm -rf .next .turbo node_modules",
+    "submit-indexnow": "tsx scripts/submit-indexnow.ts"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
