@@ -1,6 +1,7 @@
 'use client'
 import { useState, useMemo } from 'react'
 import type { CSSProperties } from 'react'
+import { exportCalcPDF } from '@/lib/calcPdf'
 
 // ─── Style tokens ─────────────────────────────────────────────────────────────
 const CARD: CSSProperties = {
@@ -358,9 +359,37 @@ export default function HomeEnergyClient() {
 
           {/* Scenario comparison */}
           <div style={CARD}>
-            <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--fg-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
-              Scenario Comparison
-            </h3>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14, flexWrap: 'wrap', gap: 10 }}>
+              <h3 style={{ margin: 0, fontSize: 14, fontWeight: 700, color: 'var(--fg-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+                Scenario Comparison
+              </h3>
+              <button
+                onClick={() => exportCalcPDF({
+                  toolName: 'Home Energy Audit',
+                  inputs: [
+                    { label: 'Home Size', value: sqft, unit: 'sq ft' }, { label: 'Year Built', value: yearBuilt },
+                    { label: 'State', value: state }, { label: 'Occupants', value: occupants },
+                    { label: 'Heating System', value: heatingSys }, { label: 'Cooling System', value: coolingSys },
+                    { label: 'Water Heater', value: waterHeater }, { label: 'Attic R-Value', value: atticR },
+                    { label: 'Wall R-Value', value: wallR }, { label: 'Window Type', value: windowType },
+                  ],
+                  results: [
+                    { label: 'Energy Score', value: `${result.score.toFixed(1)} / 10`, highlight: true },
+                    { label: 'Annual Energy Cost', value: $(result.annualEnergyCost) },
+                    { label: 'Monthly Average', value: $(result.monthlyAvg) },
+                    { label: 'CO2 Equivalent', value: result.co2Tonnes.toFixed(1) + ' t/yr' },
+                  ],
+                  tableHeaders: ['Improvement', 'Saves $/yr', 'Est. Cost', 'Payback (yrs)', 'CO2 Saved (t)'],
+                  tableRows: result.improvements.map(imp => ({
+                    Improvement: imp.name, 'Saves $/yr': $(imp.savingPerYear), 'Est. Cost': $(imp.cost),
+                    'Payback (yrs)': imp.paybackYears, 'CO2 Saved (t)': imp.co2Saved.toFixed(2),
+                  })),
+                })}
+                style={BTN_GHOST}
+              >
+                Export PDF
+              </button>
+            </div>
             <div style={{ overflowX: 'auto' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
                 <thead>

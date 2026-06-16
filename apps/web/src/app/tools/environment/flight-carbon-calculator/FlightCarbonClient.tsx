@@ -1,6 +1,7 @@
 'use client'
 import { useState, useMemo } from 'react'
 import type { CSSProperties } from 'react'
+import { exportCalcPDF } from '@/lib/calcPdf'
 
 // ─── Style tokens ─────────────────────────────────────────────────────────────
 const CARD: CSSProperties = {
@@ -245,6 +246,35 @@ export default function FlightCarbonClient() {
             <MetricCard label="Total Distance" value={totalKm.toLocaleString() + ' km'} sub={roundTrip ? 'Round trip' : 'One way'} color="#6366f1" />
             <MetricCard label="Equiv. Car Miles" value={carMilesEquiv.toLocaleString()} sub="at avg 170g CO₂/km" color="#38bdf8" />
             <MetricCard label="Trees to Offset" value={treesNeeded.toLocaleString()} sub="for 1 year" color="#10b981" />
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <button
+              onClick={() => exportCalcPDF({
+                toolName: 'Flight Carbon Calculator',
+                inputs: [
+                  { label: 'Passengers', value: passengers }, { label: 'Round Trip', value: roundTrip ? 'Yes' : 'No' },
+                  { label: 'Radiative Forcing', value: rfOn ? `On (x${RF_MULTIPLIER})` : 'Off' },
+                  { label: 'Segments', value: segments.length },
+                ],
+                results: [
+                  { label: 'Total CO2 (per passenger)', value: kg0(totalCO2Kg), highlight: true },
+                  { label: `Total CO2 (${pax} passengers)`, value: kg0(totalCO2Kg * pax) },
+                  { label: 'Total Distance', value: totalKm.toLocaleString() + ' km' },
+                  { label: 'Equivalent Car Miles', value: carMilesEquiv.toLocaleString() },
+                  { label: 'Trees to Offset (1 year)', value: treesNeeded.toLocaleString() },
+                ],
+                tableHeaders: ['Segment', 'Distance', 'Class', 'CO2/pax (no RF)', 'CO2/pax (with RF)', `CO2 total (${pax}p)`],
+                tableRows: segResults.map(r => ({
+                  Segment: r.label || `Segment ${r.id}`, Distance: r.km.toLocaleString() + ' km',
+                  Class: r.cabinClass, 'CO2/pax (no RF)': kg0(r.co2PerPaxNoRF),
+                  'CO2/pax (with RF)': kg0(r.co2PerPaxWithRF), [`CO2 total (${pax}p)`]: kg0(r.co2TotalWithRF),
+                })),
+              })}
+              style={BTN_GHOST}
+            >
+              Export PDF
+            </button>
           </div>
 
           {/* RF note */}

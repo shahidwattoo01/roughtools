@@ -1,6 +1,7 @@
 'use client'
 import { useState, useMemo } from 'react'
 import type { CSSProperties } from 'react'
+import { exportCalcPDF } from '@/lib/calcPdf'
 
 // ─── Style tokens ─────────────────────────────────────────────────────────────
 const CARD: CSSProperties = {
@@ -285,9 +286,38 @@ export default function EvCarbonClient() {
 
           {/* Grid scenario comparison */}
           <div style={CARD}>
-            <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 700, color: 'var(--fg-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
-              Grid Scenario Analysis
-            </h3>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14, flexWrap: 'wrap', gap: 10 }}>
+              <h3 style={{ margin: 0, fontSize: 14, fontWeight: 700, color: 'var(--fg-2)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+                Grid Scenario Analysis
+              </h3>
+              <button
+                onClick={() => exportCalcPDF({
+                  toolName: 'EV Carbon Offset Calculator',
+                  inputs: [
+                    { label: 'Current Car MPG', value: mpg }, { label: 'Fuel Type', value: fuelType },
+                    { label: 'Miles/Year', value: miles }, { label: 'State Grid', value: state },
+                    { label: 'EV kWh/100mi', value: evKwh }, { label: 'Gas Price', value: gasPrice, unit: '$/gal' },
+                    { label: 'Electricity Price', value: elecPrice, unit: '$/kWh' }, { label: 'Ownership', value: years, unit: 'years' },
+                  ],
+                  results: [
+                    { label: 'Annual CO2 Reduction', value: kg(result.annualCO2ReductionKg), highlight: true },
+                    { label: 'Annual Fuel Savings', value: $(result.annualFuelSavings) },
+                    { label: 'Lifetime CO2 Offset', value: t(result.lifetimeCO2Offset) },
+                    { label: 'Lifetime Fuel Savings', value: $(result.lifetimeSavings) },
+                    ...(result.breakEvenYears !== null ? [{ label: 'Break-Even Point', value: result.breakEvenYears > 0 ? result.breakEvenYears.toFixed(1) + ' yrs' : 'Immediate' }] : []),
+                  ],
+                  tableHeaders: ['Year', 'EV CO2 (kg)', 'Gas CO2 (kg)', 'CO2 Saved (kg)', 'Annual Savings', 'Cum. Savings', 'Cum. CO2 Offset (kg)'],
+                  tableRows: result.schedule.map(row => ({
+                    Year: row.year, 'EV CO2 (kg)': row.evCO2kg, 'Gas CO2 (kg)': row.gasCO2kg,
+                    'CO2 Saved (kg)': row.diffKg, 'Annual Savings': $(row.annualSavings),
+                    'Cum. Savings': $(row.cumSavings), 'Cum. CO2 Offset (kg)': row.cumCO2Offset,
+                  })),
+                })}
+                style={BTN_GHOST}
+              >
+                Export PDF
+              </button>
+            </div>
             <div style={{ overflowX: 'auto' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
                 <thead>

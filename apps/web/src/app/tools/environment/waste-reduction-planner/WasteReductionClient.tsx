@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { exportCalcPDF } from '@/lib/calcPdf'
 
 const HOUSEHOLD_SIZES = ['1 person', '2 people', '3 people', '4 people', '5+ people']
 const AREAS = ['Urban (dense city)', 'Suburban', 'Rural / Small town']
@@ -177,8 +178,37 @@ export default function WasteReductionClient() {
 
       {/* Results */}
       <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-        <div className="px-6 py-4 border-b border-gray-100">
+        <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between gap-3">
           <h2 className="text-base font-bold text-gray-900">Waste Reduction Plan</h2>
+          {result && (
+            <button
+              onClick={() => exportCalcPDF({
+                toolName: 'Waste Reduction Planner',
+                inputs: [
+                  { label: 'Household Size', value: size }, { label: 'Location Type', value: area },
+                  { label: 'Food Waste Level', value: `${foodWaste}/10` }, { label: 'Single-Use Plastic', value: `${plastic}/10` },
+                  { label: 'Recycling Activity', value: `${recycling}/10` }, { label: 'Composting', value: `${compost}/10` },
+                  { label: 'Fast Fashion Purchases', value: `${fashion}/10` },
+                ],
+                results: [
+                  { label: 'Waste Grade', value: result.grade, highlight: true },
+                  { label: 'Annual Waste', value: result.annualKg.toLocaleString() + ' kg/year' },
+                  { label: 'Weekly Waste', value: result.weeklyKg + ' kg/week' },
+                  { label: 'CO2e to Landfill', value: result.co2FromWaste + ' tonnes' },
+                  { label: 'To Landfill', value: result.landfillKg.toLocaleString() + ' kg' },
+                  { label: 'Recycled', value: result.recycledKg.toLocaleString() + ' kg' },
+                  { label: 'Composted', value: result.compostedKg.toLocaleString() + ' kg' },
+                ],
+                tableHeaders: ['Category', 'Action', 'Impact', 'Difficulty'],
+                tableRows: result.actions.map(a => ({
+                  Category: a.category, Action: a.action, Impact: a.impact, Difficulty: a.difficulty,
+                })),
+              })}
+              className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition-colors flex-shrink-0"
+            >
+              Export PDF
+            </button>
+          )}
         </div>
 
         {result ? (
