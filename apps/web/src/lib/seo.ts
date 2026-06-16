@@ -1,18 +1,18 @@
-﻿import { Metadata } from 'next'
-import { SEO_CONFIG, CATEGORY_SEO } from './seo-config'
-import { Tool, ToolCategory } from './tools-registry'
+﻿import { Metadata } from 'next';
+import { SEO_CONFIG, CATEGORY_SEO } from './seo-config';
+import { Tool, ToolCategory } from './tools-registry';
 
 // ============================================================
 // ROUGHTOOLS — SEO UTILITIES
 // Generates consistent metadata for all pages
 // ============================================================
 
-const { siteName, siteUrl, twitterHandle } = SEO_CONFIG
+const { siteName, siteUrl, twitterHandle } = SEO_CONFIG;
 
 /** Generate metadata for homepage */
 export function generateHomeMetadata(): Metadata {
-  const title = SEO_CONFIG.defaultTitle
-  const description = SEO_CONFIG.defaultDescription
+  const title = SEO_CONFIG.defaultTitle;
+  const description = SEO_CONFIG.defaultDescription;
 
   return {
     title: {
@@ -66,20 +66,23 @@ export function generateHomeMetadata(): Metadata {
     verification: {
       google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
       yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
+      other: {
+        'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ?? '',
+      },
     },
-  }
+  };
 }
 
 /** Generate metadata for a category page */
 export function generateCategoryMetadata(category: ToolCategory): Metadata {
-  const categorySeo = CATEGORY_SEO[category]
-  const canonicalUrl = `${siteUrl}/tools/${category}`
+  const categorySeo = CATEGORY_SEO[category];
+  const canonicalUrl = `${siteUrl}/tools/${category}`;
 
   if (!categorySeo) {
     return {
       title: `${category} Tools | ${siteName}`,
       description: `Free online ${category} tools`,
-    }
+    };
   }
 
   return {
@@ -115,16 +118,16 @@ export function generateCategoryMetadata(category: ToolCategory): Metadata {
       index: true,
       follow: true,
     },
-  }
+  };
 }
 
 /** Generate metadata for an individual tool page */
 export function generateToolMetadata(tool: Tool): Metadata {
-  const canonicalUrl = `${siteUrl}/tools/${tool.category}/${tool.slug}`
+  const canonicalUrl = `${siteUrl}/tools/${tool.category}/${tool.slug}`;
 
   // Title pattern: "[Tool Name] — Free Online Tool | RoughTools"
-  const title = `${tool.name} — Free Online Tool | ${siteName}`
-  const description = tool.description
+  const title = `${tool.name} — Free Online Tool | ${siteName}`;
+  const description = tool.description;
 
   return {
     title,
@@ -165,23 +168,23 @@ export function generateToolMetadata(tool: Tool): Metadata {
         'max-image-preview': 'large',
       },
     },
-  }
+  };
 }
 
 /** Generate metadata for blog post */
 export function generateBlogMetadata(params: {
-  title: string
-  description: string
-  slug: string
-  publishedAt: Date
-  updatedAt?: Date
-  author?: string
-  tags?: string[]
-  ogImage?: string
+  title: string;
+  description: string;
+  slug: string;
+  publishedAt: Date;
+  updatedAt?: Date;
+  author?: string;
+  tags?: string[];
+  ogImage?: string;
 }): Metadata {
-  const { title, description, slug, publishedAt, updatedAt, author, tags, ogImage } = params
-  const canonicalUrl = `${siteUrl}/blog/${slug}`
-  const fullTitle = `${title} | ${siteName} Blog`
+  const { title, description, slug, publishedAt, updatedAt, author, tags, ogImage } = params;
+  const canonicalUrl = `${siteUrl}/blog/${slug}`;
+  const fullTitle = `${title} | ${siteName} Blog`;
 
   return {
     title: fullTitle,
@@ -216,15 +219,15 @@ export function generateBlogMetadata(params: {
       description,
       creator: twitterHandle,
     },
-  }
+  };
 }
 
 /** Generate metadata for pricing page */
 export function generatePricingMetadata(): Metadata {
-  const title = `Pricing — Free vs Pro vs Team | ${siteName}`
+  const title = `Pricing — Free vs Pro vs Team | ${siteName}`;
   const description =
-    'Start free. Upgrade to Pro for $9/month for unlimited uses, 200MB files, no watermarks, and full history. Team plan at $29/month for 5 seats.'
-  const canonicalUrl = `${siteUrl}/pricing`
+    'Start free. Upgrade to Pro for $9/month for unlimited uses, 200MB files, no watermarks, and full history. Team plan at $29/month for 5 seats.';
+  const canonicalUrl = `${siteUrl}/pricing`;
 
   return {
     title,
@@ -242,7 +245,7 @@ export function generatePricingMetadata(): Metadata {
       title,
       description,
     },
-  }
+  };
 }
 
 /** Get breadcrumb label for a category */
@@ -264,6 +267,6 @@ export function getCategoryLabel(category: ToolCategory): string {
     engineering: 'Engineering Tools',
     medical: 'Medical & Health Tools',
     'iq-test': 'IQ Test',
-  }
-  return labels[category] || category
+  };
+  return labels[category] || category;
 }
