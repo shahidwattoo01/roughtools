@@ -109,6 +109,15 @@ const STEPS = [
   { n: 3, title: 'Get your cognitive profile', body: 'Receive your IQ score, percentile, confidence interval, and a breakdown across all six cognitive domains.' },
 ]
 
+const RELATED_TOOLS = [
+  { name: 'Percentage Calculator',         href: '/tools/calculators/percentage-calculator',         desc: 'Quickly calculate percentages, increases, and discounts.' },
+  { name: 'Statistics Calculator',         href: '/tools/calculators/statistics-calculator',         desc: 'Mean, median, mode, and variance from any data set.' },
+  { name: 'Standard Deviation Calculator', href: '/tools/calculators/standard-deviation-calculator', desc: 'Measure how spread out your data is from the mean.' },
+  { name: 'Z-Score Calculator',            href: '/tools/calculators/z-score-calculator',            desc: 'Find how many standard deviations a value is from the mean.' },
+  { name: 'Probability Calculator',        href: '/tools/calculators/probability-calculator',        desc: 'Calculate probabilities for single and combined events.' },
+  { name: 'Readability Score',             href: '/tools/text/readability-score',                    desc: 'Check how easy your writing is to read and understand.' },
+]
+
 const FAQ = [
   {
     q: 'How is this different from other free IQ tests?',
@@ -335,6 +344,25 @@ export default function IqTestLandingPage() {
                 diagnosis. If you have concerns about cognitive health, consult a qualified psychologist.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* ── RELATED TOOLS ────────────────────────────────────── */}
+        <section className="max-w-[860px] mx-auto px-6 pb-12">
+          <p className="text-[11px] font-medium tracking-[0.08em] uppercase text-[#555] dark:text-[#aaa] mb-5">
+            You might also like
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {RELATED_TOOLS.map(({ name, href, desc }) => (
+              <Link
+                key={href}
+                href={href}
+                className="bg-white dark:bg-[#1e1e1e] rounded-xl border border-black/8 dark:border-white/8 p-4 hover:border-[#a21caf]/40 dark:hover:border-[#e879f9]/40 transition-colors"
+              >
+                <h3 className="text-[13px] font-semibold mb-1 text-[#a21caf] dark:text-[#e879f9]">{name}</h3>
+                <p className="text-[12px] text-[#555] dark:text-[#aaa] leading-[1.55]">{desc}</p>
+              </Link>
+            ))}
           </div>
         </section>
 
