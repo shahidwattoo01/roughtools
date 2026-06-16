@@ -8,6 +8,7 @@ import { generateHomeMetadata } from '@/lib/seo'
 import { SEO_CONFIG } from '@/lib/seo-config'
 import dynamic from 'next/dynamic'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
+import { PageTracker } from '@/hooks/usePageTracking'
 import { AdSenseScript } from '@/components/analytics/AdSense'
 import Footer from '@/components/Footer'
 import { FontLoader } from '@/components/FontLoader'
@@ -131,6 +132,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           min-h-screen antialiased
         `}
       >
+        {/* Fires GA4 page_view on every App Router navigation */}
+        <PageTracker />
+
         {/* Skip to main content (accessibility) */}
         <a
           href="#main-content"
