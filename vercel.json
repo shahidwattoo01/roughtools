@@ -1,6 +1,6 @@
 {
   "installCommand": "pnpm install --frozen-lockfile",
-  "buildCommand": "pnpm --filter @platform/db run db:generate && pnpm --filter @workspace/web run build",
+  "buildCommand": "pnpm --filter @platform/db run db:generate && pnpm turbo run build --filter=@workspace/web",
   "outputDirectory": "apps/web/.next",
   "framework": "nextjs"
 }
