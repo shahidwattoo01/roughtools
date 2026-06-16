@@ -176,7 +176,7 @@ async function main() {
         domain: q.domain,
         format: q.format,
         difficulty: q.difficulty,
-        content: q.content,
+        content: { ...q.content, format: q.format },
         timeLimitSeconds: q.timeLimitSeconds,
         difficultyCalibrated: false,
         pilot: false,
