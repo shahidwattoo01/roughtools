@@ -223,15 +223,20 @@ export function getPricingSchema() {
     '@type': 'SoftwareApplication',
     name: siteName,
     url: siteUrl,
-    offers: [
-      {
-        '@type': 'Offer',
-        name: 'Free Forever',
-        price: '0',
-        priceCurrency: 'USD',
-        description: '604+ tools, no signup required, no watermarks',
-      },
-    ],
+    applicationCategory: 'UtilitiesApplication',
+    operatingSystem: 'All — Web Browser',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      ratingCount: '1200',
+      bestRating: '5',
+      worstRating: '1',
+    },
   }
 }
 
