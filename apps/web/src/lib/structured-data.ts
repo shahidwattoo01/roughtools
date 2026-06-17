@@ -224,7 +224,7 @@ export function getPricingSchema() {
     name: siteName,
     url: siteUrl,
     applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'All — Web Browser',
+    operatingSystem: 'Web Browser',
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -232,10 +232,10 @@ export function getPricingSchema() {
     },
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '1200',
-      bestRating: '5',
-      worstRating: '1',
+      ratingValue: 4.8,
+      ratingCount: 1200,
+      bestRating: 5,
+      worstRating: 1,
     },
   }
 }
