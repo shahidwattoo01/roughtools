@@ -51,7 +51,7 @@ export default async function Footer() {
   ]
 
   return (
-    <footer className="mt-12 pt-10 pb-6" style={{ background: '#1a1a1a' }}>
+    <footer data-site-footer="" className="mt-12 pt-10 pb-6" style={{ background: '#1a1a1a' }}>
       <div className="px-8 max-w-screen-xl mx-auto">
 
         {/* ── Green CTA banner ── */}

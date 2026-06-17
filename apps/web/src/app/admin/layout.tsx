@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { AdminSidebar } from './_components/AdminSidebar'
+import { AdminBodyClass } from './_components/AdminBodyClass'
 
 export const metadata: Metadata = {
   title: 'Admin — RoughTools',
@@ -8,11 +9,14 @@ export const metadata: Metadata = {
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen bg-[#f5f7fa] text-[#111]">
-      <AdminSidebar />
-      <main className="flex-1 min-w-0 overflow-auto">
-        {children}
-      </main>
-    </div>
+    <>
+      <AdminBodyClass />
+      <div className="flex min-h-screen bg-[#f5f7fa] text-[#111]">
+        <AdminSidebar />
+        <main className="flex-1 min-w-0 overflow-auto">
+          {children}
+        </main>
+      </div>
+    </>
   )
 }

@@ -81,6 +81,7 @@ export default function SiteHeader() {
     <>
       {/* ── Sticky header ─────────────────────────────────────── */}
       <header
+        data-site-header=""
         className="sticky top-0 z-50 h-14 flex items-center justify-between px-8"
         style={{ background: '#1a1a1a' }}
       >

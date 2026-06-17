@@ -22,16 +22,16 @@ interface AnalyticsData {
 }
 
 const PRESET_DAYS = [{ label: '7D', days: 7 }, { label: '30D', days: 30 }, { label: '90D', days: 90 }, { label: '1Y', days: 365 }]
-const TT = { contentStyle: { background: '#1a1a1a', border: '1px solid #333', borderRadius: 6, fontSize: 11 } }
+const TT = { contentStyle: { background: '#fff', border: '1px solid #e5e7eb', borderRadius: 6, fontSize: 11 } }
 const PIE_COLORS = ['#1a6b3c', '#2563eb', '#7c3aed', '#d97706', '#dc2626', '#0891b2']
 const fmt = (n: number) => n >= 1_000_000 ? `${(n/1e6).toFixed(1)}M` : n >= 1_000 ? `${(n/1e3).toFixed(1)}K` : String(n)
 
 function Num({ n, label, sub }: { n: string | number; label: string; sub?: string }) {
   return (
-    <div className="bg-[#1a1a1a] border border-white/8 rounded-xl p-4">
-      <div className="text-[10px] text-[#555] uppercase tracking-wide mb-1">{label}</div>
-      <div className="text-2xl font-semibold">{n}</div>
-      {sub && <div className="text-[11px] text-[#666] mt-0.5">{sub}</div>}
+    <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+      <div className="text-[10px] text-gray-400 uppercase tracking-wide mb-1">{label}</div>
+      <div className="text-2xl font-semibold text-[#111]">{n}</div>
+      {sub && <div className="text-[11px] text-gray-400 mt-0.5">{sub}</div>}
     </div>
   )
 }
@@ -67,7 +67,7 @@ export default function AdminAnalyticsPage() {
         <div className="flex gap-1">
           {PRESET_DAYS.map(p => (
             <button key={p.days} onClick={() => setDays(p.days)}
-              className={`px-3 py-1.5 rounded-lg text-[12px] transition-colors ${days === p.days ? 'bg-[#1a6b3c] text-white' : 'border border-white/10 text-[#aaa] hover:text-white'}`}>
+              className={`px-3 py-1.5 rounded-lg text-[12px] transition-colors ${days === p.days ? 'bg-[#1a6b3c] text-white' : 'border border-gray-200 text-gray-500 hover:text-[#111] bg-white shadow-sm'}`}>
               {p.label}
             </button>
           ))}
@@ -85,13 +85,13 @@ export default function AdminAnalyticsPage() {
       </div>
 
       {/* Main area chart */}
-      <div className="bg-[#1a1a1a] border border-white/8 rounded-xl p-4">
+      <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-[13px] font-medium capitalize">{metric} — last {days} days</span>
+          <span className="text-[13px] font-medium capitalize text-[#111]">{metric} — last {days} days</span>
           <div className="flex gap-1">
             {(['pageviews','sessions','users'] as const).map(m => (
               <button key={m} onClick={() => setMetric(m)}
-                className={`px-3 py-1 rounded text-[11px] capitalize transition-colors ${metric === m ? 'bg-[#1a6b3c] text-white' : 'text-[#555] hover:text-[#aaa]'}`}>
+                className={`px-3 py-1 rounded text-[11px] capitalize transition-colors ${metric === m ? 'bg-[#1a6b3c] text-white' : 'text-gray-400 hover:text-[#111]'}`}>
                 {m}
               </button>
             ))}
@@ -102,13 +102,13 @@ export default function AdminAnalyticsPage() {
             <AreaChart data={chartData}>
               <defs>
                 <linearGradient id="ag" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%"  stopColor="#1a6b3c" stopOpacity={0.3} />
+                  <stop offset="5%"  stopColor="#1a6b3c" stopOpacity={0.2} />
                   <stop offset="95%" stopColor="#1a6b3c" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#222" />
-              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#444' }} tickFormatter={v => v.slice(5)} interval={Math.floor(chartData.length / 8)} />
-              <YAxis tick={{ fontSize: 9, fill: '#444' }} width={40} tickFormatter={fmt} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#999' }} tickFormatter={v => v.slice(5)} interval={Math.floor(chartData.length / 8)} />
+              <YAxis tick={{ fontSize: 9, fill: '#999' }} width={40} tickFormatter={fmt} />
               <Tooltip {...TT} formatter={(v: number) => [fmt(v), metric]} />
               <Area type="monotone" dataKey="value" stroke="#1a6b3c" fill="url(#ag)" strokeWidth={2} dot={false} />
             </AreaChart>
@@ -118,27 +118,27 @@ export default function AdminAnalyticsPage() {
 
       {/* Sources + Devices */}
       <div className="grid lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2 bg-[#1a1a1a] border border-white/8 rounded-xl overflow-hidden">
-          <div className="px-4 py-3 border-b border-white/6 text-[13px] font-medium">Traffic Sources</div>
+        <div className="lg:col-span-2 bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+          <div className="px-4 py-3 border-b border-gray-100 text-[13px] font-medium text-[#111]">Traffic Sources</div>
           <table className="w-full text-[12px]">
-            <thead><tr className="border-b border-white/5">{['Channel','Sessions','Bounce','Duration'].map(h=><th key={h} className="text-left px-4 py-2 text-[10px] uppercase tracking-wide text-[#444] font-medium">{h}</th>)}</tr></thead>
+            <thead><tr className="border-b border-gray-100 bg-gray-50">{['Channel','Sessions','Bounce','Duration'].map(h=><th key={h} className="text-left px-4 py-2 text-[10px] uppercase tracking-wide text-gray-400 font-medium">{h}</th>)}</tr></thead>
             <tbody>
               {(d?.channels ?? []).map((c, i) => (
-                <tr key={c.channel} className="border-b border-white/4 hover:bg-white/2">
-                  <td className="px-4 py-2.5 flex items-center gap-2">
+                <tr key={c.channel} className="border-b border-gray-100 hover:bg-gray-50">
+                  <td className="px-4 py-2.5 flex items-center gap-2 text-[#111]">
                     <span className="w-2 h-2 rounded-full inline-block" style={{ background: PIE_COLORS[i % PIE_COLORS.length] }} />
                     {c.channel}
                   </td>
-                  <td className="px-4 py-2.5 tabular-nums">{c.sessions.toLocaleString()}</td>
-                  <td className="px-4 py-2.5">{c.bounce}%</td>
-                  <td className="px-4 py-2.5 text-[#888]">{c.avgDuration}s</td>
+                  <td className="px-4 py-2.5 tabular-nums text-[#111]">{c.sessions.toLocaleString()}</td>
+                  <td className="px-4 py-2.5 text-gray-600">{c.bounce}%</td>
+                  <td className="px-4 py-2.5 text-gray-400">{c.avgDuration}s</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <div className="bg-[#1a1a1a] border border-white/8 rounded-xl p-4">
-          <div className="text-[13px] font-medium mb-3">Devices</div>
+        <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+          <div className="text-[13px] font-medium mb-3 text-[#111]">Devices</div>
           <ResponsiveContainer width="100%" height={150}>
             <PieChart><Pie data={d?.devices ?? []} dataKey="pct" nameKey="device" cx="50%" cy="50%" outerRadius={58}>
               {(d?.devices ?? []).map((entry, i) => <Cell key={i} fill={PIE_COLORS[i]} />)}
@@ -147,8 +147,8 @@ export default function AdminAnalyticsPage() {
           <div className="mt-3 space-y-1">
             {(d?.countries ?? []).slice(0, 5).map(c => (
               <div key={c.country} className="flex justify-between text-[11px]">
-                <span className="text-[#888]">{c.country}</span>
-                <span className="tabular-nums">{c.sessions.toLocaleString()}</span>
+                <span className="text-gray-400">{c.country}</span>
+                <span className="tabular-nums text-[#111]">{c.sessions.toLocaleString()}</span>
               </div>
             ))}
           </div>
@@ -156,19 +156,19 @@ export default function AdminAnalyticsPage() {
       </div>
 
       {/* Top tools */}
-      <div className="bg-[#1a1a1a] border border-white/8 rounded-xl overflow-hidden">
-        <div className="px-4 py-3 border-b border-white/6 text-[13px] font-medium">Top Tools — {days}D</div>
+      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <div className="px-4 py-3 border-b border-gray-100 text-[13px] font-medium text-[#111]">Top Tools — {days}D</div>
         <table className="w-full text-[12px]">
-          <thead><tr className="border-b border-white/5">{['#','Tool','Category','Pageviews','Δ','Duration'].map(h=><th key={h} className="text-left px-4 py-2 text-[10px] uppercase tracking-wide text-[#444] font-medium">{h}</th>)}</tr></thead>
+          <thead><tr className="border-b border-gray-100 bg-gray-50">{['#','Tool','Category','Pageviews','Δ','Duration'].map(h=><th key={h} className="text-left px-4 py-2 text-[10px] uppercase tracking-wide text-gray-400 font-medium">{h}</th>)}</tr></thead>
           <tbody>
             {(d?.topTools ?? []).map((t, i) => (
-              <tr key={t.slug} className="border-b border-white/4 hover:bg-white/2">
-                <td className="px-4 py-2.5 text-[#555] w-8">{i+1}</td>
-                <td className="px-4 py-2.5 font-medium">{t.name}</td>
-                <td className="px-4 py-2.5 text-[#888]">{t.category}</td>
-                <td className="px-4 py-2.5 tabular-nums">{t.pageviews.toLocaleString()}</td>
-                <td className="px-4 py-2.5"><span className={t.change >= 0 ? 'text-[#6fcf97]' : 'text-[#f87171]'}>{t.change >= 0 ? '▲' : '▼'}{Math.abs(t.change)}%</span></td>
-                <td className="px-4 py-2.5 text-[#888]">{t.avgDuration}s</td>
+              <tr key={t.slug} className="border-b border-gray-100 hover:bg-gray-50">
+                <td className="px-4 py-2.5 text-gray-400 w-8">{i+1}</td>
+                <td className="px-4 py-2.5 font-medium text-[#111]">{t.name}</td>
+                <td className="px-4 py-2.5 text-gray-400">{t.category}</td>
+                <td className="px-4 py-2.5 tabular-nums text-[#111]">{t.pageviews.toLocaleString()}</td>
+                <td className="px-4 py-2.5"><span className={t.change >= 0 ? 'text-green-600' : 'text-red-500'}>{t.change >= 0 ? '▲' : '▼'}{Math.abs(t.change)}%</span></td>
+                <td className="px-4 py-2.5 text-gray-400">{t.avgDuration}s</td>
               </tr>
             ))}
           </tbody>
@@ -176,22 +176,22 @@ export default function AdminAnalyticsPage() {
       </div>
 
       {/* Search queries */}
-      <div className="bg-[#1a1a1a] border border-white/8 rounded-xl overflow-hidden">
-        <div className="px-4 py-3 border-b border-white/6 flex justify-between">
-          <span className="text-[13px] font-medium">Top Search Queries</span>
-          <span className="text-[10px] text-[#555]">Search Console · estimated</span>
+      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <div className="px-4 py-3 border-b border-gray-100 flex justify-between">
+          <span className="text-[13px] font-medium text-[#111]">Top Search Queries</span>
+          <span className="text-[10px] text-gray-400">Search Console · estimated</span>
         </div>
         <table className="w-full text-[12px]">
-          <thead><tr className="border-b border-white/5">{['Query','Impressions','Clicks','CTR','Position'].map(h=><th key={h} className="text-left px-4 py-2 text-[10px] uppercase tracking-wide text-[#444] font-medium">{h}</th>)}</tr></thead>
+          <thead><tr className="border-b border-gray-100 bg-gray-50">{['Query','Impressions','Clicks','CTR','Position'].map(h=><th key={h} className="text-left px-4 py-2 text-[10px] uppercase tracking-wide text-gray-400 font-medium">{h}</th>)}</tr></thead>
           <tbody>
             {(d?.queries ?? []).map(q => (
-              <tr key={q.query} className="border-b border-white/4 hover:bg-white/2">
-                <td className="px-4 py-2.5 text-white">{q.query}</td>
-                <td className="px-4 py-2.5 tabular-nums">{q.impressions.toLocaleString()}</td>
-                <td className="px-4 py-2.5 tabular-nums">{q.clicks.toLocaleString()}</td>
-                <td className="px-4 py-2.5">{q.ctr}%</td>
+              <tr key={q.query} className="border-b border-gray-100 hover:bg-gray-50">
+                <td className="px-4 py-2.5 text-[#111]">{q.query}</td>
+                <td className="px-4 py-2.5 tabular-nums text-[#111]">{q.impressions.toLocaleString()}</td>
+                <td className="px-4 py-2.5 tabular-nums text-[#111]">{q.clicks.toLocaleString()}</td>
+                <td className="px-4 py-2.5 text-gray-600">{q.ctr}%</td>
                 <td className="px-4 py-2.5 tabular-nums">
-                  <span className={q.position <= 3 ? 'text-[#6fcf97]' : q.position <= 10 ? 'text-[#fbbf24]' : 'text-[#888]'}>
+                  <span className={q.position <= 3 ? 'text-green-600' : q.position <= 10 ? 'text-yellow-500' : 'text-gray-400'}>
                     {q.position.toFixed(1)}
                   </span>
                 </td>
