@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { generateHomeMetadata } from '@/lib/seo'
 import { JsonLd } from '@/components/JsonLd'
-import { getWebsiteSchema, getOrganizationSchema, getPricingSchema } from '@/lib/structured-data'
+import { getWebsiteSchema, getOrganizationSchema, getPricingSchema, getFAQSchema, getItemListSchema } from '@/lib/structured-data'
 import { TOTAL_REAL_TOOLS } from '@/lib/tool-counts'
 import { CategoryGrid } from '@/components/CategoryGrid'
 import {
@@ -32,8 +32,36 @@ const POPULAR_TOOLS = [
   { label: 'JSON Formatter',         href: '/tools/developer/json-formatter' },
 ]
 
+const HOME_FAQS = [
+  { question: 'Is RoughTools free?', answer: 'Yes, all 604+ tools are completely free with no signup required. You can use every tool directly in your browser without creating an account.' },
+  { question: 'Do I need to create an account?', answer: 'No account needed. All tools work directly in your browser. Some tools have a daily usage limit (20 uses/day) which resets at midnight.' },
+  { question: 'Is my data safe?', answer: 'Yes. Most tools run entirely in your browser — no files are sent to our servers. For server-side tools like PDF processing, files are automatically deleted within 1 hour.' },
+  { question: 'What kinds of tools does RoughTools offer?', answer: 'RoughTools offers 604+ tools across 16 categories: PDF tools, calculators, medical calculators, engineering calculators, image tools, developer tools, text tools, unit converters, network tools, legal tools, real estate tools, business tools, security tools, document tools, environment tools, and an IQ test.' },
+  { question: 'Does RoughTools work on mobile?', answer: 'Yes, all tools are fully responsive and work on smartphones and tablets as well as desktop computers.' },
+  { question: 'Are there any watermarks on downloads?', answer: 'No watermarks on free tier. Files are returned clean, with no branding added.' },
+]
+
+const HOME_ITEM_LIST = [
+  { name: 'Compress PDF',          url: 'https://www.roughtools.com/tools/pdf/compress-pdf' },
+  { name: 'PDF to Word',           url: 'https://www.roughtools.com/tools/pdf/pdf-to-word' },
+  { name: 'Merge PDF',             url: 'https://www.roughtools.com/tools/pdf/merge-pdf' },
+  { name: 'BMI Calculator',        url: 'https://www.roughtools.com/tools/calculators/bmi-calculator' },
+  { name: 'Background Remover',    url: 'https://www.roughtools.com/tools/image-tools/background-remover' },
+  { name: 'Percentage Calculator', url: 'https://www.roughtools.com/tools/calculators/percentage-calculator' },
+  { name: 'Loan Calculator',       url: 'https://www.roughtools.com/tools/calculators/loan-calculator' },
+  { name: 'Age Calculator',        url: 'https://www.roughtools.com/tools/calculators/age-calculator' },
+  { name: 'Image Compressor',      url: 'https://www.roughtools.com/tools/image-tools/image-compressor' },
+  { name: 'JSON Formatter',        url: 'https://www.roughtools.com/tools/developer/json-formatter' },
+]
+
 export default function HomePage() {
-  const schemas = [getWebsiteSchema(), getOrganizationSchema(), getPricingSchema()]
+  const schemas = [
+    getWebsiteSchema(),
+    getOrganizationSchema(),
+    getPricingSchema(),
+    getFAQSchema(HOME_FAQS),
+    getItemListSchema(HOME_ITEM_LIST),
+  ]
 
   return (
     <>

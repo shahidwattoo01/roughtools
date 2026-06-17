@@ -235,6 +235,21 @@ export function getPricingSchema() {
   }
 }
 
+// ─── ITEM LIST SCHEMA ────────────────────────────────────────
+export function getItemListSchema(items: Array<{ name: string; url: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Popular Free Online Tools',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      url: item.url,
+    })),
+  }
+}
+
 // ─── HELPER ──────────────────────────────────────────────────
 function getCategoryApplicationType(category: ToolCategory): string {
   const types: Record<ToolCategory, string> = {
