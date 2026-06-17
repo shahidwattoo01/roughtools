@@ -42,7 +42,7 @@ const nextConfig = {
               "img-src 'self' data: https: blob:",
               "font-src 'self' https://fonts.gstatic.com",
               "frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com",
-              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://adservice.google.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google",
+              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://adservice.google.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google",
             ].join('; '),
           },
         ],
@@ -85,10 +85,6 @@ const nextConfig = {
 
     return [
       { source: '/home', destination: '/', permanent: true },
-      // Old (auth) route group URLs → canonical /auth/ paths
-      { source: '/signin',  destination: '/auth/signin',  permanent: true },
-      { source: '/signup',  destination: '/auth/signup',  permanent: true },
-      { source: '/signout', destination: '/auth/signout', permanent: true },
       ...SECURITY_TOOL_REDIRECTS.map(slug => ({
         source: `/security/${slug}`,
         destination: `/tools/security/${slug}`,

@@ -17,9 +17,7 @@ export function usePageTracking() {
   useEffect(() => {
     if (!pathname) return;
 
-    const url = searchParams.toString()
-      ? `${pathname}?${searchParams.toString()}`
-      : pathname;
+    const url = searchParams.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
 
     // GA4 page view
     trackPageView(url, document.title);
@@ -29,12 +27,29 @@ export function usePageTracking() {
   }, [pathname, searchParams]);
 }
 
+/** Fire a GA4 user_engagement event after 10 s of dwell time so single-page
+ *  tool sessions are not counted as bounces. */
+function useEngagementTimer() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'user_engagement', { engagement_time_msec: 10000 });
+      }
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
+}
+
 // â”€â”€â”€ Provider wrapper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 import { Suspense } from 'react';
 
 function PageTrackingInner() {
   usePageTracking();
+  useEngagementTimer();
   return null;
 }
 
