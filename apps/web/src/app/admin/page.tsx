@@ -40,12 +40,12 @@ function MetricCard({
   label: string; value: string | number; sub?: string; delta?: number | null; color?: string
 }) {
   return (
-    <div className="bg-[#1a1a1a] border border-white/8 rounded-xl p-4">
-      <div className="text-[11px] text-[#555] uppercase tracking-wide mb-2">{label}</div>
-      <div className="text-2xl font-semibold text-white">{value}</div>
-      {sub && <div className="text-[11px] text-[#666] mt-0.5">{sub}</div>}
+    <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+      <div className="text-[11px] text-gray-400 uppercase tracking-wide mb-2">{label}</div>
+      <div className="text-2xl font-semibold text-[#111]">{value}</div>
+      {sub && <div className="text-[11px] text-gray-400 mt-0.5">{sub}</div>}
       {delta !== undefined && delta !== null && (
-        <div className={`text-[11px] mt-1 font-medium ${delta >= 0 ? 'text-[#6fcf97]' : 'text-[#f87171]'}`}>
+        <div className={`text-[11px] mt-1 font-medium ${delta >= 0 ? 'text-green-600' : 'text-red-500'}`}>
           {delta >= 0 ? '▲' : '▼'} {Math.abs(delta)}% vs yesterday
         </div>
       )}
@@ -57,13 +57,13 @@ function MetricCard({
 
 function AlertItem({ level, msg, action }: { level: 'warn' | 'error' | 'info'; msg: string; action?: string }) {
   const colors = {
-    error: 'border-l-[#f87171] bg-red-900/10',
-    warn:  'border-l-[#fbbf24] bg-yellow-900/10',
-    info:  'border-l-[#60a5fa] bg-blue-900/10',
+    error: 'border-l-red-400 bg-red-50',
+    warn:  'border-l-yellow-400 bg-yellow-50',
+    info:  'border-l-blue-400 bg-blue-50',
   }
   return (
     <div className={`border-l-2 ${colors[level]} px-4 py-2.5 flex items-center justify-between`}>
-      <span className="text-[13px] text-[#ccc]">{msg}</span>
+      <span className="text-[13px] text-gray-600">{msg}</span>
       {action && <span className="text-[11px] text-[#1a6b3c] cursor-pointer hover:underline">{action}</span>}
     </div>
   )
@@ -109,7 +109,7 @@ export default function AdminDashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-semibold">Command Center</h1>
-          <p className="text-[12px] text-[#555] mt-0.5">
+          <p className="text-[12px] text-gray-400 mt-0.5">
             Auto-refreshes every 60s · Last: {lastRefresh.toLocaleTimeString()}
           </p>
         </div>
@@ -121,7 +121,7 @@ export default function AdminDashboard() {
           ].map(({ label, href, onClick }) => (
             <Link key={label} href={href as any}
               onClick={onClick ? (e) => { e.preventDefault(); onClick() } : undefined}
-              className="text-[12px] border border-white/10 hover:border-[#1a6b3c] rounded-lg px-3 py-1.5 text-[#aaa] hover:text-white transition-colors">
+              className="text-[12px] border border-gray-200 hover:border-[#1a6b3c] rounded-lg px-3 py-1.5 text-gray-500 hover:text-[#1a6b3c] transition-colors bg-white shadow-sm">
               {label}
             </Link>
           ))}
@@ -146,15 +146,15 @@ export default function AdminDashboard() {
       {/* Row 2 — Charts */}
       <div className="grid lg:grid-cols-2 gap-4">
         {/* 30-day sessions */}
-        <div className="bg-[#1a1a1a] border border-white/8 rounded-xl p-4">
-          <div className="text-[12px] text-[#666] mb-3">IQ Test Sessions — Last 30 Days</div>
+        <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+          <div className="text-[12px] text-gray-400 mb-3">IQ Test Sessions — Last 30 Days</div>
           <ResponsiveContainer width="100%" height={160}>
             <BarChart data={data?.thirtyDayChart ?? []} barSize={6}>
-              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#444' }}
+              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#999' }}
                 tickFormatter={v => v.slice(5)} interval={4} />
-              <YAxis tick={{ fontSize: 9, fill: '#444' }} width={28} />
+              <YAxis tick={{ fontSize: 9, fill: '#999' }} width={28} />
               <Tooltip
-                contentStyle={{ background: '#1a1a1a', border: '1px solid #333', borderRadius: 6, fontSize: 11 }}
+                contentStyle={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 6, fontSize: 11 }}
                 labelFormatter={v => String(v)}
               />
               <Bar dataKey="sessions" fill="#1a6b3c" radius={[2, 2, 0, 0]} />
@@ -163,65 +163,65 @@ export default function AdminDashboard() {
         </div>
 
         {/* Sessions trend line */}
-        <div className="bg-[#1a1a1a] border border-white/8 rounded-xl p-4">
-          <div className="text-[12px] text-[#666] mb-3">7-Day Session Trend</div>
+        <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+          <div className="text-[12px] text-gray-400 mb-3">7-Day Session Trend</div>
           <ResponsiveContainer width="100%" height={160}>
             <LineChart data={(data?.thirtyDayChart ?? []).slice(-7)}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#222" />
-              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#444' }}
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#999' }}
                 tickFormatter={v => v.slice(5)} />
-              <YAxis tick={{ fontSize: 9, fill: '#444' }} width={28} />
+              <YAxis tick={{ fontSize: 9, fill: '#999' }} width={28} />
               <Tooltip
-                contentStyle={{ background: '#1a1a1a', border: '1px solid #333', borderRadius: 6, fontSize: 11 }}
+                contentStyle={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 6, fontSize: 11 }}
               />
-              <Line type="monotone" dataKey="sessions" stroke="#6fcf97" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="sessions" stroke="#1a6b3c" strokeWidth={2} dot={false} />
             </LineChart>
           </ResponsiveContainer>
         </div>
       </div>
 
       {/* Row 3 — Recent completions */}
-      <div className="bg-[#1a1a1a] border border-white/8 rounded-xl overflow-hidden">
-        <div className="px-4 py-3 border-b border-white/6 flex items-center justify-between">
-          <span className="text-[13px] font-medium">Recent IQ Completions</span>
+      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
+          <span className="text-[13px] font-medium text-[#111]">Recent IQ Completions</span>
           <Link href="/admin/iq" className="text-[11px] text-[#1a6b3c] hover:underline">View all →</Link>
         </div>
         <table className="w-full text-[12px]">
           <thead>
-            <tr className="border-b border-white/5">
+            <tr className="border-b border-gray-100 bg-gray-50">
               {['Session', 'IQ Score', 'Percentile', 'Age Group', 'Valid', 'Completed'].map(h => (
-                <th key={h} className="text-left px-4 py-2.5 text-[10px] uppercase tracking-wide text-[#444] font-medium">{h}</th>
+                <th key={h} className="text-left px-4 py-2.5 text-[10px] uppercase tracking-wide text-gray-400 font-medium">{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {(data?.recentSessions ?? []).map(s => (
-              <tr key={s.id} className="border-b border-white/5 hover:bg-white/2 transition-colors">
-                <td className="px-4 py-2.5 font-mono text-[10px] text-[#555]">{s.id.slice(-8).toUpperCase()}</td>
-                <td className="px-4 py-2.5 font-semibold text-[#6fcf97]">{s.iqScore ?? '—'}</td>
-                <td className="px-4 py-2.5">{s.percentile != null ? `${s.percentile}th` : '—'}</td>
-                <td className="px-4 py-2.5 text-[#888]">{s.ageGroup.replace('AGE_', '').replace('_', '–')}</td>
+              <tr key={s.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td className="px-4 py-2.5 font-mono text-[10px] text-gray-400">{s.id.slice(-8).toUpperCase()}</td>
+                <td className="px-4 py-2.5 font-semibold text-[#1a6b3c]">{s.iqScore ?? '—'}</td>
+                <td className="px-4 py-2.5 text-gray-600">{s.percentile != null ? `${s.percentile}th` : '—'}</td>
+                <td className="px-4 py-2.5 text-gray-500">{s.ageGroup.replace('AGE_', '').replace('_', '–')}</td>
                 <td className="px-4 py-2.5">
-                  <span className={`text-[10px] font-medium ${s.isValid ? 'text-[#6fcf97]' : 'text-[#f87171]'}`}>
+                  <span className={`text-[10px] font-medium ${s.isValid ? 'text-green-600' : 'text-red-500'}`}>
                     {s.isValid ? '✓ Valid' : '✗ Invalid'}
                   </span>
                 </td>
-                <td className="px-4 py-2.5 text-[#555]">
+                <td className="px-4 py-2.5 text-gray-400">
                   {s.completedAt ? new Date(s.completedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—'}
                 </td>
               </tr>
             ))}
             {!data?.recentSessions?.length && (
-              <tr><td colSpan={6} className="px-4 py-6 text-center text-[#444]">No completed sessions yet.</td></tr>
+              <tr><td colSpan={6} className="px-4 py-6 text-center text-gray-400">No completed sessions yet.</td></tr>
             )}
           </tbody>
         </table>
       </div>
 
       {/* Row 4 — Alert center */}
-      <div className="bg-[#1a1a1a] border border-white/8 rounded-xl overflow-hidden">
-        <div className="px-4 py-3 border-b border-white/6">
-          <span className="text-[13px] font-medium">Alert Center</span>
+      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <div className="px-4 py-3 border-b border-gray-100">
+          <span className="text-[13px] font-medium text-[#111]">Alert Center</span>
         </div>
         <div className="divide-y divide-white/5">
           {v?.dbLatencyMs && v.dbLatencyMs > 100 ? (
@@ -244,7 +244,7 @@ export default function AdminDashboard() {
           { label: 'View Error Log',      href: '/admin/monitoring' },
         ].map(({ label, href }) => (
           <Link key={label} href={href as any}
-            className="bg-[#1a1a1a] border border-white/8 hover:border-[#1a6b3c] rounded-xl px-4 py-3 text-[12px] text-[#aaa] hover:text-white transition-colors text-center">
+            className="bg-white border border-gray-200 hover:border-[#1a6b3c] rounded-xl px-4 py-3 text-[12px] text-gray-500 hover:text-[#1a6b3c] transition-colors text-center shadow-sm">
             {label}
           </Link>
         ))}

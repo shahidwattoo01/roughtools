@@ -49,18 +49,18 @@ export function AdminSidebar() {
   const path = usePathname()
 
   return (
-    <aside className="w-[200px] flex-shrink-0 bg-[#111] border-r border-white/6 flex flex-col h-screen sticky top-0 overflow-y-auto">
+    <aside className="w-[200px] flex-shrink-0 bg-white border-r border-gray-200 flex flex-col h-screen sticky top-0 overflow-y-auto">
       {/* Logo */}
-      <div className="px-4 py-4 border-b border-white/6">
-        <div className="text-sm font-bold text-white">RoughTools</div>
-        <div className="text-[10px] text-[#555] mt-0.5">Admin Panel</div>
+      <div className="px-4 py-4 border-b border-gray-200">
+        <div className="text-sm font-bold text-[#111]">RoughTools</div>
+        <div className="text-[10px] text-gray-400 mt-0.5">Admin Panel</div>
       </div>
 
       {/* Nav */}
       <nav className="flex-1 px-2 py-3 space-y-4 overflow-y-auto">
         {NAV.map(({ section, items }) => (
           <div key={section}>
-            <div className="px-2 mb-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[#444]">
+            <div className="px-2 mb-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-gray-400">
               {section}
             </div>
             {items.map(({ href, label, icon }) => {
@@ -71,8 +71,8 @@ export function AdminSidebar() {
                   href={href as any}
                   className={`flex items-center gap-2.5 px-2 py-2 rounded-lg text-[13px] transition-colors ${
                     active
-                      ? 'bg-[#1a6b3c]/20 text-[#6fcf97] font-medium'
-                      : 'text-[#888] hover:text-white hover:bg-white/5'
+                      ? 'bg-[#1a6b3c]/10 text-[#1a6b3c] font-medium'
+                      : 'text-gray-500 hover:text-[#111] hover:bg-gray-100'
                   }`}
                 >
                   <span className="text-[11px] w-4 flex-shrink-0 opacity-70">{icon}</span>
@@ -85,13 +85,13 @@ export function AdminSidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="px-4 py-3 border-t border-white/6">
+      <div className="px-4 py-3 border-t border-gray-200">
         <button
           onClick={() => {
             document.cookie = 'admin_token=; path=/; max-age=0'
             window.location.href = '/admin/login'
           }}
-          className="text-[11px] text-[#555] hover:text-[#f87171] transition-colors w-full text-left"
+          className="text-[11px] text-gray-400 hover:text-red-500 transition-colors w-full text-left"
         >
           Sign out
         </button>

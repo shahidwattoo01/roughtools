@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
+import { jwtVerify } from 'jose'
 
-export async function requireAdmin(_req: NextRequest): Promise<null | NextResponse> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const session = await getServerSession(authOptions) as any
-  if (!session) return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
-  if (session.user?.role !== 'ADMIN') {
-    return NextResponse.json({ message: 'Forbidden' }, { status: 403 })
+const ADMIN_SECRET = new TextEncoder().encode(
+  process.env.ADMIN_JWT_SECRET ?? 'admin-dev-secret-change-in-prod',
+)
+
+export async function requireAdmin(req: NextRequest): Promise<null | NextResponse> {
+  const token = req.cookies.get('admin_token')?.value ?? ''
+  if (!token) return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
+
+  try {
+    const { payload } = await jwtVerify(token, ADMIN_SECRET)
+    if ((payload as { role?: string }).role !== 'ADMIN') {
+      return NextResponse.json({ message: 'Forbidden' }, { status: 403 })
+    }
+    return null
+  } catch {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
   }
-  return null
 }

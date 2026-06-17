@@ -39,30 +39,30 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#f5f7fa] flex items-center justify-center px-4">
       <div className="w-full max-w-[360px]">
         <div className="text-center mb-8">
-          <div className="text-2xl font-bold text-white mb-1">RoughTools</div>
-          <div className="text-[13px] text-[#666]">Admin Panel</div>
+          <div className="text-2xl font-bold text-[#111] mb-1">RoughTools</div>
+          <div className="text-[13px] text-gray-400">Admin Panel</div>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-[#1a1a1a] border border-white/8 rounded-2xl p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4 shadow-sm">
           <div>
-            <label className="block text-[12px] font-medium text-[#aaa] mb-1.5">Email</label>
+            <label className="block text-[12px] font-medium text-gray-600 mb-1.5">Email</label>
             <input
               type="email" value={email} onChange={e => setEmail(e.target.value)}
               required autoFocus
-              className="w-full bg-[#111] border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder-[#444]
+              className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-[#111] placeholder-gray-400
                          focus:outline-none focus:border-[#1a6b3c] transition-colors"
               placeholder="admin@roughtools.com"
             />
           </div>
           <div>
-            <label className="block text-[12px] font-medium text-[#aaa] mb-1.5">Password</label>
+            <label className="block text-[12px] font-medium text-gray-600 mb-1.5">Password</label>
             <input
               type="password" value={password} onChange={e => setPassword(e.target.value)}
               required
-              className="w-full bg-[#111] border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white
+              className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-[#111]
                          focus:outline-none focus:border-[#1a6b3c] transition-colors"
             />
           </div>
