@@ -207,12 +207,39 @@ const REGISTRY_TOOLS: Tool[] = [
     priority: 0.75,
   },
   {
+    slug: 'pdf-editor',
+    name: 'PDF Editor',
+    category: 'pdf',
+    description:
+      'Edit PDF files online free — add text, annotations, and notes to any PDF. No signup, no install.',
+    keywords: [
+      'edit pdf online free',
+      'pdf editor',
+      'pdf editor online',
+      'edit pdf free',
+      'add text to pdf',
+      'online pdf editor',
+      'edit pdf without adobe',
+    ],
+    isNew: true,
+    popular: true,
+    priority: 0.95,
+  },
+  {
     slug: 'add-page-numbers',
     name: 'Add Page Numbers to PDF',
     category: 'pdf',
-    description: 'Add page numbers to PDF documents online for free.',
-    keywords: ['add page numbers pdf', 'pdf page numbers', 'number pdf pages'],
-    priority: 0.7,
+    description:
+      'Add page numbers to PDF documents online for free. Choose position and starting number. Instant, no signup.',
+    keywords: [
+      'add page numbers to pdf',
+      'pdf page numbers',
+      'number pdf pages online free',
+      'pdf page numbering',
+      'add page numbers pdf free',
+    ],
+    popular: true,
+    priority: 0.88,
   },
   {
     slug: 'organize-pdf',
