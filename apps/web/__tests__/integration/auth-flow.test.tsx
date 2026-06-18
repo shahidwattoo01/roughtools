@@ -4,12 +4,10 @@ import userEvent from '@testing-library/user-event';
 import { SignInPage } from '@/app/(auth)/signin/page';
 import { SignUpPage } from '@/app/(auth)/signup/page';
 
-// Mock next-auth
-const mockSignIn = jest.fn();
-const mockSignUp = jest.fn();
-
+// Mock next-auth — use jest.fn() inline so the factory can reference it
+// during Jest's hoisted mock execution (const has TDZ, inline avoids it)
 jest.mock('next-auth/react', () => ({
-  signIn: mockSignIn,
+  signIn: jest.fn(),
   signOut: jest.fn(),
   useSession: () => ({
     data: null,
@@ -17,6 +15,9 @@ jest.mock('next-auth/react', () => ({
   }),
   getSession: jest.fn(),
 }));
+
+const mockSignIn = jest.requireMock('next-auth/react').signIn as jest.Mock;
+const mockSignUp = jest.fn(); // unused in next-auth mock, kept for test references
 
 jest.mock('next/navigation', () => ({
   useRouter: () => ({

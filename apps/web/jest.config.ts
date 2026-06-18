@@ -15,7 +15,15 @@ const config: Config = {
     '^@workspace/types(.*)$': '<rootDir>/../../packages/types/src$1',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/', '\\.spec\\.ts$'],
+  testPathIgnorePatterns: [
+    '<rootDir>/node_modules/',
+    '<rootDir>/.next/',
+    '\\.spec\\.ts$',
+    // e2e tests run via Playwright (test:e2e), not Jest
+    '<rootDir>/__tests__/e2e/',
+    // Integration tests run via test:integration (separate env requirements)
+    '<rootDir>/__tests__/integration/',
+  ],
   coverageProvider: 'v8',
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',

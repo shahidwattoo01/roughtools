@@ -76,7 +76,12 @@ describe('Utility Functions', () => {
   });
 
   describe('debounce', () => {
-    jest.useFakeTimers();
+    beforeEach(() => {
+      jest.useFakeTimers();
+    });
+    afterEach(() => {
+      jest.useRealTimers();
+    });
 
     it('debounces function calls', () => {
       const fn = jest.fn();
@@ -93,12 +98,15 @@ describe('Utility Functions', () => {
       expect(fn).toHaveBeenCalledTimes(1);
       expect(fn).toHaveBeenCalledWith('c');
     });
-
-    jest.useRealTimers();
   });
 
   describe('throttle', () => {
-    jest.useFakeTimers();
+    beforeEach(() => {
+      jest.useFakeTimers();
+    });
+    afterEach(() => {
+      jest.useRealTimers();
+    });
 
     it('throttles function calls', () => {
       const fn = jest.fn();
@@ -116,8 +124,6 @@ describe('Utility Functions', () => {
 
       expect(fn).toHaveBeenCalledTimes(2);
     });
-
-    jest.useRealTimers();
   });
 
   describe('deepClone', () => {
@@ -177,15 +183,18 @@ describe('Utility Functions', () => {
   });
 
   describe('sleep', () => {
-    jest.useFakeTimers();
+    beforeEach(() => {
+      jest.useFakeTimers();
+    });
+    afterEach(() => {
+      jest.useRealTimers();
+    });
 
     it('resolves after specified time', async () => {
       const promise = sleep(1000);
       jest.advanceTimersByTime(1000);
       await expect(promise).resolves.toBeUndefined();
     });
-
-    jest.useRealTimers();
   });
 
   describe('generateId', () => {

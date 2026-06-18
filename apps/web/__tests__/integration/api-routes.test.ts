@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import { NextRequest } from 'next/server';
 import { POST as registerHandler } from '@/app/api/auth/register/route';
 import { GET as usersHandler } from '@/app/api/users/route';
@@ -87,9 +90,7 @@ describe('API Routes Integration Tests', () => {
 
       (prisma.user.findMany as jest.Mock).mockResolvedValue(mockUsers);
 
-      const request = new NextRequest(
-        'http://localhost:3000/api/users?page=1&limit=10'
-      );
+      const request = new NextRequest('http://localhost:3000/api/users?page=1&limit=10');
       const response = await usersHandler(request);
       const data = await response.json();
 
@@ -100,9 +101,7 @@ describe('API Routes Integration Tests', () => {
     it('handles search query', async () => {
       (prisma.user.findMany as jest.Mock).mockResolvedValue([]);
 
-      const request = new NextRequest(
-        'http://localhost:3000/api/users?search=john'
-      );
+      const request = new NextRequest('http://localhost:3000/api/users?search=john');
       const response = await usersHandler(request);
 
       expect(response.status).toBe(200);

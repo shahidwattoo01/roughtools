@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputField matches snapshot with text type, placeholder, and unit 1`] = `
+<div
+  style="display: flex; flex-direction: column; gap: 4px;"
+>
+  <label
+    for="interest-rate"
+    style="font-size: 12px; font-weight: 600; letter-spacing: 0.05em;"
+  >
+    Interest Rate
+    <span
+      style="margin-left: 4px;"
+    >
+      (
+      %
+      )
+    </span>
+  </label>
+  <input
+    id="interest-rate"
+    placeholder="e.g. 6.5"
+    style="border-radius: 8px; padding: 10px 12px; font-size: 15px; outline: none; width: 100%; box-sizing: border-box; transition: border-color 0.2s; opacity: 1;"
+    type="number"
+    value="6.5"
+  />
+</div>
+`;

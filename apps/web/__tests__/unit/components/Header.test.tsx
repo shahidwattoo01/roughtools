@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Header } from '@/components/layout/Header';
 
@@ -19,7 +19,7 @@ jest.mock('next/navigation', () => ({
 
 // Mock next-auth
 jest.mock('next-auth/react', () => ({
-  useSession: () => ({
+  useSession: jest.fn().mockReturnValue({
     data: {
       user: {
         id: '1',
