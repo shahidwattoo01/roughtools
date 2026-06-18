@@ -3,10 +3,10 @@
 // Schema.org markup for better SEO & rich snippets
 // ============================================================
 
-import { Tool, ToolCategory } from './tools-registry'
-import { SEO_CONFIG } from './seo-config'
+import { Tool, ToolCategory } from './tools-registry';
+import { SEO_CONFIG } from './seo-config';
 
-const { siteUrl, siteName } = SEO_CONFIG
+const { siteUrl, siteName } = SEO_CONFIG;
 
 // ─── WEBSITE SCHEMA ─────────────────────────────────────────
 export function getWebsiteSchema() {
@@ -14,8 +14,10 @@ export function getWebsiteSchema() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: siteName,
+    alternateName: 'RoughTools — Free Online Tools',
     url: siteUrl,
     description: SEO_CONFIG.defaultDescription,
+    inLanguage: 'en',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
@@ -24,7 +26,17 @@ export function getWebsiteSchema() {
       },
       'query-input': 'required name=search_term_string',
     },
-  }
+    hasPart: [
+      { '@type': 'WebPage', name: 'PDF Tools', url: `${siteUrl}/tools/pdf` },
+      { '@type': 'WebPage', name: 'Calculators', url: `${siteUrl}/tools/calculators` },
+      { '@type': 'WebPage', name: 'Image Tools', url: `${siteUrl}/tools/image-tools` },
+      { '@type': 'WebPage', name: 'Developer Tools', url: `${siteUrl}/tools/developer` },
+      { '@type': 'WebPage', name: 'Medical Calculators', url: `${siteUrl}/tools/medical` },
+      { '@type': 'WebPage', name: 'Unit Converters', url: `${siteUrl}/tools/converters` },
+      { '@type': 'WebPage', name: 'Text Tools', url: `${siteUrl}/tools/text` },
+      { '@type': 'WebPage', name: 'Security Tools', url: `${siteUrl}/tools/security` },
+    ],
+  };
 }
 
 // ─── ORGANIZATION SCHEMA ────────────────────────────────────
@@ -46,12 +58,16 @@ export function getOrganizationSchema() {
       email: 'shahidwattoo0111@gmail.com',
       availableLanguage: 'English',
     },
-  }
+    sameAs: ['https://www.reddit.com/r/roughtools', 'https://github.com/shahidwattoo01/roughtools'],
+    foundingDate: '2024',
+    numberOfEmployees: { '@type': 'QuantitativeValue', value: 1 },
+    slogan: '604+ free online tools — no signup required',
+  };
 }
 
 // ─── TOOL PAGE SCHEMA ────────────────────────────────────────
 export function getToolPageSchema(tool: Tool) {
-  const toolUrl = `${siteUrl}/tools/${tool.category}/${tool.slug}`
+  const toolUrl = `${siteUrl}/tools/${tool.category}/${tool.slug}`;
 
   return {
     '@context': 'https://schema.org',
@@ -76,13 +92,11 @@ export function getToolPageSchema(tool: Tool) {
     featureList: tool.keywords,
     keywords: tool.keywords.join(', '),
     inLanguage: 'en',
-  }
+  };
 }
 
 // ─── BREADCRUMB SCHEMA ───────────────────────────────────────
-export function getBreadcrumbSchema(
-  items: Array<{ name: string; url: string }>
-) {
+export function getBreadcrumbSchema(items: Array<{ name: string; url: string }>) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -92,7 +106,7 @@ export function getBreadcrumbSchema(
       name: item.name,
       item: item.url,
     })),
-  }
+  };
 }
 
 // ─── FAQ SCHEMA ──────────────────────────────────────────────
@@ -108,7 +122,7 @@ export function getFAQSchema(faqs: Array<{ question: string; answer: string }>) 
         text: faq.answer,
       },
     })),
-  }
+  };
 }
 
 // ─── TOOL CATEGORY PAGE SCHEMA ───────────────────────────────
@@ -118,7 +132,7 @@ export function getCategoryPageSchema(
   description: string,
   tools: Tool[]
 ) {
-  const categoryUrl = `${siteUrl}/tools/${category}`
+  const categoryUrl = `${siteUrl}/tools/${category}`;
 
   return {
     '@context': 'https://schema.org',
@@ -132,18 +146,18 @@ export function getCategoryPageSchema(
       url: `${siteUrl}/tools/${tool.category}/${tool.slug}`,
       description: tool.description,
     })),
-  }
+  };
 }
 
 // ─── BLOG POST SCHEMA ────────────────────────────────────────
 export function getBlogPostSchema(params: {
-  title: string
-  description: string
-  slug: string
-  publishedAt: string
-  updatedAt?: string
-  author?: string
-  ogImage?: string
+  title: string;
+  description: string;
+  slug: string;
+  publishedAt: string;
+  updatedAt?: string;
+  author?: string;
+  ogImage?: string;
 }) {
   return {
     '@context': 'https://schema.org',
@@ -170,15 +184,15 @@ export function getBlogPostSchema(params: {
       '@type': 'WebPage',
       '@id': `${siteUrl}/blog/${params.slug}`,
     },
-  }
+  };
 }
 
 // ─── HOW-TO SCHEMA ───────────────────────────────────────────
 /** For tool how-to guides / instructions */
 export function getHowToSchema(params: {
-  toolName: string
-  toolUrl: string
-  steps: Array<{ name: string; text: string }>
+  toolName: string;
+  toolUrl: string;
+  steps: Array<{ name: string; text: string }>;
 }) {
   return {
     '@context': 'https://schema.org',
@@ -191,7 +205,7 @@ export function getHowToSchema(params: {
       name: step.name,
       text: step.text,
     })),
-  }
+  };
 }
 
 // ─── TOOL COMPARISON SCHEMA ──────────────────────────────────
@@ -213,7 +227,7 @@ export function getComparisonPageSchema(tool1: Tool, tool2: Tool) {
         url: `${siteUrl}/tools/${tool2.category}/${tool2.slug}`,
       },
     ],
-  }
+  };
 }
 
 // ─── PRICING SCHEMA ──────────────────────────────────────────
@@ -237,7 +251,7 @@ export function getPricingSchema() {
       bestRating: 5,
       worstRating: 1,
     },
-  }
+  };
 }
 
 // ─── ITEM LIST SCHEMA ────────────────────────────────────────
@@ -252,7 +266,7 @@ export function getItemListSchema(items: Array<{ name: string; url: string }>) {
       name: item.name,
       url: item.url,
     })),
-  }
+  };
 }
 
 // ─── HELPER ──────────────────────────────────────────────────
@@ -274,6 +288,6 @@ function getCategoryApplicationType(category: ToolCategory): string {
     engineering: 'UtilitiesApplication',
     medical: 'HealthApplication',
     'iq-test': 'UtilitiesApplication',
-  }
-  return types[category] || 'WebApplication'
+  };
+  return types[category] || 'WebApplication';
 }
