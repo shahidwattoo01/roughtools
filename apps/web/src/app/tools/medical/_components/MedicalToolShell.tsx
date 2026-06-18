@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import dynamic from 'next/dynamic'
-import MedicalDisclaimer from '@/components/MedicalDisclaimer'
-import { ToolPageExtras } from '@/components/ToolPageExtras'
+import React from 'react';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import MedicalDisclaimer from '@/components/MedicalDisclaimer';
+import { ToolPageExtras } from '@/components/ToolPageExtras';
 
 // Both lazy-loaded on the client — keeps them out of the RSC module graph
 const MedicalCalculatorClient = dynamic(() => import('./MedicalCalculatorClient'), {
@@ -12,234 +12,714 @@ const MedicalCalculatorClient = dynamic(() => import('./MedicalCalculatorClient'
   loading: () => (
     <div className="mt-4 h-64 bg-gray-100 animate-pulse rounded-2xl" aria-hidden="true" />
   ),
-})
+});
 
 const MedicalFAQSection = dynamic(() => import('./MedicalFAQClient'), {
   ssr: false,
   loading: () => (
     <div className="mt-10 space-y-3" aria-hidden="true">
-      {[0, 1, 2, 3, 4].map(i => (
+      {[0, 1, 2, 3, 4].map((i) => (
         <div key={i} className="h-14 bg-gray-100 animate-pulse rounded-xl" />
       ))}
     </div>
   ),
-})
+});
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface MedicalSpecialty {
-  id: string
-  label: string
-  icon: string
+  id: string;
+  label: string;
+  icon: string;
 }
 
 export interface MedicalFormulaDisplay {
-  title: string
-  formula: string
-  variables: Array<{ symbol: string; meaning: string }>
-  note: string
+  title: string;
+  formula: string;
+  variables: Array<{ symbol: string; meaning: string }>;
+  note: string;
 }
 
 export interface MedicalRelatedTool {
-  slug: string
-  name: string
-  description: string
-  icon: string
+  slug: string;
+  name: string;
+  description: string;
+  icon: string;
 }
 
 export interface MedicalToolShellProps {
-  toolName: string
-  toolSlug: string
-  description: string
-  heroIcon: string
-  reference: string | null
-  specialty: MedicalSpecialty | null
-  formulaDisplay: MedicalFormulaDisplay
-  faqs: Array<{ q: string; a: string }>
-  relatedTools: MedicalRelatedTool[]
+  toolName: string;
+  toolSlug: string;
+  description: string;
+  heroIcon: string;
+  reference: string | null;
+  specialty: MedicalSpecialty | null;
+  formulaDisplay: MedicalFormulaDisplay;
+  faqs: Array<{ q: string; a: string }>;
+  relatedTools: MedicalRelatedTool[];
 }
 
 // ─── Static content maps (specialty → section data) ───────────────────────────
 // These templates apply to every tool in the specialty, covering all 113 tools
 // via the single dynamic route without needing per-tool data.
 
-type HowToStep = { name: string; text: string }
-type WhenToUseCard = { icon: string; title: string; description: string }
-type QuickRefRow = { input: string; description: string; example: string }
+type HowToStep = { name: string; text: string };
+type WhenToUseCard = { icon: string; title: string; description: string };
+type QuickRefRow = { input: string; description: string; example: string };
 
 const HOW_TO_STEPS: Record<string, HowToStep[]> = {
   cardiology: [
-    { name: 'Enter patient demographics', text: 'Input the patient\'s age, sex, and any relevant baseline characteristics. Many cardiovascular scoring tools weight age and sex heavily, so accuracy matters.' },
-    { name: 'Add clinical measurements', text: 'Enter blood pressure readings, lipid panel values (total cholesterol, HDL-C, LDL-C), or ECG measurements as required by the specific scoring tool.' },
-    { name: 'Input risk factor data', text: 'Record smoking status, diabetes diagnosis, family history of premature CVD, and current medications (especially antihypertensives and statins) where prompted.' },
-    { name: 'Calculate and interpret the score', text: 'Click Calculate to get the risk score or classification. Review the output against the tool\'s validated clinical cutoffs — displayed alongside the result.' },
-    { name: 'Apply to clinical decision-making', text: 'Use the result in shared decision-making with the patient. Discuss treatment thresholds, lifestyle modification targets, and appropriate follow-up intervals per current guidelines (ACC/AHA, ESC).' },
+    {
+      name: 'Enter patient demographics',
+      text: "Input the patient's age, sex, and any relevant baseline characteristics. Many cardiovascular scoring tools weight age and sex heavily, so accuracy matters.",
+    },
+    {
+      name: 'Add clinical measurements',
+      text: 'Enter blood pressure readings, lipid panel values (total cholesterol, HDL-C, LDL-C), or ECG measurements as required by the specific scoring tool.',
+    },
+    {
+      name: 'Input risk factor data',
+      text: 'Record smoking status, diabetes diagnosis, family history of premature CVD, and current medications (especially antihypertensives and statins) where prompted.',
+    },
+    {
+      name: 'Calculate and interpret the score',
+      text: "Click Calculate to get the risk score or classification. Review the output against the tool's validated clinical cutoffs — displayed alongside the result.",
+    },
+    {
+      name: 'Apply to clinical decision-making',
+      text: 'Use the result in shared decision-making with the patient. Discuss treatment thresholds, lifestyle modification targets, and appropriate follow-up intervals per current guidelines (ACC/AHA, ESC).',
+    },
   ],
   nephrology: [
-    { name: 'Obtain the serum creatinine value', text: 'Use the most recent stable serum creatinine from a reliable laboratory. Avoid using creatinine measured during acute illness, as it will not reflect true baseline kidney function.' },
-    { name: 'Enter patient demographics', text: 'Input the patient\'s age, sex, and body weight. Different equations require different variables: CKD-EPI 2021 needs age and sex; Cockcroft-Gault also needs weight.' },
-    { name: 'Select the appropriate formula', text: 'Choose CKD-EPI 2021 for CKD staging and epidemiological reporting. Use Cockcroft-Gault for drug dose adjustment, as it was the equation used in most pharmacokinetic studies.' },
-    { name: 'Review the result and CKD stage', text: 'The eGFR is automatically classified into KDIGO CKD stages (G1–G5) and combined with albuminuria to determine overall risk category.' },
-    { name: 'Adjust drug doses if indicated', text: 'For renally-cleared medications, use the CrCl result to check dose adjustment requirements in the product prescribing information or a drug reference such as Lexicomp or Micromedex.' },
+    {
+      name: 'Obtain the serum creatinine value',
+      text: 'Use the most recent stable serum creatinine from a reliable laboratory. Avoid using creatinine measured during acute illness, as it will not reflect true baseline kidney function.',
+    },
+    {
+      name: 'Enter patient demographics',
+      text: "Input the patient's age, sex, and body weight. Different equations require different variables: CKD-EPI 2021 needs age and sex; Cockcroft-Gault also needs weight.",
+    },
+    {
+      name: 'Select the appropriate formula',
+      text: 'Choose CKD-EPI 2021 for CKD staging and epidemiological reporting. Use Cockcroft-Gault for drug dose adjustment, as it was the equation used in most pharmacokinetic studies.',
+    },
+    {
+      name: 'Review the result and CKD stage',
+      text: 'The eGFR is automatically classified into KDIGO CKD stages (G1–G5) and combined with albuminuria to determine overall risk category.',
+    },
+    {
+      name: 'Adjust drug doses if indicated',
+      text: 'For renally-cleared medications, use the CrCl result to check dose adjustment requirements in the product prescribing information or a drug reference such as Lexicomp or Micromedex.',
+    },
   ],
   'emergency-icu': [
-    { name: 'Gather the required clinical parameters', text: 'Collect the physiologic measurements required by the scoring tool — vital signs, Glasgow Coma Scale, laboratory values (creatinine, bilirubin, platelets, lactate), and ventilatory settings as applicable.' },
-    { name: 'Enter values at the appropriate time point', text: 'Most ICU severity scores specify when values should be collected (e.g., worst values in the first 24 hours for APACHE-II, or daily values for SOFA). Use the correct time window.' },
-    { name: 'Calculate the score', text: 'Enter all required values and click Calculate. The tool automatically sums the component scores and applies the validated outcome table.' },
-    { name: 'Interpret the result', text: 'Review the predicted mortality or severity category. Compare to published data from the scoring system\'s validation studies to contextualise the result for the patient\'s condition.' },
-    { name: 'Track serially and document', text: 'For longitudinal scores like SOFA and APACHE-II, recalculate daily to track disease trajectory. A rising score suggests deterioration; a falling score indicates improvement.' },
+    {
+      name: 'Gather the required clinical parameters',
+      text: 'Collect the physiologic measurements required by the scoring tool — vital signs, Glasgow Coma Scale, laboratory values (creatinine, bilirubin, platelets, lactate), and ventilatory settings as applicable.',
+    },
+    {
+      name: 'Enter values at the appropriate time point',
+      text: 'Most ICU severity scores specify when values should be collected (e.g., worst values in the first 24 hours for APACHE-II, or daily values for SOFA). Use the correct time window.',
+    },
+    {
+      name: 'Calculate the score',
+      text: 'Enter all required values and click Calculate. The tool automatically sums the component scores and applies the validated outcome table.',
+    },
+    {
+      name: 'Interpret the result',
+      text: "Review the predicted mortality or severity category. Compare to published data from the scoring system's validation studies to contextualise the result for the patient's condition.",
+    },
+    {
+      name: 'Track serially and document',
+      text: 'For longitudinal scores like SOFA and APACHE-II, recalculate daily to track disease trajectory. A rising score suggests deterioration; a falling score indicates improvement.',
+    },
   ],
   'neurology-psychiatry': [
-    { name: 'Select or administer the assessment', text: 'For clinician-administered scales (GCS, NIHSS), perform the structured assessment at the bedside using the standardised protocol. For patient-reported tools (PHQ-9, GAD-7), have the patient complete the questionnaire.' },
-    { name: 'Enter each item response', text: 'Input the score or response for each individual item. Refer to the standardised anchor descriptions to ensure accurate scoring — small differences in scoring can change the severity category.' },
-    { name: 'Calculate the total score', text: 'The tool sums item scores and displays the total. For multi-domain scales, domain scores are also calculated separately.' },
-    { name: 'Apply validated severity cutoffs', text: 'Review the output against published cutoffs (e.g., PHQ-9 ≥10 = moderate depression; GCS ≤8 = coma). The tool displays the appropriate classification alongside the score.' },
-    { name: 'Document and plan follow-up', text: 'Record the score and date in the clinical notes. For screening tools, a positive result triggers referral for comprehensive assessment — the score alone is not diagnostic.' },
+    {
+      name: 'Select or administer the assessment',
+      text: 'For clinician-administered scales (GCS, NIHSS), perform the structured assessment at the bedside using the standardised protocol. For patient-reported tools (PHQ-9, GAD-7), have the patient complete the questionnaire.',
+    },
+    {
+      name: 'Enter each item response',
+      text: 'Input the score or response for each individual item. Refer to the standardised anchor descriptions to ensure accurate scoring — small differences in scoring can change the severity category.',
+    },
+    {
+      name: 'Calculate the total score',
+      text: 'The tool sums item scores and displays the total. For multi-domain scales, domain scores are also calculated separately.',
+    },
+    {
+      name: 'Apply validated severity cutoffs',
+      text: 'Review the output against published cutoffs (e.g., PHQ-9 ≥10 = moderate depression; GCS ≤8 = coma). The tool displays the appropriate classification alongside the score.',
+    },
+    {
+      name: 'Document and plan follow-up',
+      text: 'Record the score and date in the clinical notes. For screening tools, a positive result triggers referral for comprehensive assessment — the score alone is not diagnostic.',
+    },
   ],
   endocrinology: [
-    { name: 'Enter anthropometric measurements', text: 'Input height and weight in your preferred units (metric or imperial). For BMI and IBW calculations, ensure measurements are taken without shoes and with minimal clothing for accuracy.' },
-    { name: 'Add laboratory values', text: 'For metabolic calculations, enter HbA1c, fasting glucose, lipid panel, or hormone values as required. Use results from a reliable laboratory and check the date — older values may not reflect current status.' },
-    { name: 'Specify activity level or clinical context', text: 'For TDEE calculations, select the activity level that best represents the patient\'s typical week. For steroid conversions, confirm the route of administration (oral, IV, inhaled).' },
-    { name: 'Review the calculated result', text: 'The tool returns the metabolic index, risk classification, or converted dose with interpretation. Reference ranges and evidence-based thresholds are displayed alongside the result.' },
-    { name: 'Contextualise with clinical presentation', text: 'No metabolic calculator replaces a full clinical assessment. Review the result alongside the patient\'s symptoms, examination findings, and medication list before making management decisions.' },
+    {
+      name: 'Enter anthropometric measurements',
+      text: 'Input height and weight in your preferred units (metric or imperial). For BMI and IBW calculations, ensure measurements are taken without shoes and with minimal clothing for accuracy.',
+    },
+    {
+      name: 'Add laboratory values',
+      text: 'For metabolic calculations, enter HbA1c, fasting glucose, lipid panel, or hormone values as required. Use results from a reliable laboratory and check the date — older values may not reflect current status.',
+    },
+    {
+      name: 'Specify activity level or clinical context',
+      text: "For TDEE calculations, select the activity level that best represents the patient's typical week. For steroid conversions, confirm the route of administration (oral, IV, inhaled).",
+    },
+    {
+      name: 'Review the calculated result',
+      text: 'The tool returns the metabolic index, risk classification, or converted dose with interpretation. Reference ranges and evidence-based thresholds are displayed alongside the result.',
+    },
+    {
+      name: 'Contextualise with clinical presentation',
+      text: "No metabolic calculator replaces a full clinical assessment. Review the result alongside the patient's symptoms, examination findings, and medication list before making management decisions.",
+    },
   ],
   pharmacology: [
-    { name: 'Confirm patient weight and renal function', text: 'Obtain a recent, accurate body weight. For renally-cleared drugs, calculate CrCl using Cockcroft-Gault first. Determine whether to use actual, ideal, or adjusted body weight per the drug\'s protocol.' },
-    { name: 'Enter the prescribed dose parameter', text: 'Input the dose in mg/kg, mg/m², or the target concentration as specified in the drug protocol or current clinical guidelines. Double-check the units before proceeding.' },
-    { name: 'Calculate the dose', text: 'The tool computes the single dose, frequency schedule, and total daily dose. For complex pharmacokinetic tools (vancomycin, aminoglycosides), loading and maintenance doses are calculated separately.' },
-    { name: 'Check against maximum dose limits', text: 'Review the calculated dose against the manufacturer\'s maximum dose and any weight or renal thresholds specified in the protocol. Flag any dose that exceeds recommended limits before prescribing.' },
-    { name: 'Verify with a pharmacist', text: 'All drug doses calculated by this tool must be independently verified by a licensed pharmacist before administration, particularly for high-alert medications (opioids, anticoagulants, chemotherapy, vancomycin).' },
+    {
+      name: 'Confirm patient weight and renal function',
+      text: "Obtain a recent, accurate body weight. For renally-cleared drugs, calculate CrCl using Cockcroft-Gault first. Determine whether to use actual, ideal, or adjusted body weight per the drug's protocol.",
+    },
+    {
+      name: 'Enter the prescribed dose parameter',
+      text: 'Input the dose in mg/kg, mg/m², or the target concentration as specified in the drug protocol or current clinical guidelines. Double-check the units before proceeding.',
+    },
+    {
+      name: 'Calculate the dose',
+      text: 'The tool computes the single dose, frequency schedule, and total daily dose. For complex pharmacokinetic tools (vancomycin, aminoglycosides), loading and maintenance doses are calculated separately.',
+    },
+    {
+      name: 'Check against maximum dose limits',
+      text: "Review the calculated dose against the manufacturer's maximum dose and any weight or renal thresholds specified in the protocol. Flag any dose that exceeds recommended limits before prescribing.",
+    },
+    {
+      name: 'Verify with a pharmacist',
+      text: 'All drug doses calculated by this tool must be independently verified by a licensed pharmacist before administration, particularly for high-alert medications (opioids, anticoagulants, chemotherapy, vancomycin).',
+    },
   ],
   obstetrics: [
-    { name: 'Confirm the last menstrual period date', text: 'Enter the first day of the last normal menstrual period (LMP). Ensure the date is reliable — a patient with irregular cycles or uncertainty about the LMP date will require ultrasound dating.' },
-    { name: 'Enter clinical measurements as required', text: 'For fetal weight estimation, input ultrasound biometric measurements (BPD, HC, AC, FL). For Bishop Score, enter the cervical examination findings at the time of assessment.' },
-    { name: 'Calculate the obstetric parameter', text: 'The tool applies the validated formula and returns the gestational age, EDD, fetal weight estimate, or clinical score. The result is displayed with the applicable reference range.' },
-    { name: 'Compare with ultrasound findings', text: 'For pregnancy dating, compare the LMP-derived EDD with first-trimester ultrasound dating. If the discordance is >5–7 days in the first trimester, the ultrasound date takes precedence per ACOG guidelines.' },
-    { name: 'Document and plan antenatal care', text: 'Record the calculated GA and EDD in the patient\'s obstetric record. Gestational age determines the schedule for antenatal screening tests, growth scans, and delivery planning.' },
+    {
+      name: 'Confirm the last menstrual period date',
+      text: 'Enter the first day of the last normal menstrual period (LMP). Ensure the date is reliable — a patient with irregular cycles or uncertainty about the LMP date will require ultrasound dating.',
+    },
+    {
+      name: 'Enter clinical measurements as required',
+      text: 'For fetal weight estimation, input ultrasound biometric measurements (BPD, HC, AC, FL). For Bishop Score, enter the cervical examination findings at the time of assessment.',
+    },
+    {
+      name: 'Calculate the obstetric parameter',
+      text: 'The tool applies the validated formula and returns the gestational age, EDD, fetal weight estimate, or clinical score. The result is displayed with the applicable reference range.',
+    },
+    {
+      name: 'Compare with ultrasound findings',
+      text: 'For pregnancy dating, compare the LMP-derived EDD with first-trimester ultrasound dating. If the discordance is >5–7 days in the first trimester, the ultrasound date takes precedence per ACOG guidelines.',
+    },
+    {
+      name: 'Document and plan antenatal care',
+      text: "Record the calculated GA and EDD in the patient's obstetric record. Gestational age determines the schedule for antenatal screening tests, growth scans, and delivery planning.",
+    },
   ],
   pulmonology: [
-    { name: 'Obtain spirometry or laboratory values', text: 'Enter FEV1, FVC, and other spirometric measurements from a formal lung function test. For ABG interpretation, enter arterial blood gas values with the FiO2 at the time of sampling.' },
-    { name: 'Add patient demographics', text: 'Input age, sex, and height for spirometry interpretation. Predicted values are calculated using age/sex/height reference equations (ATS/ERS GLI 2012).' },
-    { name: 'Select severity classification', text: 'For GOLD COPD staging or PSI scoring, enter additional clinical variables. The tool automatically calculates the appropriate severity class.' },
-    { name: 'Interpret the result', text: 'Review FEV1/FVC ratio, % predicted values, and severity classification. The tool displays the clinical interpretation using ATS/ERS and GOLD guideline criteria.' },
-    { name: 'Plan respiratory management', text: 'Use the result to guide inhaler selection, oxygen prescription, referral for pulmonology evaluation, or lung cancer screening eligibility assessment.' },
+    {
+      name: 'Obtain spirometry or laboratory values',
+      text: 'Enter FEV1, FVC, and other spirometric measurements from a formal lung function test. For ABG interpretation, enter arterial blood gas values with the FiO2 at the time of sampling.',
+    },
+    {
+      name: 'Add patient demographics',
+      text: 'Input age, sex, and height for spirometry interpretation. Predicted values are calculated using age/sex/height reference equations (ATS/ERS GLI 2012).',
+    },
+    {
+      name: 'Select severity classification',
+      text: 'For GOLD COPD staging or PSI scoring, enter additional clinical variables. The tool automatically calculates the appropriate severity class.',
+    },
+    {
+      name: 'Interpret the result',
+      text: 'Review FEV1/FVC ratio, % predicted values, and severity classification. The tool displays the clinical interpretation using ATS/ERS and GOLD guideline criteria.',
+    },
+    {
+      name: 'Plan respiratory management',
+      text: 'Use the result to guide inhaler selection, oxygen prescription, referral for pulmonology evaluation, or lung cancer screening eligibility assessment.',
+    },
   ],
   gastroenterology: [
-    { name: 'Obtain current laboratory values', text: 'Enter the most recent serum bilirubin, albumin, INR/PT, and creatinine from a stable clinical state. Hepatic scores (MELD, Child-Pugh) are most accurate when values reflect the patient\'s baseline — not during acute decompensation.' },
-    { name: 'Assess clinical parameters', text: 'For Child-Pugh scoring, grade ascites severity (absent/mild/moderate) and hepatic encephalopathy grade (none/1–2/3–4) based on clinical examination findings.' },
-    { name: 'Calculate the hepatic score', text: 'Enter all required variables and click Calculate. The tool returns the MELD, Child-Pugh class, or GI severity score with the validated prognostic interpretation.' },
-    { name: 'Interpret against clinical thresholds', text: 'Review the score against published outcome data. MELD ≥15 indicates transplant listing; Child-Pugh class C signals decompensated cirrhosis with significant 1-year mortality.' },
-    { name: 'Discuss with gastroenterology or hepatology', text: 'For MELD scores suggesting transplant candidacy or Child-Pugh class C, refer promptly to a hepatologist. Transplant evaluation and listing requires multidisciplinary team assessment.' },
+    {
+      name: 'Obtain current laboratory values',
+      text: "Enter the most recent serum bilirubin, albumin, INR/PT, and creatinine from a stable clinical state. Hepatic scores (MELD, Child-Pugh) are most accurate when values reflect the patient's baseline — not during acute decompensation.",
+    },
+    {
+      name: 'Assess clinical parameters',
+      text: 'For Child-Pugh scoring, grade ascites severity (absent/mild/moderate) and hepatic encephalopathy grade (none/1–2/3–4) based on clinical examination findings.',
+    },
+    {
+      name: 'Calculate the hepatic score',
+      text: 'Enter all required variables and click Calculate. The tool returns the MELD, Child-Pugh class, or GI severity score with the validated prognostic interpretation.',
+    },
+    {
+      name: 'Interpret against clinical thresholds',
+      text: 'Review the score against published outcome data. MELD ≥15 indicates transplant listing; Child-Pugh class C signals decompensated cirrhosis with significant 1-year mortality.',
+    },
+    {
+      name: 'Discuss with gastroenterology or hepatology',
+      text: 'For MELD scores suggesting transplant candidacy or Child-Pugh class C, refer promptly to a hepatologist. Transplant evaluation and listing requires multidisciplinary team assessment.',
+    },
   ],
   'oncology-hematology': [
-    { name: 'Confirm height and weight', text: 'Use the patient\'s measured height and actual body weight from the day of treatment. BSA is highly sensitive to weight changes — always use measurements taken at the treatment visit, not values from previous cycles.' },
-    { name: 'Enter the protocol dose', text: 'Input the chemotherapy dose in mg/m² as specified in the treatment protocol. If multiple agents are included, calculate BSA-based doses for each drug separately.' },
-    { name: 'Calculate the total dose', text: 'The tool multiplies BSA × protocol dose to give the total dose in mg. For some protocols, doses are capped at a maximum regardless of BSA — check the protocol for any dose-capping rules.' },
-    { name: 'Review haematological parameters', text: 'For ANC calculation, enter CBC differential counts. Check that ANC, platelet count, and renal/hepatic function meet the protocol\'s criteria for treatment administration before proceeding.' },
-    { name: 'Confirm with oncologist and pharmacist', text: 'All chemotherapy doses must be verified by the treating oncologist and independently checked by an oncology pharmacist before preparation and administration. This is a mandatory safety requirement.' },
+    {
+      name: 'Confirm height and weight',
+      text: "Use the patient's measured height and actual body weight from the day of treatment. BSA is highly sensitive to weight changes — always use measurements taken at the treatment visit, not values from previous cycles.",
+    },
+    {
+      name: 'Enter the protocol dose',
+      text: 'Input the chemotherapy dose in mg/m² as specified in the treatment protocol. If multiple agents are included, calculate BSA-based doses for each drug separately.',
+    },
+    {
+      name: 'Calculate the total dose',
+      text: 'The tool multiplies BSA × protocol dose to give the total dose in mg. For some protocols, doses are capped at a maximum regardless of BSA — check the protocol for any dose-capping rules.',
+    },
+    {
+      name: 'Review haematological parameters',
+      text: "For ANC calculation, enter CBC differential counts. Check that ANC, platelet count, and renal/hepatic function meet the protocol's criteria for treatment administration before proceeding.",
+    },
+    {
+      name: 'Confirm with oncologist and pharmacist',
+      text: 'All chemotherapy doses must be verified by the treating oncologist and independently checked by an oncology pharmacist before preparation and administration. This is a mandatory safety requirement.',
+    },
   ],
   pediatrics: [
-    { name: 'Record the child\'s current weight', text: 'Use the child\'s weight measured at the current visit in kilograms. For neonates and infants, use the most recent measured weight. Never estimate weight for drug dosing calculations in paediatrics.' },
-    { name: 'Enter age and sex', text: 'For growth chart and developmental tools, enter the child\'s date of birth and current date. For premature infants, use corrected (adjusted) gestational age for growth plotting until the child reaches 2 years corrected age.' },
-    { name: 'Input clinical measurements', text: 'For growth charts, enter height and head circumference. For jaundice tools, enter total serum bilirubin and gestational age at birth. For PECARN, enter clinical findings from examination.' },
-    { name: 'Review the calculated dose or percentile', text: 'The tool returns the weight-based dose, growth percentile, or clinical risk classification. Cross-reference against the reference chart or published dose table for confirmation.' },
-    { name: 'Confirm with a paediatrician or pharmacist', text: 'All paediatric doses must be confirmed by the treating paediatrician or a pharmacist experienced in paediatric dosing before administration. Parents should not adjust doses without professional guidance.' },
+    {
+      name: "Record the child's current weight",
+      text: "Use the child's weight measured at the current visit in kilograms. For neonates and infants, use the most recent measured weight. Never estimate weight for drug dosing calculations in paediatrics.",
+    },
+    {
+      name: 'Enter age and sex',
+      text: "For growth chart and developmental tools, enter the child's date of birth and current date. For premature infants, use corrected (adjusted) gestational age for growth plotting until the child reaches 2 years corrected age.",
+    },
+    {
+      name: 'Input clinical measurements',
+      text: 'For growth charts, enter height and head circumference. For jaundice tools, enter total serum bilirubin and gestational age at birth. For PECARN, enter clinical findings from examination.',
+    },
+    {
+      name: 'Review the calculated dose or percentile',
+      text: 'The tool returns the weight-based dose, growth percentile, or clinical risk classification. Cross-reference against the reference chart or published dose table for confirmation.',
+    },
+    {
+      name: 'Confirm with a paediatrician or pharmacist',
+      text: 'All paediatric doses must be confirmed by the treating paediatrician or a pharmacist experienced in paediatric dosing before administration. Parents should not adjust doses without professional guidance.',
+    },
   ],
   'consumer-health': [
-    { name: 'Select the health metric you want to calculate', text: 'Choose from BMI, daily calorie needs, target heart rate zones, daily water intake, sleep cycles, or healthcare cost estimates. Each tool focuses on a specific wellness metric.' },
-    { name: 'Enter your personal measurements', text: 'Input age, sex, height, weight, and activity level as prompted. Use accurate, recent measurements for the most reliable results. Estimates based on approximations are less meaningful.' },
-    { name: 'Review your result and category', text: 'The tool displays your calculated metric alongside the relevant reference range (e.g., WHO BMI categories, ACSM heart rate zones, USDA dietary guidelines).' },
-    { name: 'Understand what the number means', text: 'Each result page explains how to interpret your score in plain language, including what the number means for your health, what range is considered healthy, and when to take action.' },
-    { name: 'Consult a healthcare provider for next steps', text: 'These tools are for personal health education and awareness. If your result is outside the healthy range, consult a qualified healthcare provider before making changes to diet, exercise, or medications.' },
+    {
+      name: 'Select the health metric you want to calculate',
+      text: 'Choose from BMI, daily calorie needs, target heart rate zones, daily water intake, sleep cycles, or healthcare cost estimates. Each tool focuses on a specific wellness metric.',
+    },
+    {
+      name: 'Enter your personal measurements',
+      text: 'Input age, sex, height, weight, and activity level as prompted. Use accurate, recent measurements for the most reliable results. Estimates based on approximations are less meaningful.',
+    },
+    {
+      name: 'Review your result and category',
+      text: 'The tool displays your calculated metric alongside the relevant reference range (e.g., WHO BMI categories, ACSM heart rate zones, USDA dietary guidelines).',
+    },
+    {
+      name: 'Understand what the number means',
+      text: 'Each result page explains how to interpret your score in plain language, including what the number means for your health, what range is considered healthy, and when to take action.',
+    },
+    {
+      name: 'Consult a healthcare provider for next steps',
+      text: 'These tools are for personal health education and awareness. If your result is outside the healthy range, consult a qualified healthcare provider before making changes to diet, exercise, or medications.',
+    },
   ],
-}
+};
 
 const WHEN_TO_USE_CARDS: Record<string, WhenToUseCard[]> = {
   cardiology: [
-    { icon: '🩺', title: 'Annual cardiovascular risk screening', description: 'Calculate a patient\'s 10-year CVD risk using Framingham or ASCVD during preventive care visits to guide statin and antihypertensive therapy decisions.' },
-    { icon: '💊', title: 'Anticoagulation decision-making in AF', description: 'Use CHA₂DS₂-VASc to determine stroke risk and HAS-BLED to assess bleeding risk before initiating anticoagulation in patients with atrial fibrillation.' },
-    { icon: '🚨', title: 'Acute coronary syndrome risk stratification', description: 'Apply TIMI, GRACE, or HEART score in the ED to risk-stratify chest pain patients for early discharge, observation, or urgent catheterisation.' },
-    { icon: '💉', title: 'QTc monitoring before drug initiation', description: 'Check QTc interval before prescribing QT-prolonging medications (antipsychotics, antiarrhythmics, fluoroquinolones) to identify patients at risk for Torsades de Pointes.' },
-    { icon: '📊', title: 'Hypertension classification and targets', description: 'Classify blood pressure per ACC/AHA 2017 guidelines to determine treatment thresholds (Stage 1 vs 2) and guide target SBP goals based on cardiovascular risk.' },
+    {
+      icon: '🩺',
+      title: 'Annual cardiovascular risk screening',
+      description:
+        "Calculate a patient's 10-year CVD risk using Framingham or ASCVD during preventive care visits to guide statin and antihypertensive therapy decisions.",
+    },
+    {
+      icon: '💊',
+      title: 'Anticoagulation decision-making in AF',
+      description:
+        'Use CHA₂DS₂-VASc to determine stroke risk and HAS-BLED to assess bleeding risk before initiating anticoagulation in patients with atrial fibrillation.',
+    },
+    {
+      icon: '🚨',
+      title: 'Acute coronary syndrome risk stratification',
+      description:
+        'Apply TIMI, GRACE, or HEART score in the ED to risk-stratify chest pain patients for early discharge, observation, or urgent catheterisation.',
+    },
+    {
+      icon: '💉',
+      title: 'QTc monitoring before drug initiation',
+      description:
+        'Check QTc interval before prescribing QT-prolonging medications (antipsychotics, antiarrhythmics, fluoroquinolones) to identify patients at risk for Torsades de Pointes.',
+    },
+    {
+      icon: '📊',
+      title: 'Hypertension classification and targets',
+      description:
+        'Classify blood pressure per ACC/AHA 2017 guidelines to determine treatment thresholds (Stage 1 vs 2) and guide target SBP goals based on cardiovascular risk.',
+    },
   ],
   nephrology: [
-    { icon: '🫘', title: 'CKD staging and monitoring', description: 'Calculate eGFR to stage chronic kidney disease (KDIGO G1–G5) and monitor disease progression at each outpatient visit.' },
-    { icon: '💊', title: 'Renal drug dose adjustment', description: 'Use CrCl (Cockcroft-Gault) before prescribing renally-cleared antibiotics, anticoagulants, or diabetes medications to calculate dose-adjusted prescriptions.' },
-    { icon: '🔬', title: 'AKI assessment', description: 'Calculate eGFR change from baseline during hospital admission to diagnose and stage acute kidney injury per KDIGO AKI criteria.' },
-    { icon: '💉', title: 'Pre-contrast nephropathy risk assessment', description: 'Assess baseline kidney function before IV contrast administration to identify patients requiring pre-hydration protocols or contrast dose reduction.' },
-    { icon: '🏥', title: 'Dialysis adequacy monitoring', description: 'Calculate Kt/V for haemodialysis patients to assess whether the delivered dose meets the minimum adequacy target (spKt/V ≥1.4 per KDOQI guidelines).' },
+    {
+      icon: '🫘',
+      title: 'CKD staging and monitoring',
+      description:
+        'Calculate eGFR to stage chronic kidney disease (KDIGO G1–G5) and monitor disease progression at each outpatient visit.',
+    },
+    {
+      icon: '💊',
+      title: 'Renal drug dose adjustment',
+      description:
+        'Use CrCl (Cockcroft-Gault) before prescribing renally-cleared antibiotics, anticoagulants, or diabetes medications to calculate dose-adjusted prescriptions.',
+    },
+    {
+      icon: '🔬',
+      title: 'AKI assessment',
+      description:
+        'Calculate eGFR change from baseline during hospital admission to diagnose and stage acute kidney injury per KDIGO AKI criteria.',
+    },
+    {
+      icon: '💉',
+      title: 'Pre-contrast nephropathy risk assessment',
+      description:
+        'Assess baseline kidney function before IV contrast administration to identify patients requiring pre-hydration protocols or contrast dose reduction.',
+    },
+    {
+      icon: '🏥',
+      title: 'Dialysis adequacy monitoring',
+      description:
+        'Calculate Kt/V for haemodialysis patients to assess whether the delivered dose meets the minimum adequacy target (spKt/V ≥1.4 per KDOQI guidelines).',
+    },
   ],
   'emergency-icu': [
-    { icon: '🚑', title: 'Triage and initial risk stratification', description: 'Apply qSOFA or NEWS score at triage to rapidly identify patients at high risk of clinical deterioration requiring urgent escalation.' },
-    { icon: '🏥', title: 'ICU admission decisions', description: 'Use APACHE-II or SOFA scores to quantify severity of illness, guide ICU vs ward admission, and provide prognostic information to families.' },
-    { icon: '📈', title: 'Daily ICU progress tracking', description: 'Recalculate SOFA score daily to track organ failure trajectory — a rising score indicates deterioration; a ≥2-point increase from baseline satisfies Sepsis-3 criteria.' },
-    { icon: '🩸', title: 'Sepsis screening', description: 'Apply qSOFA (≥2 = high risk) or full Sepsis-3 criteria when infection is suspected. Early identification enables timely antibiotic administration and fluid resuscitation.' },
-    { icon: '💧', title: 'Fluid resuscitation calculation', description: 'Use the Parkland formula for burns, Holliday-Segar for paediatric maintenance, or MAP targets to calculate and guide fluid therapy in critically ill patients.' },
+    {
+      icon: '🚑',
+      title: 'Triage and initial risk stratification',
+      description:
+        'Apply qSOFA or NEWS score at triage to rapidly identify patients at high risk of clinical deterioration requiring urgent escalation.',
+    },
+    {
+      icon: '🏥',
+      title: 'ICU admission decisions',
+      description:
+        'Use APACHE-II or SOFA scores to quantify severity of illness, guide ICU vs ward admission, and provide prognostic information to families.',
+    },
+    {
+      icon: '📈',
+      title: 'Daily ICU progress tracking',
+      description:
+        'Recalculate SOFA score daily to track organ failure trajectory — a rising score indicates deterioration; a ≥2-point increase from baseline satisfies Sepsis-3 criteria.',
+    },
+    {
+      icon: '🩸',
+      title: 'Sepsis screening',
+      description:
+        'Apply qSOFA (≥2 = high risk) or full Sepsis-3 criteria when infection is suspected. Early identification enables timely antibiotic administration and fluid resuscitation.',
+    },
+    {
+      icon: '💧',
+      title: 'Fluid resuscitation calculation',
+      description:
+        'Use the Parkland formula for burns, Holliday-Segar for paediatric maintenance, or MAP targets to calculate and guide fluid therapy in critically ill patients.',
+    },
   ],
   'neurology-psychiatry': [
-    { icon: '🧠', title: 'Acute stroke assessment', description: 'Apply NIHSS immediately on stroke presentation to quantify neurological deficit, guide tPA eligibility determination, and document baseline severity for monitoring.' },
-    { icon: '📋', title: 'Depression and anxiety screening', description: 'Administer PHQ-9 and GAD-7 at each clinic visit to screen for depression and anxiety, monitor treatment response, and document progress over time.' },
-    { icon: '🚨', title: 'Trauma and altered consciousness assessment', description: 'Use GCS in the ED and ICU to grade consciousness level, guide airway management decisions (GCS ≤8), and communicate severity between providers.' },
-    { icon: '🍷', title: 'Alcohol withdrawal risk assessment', description: 'Calculate CIWA-Ar score to determine severity of alcohol withdrawal, guide benzodiazepine dosing, and assess the need for ICU-level monitoring.' },
-    { icon: '😴', title: 'Sleepiness and cognitive screening', description: 'Use Epworth Sleepiness Scale to screen for excessive daytime sleepiness and MMSE for cognitive decline — both guide referrals for sleep studies or neuropsychological evaluation.' },
+    {
+      icon: '🧠',
+      title: 'Acute stroke assessment',
+      description:
+        'Apply NIHSS immediately on stroke presentation to quantify neurological deficit, guide tPA eligibility determination, and document baseline severity for monitoring.',
+    },
+    {
+      icon: '📋',
+      title: 'Depression and anxiety screening',
+      description:
+        'Administer PHQ-9 and GAD-7 at each clinic visit to screen for depression and anxiety, monitor treatment response, and document progress over time.',
+    },
+    {
+      icon: '🚨',
+      title: 'Trauma and altered consciousness assessment',
+      description:
+        'Use GCS in the ED and ICU to grade consciousness level, guide airway management decisions (GCS ≤8), and communicate severity between providers.',
+    },
+    {
+      icon: '🍷',
+      title: 'Alcohol withdrawal risk assessment',
+      description:
+        'Calculate CIWA-Ar score to determine severity of alcohol withdrawal, guide benzodiazepine dosing, and assess the need for ICU-level monitoring.',
+    },
+    {
+      icon: '😴',
+      title: 'Sleepiness and cognitive screening',
+      description:
+        'Use Epworth Sleepiness Scale to screen for excessive daytime sleepiness and MMSE for cognitive decline — both guide referrals for sleep studies or neuropsychological evaluation.',
+    },
   ],
   endocrinology: [
-    { icon: '🍬', title: 'Diabetes management monitoring', description: 'Convert HbA1c to estimated average glucose to make A1c results more meaningful to patients. Use alongside fasting glucose to monitor glycaemic control between visits.' },
-    { icon: '⚖️', title: 'Obesity assessment and treatment planning', description: 'Calculate BMI to classify obesity severity and set weight loss goals. Combine with waist circumference and body fat percentage for a comprehensive metabolic risk assessment.' },
-    { icon: '🔥', title: 'Calorie prescription for weight management', description: 'Use TDEE calculation to establish a patient-specific calorie target for weight loss (deficit of 500–750 kcal/day below TDEE) or muscle gain (surplus of 250–500 kcal/day).' },
-    { icon: '💊', title: 'Steroid equivalency for dose conversion', description: 'Use the steroid conversion calculator when switching between corticosteroid preparations to maintain equivalent anti-inflammatory potency and avoid adrenal crisis.' },
-    { icon: '🩻', title: 'Ideal body weight for drug dosing', description: 'Calculate IBW before dosing aminoglycosides, digoxin, vancomycin, or setting ventilator tidal volumes — many protocols specify IBW rather than actual body weight.' },
+    {
+      icon: '🍬',
+      title: 'Diabetes management monitoring',
+      description:
+        'Convert HbA1c to estimated average glucose to make A1c results more meaningful to patients. Use alongside fasting glucose to monitor glycaemic control between visits.',
+    },
+    {
+      icon: '⚖️',
+      title: 'Obesity assessment and treatment planning',
+      description:
+        'Calculate BMI to classify obesity severity and set weight loss goals. Combine with waist circumference and body fat percentage for a comprehensive metabolic risk assessment.',
+    },
+    {
+      icon: '🔥',
+      title: 'Calorie prescription for weight management',
+      description:
+        'Use TDEE calculation to establish a patient-specific calorie target for weight loss (deficit of 500–750 kcal/day below TDEE) or muscle gain (surplus of 250–500 kcal/day).',
+    },
+    {
+      icon: '💊',
+      title: 'Steroid equivalency for dose conversion',
+      description:
+        'Use the steroid conversion calculator when switching between corticosteroid preparations to maintain equivalent anti-inflammatory potency and avoid adrenal crisis.',
+    },
+    {
+      icon: '🩻',
+      title: 'Ideal body weight for drug dosing',
+      description:
+        'Calculate IBW before dosing aminoglycosides, digoxin, vancomycin, or setting ventilator tidal volumes — many protocols specify IBW rather than actual body weight.',
+    },
   ],
   pharmacology: [
-    { icon: '💊', title: 'Weight-based paediatric and adult dosing', description: 'Calculate exact doses for weight-based medications (antibiotics, anticoagulants, sedatives) when precision matters for therapeutic effect and toxicity avoidance.' },
-    { icon: '🏥', title: 'ICU infusion programming', description: 'Use the IV drip rate calculator to programme mcg/kg/min infusions (dopamine, norepinephrine, propofol) accurately for each patient\'s weight and desired dose.' },
-    { icon: '🔄', title: 'Opioid rotation in chronic pain', description: 'Calculate equianalgesic doses when switching between opioids in chronic pain patients. Always reduce the calculated dose by 25–50% to account for incomplete cross-tolerance.' },
-    { icon: '🧫', title: 'Vancomycin AUC-guided dosing', description: 'Use vancomycin dosing calculators to target an AUC/MIC of 400–600 per ASHP/IDSA guidelines, replacing the older trough-only approach to improve efficacy and reduce nephrotoxicity.' },
-    { icon: '⚕️', title: 'Renal dose adjustment before prescribing', description: 'Calculate CrCl before prescribing renally-cleared medications (metformin, DOACs, antibiotics) to determine whether full dose, reduced dose, or withholding is appropriate.' },
+    {
+      icon: '💊',
+      title: 'Weight-based paediatric and adult dosing',
+      description:
+        'Calculate exact doses for weight-based medications (antibiotics, anticoagulants, sedatives) when precision matters for therapeutic effect and toxicity avoidance.',
+    },
+    {
+      icon: '🏥',
+      title: 'ICU infusion programming',
+      description:
+        "Use the IV drip rate calculator to programme mcg/kg/min infusions (dopamine, norepinephrine, propofol) accurately for each patient's weight and desired dose.",
+    },
+    {
+      icon: '🔄',
+      title: 'Opioid rotation in chronic pain',
+      description:
+        'Calculate equianalgesic doses when switching between opioids in chronic pain patients. Always reduce the calculated dose by 25–50% to account for incomplete cross-tolerance.',
+    },
+    {
+      icon: '🧫',
+      title: 'Vancomycin AUC-guided dosing',
+      description:
+        'Use vancomycin dosing calculators to target an AUC/MIC of 400–600 per ASHP/IDSA guidelines, replacing the older trough-only approach to improve efficacy and reduce nephrotoxicity.',
+    },
+    {
+      icon: '⚕️',
+      title: 'Renal dose adjustment before prescribing',
+      description:
+        'Calculate CrCl before prescribing renally-cleared medications (metformin, DOACs, antibiotics) to determine whether full dose, reduced dose, or withholding is appropriate.',
+    },
   ],
   obstetrics: [
-    { icon: '🤰', title: 'Pregnancy dating and EDD confirmation', description: 'Calculate EDD from LMP at the first antenatal visit. Compare with first-trimester ultrasound dating — if discordance >5–7 days, use ultrasound date per ACOG guidelines.' },
-    { icon: '📏', title: 'Gestational age for clinical decisions', description: 'Calculate exact gestational age in weeks and days when making decisions about antenatal screening timing, viability thresholds, corticosteroid administration, and delivery planning.' },
-    { icon: '🏥', title: 'Labour induction readiness assessment', description: 'Calculate Bishop Score before cervical ripening or induction to predict likelihood of successful induction. A score ≥8 indicates a favourable cervix with high success probability.' },
-    { icon: '⚖️', title: 'Antenatal weight gain monitoring', description: 'Track gestational weight gain against IOM guidelines (based on pre-pregnancy BMI) at each visit. Excessive gain increases GDM, hypertension, and macrosomia risk; insufficient gain affects fetal growth.' },
-    { icon: '🧪', title: 'IVF success rate estimation', description: 'Use the IVF success rate calculator before initiating fertility treatment to set realistic expectations and guide clinical counselling about the number of treatment cycles likely needed.' },
+    {
+      icon: '🤰',
+      title: 'Pregnancy dating and EDD confirmation',
+      description:
+        'Calculate EDD from LMP at the first antenatal visit. Compare with first-trimester ultrasound dating — if discordance >5–7 days, use ultrasound date per ACOG guidelines.',
+    },
+    {
+      icon: '📏',
+      title: 'Gestational age for clinical decisions',
+      description:
+        'Calculate exact gestational age in weeks and days when making decisions about antenatal screening timing, viability thresholds, corticosteroid administration, and delivery planning.',
+    },
+    {
+      icon: '🏥',
+      title: 'Labour induction readiness assessment',
+      description:
+        'Calculate Bishop Score before cervical ripening or induction to predict likelihood of successful induction. A score ≥8 indicates a favourable cervix with high success probability.',
+    },
+    {
+      icon: '⚖️',
+      title: 'Antenatal weight gain monitoring',
+      description:
+        'Track gestational weight gain against IOM guidelines (based on pre-pregnancy BMI) at each visit. Excessive gain increases GDM, hypertension, and macrosomia risk; insufficient gain affects fetal growth.',
+    },
+    {
+      icon: '🧪',
+      title: 'IVF success rate estimation',
+      description:
+        'Use the IVF success rate calculator before initiating fertility treatment to set realistic expectations and guide clinical counselling about the number of treatment cycles likely needed.',
+    },
   ],
   pulmonology: [
-    { icon: '🫁', title: 'COPD diagnosis and severity grading', description: 'Interpret FEV1/FVC and % predicted FEV1 to diagnose airflow obstruction and classify GOLD severity (1–4) for inhaler selection and pulmonary rehabilitation referral.' },
-    { icon: '📊', title: 'Lung cancer screening eligibility', description: 'Calculate pack-years to identify patients eligible for annual low-dose CT screening — USPSTF recommends screening adults 50–80 with ≥20 pack-year history currently smoking or quit within 15 years.' },
-    { icon: '🚨', title: 'ARDS severity classification', description: 'Calculate P/F ratio from PaO2 and FiO2 to classify ARDS as mild (200–300), moderate (100–200), or severe (<100) per the Berlin Definition, guiding prone positioning and ECMO decisions.' },
-    { icon: '🏥', title: 'Community-acquired pneumonia severity', description: 'Apply PSI/PORT or CURB-65 score to determine appropriate treatment setting: outpatient (Class I–II), general ward (Class III–IV), or ICU admission (Class V / CURB-65 ≥3).' },
-    { icon: '🌬️', title: 'Peak flow monitoring in asthma', description: 'Track peak flow as percentage of personal best to classify asthma control (>80% green, 50–80% yellow, <50% red zone) and guide step-up or step-down therapy decisions.' },
+    {
+      icon: '🫁',
+      title: 'COPD diagnosis and severity grading',
+      description:
+        'Interpret FEV1/FVC and % predicted FEV1 to diagnose airflow obstruction and classify GOLD severity (1–4) for inhaler selection and pulmonary rehabilitation referral.',
+    },
+    {
+      icon: '📊',
+      title: 'Lung cancer screening eligibility',
+      description:
+        'Calculate pack-years to identify patients eligible for annual low-dose CT screening — USPSTF recommends screening adults 50–80 with ≥20 pack-year history currently smoking or quit within 15 years.',
+    },
+    {
+      icon: '🚨',
+      title: 'ARDS severity classification',
+      description:
+        'Calculate P/F ratio from PaO2 and FiO2 to classify ARDS as mild (200–300), moderate (100–200), or severe (<100) per the Berlin Definition, guiding prone positioning and ECMO decisions.',
+    },
+    {
+      icon: '🏥',
+      title: 'Community-acquired pneumonia severity',
+      description:
+        'Apply PSI/PORT or CURB-65 score to determine appropriate treatment setting: outpatient (Class I–II), general ward (Class III–IV), or ICU admission (Class V / CURB-65 ≥3).',
+    },
+    {
+      icon: '🌬️',
+      title: 'Peak flow monitoring in asthma',
+      description:
+        'Track peak flow as percentage of personal best to classify asthma control (>80% green, 50–80% yellow, <50% red zone) and guide step-up or step-down therapy decisions.',
+    },
   ],
   gastroenterology: [
-    { icon: '🫀', title: 'Liver transplant listing and allocation', description: 'Calculate MELD score to assess candidacy for liver transplant listing and determine organ allocation priority. MELD ≥15 is the general threshold for listing in most centres.' },
-    { icon: '📊', title: 'Cirrhosis severity assessment', description: 'Use Child-Pugh score to classify cirrhosis severity (A/B/C) at each outpatient visit, guide prophylaxis decisions (varices, SBP), and estimate 1-year survival.' },
-    { icon: '🔬', title: 'Ascites aetiology differentiation', description: 'Calculate SAAG from simultaneous serum and ascitic fluid albumin to distinguish portal hypertension-related ascites (SAAG ≥1.1) from non-portal causes (SAAG <1.1).' },
-    { icon: '🚨', title: 'Acute pancreatitis severity prediction', description: "Apply Ranson's Criteria at admission and 48 hours to predict severe acute pancreatitis requiring ICU monitoring, aggressive fluid resuscitation, and early enteral nutrition." },
-    { icon: '🏥', title: 'Pre-procedure liver function assessment', description: 'Calculate Child-Pugh or MELD score before endoscopy, surgery, or procedures in cirrhotic patients to quantify procedural risk and guide anaesthetic planning.' },
+    {
+      icon: '🫀',
+      title: 'Liver transplant listing and allocation',
+      description:
+        'Calculate MELD score to assess candidacy for liver transplant listing and determine organ allocation priority. MELD ≥15 is the general threshold for listing in most centres.',
+    },
+    {
+      icon: '📊',
+      title: 'Cirrhosis severity assessment',
+      description:
+        'Use Child-Pugh score to classify cirrhosis severity (A/B/C) at each outpatient visit, guide prophylaxis decisions (varices, SBP), and estimate 1-year survival.',
+    },
+    {
+      icon: '🔬',
+      title: 'Ascites aetiology differentiation',
+      description:
+        'Calculate SAAG from simultaneous serum and ascitic fluid albumin to distinguish portal hypertension-related ascites (SAAG ≥1.1) from non-portal causes (SAAG <1.1).',
+    },
+    {
+      icon: '🚨',
+      title: 'Acute pancreatitis severity prediction',
+      description:
+        "Apply Ranson's Criteria at admission and 48 hours to predict severe acute pancreatitis requiring ICU monitoring, aggressive fluid resuscitation, and early enteral nutrition.",
+    },
+    {
+      icon: '🏥',
+      title: 'Pre-procedure liver function assessment',
+      description:
+        'Calculate Child-Pugh or MELD score before endoscopy, surgery, or procedures in cirrhotic patients to quantify procedural risk and guide anaesthetic planning.',
+    },
   ],
   'oncology-hematology': [
-    { icon: '💉', title: 'Chemotherapy dose calculation', description: 'Calculate BSA-based chemotherapy doses at the start of each treatment cycle using current weight. Re-verify if weight has changed ≥10% since the last cycle — dose modification may be required.' },
-    { icon: '🩸', title: 'Febrile neutropenia risk assessment', description: 'Calculate ANC from CBC differential to diagnose neutropenia (ANC <1500) and febrile neutropenia (ANC <500 + fever). Febrile neutropenia is an oncologic emergency requiring immediate antibiotic treatment.' },
-    { icon: '📋', title: 'Staging and prognosis counselling', description: 'Use TNM staging or disease-specific scoring systems to classify tumour stage, communicate prognosis to patients, and select treatment protocols appropriate for the stage.' },
-    { icon: '🔄', title: 'Anticoagulation monitoring in cancer', description: 'Convert INR/PT to confirm therapeutic range in cancer patients on vitamin K antagonists, who have higher lability due to malnutrition, drug interactions, and hepatic involvement.' },
-    { icon: '🏥', title: 'Transfusion threshold decisions', description: 'Calculate blood transfusion volume (mL = target rise × weight × 3 for RBCs) to order the correct unit volume and avoid circulatory overload, particularly in elderly or cardiac patients.' },
+    {
+      icon: '💉',
+      title: 'Chemotherapy dose calculation',
+      description:
+        'Calculate BSA-based chemotherapy doses at the start of each treatment cycle using current weight. Re-verify if weight has changed ≥10% since the last cycle — dose modification may be required.',
+    },
+    {
+      icon: '🩸',
+      title: 'Febrile neutropenia risk assessment',
+      description:
+        'Calculate ANC from CBC differential to diagnose neutropenia (ANC <1500) and febrile neutropenia (ANC <500 + fever). Febrile neutropenia is an oncologic emergency requiring immediate antibiotic treatment.',
+    },
+    {
+      icon: '📋',
+      title: 'Staging and prognosis counselling',
+      description:
+        'Use TNM staging or disease-specific scoring systems to classify tumour stage, communicate prognosis to patients, and select treatment protocols appropriate for the stage.',
+    },
+    {
+      icon: '🔄',
+      title: 'Anticoagulation monitoring in cancer',
+      description:
+        'Convert INR/PT to confirm therapeutic range in cancer patients on vitamin K antagonists, who have higher lability due to malnutrition, drug interactions, and hepatic involvement.',
+    },
+    {
+      icon: '🏥',
+      title: 'Transfusion threshold decisions',
+      description:
+        'Calculate blood transfusion volume (mL = target rise × weight × 3 for RBCs) to order the correct unit volume and avoid circulatory overload, particularly in elderly or cardiac patients.',
+    },
   ],
   pediatrics: [
-    { icon: '👶', title: 'Routine well-child growth monitoring', description: 'Plot height, weight, and head circumference on WHO/CDC growth charts at each well-child visit. Identify children falling across centile lines for early investigation of growth faltering or excess.' },
-    { icon: '💊', title: 'Antipyretic dosing at every fever visit', description: 'Calculate exact paracetamol and ibuprofen doses by current weight before each fever visit to avoid both under-dosing (ineffective) and overdosing (hepatotoxicity risk).' },
-    { icon: '🏥', title: 'PICU and emergency drug dosing', description: 'Use the paediatric emergency drug calculator to pre-calculate weight-based doses of resuscitation drugs (adrenaline, atropine, glucose) before a code to eliminate calculation errors under pressure.' },
-    { icon: '🍼', title: 'Neonatal jaundice management', description: 'Apply the Bhutani nomogram to total serum bilirubin at specific ages (in hours) to identify neonates at high risk of requiring phototherapy before discharge.' },
-    { icon: '📈', title: 'Developmental milestone assessment', description: 'Calculate corrected gestational age for preterm infants before assessing developmental milestones. Failure to correct leads to false concerns about delay in premature infants.' },
+    {
+      icon: '👶',
+      title: 'Routine well-child growth monitoring',
+      description:
+        'Plot height, weight, and head circumference on WHO/CDC growth charts at each well-child visit. Identify children falling across centile lines for early investigation of growth faltering or excess.',
+    },
+    {
+      icon: '💊',
+      title: 'Antipyretic dosing at every fever visit',
+      description:
+        'Calculate exact paracetamol and ibuprofen doses by current weight before each fever visit to avoid both under-dosing (ineffective) and overdosing (hepatotoxicity risk).',
+    },
+    {
+      icon: '🏥',
+      title: 'PICU and emergency drug dosing',
+      description:
+        'Use the paediatric emergency drug calculator to pre-calculate weight-based doses of resuscitation drugs (adrenaline, atropine, glucose) before a code to eliminate calculation errors under pressure.',
+    },
+    {
+      icon: '🍼',
+      title: 'Neonatal jaundice management',
+      description:
+        'Apply the Bhutani nomogram to total serum bilirubin at specific ages (in hours) to identify neonates at high risk of requiring phototherapy before discharge.',
+    },
+    {
+      icon: '📈',
+      title: 'Developmental milestone assessment',
+      description:
+        'Calculate corrected gestational age for preterm infants before assessing developmental milestones. Failure to correct leads to false concerns about delay in premature infants.',
+    },
   ],
   'consumer-health': [
-    { icon: '⚖️', title: 'Annual health check self-assessment', description: 'Calculate BMI, body fat percentage, and waist-to-hip ratio as part of an annual health self-assessment to track trends and identify changes that warrant a GP visit.' },
-    { icon: '🏋️', title: 'Setting weight loss or fitness goals', description: 'Use TDEE and BMI tools to establish a science-based calorie target and a healthy goal weight range before starting a diet or exercise programme.' },
-    { icon: '❤️', title: 'Personalising exercise intensity', description: 'Calculate your maximum heart rate and aerobic training zones (50–85% HRmax) to ensure cardiovascular workouts are effective and safe for your fitness level.' },
-    { icon: '💧', title: 'Hydration planning', description: 'Calculate daily water intake needs based on weight and activity level. Increase by 500–750 mL for every hour of vigorous exercise or during hot weather.' },
-    { icon: '💰', title: 'Healthcare cost planning', description: 'Use medical cost estimators to budget for health insurance premiums, procedures, and ongoing medication costs to avoid unexpected out-of-pocket expenses.' },
+    {
+      icon: '⚖️',
+      title: 'Annual health check self-assessment',
+      description:
+        'Calculate BMI, body fat percentage, and waist-to-hip ratio as part of an annual health self-assessment to track trends and identify changes that warrant a GP visit.',
+    },
+    {
+      icon: '🏋️',
+      title: 'Setting weight loss or fitness goals',
+      description:
+        'Use TDEE and BMI tools to establish a science-based calorie target and a healthy goal weight range before starting a diet or exercise programme.',
+    },
+    {
+      icon: '❤️',
+      title: 'Personalising exercise intensity',
+      description:
+        'Calculate your maximum heart rate and aerobic training zones (50–85% HRmax) to ensure cardiovascular workouts are effective and safe for your fitness level.',
+    },
+    {
+      icon: '💧',
+      title: 'Hydration planning',
+      description:
+        'Calculate daily water intake needs based on weight and activity level. Increase by 500–750 mL for every hour of vigorous exercise or during hot weather.',
+    },
+    {
+      icon: '💰',
+      title: 'Healthcare cost planning',
+      description:
+        'Use medical cost estimators to budget for health insurance premiums, procedures, and ongoing medication costs to avoid unexpected out-of-pocket expenses.',
+    },
   ],
-}
+};
 
 const PRO_TIPS: Record<string, string[]> = {
   cardiology: [
@@ -250,7 +730,7 @@ const PRO_TIPS: Record<string, string[]> = {
   ],
   nephrology: [
     'Never use eGFR calculated during an acute kidney injury for drug dosing or CKD staging. eGFR formulas assume steady-state creatinine — during AKI, creatinine is still rising and the calculated eGFR will significantly overestimate true kidney function.',
-    'For obese patients requiring weight-based drug dosing via Cockcroft-Gault, use adjusted body weight (ABW) rather than actual body weight for most drugs: ABW = IBW + 0.4 × (Actual weight − IBW). Check the specific drug\'s dosing guidelines, as some drugs use actual weight even in obesity.',
+    "For obese patients requiring weight-based drug dosing via Cockcroft-Gault, use adjusted body weight (ABW) rather than actual body weight for most drugs: ABW = IBW + 0.4 × (Actual weight − IBW). Check the specific drug's dosing guidelines, as some drugs use actual weight even in obesity.",
     'Serum creatinine can be falsely low in elderly, malnourished, or cachectic patients despite significantly reduced kidney function. A 75-year-old with Scr 0.9 mg/dL may have an eGFR of only 55 mL/min — what appears "normal" creatinine may still indicate CKD G3a.',
     'CKD staging requires both eGFR AND urine albumin-to-creatinine ratio (UACR). A patient with eGFR 65 (G2) and UACR ≥300 mg/g is at very high risk — the same as G4 CKD without albuminuria. Never stage CKD from eGFR alone.',
   ],
@@ -276,7 +756,7 @@ const PRO_TIPS: Record<string, string[]> = {
     'For aminoglycosides (gentamicin, tobramycin) and vancomycin, the choice of body weight is critical. Use actual body weight for lean patients, adjusted body weight for obese patients (ABW = IBW + 0.4 × excess weight), and IBW for volume of distribution estimations. Failure to use the correct weight is a leading cause of aminoglycoside toxicity.',
     'Opioid equianalgesic conversions are population-derived averages with high interindividual variability due to differences in metabolism (CYP450 genotype), receptor sensitivity, and cross-tolerance. Always reduce the calculated equianalgesic dose by 25–50% when initiating a new opioid rotation, then titrate upward based on pain response.',
     'AUC-guided vancomycin dosing has replaced trough monitoring in most guidelines. Target AUC/MIC of 400–600 mg·h/L (assuming MIC ≤1 mg/L). Trough-only monitoring led to nephrotoxicity (high troughs) or treatment failure (low troughs). Bayesian software significantly improves dose prediction accuracy.',
-    'For renal dose adjustment, always use Cockcroft-Gault CrCl (not CKD-EPI eGFR) when the drug\'s pharmacokinetic studies were conducted before CKD-EPI became standard. Most antibiotic, anticoagulant, and diabetic medication dosing trials used Cockcroft-Gault — using eGFR for these drugs can lead to inappropriate dose reductions.',
+    "For renal dose adjustment, always use Cockcroft-Gault CrCl (not CKD-EPI eGFR) when the drug's pharmacokinetic studies were conducted before CKD-EPI became standard. Most antibiotic, anticoagulant, and diabetic medication dosing trials used Cockcroft-Gault — using eGFR for these drugs can lead to inappropriate dose reductions.",
   ],
   obstetrics: [
     "Naegele's Rule (EDD = LMP + 280 days) assumes a regular 28-day cycle with ovulation on day 14. For patients with cycles longer than 28 days, the EDD should be adjusted: add the difference between the patient's cycle length and 28 days. For example, a patient with 35-day cycles should have EDD adjusted forward by 7 days.",
@@ -288,7 +768,7 @@ const PRO_TIPS: Record<string, string[]> = {
     'The FEV1/FVC ratio below the Lower Limit of Normal (LLN) is more accurate than the fixed 0.70 threshold for diagnosing obstruction, particularly in elderly patients. Using 0.70 overdiagnoses COPD in older patients (normal physiological decline) and may underdiagnose it in young patients with early disease.',
     'P/F ratio interpretation requires knowing the FiO2 accurately. In patients on nasal cannula, FiO2 estimation is imprecise: a general rule is FiO2 ≈ 0.21 + (0.04 × flow in L/min). P/F ratios should ideally be calculated on standardised FiO2 settings rather than variable nasal cannula flows.',
     'Pack-years must account for actual tobacco content, not just cigarettes. One pack-year = 20 cigarettes/day for one year. Heavy pipe, cigar, or high-tar cigarette smokers may have disproportionately higher pulmonary and carcinogenic exposure than their pack-year calculation suggests.',
-    'For ABG interpretation, use a systematic approach: assess pH (acidosis vs alkalosis), identify the primary disorder (respiratory vs metabolic from PaCO2 and HCO3-), check for compensation (is it appropriate per Winter\'s formula or Henderson-Hasselbalch?), then identify any mixed disorder if compensation is abnormal.',
+    "For ABG interpretation, use a systematic approach: assess pH (acidosis vs alkalosis), identify the primary disorder (respiratory vs metabolic from PaCO2 and HCO3-), check for compensation (is it appropriate per Winter's formula or Henderson-Hasselbalch?), then identify any mixed disorder if compensation is abnormal.",
   ],
   gastroenterology: [
     'MELD score should always be calculated from simultaneous lab values obtained on the same day. Using creatinine from one date and bilirubin from another creates artificially high or low MELD scores. Repeat labs on the same day before any transplant-related decision.',
@@ -297,7 +777,7 @@ const PRO_TIPS: Record<string, string[]> = {
     'SAAG must be calculated from albumin measured in serum and ascitic fluid obtained on the SAME DAY during paracentesis. Serum albumin measured days before the tap may not reflect the current serum level, especially in patients with rapidly fluctuating liver function.',
   ],
   'oncology-hematology': [
-    'BSA-based chemotherapy dosing is imprecise — BSA is a surrogate for drug distribution, not a perfect predictor of pharmacokinetics. Many oncologists now advocate for weight-based dosing caps (e.g., capping at BSA 2.0 m²) to prevent toxicity in patients with very high BSA, but protocols vary. Always follow the specific protocol\'s capping rules.',
+    "BSA-based chemotherapy dosing is imprecise — BSA is a surrogate for drug distribution, not a perfect predictor of pharmacokinetics. Many oncologists now advocate for weight-based dosing caps (e.g., capping at BSA 2.0 m²) to prevent toxicity in patients with very high BSA, but protocols vary. Always follow the specific protocol's capping rules.",
     'ANC nadir typically occurs 7–14 days after chemotherapy administration. Educate patients to monitor for fever in this window and report immediately — febrile neutropenia has a 5–10% mortality rate when treatment is delayed. The absolute neutrophil count (ANC) = WBC × (neutrophils% + bands%).',
     'TNM staging is the most important predictor of prognosis for most solid tumours, but it is a snapshot at one point in time. Stage migration (upstaging due to improved imaging or surgical staging) occurs with CT, PET-CT, and sentinel node biopsy. A Stage II cancer staged by clinical examination alone may be pathological Stage III after resection.',
     'INR/PT values in cirrhotic patients do not reflect their true coagulation status because they do not account for reduced thrombomodulin-mediated protein C activation or decreased levels of both pro- and anti-coagulant factors. Cirrhotic patients are not necessarily anti-coagulated despite elevated INR — they have a rebalanced but fragile haemostatic system.',
@@ -314,110 +794,334 @@ const PRO_TIPS: Record<string, string[]> = {
     'Target heart rate zones (based on 220 − age) are population averages with wide individual variability (±10–20 bpm). A more accurate method is the Karvonen formula using resting heart rate: Target HR = ((HRmax − HRrest) × %intensity) + HRrest. Use a heart rate monitor rather than relying solely on calculated zones.',
     'Sleep cycle calculators help identify optimal wake times to complete full 90-minute cycles and avoid waking during deep sleep. The first sleep cycle typically has more deep sleep (N3), while later cycles have more REM sleep — plan your optimal sleep duration based on when you need to wake up, working backwards in 90-minute increments.',
   ],
-}
+};
 
 const QUICK_REF_ROWS: Record<string, QuickRefRow[]> = {
   cardiology: [
     { input: 'Age', description: 'Patient age in years', example: '65 years' },
-    { input: 'Sex', description: 'Biological sex (affects risk weighting)', example: 'Male / Female' },
+    {
+      input: 'Sex',
+      description: 'Biological sex (affects risk weighting)',
+      example: 'Male / Female',
+    },
     { input: 'Systolic BP', description: 'Systolic blood pressure (mmHg)', example: '140 mmHg' },
-    { input: 'Total Cholesterol', description: 'Total serum cholesterol (mg/dL)', example: '220 mg/dL' },
+    {
+      input: 'Total Cholesterol',
+      description: 'Total serum cholesterol (mg/dL)',
+      example: '220 mg/dL',
+    },
     { input: 'HDL-C', description: 'High-density lipoprotein cholesterol', example: '45 mg/dL' },
-    { input: 'Smoking status', description: 'Current smoker increases CVD risk significantly', example: 'Current / Former / Never' },
-    { input: 'Output', description: 'Risk score, classification, or probability', example: '15% 10-year CVD risk' },
+    {
+      input: 'Smoking status',
+      description: 'Current smoker increases CVD risk significantly',
+      example: 'Current / Former / Never',
+    },
+    {
+      input: 'Output',
+      description: 'Risk score, classification, or probability',
+      example: '15% 10-year CVD risk',
+    },
   ],
   nephrology: [
-    { input: 'Serum Creatinine', description: 'Most recent stable serum creatinine (mg/dL)', example: '1.8 mg/dL' },
+    {
+      input: 'Serum Creatinine',
+      description: 'Most recent stable serum creatinine (mg/dL)',
+      example: '1.8 mg/dL',
+    },
     { input: 'Age', description: 'Patient age in years', example: '62 years' },
-    { input: 'Sex', description: 'Biological sex (affects κ and α constants in CKD-EPI)', example: 'Female' },
-    { input: 'Weight (for CrCl)', description: 'Body weight in kg — use IBW if obese for Cockcroft-Gault', example: '70 kg' },
-    { input: 'eGFR output', description: 'mL/min/1.73m² — for CKD staging', example: '42 mL/min/1.73m²' },
+    {
+      input: 'Sex',
+      description: 'Biological sex (affects κ and α constants in CKD-EPI)',
+      example: 'Female',
+    },
+    {
+      input: 'Weight (for CrCl)',
+      description: 'Body weight in kg — use IBW if obese for Cockcroft-Gault',
+      example: '70 kg',
+    },
+    {
+      input: 'eGFR output',
+      description: 'mL/min/1.73m² — for CKD staging',
+      example: '42 mL/min/1.73m²',
+    },
     { input: 'CKD Stage', description: 'KDIGO G1–G5 classification', example: 'Stage G3b' },
-    { input: 'CrCl output', description: 'mL/min — for drug dose adjustment', example: '38 mL/min' },
+    {
+      input: 'CrCl output',
+      description: 'mL/min — for drug dose adjustment',
+      example: '38 mL/min',
+    },
   ],
   'emergency-icu': [
-    { input: 'Vital signs', description: 'HR, BP, RR, Temp, SpO2 at time of scoring', example: 'RR 28, SBP 88' },
+    {
+      input: 'Vital signs',
+      description: 'HR, BP, RR, Temp, SpO2 at time of scoring',
+      example: 'RR 28, SBP 88',
+    },
     { input: 'GCS', description: 'Glasgow Coma Scale total (3–15)', example: 'GCS 12' },
-    { input: 'Lab values', description: 'Creatinine, bilirubin, platelets, lactate as required', example: 'Cr 2.1, bili 3.2' },
-    { input: 'Ventilator settings', description: 'FiO2 and PaO2 for respiratory SOFA component', example: 'FiO2 0.6, PaO2 80' },
+    {
+      input: 'Lab values',
+      description: 'Creatinine, bilirubin, platelets, lactate as required',
+      example: 'Cr 2.1, bili 3.2',
+    },
+    {
+      input: 'Ventilator settings',
+      description: 'FiO2 and PaO2 for respiratory SOFA component',
+      example: 'FiO2 0.6, PaO2 80',
+    },
     { input: 'Score output', description: 'Total severity score', example: 'SOFA 8' },
-    { input: 'Risk category', description: 'Predicted mortality or severity class', example: '~40% predicted mortality' },
+    {
+      input: 'Risk category',
+      description: 'Predicted mortality or severity class',
+      example: '~40% predicted mortality',
+    },
   ],
   'neurology-psychiatry': [
-    { input: 'Item responses', description: 'Each scored item on the clinical scale (0–N)', example: 'PHQ-9 item 1: score 2' },
+    {
+      input: 'Item responses',
+      description: 'Each scored item on the clinical scale (0–N)',
+      example: 'PHQ-9 item 1: score 2',
+    },
     { input: 'Total score', description: 'Sum of all item scores', example: 'PHQ-9 total: 14' },
-    { input: 'Severity category', description: 'Classification per validated cutoffs', example: 'Moderate depression' },
-    { input: 'Interpretation', description: 'Clinical action recommended by score range', example: 'Warrants clinical evaluation' },
-    { input: 'Scale range', description: 'Minimum to maximum possible score', example: 'PHQ-9: 0–27' },
+    {
+      input: 'Severity category',
+      description: 'Classification per validated cutoffs',
+      example: 'Moderate depression',
+    },
+    {
+      input: 'Interpretation',
+      description: 'Clinical action recommended by score range',
+      example: 'Warrants clinical evaluation',
+    },
+    {
+      input: 'Scale range',
+      description: 'Minimum to maximum possible score',
+      example: 'PHQ-9: 0–27',
+    },
   ],
   endocrinology: [
     { input: 'Height', description: 'Patient height (cm or ft/in)', example: '170 cm' },
     { input: 'Weight', description: 'Patient weight (kg or lbs)', example: '85 kg' },
     { input: 'Age', description: 'Patient age in years', example: '45 years' },
-    { input: 'Sex', description: 'Biological sex (affects BMR and IBW calculations)', example: 'Female' },
-    { input: 'Activity level', description: 'Physical activity multiplier for TDEE', example: 'Moderately active (×1.55)' },
-    { input: 'Output', description: 'BMI, BMR, TDEE, IBW, or conversion result', example: 'BMI 29.4 | TDEE 2,240 kcal' },
+    {
+      input: 'Sex',
+      description: 'Biological sex (affects BMR and IBW calculations)',
+      example: 'Female',
+    },
+    {
+      input: 'Activity level',
+      description: 'Physical activity multiplier for TDEE',
+      example: 'Moderately active (×1.55)',
+    },
+    {
+      input: 'Output',
+      description: 'BMI, BMR, TDEE, IBW, or conversion result',
+      example: 'BMI 29.4 | TDEE 2,240 kcal',
+    },
   ],
   pharmacology: [
-    { input: 'Body weight (kg)', description: 'Use actual, IBW, or ABW per drug protocol', example: 'ABW 78 kg' },
-    { input: 'Dose (mg/kg)', description: 'Prescribed dose per kilogram from protocol', example: '15 mg/kg (gentamicin)' },
-    { input: 'Renal function (CrCl)', description: 'Cockcroft-Gault CrCl for renally-cleared drugs', example: '45 mL/min' },
-    { input: 'Frequency', description: 'Dosing interval per protocol', example: 'Every 48h (CrCl 20–50)' },
+    {
+      input: 'Body weight (kg)',
+      description: 'Use actual, IBW, or ABW per drug protocol',
+      example: 'ABW 78 kg',
+    },
+    {
+      input: 'Dose (mg/kg)',
+      description: 'Prescribed dose per kilogram from protocol',
+      example: '15 mg/kg (gentamicin)',
+    },
+    {
+      input: 'Renal function (CrCl)',
+      description: 'Cockcroft-Gault CrCl for renally-cleared drugs',
+      example: '45 mL/min',
+    },
+    {
+      input: 'Frequency',
+      description: 'Dosing interval per protocol',
+      example: 'Every 48h (CrCl 20–50)',
+    },
     { input: 'Single dose (mg)', description: 'Calculated: dose × weight', example: '1,170 mg' },
-    { input: 'Max daily dose', description: 'Safety ceiling from drug prescribing information', example: '≤4,000 mg/day (paracetamol)' },
+    {
+      input: 'Max daily dose',
+      description: 'Safety ceiling from drug prescribing information',
+      example: '≤4,000 mg/day (paracetamol)',
+    },
   ],
   obstetrics: [
-    { input: 'LMP (first day)', description: 'First day of last menstrual period', example: '15 March 2025' },
-    { input: 'Cycle length', description: 'Average menstrual cycle length in days', example: '28 days' },
-    { input: 'Gestational age', description: 'Calculated weeks + days from LMP', example: '28+3 weeks' },
-    { input: 'EDD output', description: "Estimated due date (Naegele's Rule: LMP + 280 days)", example: '20 December 2025' },
-    { input: 'Fetal biometrics', description: 'BPD, HC, AC, FL for EFW by Hadlock formula', example: 'EFW 1,240g (50th centile)' },
-    { input: 'Bishop Score', description: 'Cervical score 0–13 for induction readiness', example: 'Bishop 6 — borderline favourable' },
+    {
+      input: 'LMP (first day)',
+      description: 'First day of last menstrual period',
+      example: '15 March 2025',
+    },
+    {
+      input: 'Cycle length',
+      description: 'Average menstrual cycle length in days',
+      example: '28 days',
+    },
+    {
+      input: 'Gestational age',
+      description: 'Calculated weeks + days from LMP',
+      example: '28+3 weeks',
+    },
+    {
+      input: 'EDD output',
+      description: "Estimated due date (Naegele's Rule: LMP + 280 days)",
+      example: '20 December 2025',
+    },
+    {
+      input: 'Fetal biometrics',
+      description: 'BPD, HC, AC, FL for EFW by Hadlock formula',
+      example: 'EFW 1,240g (50th centile)',
+    },
+    {
+      input: 'Bishop Score',
+      description: 'Cervical score 0–13 for induction readiness',
+      example: 'Bishop 6 — borderline favourable',
+    },
   ],
   pulmonology: [
-    { input: 'FEV1', description: 'Forced expiratory volume in 1 second (litres)', example: '1.8 L (56% predicted)' },
-    { input: 'FVC', description: 'Forced vital capacity (litres)', example: '3.2 L (82% predicted)' },
-    { input: 'FEV1/FVC ratio', description: 'Obstruction diagnosis: ratio <0.70 (or <LLN)', example: '0.56 → Obstruction' },
-    { input: 'PaO2', description: 'Arterial partial pressure of oxygen (mmHg)', example: '60 mmHg' },
-    { input: 'FiO2', description: 'Fraction of inspired oxygen at time of ABG', example: '0.40 (40% O2)' },
-    { input: 'P/F ratio', description: 'PaO2/FiO2 — ARDS severity marker', example: '150 → Moderate ARDS' },
+    {
+      input: 'FEV1',
+      description: 'Forced expiratory volume in 1 second (litres)',
+      example: '1.8 L (56% predicted)',
+    },
+    {
+      input: 'FVC',
+      description: 'Forced vital capacity (litres)',
+      example: '3.2 L (82% predicted)',
+    },
+    {
+      input: 'FEV1/FVC ratio',
+      description: 'Obstruction diagnosis: ratio <0.70 (or <LLN)',
+      example: '0.56 → Obstruction',
+    },
+    {
+      input: 'PaO2',
+      description: 'Arterial partial pressure of oxygen (mmHg)',
+      example: '60 mmHg',
+    },
+    {
+      input: 'FiO2',
+      description: 'Fraction of inspired oxygen at time of ABG',
+      example: '0.40 (40% O2)',
+    },
+    {
+      input: 'P/F ratio',
+      description: 'PaO2/FiO2 — ARDS severity marker',
+      example: '150 → Moderate ARDS',
+    },
   ],
   gastroenterology: [
     { input: 'Bilirubin', description: 'Total serum bilirubin (mg/dL)', example: '3.8 mg/dL' },
     { input: 'Albumin', description: 'Serum albumin (g/dL)', example: '2.4 g/dL' },
     { input: 'INR', description: 'International Normalized Ratio', example: '1.8' },
     { input: 'Creatinine', description: 'Serum creatinine (mg/dL) for MELD', example: '1.3 mg/dL' },
-    { input: 'Ascites grade', description: 'None / Mild / Moderate / Severe for Child-Pugh', example: 'Moderate (score 2)' },
-    { input: 'MELD output', description: 'Score 6–40: higher = worse prognosis', example: 'MELD 22 → ~10% 90-day mortality' },
-    { input: 'Child-Pugh class', description: 'A (5–6) / B (7–9) / C (10–15)', example: 'Class B (score 8)' },
+    {
+      input: 'Ascites grade',
+      description: 'None / Mild / Moderate / Severe for Child-Pugh',
+      example: 'Moderate (score 2)',
+    },
+    {
+      input: 'MELD output',
+      description: 'Score 6–40: higher = worse prognosis',
+      example: 'MELD 22 → ~10% 90-day mortality',
+    },
+    {
+      input: 'Child-Pugh class',
+      description: 'A (5–6) / B (7–9) / C (10–15)',
+      example: 'Class B (score 8)',
+    },
   ],
   'oncology-hematology': [
-    { input: 'Height (cm)', description: 'Patient height in centimetres at treatment visit', example: '168 cm' },
-    { input: 'Weight (kg)', description: 'Current actual body weight in kilograms', example: '72 kg' },
+    {
+      input: 'Height (cm)',
+      description: 'Patient height in centimetres at treatment visit',
+      example: '168 cm',
+    },
+    {
+      input: 'Weight (kg)',
+      description: 'Current actual body weight in kilograms',
+      example: '72 kg',
+    },
     { input: 'BSA (m²)', description: 'Mosteller: √(H×W÷3600)', example: '1.79 m²' },
-    { input: 'Protocol dose (mg/m²)', description: 'Chemotherapy dose from treatment protocol', example: '175 mg/m² (paclitaxel)' },
-    { input: 'Total dose (mg)', description: 'BSA × protocol dose — verify against cap', example: '313 mg' },
-    { input: 'ANC', description: 'WBC × (neutrophils% + bands%) / 100', example: 'ANC 0.8 × 10³/μL → neutropenic' },
+    {
+      input: 'Protocol dose (mg/m²)',
+      description: 'Chemotherapy dose from treatment protocol',
+      example: '175 mg/m² (paclitaxel)',
+    },
+    {
+      input: 'Total dose (mg)',
+      description: 'BSA × protocol dose — verify against cap',
+      example: '313 mg',
+    },
+    {
+      input: 'ANC',
+      description: 'WBC × (neutrophils% + bands%) / 100',
+      example: 'ANC 0.8 × 10³/μL → neutropenic',
+    },
   ],
   pediatrics: [
-    { input: 'Weight (kg)', description: 'Current measured weight — never estimated for dosing', example: '18 kg' },
-    { input: 'Date of birth', description: 'For exact age and corrected age calculation', example: '15 June 2022' },
-    { input: 'Gestational age at birth', description: 'For corrected age in preterm infants', example: '32 weeks' },
-    { input: 'Height/length (cm)', description: 'For growth chart and IBW calculation', example: '105 cm' },
-    { input: 'Dose (mg/kg)', description: 'Prescribed weight-based dose from protocol', example: '15 mg/kg (paracetamol)' },
-    { input: 'Output dose (mg)', description: 'Calculated single dose — check against adult max', example: '270 mg' },
-    { input: 'Percentile', description: 'Growth chart position vs age/sex reference', example: '25th centile (height)' },
+    {
+      input: 'Weight (kg)',
+      description: 'Current measured weight — never estimated for dosing',
+      example: '18 kg',
+    },
+    {
+      input: 'Date of birth',
+      description: 'For exact age and corrected age calculation',
+      example: '15 June 2022',
+    },
+    {
+      input: 'Gestational age at birth',
+      description: 'For corrected age in preterm infants',
+      example: '32 weeks',
+    },
+    {
+      input: 'Height/length (cm)',
+      description: 'For growth chart and IBW calculation',
+      example: '105 cm',
+    },
+    {
+      input: 'Dose (mg/kg)',
+      description: 'Prescribed weight-based dose from protocol',
+      example: '15 mg/kg (paracetamol)',
+    },
+    {
+      input: 'Output dose (mg)',
+      description: 'Calculated single dose — check against adult max',
+      example: '270 mg',
+    },
+    {
+      input: 'Percentile',
+      description: 'Growth chart position vs age/sex reference',
+      example: '25th centile (height)',
+    },
   ],
   'consumer-health': [
     { input: 'Age', description: 'Your age in years', example: '38 years' },
-    { input: 'Sex', description: 'Biological sex (affects BMR, IBW, and risk ranges)', example: 'Female' },
+    {
+      input: 'Sex',
+      description: 'Biological sex (affects BMR, IBW, and risk ranges)',
+      example: 'Female',
+    },
     { input: 'Height', description: 'Your height in cm or ft/in', example: '165 cm' },
     { input: 'Weight', description: 'Your weight in kg or lbs', example: '68 kg' },
-    { input: 'Activity level', description: 'Average weekly physical activity', example: 'Lightly active (×1.375)' },
-    { input: 'BMI output', description: 'WHO classification: <18.5/18.5–24.9/25–29.9/≥30', example: '25.0 → Overweight' },
-    { input: 'TDEE output', description: 'Total daily energy expenditure (kcal/day)', example: '1,950 kcal/day' },
+    {
+      input: 'Activity level',
+      description: 'Average weekly physical activity',
+      example: 'Lightly active (×1.375)',
+    },
+    {
+      input: 'BMI output',
+      description: 'WHO classification: <18.5/18.5–24.9/25–29.9/≥30',
+      example: '25.0 → Overweight',
+    },
+    {
+      input: 'TDEE output',
+      description: 'Total daily energy expenditure (kcal/day)',
+      example: '1,950 kcal/day',
+    },
   ],
-}
+};
 
 const TRUST_CHIPS = [
   '⚡ Instant results',
@@ -425,14 +1129,20 @@ const TRUST_CHIPS = [
   '🆓 Always free',
   '🚫 No signup',
   '🩺 Clinically referenced',
-] as const
+] as const;
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
 function HowToStepsSection({ steps }: { steps: HowToStep[] }) {
   return (
-    <section className="mt-8 bg-white rounded-2xl border border-gray-200 p-6" aria-labelledby="howto-heading">
-      <h2 id="howto-heading" className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+    <section
+      className="mt-8 bg-white rounded-2xl border border-gray-200 p-6"
+      aria-labelledby="howto-heading"
+    >
+      <h2
+        id="howto-heading"
+        className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2"
+      >
         <span>📋</span> How to Use This Calculator
       </h2>
       <ol className="space-y-4">
@@ -449,13 +1159,19 @@ function HowToStepsSection({ steps }: { steps: HowToStep[] }) {
         ))}
       </ol>
     </section>
-  )
+  );
 }
 
 function WhenToUseSection({ cards }: { cards: WhenToUseCard[] }) {
   return (
-    <section className="mt-8 bg-white rounded-2xl border border-gray-200 p-6" aria-labelledby="when-heading">
-      <h2 id="when-heading" className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+    <section
+      className="mt-8 bg-white rounded-2xl border border-gray-200 p-6"
+      aria-labelledby="when-heading"
+    >
+      <h2
+        id="when-heading"
+        className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2"
+      >
         <span>🎯</span> When to Use This Calculator
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -468,14 +1184,21 @@ function WhenToUseSection({ cards }: { cards: WhenToUseCard[] }) {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 function QuickReferenceSection({ rows }: { rows: QuickRefRow[] }) {
   return (
-    <section data-print-section="reference" className="mt-8 bg-white rounded-2xl border border-gray-200 overflow-hidden" aria-labelledby="quickref-heading">
+    <section
+      data-print-section="reference"
+      className="mt-8 bg-white rounded-2xl border border-gray-200 overflow-hidden"
+      aria-labelledby="quickref-heading"
+    >
       <div className="p-6 pb-3">
-        <h2 id="quickref-heading" className="text-base font-bold text-gray-900 flex items-center gap-2">
+        <h2
+          id="quickref-heading"
+          className="text-base font-bold text-gray-900 flex items-center gap-2"
+        >
           <span>📊</span> Quick Reference
         </h2>
       </div>
@@ -483,35 +1206,56 @@ function QuickReferenceSection({ rows }: { rows: QuickRefRow[] }) {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-emerald-50 border-y border-emerald-100">
-              <th className="text-left px-5 py-2.5 text-xs font-semibold text-emerald-700 uppercase tracking-wide">Input / Parameter</th>
-              <th className="text-left px-5 py-2.5 text-xs font-semibold text-emerald-700 uppercase tracking-wide">Description</th>
-              <th className="text-left px-5 py-2.5 text-xs font-semibold text-emerald-700 uppercase tracking-wide">Example Value</th>
+              <th className="text-left px-5 py-2.5 text-xs font-semibold text-emerald-700 uppercase tracking-wide">
+                Input / Parameter
+              </th>
+              <th className="text-left px-5 py-2.5 text-xs font-semibold text-emerald-700 uppercase tracking-wide">
+                Description
+              </th>
+              <th className="text-left px-5 py-2.5 text-xs font-semibold text-emerald-700 uppercase tracking-wide">
+                Example Value
+              </th>
             </tr>
           </thead>
           <tbody>
             {rows.map((row, i) => (
               <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
-                <td className="px-5 py-2.5 text-sm font-medium text-emerald-800 border-b border-gray-100">{row.input}</td>
-                <td className="px-5 py-2.5 text-sm text-gray-700 border-b border-gray-100">{row.description}</td>
-                <td className="px-5 py-2.5 text-xs font-mono text-gray-700 border-b border-gray-100">{row.example}</td>
+                <td className="px-5 py-2.5 text-sm font-medium text-emerald-800 border-b border-gray-100">
+                  {row.input}
+                </td>
+                <td className="px-5 py-2.5 text-sm text-gray-700 border-b border-gray-100">
+                  {row.description}
+                </td>
+                <td className="px-5 py-2.5 text-xs font-mono text-gray-700 border-b border-gray-100">
+                  {row.example}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
     </section>
-  )
+  );
 }
 
 function ProTipsSection({ tips }: { tips: string[] }) {
   return (
-    <section className="mt-8 bg-white rounded-2xl border border-gray-200 p-6" aria-labelledby="tips-heading">
-      <h2 id="tips-heading" className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+    <section
+      className="mt-8 bg-white rounded-2xl border border-gray-200 p-6"
+      aria-labelledby="tips-heading"
+    >
+      <h2
+        id="tips-heading"
+        className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2"
+      >
         <span>💡</span> Clinical Pro Tips
       </h2>
       <div className="space-y-3">
         {tips.map((tip, i) => (
-          <div key={i} className="flex gap-3 p-4 rounded-xl bg-emerald-50 border border-emerald-100">
+          <div
+            key={i}
+            className="flex gap-3 p-4 rounded-xl bg-emerald-50 border border-emerald-100"
+          >
             <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-200 text-emerald-800 text-xs font-bold flex items-center justify-center mt-0.5">
               {i + 1}
             </span>
@@ -520,7 +1264,7 @@ function ProTipsSection({ tips }: { tips: string[] }) {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 // ─── About section — rich specialty-specific content ─────────
@@ -622,22 +1366,38 @@ const ABOUT_PARAGRAPHS: Record<string, (toolName: string) => string[]> = {
     `All calculations run entirely in your browser. No personal information — including your weight, height, age, or any health data — is transmitted to any server, stored in any database, or used for advertising or personalisation. Your health data remains completely private on your device. There are no accounts, cookies that track health inputs, or data collection of any kind.`,
     `These tools are for personal health education and awareness — they are not medical advice and should not be used to self-diagnose or self-treat. If your ${n} result falls outside the healthy range — particularly if your BMI indicates obesity, your blood pressure reading is elevated, or you have symptoms that concern you — book an appointment with your GP or primary care provider to discuss the result in the context of your full health history. Always consult a qualified healthcare provider before making major changes to diet, exercise, or medication.`,
   ],
-}
+};
+
+const TOOL_ABOUT_PARAGRAPHS: Record<string, (toolName: string) => string[]> = {
+  'remedial-exercise-calorie-calculator': (n) => [
+    `The ${n} uses the internationally validated MET (Metabolic Equivalent of Task) framework to estimate energy expenditure during prescribed therapeutic exercise modalities. MET values are drawn from the Compendium of Physical Activities (Ainsworth et al., Medicine & Science in Sports & Exercise, 2011) — the gold-standard reference used by exercise physiologists, sports medicine physicians, and clinical dietitians worldwide to quantify exercise intensity and caloric expenditure.`,
+    `Remedial exercise refers to medically prescribed, structured physical activity designed to address a specific health condition — most commonly obesity, musculoskeletal rehabilitation, cardiovascular deconditioning, or post-surgical recovery. Unlike general fitness programmes, remedial exercise programmes are individually tailored by physiotherapists or clinical exercise specialists, with specific modalities, intensity levels, durations, and progression schedules. This calculator supports the planning, monitoring, and patient education aspects of such programmes.`,
+    `The MET formula (Calories = MET × Body Weight (kg) × Duration in Hours) is the simplest validated method for estimating gross energy expenditure during exercise. "Gross" means it includes resting metabolic rate — net energy expenditure (the additional burn above resting) would be calculated as (MET − 1) × weight × hours. For clinical purposes, gross expenditure is the standard used in exercise prescription and calorie balance calculations.`,
+    `Treadmill incline walking has emerged as a particularly effective remedial exercise for obese patients because it achieves high metabolic demand at slow walking speeds. At 40% incline, even slow walking (2–3 km/h) generates a MET of approximately 11–12 — equivalent to vigorous running — while maintaining low impact forces on the knee and hip joints. This makes steep incline walking the preferred cardio modality in patients with obesity-related joint pain or osteoarthritis who cannot tolerate jogging.`,
+    `For resistance exercises — push-ups, deadlifts, and abdominal crunches — calorie estimates from MET values are conservative, because they do not account for the Excess Post-exercise Oxygen Consumption (EPOC) effect. Resistance training elevates metabolic rate for 12–48 hours after exercise, adding 6–15% additional calorie burn beyond the session itself (Aaberg, NSCA, 2020). This makes resistance exercises particularly valuable additions to obesity management programmes beyond their direct caloric cost.`,
+    `All calculations run entirely in your browser. No data you enter — body weight, exercise duration, or any other input — is transmitted to any server or stored anywhere. Results can be exported to PDF for clinical records, shared with patients as part of their exercise prescription documentation, or used to track caloric expenditure across sessions over time. The PDF report includes the MET values and formula reference for clinical transparency.`,
+  ],
+};
 
 function AboutContent({
   toolName,
   description: _description,
   specialty,
   reference,
+  toolSlug,
 }: {
-  toolName: string
-  description: string
-  specialty: MedicalSpecialty | null
-  reference: string | null
+  toolName: string;
+  description: string;
+  specialty: MedicalSpecialty | null;
+  reference: string | null;
+  toolSlug?: string;
 }) {
-  const specialtyId = specialty?.id ?? 'consumer-health'
-  const paragraphsFn = ABOUT_PARAGRAPHS[specialtyId] ?? ABOUT_PARAGRAPHS['consumer-health']
-  const paragraphs = paragraphsFn(toolName)
+  const specialtyId = specialty?.id ?? 'consumer-health';
+  const paragraphsFn =
+    (toolSlug ? TOOL_ABOUT_PARAGRAPHS[toolSlug] : null) ??
+    ABOUT_PARAGRAPHS[specialtyId] ??
+    ABOUT_PARAGRAPHS['consumer-health'];
+  const paragraphs = paragraphsFn(toolName);
 
   return (
     <>
@@ -649,14 +1409,136 @@ function AboutContent({
       {reference && (
         <p className="text-xs text-emerald-700 mt-4 flex items-start gap-2 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2">
           <span className="mt-0.5 flex-shrink-0">📌</span>
-          <span><strong>Clinical Reference:</strong> {reference}</span>
+          <span>
+            <strong>Clinical Reference:</strong> {reference}
+          </span>
         </p>
       )}
     </>
-  )
+  );
 }
 
 // ─── Shell ────────────────────────────────────────────────────────────────────
+
+// ─── Tool-specific overrides (keyed by slug) ─────────────────────────────────
+const TOOL_HOW_TO_STEPS: Record<string, HowToStep[]> = {
+  'remedial-exercise-calorie-calculator': [
+    {
+      name: 'Enter your body weight',
+      text: 'Input your current body weight in kilograms. The MET formula multiplies directly by body weight — heavier individuals burn more calories for the same exercise duration. Use your measured weight, not an estimate.',
+    },
+    {
+      name: 'Select your exercise modality',
+      text: 'Choose from the dropdown: treadmill walking at various inclines (0%, 10%, 20%, 30%, or 40%), push-ups, deadlifts, or abdominal crunches. Each modality has a validated MET value from the Compendium of Physical Activities.',
+    },
+    {
+      name: 'Set the exercise duration',
+      text: 'Enter the prescribed duration in minutes. For clinical exercise sessions, this is typically 20–60 minutes. You can calculate each exercise separately to build a multi-exercise session total.',
+    },
+    {
+      name: 'Click Calculate to see calorie burn',
+      text: 'The calculator applies the MET formula (Calories = MET × weight × hours) and displays total kcal burned, the MET value used, and the per-minute calorie rate. Results appear instantly.',
+    },
+    {
+      name: 'Use results to plan your session',
+      text: 'Compare different exercise modalities or inclines to understand the caloric impact of each. Use the PDF export to save your exercise prescription with calorie estimates for clinical records or patient education.',
+    },
+  ],
+};
+
+const TOOL_WHEN_TO_USE_CARDS: Record<string, WhenToUseCard[]> = {
+  'remedial-exercise-calorie-calculator': [
+    {
+      icon: '🏥',
+      title: 'Clinical weight management',
+      description:
+        'Use to calculate expected calorie expenditure when prescribing structured exercise for obese patients (BMI ≥30). Helps set realistic weekly energy deficit targets alongside dietary intervention.',
+    },
+    {
+      icon: '🏃',
+      title: 'Treadmill incline prescription',
+      description:
+        'Compare calorie burn across different incline levels to select the optimal therapeutic incline — high caloric expenditure at low walking speed reduces joint impact for obese patients.',
+    },
+    {
+      icon: '💪',
+      title: 'Resistance exercise planning',
+      description:
+        'Calculate calories from push-ups, deadlifts, and crunches to combine aerobic and resistance components into a comprehensive remedial exercise programme.',
+    },
+    {
+      icon: '📋',
+      title: 'Patient education',
+      description:
+        'Show patients the caloric impact of their prescribed exercises in real numbers — translating "30 minutes on the treadmill at 40% incline" into "920 kcal burned" improves exercise adherence and motivation.',
+    },
+    {
+      icon: '📊',
+      title: 'Progress monitoring',
+      description:
+        'Track how calorie burn per session changes as patient weight decreases with successful weight management — adjust exercise duration or intensity to maintain an equivalent energy deficit.',
+    },
+  ],
+};
+
+const TOOL_PRO_TIPS: Record<string, string[]> = {
+  'remedial-exercise-calorie-calculator': [
+    'MET values are population-derived averages. Obese individuals (BMI ≥35) may expend 10–20% more calories than standard calculations predict during weight-bearing exercises (treadmill, push-ups) because they must move a larger body mass against gravity. The MET formula already accounts for this partially through the weight variable — heavier patients receive proportionally higher calorie estimates.',
+    'Treadmill incline at 30–40% is an advanced prescription suitable only for conditioned patients. For newly referred obese patients, begin with 0–10% incline for 15–20 minutes and progress over 4–6 weeks. High incline walking at therapeutic speeds (2–3 km/h) achieves the same energy expenditure as jogging with significantly lower knee joint load — particularly important in patients with obesity-related osteoarthritis.',
+    'When combining exercises in a session, calculate each modality separately and sum the totals. A 30-minute treadmill session at 20% incline followed by 3 sets of 15 push-ups and 3 sets of 20 crunches provides a substantially higher caloric deficit than single-modality sessions — and resistance components (deadlifts, push-ups) add post-exercise oxygen consumption (EPOC) that extends calorie burn for 24–48 hours.',
+    'For the FITT prescription (Frequency, Intensity, Time, Type), this calculator addresses the Type and Time components. Pair calorie estimates from this tool with heart rate zone targets (use the Heart Rate Zone Calculator) to ensure exercise intensity is in the therapeutic aerobic range (50–70% VO₂max for initial obesity rehabilitation, progressing to 70–80% over time).',
+  ],
+};
+
+const TOOL_QUICK_REF_ROWS: Record<string, QuickRefRow[]> = {
+  'remedial-exercise-calorie-calculator': [
+    {
+      input: 'Body weight (kg)',
+      description: 'Current measured body weight in kilograms',
+      example: '90 kg',
+    },
+    {
+      input: 'Treadmill 0% incline',
+      description: 'MET 3.5 — gentle warm-up, low intensity',
+      example: '3.5 × 90 × 0.5h = 157.5 kcal',
+    },
+    {
+      input: 'Treadmill 10% incline',
+      description: 'MET 5.5 — moderate therapeutic intensity',
+      example: '5.5 × 90 × 0.5h = 247.5 kcal',
+    },
+    {
+      input: 'Treadmill 20% incline',
+      description: 'MET 7.5 — vigorous, high caloric expenditure',
+      example: '7.5 × 90 × 0.5h = 337.5 kcal',
+    },
+    {
+      input: 'Treadmill 30% incline',
+      description: 'MET 9.5 — advanced incline, high intensity',
+      example: '9.5 × 90 × 0.5h = 427.5 kcal',
+    },
+    {
+      input: 'Treadmill 40% incline',
+      description: 'MET 11.5 — maximum therapeutic incline',
+      example: '11.5 × 90 × 0.5h = 517.5 kcal',
+    },
+    {
+      input: 'Push-ups',
+      description: 'MET 3.8 — upper body calisthenic exercise',
+      example: '3.8 × 90 × 0.25h = 85.5 kcal',
+    },
+    {
+      input: 'Deadlifts (vigorous)',
+      description: 'MET 5.0 — compound resistance exercise',
+      example: '5.0 × 90 × 0.25h = 112.5 kcal',
+    },
+    {
+      input: 'Abdominal crunches',
+      description: 'MET 2.8 — core strengthening exercise',
+      example: '2.8 × 90 × 0.25h = 63 kcal',
+    },
+  ],
+};
 
 export default function MedicalToolShell({
   toolName,
@@ -669,33 +1551,51 @@ export default function MedicalToolShell({
   faqs,
   relatedTools,
 }: MedicalToolShellProps) {
-  const specialtyId = specialty?.id ?? 'consumer-health'
+  const specialtyId = specialty?.id ?? 'consumer-health';
 
-  const howToSteps   = HOW_TO_STEPS[specialtyId]   ?? HOW_TO_STEPS['consumer-health']!
-  const whenToCards  = WHEN_TO_USE_CARDS[specialtyId] ?? WHEN_TO_USE_CARDS['consumer-health']!
-  const proTips      = PRO_TIPS[specialtyId]        ?? PRO_TIPS['consumer-health']!
-  const quickRefRows = QUICK_REF_ROWS[specialtyId]  ?? QUICK_REF_ROWS['consumer-health']!
+  const howToSteps =
+    TOOL_HOW_TO_STEPS[toolSlug] ?? HOW_TO_STEPS[specialtyId] ?? HOW_TO_STEPS['consumer-health']!;
+  const whenToCards =
+    TOOL_WHEN_TO_USE_CARDS[toolSlug] ??
+    WHEN_TO_USE_CARDS[specialtyId] ??
+    WHEN_TO_USE_CARDS['consumer-health']!;
+  const proTips = TOOL_PRO_TIPS[toolSlug] ?? PRO_TIPS[specialtyId] ?? PRO_TIPS['consumer-health']!;
+  const quickRefRows =
+    TOOL_QUICK_REF_ROWS[toolSlug] ??
+    QUICK_REF_ROWS[specialtyId] ??
+    QUICK_REF_ROWS['consumer-health']!;
 
   return (
     <div className="min-h-screen bg-gray-50">
-
       {/* ── 1. Breadcrumb ──────────────────────────────────────────────── */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-gray-500 flex-wrap">
-            <Link href="/" className="hover:text-emerald-600 transition-colors">Home</Link>
+          <nav
+            aria-label="Breadcrumb"
+            className="flex items-center gap-2 text-xs text-gray-500 flex-wrap"
+          >
+            <Link href="/" className="hover:text-emerald-600 transition-colors">
+              Home
+            </Link>
             <span aria-hidden="true">›</span>
-            <Link href="/tools/medical" className="hover:text-emerald-600 transition-colors">Medical</Link>
+            <Link href="/tools/medical" className="hover:text-emerald-600 transition-colors">
+              Medical
+            </Link>
             {specialty && (
               <>
                 <span aria-hidden="true">›</span>
-                <Link href={`/tools/medical#${specialty.id}`} className="hover:text-emerald-600 transition-colors">
+                <Link
+                  href={`/tools/medical#${specialty.id}`}
+                  className="hover:text-emerald-600 transition-colors"
+                >
                   {specialty.label}
                 </Link>
               </>
             )}
             <span aria-hidden="true">›</span>
-            <span className="text-gray-800 font-medium truncate max-w-[160px] sm:max-w-none">{toolName}</span>
+            <span className="text-gray-800 font-medium truncate max-w-[160px] sm:max-w-none">
+              {toolName}
+            </span>
           </nav>
         </div>
       </div>
@@ -709,12 +1609,17 @@ export default function MedicalToolShell({
             </div>
             <div className="min-w-0">
               <h1 className="text-2xl sm:text-3xl font-extrabold leading-tight">{toolName}</h1>
-              <p className="text-emerald-100 text-sm mt-1 leading-relaxed max-w-xl">{description}</p>
+              <p className="text-emerald-100 text-sm mt-1 leading-relaxed max-w-xl">
+                {description}
+              </p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-5">
-            {TRUST_CHIPS.map(chip => (
-              <span key={chip} className="text-xs bg-white/15 border border-white/20 rounded-full px-3 py-1 text-emerald-100">
+            {TRUST_CHIPS.map((chip) => (
+              <span
+                key={chip}
+                className="text-xs bg-white/15 border border-white/20 rounded-full px-3 py-1 text-emerald-100"
+              >
                 {chip}
               </span>
             ))}
@@ -727,8 +1632,18 @@ export default function MedicalToolShell({
               >
                 <span>{specialty.icon}</span>
                 <span>{specialty.label}</span>
-                <svg className="h-3 w-3 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="h-3 w-3 opacity-70"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </Link>
             </div>
@@ -738,14 +1653,16 @@ export default function MedicalToolShell({
 
       {/* ── Main content ────────────────────────────────────────────────── */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
-
         {/* ── 1. Calculator widget ── first above the fold ────────────────── */}
         <div data-print-section="calculator" className="mb-8">
           <MedicalCalculatorClient slug={toolSlug} toolName={toolName} />
         </div>
 
         {/* ── 2. Formula display ───────────────────────────────────────────── */}
-        <section data-print-section="formula" className="bg-white rounded-2xl border border-gray-200 p-6">
+        <section
+          data-print-section="formula"
+          className="bg-white rounded-2xl border border-gray-200 p-6"
+        >
           <h2 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
             <span>🧮</span> {formulaDisplay.title}
           </h2>
@@ -754,7 +1671,9 @@ export default function MedicalToolShell({
           </div>
           {formulaDisplay.variables.length > 0 && (
             <div className="mb-4">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Variables</p>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                Variables
+              </p>
               <div className="space-y-1.5">
                 {formulaDisplay.variables.map((v, i) => (
                   <div key={i} className="flex items-start gap-3 text-sm">
@@ -782,11 +1701,23 @@ export default function MedicalToolShell({
         <QuickReferenceSection rows={quickRefRows} />
 
         {/* ── 4. About section ─────────────────────────────────────────────── */}
-        <section className="mt-8 bg-white rounded-2xl border border-gray-200 p-6" aria-labelledby="about-heading">
-          <h2 id="about-heading" className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <section
+          className="mt-8 bg-white rounded-2xl border border-gray-200 p-6"
+          aria-labelledby="about-heading"
+        >
+          <h2
+            id="about-heading"
+            className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2"
+          >
             <span>ℹ️</span> About This Calculator
           </h2>
-          <AboutContent toolName={toolName} description={description} specialty={specialty} reference={reference} />
+          <AboutContent
+            toolName={toolName}
+            description={description}
+            specialty={specialty}
+            reference={reference}
+            toolSlug={toolSlug}
+          />
         </section>
 
         {/* ── 5. How to Use steps ──────────────────────────────────────────── */}
@@ -813,7 +1744,7 @@ export default function MedicalToolShell({
               {specialty ? `More ${specialty.label} Tools` : 'Popular Medical Tools'}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {relatedTools.map(r => (
+              {relatedTools.map((r) => (
                 <Link
                   key={r.slug}
                   href={`/tools/medical/${r.slug}`}
@@ -821,11 +1752,23 @@ export default function MedicalToolShell({
                 >
                   <span className="text-xl flex-shrink-0">{r.icon}</span>
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors leading-snug">{r.name}</p>
+                    <p className="text-sm font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors leading-snug">
+                      {r.name}
+                    </p>
                     <p className="text-xs text-gray-600 line-clamp-1 mt-0.5">{r.description}</p>
                   </div>
-                  <svg className="h-4 w-4 ml-auto text-gray-300 group-hover:text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="h-4 w-4 ml-auto text-gray-300 group-hover:text-emerald-500 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </Link>
               ))}
@@ -844,14 +1787,25 @@ export default function MedicalToolShell({
 
         {/* Back link */}
         <div className="mt-8 pt-6 border-t border-gray-200 flex items-center justify-between">
-          <Link href="/tools/medical" className="inline-flex items-center gap-2 text-sm text-emerald-600 hover:text-emerald-700 font-medium transition-colors">
-            <svg className="h-4 w-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <Link
+            href="/tools/medical"
+            className="inline-flex items-center gap-2 text-sm text-emerald-600 hover:text-emerald-700 font-medium transition-colors"
+          >
+            <svg
+              className="h-4 w-4 rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
             Back to All Medical Tools
           </Link>
           {specialty && (
-            <Link href={`/tools/medical#${specialty.id}`} className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-emerald-600 transition-colors">
+            <Link
+              href={`/tools/medical#${specialty.id}`}
+              className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-emerald-600 transition-colors"
+            >
               <span>{specialty.icon}</span>
               <span>{specialty.label}</span>
             </Link>
@@ -859,5 +1813,5 @@ export default function MedicalToolShell({
         </div>
       </main>
     </div>
-  )
+  );
 }

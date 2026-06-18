@@ -1,149 +1,225 @@
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { getToolsByCategory } from '@/lib/tools-registry'
-import { MEDICAL_CONFIGS, getMedicalConfigById } from '../_components/medical-configs'
-import MedicalToolShell from '../_components/MedicalToolShell'
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getToolsByCategory } from '@/lib/tools-registry';
+import { MEDICAL_CONFIGS, getMedicalConfigById } from '../_components/medical-configs';
+import MedicalToolShell from '../_components/MedicalToolShell';
 
 // ─── Types ────────────────────────────────────────────────────
 interface Props {
-  params: { slug: string }
+  params: { slug: string };
 }
 
-interface FAQ { q: string; a: string }
+interface FAQ {
+  q: string;
+  a: string;
+}
 
 // ─── Sub-specialty grouping for breadcrumb & related tools ────
-const SPECIALTY_MAP: Record<string, { id: string; label: string; icon: string; slugs: string[] }> = {
-  cardiology: {
-    id: 'cardiology',
-    label: 'Cardiology',
-    icon: '❤️',
-    slugs: [
-      'cha2ds2-vasc-score', 'heart-score-calculator', 'framingham-risk-score',
-      'mean-arterial-pressure-calculator', 'cardiac-output-fick-calculator', 'timi-risk-score',
-      'qtc-interval-calculator', 'ldl-cholesterol-calculator', 'warfarin-dose-estimator',
-      'has-bled-bleeding-score', 'blood-pressure-classification', 'grace-acs-score',
-    ],
-  },
-  nephrology: {
-    id: 'nephrology',
-    label: 'Nephrology',
-    icon: '🫘',
-    slugs: [
-      'creatinine-clearance-cockcroft-gault', 'egfr-ckd-epi-calculator', 'mdrd-egfr-calculator',
-      'urine-anion-gap-calculator', 'fena-feurea-calculator', 'dialysis-adequacy-ktv',
-      'calcium-correction-calculator', 'renal-drug-dose-adjuster', 'water-deficit-hypernatremia',
-      'kidney-failure-risk-equation',
-    ],
-  },
-  'emergency-icu': {
-    id: 'emergency-icu',
-    label: 'Emergency & ICU',
-    icon: '🚨',
-    slugs: [
-      'curb-65-pneumonia-score', 'glasgow-coma-scale', 'sofa-sepsis-score',
-      'abg-interpreter', 'apache-ii-score', 'anion-gap-calculator',
-      'wells-score-dvt-pe', 'iv-fluid-rate-calculator', 'qsofa-sepsis-score',
-      'burn-surface-area-rule-of-9s', 'pecarn-head-injury-tool',
-    ],
-  },
-  'neurology-psychiatry': {
-    id: 'neurology-psychiatry',
-    label: 'Neurology & Psychiatry',
-    icon: '🧠',
-    slugs: [
-      'phq9-depression-screen', 'gad7-anxiety-score', 'nihss-stroke-scale',
-      'epworth-sleepiness-scale', 'mmse-cognitive-screen', 'lithium-dose-calculator',
-      'audit-c-alcohol-screening', 'ciwa-ar-withdrawal-scale', 'ptsd-pcl5-checklist',
-      'visual-acuity-converter',
-    ],
-  },
-  endocrinology: {
-    id: 'endocrinology',
-    label: 'Endocrinology',
-    icon: '🩸',
-    slugs: [
-      'hba1c-glucose-converter', 'bmi-calculator', 'insulin-dose-calculator',
-      'bmr-tdee-calculator', 'findrisc-diabetes-risk', 'steroid-dose-converter',
-      'thyroid-function-interpreter', 'ideal-body-weight-calculator',
-      'body-fat-percentage-calculator', 'carb-glycemic-calculator',
-    ],
-  },
-  pharmacology: {
-    id: 'pharmacology',
-    label: 'Pharmacology',
-    icon: '💊',
-    slugs: [
-      'drug-interaction-checker', 'weight-based-drug-dose-calculator', 'drug-half-life-calculator',
-      'opioid-equianalgesic-converter', 'vancomycin-dosing-calculator', 'aminoglycoside-dose-calculator',
-      'iv-drip-rate-mcg-kg-min', 'pediatric-emergency-drug-calculator', 'pill-identifier-tool',
-      'medication-cost-estimator',
-    ],
-  },
-  obstetrics: {
-    id: 'obstetrics',
-    label: 'Obstetrics & Gynaecology',
-    icon: '🤰',
-    slugs: [
-      'due-date-edd-calculator', 'gestational-age-calculator', 'fetal-weight-estimator',
-      'pregnancy-weight-gain-calculator', 'ivf-success-rate-calculator', 'ovulation-fertile-window-calculator',
-      'bishop-score-calculator', 'preeclampsia-risk-calculator', 'postpartum-hemorrhage-calculator',
-      'apgar-score-calculator',
-    ],
-  },
-  pulmonology: {
-    id: 'pulmonology',
-    label: 'Pulmonology',
-    icon: '🫁',
-    slugs: [
-      'spirometry-fev1-fvc-interpreter', 'psi-port-pneumonia-score', 'alveolar-arterial-gradient',
-      'pao2-fio2-ratio-ards', 'peak-flow-calculator', 'pack-year-calculator',
-    ],
-  },
-  gastroenterology: {
-    id: 'gastroenterology',
-    label: 'Gastroenterology',
-    icon: '🫀',
-    slugs: [
-      'meld-score-calculator', 'child-pugh-score-calculator', 'saag-calculator',
-      'ransons-criteria-pancreatitis', 'h-pylori-eradication-tracker', 'bowel-prep-dosing-calculator',
-    ],
-  },
-  'oncology-hematology': {
-    id: 'oncology-hematology',
-    label: 'Oncology & Haematology',
-    icon: '🔬',
-    slugs: [
-      'chemotherapy-dose-bsa-calculator', 'anc-absolute-neutrophil-count', 'psa-velocity-doubling-time',
-      'tnm-staging-interpreter', 'inr-pt-ratio-converter', 'ipss-mds-score',
-      'blood-transfusion-volume-calculator', 'cancer-survival-probability',
-    ],
-  },
-  pediatrics: {
-    id: 'pediatrics',
-    label: 'Paediatrics',
-    icon: '👶',
-    slugs: [
-      'child-growth-percentile', 'pediatric-bmi-for-age', 'fever-dose-calculator',
-      'holliday-segar-maintenance-fluid', 'vaccine-schedule-checker', 'corrected-gestational-age-calculator',
-      'pediatric-ett-size-depth', 'neonatal-jaundice-bhutani',
-    ],
-  },
-  'consumer-health': {
-    id: 'consumer-health',
-    label: 'Consumer Health',
-    icon: '💪',
-    slugs: [
-      'bmi-health-calculator', 'calorie-deficit-calculator', 'heart-rate-zone-calculator',
-      'daily-water-intake-calculator', 'sleep-cycle-calculator', 'health-insurance-premium-estimator',
-      'blood-pressure-tracker-chart', 'cholesterol-ratio-calculator', 'surgery-cost-estimator',
-      'drug-rehab-cost-calculator', 'therapy-session-cost-estimator', 'medication-cost-comparator',
-    ],
-  },
-}
+const SPECIALTY_MAP: Record<string, { id: string; label: string; icon: string; slugs: string[] }> =
+  {
+    cardiology: {
+      id: 'cardiology',
+      label: 'Cardiology',
+      icon: '❤️',
+      slugs: [
+        'cha2ds2-vasc-score',
+        'heart-score-calculator',
+        'framingham-risk-score',
+        'mean-arterial-pressure-calculator',
+        'cardiac-output-fick-calculator',
+        'timi-risk-score',
+        'qtc-interval-calculator',
+        'ldl-cholesterol-calculator',
+        'warfarin-dose-estimator',
+        'has-bled-bleeding-score',
+        'blood-pressure-classification',
+        'grace-acs-score',
+      ],
+    },
+    nephrology: {
+      id: 'nephrology',
+      label: 'Nephrology',
+      icon: '🫘',
+      slugs: [
+        'creatinine-clearance-cockcroft-gault',
+        'egfr-ckd-epi-calculator',
+        'mdrd-egfr-calculator',
+        'urine-anion-gap-calculator',
+        'fena-feurea-calculator',
+        'dialysis-adequacy-ktv',
+        'calcium-correction-calculator',
+        'renal-drug-dose-adjuster',
+        'water-deficit-hypernatremia',
+        'kidney-failure-risk-equation',
+      ],
+    },
+    'emergency-icu': {
+      id: 'emergency-icu',
+      label: 'Emergency & ICU',
+      icon: '🚨',
+      slugs: [
+        'curb-65-pneumonia-score',
+        'glasgow-coma-scale',
+        'sofa-sepsis-score',
+        'abg-interpreter',
+        'apache-ii-score',
+        'anion-gap-calculator',
+        'wells-score-dvt-pe',
+        'iv-fluid-rate-calculator',
+        'qsofa-sepsis-score',
+        'burn-surface-area-rule-of-9s',
+        'pecarn-head-injury-tool',
+      ],
+    },
+    'neurology-psychiatry': {
+      id: 'neurology-psychiatry',
+      label: 'Neurology & Psychiatry',
+      icon: '🧠',
+      slugs: [
+        'phq9-depression-screen',
+        'gad7-anxiety-score',
+        'nihss-stroke-scale',
+        'epworth-sleepiness-scale',
+        'mmse-cognitive-screen',
+        'lithium-dose-calculator',
+        'audit-c-alcohol-screening',
+        'ciwa-ar-withdrawal-scale',
+        'ptsd-pcl5-checklist',
+        'visual-acuity-converter',
+      ],
+    },
+    endocrinology: {
+      id: 'endocrinology',
+      label: 'Endocrinology',
+      icon: '🩸',
+      slugs: [
+        'hba1c-glucose-converter',
+        'bmi-calculator',
+        'insulin-dose-calculator',
+        'bmr-tdee-calculator',
+        'findrisc-diabetes-risk',
+        'steroid-dose-converter',
+        'thyroid-function-interpreter',
+        'ideal-body-weight-calculator',
+        'body-fat-percentage-calculator',
+        'carb-glycemic-calculator',
+      ],
+    },
+    pharmacology: {
+      id: 'pharmacology',
+      label: 'Pharmacology',
+      icon: '💊',
+      slugs: [
+        'drug-interaction-checker',
+        'weight-based-drug-dose-calculator',
+        'drug-half-life-calculator',
+        'opioid-equianalgesic-converter',
+        'vancomycin-dosing-calculator',
+        'aminoglycoside-dose-calculator',
+        'iv-drip-rate-mcg-kg-min',
+        'pediatric-emergency-drug-calculator',
+        'pill-identifier-tool',
+        'medication-cost-estimator',
+      ],
+    },
+    obstetrics: {
+      id: 'obstetrics',
+      label: 'Obstetrics & Gynaecology',
+      icon: '🤰',
+      slugs: [
+        'due-date-edd-calculator',
+        'gestational-age-calculator',
+        'fetal-weight-estimator',
+        'pregnancy-weight-gain-calculator',
+        'ivf-success-rate-calculator',
+        'ovulation-fertile-window-calculator',
+        'bishop-score-calculator',
+        'preeclampsia-risk-calculator',
+        'postpartum-hemorrhage-calculator',
+        'apgar-score-calculator',
+      ],
+    },
+    pulmonology: {
+      id: 'pulmonology',
+      label: 'Pulmonology',
+      icon: '🫁',
+      slugs: [
+        'spirometry-fev1-fvc-interpreter',
+        'psi-port-pneumonia-score',
+        'alveolar-arterial-gradient',
+        'pao2-fio2-ratio-ards',
+        'peak-flow-calculator',
+        'pack-year-calculator',
+      ],
+    },
+    gastroenterology: {
+      id: 'gastroenterology',
+      label: 'Gastroenterology',
+      icon: '🫀',
+      slugs: [
+        'meld-score-calculator',
+        'child-pugh-score-calculator',
+        'saag-calculator',
+        'ransons-criteria-pancreatitis',
+        'h-pylori-eradication-tracker',
+        'bowel-prep-dosing-calculator',
+      ],
+    },
+    'oncology-hematology': {
+      id: 'oncology-hematology',
+      label: 'Oncology & Haematology',
+      icon: '🔬',
+      slugs: [
+        'chemotherapy-dose-bsa-calculator',
+        'anc-absolute-neutrophil-count',
+        'psa-velocity-doubling-time',
+        'tnm-staging-interpreter',
+        'inr-pt-ratio-converter',
+        'ipss-mds-score',
+        'blood-transfusion-volume-calculator',
+        'cancer-survival-probability',
+      ],
+    },
+    pediatrics: {
+      id: 'pediatrics',
+      label: 'Paediatrics',
+      icon: '👶',
+      slugs: [
+        'child-growth-percentile',
+        'pediatric-bmi-for-age',
+        'fever-dose-calculator',
+        'holliday-segar-maintenance-fluid',
+        'vaccine-schedule-checker',
+        'corrected-gestational-age-calculator',
+        'pediatric-ett-size-depth',
+        'neonatal-jaundice-bhutani',
+      ],
+    },
+    'consumer-health': {
+      id: 'consumer-health',
+      label: 'Consumer Health',
+      icon: '💪',
+      slugs: [
+        'bmi-health-calculator',
+        'calorie-deficit-calculator',
+        'heart-rate-zone-calculator',
+        'daily-water-intake-calculator',
+        'sleep-cycle-calculator',
+        'health-insurance-premium-estimator',
+        'blood-pressure-tracker-chart',
+        'cholesterol-ratio-calculator',
+        'surgery-cost-estimator',
+        'drug-rehab-cost-calculator',
+        'therapy-session-cost-estimator',
+        'medication-cost-comparator',
+        'remedial-exercise-calorie-calculator',
+      ],
+    },
+  };
 
 // ─── Helpers ──────────────────────────────────────────────────
 function getSpecialty(slug: string) {
-  return Object.values(SPECIALTY_MAP).find(s => s.slugs.includes(slug)) ?? null
+  return Object.values(SPECIALTY_MAP).find((s) => s.slugs.includes(slug)) ?? null;
 }
 
 // ─── Specialty-based FAQs (minimum 12 per tool) ───────────────
@@ -177,9 +253,9 @@ const UNIVERSAL_FAQS = (toolName: string, specialty: string): FAQ[] => [
     q: `What formula does the ${toolName} use?`,
     a: `The exact formula, variable definitions, and clinical interpretation are shown in the Formula section on this page. Transparency about the underlying mathematics is a core principle of RoughTools — you should always know precisely how a calculator arrives at its result before relying on it clinically. The formula reference and source guideline are also cited.`,
   },
-]
+];
 
-function getFAQs(specialtyId: string, toolName: string): FAQ[] {
+function getFAQs(specialtyId: string, toolName: string, toolSlug?: string): FAQ[] {
   const specialtyLabel: Record<string, string> = {
     cardiology: 'Cardiology',
     nephrology: 'Nephrology',
@@ -193,8 +269,8 @@ function getFAQs(specialtyId: string, toolName: string): FAQ[] {
     'oncology-hematology': 'Oncology & Haematology',
     pediatrics: 'Paediatrics',
     'consumer-health': 'Consumer Health',
-  }
-  const label = specialtyLabel[specialtyId] ?? 'Medical'
+  };
+  const label = specialtyLabel[specialtyId] ?? 'Medical';
 
   const specialtySpecific: Record<string, FAQ[]> = {
     cardiology: [
@@ -252,7 +328,7 @@ function getFAQs(specialtyId: string, toolName: string): FAQ[] {
       },
       {
         q: 'How often should ICU scores be recalculated?',
-        a: 'Many ICU scoring systems are designed for serial calculation. SOFA should be recalculated daily — a rising SOFA score indicates organ failure progression, while a falling score suggests improvement. APACHE-II is typically calculated from the worst values in the first 24 hours. Check each tool\'s specific protocol for timing.',
+        a: "Many ICU scoring systems are designed for serial calculation. SOFA should be recalculated daily — a rising SOFA score indicates organ failure progression, while a falling score suggests improvement. APACHE-II is typically calculated from the worst values in the first 24 hours. Check each tool's specific protocol for timing.",
       },
       {
         q: 'What is the difference between SOFA and qSOFA?',
@@ -314,7 +390,7 @@ function getFAQs(specialtyId: string, toolName: string): FAQ[] {
       },
       {
         q: 'How do I adjust drug doses for renal impairment?',
-        a: 'Most renally-cleared drugs require dose reduction or interval extension when CrCl falls below thresholds specified in the drug\'s prescribing information. Calculate CrCl using Cockcroft-Gault (not CKD-EPI eGFR) for drug dosing — this is the equation used in most pharmacokinetic studies. Consult Lexicomp, Micromedex, or the prescribing information for specific thresholds.',
+        a: "Most renally-cleared drugs require dose reduction or interval extension when CrCl falls below thresholds specified in the drug's prescribing information. Calculate CrCl using Cockcroft-Gault (not CKD-EPI eGFR) for drug dosing — this is the equation used in most pharmacokinetic studies. Consult Lexicomp, Micromedex, or the prescribing information for specific thresholds.",
       },
       {
         q: 'What is an opioid equianalgesic conversion?',
@@ -380,7 +456,7 @@ function getFAQs(specialtyId: string, toolName: string): FAQ[] {
       },
       {
         q: 'What is the difference between Child-Pugh and MELD scores?',
-        a: "Child-Pugh score combines five variables — bilirubin, albumin, PT/INR, ascites, and encephalopathy — to classify cirrhosis as Class A (5–6, well-compensated), B (7–9, significant dysfunction), or C (10–15, decompensated). MELD uses only objective lab values (bilirubin, INR, creatinine) and is used for organ allocation priority in liver transplant waiting lists in the US.",
+        a: 'Child-Pugh score combines five variables — bilirubin, albumin, PT/INR, ascites, and encephalopathy — to classify cirrhosis as Class A (5–6, well-compensated), B (7–9, significant dysfunction), or C (10–15, decompensated). MELD uses only objective lab values (bilirubin, INR, creatinine) and is used for organ allocation priority in liver transplant waiting lists in the US.',
       },
       {
         q: 'What is the SAAG and when is it used?',
@@ -436,7 +512,29 @@ function getFAQs(specialtyId: string, toolName: string): FAQ[] {
       },
       {
         q: 'When should I take a child to a paediatrician or emergency department?',
-        a: 'These calculators are reference tools — they do not replace clinical assessment by a qualified paediatrician. Take a child to the emergency department immediately for: fever in infants <3 months, seizures, difficulty breathing, unresponsiveness or extreme lethargy, persistent vomiting, signs of dehydration, or any situation where a parent\'s instinct says something is seriously wrong. When in doubt, seek immediate medical assessment.',
+        a: "These calculators are reference tools — they do not replace clinical assessment by a qualified paediatrician. Take a child to the emergency department immediately for: fever in infants <3 months, seizures, difficulty breathing, unresponsiveness or extreme lethargy, persistent vomiting, signs of dehydration, or any situation where a parent's instinct says something is seriously wrong. When in doubt, seek immediate medical assessment.",
+      },
+    ],
+    'remedial-exercise-calorie-calculator': [
+      {
+        q: 'What is a remedial exercise calorie calculator?',
+        a: 'A remedial exercise calorie calculator estimates the energy expenditure (in kilocalories) during medically prescribed low-impact or supervised exercise modalities. Unlike general fitness calculators, it focuses on therapeutic exercises — treadmill walking at therapeutic inclines, push-ups, deadlifts, and abdominal crunches — that are commonly prescribed in obesity management, physiotherapy, and clinical weight-management programmes.',
+      },
+      {
+        q: 'How are calories burned calculated from MET values?',
+        a: 'The calculation uses the Metabolic Equivalent of Task (MET) formula: Calories = MET × Body Weight (kg) × Duration (hours). One MET is defined as 3.5 mL of oxygen consumed per kg of body weight per minute, equivalent to energy expenditure at rest. MET values for each exercise are drawn from the validated Compendium of Physical Activities (Ainsworth et al., 2011), the gold-standard reference used in exercise physiology and clinical nutrition.',
+      },
+      {
+        q: 'Why does treadmill incline significantly increase calorie burn?',
+        a: "Walking uphill dramatically increases energy expenditure because the muscles must work against gravity to lift the body's centre of mass with each step. At 0% incline, walking has a MET of approximately 3.5 — at 40% incline, this rises to approximately 11.5 MET, a 3.3-fold increase. This is why incline treadmill walking at 30–40% elevation is prescribed for obese patients: it achieves high caloric expenditure at a low walking speed, reducing joint impact compared to jogging at the same energy output.",
+      },
+      {
+        q: 'Are the calorie estimates accurate for obese patients (BMI ≥30)?',
+        a: 'Standard MET-based calculations slightly underestimate energy expenditure in obese individuals. Obese patients carry more body weight per step, increasing mechanical work. Research shows that obese individuals expend approximately 10–20% more calories during weight-bearing exercises (walking, climbing) than standard MET equations predict. This calculator uses body weight in the formula — heavier patients will automatically receive higher calorie estimates — but results should be verified against indirect calorimetry in clinical nutrition research settings.',
+      },
+      {
+        q: 'What is the calorie burn for a 160 kg patient doing treadmill at 40% incline for 30 minutes?',
+        a: 'For a 160 kg patient: Calories = 11.5 (MET) × 160 (kg) × 0.5 (hours) = 920 kcal for 30 minutes. This is a very high energy expenditure per session — equivalent to running at moderate pace for a lighter individual. In clinical practice, such high-intensity incline treadmill work should be introduced gradually (starting at 10–15 minutes, 10–20% incline) and progressed over weeks under physiotherapist supervision to reduce injury risk.',
       },
     ],
     'consumer-health': [
@@ -461,64 +559,91 @@ function getFAQs(specialtyId: string, toolName: string): FAQ[] {
         a: 'Always consult a qualified healthcare provider before making significant changes to diet, exercise, medication, or health insurance based on any calculator result. These tools are for personal health awareness and education. If any result is outside the healthy range — especially BMI indicating obesity, abnormal blood pressure readings, or significant healthcare cost concerns — book an appointment with your GP or primary care provider to discuss next steps.',
       },
     ],
-  }
+  };
 
-  const base = specialtySpecific[specialtyId] ?? [
-    {
-      q: `What is the ${toolName} used for?`,
-      a: `The ${toolName} is a validated clinical tool used to calculate, estimate, or assess an important medical parameter. It is based on published clinical evidence and guidelines from major medical organisations. The specific formula and reference source are shown in the Formula section on this page.`,
-    },
-    {
-      q: 'How accurate is this calculator?',
-      a: `The ${toolName} uses formulas from peer-reviewed literature. Accuracy depends on the precision of values entered and the equation's validated accuracy in its original derivation cohort. Always interpret results alongside a full clinical assessment — no calculator replaces clinical judgment.`,
-    },
-    {
-      q: 'Can I use this result to make clinical decisions?',
-      a: 'This tool is for educational and clinical reference only. All clinical decisions must be made by a qualified healthcare professional considering the full clinical context, patient history, examination findings, and current laboratory data.',
-    },
-    {
-      q: 'Who should I consult regarding this result?',
-      a: `For results from the ${toolName} that indicate elevated risk, disease, or abnormal values, consult a qualified physician or specialist in the relevant field. The tool's specialty is identified in the breadcrumb navigation above — the appropriate specialist for that field is the right person to advise on clinical action.`,
-    },
-    {
-      q: 'What guidelines does this tool follow?',
-      a: 'The formula, variable definitions, and clinical reference for this tool are displayed in the Formula section on this page. Our tools are referenced to major clinical guidelines including ACC/AHA, KDIGO, IDSA, ACOG, WHO, and others as applicable to each specialty.',
-    },
-  ]
+  const base = (toolSlug ? specialtySpecific[toolSlug] : null) ??
+    specialtySpecific[specialtyId] ?? [
+      {
+        q: `What is the ${toolName} used for?`,
+        a: `The ${toolName} is a validated clinical tool used to calculate, estimate, or assess an important medical parameter. It is based on published clinical evidence and guidelines from major medical organisations. The specific formula and reference source are shown in the Formula section on this page.`,
+      },
+      {
+        q: 'How accurate is this calculator?',
+        a: `The ${toolName} uses formulas from peer-reviewed literature. Accuracy depends on the precision of values entered and the equation's validated accuracy in its original derivation cohort. Always interpret results alongside a full clinical assessment — no calculator replaces clinical judgment.`,
+      },
+      {
+        q: 'Can I use this result to make clinical decisions?',
+        a: 'This tool is for educational and clinical reference only. All clinical decisions must be made by a qualified healthcare professional considering the full clinical context, patient history, examination findings, and current laboratory data.',
+      },
+      {
+        q: 'Who should I consult regarding this result?',
+        a: `For results from the ${toolName} that indicate elevated risk, disease, or abnormal values, consult a qualified physician or specialist in the relevant field. The tool's specialty is identified in the breadcrumb navigation above — the appropriate specialist for that field is the right person to advise on clinical action.`,
+      },
+      {
+        q: 'What guidelines does this tool follow?',
+        a: 'The formula, variable definitions, and clinical reference for this tool are displayed in the Formula section on this page. Our tools are referenced to major clinical guidelines including ACC/AHA, KDIGO, IDSA, ACOG, WHO, and others as applicable to each specialty.',
+      },
+    ];
 
   // Combine: specialty-specific (5) + universal (7) = 12 total
-  return [...base, ...UNIVERSAL_FAQS(toolName, label)]
+  return [...base, ...UNIVERSAL_FAQS(toolName, label)];
 }
 
 // ─── Specialty notes & generic fallbacks ─────────────────────
 const SPECIALTY_NOTES: Record<string, string> = {
-  cardiology: 'Validated by ACC/AHA/ESC cardiovascular guidelines. Always interpret in clinical context.',
+  cardiology:
+    'Validated by ACC/AHA/ESC cardiovascular guidelines. Always interpret in clinical context.',
   nephrology: 'Based on KDIGO guidelines. eGFR assumes stable steady-state serum creatinine.',
-  'emergency-icu': 'ICU/emergency scoring tools validated in prospective cohort studies. Track serially.',
-  'neurology-psychiatry': 'Screening tools only — not diagnostic. Positive screens require full clinical evaluation.',
-  endocrinology: 'Based on ADA/WHO/ACOG metabolic guidelines. Interpret alongside clinical presentation.',
-  pharmacology: 'Drug dosing — always verify with pharmacist and current drug references before prescribing.',
+  'emergency-icu':
+    'ICU/emergency scoring tools validated in prospective cohort studies. Track serially.',
+  'neurology-psychiatry':
+    'Screening tools only — not diagnostic. Positive screens require full clinical evaluation.',
+  endocrinology:
+    'Based on ADA/WHO/ACOG metabolic guidelines. Interpret alongside clinical presentation.',
+  pharmacology:
+    'Drug dosing — always verify with pharmacist and current drug references before prescribing.',
   obstetrics: 'Based on ACOG/RCOG guidelines. Confirm with ultrasound measurement when indicated.',
-  pulmonology: 'Based on GOLD/ATS/ERS spirometry standards. Perform formal lung function testing for diagnosis.',
-  gastroenterology: 'Based on AASLD/EASL hepatology guidelines. Scores valid only at time of stable lab values.',
-  'oncology-hematology': 'Oncology protocols vary by institution. Verify all doses with the treating oncologist and pharmacist.',
+  pulmonology:
+    'Based on GOLD/ATS/ERS spirometry standards. Perform formal lung function testing for diagnosis.',
+  gastroenterology:
+    'Based on AASLD/EASL hepatology guidelines. Scores valid only at time of stable lab values.',
+  'oncology-hematology':
+    'Oncology protocols vary by institution. Verify all doses with the treating oncologist and pharmacist.',
   pediatrics: 'Paediatric doses based on BNFc/AAP guidelines. Always confirm with a paediatrician.',
-  'consumer-health': 'For educational and wellness awareness only. Consult a healthcare provider for medical decisions.',
-}
+  'consumer-health':
+    'For educational and wellness awareness only. Consult a healthcare provider for medical decisions.',
+};
 
-const SPECIALTY_GENERICS: Record<string, { title: string; formula: string; variables: Array<{ symbol: string; meaning: string }>; note: string }> = {
+const SPECIALTY_GENERICS: Record<
+  string,
+  {
+    title: string;
+    formula: string;
+    variables: Array<{ symbol: string; meaning: string }>;
+    note: string;
+  }
+> = {
   cardiology: {
     title: 'Cardiovascular Risk Scoring',
-    formula: 'Risk Score = Σ (weighted clinical risk factors)\nRisk Probability (%) = validated lookup from derivation cohort table',
+    formula:
+      'Risk Score = Σ (weighted clinical risk factors)\nRisk Probability (%) = validated lookup from derivation cohort table',
     variables: [
-      { symbol: 'Risk factors', meaning: 'Age, sex, lipids, blood pressure, smoking, diabetes — weighted per scoring system' },
-      { symbol: 'Probability', meaning: 'Derived from Kaplan-Meier survival data or logistic regression' },
+      {
+        symbol: 'Risk factors',
+        meaning:
+          'Age, sex, lipids, blood pressure, smoking, diabetes — weighted per scoring system',
+      },
+      {
+        symbol: 'Probability',
+        meaning: 'Derived from Kaplan-Meier survival data or logistic regression',
+      },
     ],
     note: 'Cardiovascular scoring systems are validated in large population cohorts. Always combine with full clinical assessment.',
   },
   nephrology: {
     title: 'Renal Function Calculation',
-    formula: 'Kidney Function = f(serum creatinine, age, sex, weight)\nCKD Stage: G1(≥90) G2(60–89) G3a(45–59) G3b(30–44) G4(15–29) G5(<15 mL/min/1.73m²)',
+    formula:
+      'Kidney Function = f(serum creatinine, age, sex, weight)\nCKD Stage: G1(≥90) G2(60–89) G3a(45–59) G3b(30–44) G4(15–29) G5(<15 mL/min/1.73m²)',
     variables: [
       { symbol: 'Scr', meaning: 'Serum creatinine (mg/dL) — primary marker of kidney filtration' },
       { symbol: 'eGFR', meaning: 'Estimated glomerular filtration rate (mL/min/1.73m²)' },
@@ -528,25 +653,34 @@ const SPECIALTY_GENERICS: Record<string, { title: string; formula: string; varia
   },
   'emergency-icu': {
     title: 'Emergency / ICU Severity Score',
-    formula: 'Severity Score = Σ (clinical parameter points)\nPredicted Mortality (%) = validated outcome table',
+    formula:
+      'Severity Score = Σ (clinical parameter points)\nPredicted Mortality (%) = validated outcome table',
     variables: [
-      { symbol: 'Clinical parameters', meaning: 'Physiologic measurements scored on admission or per protocol' },
+      {
+        symbol: 'Clinical parameters',
+        meaning: 'Physiologic measurements scored on admission or per protocol',
+      },
       { symbol: 'Predicted mortality', meaning: 'Derived from derivation cohort outcome data' },
     ],
     note: 'ICU severity scores provide probability estimates. Recalculate serially to track disease trajectory.',
   },
   'neurology-psychiatry': {
     title: 'Neurological / Psychiatric Assessment Scale',
-    formula: 'Total Score = Σ (item responses, each 0–N)\nSeverity Category = validated clinical cutoff ranges',
+    formula:
+      'Total Score = Σ (item responses, each 0–N)\nSeverity Category = validated clinical cutoff ranges',
     variables: [
-      { symbol: 'Items', meaning: 'Standardised clinical or patient-reported response items (0–N each)' },
+      {
+        symbol: 'Items',
+        meaning: 'Standardised clinical or patient-reported response items (0–N each)',
+      },
       { symbol: 'Cutoffs', meaning: 'Evidence-based thresholds for severity classification' },
     ],
     note: 'Screening tools are not diagnostic instruments. A positive screen requires full clinical evaluation.',
   },
   endocrinology: {
     title: 'Metabolic / Endocrine Calculation',
-    formula: 'Metabolic Index = f(anthropometric + laboratory inputs)\nClassification = evidence-based reference thresholds',
+    formula:
+      'Metabolic Index = f(anthropometric + laboratory inputs)\nClassification = evidence-based reference thresholds',
     variables: [
       { symbol: 'Anthropometrics', meaning: 'Weight (kg), height (cm), age, sex — as required' },
       { symbol: 'Lab values', meaning: 'Glucose, HbA1c, lipids, hormone levels — as required' },
@@ -557,14 +691,18 @@ const SPECIALTY_GENERICS: Record<string, { title: string; formula: string; varia
     title: 'Drug Dosing / Pharmacokinetic Calculation',
     formula: 'Dose (mg) = Dose parameter × Patient factor\nClearance = Dose / Target_concentration',
     variables: [
-      { symbol: 'Dose parameter', meaning: 'mg/kg, mg/m², or concentration target per drug protocol' },
+      {
+        symbol: 'Dose parameter',
+        meaning: 'mg/kg, mg/m², or concentration target per drug protocol',
+      },
       { symbol: 'Patient factor', meaning: 'Weight (kg), renal function (CrCl), or BSA (m²)' },
     ],
     note: 'All drug doses must be verified by a licensed pharmacist before administration.',
   },
   obstetrics: {
     title: 'Obstetric / Gynaecology Calculation',
-    formula: 'Obstetric Parameter = f(gestational timing + clinical measurements)\nGA (weeks) = Days since LMP ÷ 7',
+    formula:
+      'Obstetric Parameter = f(gestational timing + clinical measurements)\nGA (weeks) = Days since LMP ÷ 7',
     variables: [
       { symbol: 'LMP', meaning: 'Last menstrual period (first day)' },
       { symbol: 'GA', meaning: 'Gestational age in weeks and days' },
@@ -574,7 +712,8 @@ const SPECIALTY_GENERICS: Record<string, { title: string; formula: string; varia
   },
   pulmonology: {
     title: 'Pulmonary / Respiratory Calculation',
-    formula: 'Respiratory Parameter = f(spirometric values + demographics)\nFEV1/FVC < 0.70 → Obstructive pattern',
+    formula:
+      'Respiratory Parameter = f(spirometric values + demographics)\nFEV1/FVC < 0.70 → Obstructive pattern',
     variables: [
       { symbol: 'FEV1', meaning: 'Forced expiratory volume in 1 second (litres)' },
       { symbol: 'FVC', meaning: 'Forced vital capacity (litres)' },
@@ -584,16 +723,21 @@ const SPECIALTY_GENERICS: Record<string, { title: string; formula: string; varia
   },
   gastroenterology: {
     title: 'Hepatic / GI Scoring',
-    formula: 'Score = Σ (clinical + laboratory variables, each weighted)\nPrognosis = validated survival or mortality data',
+    formula:
+      'Score = Σ (clinical + laboratory variables, each weighted)\nPrognosis = validated survival or mortality data',
     variables: [
-      { symbol: 'Lab values', meaning: 'Bilirubin, albumin, INR, creatinine — as required by scoring system' },
+      {
+        symbol: 'Lab values',
+        meaning: 'Bilirubin, albumin, INR, creatinine — as required by scoring system',
+      },
       { symbol: 'Clinical criteria', meaning: 'Ascites, encephalopathy grade, clinical findings' },
     ],
     note: 'Hepatic scores validated by AASLD/EASL guidelines. Interpret in the context of stable lab values.',
   },
   'oncology-hematology': {
     title: 'Oncology / Haematology Calculation',
-    formula: 'Oncologic Parameter = f(staging + patient + treatment factors)\nBSA (m²) = √(Height(cm) × Weight(kg) / 3600)',
+    formula:
+      'Oncologic Parameter = f(staging + patient + treatment factors)\nBSA (m²) = √(Height(cm) × Weight(kg) / 3600)',
     variables: [
       { symbol: 'BSA', meaning: 'Body surface area (Mosteller formula, m²)' },
       { symbol: 'Protocol dose', meaning: 'Chemotherapy dose in mg/m² per treatment protocol' },
@@ -603,7 +747,8 @@ const SPECIALTY_GENERICS: Record<string, { title: string; formula: string; varia
   },
   pediatrics: {
     title: 'Paediatric Dosing / Growth Calculation',
-    formula: 'Dose (mg) = Weight (kg) × dose_per_kg (mg/kg)\nGrowth Percentile = WHO/CDC reference chart',
+    formula:
+      'Dose (mg) = Weight (kg) × dose_per_kg (mg/kg)\nGrowth Percentile = WHO/CDC reference chart',
     variables: [
       { symbol: 'Weight', meaning: 'Child weight in kilograms (kg)' },
       { symbol: 'dose_per_kg', meaning: 'Prescribed dose in mg per kg body weight' },
@@ -613,14 +758,15 @@ const SPECIALTY_GENERICS: Record<string, { title: string; formula: string; varia
   },
   'consumer-health': {
     title: 'Health & Wellness Metric',
-    formula: 'Health Index = f(demographic + lifestyle inputs)\nClassification = validated reference ranges or guidelines',
+    formula:
+      'Health Index = f(demographic + lifestyle inputs)\nClassification = validated reference ranges or guidelines',
     variables: [
       { symbol: 'Demographics', meaning: 'Age, sex, height, weight as applicable' },
       { symbol: 'Lifestyle inputs', meaning: 'Activity level, diet, sleep, habits as applicable' },
     ],
     note: 'Consumer health tools are for educational awareness only. Consult a healthcare provider for medical advice.',
   },
-}
+};
 
 // ─── Formula variable extraction — always returns ─────────────
 function getFormulaDisplay(
@@ -629,16 +775,20 @@ function getFormulaDisplay(
   specialtyId: string = '',
   toolName: string = 'This Tool'
 ): {
-  title: string
-  formula: string
-  variables: Array<{ symbol: string; meaning: string }>
-  note: string
+  title: string;
+  formula: string;
+  variables: Array<{ symbol: string; meaning: string }>;
+  note: string;
 } {
-  const formulaMap: Record<string, {
-    title: string; formula: string
-    variables: Array<{ symbol: string; meaning: string }>
-    note: string
-  }> = {
+  const formulaMap: Record<
+    string,
+    {
+      title: string;
+      formula: string;
+      variables: Array<{ symbol: string; meaning: string }>;
+      note: string;
+    }
+  > = {
     'bmi-calculator': {
       title: 'BMI Formula',
       formula: 'BMI = weight (kg) ÷ height² (m²)',
@@ -650,7 +800,8 @@ function getFormulaDisplay(
     },
     'egfr-ckd-epi-calculator': {
       title: 'CKD-EPI 2021 (Race-Free) Equation',
-      formula: 'eGFR = 142 × min(Scr/κ, 1)^α × max(Scr/κ, 1)^(−1.200) × 0.9938^Age × 1.012 [if female]',
+      formula:
+        'eGFR = 142 × min(Scr/κ, 1)^α × max(Scr/κ, 1)^(−1.200) × 0.9938^Age × 1.012 [if female]',
       variables: [
         { symbol: 'Scr', meaning: 'Serum creatinine (mg/dL)' },
         { symbol: 'κ', meaning: '0.7 (female) or 0.9 (male)' },
@@ -736,7 +887,7 @@ function getFormulaDisplay(
     },
     'due-date-edd-calculator': {
       title: "Naegele's Rule",
-      formula: "EDD = LMP + 280 days\n    = LMP + 9 months + 7 days",
+      formula: 'EDD = LMP + 280 days\n    = LMP + 9 months + 7 days',
       variables: [
         { symbol: 'LMP', meaning: 'First day of the last menstrual period' },
         { symbol: 'EDD', meaning: 'Estimated due date (40 weeks from LMP)' },
@@ -746,17 +897,22 @@ function getFormulaDisplay(
     },
     'weight-based-drug-dose-calculator': {
       title: 'Weight-Based Dosing Formula',
-      formula: 'Single Dose (mg) = Dose (mg/kg) × Weight (kg)\nDaily Dose (mg) = Single Dose × Frequency',
+      formula:
+        'Single Dose (mg) = Dose (mg/kg) × Weight (kg)\nDaily Dose (mg) = Single Dose × Frequency',
       variables: [
         { symbol: 'Dose (mg/kg)', meaning: 'Prescribed dose per kilogram body weight' },
-        { symbol: 'Weight (kg)', meaning: 'Actual body weight (use IBW or ABW for obese patients per drug protocol)' },
+        {
+          symbol: 'Weight (kg)',
+          meaning: 'Actual body weight (use IBW or ABW for obese patients per drug protocol)',
+        },
         { symbol: 'Frequency', meaning: 'Number of doses per day' },
       ],
       note: 'For obese patients, use IBW or adjusted body weight (ABW) as directed by specific drug protocols.',
     },
     'chemotherapy-dose-bsa-calculator': {
       title: 'Mosteller BSA Formula',
-      formula: 'BSA (m²) = √[(Height (cm) × Weight (kg)) ÷ 3600]\nChemo Dose (mg) = BSA × Protocol Dose (mg/m²)',
+      formula:
+        'BSA (m²) = √[(Height (cm) × Weight (kg)) ÷ 3600]\nChemo Dose (mg) = BSA × Protocol Dose (mg/m²)',
       variables: [
         { symbol: 'Height', meaning: 'Patient height in centimetres' },
         { symbol: 'Weight', meaning: 'Patient weight in kilograms' },
@@ -799,7 +955,8 @@ function getFormulaDisplay(
     },
     'burn-surface-area-rule-of-9s': {
       title: 'Rule of Nines (Burn TBSA)',
-      formula: 'TBSA (%) = Sum of affected body segment percentages\nParkland Formula: Fluid (mL/24h) = 4 × Weight(kg) × TBSA(%)',
+      formula:
+        'TBSA (%) = Sum of affected body segment percentages\nParkland Formula: Fluid (mL/24h) = 4 × Weight(kg) × TBSA(%)',
       variables: [
         { symbol: 'Head & Neck', meaning: '9% of TBSA' },
         { symbol: 'Each arm', meaning: '9% each (18% both)' },
@@ -812,7 +969,8 @@ function getFormulaDisplay(
     },
     'blood-pressure-classification': {
       title: 'ACC/AHA 2017 BP Classification',
-      formula: 'Classified by higher of SBP or DBP category:\nNormal < 120/80 | Elevated 120–129/<80\nStage 1 HTN: 130–139/80–89 | Stage 2 HTN: ≥140/≥90',
+      formula:
+        'Classified by higher of SBP or DBP category:\nNormal < 120/80 | Elevated 120–129/<80\nStage 1 HTN: 130–139/80–89 | Stage 2 HTN: ≥140/≥90',
       variables: [
         { symbol: 'SBP', meaning: 'Systolic blood pressure (mmHg)' },
         { symbol: 'DBP', meaning: 'Diastolic blood pressure (mmHg)' },
@@ -821,7 +979,8 @@ function getFormulaDisplay(
     },
     'wells-score-dvt-pe': {
       title: 'Wells Score (DVT/PE)',
-      formula: 'Score = Sum of weighted clinical criteria\nDVT: Low <1, Moderate 1–2, High ≥3\nPE: Low <2, Moderate 2–6, High >6',
+      formula:
+        'Score = Sum of weighted clinical criteria\nDVT: Low <1, Moderate 1–2, High ≥3\nPE: Low <2, Moderate 2–6, High >6',
       variables: [
         { symbol: 'Active cancer', meaning: '+1 point' },
         { symbol: 'Paralysis/immobilization', meaning: '+1 point' },
@@ -834,13 +993,30 @@ function getFormulaDisplay(
     },
     'fever-dose-calculator': {
       title: 'Pediatric Antipyretic Dosing',
-      formula: 'Paracetamol: 10–15 mg/kg/dose every 4–6h (max 75 mg/kg/day)\nIbuprofen: 5–10 mg/kg/dose every 6–8h (≥6 months only)',
+      formula:
+        'Paracetamol: 10–15 mg/kg/dose every 4–6h (max 75 mg/kg/day)\nIbuprofen: 5–10 mg/kg/dose every 6–8h (≥6 months only)',
       variables: [
         { symbol: 'Weight', meaning: 'Child body weight (kg)' },
         { symbol: 'mg/kg', meaning: 'Dose per kilogram of body weight' },
         { symbol: 'Max daily dose', meaning: 'Paracetamol: min(75 mg/kg/day, 4000 mg/day)' },
       ],
       note: 'Do not use ibuprofen in children <6 months. Do not use aspirin in children due to Reye syndrome risk.',
+    },
+    'remedial-exercise-calorie-calculator': {
+      title: 'MET-Based Calorie Burn Formula',
+      formula:
+        'Calories (kcal) = MET × Weight (kg) × Duration (hours)\n\nMET Reference Values:\n  Treadmill walk 0% incline  → MET 3.5\n  Treadmill walk 10% incline → MET 5.5\n  Treadmill walk 20% incline → MET 7.5\n  Treadmill walk 30% incline → MET 9.5\n  Treadmill walk 40% incline → MET 11.5\n  Push-ups                   → MET 3.8\n  Deadlifts (vigorous)       → MET 5.0\n  Abdominal crunches         → MET 2.8',
+      variables: [
+        {
+          symbol: 'MET',
+          meaning:
+            'Metabolic Equivalent of Task — energy cost relative to rest (1 MET = 3.5 mL O₂/kg/min)',
+        },
+        { symbol: 'Weight', meaning: 'Body weight in kilograms (kg)' },
+        { symbol: 'Duration', meaning: 'Exercise duration in hours (minutes ÷ 60)' },
+        { symbol: 'Calories', meaning: 'Energy expenditure in kilocalories (kcal)' },
+      ],
+      note: 'Ainsworth et al. Compendium of Physical Activities (2011). MET values validated for moderate-intensity exercise. Obese individuals may expend 10–20% more calories due to increased mechanical load. Values are gross (include resting metabolism).',
     },
     'iv-drip-rate-mcg-kg-min': {
       title: 'IV Drip Rate Formula',
@@ -855,7 +1031,8 @@ function getFormulaDisplay(
     },
     'ideal-body-weight-calculator': {
       title: 'Devine Formula for IBW',
-      formula: 'Male IBW (kg) = 50 + 2.3 × (Height in inches − 60)\nFemale IBW (kg) = 45.5 + 2.3 × (Height in inches − 60)',
+      formula:
+        'Male IBW (kg) = 50 + 2.3 × (Height in inches − 60)\nFemale IBW (kg) = 45.5 + 2.3 × (Height in inches − 60)',
       variables: [
         { symbol: 'Height', meaning: 'Patient height in inches (above 5 feet / 60 inches)' },
         { symbol: '50 / 45.5', meaning: 'Base weight for 5-foot male/female' },
@@ -865,7 +1042,8 @@ function getFormulaDisplay(
     },
     'bmr-tdee-calculator': {
       title: 'Mifflin-St Jeor Equation',
-      formula: 'Male BMR = (10 × W) + (6.25 × H) − (5 × A) + 5\nFemale BMR = (10 × W) + (6.25 × H) − (5 × A) − 161\nTDEE = BMR × Activity Factor',
+      formula:
+        'Male BMR = (10 × W) + (6.25 × H) − (5 × A) + 5\nFemale BMR = (10 × W) + (6.25 × H) − (5 × A) − 161\nTDEE = BMR × Activity Factor',
       variables: [
         { symbol: 'W', meaning: 'Weight in kilograms' },
         { symbol: 'H', meaning: 'Height in centimetres' },
@@ -885,7 +1063,8 @@ function getFormulaDisplay(
     },
     'opioid-equianalgesic-converter': {
       title: 'Opioid Equianalgesic Conversion',
-      formula: 'Equivalent Dose = Current Dose × (New Drug Equianalgesic Dose ÷ Current Drug Equianalgesic Dose)',
+      formula:
+        'Equivalent Dose = Current Dose × (New Drug Equianalgesic Dose ÷ Current Drug Equianalgesic Dose)',
       variables: [
         { symbol: 'Morphine oral', meaning: 'Reference: 30 mg oral = 10 mg IV' },
         { symbol: 'Oxycodone oral', meaning: '20 mg oral ≈ 30 mg oral morphine' },
@@ -894,10 +1073,10 @@ function getFormulaDisplay(
       ],
       note: 'Reduce equianalgesic dose by 25–50% when rotating opioids (incomplete cross-tolerance). Always titrate to effect.',
     },
-  }
+  };
 
   // 1. Explicit enhanced entry
-  if (formulaMap[slug]) return formulaMap[slug]
+  if (formulaMap[slug]) return formulaMap[slug];
 
   // 2. Config formula wrapped in display structure
   if (configFormula && configFormula !== 'See reference for formula details.') {
@@ -905,28 +1084,33 @@ function getFormulaDisplay(
       title: `${toolName} — Formula`,
       formula: configFormula,
       variables: [],
-      note: SPECIALTY_NOTES[specialtyId] ?? 'For clinical reference and education only. Always verify with current guidelines.',
-    }
+      note:
+        SPECIALTY_NOTES[specialtyId] ??
+        'For clinical reference and education only. Always verify with current guidelines.',
+    };
   }
 
   // 3. Specialty-generic fallback — always returns something
-  const generic = SPECIALTY_GENERICS[specialtyId]
-  if (generic) return { ...generic, title: `${toolName} — Clinical Formula` }
+  const generic = SPECIALTY_GENERICS[specialtyId];
+  if (generic) return { ...generic, title: `${toolName} — Clinical Formula` };
 
   return {
     title: `${toolName} — Clinical Assessment`,
     formula: 'Score = Σ(clinical criteria) → Interpretation from validated clinical guidelines',
     variables: [
-      { symbol: 'Clinical criteria', meaning: 'Patient-specific variables as defined by the validated scoring system' },
+      {
+        symbol: 'Clinical criteria',
+        meaning: 'Patient-specific variables as defined by the validated scoring system',
+      },
     ],
     note: 'Results are based on validated clinical scoring systems. Always interpret alongside full clinical assessment.',
-  }
+  };
 }
 
 // ─── Static params — pre-render all 113 medical tools ─────────
 export async function generateStaticParams() {
-  const tools = getToolsByCategory('medical')
-  return tools.map(t => ({ slug: t.slug }))
+  const tools = getToolsByCategory('medical');
+  return tools.map((t) => ({ slug: t.slug }));
 }
 
 // ─── Metadata helpers ─────────────────────────────────────────
@@ -946,16 +1130,16 @@ function buildMetaTitle(toolName: string, specialtyId: string): string {
     'oncology-hematology': 'Oncology',
     pediatrics: 'Paediatrics',
     'consumer-health': 'Wellness',
-  }
-  const kw = specialtyKeyword[specialtyId] ?? 'Medical'
-  const full = `Free ${toolName} — ${kw} | RoughTools`
-  if (full.length <= 60) return full
+  };
+  const kw = specialtyKeyword[specialtyId] ?? 'Medical';
+  const full = `Free ${toolName} — ${kw} | RoughTools`;
+  if (full.length <= 60) return full;
   // Fall back: drop the keyword
-  const shorter = `Free ${toolName} | RoughTools`
-  if (shorter.length <= 60) return shorter
+  const shorter = `Free ${toolName} | RoughTools`;
+  if (shorter.length <= 60) return shorter;
   // Last resort: truncate tool name
-  const maxNameLen = 60 - 'Free  | RoughTools'.length
-  return `Free ${toolName.slice(0, maxNameLen)} | RoughTools`
+  const maxNameLen = 60 - 'Free  | RoughTools'.length;
+  return `Free ${toolName.slice(0, maxNameLen)} | RoughTools`;
 }
 
 function buildMetaDescription(toolDescription: string, specialtyId: string): string {
@@ -972,27 +1156,27 @@ function buildMetaDescription(toolDescription: string, specialtyId: string): str
     'oncology-hematology': 'Verify doses with oncologist.',
     pediatrics: 'Based on BNFc/AAP guidelines.',
     'consumer-health': 'Evidence-based wellness tool.',
-  }
-  const hint = specialtyHint[specialtyId] ?? 'Clinically referenced.'
-  const base = `${toolDescription} ${hint} Free, no signup required.`
-  return base.length <= 155 ? base : base.slice(0, 152) + '...'
+  };
+  const hint = specialtyHint[specialtyId] ?? 'Clinically referenced.';
+  const base = `${toolDescription} ${hint} Free, no signup required.`;
+  return base.length <= 155 ? base : base.slice(0, 152) + '...';
 }
 
 // ─── Metadata ─────────────────────────────────────────────────
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const tools = getToolsByCategory('medical')
-  const tool = tools.find(t => t.slug === params.slug)
-  if (!tool) return { title: 'Medical Tool Not Found' }
+  const tools = getToolsByCategory('medical');
+  const tool = tools.find((t) => t.slug === params.slug);
+  if (!tool) return { title: 'Medical Tool Not Found' };
 
-  const specialty = getSpecialty(params.slug)
-  const config = MEDICAL_CONFIGS[params.slug]
-  const extConfig = getMedicalConfigById(params.slug)
-  const description = config?.description ?? extConfig?.description ?? tool.description
-  const specialtyId = specialty?.id ?? 'consumer-health'
+  const specialty = getSpecialty(params.slug);
+  const config = MEDICAL_CONFIGS[params.slug];
+  const extConfig = getMedicalConfigById(params.slug);
+  const description = config?.description ?? extConfig?.description ?? tool.description;
+  const specialtyId = specialty?.id ?? 'consumer-health';
 
-  const metaTitle = buildMetaTitle(tool.name, specialtyId)
-  const metaDesc  = buildMetaDescription(description, specialtyId)
-  const canonicalUrl = `https://roughtools.com/tools/medical/${params.slug}`
+  const metaTitle = buildMetaTitle(tool.name, specialtyId);
+  const metaDesc = buildMetaDescription(description, specialtyId);
+  const canonicalUrl = `https://roughtools.com/tools/medical/${params.slug}`;
 
   return {
     title: metaTitle,
@@ -1018,62 +1202,79 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: metaDesc,
     },
     robots: { index: true, follow: true },
-  }
+  };
 }
 
 // ─── Page ─────────────────────────────────────────────────────
 export default function MedicalToolPage({ params }: Props) {
-  const allTools = getToolsByCategory('medical')
-  const tool = allTools.find(t => t.slug === params.slug)
-  if (!tool) notFound()
+  const allTools = getToolsByCategory('medical');
+  const tool = allTools.find((t) => t.slug === params.slug);
+  if (!tool) notFound();
 
-  const configData    = MEDICAL_CONFIGS[params.slug]
-  const extConfigData = getMedicalConfigById(params.slug)
-  const heroIcon        = configData?.icon        ?? extConfigData?.icon        ?? '🩺'
-  const heroDescription = configData?.description ?? extConfigData?.description ?? tool.description
-  const formulaStr      = configData?.formula     ?? extConfigData?.formula     ?? null
-  const referenceStr    = configData?.reference   ?? extConfigData?.reference   ?? null
+  const configData = MEDICAL_CONFIGS[params.slug];
+  const extConfigData = getMedicalConfigById(params.slug);
+  const heroIcon = configData?.icon ?? extConfigData?.icon ?? '🩺';
+  const heroDescription = configData?.description ?? extConfigData?.description ?? tool.description;
+  const formulaStr = configData?.formula ?? extConfigData?.formula ?? null;
+  const referenceStr = configData?.reference ?? extConfigData?.reference ?? null;
 
-  const specialty      = getSpecialty(params.slug)
-  const formulaDisplay = getFormulaDisplay(params.slug, formulaStr, specialty?.id ?? '', tool.name)
-  const faqs           = getFAQs(specialty?.id ?? '', tool.name)
+  const specialty = getSpecialty(params.slug);
+  const formulaDisplay = getFormulaDisplay(params.slug, formulaStr, specialty?.id ?? '', tool.name);
+  const faqs = getFAQs(specialty?.id ?? '', tool.name, params.slug);
 
   // Resolve icons up-front so the shell stays generic
-  const relatedTools = (
-    specialty
-      ? specialty.slugs
-          .filter(s => s !== params.slug)
-          .slice(0, 6)
-          .map(s => {
-            const t = allTools.find(t => t.slug === s)
-            if (!t) return null
-            const cfg = MEDICAL_CONFIGS[s] ?? getMedicalConfigById(s)
-            return { slug: s, name: t.name, description: t.description, icon: cfg?.icon ?? '🩺' }
-          })
-          .filter((t): t is NonNullable<typeof t> => t !== null)
-      : allTools
-          .filter(t => t.slug !== params.slug && t.popular)
-          .slice(0, 6)
-          .map(t => {
-            const cfg = MEDICAL_CONFIGS[t.slug] ?? getMedicalConfigById(t.slug)
-            return { slug: t.slug, name: t.name, description: t.description, icon: cfg?.icon ?? '🩺' }
-          })
-  )
+  const relatedTools = specialty
+    ? specialty.slugs
+        .filter((s) => s !== params.slug)
+        .slice(0, 6)
+        .map((s) => {
+          const t = allTools.find((t) => t.slug === s);
+          if (!t) return null;
+          const cfg = MEDICAL_CONFIGS[s] ?? getMedicalConfigById(s);
+          return { slug: s, name: t.name, description: t.description, icon: cfg?.icon ?? '🩺' };
+        })
+        .filter((t): t is NonNullable<typeof t> => t !== null)
+    : allTools
+        .filter((t) => t.slug !== params.slug && t.popular)
+        .slice(0, 6)
+        .map((t) => {
+          const cfg = MEDICAL_CONFIGS[t.slug] ?? getMedicalConfigById(t.slug);
+          return {
+            slug: t.slug,
+            name: t.name,
+            description: t.description,
+            icon: cfg?.icon ?? '🩺',
+          };
+        });
 
-  const canonicalUrl = `https://roughtools.com/tools/medical/${params.slug}`
+  const canonicalUrl = `https://roughtools.com/tools/medical/${params.slug}`;
 
   // ── BreadcrumbList JSON-LD ───────────────────────────────────
   const breadcrumbItems: object[] = [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roughtools.com' },
-    { '@type': 'ListItem', position: 2, name: 'Medical Tools', item: 'https://roughtools.com/tools/medical' },
-  ]
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Medical Tools',
+      item: 'https://roughtools.com/tools/medical',
+    },
+  ];
   if (specialty) {
-    breadcrumbItems.push({ '@type': 'ListItem', position: 3, name: specialty.label, item: `https://roughtools.com/tools/medical#${specialty.id}` })
-    breadcrumbItems.push({ '@type': 'ListItem', position: 4, name: tool.name, item: canonicalUrl })
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 3,
+      name: specialty.label,
+      item: `https://roughtools.com/tools/medical#${specialty.id}`,
+    });
+    breadcrumbItems.push({ '@type': 'ListItem', position: 4, name: tool.name, item: canonicalUrl });
   } else {
-    breadcrumbItems.push({ '@type': 'ListItem', position: 3, name: tool.name, item: canonicalUrl })
+    breadcrumbItems.push({ '@type': 'ListItem', position: 3, name: tool.name, item: canonicalUrl });
   }
-  const breadcrumbLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: breadcrumbItems }
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbItems,
+  };
 
   // ── SoftwareApplication JSON-LD ──────────────────────────────
   const appCategoryMap: Record<string, string> = {
@@ -1089,8 +1290,8 @@ export default function MedicalToolPage({ params }: Props) {
     'oncology-hematology': 'MedicalApplication',
     pediatrics: 'HealthApplication',
     'consumer-health': 'HealthApplication',
-  }
-  const appCategory = appCategoryMap[specialty?.id ?? ''] ?? 'HealthApplication'
+  };
+  const appCategory = appCategoryMap[specialty?.id ?? ''] ?? 'HealthApplication';
   const softwareAppLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -1107,35 +1308,46 @@ export default function MedicalToolPage({ params }: Props) {
       bestRating: '5',
       worstRating: '1',
     },
-  }
+  };
 
   // ── FAQPage JSON-LD ──────────────────────────────────────────
   const faqPageLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map(f => ({
+    mainEntity: faqs.map((f) => ({
       '@type': 'Question',
       name: f.q,
       acceptedAnswer: { '@type': 'Answer', text: f.a },
     })),
-  }
+  };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageLd) }}
+      />
       <MedicalToolShell
         toolName={tool.name}
         toolSlug={params.slug}
         description={heroDescription}
         heroIcon={heroIcon}
         reference={referenceStr}
-        specialty={specialty ? { id: specialty.id, label: specialty.label, icon: specialty.icon } : null}
+        specialty={
+          specialty ? { id: specialty.id, label: specialty.label, icon: specialty.icon } : null
+        }
         formulaDisplay={formulaDisplay}
         faqs={faqs}
         relatedTools={relatedTools}
       />
     </>
-  )
+  );
 }
