@@ -10,7 +10,10 @@ import { ToolPageExtras } from '@/components/ToolPageExtras';
 const MedicalCalculatorClient = dynamic(() => import('./MedicalCalculatorClient'), {
   ssr: false,
   loading: () => (
-    <div className="mt-4 h-64 bg-gray-100 animate-pulse rounded-2xl" aria-hidden="true" />
+    <div
+      className="mt-4 h-64 bg-gray-100 dark:bg-gray-700 animate-pulse rounded-2xl"
+      aria-hidden="true"
+    />
   ),
 });
 
@@ -19,7 +22,7 @@ const MedicalFAQSection = dynamic(() => import('./MedicalFAQClient'), {
   loading: () => (
     <div className="mt-10 space-y-3" aria-hidden="true">
       {[0, 1, 2, 3, 4].map((i) => (
-        <div key={i} className="h-14 bg-gray-100 animate-pulse rounded-xl" />
+        <div key={i} className="h-14 bg-gray-100 dark:bg-gray-700 animate-pulse rounded-xl" />
       ))}
     </div>
   ),
@@ -1136,12 +1139,12 @@ const TRUST_CHIPS = [
 function HowToStepsSection({ steps }: { steps: HowToStep[] }) {
   return (
     <section
-      className="mt-8 bg-white rounded-2xl border border-gray-200 p-6"
+      className="mt-8 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-6"
       aria-labelledby="howto-heading"
     >
       <h2
         id="howto-heading"
-        className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2"
+        className="text-base font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2"
       >
         <span>📋</span> How to Use This Calculator
       </h2>
@@ -1152,8 +1155,10 @@ function HowToStepsSection({ steps }: { steps: HowToStep[] }) {
               {i + 1}
             </span>
             <div>
-              <p className="text-sm font-semibold text-gray-900">{step.name}</p>
-              <p className="text-sm text-gray-700 leading-relaxed mt-0.5">{step.text}</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">{step.name}</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300 dark:text-gray-600 leading-relaxed mt-0.5">
+                {step.text}
+              </p>
             </div>
           </li>
         ))}
@@ -1165,21 +1170,28 @@ function HowToStepsSection({ steps }: { steps: HowToStep[] }) {
 function WhenToUseSection({ cards }: { cards: WhenToUseCard[] }) {
   return (
     <section
-      className="mt-8 bg-white rounded-2xl border border-gray-200 p-6"
+      className="mt-8 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-6"
       aria-labelledby="when-heading"
     >
       <h2
         id="when-heading"
-        className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2"
+        className="text-base font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2"
       >
         <span>🎯</span> When to Use This Calculator
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {cards.map((card, i) => (
-          <div key={i} className="p-4 rounded-xl border border-gray-100 bg-gray-50">
+          <div
+            key={i}
+            className="p-4 rounded-xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60"
+          >
             <div className="text-xl mb-2">{card.icon}</div>
-            <p className="text-sm font-semibold text-gray-900 mb-1">{card.title}</p>
-            <p className="text-xs text-gray-700 leading-relaxed">{card.description}</p>
+            <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-1">
+              {card.title}
+            </p>
+            <p className="text-xs text-gray-700 dark:text-gray-300 dark:text-gray-600 leading-relaxed">
+              {card.description}
+            </p>
           </div>
         ))}
       </div>
@@ -1191,13 +1203,13 @@ function QuickReferenceSection({ rows }: { rows: QuickRefRow[] }) {
   return (
     <section
       data-print-section="reference"
-      className="mt-8 bg-white rounded-2xl border border-gray-200 overflow-hidden"
+      className="mt-8 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden"
       aria-labelledby="quickref-heading"
     >
       <div className="p-6 pb-3">
         <h2
           id="quickref-heading"
-          className="text-base font-bold text-gray-900 flex items-center gap-2"
+          className="text-base font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2"
         >
           <span>📊</span> Quick Reference
         </h2>
@@ -1219,14 +1231,19 @@ function QuickReferenceSection({ rows }: { rows: QuickRefRow[] }) {
           </thead>
           <tbody>
             {rows.map((row, i) => (
-              <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
-                <td className="px-5 py-2.5 text-sm font-medium text-emerald-800 border-b border-gray-100">
+              <tr
+                key={i}
+                className={
+                  i % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-gray-50 dark:bg-gray-800/50'
+                }
+              >
+                <td className="px-5 py-2.5 text-sm font-medium text-emerald-800 border-b border-gray-100 dark:border-gray-700">
                   {row.input}
                 </td>
-                <td className="px-5 py-2.5 text-sm text-gray-700 border-b border-gray-100">
+                <td className="px-5 py-2.5 text-sm text-gray-700 dark:text-gray-300 dark:text-gray-600 border-b border-gray-100 dark:border-gray-700">
                   {row.description}
                 </td>
-                <td className="px-5 py-2.5 text-xs font-mono text-gray-700 border-b border-gray-100">
+                <td className="px-5 py-2.5 text-xs font-mono text-gray-700 dark:text-gray-300 dark:text-gray-600 border-b border-gray-100 dark:border-gray-700">
                   {row.example}
                 </td>
               </tr>
@@ -1241,12 +1258,12 @@ function QuickReferenceSection({ rows }: { rows: QuickRefRow[] }) {
 function ProTipsSection({ tips }: { tips: string[] }) {
   return (
     <section
-      className="mt-8 bg-white rounded-2xl border border-gray-200 p-6"
+      className="mt-8 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-6"
       aria-labelledby="tips-heading"
     >
       <h2
         id="tips-heading"
-        className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2"
+        className="text-base font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2"
       >
         <span>💡</span> Clinical Pro Tips
       </h2>
@@ -1259,7 +1276,9 @@ function ProTipsSection({ tips }: { tips: string[] }) {
             <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-200 text-emerald-800 text-xs font-bold flex items-center justify-center mt-0.5">
               {i + 1}
             </span>
-            <p className="text-sm text-gray-700 leading-relaxed">{tip}</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300 dark:text-gray-600 leading-relaxed">
+              {tip}
+            </p>
           </div>
         ))}
       </div>
@@ -1402,7 +1421,10 @@ function AboutContent({
   return (
     <>
       {paragraphs.map((para, i) => (
-        <p key={i} className="text-sm text-gray-700 leading-relaxed mb-3 last:mb-0">
+        <p
+          key={i}
+          className="text-sm text-gray-700 dark:text-gray-300 dark:text-gray-600 leading-relaxed mb-3 last:mb-0"
+        >
           {para}
         </p>
       ))}
@@ -1566,13 +1588,13 @@ export default function MedicalToolShell({
     QUICK_REF_ROWS['consumer-health']!;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#0f1117]">
       {/* ── 1. Breadcrumb ──────────────────────────────────────────────── */}
-      <div className="bg-white border-b border-gray-100">
+      <div className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3">
           <nav
             aria-label="Breadcrumb"
-            className="flex items-center gap-2 text-xs text-gray-500 flex-wrap"
+            className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 flex-wrap"
           >
             <Link href="/" className="hover:text-emerald-600 transition-colors">
               Home
@@ -1593,7 +1615,7 @@ export default function MedicalToolShell({
               </>
             )}
             <span aria-hidden="true">›</span>
-            <span className="text-gray-800 font-medium truncate max-w-[160px] sm:max-w-none">
+            <span className="text-gray-800 dark:text-gray-200 font-medium truncate max-w-[160px] sm:max-w-none">
               {toolName}
             </span>
           </nav>
@@ -1661,17 +1683,17 @@ export default function MedicalToolShell({
         {/* ── 2. Formula display ───────────────────────────────────────────── */}
         <section
           data-print-section="formula"
-          className="bg-white rounded-2xl border border-gray-200 p-6"
+          className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-6"
         >
-          <h2 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
             <span>🧮</span> {formulaDisplay.title}
           </h2>
-          <div className="bg-gray-50 rounded-xl border border-gray-200 px-5 py-4 mb-4 font-mono text-sm text-gray-800 whitespace-pre-line leading-relaxed">
+          <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl border border-gray-200 dark:border-gray-700 px-5 py-4 mb-4 font-mono text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line leading-relaxed">
             {formulaDisplay.formula}
           </div>
           {formulaDisplay.variables.length > 0 && (
             <div className="mb-4">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
                 Variables
               </p>
               <div className="space-y-1.5">
@@ -1680,13 +1702,15 @@ export default function MedicalToolShell({
                     <code className="flex-shrink-0 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded px-2 py-0.5 text-xs font-mono min-w-[80px] text-center">
                       {v.symbol}
                     </code>
-                    <span className="text-gray-700">{v.meaning}</span>
+                    <span className="text-gray-700 dark:text-gray-300 dark:text-gray-600">
+                      {v.meaning}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
           )}
-          <p className="text-xs text-gray-600 bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-2.5 leading-relaxed">
+          <p className="text-xs text-gray-600 dark:text-gray-400 bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-2.5 leading-relaxed">
             🩺 {formulaDisplay.note}
           </p>
           {reference && (
@@ -1702,12 +1726,12 @@ export default function MedicalToolShell({
 
         {/* ── 4. About section ─────────────────────────────────────────────── */}
         <section
-          className="mt-8 bg-white rounded-2xl border border-gray-200 p-6"
+          className="mt-8 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-6"
           aria-labelledby="about-heading"
         >
           <h2
             id="about-heading"
-            className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2"
+            className="text-base font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2"
           >
             <span>ℹ️</span> About This Calculator
           </h2>
@@ -1740,7 +1764,10 @@ export default function MedicalToolShell({
         {/* ── 10. Related tools grid ───────────────────────────────────────── */}
         {relatedTools.length > 0 && (
           <section className="mt-12" aria-labelledby="related-heading">
-            <h2 id="related-heading" className="text-lg font-bold text-gray-900 mb-4">
+            <h2
+              id="related-heading"
+              className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4"
+            >
               {specialty ? `More ${specialty.label} Tools` : 'Popular Medical Tools'}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -1748,17 +1775,19 @@ export default function MedicalToolShell({
                 <Link
                   key={r.slug}
                   href={`/tools/medical/${r.slug}`}
-                  className="group flex items-center gap-3 p-3.5 rounded-xl border border-gray-200 bg-white hover:border-emerald-300 hover:shadow-sm transition-all"
+                  className="group flex items-center gap-3 p-3.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 hover:border-emerald-300 hover:shadow-sm transition-all"
                 >
                   <span className="text-xl flex-shrink-0">{r.icon}</span>
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors leading-snug">
+                    <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 group-hover:text-emerald-700 transition-colors leading-snug">
                       {r.name}
                     </p>
-                    <p className="text-xs text-gray-600 line-clamp-1 mt-0.5">{r.description}</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-1 mt-0.5">
+                      {r.description}
+                    </p>
                   </div>
                   <svg
-                    className="h-4 w-4 ml-auto text-gray-300 group-hover:text-emerald-500 flex-shrink-0"
+                    className="h-4 w-4 ml-auto text-gray-300 dark:text-gray-600 group-hover:text-emerald-500 flex-shrink-0"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1786,7 +1815,7 @@ export default function MedicalToolShell({
         />
 
         {/* Back link */}
-        <div className="mt-8 pt-6 border-t border-gray-200 flex items-center justify-between">
+        <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
           <Link
             href="/tools/medical"
             className="inline-flex items-center gap-2 text-sm text-emerald-600 hover:text-emerald-700 font-medium transition-colors"
@@ -1804,7 +1833,7 @@ export default function MedicalToolShell({
           {specialty && (
             <Link
               href={`/tools/medical#${specialty.id}`}
-              className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-emerald-600 transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-emerald-600 transition-colors"
             >
               <span>{specialty.icon}</span>
               <span>{specialty.label}</span>

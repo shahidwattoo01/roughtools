@@ -1333,10 +1333,10 @@ export const MEDICAL_CONFIGS: Record<string, MedicalCalcConfig> = {
   // ── Remedial Exercise Calorie Calculator ─────────────────────
   'remedial-exercise-calorie-calculator': {
     slug: 'remedial-exercise-calorie-calculator',
-    name: 'Remedial Exercise Calorie Calculator',
+    name: 'Calories Burned Exercise Calculator',
     icon: '🏃',
     description:
-      'Calculate calories burned during prescribed remedial exercises using MET values. Supports treadmill incline, push-ups, deadlifts, and abdominal crunches for clinical weight management.',
+      'Calculate calories burned walking on a treadmill, doing push-ups, deadlifts, or crunches. MET-based formula — enter weight, exercise, and duration. Free, no signup.',
     formula: 'Calories = MET × Weight(kg) × Duration(hours)',
     reference: 'Ainsworth et al. Compendium of Physical Activities, Med Sci Sports Exerc 2011',
     inputs: [
