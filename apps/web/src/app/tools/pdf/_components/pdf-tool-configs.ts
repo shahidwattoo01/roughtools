@@ -1,10 +1,11 @@
-import type { PDFToolConfig } from './PDFToolClient'
+import type { PDFToolConfig } from './PDFToolClient';
 
 export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'compress-pdf': {
     slug: 'compress-pdf',
     title: 'Compress PDF',
-    description: 'Reduce your PDF file size while maintaining quality. Perfect for email attachments and faster uploads.',
+    description:
+      'Reduce your PDF file size while maintaining quality. Perfect for email attachments and faster uploads.',
     endpoint: '/api/pdf/compress',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -29,7 +30,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'merge-pdf': {
     slug: 'merge-pdf',
     title: 'Merge PDF',
-    description: 'Combine multiple PDF files into one document. Drag and drop to reorder pages before merging.',
+    description:
+      'Combine multiple PDF files into one document. Drag and drop to reorder pages before merging.',
     endpoint: '/api/pdf/merge',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -42,7 +44,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'split-pdf': {
     slug: 'split-pdf',
     title: 'Split PDF',
-    description: 'Split a PDF into multiple separate files. Extract specific pages or split into equal parts.',
+    description:
+      'Split a PDF into multiple separate files. Extract specific pages or split into equal parts.',
     endpoint: '/api/pdf/split',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'zip',
@@ -62,7 +65,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'pdf-to-word': {
     slug: 'pdf-to-word',
     title: 'PDF to Word',
-    description: 'Convert PDF to an editable Word document (DOCX) while preserving formatting, tables, and layout.',
+    description:
+      'Convert PDF to an editable Word document (DOCX) while preserving formatting, tables, and layout.',
     endpoint: '/api/pdf/convert-from-pdf',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'docx',
@@ -75,7 +79,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'pdf-to-excel': {
     slug: 'pdf-to-excel',
     title: 'PDF to Excel',
-    description: 'Extract tables and data from PDF into editable Excel spreadsheets with accurate formatting.',
+    description:
+      'Extract tables and data from PDF into editable Excel spreadsheets with accurate formatting.',
     endpoint: '/api/pdf/convert-from-pdf',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'xlsx',
@@ -101,7 +106,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'pdf-to-jpg': {
     slug: 'pdf-to-jpg',
     title: 'PDF to JPG',
-    description: 'Convert each PDF page to high-quality JPG images. Download all images as a ZIP file.',
+    description:
+      'Convert each PDF page to high-quality JPG images. Download all images as a ZIP file.',
     endpoint: '/api/pdf/convert-from-pdf',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'zip',
@@ -140,7 +146,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'pdf-to-pdfa': {
     slug: 'pdf-to-pdfa',
     title: 'PDF to PDF/A',
-    description: 'Convert PDF to PDF/A format for long-term archiving and compliance with ISO standards.',
+    description:
+      'Convert PDF to PDF/A format for long-term archiving and compliance with ISO standards.',
     endpoint: '/api/pdf/pdfa',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -152,9 +159,11 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'word-to-pdf': {
     slug: 'word-to-pdf',
     title: 'Word to PDF',
-    description: 'Convert Word documents (DOC, DOCX) to PDF while preserving all formatting and fonts.',
+    description:
+      'Convert Word documents (DOC, DOCX) to PDF while preserving all formatting and fonts.',
     endpoint: '/api/pdf/convert-to-pdf',
-    acceptTypes: '.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    acceptTypes:
+      '.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     outputExt: 'pdf',
     outputMime: 'application/pdf',
     buttonLabel: 'Convert to PDF',
@@ -165,9 +174,11 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'excel-to-pdf': {
     slug: 'excel-to-pdf',
     title: 'Excel to PDF',
-    description: 'Convert Excel spreadsheets (XLS, XLSX) to PDF documents, preserving tables and charts.',
+    description:
+      'Convert Excel spreadsheets (XLS, XLSX) to PDF documents, preserving tables and charts.',
     endpoint: '/api/pdf/convert-to-pdf',
-    acceptTypes: '.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    acceptTypes:
+      '.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     outputExt: 'pdf',
     outputMime: 'application/pdf',
     buttonLabel: 'Convert to PDF',
@@ -178,9 +189,11 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'powerpoint-to-pdf': {
     slug: 'powerpoint-to-pdf',
     title: 'PowerPoint to PDF',
-    description: 'Convert PowerPoint presentations (PPT, PPTX) to PDF for easy sharing and printing.',
+    description:
+      'Convert PowerPoint presentations (PPT, PPTX) to PDF for easy sharing and printing.',
     endpoint: '/api/pdf/convert-to-pdf',
-    acceptTypes: '.ppt,.pptx,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    acceptTypes:
+      '.ppt,.pptx,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation',
     outputExt: 'pdf',
     outputMime: 'application/pdf',
     buttonLabel: 'Convert to PDF',
@@ -191,7 +204,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'jpg-to-pdf': {
     slug: 'jpg-to-pdf',
     title: 'JPG to PDF',
-    description: 'Convert JPG, PNG, or other images to PDF. Merge multiple images into a single PDF file.',
+    description:
+      'Convert JPG, PNG, or other images to PDF. Merge multiple images into a single PDF file.',
     endpoint: '/api/pdf/convert-to-pdf',
     acceptTypes: '.jpg,.jpeg,.png,.webp,.gif,.bmp,image/*',
     outputExt: 'pdf',
@@ -218,7 +232,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'scan-to-pdf': {
     slug: 'scan-to-pdf',
     title: 'Scan to PDF',
-    description: 'Convert scanned images and photos to searchable PDF documents using OCR technology.',
+    description:
+      'Convert scanned images and photos to searchable PDF documents using OCR technology.',
     endpoint: '/api/pdf/convert-to-pdf',
     acceptTypes: '.jpg,.jpeg,.png,.tiff,.tif,.bmp,image/*',
     outputExt: 'pdf',
@@ -231,7 +246,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'protect-pdf': {
     slug: 'protect-pdf',
     title: 'Protect PDF',
-    description: 'Add a protection stamp to your PDF with permission settings. Marks the document as confidential and restricted.',
+    description:
+      'Add a protection stamp to your PDF with permission settings. Marks the document as confidential and restricted.',
     endpoint: '/api/pdf/protect',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -264,7 +280,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'unlock-pdf': {
     slug: 'unlock-pdf',
     title: 'Unlock PDF',
-    description: 'Remove password protection from PDF files. Access your secured PDF with the correct password.',
+    description:
+      'Remove password protection from PDF files. Access your secured PDF with the correct password.',
     endpoint: '/api/pdf/unlock',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -318,7 +335,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'rotate-pdf': {
     slug: 'rotate-pdf',
     title: 'Rotate PDF',
-    description: 'Rotate PDF pages 90°, 180°, or 270°. Rotate all pages or specific pages of your document.',
+    description:
+      'Rotate PDF pages 90°, 180°, or 270°. Rotate all pages or specific pages of your document.',
     endpoint: '/api/pdf/rotate',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -349,7 +367,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'crop-pdf': {
     slug: 'crop-pdf',
     title: 'Crop PDF',
-    description: 'Crop PDF pages by trimming margins. Enter how many points to remove from each side.',
+    description:
+      'Crop PDF pages by trimming margins. Enter how many points to remove from each side.',
     endpoint: '/api/pdf/crop',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -358,16 +377,45 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
     processingLabel: 'Cropping PDF…',
     subcategory: 'edit',
     extraFields: [
-      { name: 'marginTop', label: 'Trim Top (pt)', type: 'number', placeholder: '0', min: 0, defaultValue: '36' },
-      { name: 'marginBottom', label: 'Trim Bottom (pt)', type: 'number', placeholder: '0', min: 0, defaultValue: '36' },
-      { name: 'marginLeft', label: 'Trim Left (pt)', type: 'number', placeholder: '0', min: 0, defaultValue: '36' },
-      { name: 'marginRight', label: 'Trim Right (pt)', type: 'number', placeholder: '0', min: 0, defaultValue: '36' },
+      {
+        name: 'marginTop',
+        label: 'Trim Top (pt)',
+        type: 'number',
+        placeholder: '0',
+        min: 0,
+        defaultValue: '36',
+      },
+      {
+        name: 'marginBottom',
+        label: 'Trim Bottom (pt)',
+        type: 'number',
+        placeholder: '0',
+        min: 0,
+        defaultValue: '36',
+      },
+      {
+        name: 'marginLeft',
+        label: 'Trim Left (pt)',
+        type: 'number',
+        placeholder: '0',
+        min: 0,
+        defaultValue: '36',
+      },
+      {
+        name: 'marginRight',
+        label: 'Trim Right (pt)',
+        type: 'number',
+        placeholder: '0',
+        min: 0,
+        defaultValue: '36',
+      },
     ],
   },
   'add-watermark': {
     slug: 'add-watermark',
     title: 'Watermark PDF',
-    description: 'Add a text or image watermark to your PDF. Customize position, opacity, and style.',
+    description:
+      'Add a text or image watermark to your PDF. Customize position, opacity, and style.',
     endpoint: '/api/pdf/watermark',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -411,7 +459,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'add-page-numbers': {
     slug: 'add-page-numbers',
     title: 'Add Page Numbers to PDF',
-    description: 'Automatically add page numbers to your PDF. Choose position, style, and starting number.',
+    description:
+      'Automatically add page numbers to your PDF. Choose position, style, and starting number.',
     endpoint: '/api/pdf/page-numbers',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -520,7 +569,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'compare-pdf': {
     slug: 'compare-pdf',
     title: 'Compare PDF',
-    description: 'Compare two PDF documents side by side and highlight all differences between them.',
+    description:
+      'Compare two PDF documents side by side and highlight all differences between them.',
     endpoint: '/api/pdf/compare',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -533,7 +583,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'ocr-pdf': {
     slug: 'ocr-pdf',
     title: 'OCR PDF',
-    description: 'Extract selectable text from PDF documents. Download the extracted text as a plain-text file.',
+    description:
+      'Extract selectable text from PDF documents. Download the extracted text as a plain-text file.',
     endpoint: '/api/pdf/ocr',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'txt',
@@ -564,7 +615,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'pdf-to-png': {
     slug: 'pdf-to-png',
     title: 'PDF to PNG',
-    description: 'Convert each PDF page to high-quality PNG images. Download all images as a ZIP file.',
+    description:
+      'Convert each PDF page to high-quality PNG images. Download all images as a ZIP file.',
     endpoint: '/api/pdf/convert-from-pdf',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'zip',
@@ -617,7 +669,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'flatten-pdf': {
     slug: 'flatten-pdf',
     title: 'Flatten PDF',
-    description: 'Flatten form fields, annotations, and layers in a PDF to produce a non-editable static document.',
+    description:
+      'Flatten form fields, annotations, and layers in a PDF to produce a non-editable static document.',
     endpoint: '/api/pdf/convert-from-pdf',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -630,7 +683,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'pdf-to-epub': {
     slug: 'pdf-to-epub',
     title: 'PDF to EPUB',
-    description: 'Convert PDF documents to EPUB eBook format for reading on Kindle, Kobo, or any eReader.',
+    description:
+      'Convert PDF documents to EPUB eBook format for reading on Kindle, Kobo, or any eReader.',
     endpoint: '/api/pdf/convert-from-pdf',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'epub',
@@ -643,7 +697,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'repair-pdf': {
     slug: 'repair-pdf',
     title: 'Repair PDF',
-    description: 'Fix corrupted or damaged PDF files. Recover content from broken PDFs automatically.',
+    description:
+      'Fix corrupted or damaged PDF files. Recover content from broken PDFs automatically.',
     endpoint: '/api/pdf/repair',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -655,7 +710,8 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'pdf-converter': {
     slug: 'pdf-converter',
     title: 'PDF Converter',
-    description: 'All-in-one PDF converter supporting dozens of input and output formats. Convert any file to or from PDF.',
+    description:
+      'All-in-one PDF converter supporting dozens of input and output formats. Convert any file to or from PDF.',
     endpoint: '/api/pdf/convert-from-pdf',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
@@ -667,16 +723,60 @@ export const PDF_TOOL_CONFIGS: Record<string, PDFToolConfig> = {
   'pdf-editor': {
     slug: 'pdf-editor',
     title: 'PDF Editor',
-    description: 'Edit text, images, and annotations directly inside any PDF document online.',
+    description:
+      'Add text to any page of your PDF. Enter the text, choose the page and position, then download.',
     endpoint: '/api/pdf/edit',
     acceptTypes: '.pdf,application/pdf',
     outputExt: 'pdf',
     outputMime: 'application/pdf',
-    buttonLabel: 'Edit PDF',
-    processingLabel: 'Opening editor…',
+    buttonLabel: 'Add Text to PDF',
+    processingLabel: 'Adding text to your PDF…',
     subcategory: 'edit',
+    extraFields: [
+      {
+        name: 'text',
+        label: 'Text to add',
+        type: 'text',
+        placeholder: 'e.g. APPROVED, Draft, See page 3…',
+      },
+      {
+        name: 'page',
+        label: 'Page number',
+        type: 'number',
+        defaultValue: '1',
+        placeholder: '1',
+      },
+      {
+        name: 'fontSize',
+        label: 'Font size',
+        type: 'select',
+        defaultValue: '16',
+        options: [
+          { value: '10', label: '10pt — Small' },
+          { value: '12', label: '12pt — Normal' },
+          { value: '16', label: '16pt — Medium (recommended)' },
+          { value: '24', label: '24pt — Large' },
+          { value: '36', label: '36pt — Very Large' },
+          { value: '48', label: '48pt — Heading' },
+        ],
+      },
+      {
+        name: 'x',
+        label: 'Horizontal position (X, in points from left)',
+        type: 'number',
+        defaultValue: '50',
+        placeholder: '50',
+      },
+      {
+        name: 'y',
+        label: 'Vertical position (Y, in points from top)',
+        type: 'number',
+        defaultValue: '100',
+        placeholder: '100',
+      },
+    ],
   },
-}
+};
 
 export const PDF_SUBCATEGORIES = [
   {
@@ -685,7 +785,18 @@ export const PDF_SUBCATEGORIES = [
     icon: '📤',
     color: 'red',
     description: 'Export PDF to other formats',
-    tools: ['pdf-to-word', 'pdf-to-excel', 'pdf-to-powerpoint', 'pdf-to-jpg', 'pdf-to-png', 'pdf-to-html', 'pdf-to-text', 'pdf-to-pdfa', 'pdf-to-epub', 'pdf-converter'],
+    tools: [
+      'pdf-to-word',
+      'pdf-to-excel',
+      'pdf-to-powerpoint',
+      'pdf-to-jpg',
+      'pdf-to-png',
+      'pdf-to-html',
+      'pdf-to-text',
+      'pdf-to-pdfa',
+      'pdf-to-epub',
+      'pdf-converter',
+    ],
   },
   {
     id: 'convert-to',
@@ -693,7 +804,15 @@ export const PDF_SUBCATEGORIES = [
     icon: '📥',
     color: 'orange',
     description: 'Turn any file into a PDF',
-    tools: ['word-to-pdf', 'excel-to-pdf', 'powerpoint-to-pdf', 'jpg-to-pdf', 'png-to-pdf', 'html-to-pdf', 'scan-to-pdf'],
+    tools: [
+      'word-to-pdf',
+      'excel-to-pdf',
+      'powerpoint-to-pdf',
+      'jpg-to-pdf',
+      'png-to-pdf',
+      'html-to-pdf',
+      'scan-to-pdf',
+    ],
   },
   {
     id: 'optimize',
@@ -717,7 +836,15 @@ export const PDF_SUBCATEGORIES = [
     icon: '✏️',
     color: 'purple',
     description: 'Modify and annotate PDFs',
-    tools: ['rotate-pdf', 'crop-pdf', 'add-watermark', 'add-page-numbers', 'redact-pdf', 'flatten-pdf', 'pdf-editor'],
+    tools: [
+      'rotate-pdf',
+      'crop-pdf',
+      'add-watermark',
+      'add-page-numbers',
+      'redact-pdf',
+      'flatten-pdf',
+      'pdf-editor',
+    ],
   },
   {
     id: 'security',
@@ -735,4 +862,4 @@ export const PDF_SUBCATEGORIES = [
     description: 'OCR, repair, compare',
     tools: ['ocr-pdf', 'repair-pdf', 'compare-pdf'],
   },
-]
+];
