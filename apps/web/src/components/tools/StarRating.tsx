@@ -1,45 +1,49 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 interface StarRatingProps {
-  toolSlug: string
-  ratingValue: string   // e.g. "4.8"
-  reviewCount: string   // e.g. "2341"
+  toolSlug: string;
 }
 
-export default function StarRating({ toolSlug, ratingValue, reviewCount }: StarRatingProps) {
-  const [hovered, setHovered] = useState<number | null>(null)
-  const [selected, setSelected] = useState<number | null>(null)
-  const [submitted, setSubmitted] = useState(false)
-  const [comment, setComment] = useState('')
-  const storageKey = `rating_${toolSlug}`
+export default function StarRating({ toolSlug }: StarRatingProps) {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [selected, setSelected] = useState<number | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [comment, setComment] = useState('');
+  const storageKey = `rating_${toolSlug}`;
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(storageKey)
-      if (saved) setSelected(Number(saved))
-    } catch {}
-  }, [storageKey])
+      const saved = localStorage.getItem(storageKey);
+      if (saved) setSelected(Number(saved));
+    } catch {
+      /* ignore */
+    }
+  }, [storageKey]);
 
   const handleSelect = (star: number) => {
-    setSelected(star)
-    try { localStorage.setItem(storageKey, String(star)) } catch {}
-  }
+    setSelected(star);
+    try {
+      localStorage.setItem(storageKey, String(star));
+    } catch {
+      /* ignore */
+    }
+  };
 
-  const handleSubmit = () => setSubmitted(true)
-
-  const alreadyRated = selected !== null && !submitted
+  const handleSubmit = () => setSubmitted(true);
 
   if (submitted) {
     return (
       <div className="mt-10 p-5 bg-green-50 dark:bg-green-900/20 rounded-2xl border border-green-200 dark:border-green-700 text-center">
-        <p className="text-green-700 dark:text-green-300 font-semibold">Thank you for your feedback! ⭐</p>
+        <p className="text-green-700 dark:text-green-300 font-semibold">
+          Thank you for your feedback! ⭐
+        </p>
       </div>
-    )
+    );
   }
 
-  const existingRating = selected !== null ? selected : null
+  const existingRating = selected !== null ? selected : null;
 
   if (existingRating !== null) {
     return (
@@ -48,22 +52,16 @@ export default function StarRating({ toolSlug, ratingValue, reviewCount }: StarR
           You rated this {existingRating}/5 ⭐
         </p>
       </div>
-    )
+    );
   }
 
   return (
     <div className="mt-10 p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 text-center">
-      <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
-        {ratingValue} · {Number(reviewCount).toLocaleString()} ratings
-      </p>
       <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Rate this tool</p>
 
-      <div
-        className="flex justify-center gap-1 mb-3"
-        onMouseLeave={() => setHovered(null)}
-      >
-        {[1, 2, 3, 4, 5].map(star => {
-          const filled = (hovered ?? 0) >= star || (hovered === null && (selected ?? 0) >= star)
+      <div className="flex justify-center gap-1 mb-3" onMouseLeave={() => setHovered(null)}>
+        {[1, 2, 3, 4, 5].map((star) => {
+          const filled = (hovered ?? 0) >= star || (hovered === null && (selected ?? 0) >= star);
           return (
             <button
               key={star}
@@ -82,7 +80,7 @@ export default function StarRating({ toolSlug, ratingValue, reviewCount }: StarR
                 />
               </svg>
             </button>
-          )
+          );
         })}
       </div>
 
@@ -90,7 +88,7 @@ export default function StarRating({ toolSlug, ratingValue, reviewCount }: StarR
         <div className="mt-3 space-y-2">
           <textarea
             value={comment}
-            onChange={e => setComment(e.target.value)}
+            onChange={(e) => setComment(e.target.value)}
             placeholder="Optional: share a quick comment..."
             rows={2}
             className="w-full text-sm border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-200 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400"
@@ -104,5 +102,5 @@ export default function StarRating({ toolSlug, ratingValue, reviewCount }: StarR
         </div>
       )}
     </div>
-  )
+  );
 }

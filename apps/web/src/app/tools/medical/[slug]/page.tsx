@@ -1301,13 +1301,6 @@ export default function MedicalToolPage({ params }: Props) {
     applicationCategory: appCategory,
     operatingSystem: 'Any',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '127',
-      bestRating: '5',
-      worstRating: '1',
-    },
   };
 
   // ── FAQPage JSON-LD ──────────────────────────────────────────

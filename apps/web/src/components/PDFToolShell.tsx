@@ -1,29 +1,33 @@
-import type React from 'react'
-import Link from 'next/link'
-import { JsonLd } from '@/components/JsonLd'
-import ToolAdUnit from '@/components/ToolAdUnit'
-import { PDF_SUBCATEGORIES } from '@/app/tools/pdf/_components/pdf-tool-configs'
-import StarRating from '@/components/tools/StarRating'
+import type React from 'react';
+import Link from 'next/link';
+import { JsonLd } from '@/components/JsonLd';
+import ToolAdUnit from '@/components/ToolAdUnit';
+import { PDF_SUBCATEGORIES } from '@/app/tools/pdf/_components/pdf-tool-configs';
+import StarRating from '@/components/tools/StarRating';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export interface PDFToolFAQ { q: string; a: string }
+export interface PDFToolFAQ {
+  q: string;
+  a: string;
+}
 
-export interface PDFRelatedTool { slug: string; name: string }
+export interface PDFRelatedTool {
+  slug: string;
+  name: string;
+}
 
 export interface PDFToolShellProps {
-  toolName: string
-  toolSlug: string
-  description: string
-  children: React.ReactNode
-  faqs: PDFToolFAQ[]
-  relatedTools: PDFRelatedTool[]
-  schemas: object[]
+  toolName: string;
+  toolSlug: string;
+  description: string;
+  children: React.ReactNode;
+  faqs: PDFToolFAQ[];
+  relatedTools: PDFRelatedTool[];
+  schemas: object[];
   // Rich content from pdfTools.ts (optional — gracefully falls back)
-  aboutHTML?: string
-  howToSteps?: { title: string; description: string }[]
-  ratingValue?: string
-  reviewCount?: string
+  aboutHTML?: string;
+  howToSteps?: { title: string; description: string }[];
 }
 
 // ─── Sub-nav ──────────────────────────────────────────────────────────────────
@@ -39,7 +43,7 @@ function PDFSubNav() {
           >
             📄 All PDF Tools
           </Link>
-          {PDF_SUBCATEGORIES.map(sc => (
+          {PDF_SUBCATEGORIES.map((sc) => (
             <Link
               key={sc.id}
               href={`/tools/pdf#${sc.id}`}
@@ -51,7 +55,7 @@ function PDFSubNav() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // ─── How-to steps ─────────────────────────────────────────────────────────────
@@ -73,13 +77,15 @@ function HowToSection({ steps }: { steps: { title: string; description: string }
             </span>
             <div>
               <p className="font-semibold text-gray-900 dark:text-white text-sm">{step.title}</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-0.5 leading-relaxed">{step.description}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-0.5 leading-relaxed">
+                {step.description}
+              </p>
             </div>
           </li>
         ))}
       </ol>
     </section>
-  )
+  );
 }
 
 // ─── FAQ accordion ────────────────────────────────────────────────────────────
@@ -100,9 +106,17 @@ function FAQSection({ faqs }: { faqs: PDFToolFAQ[] }) {
               {faq.q}
               <svg
                 className="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180 flex-shrink-0 ml-2"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </summary>
             <div className="px-4 pb-4 text-gray-600 dark:text-gray-300 text-sm leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-3">
@@ -112,7 +126,7 @@ function FAQSection({ faqs }: { faqs: PDFToolFAQ[] }) {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 // ─── Related tools grid ───────────────────────────────────────────────────────
@@ -124,7 +138,7 @@ function RelatedSection({ tools }: { tools: PDFRelatedTool[] }) {
         Related PDF Tools
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {tools.map(t => (
+        {tools.map((t) => (
           <Link
             key={t.slug}
             href={`/tools/pdf/${t.slug}`}
@@ -136,7 +150,7 @@ function RelatedSection({ tools }: { tools: PDFRelatedTool[] }) {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 // ─── About section ────────────────────────────────────────────────────────────
@@ -146,9 +160,9 @@ function AboutSection({
   description,
   aboutHTML,
 }: {
-  toolName: string
-  description: string
-  aboutHTML?: string
+  toolName: string;
+  description: string;
+  aboutHTML?: string;
 }) {
   return (
     <section className="mt-12 p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
@@ -165,20 +179,29 @@ function AboutSection({
             with no software downloads required.
           </p>
           <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            All PDF processing is handled by our secure servers. Your files are automatically deleted
-            within 1 hour. We never share, sell, or store your documents beyond processing.
+            All PDF processing is handled by our secure servers. Your files are automatically
+            deleted within 1 hour. We never share, sell, or store your documents beyond processing.
           </p>
         </>
       )}
       <div className="mt-4 flex flex-wrap gap-2">
-        {['No signup required', 'Free to use', 'Secure & encrypted', 'Works on mobile', 'No watermarks'].map(f => (
-          <span key={f} className="text-xs bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full px-3 py-1 text-gray-600 dark:text-gray-300">
+        {[
+          'No signup required',
+          'Free to use',
+          'Secure & encrypted',
+          'Works on mobile',
+          'No watermarks',
+        ].map((f) => (
+          <span
+            key={f}
+            className="text-xs bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full px-3 py-1 text-gray-600 dark:text-gray-300"
+          >
             ✓ {f}
           </span>
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 // ─── Shell ────────────────────────────────────────────────────────────────────
@@ -193,8 +216,6 @@ export default function PDFToolShell({
   schemas,
   aboutHTML,
   howToSteps,
-  ratingValue = '4.8',
-  reviewCount = '1200',
 }: PDFToolShellProps) {
   return (
     <>
@@ -227,12 +248,12 @@ export default function PDFToolShell({
           {relatedTools.length > 0 && <RelatedSection tools={relatedTools} />}
 
           {/* Star rating widget */}
-          <StarRating toolSlug={toolSlug} ratingValue={ratingValue} reviewCount={reviewCount} />
+          <StarRating toolSlug={toolSlug} />
 
           {/* Bottom ad */}
           <ToolAdUnit position="bottom" />
         </main>
       </div>
     </>
-  )
+  );
 }

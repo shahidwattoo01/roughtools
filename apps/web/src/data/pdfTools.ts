@@ -14,8 +14,6 @@ export interface PDFToolData {
   metaTitle: string;
   metaDescription: string;
   canonicalUrl: string;
-  ratingValue: string;
-  reviewCount: string;
   howToSteps: HowToStep[];
   aboutHTML: string;
   faqs: FAQ[];
@@ -37,8 +35,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Split a PDF into multiple files by page range or extract every page separately. Free, no signup, files deleted in 1 hour.',
     canonicalUrl: `${BASE}/tools/pdf/split-pdf`,
-    ratingValue: '4.8',
-    reviewCount: '3124',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -157,8 +153,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Merge multiple PDF files into one document. Upload, arrange, and combine — free, no signup, no watermark, files deleted after 1 hour.',
     canonicalUrl: `${BASE}/tools/pdf/merge-pdf`,
-    ratingValue: '4.9',
-    reviewCount: '3512',
     howToSteps: [
       {
         title: 'Select all your PDFs',
@@ -270,8 +264,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Compress a PDF to a smaller file size for email or upload. Choose Low, Medium, or High quality. Free, no signup, no watermark.',
     canonicalUrl: `${BASE}/tools/pdf/compress-pdf`,
-    ratingValue: '4.8',
-    reviewCount: '2987',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -374,8 +366,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert PDF to editable Word (.docx) online free. Keeps formatting, tables, and fonts. No signup, no watermark, secure conversion.',
     canonicalUrl: `${BASE}/tools/pdf/pdf-to-word`,
-    ratingValue: '4.7',
-    reviewCount: '2843',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -485,8 +475,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert PDF tables to Excel spreadsheets online free. Accurate table extraction to .xlsx format. No signup, files deleted after 1 hour.',
     canonicalUrl: `${BASE}/tools/pdf/pdf-to-excel`,
-    ratingValue: '4.6',
-    reviewCount: '1876',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -592,8 +580,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert PDF presentations to editable PowerPoint .pptx slides online free. Preserves slide layout and images. No signup needed.',
     canonicalUrl: `${BASE}/tools/pdf/pdf-to-powerpoint`,
-    ratingValue: '4.6',
-    reviewCount: '1543',
     howToSteps: [
       {
         title: 'Upload the PDF presentation',
@@ -700,8 +686,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert PDF pages to JPG images online free. Choose 72, 150, or 300 DPI. Download all images as a ZIP. No signup, secure.',
     canonicalUrl: `${BASE}/tools/pdf/pdf-to-jpg`,
-    ratingValue: '4.8',
-    reviewCount: '2654',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -804,8 +788,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert PDF pages to PNG images free online. Lossless quality, transparency support, 72–300 DPI. No signup, files auto-deleted.',
     canonicalUrl: `${BASE}/tools/pdf/pdf-to-png`,
-    ratingValue: '4.7',
-    reviewCount: '1432',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -912,8 +894,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert Word (.doc/.docx) to PDF online free. Preserves fonts, tables, and layout. Instant download, no signup, no watermark.',
     canonicalUrl: `${BASE}/tools/pdf/word-to-pdf`,
-    ratingValue: '4.9',
-    reviewCount: '3201',
     howToSteps: [
       {
         title: 'Upload your Word file',
@@ -1014,8 +994,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert Excel spreadsheets (.xls/.xlsx) to PDF online free. Preserves tables, charts, and formatting. Instant, no signup.',
     canonicalUrl: `${BASE}/tools/pdf/excel-to-pdf`,
-    ratingValue: '4.7',
-    reviewCount: '1987',
     howToSteps: [
       {
         title: 'Upload your Excel file',
@@ -1113,8 +1091,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert PowerPoint (.ppt/.pptx) to PDF online free. Slides render sharply as PDF pages. No signup, files deleted after 1 hour.',
     canonicalUrl: `${BASE}/tools/pdf/powerpoint-to-pdf`,
-    ratingValue: '4.8',
-    reviewCount: '2213',
     howToSteps: [
       {
         title: 'Upload your presentation',
@@ -1219,8 +1195,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert JPG images to PDF online free. Combine multiple JPGs into one PDF. No signup, no watermark, files deleted after 1 hour.',
     canonicalUrl: `${BASE}/tools/pdf/jpg-to-pdf`,
-    ratingValue: '4.8',
-    reviewCount: '2876',
     howToSteps: [
       {
         title: 'Upload your JPG images',
@@ -1323,8 +1297,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert PNG images to PDF online free. Supports transparent PNG, multiple files per PDF. No signup, instant download.',
     canonicalUrl: `${BASE}/tools/pdf/png-to-pdf`,
-    ratingValue: '4.7',
-    reviewCount: '1287',
     howToSteps: [
       {
         title: 'Upload your PNG files',
@@ -1423,8 +1395,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert HTML files to PDF online free. Renders CSS, images, and layouts accurately. No signup, instant download, files deleted in 1 hour.',
     canonicalUrl: `${BASE}/tools/pdf/html-to-pdf`,
-    ratingValue: '4.6',
-    reviewCount: '1102',
     howToSteps: [
       {
         title: 'Upload your HTML file',
@@ -1521,8 +1491,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Extract text from any PDF online free. Download as plain .txt file. Great for copying, analysis, or data processing. No signup needed.',
     canonicalUrl: `${BASE}/tools/pdf/pdf-to-text`,
-    ratingValue: '4.6',
-    reviewCount: '1198',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -1627,8 +1595,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Rotate PDF pages 90, 180, or 270 degrees online free. Rotate all pages or just specific ones. No signup, instant result.',
     canonicalUrl: `${BASE}/tools/pdf/rotate-pdf`,
-    ratingValue: '4.7',
-    reviewCount: '1654',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -1730,8 +1696,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Crop PDF pages by trimming top, bottom, left, and right margins online free. No signup, instant download, secure processing.',
     canonicalUrl: `${BASE}/tools/pdf/crop-pdf`,
-    ratingValue: '4.6',
-    reviewCount: '1087',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -1831,8 +1795,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Extract specific pages from a PDF online free. Enter page numbers or ranges to save as a new PDF. No signup, secure, instant.',
     canonicalUrl: `${BASE}/tools/pdf/extract-pdf-pages`,
-    ratingValue: '4.7',
-    reviewCount: '1876',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -1924,8 +1886,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Delete specific pages from a PDF online free. Enter page numbers to remove. Fast, secure, no signup, no watermark.',
     canonicalUrl: `${BASE}/tools/pdf/remove-pdf-pages`,
-    ratingValue: '4.7',
-    reviewCount: '1543',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -2015,8 +1975,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Reorder pages in a PDF online free. Enter a new page order to rearrange your document instantly. No signup, no watermark.',
     canonicalUrl: `${BASE}/tools/pdf/organize-pdf`,
-    ratingValue: '4.6',
-    reviewCount: '1198',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -2104,8 +2062,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Add page numbers to a PDF online free. Choose position, starting number, and style. Instant, no signup, no watermark.',
     canonicalUrl: `${BASE}/tools/pdf/add-page-numbers`,
-    ratingValue: '4.7',
-    reviewCount: '1432',
     howToSteps: [
       { title: 'Upload your PDF', description: 'Select the PDF that needs page numbers added.' },
       {
@@ -2191,8 +2147,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Add a text watermark to PDF online free. Customise position, opacity, and text. Instant download, no signup, secure.',
     canonicalUrl: `${BASE}/tools/pdf/add-watermark`,
-    ratingValue: '4.6',
-    reviewCount: '1321',
     howToSteps: [
       { title: 'Upload your PDF', description: 'Select the PDF you want to watermark.' },
       {
@@ -2281,8 +2235,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert PDF to PDF/A archival format online free. Meets ISO 19005 standards for long-term document preservation. No signup.',
     canonicalUrl: `${BASE}/tools/pdf/pdf-to-pdfa`,
-    ratingValue: '4.6',
-    reviewCount: '987',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -2381,8 +2333,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Repair corrupted or damaged PDF files online free. Recover content from broken PDFs automatically. No signup, secure, instant.',
     canonicalUrl: `${BASE}/tools/pdf/repair-pdf`,
-    ratingValue: '4.5',
-    reviewCount: '876',
     howToSteps: [
       {
         title: 'Upload the damaged PDF',
@@ -2478,8 +2428,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Remove password protection from a PDF online free. Enter the current password to unlock and download an unrestricted copy. No signup.',
     canonicalUrl: `${BASE}/tools/pdf/unlock-pdf`,
-    ratingValue: '4.7',
-    reviewCount: '1654',
     howToSteps: [
       {
         title: 'Upload the password-protected PDF',
@@ -2565,8 +2513,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Password-protect a PDF online free. Set open password and permission restrictions. Instant, no signup, files deleted after 1 hour.',
     canonicalUrl: `${BASE}/tools/pdf/protect-pdf`,
-    ratingValue: '4.7',
-    reviewCount: '1543',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -2649,8 +2595,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Add an electronic signature to a PDF online free. Type your name, choose position and page. Instant, no signup, secure.',
     canonicalUrl: `${BASE}/tools/pdf/sign-pdf`,
-    ratingValue: '4.7',
-    reviewCount: '2109',
     howToSteps: [
       {
         title: 'Upload the PDF to sign',
@@ -2739,8 +2683,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Permanently redact sensitive information from PDF online free. Irreversible blackout of text and data. No signup, secure, instant.',
     canonicalUrl: `${BASE}/tools/pdf/redact-pdf`,
-    ratingValue: '4.6',
-    reviewCount: '1087',
     howToSteps: [
       {
         title: 'Upload the PDF',
@@ -2827,8 +2769,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Flatten PDF form fields and annotations into static content online free. Creates a non-editable final PDF. No signup needed.',
     canonicalUrl: `${BASE}/tools/pdf/flatten-pdf`,
-    ratingValue: '4.6',
-    reviewCount: '876',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -2913,8 +2853,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Run OCR on a scanned PDF to add a searchable text layer. Supports 9 languages. Free, no signup, files deleted after 1 hour.',
     canonicalUrl: `${BASE}/tools/pdf/ocr-pdf`,
-    ratingValue: '4.7',
-    reviewCount: '2341',
     howToSteps: [
       {
         title: 'Upload the scanned PDF',
@@ -3015,8 +2953,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Convert PDF to EPUB eBook format online free. Better reading on Kindle, Kobo, Apple Books, and mobile. No signup needed.',
     canonicalUrl: `${BASE}/tools/pdf/pdf-to-epub`,
-    ratingValue: '4.5',
-    reviewCount: '876',
     howToSteps: [
       {
         title: 'Upload your PDF',
@@ -3122,8 +3058,6 @@ export const pdfTools: PDFToolData[] = [
     metaDescription:
       'Edit PDF files online free. Add text and annotations to any PDF page. No Adobe needed, no signup, instant download.',
     canonicalUrl: `${BASE}/tools/pdf/pdf-editor`,
-    ratingValue: '4.8',
-    reviewCount: '2841',
     howToSteps: [
       {
         title: 'Upload your PDF',

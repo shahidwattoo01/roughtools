@@ -1,30 +1,26 @@
 // imageTools.ts — supplement data for all 38 image tool pages
-// Provides: metaTitle, metaDescription, canonicalUrl, ratingValue, reviewCount,
+// Provides: metaTitle, metaDescription, canonicalUrl,
 //           aboutHTML, extraFaqs (6 additional), proTips (4)
 // Each page.tsx imports getImageToolSupplement(slug) to merge with its inline data.
 
 export interface ImageToolSupplement {
-  slug: string
-  metaTitle: string
-  metaDescription: string
-  canonicalUrl: string
-  ratingValue: string
-  reviewCount: string
-  aboutHTML: string
-  extraFaqs: { q: string; a: string }[]
-  proTips: string[]
+  slug: string;
+  metaTitle: string;
+  metaDescription: string;
+  canonicalUrl: string;
+  aboutHTML: string;
+  extraFaqs: { q: string; a: string }[];
+  proTips: string[];
 }
 
 export const imageToolSupplements: Record<string, ImageToolSupplement> = {
-
   // ─── 1. add-border ──────────────────────────────────────────────────────────
   'add-border': {
     slug: 'add-border',
     metaTitle: 'Add Border to Image Free Online | RoughTools',
-    metaDescription: 'Add custom color borders to any image online. Choose width, color, and style. Free, no signup, instant download.',
+    metaDescription:
+      'Add custom color borders to any image online. Choose width, color, and style. Free, no signup, instant download.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/add-border',
-    ratingValue: '4.7',
-    reviewCount: '1843',
     aboutHTML: `
 <p>The <strong>Add Border to Image</strong> tool lets you frame any photo or graphic with a clean, solid border in seconds. Whether you want a thin white border to make a photo pop on social media, a thick dark frame for a presentation graphic, or a colored border that matches your brand palette, this tool gives you precise control over width and color without any design software.</p>
 
@@ -46,15 +42,33 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>For best results on social media, try a 20–40px white border for Instagram posts, or a 4–8px colored border matching your brand for Twitter cards. If you need to <a href="/tools/image-tools/image-resizer">resize the image</a> to specific dimensions after adding the border, use the Image Resizer tool next.</p>
     `,
     extraFaqs: [
-      { q: 'Will adding a border reduce my image quality?', a: 'No. The border is added by expanding the canvas around your image — the original pixel data is untouched. The output PNG is lossless, so quality is fully preserved.' },
-      { q: 'What is the maximum image size supported?', a: 'The tool handles images up to 20 MB and up to 8000×8000 pixels. For very large files, processing may take a few seconds depending on your device.' },
-      { q: 'Can I add borders to multiple images at once?', a: 'Currently one image is processed at a time. For batch border operations, process each image individually and download each result.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The tool runs in any modern mobile browser including Safari on iOS and Chrome on Android. No app download is required.' },
-      { q: 'Are my images stored after processing?', a: 'No. Everything runs in your browser. Your image is never uploaded to any server and is automatically cleared when you close or refresh the page.' },
-      { q: 'Can I add a transparent or gradient border?', a: 'The current tool supports solid color borders. For transparent borders, use a transparent PNG input — the border area will respect any existing alpha channel. Gradient borders are not currently supported.' },
+      {
+        q: 'Will adding a border reduce my image quality?',
+        a: 'No. The border is added by expanding the canvas around your image — the original pixel data is untouched. The output PNG is lossless, so quality is fully preserved.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'The tool handles images up to 20 MB and up to 8000×8000 pixels. For very large files, processing may take a few seconds depending on your device.',
+      },
+      {
+        q: 'Can I add borders to multiple images at once?',
+        a: 'Currently one image is processed at a time. For batch border operations, process each image individually and download each result.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The tool runs in any modern mobile browser including Safari on iOS and Chrome on Android. No app download is required.',
+      },
+      {
+        q: 'Are my images stored after processing?',
+        a: 'No. Everything runs in your browser. Your image is never uploaded to any server and is automatically cleared when you close or refresh the page.',
+      },
+      {
+        q: 'Can I add a transparent or gradient border?',
+        a: 'The current tool supports solid color borders. For transparent borders, use a transparent PNG input — the border area will respect any existing alpha channel. Gradient borders are not currently supported.',
+      },
     ],
     proTips: [
-      'For a clean Instagram carousel look, use exactly 40px white border on all images — this creates a consistent white frame that stands out against the app\'s white background.',
+      "For a clean Instagram carousel look, use exactly 40px white border on all images — this creates a consistent white frame that stands out against the app's white background.",
       'When adding a border to a JPG, save the output as PNG first if you plan to edit it further — re-saving JPGs adds compression artifacts each time.',
       'Match your border color to a hex code from your brand guidelines for perfectly on-brand graphics. Use the hex input field and type the code directly.',
       'A 2–4px black or dark gray border works well for product images on white backgrounds — it creates a subtle definition between the product and the page without being distracting.',
@@ -65,10 +79,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'add-watermark': {
     slug: 'add-watermark',
     metaTitle: 'Add Watermark to Image Free Online | RoughTools',
-    metaDescription: 'Add text or image watermarks to photos online. Custom opacity, position, size. Free, instant, no signup.',
+    metaDescription:
+      'Add text or image watermarks to photos online. Custom opacity, position, size. Free, instant, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/add-watermark',
-    ratingValue: '4.8',
-    reviewCount: '2651',
     aboutHTML: `
 <p>The <strong>Add Watermark to Image</strong> tool lets you protect your photographs, illustrations, and graphics by overlaying a custom text or logo watermark. Watermarking is the standard way photographers, designers, and content creators mark their work before sharing proofs or posting publicly — it signals ownership and deters unauthorized use without permanently altering the underlying image.</p>
 
@@ -90,12 +103,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>After watermarking, consider using the <a href="/tools/image-tools/image-compressor">Image Compressor</a> to reduce file size for web sharing, or the <a href="/tools/image-tools/image-resizer">Image Resizer</a> to adjust dimensions before uploading to your platform of choice.</p>
     `,
     extraFaqs: [
-      { q: 'Will the watermark reduce my image quality?', a: 'When saving as PNG, there is no quality loss. When saving as JPG, a small amount of compression is applied but at 90%+ quality settings the difference is imperceptible.' },
-      { q: 'What is the maximum image size I can watermark?', a: 'Images up to 20 MB and 8000×8000 pixels are supported. Very large canvases may take 2–5 seconds to render on mobile devices.' },
-      { q: 'Can I watermark multiple images at once?', a: 'Batch watermarking is not currently supported. Process images one at a time and download each result individually.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The tool is fully functional in Safari on iOS and Chrome on Android. Touch gestures work for positioning the watermark preview.' },
-      { q: 'Are my images stored or shared after watermarking?', a: 'No. All processing happens in your browser. Your original image and watermark are never sent to any server.' },
-      { q: 'Can I remove a watermark I added by mistake?', a: 'Once downloaded, the watermark is permanently merged into the image — it cannot be removed without the original. Always keep your original file before watermarking.' },
+      {
+        q: 'Will the watermark reduce my image quality?',
+        a: 'When saving as PNG, there is no quality loss. When saving as JPG, a small amount of compression is applied but at 90%+ quality settings the difference is imperceptible.',
+      },
+      {
+        q: 'What is the maximum image size I can watermark?',
+        a: 'Images up to 20 MB and 8000×8000 pixels are supported. Very large canvases may take 2–5 seconds to render on mobile devices.',
+      },
+      {
+        q: 'Can I watermark multiple images at once?',
+        a: 'Batch watermarking is not currently supported. Process images one at a time and download each result individually.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The tool is fully functional in Safari on iOS and Chrome on Android. Touch gestures work for positioning the watermark preview.',
+      },
+      {
+        q: 'Are my images stored or shared after watermarking?',
+        a: 'No. All processing happens in your browser. Your original image and watermark are never sent to any server.',
+      },
+      {
+        q: 'Can I remove a watermark I added by mistake?',
+        a: 'Once downloaded, the watermark is permanently merged into the image — it cannot be removed without the original. Always keep your original file before watermarking.',
+      },
     ],
     proTips: [
       'Set text watermark opacity to 30–40% for a visible but non-distracting mark — fully opaque watermarks can ruin the viewer experience and make proofs feel unprofessional.',
@@ -109,10 +140,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'background-changer': {
     slug: 'background-changer',
     metaTitle: 'Change Image Background Free Online | RoughTools',
-    metaDescription: 'Replace the background of any photo with a new color, gradient, or image. Free AI-powered tool, no signup.',
+    metaDescription:
+      'Replace the background of any photo with a new color, gradient, or image. Free AI-powered tool, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/background-changer',
-    ratingValue: '4.6',
-    reviewCount: '3102',
     aboutHTML: `
 <p>The <strong>Background Changer</strong> automatically detects and removes the original background from your photo, then replaces it with your choice of solid color, gradient, or a new background image. Unlike simple chromakey tools that only work with solid colored backdrops, this tool uses AI-based subject detection to handle complex backgrounds including natural scenes, office environments, and busy street photography.</p>
 
@@ -132,12 +162,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Images are sent to our processing server over HTTPS and are immediately deleted after the background replacement is complete — typically within 5–10 seconds. We do not store, analyze, or share your images. No account is required. For privacy-sensitive images, consider using the <a href="/tools/image-tools/background-remover">Background Remover</a> instead if you only need the transparent cutout without a replacement background.</p>
     `,
     extraFaqs: [
-      { q: 'Will changing the background reduce image quality?', a: 'The subject extraction may soften fine edges like hair slightly, but the overall image quality is maintained. The PNG output preserves all detail in the subject area.' },
-      { q: 'What is the maximum image resolution supported?', a: 'Images up to 10 MB and 4096×4096 pixels give the best results. Larger images are downsampled for processing and then upsampled, which can reduce edge quality.' },
-      { q: 'Can I change backgrounds on multiple images at once?', a: 'Batch processing is not available. Process one image at a time for the best results.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The tool works in any modern mobile browser. Upload photos directly from your camera roll on both iOS and Android.' },
-      { q: 'Are my images stored after processing?', a: 'Images are sent to our server for AI processing and immediately deleted after the result is returned. We retain no copies and share nothing with third parties.' },
-      { q: 'How accurate is the AI background detection on complex photos?', a: 'The AI performs well on photos with clear subject-background contrast. Hair, fur, and fine details may have minor edge artifacts. For best results, use a photo with reasonable lighting contrast between subject and background.' },
+      {
+        q: 'Will changing the background reduce image quality?',
+        a: 'The subject extraction may soften fine edges like hair slightly, but the overall image quality is maintained. The PNG output preserves all detail in the subject area.',
+      },
+      {
+        q: 'What is the maximum image resolution supported?',
+        a: 'Images up to 10 MB and 4096×4096 pixels give the best results. Larger images are downsampled for processing and then upsampled, which can reduce edge quality.',
+      },
+      {
+        q: 'Can I change backgrounds on multiple images at once?',
+        a: 'Batch processing is not available. Process one image at a time for the best results.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The tool works in any modern mobile browser. Upload photos directly from your camera roll on both iOS and Android.',
+      },
+      {
+        q: 'Are my images stored after processing?',
+        a: 'Images are sent to our server for AI processing and immediately deleted after the result is returned. We retain no copies and share nothing with third parties.',
+      },
+      {
+        q: 'How accurate is the AI background detection on complex photos?',
+        a: 'The AI performs well on photos with clear subject-background contrast. Hair, fur, and fine details may have minor edge artifacts. For best results, use a photo with reasonable lighting contrast between subject and background.',
+      },
     ],
     proTips: [
       'Shoot subjects against a light-colored background when possible — the AI performs significantly better when there is clear contrast between subject and background.',
@@ -151,10 +199,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'background-remover': {
     slug: 'background-remover',
     metaTitle: 'Remove Background from Image Free | RoughTools',
-    metaDescription: 'Remove image backgrounds automatically and get a transparent PNG. AI-powered, free, no signup required.',
+    metaDescription:
+      'Remove image backgrounds automatically and get a transparent PNG. AI-powered, free, no signup required.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/background-remover',
-    ratingValue: '4.8',
-    reviewCount: '5241',
     aboutHTML: `
 <p>The <strong>Background Remover</strong> automatically cuts out the background from any photo and delivers a transparent PNG — ready to place on any color, pattern, or new scene without manual selection or masking. This is one of the most time-saving image tools for designers, photographers, and e-commerce sellers who regularly need clean, isolated subjects.</p>
 
@@ -174,12 +221,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Your image is processed on our secure server over an encrypted HTTPS connection and immediately discarded after the transparent PNG is generated and returned to your browser. Processing takes 5–15 seconds depending on image complexity. No account, payment, or personal information is required at any step. To place your transparent cutout on a new background color or scene, use the <a href="/tools/image-tools/background-changer">Background Changer</a> tool.</p>
     `,
     extraFaqs: [
-      { q: 'How accurate is the background removal on complex edges?', a: 'The AI handles most subjects well including hair, fur, and irregular edges. Very fine details like flyaway hair in front of a cluttered background may have minor imperfections. Simple subjects on contrasting backgrounds achieve near-perfect results.' },
-      { q: 'What is the maximum image size supported?', a: 'Images up to 10 MB and 4096×4096 pixels. Very high resolution images are processed at reduced resolution internally to control processing time.' },
-      { q: 'Can I remove backgrounds from multiple images at once?', a: 'Batch background removal is not currently available. Each image must be processed individually.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Upload from your camera roll and download the transparent PNG directly from any mobile browser on iOS or Android.' },
-      { q: 'Are my images stored after processing?', a: 'No. Images are deleted from our server immediately after the transparent PNG is delivered to your browser. We store no image data.' },
-      { q: 'Can I remove backgrounds from logos or graphic designs?', a: 'Yes. The tool works on graphic designs, logos, and illustrated artwork, not just photographs. For logos with simple shapes, results are typically very clean.' },
+      {
+        q: 'How accurate is the background removal on complex edges?',
+        a: 'The AI handles most subjects well including hair, fur, and irregular edges. Very fine details like flyaway hair in front of a cluttered background may have minor imperfections. Simple subjects on contrasting backgrounds achieve near-perfect results.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Images up to 10 MB and 4096×4096 pixels. Very high resolution images are processed at reduced resolution internally to control processing time.',
+      },
+      {
+        q: 'Can I remove backgrounds from multiple images at once?',
+        a: 'Batch background removal is not currently available. Each image must be processed individually.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Upload from your camera roll and download the transparent PNG directly from any mobile browser on iOS or Android.',
+      },
+      {
+        q: 'Are my images stored after processing?',
+        a: 'No. Images are deleted from our server immediately after the transparent PNG is delivered to your browser. We store no image data.',
+      },
+      {
+        q: 'Can I remove backgrounds from logos or graphic designs?',
+        a: 'Yes. The tool works on graphic designs, logos, and illustrated artwork, not just photographs. For logos with simple shapes, results are typically very clean.',
+      },
     ],
     proTips: [
       'For the cleanest results, use a photo with good lighting and reasonable separation between the subject and background — flat, even lighting with no harsh shadows on the background gives the AI the clearest signal.',
@@ -193,10 +258,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'base64-to-image': {
     slug: 'base64-to-image',
     metaTitle: 'Base64 to Image Converter Free Online | RoughTools',
-    metaDescription: 'Convert Base64 encoded strings back to image files instantly. Supports JPG, PNG, GIF, WebP. Free, browser-based.',
+    metaDescription:
+      'Convert Base64 encoded strings back to image files instantly. Supports JPG, PNG, GIF, WebP. Free, browser-based.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/base64-to-image',
-    ratingValue: '4.7',
-    reviewCount: '1298',
     aboutHTML: `
 <p>The <strong>Base64 to Image</strong> converter decodes a Base64-encoded string back into a viewable and downloadable image file. If you receive image data embedded in a JSON API response, HTML data URI, CSS stylesheet, or database record, this tool extracts and renders the actual image so you can preview and download it — no command-line decoding required.</p>
 
@@ -216,12 +280,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>All decoding happens entirely in your browser using JavaScript's built-in <code>atob()</code> function and the FileReader API. No data is sent anywhere. This is important for developers working with sensitive API responses or proprietary image data — your Base64 strings are never transmitted over a network connection. For the reverse operation, use the <a href="/tools/image-tools/image-to-base64">Image to Base64 Encoder</a>.</p>
     `,
     extraFaqs: [
-      { q: 'Will decoding reduce the image quality?', a: 'No. Base64 is a lossless encoding — decoding returns the exact original binary data, so the image quality is identical to the source file.' },
-      { q: 'What is the maximum Base64 string length supported?', a: 'The tool handles Base64 strings up to 50 MB in length, which decodes to approximately 37 MB of image data.' },
-      { q: 'Can I decode multiple Base64 strings at once?', a: 'One string at a time. For batch decoding, use a script — the browser tool is designed for single-image inspection and debugging.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Paste your Base64 string in any mobile browser and the image will render and become downloadable.' },
-      { q: 'Are the Base64 strings I paste stored anywhere?', a: 'No. Decoding runs entirely in your browser. Nothing is sent to any server. Your Base64 data stays on your device.' },
-      { q: 'What if the Base64 string is invalid or corrupted?', a: 'The tool will display an error message. Common issues include truncated strings, incorrect padding characters, or non-Base64 characters mixed into the string.' },
+      {
+        q: 'Will decoding reduce the image quality?',
+        a: 'No. Base64 is a lossless encoding — decoding returns the exact original binary data, so the image quality is identical to the source file.',
+      },
+      {
+        q: 'What is the maximum Base64 string length supported?',
+        a: 'The tool handles Base64 strings up to 50 MB in length, which decodes to approximately 37 MB of image data.',
+      },
+      {
+        q: 'Can I decode multiple Base64 strings at once?',
+        a: 'One string at a time. For batch decoding, use a script — the browser tool is designed for single-image inspection and debugging.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Paste your Base64 string in any mobile browser and the image will render and become downloadable.',
+      },
+      {
+        q: 'Are the Base64 strings I paste stored anywhere?',
+        a: 'No. Decoding runs entirely in your browser. Nothing is sent to any server. Your Base64 data stays on your device.',
+      },
+      {
+        q: 'What if the Base64 string is invalid or corrupted?',
+        a: 'The tool will display an error message. Common issues include truncated strings, incorrect padding characters, or non-Base64 characters mixed into the string.',
+      },
     ],
     proTips: [
       'If the tool shows an error, check for whitespace or line breaks in your Base64 string — copy-pasting from some editors adds invisible newline characters that break the encoding.',
@@ -235,10 +317,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'blur-background': {
     slug: 'blur-background',
     metaTitle: 'Blur Background of Photo Free Online | RoughTools',
-    metaDescription: 'Blur the background of any photo automatically. Create a bokeh depth-of-field effect. Free, AI-powered, no signup.',
+    metaDescription:
+      'Blur the background of any photo automatically. Create a bokeh depth-of-field effect. Free, AI-powered, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/blur-background',
-    ratingValue: '4.7',
-    reviewCount: '2874',
     aboutHTML: `
 <p>The <strong>Blur Background</strong> tool uses AI subject detection to identify the main subject in your photo and applies a Gaussian blur to the background, creating the shallow depth-of-field "bokeh" effect that professional DSLR cameras achieve with wide aperture lenses. This effect focuses viewer attention on your subject, reduces background distractions, and gives phone photos a more professional look.</p>
 
@@ -258,12 +339,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Your image is transmitted over HTTPS to our processing server and immediately deleted once the blurred result is returned. The server retains no image data between sessions. No account is needed. For complete background replacement instead of blurring, try the <a href="/tools/image-tools/background-changer">Background Changer</a>.</p>
     `,
     extraFaqs: [
-      { q: 'Will blur processing reduce my image quality?', a: 'The subject area is fully preserved with no quality loss. The background blur is an intentional effect. When saving as JPG, compression at 90%+ quality is imperceptible.' },
-      { q: 'What is the maximum image resolution supported?', a: 'Images up to 10 MB and 4096×4096 pixels. Higher resolution inputs give better edge separation quality in the subject mask.' },
-      { q: 'Can I blur the background on multiple photos at once?', a: 'Batch processing is not currently available. Process one photo at a time.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Upload from your phone camera roll and download the blurred result directly in any mobile browser.' },
-      { q: 'Are my photos stored after processing?', a: 'No. Photos are deleted from the server immediately after the blurred result is returned to your browser.' },
-      { q: 'How do I control how blurry the background is?', a: 'Use the blur strength slider — lower values create subtle softening, higher values create strong bokeh. Most portrait photos look best at medium settings (15–25px radius).' },
+      {
+        q: 'Will blur processing reduce my image quality?',
+        a: 'The subject area is fully preserved with no quality loss. The background blur is an intentional effect. When saving as JPG, compression at 90%+ quality is imperceptible.',
+      },
+      {
+        q: 'What is the maximum image resolution supported?',
+        a: 'Images up to 10 MB and 4096×4096 pixels. Higher resolution inputs give better edge separation quality in the subject mask.',
+      },
+      {
+        q: 'Can I blur the background on multiple photos at once?',
+        a: 'Batch processing is not currently available. Process one photo at a time.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Upload from your phone camera roll and download the blurred result directly in any mobile browser.',
+      },
+      {
+        q: 'Are my photos stored after processing?',
+        a: 'No. Photos are deleted from the server immediately after the blurred result is returned to your browser.',
+      },
+      {
+        q: 'How do I control how blurry the background is?',
+        a: 'Use the blur strength slider — lower values create subtle softening, higher values create strong bokeh. Most portrait photos look best at medium settings (15–25px radius).',
+      },
     ],
     proTips: [
       'For portraits, medium blur (15–20px) looks most natural — very strong blur can make the subject look like a cutout rather than a photo taken with a real lens.',
@@ -277,10 +376,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'bulk-image-resizer': {
     slug: 'bulk-image-resizer',
     metaTitle: 'Bulk Image Resizer — Resize Multiple Images Free',
-    metaDescription: 'Resize multiple images at once to exact dimensions or percentage. Free online bulk resizer, no signup.',
+    metaDescription:
+      'Resize multiple images at once to exact dimensions or percentage. Free online bulk resizer, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/bulk-image-resizer',
-    ratingValue: '4.8',
-    reviewCount: '2193',
     aboutHTML: `
 <p>The <strong>Bulk Image Resizer</strong> lets you resize dozens of images simultaneously to a consistent size — saving hours of manual resizing in image editors. Upload multiple photos at once, set your target dimensions or scale percentage, and download all resized images in a single ZIP file. This is the fastest way to prepare image batches for websites, social media posting, product listings, or presentations.</p>
 
@@ -300,18 +398,36 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>All processing happens locally in your browser — nothing is uploaded to any server. Your images stay on your device throughout the entire operation. After bulk resizing, you may want to use the <a href="/tools/image-tools/image-compressor">Image Compressor</a> to further reduce file sizes for web delivery.</p>
     `,
     extraFaqs: [
-      { q: 'Will bulk resizing reduce image quality?', a: 'Downscaling always involves some data reduction — this is unavoidable. The Canvas bilinear interpolation produces high-quality results. PNG output is lossless; JPG output at 90%+ quality is near-indistinguishable from the original at the new size.' },
-      { q: 'What is the maximum number of images I can resize at once?', a: 'Up to 100 images per session. For larger batches, split into multiple sessions.' },
-      { q: 'What is the maximum image size supported?', a: 'Each individual image can be up to 20 MB. The total batch should not exceed 500 MB to ensure browser memory stability.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes, though mobile browsers have more limited memory. For large batches on mobile, process 20–30 images at a time for best stability.' },
-      { q: 'Are my images stored after processing?', a: 'No. All processing is browser-based. No images are uploaded or stored anywhere.' },
-      { q: 'Can I resize to different dimensions for different images in one batch?', a: 'All images in a batch share the same resize settings. For different target sizes, process images in separate batches.' },
+      {
+        q: 'Will bulk resizing reduce image quality?',
+        a: 'Downscaling always involves some data reduction — this is unavoidable. The Canvas bilinear interpolation produces high-quality results. PNG output is lossless; JPG output at 90%+ quality is near-indistinguishable from the original at the new size.',
+      },
+      {
+        q: 'What is the maximum number of images I can resize at once?',
+        a: 'Up to 100 images per session. For larger batches, split into multiple sessions.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Each individual image can be up to 20 MB. The total batch should not exceed 500 MB to ensure browser memory stability.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes, though mobile browsers have more limited memory. For large batches on mobile, process 20–30 images at a time for best stability.',
+      },
+      {
+        q: 'Are my images stored after processing?',
+        a: 'No. All processing is browser-based. No images are uploaded or stored anywhere.',
+      },
+      {
+        q: 'Can I resize to different dimensions for different images in one batch?',
+        a: 'All images in a batch share the same resize settings. For different target sizes, process images in separate batches.',
+      },
     ],
     proTips: [
       'Use "width only" mode with aspect ratio lock when resizing photos with mixed orientations — this prevents portrait photos from being stretched to match landscape dimensions.',
       'For web images, resize to 1.5× the display size for retina/HiDPI screens — a 600px wide column needs 900px images to look sharp on modern displays.',
       'Process RAW formats by converting to JPG first — the bulk resizer handles JPG much faster than lossless formats, and for web delivery JPG is almost always the right output format.',
-      'When preparing e-commerce images, check the platform\'s exact dimension requirements first — Amazon requires 1000px minimum on the longest side, while Etsy recommends 2000px.',
+      "When preparing e-commerce images, check the platform's exact dimension requirements first — Amazon requires 1000px minimum on the longest side, while Etsy recommends 2000px.",
     ],
   },
 
@@ -319,10 +435,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'dominant-color-extractor': {
     slug: 'dominant-color-extractor',
     metaTitle: 'Dominant Color Extractor Free Online | RoughTools',
-    metaDescription: 'Extract the dominant colors and color palette from any image. Get hex codes instantly. Free, browser-based.',
+    metaDescription:
+      'Extract the dominant colors and color palette from any image. Get hex codes instantly. Free, browser-based.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/dominant-color-extractor',
-    ratingValue: '4.7',
-    reviewCount: '1547',
     aboutHTML: `
 <p>The <strong>Dominant Color Extractor</strong> analyzes any image and identifies the most prominent colors, returning a sorted color palette with hex codes, RGB values, and percentage distribution. This is invaluable for designers who need to match brand colors from a logo image, developers building color-adaptive UIs, and content creators who want a consistent color scheme across their visuals.</p>
 
@@ -342,12 +457,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>The entire color extraction algorithm runs in your browser using JavaScript and the HTML5 Canvas API. No image data leaves your device. This makes the tool safe for analyzing proprietary product images, confidential design files, or sensitive photography. For related color work, try the <a href="/tools/image-tools/image-color-picker">Image Color Picker</a> to sample specific pixels.</p>
     `,
     extraFaqs: [
-      { q: 'Will extracting colors change or damage my image?', a: 'No. The tool only reads your image data — it does not modify the file in any way. Your original image is never altered.' },
-      { q: 'What is the maximum image size supported?', a: 'Images up to 20 MB. For color extraction, even large images are downsampled internally, so processing is fast regardless of resolution.' },
-      { q: 'Can I extract colors from multiple images at once?', a: 'One image at a time. For batch analysis, process each image individually.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Upload any image from your camera roll and the color palette appears instantly in any mobile browser.' },
-      { q: 'Are my images stored after analysis?', a: 'No. Everything runs in the browser. Your image is never sent to any server.' },
-      { q: 'Why does the extracted palette look different from what I expected?', a: 'K-means clustering finds mathematically dominant colors, which may differ from visually prominent ones. Small but visually striking areas (like a bright logo on a white background) may not appear in the dominant palette if they cover a small pixel area.' },
+      {
+        q: 'Will extracting colors change or damage my image?',
+        a: 'No. The tool only reads your image data — it does not modify the file in any way. Your original image is never altered.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Images up to 20 MB. For color extraction, even large images are downsampled internally, so processing is fast regardless of resolution.',
+      },
+      {
+        q: 'Can I extract colors from multiple images at once?',
+        a: 'One image at a time. For batch analysis, process each image individually.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Upload any image from your camera roll and the color palette appears instantly in any mobile browser.',
+      },
+      {
+        q: 'Are my images stored after analysis?',
+        a: 'No. Everything runs in the browser. Your image is never sent to any server.',
+      },
+      {
+        q: 'Why does the extracted palette look different from what I expected?',
+        a: 'K-means clustering finds mathematically dominant colors, which may differ from visually prominent ones. Small but visually striking areas (like a bright logo on a white background) may not appear in the dominant palette if they cover a small pixel area.',
+      },
     ],
     proTips: [
       'For brand color extraction from logos, use a version of the logo on a white or transparent background — background pixels skew the clustering toward white/neutral tones.',
@@ -361,10 +494,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'dpi-converter': {
     slug: 'dpi-converter',
     metaTitle: 'DPI Converter — Change Image DPI Free Online | RoughTools',
-    metaDescription: 'Change the DPI/PPI of any image for print or web. Set 72, 96, 150, 300 DPI. Free, instant, no signup.',
+    metaDescription:
+      'Change the DPI/PPI of any image for print or web. Set 72, 96, 150, 300 DPI. Free, instant, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/dpi-converter',
-    ratingValue: '4.6',
-    reviewCount: '1921',
     aboutHTML: `
 <p>The <strong>DPI Converter</strong> changes the dots-per-inch (DPI) metadata embedded in an image file without altering the actual pixel data. This is critical for print workflows, where programs like Adobe InDesign, Microsoft Word, and professional print services use the DPI value to determine the physical print size of an image. Changing DPI does not resize the image — it only tells print software how large each pixel should be when printed on paper.</p>
 
@@ -384,16 +516,34 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>DPI conversion runs entirely in your browser by manipulating the binary file headers using JavaScript. No file data is transmitted over the network. Your images remain private and the operation completes in under a second for most files. After converting DPI, you may also want to use the <a href="/tools/image-tools/image-resizer">Image Resizer</a> if the actual pixel dimensions need adjustment.</p>
     `,
     extraFaqs: [
-      { q: 'Will changing DPI affect my image quality or file size?', a: 'No. DPI is metadata only — it does not change any pixel data. The image looks identical and the file size changes by only a few bytes (the metadata difference).' },
-      { q: 'What DPI should I use for printing?', a: '300 DPI is the standard for professional printing. 150 DPI is acceptable for large-format prints viewed from a distance. 72 or 96 DPI is for screen display only — print quality at these values will be visibly poor.' },
-      { q: 'Can I change DPI on multiple images at once?', a: 'Batch DPI conversion is not currently available. Process one image at a time.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The tool runs in any mobile browser. Upload, set DPI, and download the converted file.' },
-      { q: 'Are my images stored after DPI conversion?', a: 'No. The metadata edit happens entirely in your browser. No data is uploaded or stored anywhere.' },
-      { q: 'Why does changing DPI not fix my blurry print?', a: 'DPI metadata does not add pixels — it only tells printers how large to print existing pixels. If your image lacks sufficient pixels for the print size, it will still look blurry. To fix this, you need more pixels — either from a higher-resolution source or by using an AI upscaler.' },
+      {
+        q: 'Will changing DPI affect my image quality or file size?',
+        a: 'No. DPI is metadata only — it does not change any pixel data. The image looks identical and the file size changes by only a few bytes (the metadata difference).',
+      },
+      {
+        q: 'What DPI should I use for printing?',
+        a: '300 DPI is the standard for professional printing. 150 DPI is acceptable for large-format prints viewed from a distance. 72 or 96 DPI is for screen display only — print quality at these values will be visibly poor.',
+      },
+      {
+        q: 'Can I change DPI on multiple images at once?',
+        a: 'Batch DPI conversion is not currently available. Process one image at a time.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The tool runs in any mobile browser. Upload, set DPI, and download the converted file.',
+      },
+      {
+        q: 'Are my images stored after DPI conversion?',
+        a: 'No. The metadata edit happens entirely in your browser. No data is uploaded or stored anywhere.',
+      },
+      {
+        q: 'Why does changing DPI not fix my blurry print?',
+        a: 'DPI metadata does not add pixels — it only tells printers how large to print existing pixels. If your image lacks sufficient pixels for the print size, it will still look blurry. To fix this, you need more pixels — either from a higher-resolution source or by using an AI upscaler.',
+      },
     ],
     proTips: [
       'To check if an image has enough pixels for a print at 300 DPI, divide the pixel dimensions by 300 — a 3000×2000px image prints at 10×6.67 inches at 300 DPI.',
-      'If a design program places your image at an unexpected size, it\'s using the embedded DPI to calculate the default size — change the DPI to 300 so the program places it at the correct print dimensions.',
+      "If a design program places your image at an unexpected size, it's using the embedded DPI to calculate the default size — change the DPI to 300 so the program places it at the correct print dimensions.",
       'TIFF files support multiple DPI values per file — if your TIFF looks correct in preview but prints wrong, convert DPI and save as a fresh TIFF.',
       'Web images exported from professional tools often have 72 DPI baked in — use this converter to set them to 96 DPI for correct display in Windows environments.',
     ],
@@ -403,10 +553,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'gif-maker': {
     slug: 'gif-maker',
     metaTitle: 'GIF Maker — Create Animated GIFs Free Online | RoughTools',
-    metaDescription: 'Create animated GIFs from images or video clips. Set frame rate, loop, and size. Free, no signup, instant download.',
+    metaDescription:
+      'Create animated GIFs from images or video clips. Set frame rate, loop, and size. Free, no signup, instant download.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/gif-maker',
-    ratingValue: '4.7',
-    reviewCount: '3412',
     aboutHTML: `
 <p>The <strong>GIF Maker</strong> creates animated GIFs from a sequence of images or from a short video clip. GIFs are the universal animation format — they play on every device, in every browser, and in every messaging app without any video player or codec. Whether you're creating a product animation, a meme, a quick tutorial loop, or a social media reaction, this tool gives you a ready-to-share GIF in seconds.</p>
 
@@ -426,12 +575,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>GIF creation runs in the browser using a WebAssembly-compiled GIF encoding library. No frames or video clips are uploaded to any server. The entire encoding process happens locally, which means your video content stays private. For better compression with no quality loss, consider the <a href="/tools/image-tools/image-compressor">Image Compressor</a> for static images, or use the Image Converter to convert to WebP for modern browsers.</p>
     `,
     extraFaqs: [
-      { q: 'Will the GIF look lower quality than my original images?', a: 'Yes — GIF is limited to 256 colors per frame, which causes visible color banding in photographs with gradients. The tool applies dithering to minimize this, but GIF is best for simple graphics and illustrations with flat colors rather than detailed photography.' },
-      { q: 'What is the maximum number of frames supported?', a: 'Up to 100 frames per GIF. More frames create larger files — for smooth animation at 24 FPS, 100 frames equals about 4 seconds of animation.' },
-      { q: 'Can I create GIFs from video clips?', a: 'Yes — upload an MP4 or WebM video and the tool extracts frames. Video clips up to 30 seconds are supported for GIF extraction.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The GIF maker works in mobile browsers. On iOS, you can save the GIF to Photos for easy sharing.' },
-      { q: 'Are my images or videos stored after GIF creation?', a: 'No. All processing runs locally in your browser. No frames or video clips are uploaded or stored.' },
-      { q: 'Why is my GIF file so large?', a: 'GIF files grow quickly with resolution, frame count, and color variety. Keep GIFs under 800×800px, reduce the frame rate to 10–15 FPS, and limit animation length to 3–5 seconds for social media sharing.' },
+      {
+        q: 'Will the GIF look lower quality than my original images?',
+        a: 'Yes — GIF is limited to 256 colors per frame, which causes visible color banding in photographs with gradients. The tool applies dithering to minimize this, but GIF is best for simple graphics and illustrations with flat colors rather than detailed photography.',
+      },
+      {
+        q: 'What is the maximum number of frames supported?',
+        a: 'Up to 100 frames per GIF. More frames create larger files — for smooth animation at 24 FPS, 100 frames equals about 4 seconds of animation.',
+      },
+      {
+        q: 'Can I create GIFs from video clips?',
+        a: 'Yes — upload an MP4 or WebM video and the tool extracts frames. Video clips up to 30 seconds are supported for GIF extraction.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The GIF maker works in mobile browsers. On iOS, you can save the GIF to Photos for easy sharing.',
+      },
+      {
+        q: 'Are my images or videos stored after GIF creation?',
+        a: 'No. All processing runs locally in your browser. No frames or video clips are uploaded or stored.',
+      },
+      {
+        q: 'Why is my GIF file so large?',
+        a: 'GIF files grow quickly with resolution, frame count, and color variety. Keep GIFs under 800×800px, reduce the frame rate to 10–15 FPS, and limit animation length to 3–5 seconds for social media sharing.',
+      },
     ],
     proTips: [
       'For the smallest file sizes, reduce GIF dimensions to the minimum necessary — a 400px wide GIF is half the file size of an 800px wide GIF with the same content.',
@@ -445,10 +612,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'grayscale-converter': {
     slug: 'grayscale-converter',
     metaTitle: 'Grayscale Converter — Black & White Photo Free | RoughTools',
-    metaDescription: 'Convert any photo to black and white or grayscale online. Multiple conversion modes. Free, instant, no signup.',
+    metaDescription:
+      'Convert any photo to black and white or grayscale online. Multiple conversion modes. Free, instant, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/grayscale-converter',
-    ratingValue: '4.8',
-    reviewCount: '2889',
     aboutHTML: `
 <p>The <strong>Grayscale Converter</strong> transforms color photos into black-and-white images using professional-grade luminosity algorithms. Unlike simply desaturating an image (which treats all colors equally), this tool lets you choose between different grayscale conversion modes that weight color channels differently — producing results that match the look of classic film photography, documentary imagery, and fine art black-and-white prints.</p>
 
@@ -468,12 +634,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Conversion runs entirely in your browser using direct pixel manipulation on the HTML5 Canvas. No image data is sent to any server. The converted file is generated locally and downloaded directly to your device. For more advanced black-and-white editing including zone control and highlight/shadow adjustments, use the <a href="/tools/image-tools/image-enhancer">Image Enhancer</a> after converting.</p>
     `,
     extraFaqs: [
-      { q: 'Will grayscale conversion reduce my image quality?', a: 'No quality is lost in the conversion — only color channel data is combined into a single luminosity value. The output resolution is identical to the input.' },
-      { q: 'What is the maximum image size supported?', a: 'Images up to 20 MB and 8000×8000 pixels. Large images convert in 1–3 seconds depending on your device.' },
-      { q: 'Can I convert multiple images to grayscale at once?', a: 'Currently one image at a time. For batch conversion, process images individually.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Conversion happens instantly in any mobile browser — no app required.' },
-      { q: 'Are my images stored after conversion?', a: 'No. Grayscale conversion happens locally in your browser. No data leaves your device.' },
-      { q: 'Which conversion mode produces the most professional-looking black-and-white?', a: 'Luminosity mode (BT.601 weighting) produces the most professional results for photography because it matches the human eye\'s color sensitivity. Average mode tends to look flat, while desaturate can oversaturate certain tones.' },
+      {
+        q: 'Will grayscale conversion reduce my image quality?',
+        a: 'No quality is lost in the conversion — only color channel data is combined into a single luminosity value. The output resolution is identical to the input.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Images up to 20 MB and 8000×8000 pixels. Large images convert in 1–3 seconds depending on your device.',
+      },
+      {
+        q: 'Can I convert multiple images to grayscale at once?',
+        a: 'Currently one image at a time. For batch conversion, process images individually.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Conversion happens instantly in any mobile browser — no app required.',
+      },
+      {
+        q: 'Are my images stored after conversion?',
+        a: 'No. Grayscale conversion happens locally in your browser. No data leaves your device.',
+      },
+      {
+        q: 'Which conversion mode produces the most professional-looking black-and-white?',
+        a: "Luminosity mode (BT.601 weighting) produces the most professional results for photography because it matches the human eye's color sensitivity. Average mode tends to look flat, while desaturate can oversaturate certain tones.",
+      },
     ],
     proTips: [
       'Luminosity mode produces the most cinematographic black-and-white look — the weighted green channel naturally brightens foliage and skin tones while maintaining shadow depth.',
@@ -487,10 +671,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'heic-to-jpg': {
     slug: 'heic-to-jpg',
     metaTitle: 'HEIC to JPG Converter Free Online | RoughTools',
-    metaDescription: 'Convert iPhone HEIC photos to JPG instantly. Free, browser-based, no signup. Share Apple photos anywhere.',
+    metaDescription:
+      'Convert iPhone HEIC photos to JPG instantly. Free, browser-based, no signup. Share Apple photos anywhere.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/heic-to-jpg',
-    ratingValue: '4.9',
-    reviewCount: '4821',
     aboutHTML: `
 <p>The <strong>HEIC to JPG Converter</strong> converts Apple's HEIC (High Efficiency Image Container) photos from iPhones and iPads into universally compatible JPG files. HEIC is a modern format that stores photos at half the file size of JPG with equal quality — but it is not natively supported by Windows, Android, most web browsers, or third-party applications. Converting HEIC to JPG makes your iPhone photos accessible everywhere.</p>
 
@@ -510,15 +693,33 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>HEIC decoding runs in your browser using a WebAssembly HEIC decoder — your photos are never sent to any server. This is particularly important given that HEIC files often include GPS location metadata. All processing happens on your device, and no data is transmitted or stored. After converting, you can optionally strip location metadata using the <a href="/tools/image-tools/image-metadata-viewer">Image Metadata Viewer</a> before sharing.</p>
     `,
     extraFaqs: [
-      { q: 'Will converting HEIC to JPG reduce photo quality?', a: 'At 90%+ JPG quality, the difference is imperceptible to the human eye. HEIC and JPG at high quality look visually identical in print and on screen. The main trade-off is file size — JPG files will be larger than the original HEIC.' },
-      { q: 'What is the maximum file size supported?', a: 'Individual HEIC files up to 20 MB. When converting multiple files at once, the total batch should be under 200 MB for reliable browser processing.' },
-      { q: 'Can I convert multiple HEIC files at once?', a: 'Yes — select or drag multiple .heic files and they are converted and packaged in a ZIP archive for download.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The HEIC decoder runs in any modern mobile browser. However, on iPhone, HEIC files in the Photos app may be stored as JPG already if "Most Compatible" is selected in Camera settings.' },
-      { q: 'Are my photos stored after conversion?', a: 'No. The WebAssembly decoder processes everything locally. Your HEIC files are never sent to any server.' },
-      { q: 'How do I stop my iPhone from taking HEIC photos?', a: 'Go to Settings → Camera → Formats and select "Most Compatible" — this makes your iPhone save photos as JPG instead of HEIC from that point forward.' },
+      {
+        q: 'Will converting HEIC to JPG reduce photo quality?',
+        a: 'At 90%+ JPG quality, the difference is imperceptible to the human eye. HEIC and JPG at high quality look visually identical in print and on screen. The main trade-off is file size — JPG files will be larger than the original HEIC.',
+      },
+      {
+        q: 'What is the maximum file size supported?',
+        a: 'Individual HEIC files up to 20 MB. When converting multiple files at once, the total batch should be under 200 MB for reliable browser processing.',
+      },
+      {
+        q: 'Can I convert multiple HEIC files at once?',
+        a: 'Yes — select or drag multiple .heic files and they are converted and packaged in a ZIP archive for download.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The HEIC decoder runs in any modern mobile browser. However, on iPhone, HEIC files in the Photos app may be stored as JPG already if "Most Compatible" is selected in Camera settings.',
+      },
+      {
+        q: 'Are my photos stored after conversion?',
+        a: 'No. The WebAssembly decoder processes everything locally. Your HEIC files are never sent to any server.',
+      },
+      {
+        q: 'How do I stop my iPhone from taking HEIC photos?',
+        a: 'Go to Settings → Camera → Formats and select "Most Compatible" — this makes your iPhone save photos as JPG instead of HEIC from that point forward.',
+      },
     ],
     proTips: [
-      'Use 90% JPG quality for general sharing — it\'s visually identical to HEIC quality but universally compatible. Only go to 95% if you\'re printing at large sizes.',
+      "Use 90% JPG quality for general sharing — it's visually identical to HEIC quality but universally compatible. Only go to 95% if you're printing at large sizes.",
       'HEIC files contain full EXIF metadata including GPS coordinates — strip location data before sharing publicly using an EXIF remover if privacy is a concern.',
       'If you frequently need HEIC conversion, change your iPhone to "Most Compatible" format in Camera Settings — this saves photos as JPG directly and eliminates the conversion step.',
       'Batch convert your entire iPhone photo library by selecting all HEIC files in Windows File Explorer after connecting via USB — this is faster than converting individually.',
@@ -529,10 +730,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'id-card-photo-maker': {
     slug: 'id-card-photo-maker',
     metaTitle: 'ID Card Photo Maker Free Online | RoughTools',
-    metaDescription: 'Create ID card photos in standard sizes for passports, visas, and government IDs. Free, instant, no signup.',
+    metaDescription:
+      'Create ID card photos in standard sizes for passports, visas, and government IDs. Free, instant, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/id-card-photo-maker',
-    ratingValue: '4.8',
-    reviewCount: '3267',
     aboutHTML: `
 <p>The <strong>ID Card Photo Maker</strong> crops and formats your photo to meet the exact size specifications required for passports, driver's licenses, visa applications, and other government identity documents. Different countries and document types have strict requirements for photo size, background color, head position, and print dimensions — this tool handles all the cropping and sizing automatically so you can print compliant ID photos at home.</p>
 
@@ -552,17 +752,35 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Photo processing happens on our secure server (for the AI face detection step) and your photo is immediately deleted after the formatted ID photo is returned. No images are stored or used for any purpose beyond the immediate formatting operation. For privacy when working with official documents, use the secure HTTPS connection and clear your browser history after downloading.</p>
     `,
     extraFaqs: [
-      { q: 'Will the photo meet official government requirements?', a: 'The tool follows published dimension and background specifications for each country. However, requirements can change — always verify current requirements on the official government website before submitting.' },
-      { q: 'What is the photo quality required for ID photos?', a: 'The output is at 300 DPI which meets print requirements for all government ID documents. Use a high-resolution source photo (at least 1000×1000px) for the sharpest result.' },
-      { q: 'Can I create multiple ID photos from one session?', a: 'Yes — the print layout feature generates a sheet with 4–6 copies of your ID photo on a single 4×6 inch print, which is the standard format most photo print services accept.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Take a selfie or upload from your camera roll in any mobile browser, and the tool crops and formats the ID photo automatically.' },
-      { q: 'Is my photo stored after creating the ID card photo?', a: 'Photos are processed on our server for face detection and immediately deleted after the formatted photo is returned. We retain no images.' },
-      { q: 'What if the face detection doesn\'t work correctly on my photo?', a: 'Use the manual crop handles to adjust the framing after the auto-center step. The tool always allows full manual override of the automated positioning.' },
+      {
+        q: 'Will the photo meet official government requirements?',
+        a: 'The tool follows published dimension and background specifications for each country. However, requirements can change — always verify current requirements on the official government website before submitting.',
+      },
+      {
+        q: 'What is the photo quality required for ID photos?',
+        a: 'The output is at 300 DPI which meets print requirements for all government ID documents. Use a high-resolution source photo (at least 1000×1000px) for the sharpest result.',
+      },
+      {
+        q: 'Can I create multiple ID photos from one session?',
+        a: 'Yes — the print layout feature generates a sheet with 4–6 copies of your ID photo on a single 4×6 inch print, which is the standard format most photo print services accept.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Take a selfie or upload from your camera roll in any mobile browser, and the tool crops and formats the ID photo automatically.',
+      },
+      {
+        q: 'Is my photo stored after creating the ID card photo?',
+        a: 'Photos are processed on our server for face detection and immediately deleted after the formatted photo is returned. We retain no images.',
+      },
+      {
+        q: "What if the face detection doesn't work correctly on my photo?",
+        a: 'Use the manual crop handles to adjust the framing after the auto-center step. The tool always allows full manual override of the automated positioning.',
+      },
     ],
     proTips: [
       'Photograph against a plain white or light gray wall with even lighting — this gives the AI the cleanest background detection and avoids the need for background replacement.',
       'Face the camera directly with a neutral expression and no glasses (most government IDs prohibit glasses now) — take the photo in good natural light from a window for the sharpest result.',
-      'For US passport photos, the standard requires the face to be between 1 inch and 1 3/8 inches from chin to top of head — the tool\'s auto-crop handles this, but verify after cropping.',
+      "For US passport photos, the standard requires the face to be between 1 inch and 1 3/8 inches from chin to top of head — the tool's auto-crop handles this, but verify after cropping.",
       'Print on matte photo paper rather than glossy — most government offices prefer matte finish, and it scans more consistently when they digitize your application.',
     ],
   },
@@ -571,10 +789,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-color-picker': {
     slug: 'image-color-picker',
     metaTitle: 'Image Color Picker — Pick Colors Free Online | RoughTools',
-    metaDescription: 'Pick any color from an image and get the hex, RGB, and HSL values instantly. Free, browser-based color eyedropper.',
+    metaDescription:
+      'Pick any color from an image and get the hex, RGB, and HSL values instantly. Free, browser-based color eyedropper.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-color-picker',
-    ratingValue: '4.8',
-    reviewCount: '2134',
     aboutHTML: `
 <p>The <strong>Image Color Picker</strong> is an online eyedropper tool that lets you click any pixel in an uploaded image to instantly retrieve its exact color values in hex, RGB, HSL, and CMYK formats. This eliminates the need to open Photoshop or any other design software just to sample a color — simply upload the image, click the pixel, and copy the color code.</p>
 
@@ -594,12 +811,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>All image data stays in your browser — nothing is uploaded to any server. The Canvas pixel manipulation is entirely client-side. For extracting multiple dominant colors from an image at once rather than clicking individual pixels, use the <a href="/tools/image-tools/dominant-color-extractor">Dominant Color Extractor</a> tool.</p>
     `,
     extraFaqs: [
-      { q: 'Does reading pixel colors change my image in any way?', a: 'No. The color picker only reads pixel data — it does not modify the image. Your original file is never altered.' },
-      { q: 'What is the maximum image size supported?', a: 'Images up to 20 MB and 8000×8000 pixels. Very large images render the full resolution for precise single-pixel sampling.' },
-      { q: 'Can I pick colors from multiple images at once?', a: 'Load one image at a time. Use the color history panel (shows last 10 samples) to compare colors across sessions.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Tap any pixel on the image in any mobile browser to sample its color. The magnifier works on touch screens.' },
-      { q: 'Are my images stored after color picking?', a: 'No. The image stays in your browser\'s memory only. Nothing is uploaded or stored.' },
-      { q: 'Why does the color I pick look slightly different from what I see?', a: 'Monitors display colors with gamma correction and color profiles that can shift perceived color. The hex value returned is the raw pixel value before display rendering. Color-managed workflows may show slight discrepancies.' },
+      {
+        q: 'Does reading pixel colors change my image in any way?',
+        a: 'No. The color picker only reads pixel data — it does not modify the image. Your original file is never altered.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Images up to 20 MB and 8000×8000 pixels. Very large images render the full resolution for precise single-pixel sampling.',
+      },
+      {
+        q: 'Can I pick colors from multiple images at once?',
+        a: 'Load one image at a time. Use the color history panel (shows last 10 samples) to compare colors across sessions.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Tap any pixel on the image in any mobile browser to sample its color. The magnifier works on touch screens.',
+      },
+      {
+        q: 'Are my images stored after color picking?',
+        a: "No. The image stays in your browser's memory only. Nothing is uploaded or stored.",
+      },
+      {
+        q: 'Why does the color I pick look slightly different from what I see?',
+        a: 'Monitors display colors with gamma correction and color profiles that can shift perceived color. The hex value returned is the raw pixel value before display rendering. Color-managed workflows may show slight discrepancies.',
+      },
     ],
     proTips: [
       'Use the magnifier lens to zoom in to 800% before clicking — JPEG compression creates color noise around edges, and adjacent pixels can differ by 5–10 values from what appears as a solid color.',
@@ -613,10 +848,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-colorizer': {
     slug: 'image-colorizer',
     metaTitle: 'Image Colorizer — Colorize B&W Photos Free | RoughTools',
-    metaDescription: 'Automatically colorize black and white photos using AI. Free online tool, realistic color, no signup required.',
+    metaDescription:
+      'Automatically colorize black and white photos using AI. Free online tool, realistic color, no signup required.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-colorizer',
-    ratingValue: '4.6',
-    reviewCount: '2743',
     aboutHTML: `
 <p>The <strong>Image Colorizer</strong> uses artificial intelligence to automatically add realistic color to black-and-white photographs. Historical photos, old family portraits, classic film stills, and vintage images can be transformed with natural, plausible colors in seconds — bringing old memories to life without any manual painting or color adjustment.</p>
 
@@ -636,12 +870,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Images are transmitted over HTTPS to our AI processing server and deleted immediately after the colorized result is returned to your browser. No training data is collected from your images. Results may vary — for the best output, use high-contrast grayscale images with clear subject matter. After colorizing, you can fine-tune colors using the <a href="/tools/image-tools/image-color-adjuster">Image Color Adjuster</a>.</p>
     `,
     extraFaqs: [
-      { q: 'How accurate are the AI-predicted colors?', a: 'The AI predicts plausible colors based on image content — it has no way to know the original colors. Results are often surprisingly accurate for natural scenes (skin, sky, grass) but may be incorrect for clothing, painted surfaces, or objects with no inherent "expected" color.' },
-      { q: 'What is the maximum image resolution supported?', a: 'Images up to 10 MB and 2048×2048px for best results. Higher resolution images are downsampled for AI processing and upsampled in the result.' },
-      { q: 'Can I colorize multiple photos at once?', a: 'Batch colorization is not currently available. Process one image at a time for the best results and to manage processing time.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Upload from your camera roll and the colorized result downloads to your device in any mobile browser.' },
-      { q: 'Are my photos stored after colorization?', a: 'Photos are deleted from the processing server immediately after the colorized result is returned. No images are retained.' },
-      { q: 'Can I colorize a photo that is already in color?', a: 'The tool automatically converts color images to grayscale before colorizing. This is generally not useful — starting with an original black-and-white photo produces the best results.' },
+      {
+        q: 'How accurate are the AI-predicted colors?',
+        a: 'The AI predicts plausible colors based on image content — it has no way to know the original colors. Results are often surprisingly accurate for natural scenes (skin, sky, grass) but may be incorrect for clothing, painted surfaces, or objects with no inherent "expected" color.',
+      },
+      {
+        q: 'What is the maximum image resolution supported?',
+        a: 'Images up to 10 MB and 2048×2048px for best results. Higher resolution images are downsampled for AI processing and upsampled in the result.',
+      },
+      {
+        q: 'Can I colorize multiple photos at once?',
+        a: 'Batch colorization is not currently available. Process one image at a time for the best results and to manage processing time.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Upload from your camera roll and the colorized result downloads to your device in any mobile browser.',
+      },
+      {
+        q: 'Are my photos stored after colorization?',
+        a: 'Photos are deleted from the processing server immediately after the colorized result is returned. No images are retained.',
+      },
+      {
+        q: 'Can I colorize a photo that is already in color?',
+        a: 'The tool automatically converts color images to grayscale before colorizing. This is generally not useful — starting with an original black-and-white photo produces the best results.',
+      },
     ],
     proTips: [
       'Enhance contrast and sharpness in your grayscale photo before colorizing — the AI uses tonal information to infer color, so clearer tonal separation produces more accurate colorization.',
@@ -655,10 +907,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-compressor': {
     slug: 'image-compressor',
     metaTitle: 'Image Compressor — Reduce Image Size Free | RoughTools',
-    metaDescription: 'Compress JPG, PNG, and WebP images online. Reduce file size up to 90% without visible quality loss. Free.',
+    metaDescription:
+      'Compress JPG, PNG, and WebP images online. Reduce file size up to 90% without visible quality loss. Free.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-compressor',
-    ratingValue: '4.9',
-    reviewCount: '5892',
     aboutHTML: `
 <p>The <strong>Image Compressor</strong> reduces the file size of JPG, PNG, and WebP images while preserving visual quality. Smaller images load faster, consume less storage, and meet file size limits on email, social media, and web forms — making image compression one of the most practical tools for anyone who works with digital photos or graphics regularly.</p>
 
@@ -678,12 +929,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>The entire compression operation runs locally in your browser using JavaScript image processing libraries compiled to WebAssembly. No images are uploaded to any server. For web optimization specifically, after compressing you should also consider <a href="/tools/image-tools/image-resizer">resizing images</a> to the exact display dimensions to eliminate unnecessary pixels.</p>
     `,
     extraFaqs: [
-      { q: 'What compression ratio can I expect?', a: 'At quality 80, most JPG photos compress 50–70%. PNG files with many colors compress 40–60%. WebP output at quality 80 typically achieves 25–35% smaller than equivalent JPG at the same visual quality.' },
-      { q: 'What is the maximum image size supported?', a: 'Individual images up to 20 MB. Batch compression supports up to 50 images per session.' },
-      { q: 'Can I compress multiple images at once?', a: 'Yes — select multiple files and they are all compressed with the same quality setting. Download all as a ZIP archive.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Browser-based compression runs on all modern mobile browsers. Processing speed depends on device CPU.' },
-      { q: 'Are my images stored after compression?', a: 'No. Compression runs locally in your browser. Nothing is uploaded or stored.' },
-      { q: 'Can I choose between lossy and lossless compression?', a: 'For JPG, all compression is lossy by nature. For PNG, setting quality to 100 applies only lossless zlib compression without palette reduction. For WebP, both lossy and lossless modes are available.' },
+      {
+        q: 'What compression ratio can I expect?',
+        a: 'At quality 80, most JPG photos compress 50–70%. PNG files with many colors compress 40–60%. WebP output at quality 80 typically achieves 25–35% smaller than equivalent JPG at the same visual quality.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Individual images up to 20 MB. Batch compression supports up to 50 images per session.',
+      },
+      {
+        q: 'Can I compress multiple images at once?',
+        a: 'Yes — select multiple files and they are all compressed with the same quality setting. Download all as a ZIP archive.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Browser-based compression runs on all modern mobile browsers. Processing speed depends on device CPU.',
+      },
+      {
+        q: 'Are my images stored after compression?',
+        a: 'No. Compression runs locally in your browser. Nothing is uploaded or stored.',
+      },
+      {
+        q: 'Can I choose between lossy and lossless compression?',
+        a: 'For JPG, all compression is lossy by nature. For PNG, setting quality to 100 applies only lossless zlib compression without palette reduction. For WebP, both lossy and lossless modes are available.',
+      },
     ],
     proTips: [
       'For web images, target 100–150KB for content images and under 50KB for thumbnails — this keeps page load under 2 seconds on mobile connections.',
@@ -697,10 +966,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-converter': {
     slug: 'image-converter',
     metaTitle: 'Image Format Converter Free Online | RoughTools',
-    metaDescription: 'Convert images between JPG, PNG, WebP, BMP, TIFF, GIF formats online. Free, instant, no signup.',
+    metaDescription:
+      'Convert images between JPG, PNG, WebP, BMP, TIFF, GIF formats online. Free, instant, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-converter',
-    ratingValue: '4.8',
-    reviewCount: '3654',
     aboutHTML: `
 <p>The <strong>Image Format Converter</strong> converts images between all major formats — JPG, PNG, WebP, BMP, TIFF, GIF, and ICO — in seconds. Different contexts require different image formats: web images need JPG or WebP, logos need PNG transparency, printing workflows need TIFF, and Windows applications need BMP. This converter handles all cross-format conversions in one place without installing any software.</p>
 
@@ -720,12 +988,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>All conversion runs in your browser — no files are transmitted to any server. This is the safest and fastest option for format conversion without cloud storage risk. After conversion, you may want to use the <a href="/tools/image-tools/image-compressor">Image Compressor</a> to optimize the file size of your converted images before uploading or sharing.</p>
     `,
     extraFaqs: [
-      { q: 'Will converting between formats reduce image quality?', a: 'Converting to JPG always involves some lossy compression. Converting to PNG or TIFF is lossless. Converting from a lossy format (JPG) to a lossless one (PNG) does not recover quality lost in the original — it just freezes the current quality.' },
-      { q: 'What is the maximum image size supported?', a: 'Individual files up to 20 MB. The TIFF encoder has a 50 MB output limit. Batch conversion supports up to 50 images.' },
-      { q: 'Can I convert multiple images at once?', a: 'Yes — select multiple files to convert them all to the same target format. Download as a ZIP archive.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. All conversions run in any modern mobile browser.' },
-      { q: 'Are my images stored after conversion?', a: 'No. All conversion is browser-based. No files leave your device.' },
-      { q: 'Can I convert SVG to raster formats like PNG or JPG?', a: 'Yes — upload an SVG file and the canvas renderer will draw it at the specified output resolution. For high-quality SVG rasterization, specify a large output resolution (e.g., 2000px wide).' },
+      {
+        q: 'Will converting between formats reduce image quality?',
+        a: 'Converting to JPG always involves some lossy compression. Converting to PNG or TIFF is lossless. Converting from a lossy format (JPG) to a lossless one (PNG) does not recover quality lost in the original — it just freezes the current quality.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Individual files up to 20 MB. The TIFF encoder has a 50 MB output limit. Batch conversion supports up to 50 images.',
+      },
+      {
+        q: 'Can I convert multiple images at once?',
+        a: 'Yes — select multiple files to convert them all to the same target format. Download as a ZIP archive.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. All conversions run in any modern mobile browser.',
+      },
+      {
+        q: 'Are my images stored after conversion?',
+        a: 'No. All conversion is browser-based. No files leave your device.',
+      },
+      {
+        q: 'Can I convert SVG to raster formats like PNG or JPG?',
+        a: 'Yes — upload an SVG file and the canvas renderer will draw it at the specified output resolution. For high-quality SVG rasterization, specify a large output resolution (e.g., 2000px wide).',
+      },
     ],
     proTips: [
       'When converting JPG to PNG for editing, remember that PNG only preserves the current JPG quality — it does not restore lost quality. For best results, always edit from the highest-quality source.',
@@ -739,10 +1025,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-cropper': {
     slug: 'image-cropper',
     metaTitle: 'Image Cropper — Crop Photos Free Online | RoughTools',
-    metaDescription: 'Crop images to exact dimensions or aspect ratios. Free online photo cropper with drag, zoom, and rotate.',
+    metaDescription:
+      'Crop images to exact dimensions or aspect ratios. Free online photo cropper with drag, zoom, and rotate.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-cropper',
-    ratingValue: '4.8',
-    reviewCount: '4127',
     aboutHTML: `
 <p>The <strong>Image Cropper</strong> lets you precisely select and extract a portion of any image using drag-and-drop crop handles, aspect ratio presets, and manual dimension entry. Cropping is one of the most fundamental image editing operations — whether you need to remove distracting edges, reframe a subject, or cut an image to exact social media dimensions, this tool gives you full control without complex software.</p>
 
@@ -762,12 +1047,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>All cropping runs in your browser. The image never leaves your device. No server processing, no uploads, no storage. The operation completes in under a second for most images. For related operations, consider <a href="/tools/image-tools/image-resizer">resizing the cropped image</a> to a specific output dimension, or using the <a href="/tools/image-tools/image-compressor">Image Compressor</a> to optimize the output for web sharing.</p>
     `,
     extraFaqs: [
-      { q: 'Will cropping reduce my image quality?', a: 'No — cropping only removes pixels outside the selection. The selected pixels are preserved exactly. PNG output is lossless. JPG output applies the quality setting you choose.' },
-      { q: 'What is the maximum image size supported?', a: 'Images up to 20 MB and 8000×8000 pixels. The full resolution is maintained for precise cropping even on large images.' },
-      { q: 'Can I crop multiple images at once?', a: 'Currently one image per session. For batch cropping to the same dimensions, use the Bulk Image Resizer which includes cropping to exact dimensions.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Touch drag to move the crop selection and pinch to zoom on mobile browsers.' },
-      { q: 'Are my images stored after cropping?', a: 'No. Cropping is entirely browser-based. Nothing is uploaded or stored.' },
-      { q: 'Can I undo a crop after downloading?', a: 'You cannot undo a crop on a downloaded file — always keep your original. The tool keeps the original in memory during your session if you want to re-crop.' },
+      {
+        q: 'Will cropping reduce my image quality?',
+        a: 'No — cropping only removes pixels outside the selection. The selected pixels are preserved exactly. PNG output is lossless. JPG output applies the quality setting you choose.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Images up to 20 MB and 8000×8000 pixels. The full resolution is maintained for precise cropping even on large images.',
+      },
+      {
+        q: 'Can I crop multiple images at once?',
+        a: 'Currently one image per session. For batch cropping to the same dimensions, use the Bulk Image Resizer which includes cropping to exact dimensions.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Touch drag to move the crop selection and pinch to zoom on mobile browsers.',
+      },
+      {
+        q: 'Are my images stored after cropping?',
+        a: 'No. Cropping is entirely browser-based. Nothing is uploaded or stored.',
+      },
+      {
+        q: 'Can I undo a crop after downloading?',
+        a: 'You cannot undo a crop on a downloaded file — always keep your original. The tool keeps the original in memory during your session if you want to re-crop.',
+      },
     ],
     proTips: [
       'Use the 1:1 aspect ratio preset when cropping profile photos for any social platform — most profile pictures are displayed as squares or circles, and cropping to exactly 1:1 prevents awkward auto-cropping by the platform.',
@@ -781,10 +1084,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-enhancer': {
     slug: 'image-enhancer',
     metaTitle: 'Image Enhancer — Improve Photo Quality Free | RoughTools',
-    metaDescription: 'Enhance photo quality automatically with AI. Improve sharpness, brightness, and detail. Free online tool.',
+    metaDescription:
+      'Enhance photo quality automatically with AI. Improve sharpness, brightness, and detail. Free online tool.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-enhancer',
-    ratingValue: '4.7',
-    reviewCount: '3298',
     aboutHTML: `
 <p>The <strong>Image Enhancer</strong> automatically improves the visual quality of photos by applying a combination of sharpening, contrast enhancement, noise reduction, and color correction — all calibrated to produce natural-looking improvements rather than over-processed results. Whether your photo is slightly underexposed, soft-focused, or just lacks visual punch, the enhancer applies smart adjustments to make it look its best.</p>
 
@@ -804,12 +1106,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Enhancement processing runs on our server using optimized image processing libraries. Your image is transmitted over HTTPS and immediately deleted after the enhanced result is returned. No images are stored, analyzed, or used for training. For more targeted adjustments, use the <a href="/tools/image-tools/image-color-adjuster">Image Color Adjuster</a> to manually tune specific parameters after auto-enhancement.</p>
     `,
     extraFaqs: [
-      { q: 'Will auto-enhancement reduce image quality?', a: 'Enhancement is designed to improve quality. At moderate intensity settings, the result looks better than the input. At 100% intensity on already high-quality photos, occasional minor over-processing can occur — use 50–75% for those.' },
-      { q: 'What is the maximum image size supported?', a: 'Images up to 10 MB. Higher resolution inputs produce better enhancement results because there is more detail for the algorithm to work with.' },
-      { q: 'Can I enhance multiple images at once?', a: 'Batch enhancement is not currently available. Process images one at a time.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Upload from your camera roll in any mobile browser and download the enhanced result.' },
-      { q: 'Are my photos stored after enhancement?', a: 'No. Photos are processed on our server and deleted immediately after the enhanced result is delivered to your browser.' },
-      { q: 'What type of photos benefit most from auto-enhancement?', a: 'Underexposed indoor photos, overcast day shots, and slightly soft-focus photos show the most dramatic improvement. Already well-exposed, sharp photos show minimal change — which is the correct behavior.' },
+      {
+        q: 'Will auto-enhancement reduce image quality?',
+        a: 'Enhancement is designed to improve quality. At moderate intensity settings, the result looks better than the input. At 100% intensity on already high-quality photos, occasional minor over-processing can occur — use 50–75% for those.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Images up to 10 MB. Higher resolution inputs produce better enhancement results because there is more detail for the algorithm to work with.',
+      },
+      {
+        q: 'Can I enhance multiple images at once?',
+        a: 'Batch enhancement is not currently available. Process images one at a time.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Upload from your camera roll in any mobile browser and download the enhanced result.',
+      },
+      {
+        q: 'Are my photos stored after enhancement?',
+        a: 'No. Photos are processed on our server and deleted immediately after the enhanced result is delivered to your browser.',
+      },
+      {
+        q: 'What type of photos benefit most from auto-enhancement?',
+        a: 'Underexposed indoor photos, overcast day shots, and slightly soft-focus photos show the most dramatic improvement. Already well-exposed, sharp photos show minimal change — which is the correct behavior.',
+      },
     ],
     proTips: [
       'Use Portrait mode for people photos — it applies gentler skin smoothing and avoids the over-sharpening that makes pores and blemishes more visible.',
@@ -823,10 +1143,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-flipper-rotator': {
     slug: 'image-flipper-rotator',
     metaTitle: 'Image Flipper & Rotator Free Online | RoughTools',
-    metaDescription: 'Flip images horizontally or vertically and rotate to any angle. Free, instant, browser-based.',
+    metaDescription:
+      'Flip images horizontally or vertically and rotate to any angle. Free, instant, browser-based.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-flipper-rotator',
-    ratingValue: '4.8',
-    reviewCount: '2341',
     aboutHTML: `
 <p>The <strong>Image Flipper & Rotator</strong> lets you mirror and rotate any image in one step — flip horizontally to create a mirror image, flip vertically to turn it upside down, or rotate to any angle from 1° to 359°. These are some of the most frequently needed non-destructive image adjustments, and this tool handles them entirely in your browser with no software required.</p>
 <p>Flipping and rotating images is needed for:</p>
@@ -842,12 +1161,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>All operations run in your browser — no uploads, no server processing, no storage. The transformed image is generated locally and downloaded instantly. After rotating or flipping, you may want to use the <a href="/tools/image-tools/image-cropper">Image Cropper</a> to trim any white corner areas created by non-90° rotations.</p>
     `,
     extraFaqs: [
-      { q: 'Will rotating or flipping reduce image quality?', a: 'For 90°, 180°, and 270° rotations, quality is fully preserved — these are lossless rotations. For arbitrary angles, PNG output is lossless. JPG output at 90%+ quality is imperceptible.' },
-      { q: 'What is the maximum image size supported?', a: 'Images up to 20 MB and 8000×8000 pixels.' },
-      { q: 'Can I flip and rotate multiple images at once?', a: 'One image at a time. Apply the same transformation to multiple images by processing each individually.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The tool runs in any mobile browser — useful for quickly fixing orientation on phone photos.' },
-      { q: 'Are my images stored after transformation?', a: 'No. All operations happen in your browser. Nothing is uploaded or stored.' },
-      { q: 'What happens to the corners when I rotate by an arbitrary angle?', a: 'The canvas expands to accommodate the rotated image, and the exposed corner areas are filled with white (for JPG) or transparent (for PNG). Use the Image Cropper to trim these areas if needed.' },
+      {
+        q: 'Will rotating or flipping reduce image quality?',
+        a: 'For 90°, 180°, and 270° rotations, quality is fully preserved — these are lossless rotations. For arbitrary angles, PNG output is lossless. JPG output at 90%+ quality is imperceptible.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Images up to 20 MB and 8000×8000 pixels.',
+      },
+      {
+        q: 'Can I flip and rotate multiple images at once?',
+        a: 'One image at a time. Apply the same transformation to multiple images by processing each individually.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The tool runs in any mobile browser — useful for quickly fixing orientation on phone photos.',
+      },
+      {
+        q: 'Are my images stored after transformation?',
+        a: 'No. All operations happen in your browser. Nothing is uploaded or stored.',
+      },
+      {
+        q: 'What happens to the corners when I rotate by an arbitrary angle?',
+        a: 'The canvas expands to accommodate the rotated image, and the exposed corner areas are filled with white (for JPG) or transparent (for PNG). Use the Image Cropper to trim these areas if needed.',
+      },
     ],
     proTips: [
       'JPEG photos taken with a phone are often stored with an EXIF orientation tag rather than physically rotating — if a photo looks correct on your phone but sideways online, use 90° rotation to match the EXIF orientation in the pixel data.',
@@ -861,10 +1198,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-metadata-viewer': {
     slug: 'image-metadata-viewer',
     metaTitle: 'Image Metadata Viewer — View EXIF Data Free | RoughTools',
-    metaDescription: 'View and extract EXIF metadata from any photo. See camera settings, GPS location, date. Free, browser-based.',
+    metaDescription:
+      'View and extract EXIF metadata from any photo. See camera settings, GPS location, date. Free, browser-based.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-metadata-viewer',
-    ratingValue: '4.7',
-    reviewCount: '1654',
     aboutHTML: `
 <p>The <strong>Image Metadata Viewer</strong> reads and displays all EXIF, IPTC, and XMP metadata embedded in your image files — revealing the camera make and model, lens focal length, aperture, shutter speed, ISO, GPS coordinates, date and time of capture, copyright notice, and dozens of other technical and descriptive fields. This information is invisible in the image itself but stored in the file header and is essential for photographers, investigators, and privacy-conscious users.</p>
 <p>Viewing image metadata is useful for:</p>
@@ -880,12 +1216,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Your image is read entirely in the browser — no file data leaves your device at any point. This makes the tool safe for examining images with potentially sensitive embedded data before deciding whether to share them. To remove metadata before sharing, use the strip option built into this tool or the dedicated <a href="/tools/image-tools/image-compressor">Image Compressor</a> which optionally strips metadata during compression.</p>
     `,
     extraFaqs: [
-      { q: 'Will viewing metadata change my image in any way?', a: 'No. Metadata viewing is read-only — your image file is never modified.' },
-      { q: 'What is the maximum file size supported for metadata reading?', a: 'Metadata reading works on any file size since only the header bytes are parsed, not the full image data.' },
-      { q: 'Can I view metadata on multiple images at once?', a: 'One image at a time. The metadata from each image is displayed as you load it.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Load any image from your camera roll in any mobile browser to view its embedded metadata.' },
-      { q: 'Is my image sent anywhere during metadata reading?', a: 'No. All parsing happens in your browser. Your image never leaves your device.' },
-      { q: 'Why does my image show no GPS data?', a: 'GPS data is only present if location services were enabled on the camera when the photo was taken. Many cameras and phones allow disabling GPS tagging in settings.' },
+      {
+        q: 'Will viewing metadata change my image in any way?',
+        a: 'No. Metadata viewing is read-only — your image file is never modified.',
+      },
+      {
+        q: 'What is the maximum file size supported for metadata reading?',
+        a: 'Metadata reading works on any file size since only the header bytes are parsed, not the full image data.',
+      },
+      {
+        q: 'Can I view metadata on multiple images at once?',
+        a: 'One image at a time. The metadata from each image is displayed as you load it.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Load any image from your camera roll in any mobile browser to view its embedded metadata.',
+      },
+      {
+        q: 'Is my image sent anywhere during metadata reading?',
+        a: 'No. All parsing happens in your browser. Your image never leaves your device.',
+      },
+      {
+        q: 'Why does my image show no GPS data?',
+        a: 'GPS data is only present if location services were enabled on the camera when the photo was taken. Many cameras and phones allow disabling GPS tagging in settings.',
+      },
     ],
     proTips: [
       'Before posting photos online or in documents, always check for GPS coordinates — many smartphone photos contain precise home or workplace location data that can reveal your address.',
@@ -899,10 +1253,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-resizer': {
     slug: 'image-resizer',
     metaTitle: 'Image Resizer — Resize Images Free Online | RoughTools',
-    metaDescription: 'Resize images to exact pixel dimensions or percentage. Free online tool, preserves quality. No signup.',
+    metaDescription:
+      'Resize images to exact pixel dimensions or percentage. Free online tool, preserves quality. No signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-resizer',
-    ratingValue: '4.9',
-    reviewCount: '6234',
     aboutHTML: `
 <p>The <strong>Image Resizer</strong> lets you change the dimensions of any image to exact pixel sizes, specific aspect ratios, or a percentage of the original size. Whether you need a specific size for a social media profile photo, a product listing, a banner, or a web page, the image resizer gives you pixel-perfect control with real-time preview and instant browser-based processing.</p>
 <p>Image resizing is needed for:</p>
@@ -918,12 +1271,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Resizing happens entirely in your browser — no file is uploaded to any server. The resized image is generated locally and downloaded directly to your device. For a batch of images all needing the same dimensions, use the <a href="/tools/image-tools/bulk-image-resizer">Bulk Image Resizer</a>. After resizing, compress the output with the <a href="/tools/image-tools/image-compressor">Image Compressor</a> to minimize file size further.</p>
     `,
     extraFaqs: [
-      { q: 'Will resizing reduce image quality?', a: 'Downscaling always reduces pixel count — this is unavoidable. Using Lanczos resampling minimizes visible quality loss. Upscaling adds pixels using interpolation but cannot recover detail that was not in the source.' },
-      { q: 'What is the maximum image size supported?', a: 'Input images up to 20 MB and 8000×8000 pixels. Output is limited to 8000×8000px.' },
-      { q: 'Can I resize multiple images at once?', a: 'Use the Bulk Image Resizer for batch operations — it handles up to 100 images simultaneously.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The resizer runs in any modern mobile browser with full touch support.' },
-      { q: 'Are my images stored after resizing?', a: 'No. Everything runs in your browser. Nothing is uploaded or stored.' },
-      { q: 'Can I resize to a percentage rather than exact pixels?', a: 'Yes — enter a percentage (e.g., 50%) to scale the image to half its current dimensions, preserving aspect ratio automatically.' },
+      {
+        q: 'Will resizing reduce image quality?',
+        a: 'Downscaling always reduces pixel count — this is unavoidable. Using Lanczos resampling minimizes visible quality loss. Upscaling adds pixels using interpolation but cannot recover detail that was not in the source.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Input images up to 20 MB and 8000×8000 pixels. Output is limited to 8000×8000px.',
+      },
+      {
+        q: 'Can I resize multiple images at once?',
+        a: 'Use the Bulk Image Resizer for batch operations — it handles up to 100 images simultaneously.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The resizer runs in any modern mobile browser with full touch support.',
+      },
+      {
+        q: 'Are my images stored after resizing?',
+        a: 'No. Everything runs in your browser. Nothing is uploaded or stored.',
+      },
+      {
+        q: 'Can I resize to a percentage rather than exact pixels?',
+        a: 'Yes — enter a percentage (e.g., 50%) to scale the image to half its current dimensions, preserving aspect ratio automatically.',
+      },
     ],
     proTips: [
       'For retina/HiDPI displays, always resize images to 2× the display size — a 600px wide image needs to be 1200px to appear sharp on modern MacBooks and iPhones.',
@@ -937,10 +1308,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-size-checker': {
     slug: 'image-size-checker',
     metaTitle: 'Image Size Checker — Check Photo Dimensions Free',
-    metaDescription: 'Check image file size, dimensions, resolution, and format instantly. Free, browser-based, no signup.',
+    metaDescription:
+      'Check image file size, dimensions, resolution, and format instantly. Free, browser-based, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-size-checker',
-    ratingValue: '4.7',
-    reviewCount: '1432',
     aboutHTML: `
 <p>The <strong>Image Size Checker</strong> instantly displays the file size, pixel dimensions, DPI/PPI resolution, color mode, and format of any image you upload. This is the quickest way to verify an image meets specific requirements before submission — whether you're checking that a photo meets a job application's file size limit, verifying that a print image has sufficient DPI, or confirming dimensions before uploading to a specific platform.</p>
 <p>Checking image size and properties is useful for:</p>
@@ -956,16 +1326,34 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Analysis is entirely browser-based — your image is read from local storage and not transmitted to any server. Multiple images can be checked in sequence in the same session. For fixing size issues, use the <a href="/tools/image-tools/image-resizer">Image Resizer</a> for dimension changes or the <a href="/tools/image-tools/image-compressor">Image Compressor</a> for file size reduction.</p>
     `,
     extraFaqs: [
-      { q: 'Does the size checker change or damage my image?', a: 'No. It only reads your image\'s properties — the file is never modified.' },
-      { q: 'What is the maximum file size I can check?', a: 'Any file size — the checker reads only the header bytes, so even 100 MB files are analyzed in under a second.' },
-      { q: 'Can I check the size of multiple images at once?', a: 'Load images one at a time. The results are shown immediately after each upload.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Check image properties from your camera roll in any mobile browser.' },
-      { q: 'Is my image sent anywhere during checking?', a: 'No. Only the file header is read in your browser. No data is transmitted.' },
-      { q: 'Why does the reported DPI differ from what I expect?', a: 'DPI is metadata stored in the file header and may not match the actual pixel density needed for a specific print size. Always calculate: pixels ÷ inches needed = required DPI.' },
+      {
+        q: 'Does the size checker change or damage my image?',
+        a: "No. It only reads your image's properties — the file is never modified.",
+      },
+      {
+        q: 'What is the maximum file size I can check?',
+        a: 'Any file size — the checker reads only the header bytes, so even 100 MB files are analyzed in under a second.',
+      },
+      {
+        q: 'Can I check the size of multiple images at once?',
+        a: 'Load images one at a time. The results are shown immediately after each upload.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Check image properties from your camera roll in any mobile browser.',
+      },
+      {
+        q: 'Is my image sent anywhere during checking?',
+        a: 'No. Only the file header is read in your browser. No data is transmitted.',
+      },
+      {
+        q: 'Why does the reported DPI differ from what I expect?',
+        a: 'DPI is metadata stored in the file header and may not match the actual pixel density needed for a specific print size. Always calculate: pixels ÷ inches needed = required DPI.',
+      },
     ],
     proTips: [
       'Use the print size calculator to quickly check if an image is high enough resolution for a specific print size — a 3000×2000px image prints at 10×6.67 inches at 300 DPI.',
-      'If you\'re auditing website images, check file size and look for anything over 500KB — these are candidates for compression or resizing that will improve page load speed.',
+      "If you're auditing website images, check file size and look for anything over 500KB — these are candidates for compression or resizing that will improve page load speed.",
       'Color mode matters for print: CMYK is required for offset printing, RGB for digital displays. If your image is RGB and needs to go to a print shop, they will convert it — but the colors may shift.',
       'For social media uploads, check that your image meets the minimum but not the maximum — platforms compress oversized images, so uploading at the exact recommended size gives you the best quality control.',
     ],
@@ -975,10 +1363,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-to-base64': {
     slug: 'image-to-base64',
     metaTitle: 'Image to Base64 Encoder Free Online | RoughTools',
-    metaDescription: 'Convert any image to Base64 string for embedding in HTML, CSS, or JSON. Free, browser-based, no signup.',
+    metaDescription:
+      'Convert any image to Base64 string for embedding in HTML, CSS, or JSON. Free, browser-based, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-to-base64',
-    ratingValue: '4.7',
-    reviewCount: '1876',
     aboutHTML: `
 <p>The <strong>Image to Base64 Encoder</strong> converts any image file into a Base64-encoded ASCII string that can be embedded directly in HTML, CSS, JSON, or any text-based format. This eliminates the need to host an image as a separate file — a Base64-encoded image is self-contained in the code itself, making it ideal for small icons, single-page applications, email templates, and development environments.</p>
 <p>Base64 image encoding is useful for:</p>
@@ -994,12 +1381,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Encoding runs locally using JavaScript's <code>FileReader.readAsDataURL()</code> API. No image data leaves your browser. For the reverse operation, use the <a href="/tools/image-tools/base64-to-image">Base64 to Image Decoder</a>. Keep in mind that Base64 encoding is appropriate only for small images (under 50KB original) — larger images embedded as Base64 significantly bloat HTML/CSS file sizes and hurt performance.</p>
     `,
     extraFaqs: [
-      { q: 'Does Base64 encoding reduce image quality?', a: 'No. Base64 is a lossless encoding — every byte of the original image is preserved exactly. Quality is identical to the source.' },
-      { q: 'What is the maximum image size for Base64 encoding?', a: 'Technically any size, but Base64 strings for large images are impractical. Limit Base64 embedding to images under 50KB (approximately 67KB Base64 string).' },
-      { q: 'Can I encode multiple images at once?', a: 'One image at a time — each encoded string must be used individually.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The encoder works in any mobile browser and the output string can be copied from the mobile keyboard.' },
-      { q: 'Is my image sent anywhere during encoding?', a: 'No. Base64 encoding runs entirely in your browser using the FileReader API. No data leaves your device.' },
-      { q: 'Why is the Base64 string larger than my original image?', a: 'Base64 converts every 3 bytes to 4 characters, adding approximately 33% overhead. A 10KB image becomes approximately 13.3KB as Base64 text.' },
+      {
+        q: 'Does Base64 encoding reduce image quality?',
+        a: 'No. Base64 is a lossless encoding — every byte of the original image is preserved exactly. Quality is identical to the source.',
+      },
+      {
+        q: 'What is the maximum image size for Base64 encoding?',
+        a: 'Technically any size, but Base64 strings for large images are impractical. Limit Base64 embedding to images under 50KB (approximately 67KB Base64 string).',
+      },
+      {
+        q: 'Can I encode multiple images at once?',
+        a: 'One image at a time — each encoded string must be used individually.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The encoder works in any mobile browser and the output string can be copied from the mobile keyboard.',
+      },
+      {
+        q: 'Is my image sent anywhere during encoding?',
+        a: 'No. Base64 encoding runs entirely in your browser using the FileReader API. No data leaves your device.',
+      },
+      {
+        q: 'Why is the Base64 string larger than my original image?',
+        a: 'Base64 converts every 3 bytes to 4 characters, adding approximately 33% overhead. A 10KB image becomes approximately 13.3KB as Base64 text.',
+      },
     ],
     proTips: [
       'Use Base64 embedding only for images under 5–10KB — larger images embedded as Base64 break HTTP caching since the data travels with the HTML on every page load.',
@@ -1013,10 +1418,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-to-text': {
     slug: 'image-to-text',
     metaTitle: 'Image to Text (OCR) Free Online | RoughTools',
-    metaDescription: 'Extract text from images using OCR. Convert photos, screenshots, and scans to editable text. Free, no signup.',
+    metaDescription:
+      'Extract text from images using OCR. Convert photos, screenshots, and scans to editable text. Free, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-to-text',
-    ratingValue: '4.7',
-    reviewCount: '4532',
     aboutHTML: `
 <p>The <strong>Image to Text</strong> tool uses Optical Character Recognition (OCR) to extract readable text from photos, screenshots, scanned documents, and any image that contains text. Instead of manually retyping text from a photo, paste the output directly into documents, spreadsheets, or search fields — saving significant time on data entry and digitization tasks.</p>
 <p>OCR text extraction is needed for:</p>
@@ -1032,12 +1436,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>OCR processing runs entirely in your browser via WebAssembly. No image data is sent to any server. This is important for sensitive documents like medical records, financial statements, or legal documents that should not leave your device. For best accuracy, use a clear, well-lit photo with high contrast between text and background. After extracting text, use your browser's copy function to paste into any application.</p>
     `,
     extraFaqs: [
-      { q: 'How accurate is the OCR text extraction?', a: 'Accuracy depends heavily on image quality. Clear, high-contrast text on plain backgrounds achieves 95%+ accuracy. Handwritten text, decorative fonts, or low-contrast images may achieve 70–85% accuracy. Always proofread OCR output.' },
-      { q: 'What is the maximum image size for OCR?', a: 'Images up to 10 MB. Higher resolution images (300+ DPI) produce better OCR accuracy — the more pixels per character, the more detail the LSTM model has to work with.' },
-      { q: 'Can I extract text from multiple images at once?', a: 'One image at a time. For batch OCR, process each image individually.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The WebAssembly OCR engine runs in mobile browsers, though processing may take 15–45 seconds on mobile due to CPU limitations.' },
-      { q: 'Are my images stored after OCR processing?', a: 'No. All processing runs in your browser. No image data leaves your device.' },
-      { q: 'Can OCR read handwritten text?', a: 'Tesseract has limited handwriting recognition. Clear, printed handwriting may partially work, but cursive and informal handwriting typically produces poor results. Use a specialized handwriting OCR tool for those cases.' },
+      {
+        q: 'How accurate is the OCR text extraction?',
+        a: 'Accuracy depends heavily on image quality. Clear, high-contrast text on plain backgrounds achieves 95%+ accuracy. Handwritten text, decorative fonts, or low-contrast images may achieve 70–85% accuracy. Always proofread OCR output.',
+      },
+      {
+        q: 'What is the maximum image size for OCR?',
+        a: 'Images up to 10 MB. Higher resolution images (300+ DPI) produce better OCR accuracy — the more pixels per character, the more detail the LSTM model has to work with.',
+      },
+      {
+        q: 'Can I extract text from multiple images at once?',
+        a: 'One image at a time. For batch OCR, process each image individually.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The WebAssembly OCR engine runs in mobile browsers, though processing may take 15–45 seconds on mobile due to CPU limitations.',
+      },
+      {
+        q: 'Are my images stored after OCR processing?',
+        a: 'No. All processing runs in your browser. No image data leaves your device.',
+      },
+      {
+        q: 'Can OCR read handwritten text?',
+        a: 'Tesseract has limited handwriting recognition. Clear, printed handwriting may partially work, but cursive and informal handwriting typically produces poor results. Use a specialized handwriting OCR tool for those cases.',
+      },
     ],
     proTips: [
       'For best OCR accuracy on photos of documents, straighten and crop the image first — even a 5° tilt significantly reduces accuracy because the text baseline deviates from horizontal.',
@@ -1051,10 +1473,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'image-upscaler': {
     slug: 'image-upscaler',
     metaTitle: 'AI Image Upscaler — Enlarge Photos Free Online | RoughTools',
-    metaDescription: 'Upscale and enlarge images up to 4× using AI without losing quality. Free online tool, no signup.',
+    metaDescription:
+      'Upscale and enlarge images up to 4× using AI without losing quality. Free online tool, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/image-upscaler',
-    ratingValue: '4.7',
-    reviewCount: '3127',
     aboutHTML: `
 <p>The <strong>AI Image Upscaler</strong> enlarges images by 2× or 4× while preserving and enhancing detail using a super-resolution neural network. Standard resizing blurs images when upscaling — this tool uses AI to reconstruct realistic high-frequency detail (edges, textures, sharpness) that standard interpolation cannot generate, producing enlarged images that look genuinely higher resolution rather than simply stretched.</p>
 <p>AI upscaling is useful for:</p>
@@ -1070,12 +1491,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Upscaling runs on our GPU-accelerated server. Images are transmitted over HTTPS and immediately deleted after the upscaled result is returned — typically within 30 seconds. No images are stored or used for model training. For the best upscaling results, start with the highest-quality version of the image you have — removing JPEG artifacts with the <a href="/tools/image-tools/image-enhancer">Image Enhancer</a> before upscaling produces cleaner results.</p>
     `,
     extraFaqs: [
-      { q: 'Is AI upscaling better than standard bicubic upscaling?', a: 'Yes, significantly. Standard bicubic interpolation blurs edges and creates a "soft" look. AI upscaling reconstructs realistic edge detail and texture, producing sharper, more natural-looking enlargements.' },
-      { q: 'What is the maximum input image size?', a: '5 MB and 2000×2000 pixels for reliable processing. Very large inputs are processed in tiles, which can occasionally produce subtle tile boundaries at extreme sizes.' },
-      { q: 'Can I upscale multiple images at once?', a: 'One image at a time due to GPU resource management. Processing each image takes 10–60 seconds.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Upload from your camera roll in any mobile browser. The upscaling happens on our server, so mobile CPU speed is not a limitation.' },
-      { q: 'Are my images stored after upscaling?', a: 'No. Images are deleted from the GPU server immediately after the result is returned to your browser.' },
-      { q: 'Can the AI upscaler restore quality lost by JPEG compression?', a: 'Yes — the model is trained to reconstruct detail from compressed inputs, and JPEG artifact removal is part of the upscaling process for photographic content.' },
+      {
+        q: 'Is AI upscaling better than standard bicubic upscaling?',
+        a: 'Yes, significantly. Standard bicubic interpolation blurs edges and creates a "soft" look. AI upscaling reconstructs realistic edge detail and texture, producing sharper, more natural-looking enlargements.',
+      },
+      {
+        q: 'What is the maximum input image size?',
+        a: '5 MB and 2000×2000 pixels for reliable processing. Very large inputs are processed in tiles, which can occasionally produce subtle tile boundaries at extreme sizes.',
+      },
+      {
+        q: 'Can I upscale multiple images at once?',
+        a: 'One image at a time due to GPU resource management. Processing each image takes 10–60 seconds.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Upload from your camera roll in any mobile browser. The upscaling happens on our server, so mobile CPU speed is not a limitation.',
+      },
+      {
+        q: 'Are my images stored after upscaling?',
+        a: 'No. Images are deleted from the GPU server immediately after the result is returned to your browser.',
+      },
+      {
+        q: 'Can the AI upscaler restore quality lost by JPEG compression?',
+        a: 'Yes — the model is trained to reconstruct detail from compressed inputs, and JPEG artifact removal is part of the upscaling process for photographic content.',
+      },
     ],
     proTips: [
       'Compress the input to remove JPEG artifacts before upscaling — clean pixels upscale better than noisy, artifact-laden ones, and the AI will reconstruct sharper detail from a cleaner source.',
@@ -1089,10 +1528,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'jpg-to-png': {
     slug: 'jpg-to-png',
     metaTitle: 'JPG to PNG Converter Free Online | RoughTools',
-    metaDescription: 'Convert JPG images to lossless PNG format online. Preserve quality, get transparency support. Free, instant.',
+    metaDescription:
+      'Convert JPG images to lossless PNG format online. Preserve quality, get transparency support. Free, instant.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/jpg-to-png',
-    ratingValue: '4.8',
-    reviewCount: '4921',
     aboutHTML: `
 <p>The <strong>JPG to PNG Converter</strong> converts JPEG images to PNG format, giving you a lossless copy of your photo that supports transparency and can be re-saved without quality degradation. While the conversion cannot restore quality lost in the original JPG compression, it "freezes" the current quality and prevents further loss during subsequent edits and saves.</p>
 <p>JPG to PNG conversion is needed for:</p>
@@ -1108,17 +1546,35 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>All conversion runs in your browser — images are never uploaded to any server. For adding a transparent background after converting, use the <a href="/tools/image-tools/background-remover">Background Remover</a>. If file size is a concern, the <a href="/tools/image-tools/image-compressor">Image Compressor</a> can reduce PNG file size significantly using palette optimization.</p>
     `,
     extraFaqs: [
-      { q: 'Does converting JPG to PNG improve image quality?', a: 'No — conversion preserves the current quality exactly but does not restore lost detail. Quality lost during the original JPG compression cannot be recovered.' },
-      { q: 'Why is the PNG file larger than the JPG?', a: 'JPG uses lossy compression that discards data to achieve small files. PNG stores all pixel data losslessly, resulting in files 2–5× larger than equivalent JPGs for photographs.' },
-      { q: 'Can I convert multiple JPGs to PNG at once?', a: 'Yes — select or drag multiple files and each is converted individually with a ZIP download option.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The conversion runs in any modern mobile browser.' },
-      { q: 'Are my images stored after conversion?', a: 'No. Conversion is entirely browser-based. No files are uploaded or stored.' },
-      { q: 'Will my JPG become transparent after converting to PNG?', a: 'No — JPEG has no transparency information to preserve, so the PNG output will have a solid opaque background. Use the Background Remover after conversion to create transparency.' },
+      {
+        q: 'Does converting JPG to PNG improve image quality?',
+        a: 'No — conversion preserves the current quality exactly but does not restore lost detail. Quality lost during the original JPG compression cannot be recovered.',
+      },
+      {
+        q: 'Why is the PNG file larger than the JPG?',
+        a: 'JPG uses lossy compression that discards data to achieve small files. PNG stores all pixel data losslessly, resulting in files 2–5× larger than equivalent JPGs for photographs.',
+      },
+      {
+        q: 'Can I convert multiple JPGs to PNG at once?',
+        a: 'Yes — select or drag multiple files and each is converted individually with a ZIP download option.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The conversion runs in any modern mobile browser.',
+      },
+      {
+        q: 'Are my images stored after conversion?',
+        a: 'No. Conversion is entirely browser-based. No files are uploaded or stored.',
+      },
+      {
+        q: 'Will my JPG become transparent after converting to PNG?',
+        a: 'No — JPEG has no transparency information to preserve, so the PNG output will have a solid opaque background. Use the Background Remover after conversion to create transparency.',
+      },
     ],
     proTips: [
-      'Convert to PNG before using the Background Remover — the AI works on PNG output with full alpha channel support, whereas JPG doesn\'t support transparency at all.',
+      "Convert to PNG before using the Background Remover — the AI works on PNG output with full alpha channel support, whereas JPG doesn't support transparency at all.",
       'For screenshots with text, always save as PNG rather than JPG — JPEG compression creates visible artifacts around sharp text edges that PNG avoids completely.',
-      'If you\'re working with a JPG that needs multiple rounds of editing, convert to PNG first — each JPG save loses quality, while PNG saves are lossless.',
+      "If you're working with a JPG that needs multiple rounds of editing, convert to PNG first — each JPG save loses quality, while PNG saves are lossless.",
       'After converting a JPG logo to PNG, check the edges at 200% zoom — JPEG artifacts around edges may need cleaning with the eraser tool in an image editor before using the PNG.',
     ],
   },
@@ -1127,10 +1583,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'meme-generator': {
     slug: 'meme-generator',
     metaTitle: 'Meme Generator Free Online — Create Memes | RoughTools',
-    metaDescription: 'Create memes with custom text on any image. Classic meme fonts, adjustable size. Free, instant, no signup.',
+    metaDescription:
+      'Create memes with custom text on any image. Classic meme fonts, adjustable size. Free, instant, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/meme-generator',
-    ratingValue: '4.8',
-    reviewCount: '5123',
     aboutHTML: `
 <p>The <strong>Meme Generator</strong> lets you add impact-font text captions to any image to create classic-style memes, reaction images, and humorous graphics for social media. Upload your own image or choose from popular meme templates, add top and bottom text in the traditional bold white-outlined style, and download your meme ready to share — all in seconds without any design software.</p>
 <p>The meme generator is used for:</p>
@@ -1143,20 +1598,38 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 </ul>
 <p>Text rendering uses the HTML5 Canvas 2D API. The classic meme style is achieved by rendering text in Impact or Arial Black font with white fill and a thick black stroke, which creates the high-contrast legibility that works on any background image. Text is horizontally centered and automatically line-wrapped to fit the image width. Font size auto-scales to fit the text within the image if the caption is very long. Multiple text boxes are supported for images requiring more than just top/bottom captions.</p>
 <p><strong>Input:</strong> upload any JPG, PNG, WebP, or GIF image. <strong>Text options:</strong> top text, bottom text, and additional text overlays. <strong>Style:</strong> Impact font (classic meme), Arial Black, Comic Sans, or custom font upload. <strong>Text color:</strong> white, black, or custom hex. <strong>Outline:</strong> adjustable stroke width. <strong>Text size:</strong> auto-fit or manual size control. <strong>Output:</strong> JPG or PNG download.</p>
-<p>All image processing and text rendering runs in your browser on the HTML5 Canvas. No image is uploaded to any server. Your custom images and captions remain private on your device. This is the safest meme creator for workplace, proprietary, or personal images that you don\'t want stored on third-party servers. Download the finished meme as JPG for smaller file size or PNG for crisp text edges.</p>
+<p>All image processing and text rendering runs in your browser on the HTML5 Canvas. No image is uploaded to any server. Your custom images and captions remain private on your device. This is the safest meme creator for workplace, proprietary, or personal images that you don't want stored on third-party servers. Download the finished meme as JPG for smaller file size or PNG for crisp text edges.</p>
     `,
     extraFaqs: [
-      { q: 'Will adding text reduce my image quality?', a: 'No — text is rendered on top of the image at full resolution. JPG output applies compression; PNG output is lossless.' },
-      { q: 'What is the maximum image size for the meme generator?', a: 'Images up to 20 MB and 4000×4000 pixels. Very wide images may require smaller text to maintain readability.' },
-      { q: 'Can I create multiple memes at once?', a: 'One meme at a time. Download each meme before creating the next.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Type your text, position it, and download your meme directly from any mobile browser.' },
-      { q: 'Are my images or memes stored after creation?', a: 'No. Everything runs in your browser. No image data is uploaded or stored.' },
-      { q: 'Can I use GIF images to create animated memes?', a: 'Static text is added to the first frame for GIF inputs — full animated GIF meme creation is not currently supported.' },
+      {
+        q: 'Will adding text reduce my image quality?',
+        a: 'No — text is rendered on top of the image at full resolution. JPG output applies compression; PNG output is lossless.',
+      },
+      {
+        q: 'What is the maximum image size for the meme generator?',
+        a: 'Images up to 20 MB and 4000×4000 pixels. Very wide images may require smaller text to maintain readability.',
+      },
+      {
+        q: 'Can I create multiple memes at once?',
+        a: 'One meme at a time. Download each meme before creating the next.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Type your text, position it, and download your meme directly from any mobile browser.',
+      },
+      {
+        q: 'Are my images or memes stored after creation?',
+        a: 'No. Everything runs in your browser. No image data is uploaded or stored.',
+      },
+      {
+        q: 'Can I use GIF images to create animated memes?',
+        a: 'Static text is added to the first frame for GIF inputs — full animated GIF meme creation is not currently supported.',
+      },
     ],
     proTips: [
       'Impact font at 100% opacity with a 4–6px black stroke is the classic meme style — for a more modern look, try a lighter font weight with a semi-transparent background bar behind the text.',
       'ALL CAPS text reads better in the classic Impact meme style — lowercase Impact looks unusual compared to what audiences expect from the format.',
-      'Adjust text size so each line fills 70–80% of the image width — text that\'s too small loses impact, and text too wide is hard to read quickly.',
+      "Adjust text size so each line fills 70–80% of the image width — text that's too small loses impact, and text too wide is hard to read quickly.",
       'For image memes shared on dark-background social apps, add a thin white outer stroke (2px) and a thicker black inner stroke (4px) — this ensures legibility on any background.',
     ],
   },
@@ -1165,10 +1638,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'passport-photo-maker': {
     slug: 'passport-photo-maker',
     metaTitle: 'Passport Photo Maker Free Online | RoughTools',
-    metaDescription: 'Create passport-ready photos at home in standard sizes. US, UK, EU formats. Free, instant download. No signup.',
+    metaDescription:
+      'Create passport-ready photos at home in standard sizes. US, UK, EU formats. Free, instant download. No signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/passport-photo-maker',
-    ratingValue: '4.8',
-    reviewCount: '3876',
     aboutHTML: `
 <p>The <strong>Passport Photo Maker</strong> formats your photo to meet the strict size and background requirements for passport applications, visa applications, and other official government documents. Instead of paying for a photo booth or photo studio, you can create compliant passport photos at home and print them on any color printer — saving money while getting instant results.</p>
 <p>Passport photo creation is needed for:</p>
@@ -1184,12 +1656,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Face detection runs locally in your browser. Background replacement is processed on our secure server and images are immediately deleted after the formatted photo is returned. No passport photos are stored or retained. Always verify your photo meets current requirements on the official government website before submitting, as specifications can be updated. Use the <a href="/tools/image-tools/id-card-photo-maker">ID Card Photo Maker</a> for non-passport ID formats.</p>
     `,
     extraFaqs: [
-      { q: 'Will the photo meet official passport requirements?', a: 'The tool follows published requirements. Requirements can change — always verify current specs on your country\'s official government website before submitting.' },
-      { q: 'What photo quality is needed for the best result?', a: 'Use a photo taken in good natural light against a plain light background, looking directly at the camera. Minimum 1000×1000px source photo gives the best output quality.' },
-      { q: 'Can I create multiple passport photos from one session?', a: 'Yes — the tool generates a print sheet with 4–6 copies of your passport photo formatted for 4×6 inch photo paper.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Photograph yourself and upload directly from your camera roll in any mobile browser.' },
-      { q: 'Is my photo stored after processing?', a: 'Background replacement is done on our server and images are deleted immediately after. Face detection runs locally in your browser.' },
-      { q: 'What if the auto-crop doesn\'t position my face correctly?', a: 'Use the manual adjustment handles to reposition and scale the crop frame after the auto-detect step. Full manual override is always available.' },
+      {
+        q: 'Will the photo meet official passport requirements?',
+        a: "The tool follows published requirements. Requirements can change — always verify current specs on your country's official government website before submitting.",
+      },
+      {
+        q: 'What photo quality is needed for the best result?',
+        a: 'Use a photo taken in good natural light against a plain light background, looking directly at the camera. Minimum 1000×1000px source photo gives the best output quality.',
+      },
+      {
+        q: 'Can I create multiple passport photos from one session?',
+        a: 'Yes — the tool generates a print sheet with 4–6 copies of your passport photo formatted for 4×6 inch photo paper.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Photograph yourself and upload directly from your camera roll in any mobile browser.',
+      },
+      {
+        q: 'Is my photo stored after processing?',
+        a: 'Background replacement is done on our server and images are deleted immediately after. Face detection runs locally in your browser.',
+      },
+      {
+        q: "What if the auto-crop doesn't position my face correctly?",
+        a: 'Use the manual adjustment handles to reposition and scale the crop frame after the auto-detect step. Full manual override is always available.',
+      },
     ],
     proTips: [
       'Photograph against a clean white or light gray wall with diffused natural light from a window — even lighting with no harsh shadows on the background gives the most compliant result.',
@@ -1203,10 +1693,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'photo-collage-maker': {
     slug: 'photo-collage-maker',
     metaTitle: 'Photo Collage Maker Free Online | RoughTools',
-    metaDescription: 'Create beautiful photo collages with multiple layout options. Free online collage tool, instant download, no signup.',
+    metaDescription:
+      'Create beautiful photo collages with multiple layout options. Free online collage tool, instant download, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/photo-collage-maker',
-    ratingValue: '4.9',
-    reviewCount: '5641',
     aboutHTML: `
 <p>The <strong>Photo Collage Maker</strong> combines multiple photos into a single composition using grid layouts, freeform arrangements, or classic collage styles. Perfect for creating social media posts, family keepsakes, event recaps, mood boards, and product showcases — the collage maker gives you professional-looking multi-photo compositions without any design experience.</p>
 <p>Photo collages are created for:</p>
@@ -1222,15 +1711,33 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>All photo processing runs in your browser — your photos are never uploaded to any server. The collage is assembled entirely on the local Canvas API. This means no internet connection is required after the page loads, and your private photos remain on your device throughout the entire process. For large-format printing, use PNG output at the highest resolution setting.</p>
     `,
     extraFaqs: [
-      { q: 'Will the collage reduce my photos\' quality?', a: 'Each photo is rendered at the full resolution of its canvas cell. PNG output is lossless. JPG output at 90% quality is near-imperceptible. Very small cells do reduce effective resolution.' },
-      { q: 'What is the maximum output resolution?', a: 'Up to 4000×4000 pixels for print-quality collages, or 2048×2048 for social media output. Canvas memory limits may restrict this on older mobile devices.' },
-      { q: 'Can I use photos from my phone camera roll?', a: 'Yes. Upload directly from your camera roll on any mobile browser. The tool works identically on iOS and Android.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. All collage creation runs in mobile browsers. Touch drag to reposition photos within cells.' },
-      { q: 'Are my photos stored after creating the collage?', a: 'No. Everything runs locally in your browser. No photos are uploaded or stored.' },
-      { q: 'Can I add text or captions to my collage?', a: 'Yes — add a global title at the top or bottom, and individual captions to each photo cell. Font, size, and color are customizable.' },
+      {
+        q: "Will the collage reduce my photos' quality?",
+        a: 'Each photo is rendered at the full resolution of its canvas cell. PNG output is lossless. JPG output at 90% quality is near-imperceptible. Very small cells do reduce effective resolution.',
+      },
+      {
+        q: 'What is the maximum output resolution?',
+        a: 'Up to 4000×4000 pixels for print-quality collages, or 2048×2048 for social media output. Canvas memory limits may restrict this on older mobile devices.',
+      },
+      {
+        q: 'Can I use photos from my phone camera roll?',
+        a: 'Yes. Upload directly from your camera roll on any mobile browser. The tool works identically on iOS and Android.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. All collage creation runs in mobile browsers. Touch drag to reposition photos within cells.',
+      },
+      {
+        q: 'Are my photos stored after creating the collage?',
+        a: 'No. Everything runs locally in your browser. No photos are uploaded or stored.',
+      },
+      {
+        q: 'Can I add text or captions to my collage?',
+        a: 'Yes — add a global title at the top or bottom, and individual captions to each photo cell. Font, size, and color are customizable.',
+      },
     ],
     proTips: [
-      'Use the 2048px output for social media — it\'s the sweet spot between file size and retina display sharpness on Instagram and Facebook.',
+      "Use the 2048px output for social media — it's the sweet spot between file size and retina display sharpness on Instagram and Facebook.",
       'Set gap to 0px for a seamless mosaic look, or 2–4px for a clean bordered grid. Avoid gaps over 8px — they look amateurish on most layouts.',
       'Crop all photos to the same aspect ratio before adding them to the collage — portrait and landscape photos mixed in equal cells look awkward and unbalanced.',
       'For printing, use PNG output at 3000px+ and send to a photo print service — JPG compression artifacts become visible on large prints at close viewing distance.',
@@ -1241,10 +1748,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'photo-to-cartoon': {
     slug: 'photo-to-cartoon',
     metaTitle: 'Photo to Cartoon — Cartoonize Photos Free Online',
-    metaDescription: 'Convert your photo into a cartoon or illustration style using AI. Free online tool, instant results, no signup.',
+    metaDescription:
+      'Convert your photo into a cartoon or illustration style using AI. Free online tool, instant results, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/photo-to-cartoon',
-    ratingValue: '4.6',
-    reviewCount: '3214',
     aboutHTML: `
 <p>The <strong>Photo to Cartoon</strong> tool uses AI style transfer to transform regular photographs into cartoon-style or illustrated artwork. The result replaces photographic realism with flat colors, bold outlines, and simplified shapes characteristic of animated illustrations — creating a distinctive visual style popular for social media avatars, digital art projects, and creative content.</p>
 <p>Photo-to-cartoon conversion is used for:</p>
@@ -1260,12 +1766,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Your photo is sent to our GPU processing server over HTTPS and deleted immediately after the cartoon result is returned. No images are stored or used for any machine learning training. Results vary significantly by input image — portraits with clear facial features and simple backgrounds produce the best cartoon conversions. Complex backgrounds or very dark photos may produce less defined results. After converting, use the <a href="/tools/image-tools/image-enhancer">Image Enhancer</a> to boost colors and contrast in the cartoon output.</p>
     `,
     extraFaqs: [
-      { q: 'How realistic is the cartoon conversion on portraits?', a: 'Portraits with clear, well-lit subjects on simple backgrounds produce the most recognizable cartoon results. The AI preserves facial structure and key features while applying illustration aesthetics.' },
-      { q: 'What image size is best for cartoon conversion?', a: 'Images between 500×500 and 2000×2000 pixels work best. Very small images lose detail during cartoonization; very large images take longer to process.' },
-      { q: 'Can I cartoonize multiple photos at once?', a: 'One photo at a time due to GPU resource requirements. Each conversion takes 10–30 seconds.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Upload from your camera roll and download the cartoon result in any mobile browser.' },
-      { q: 'Are my photos stored after cartoonization?', a: 'No. Photos are processed on our GPU server and immediately deleted after the result is returned.' },
-      { q: 'Which cartoon style works best for portrait photos?', a: 'Classic Cartoon or Anime styles work best for portraits — they preserve facial structure while applying recognizable illustration aesthetics. Watercolor style works beautifully on landscape and nature photos.' },
+      {
+        q: 'How realistic is the cartoon conversion on portraits?',
+        a: 'Portraits with clear, well-lit subjects on simple backgrounds produce the most recognizable cartoon results. The AI preserves facial structure and key features while applying illustration aesthetics.',
+      },
+      {
+        q: 'What image size is best for cartoon conversion?',
+        a: 'Images between 500×500 and 2000×2000 pixels work best. Very small images lose detail during cartoonization; very large images take longer to process.',
+      },
+      {
+        q: 'Can I cartoonize multiple photos at once?',
+        a: 'One photo at a time due to GPU resource requirements. Each conversion takes 10–30 seconds.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Upload from your camera roll and download the cartoon result in any mobile browser.',
+      },
+      {
+        q: 'Are my photos stored after cartoonization?',
+        a: 'No. Photos are processed on our GPU server and immediately deleted after the result is returned.',
+      },
+      {
+        q: 'Which cartoon style works best for portrait photos?',
+        a: 'Classic Cartoon or Anime styles work best for portraits — they preserve facial structure while applying recognizable illustration aesthetics. Watercolor style works beautifully on landscape and nature photos.',
+      },
     ],
     proTips: [
       'Use a portrait photo with a simple, uncluttered background — the AI focuses on the subject, and complex backgrounds can produce muddy, undefined cartoon edges.',
@@ -1279,10 +1803,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'pixel-density-calculator': {
     slug: 'pixel-density-calculator',
     metaTitle: 'Pixel Density Calculator Free Online | RoughTools',
-    metaDescription: 'Calculate PPI, DPI, and pixel density for screens and images. Enter resolution and size. Free, instant.',
+    metaDescription:
+      'Calculate PPI, DPI, and pixel density for screens and images. Enter resolution and size. Free, instant.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/pixel-density-calculator',
-    ratingValue: '4.7',
-    reviewCount: '1123',
     aboutHTML: `
 <p>The <strong>Pixel Density Calculator</strong> computes the pixels-per-inch (PPI) or dots-per-inch (DPI) of a screen or image given its resolution and physical size. PPI determines how sharp and detailed images appear on a display — the higher the PPI, the more detail visible at a given viewing distance. This calculator is essential for comparing displays, determining print requirements, and understanding whether an image has sufficient resolution for a specific use case.</p>
 <p>Pixel density calculation is needed for:</p>
@@ -1298,12 +1821,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>All calculations are performed mathematically in your browser — no server needed. For related work, use the <a href="/tools/image-tools/dpi-converter">DPI Converter</a> to change the DPI metadata stored in an image file, or the <a href="/tools/image-tools/image-size-checker">Image Size Checker</a> to read the current dimensions and DPI of an image file.</p>
     `,
     extraFaqs: [
-      { q: 'What is the difference between PPI and DPI?', a: 'PPI (pixels per inch) refers to screen pixel density. DPI (dots per inch) refers to print dot density. For digital images, they describe the same concept — how many pixels/dots fit in one inch at the given physical size.' },
-      { q: 'What PPI is needed for a "Retina" display?', a: 'Apple\'s Retina threshold is approximately 200–300 PPI at typical viewing distances — the point where individual pixels become imperceptible to the average human eye at normal use.' },
-      { q: 'Can I calculate DPI for any image file?', a: 'Yes — upload any image and the calculator reads its pixel dimensions and stored DPI metadata, then calculates the print size at that DPI.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Enter values or upload images in any mobile browser for instant calculation.' },
-      { q: 'Are my images stored during calculation?', a: 'No. Image dimensions are read locally in the browser. No file data is transmitted.' },
-      { q: 'What PPI should I design for mobile apps?', a: 'Design at 1× pixel density and export at 1×, 2×, and 3× (@1x, @2x, @3x) for different device densities. iOS devices range from 163 PPI (iPad) to 460 PPI (iPhone Pro Max), Android from 160 PPI to 570 PPI.' },
+      {
+        q: 'What is the difference between PPI and DPI?',
+        a: 'PPI (pixels per inch) refers to screen pixel density. DPI (dots per inch) refers to print dot density. For digital images, they describe the same concept — how many pixels/dots fit in one inch at the given physical size.',
+      },
+      {
+        q: 'What PPI is needed for a "Retina" display?',
+        a: "Apple's Retina threshold is approximately 200–300 PPI at typical viewing distances — the point where individual pixels become imperceptible to the average human eye at normal use.",
+      },
+      {
+        q: 'Can I calculate DPI for any image file?',
+        a: 'Yes — upload any image and the calculator reads its pixel dimensions and stored DPI metadata, then calculates the print size at that DPI.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Enter values or upload images in any mobile browser for instant calculation.',
+      },
+      {
+        q: 'Are my images stored during calculation?',
+        a: 'No. Image dimensions are read locally in the browser. No file data is transmitted.',
+      },
+      {
+        q: 'What PPI should I design for mobile apps?',
+        a: 'Design at 1× pixel density and export at 1×, 2×, and 3× (@1x, @2x, @3x) for different device densities. iOS devices range from 163 PPI (iPad) to 460 PPI (iPhone Pro Max), Android from 160 PPI to 570 PPI.',
+      },
     ],
     proTips: [
       'For print work, use the Print mode to quickly verify resolution sufficiency — enter your image dimensions and target print size to see if you have 300 DPI or need to upscale.',
@@ -1317,10 +1858,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'png-to-jpg': {
     slug: 'png-to-jpg',
     metaTitle: 'PNG to JPG Converter Free Online | RoughTools',
-    metaDescription: 'Convert PNG images to JPG format online. Reduce file size while maintaining visual quality. Free, instant.',
+    metaDescription:
+      'Convert PNG images to JPG format online. Reduce file size while maintaining visual quality. Free, instant.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/png-to-jpg',
-    ratingValue: '4.8',
-    reviewCount: '4312',
     aboutHTML: `
 <p>The <strong>PNG to JPG Converter</strong> converts PNG images to JPG format, significantly reducing file size for photos and images that don't require transparency. PNG's lossless compression is excellent for graphics, logos, and screenshots, but produces unnecessarily large files for photographs — converting to JPG at high quality settings can reduce file size by 60–80% with no visible quality difference in photographic content.</p>
 <p>PNG to JPG conversion is needed for:</p>
@@ -1336,17 +1876,35 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>No files are uploaded to any server — conversion runs entirely in your browser. For images requiring transparency, always keep the original PNG. To also optimize the resulting JPG further, use the <a href="/tools/image-tools/image-compressor">Image Compressor</a> after converting. For converting back to PNG, use the <a href="/tools/image-tools/jpg-to-png">JPG to PNG Converter</a>.</p>
     `,
     extraFaqs: [
-      { q: 'Will converting PNG to JPG reduce image quality?', a: 'At quality 90+, the difference is imperceptible for photographs. Images with flat colors, sharp edges, or text may show visible JPEG compression artifacts. Use quality 90–95 for those types of content.' },
-      { q: 'What happens to transparent areas in my PNG?', a: 'Transparent pixels are filled with the background color you choose (default: white) since JPG does not support transparency. If transparency is important, keep the PNG.' },
-      { q: 'Can I convert multiple PNGs to JPG at once?', a: 'Yes — select or drag multiple PNG files. They are all converted with the same quality setting and packaged in a ZIP archive.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. The conversion runs in any modern mobile browser.' },
-      { q: 'Are my images stored after conversion?', a: 'No. Conversion is browser-based. No files are uploaded or stored.' },
-      { q: 'What quality setting should I use?', a: '90% quality is recommended for general use — imperceptible quality loss with significant file size reduction. Use 95% for images with fine text or sharp graphics.' },
+      {
+        q: 'Will converting PNG to JPG reduce image quality?',
+        a: 'At quality 90+, the difference is imperceptible for photographs. Images with flat colors, sharp edges, or text may show visible JPEG compression artifacts. Use quality 90–95 for those types of content.',
+      },
+      {
+        q: 'What happens to transparent areas in my PNG?',
+        a: 'Transparent pixels are filled with the background color you choose (default: white) since JPG does not support transparency. If transparency is important, keep the PNG.',
+      },
+      {
+        q: 'Can I convert multiple PNGs to JPG at once?',
+        a: 'Yes — select or drag multiple PNG files. They are all converted with the same quality setting and packaged in a ZIP archive.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. The conversion runs in any modern mobile browser.',
+      },
+      {
+        q: 'Are my images stored after conversion?',
+        a: 'No. Conversion is browser-based. No files are uploaded or stored.',
+      },
+      {
+        q: 'What quality setting should I use?',
+        a: '90% quality is recommended for general use — imperceptible quality loss with significant file size reduction. Use 95% for images with fine text or sharp graphics.',
+      },
     ],
     proTips: [
       'Never convert PNG logos or graphics with text to JPG — JPEG compression creates visible artifacts around sharp edges and text that PNG avoids. Only convert photographic PNG content.',
-      'For web images, save at 85% JPG quality — it\'s the Google PageSpeed recommended quality that achieves the best size/quality balance for photographic content.',
-      'After converting to JPG, check the file size — if it\'s still over 500KB, apply additional compression using the Image Compressor for web-ready files.',
+      "For web images, save at 85% JPG quality — it's the Google PageSpeed recommended quality that achieves the best size/quality balance for photographic content.",
+      "After converting to JPG, check the file size — if it's still over 500KB, apply additional compression using the Image Compressor for web-ready files.",
       'When converting screenshots to JPG, be aware that UI text (menus, buttons) will show JPEG artifacts at quality below 90 — keep screenshots as PNG if text clarity matters.',
     ],
   },
@@ -1355,10 +1913,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'remove-watermark': {
     slug: 'remove-watermark',
     metaTitle: 'Remove Watermark from Image Free Online | RoughTools',
-    metaDescription: 'Remove watermarks from your own images using AI inpainting. For images you own. Free online tool.',
+    metaDescription:
+      'Remove watermarks from your own images using AI inpainting. For images you own. Free online tool.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/remove-watermark',
-    ratingValue: '4.5',
-    reviewCount: '2341',
     aboutHTML: `
 <p>The <strong>Remove Watermark</strong> tool uses AI-powered inpainting to remove watermarks, timestamps, logos, or unwanted text overlays from images. This tool is intended for removing watermarks from images you own or have rights to — for example, removing a watermark you applied yourself, removing a stock photo platform watermark from an image you have purchased and downloaded, or cleaning up your own photos that contain date stamps from old cameras.</p>
 <p>Legitimate watermark removal use cases include:</p>
@@ -1374,12 +1931,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>Your image is transmitted over HTTPS to our inpainting server and deleted immediately after the result is returned. Use the <a href="/tools/image-tools/add-watermark">Add Watermark</a> tool if you want to add watermarks to your own images for protection.</p>
     `,
     extraFaqs: [
-      { q: 'Will removal reduce the quality of the area under the watermark?', a: 'The inpainting AI synthesizes plausible content, but cannot recover original pixel data under the watermark. Simple backgrounds remove cleanly; complex detailed areas may show subtle artifacts.' },
-      { q: 'What is the maximum image size for watermark removal?', a: 'Images up to 10 MB. Larger images take longer to process — typically 10–30 seconds.' },
-      { q: 'Can I remove watermarks from multiple images at once?', a: 'Batch removal is not currently available. Process one image at a time.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Use the brush mask tool on a touchscreen and tap the remove button. Processing happens on the server.' },
-      { q: 'Are my images stored after processing?', a: 'No. Images are deleted from the inpainting server immediately after the result is returned.' },
-      { q: 'Is it legal to use this tool?', a: 'Only use this tool on images you own or have licensed. Removing watermarks from copyrighted images without authorization may violate copyright law — this tool is intended for legitimate use cases only.' },
+      {
+        q: 'Will removal reduce the quality of the area under the watermark?',
+        a: 'The inpainting AI synthesizes plausible content, but cannot recover original pixel data under the watermark. Simple backgrounds remove cleanly; complex detailed areas may show subtle artifacts.',
+      },
+      {
+        q: 'What is the maximum image size for watermark removal?',
+        a: 'Images up to 10 MB. Larger images take longer to process — typically 10–30 seconds.',
+      },
+      {
+        q: 'Can I remove watermarks from multiple images at once?',
+        a: 'Batch removal is not currently available. Process one image at a time.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Use the brush mask tool on a touchscreen and tap the remove button. Processing happens on the server.',
+      },
+      {
+        q: 'Are my images stored after processing?',
+        a: 'No. Images are deleted from the inpainting server immediately after the result is returned.',
+      },
+      {
+        q: 'Is it legal to use this tool?',
+        a: 'Only use this tool on images you own or have licensed. Removing watermarks from copyrighted images without authorization may violate copyright law — this tool is intended for legitimate use cases only.',
+      },
     ],
     proTips: [
       'Paint the mask slightly larger than the visible watermark — watermarks often have a semi-transparent fade area around the edges that must be included in the mask for clean removal.',
@@ -1393,10 +1968,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'round-corner-image': {
     slug: 'round-corner-image',
     metaTitle: 'Round Corner Image — Add Rounded Corners Free',
-    metaDescription: 'Add rounded corners to any image online. Adjustable border radius, transparent or colored background. Free.',
+    metaDescription:
+      'Add rounded corners to any image online. Adjustable border radius, transparent or colored background. Free.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/round-corner-image',
-    ratingValue: '4.7',
-    reviewCount: '1987',
     aboutHTML: `
 <p>The <strong>Round Corner Image</strong> tool applies rounded corners to any image, creating the clean, modern aesthetic used in app icons, profile pictures, card UI elements, and polished social media graphics. Adjust the corner radius from subtle rounding to fully circular, with the option to export as PNG with transparent corners or with a solid background color.</p>
 <p>Rounded corners are needed for:</p>
@@ -1412,15 +1986,33 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>All processing runs in your browser — no uploads, no server, no storage. The rounded result is generated locally and downloaded instantly. For creating a fully circular image (perfect circle crop), set the radius to exactly 50% of the shorter dimension. After rounding, use the <a href="/tools/image-tools/add-border">Add Border</a> tool to add a colored ring around the rounded edges.</p>
     `,
     extraFaqs: [
-      { q: 'Will rounding corners reduce image quality?', a: 'No — the pixel data inside the rounded area is preserved exactly. PNG output is lossless. Only the corners are removed (made transparent or filled).' },
-      { q: 'What is the maximum image size supported?', a: 'Images up to 20 MB and 8000×8000 pixels.' },
-      { q: 'Can I add rounded corners to multiple images at once?', a: 'One image at a time. For batch processing, apply the same radius to each image individually.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Adjust the radius slider and download the rounded image in any mobile browser.' },
-      { q: 'Are my images stored after processing?', a: 'No. All operations run in your browser. Nothing is uploaded or stored.' },
-      { q: 'How do I create a perfectly circular image?', a: 'Set the radius to exactly 50% on a square image. For non-square images, set the radius to half the shorter dimension in pixels — this creates an ellipse that fits the shorter axis.' },
+      {
+        q: 'Will rounding corners reduce image quality?',
+        a: 'No — the pixel data inside the rounded area is preserved exactly. PNG output is lossless. Only the corners are removed (made transparent or filled).',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Images up to 20 MB and 8000×8000 pixels.',
+      },
+      {
+        q: 'Can I add rounded corners to multiple images at once?',
+        a: 'One image at a time. For batch processing, apply the same radius to each image individually.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Adjust the radius slider and download the rounded image in any mobile browser.',
+      },
+      {
+        q: 'Are my images stored after processing?',
+        a: 'No. All operations run in your browser. Nothing is uploaded or stored.',
+      },
+      {
+        q: 'How do I create a perfectly circular image?',
+        a: 'Set the radius to exactly 50% on a square image. For non-square images, set the radius to half the shorter dimension in pixels — this creates an ellipse that fits the shorter axis.',
+      },
     ],
     proTips: [
-      'For iOS-style app icons, use a radius of approximately 22% of the icon width — Apple\'s icon mask uses a superellipse at roughly this radius.',
+      "For iOS-style app icons, use a radius of approximately 22% of the icon width — Apple's icon mask uses a superellipse at roughly this radius.",
       'Export as PNG with transparent background, then place the rounded image over any background in your design — this gives you flexibility to change the background color at any time.',
       'Use asymmetric corner radii for creative graphic design — large radius on two diagonal corners with sharp corners on the other two creates a distinctive modern shape.',
       'For profile photos displayed in circular frames by platforms (Instagram, Twitter), rounding your image to a circle beforehand ensures the subject is centered — platforms auto-crop otherwise.',
@@ -1431,10 +2023,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'screenshot-to-pdf': {
     slug: 'screenshot-to-pdf',
     metaTitle: 'Screenshot to PDF Converter Free Online | RoughTools',
-    metaDescription: 'Convert screenshots and images to PDF documents online. Combine multiple screenshots into one PDF. Free.',
+    metaDescription:
+      'Convert screenshots and images to PDF documents online. Combine multiple screenshots into one PDF. Free.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/screenshot-to-pdf',
-    ratingValue: '4.8',
-    reviewCount: '2876',
     aboutHTML: `
 <p>The <strong>Screenshot to PDF</strong> converter turns one or more screenshots, photos, or images into a PDF document. This is the fastest way to package multiple screenshots into a single shareable file — for bug reports, design reviews, expense receipt collections, test evidence documentation, or any workflow where multiple images need to be delivered as a single document rather than a folder of files.</p>
 <p>Converting screenshots to PDF is needed for:</p>
@@ -1450,12 +2041,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>PDF generation runs entirely in your browser using pdf-lib — no screenshots are uploaded to any server. This is critical for confidential screenshots containing passwords, financial information, or internal system data. The converted PDF is generated locally and downloaded directly to your device. For converting PDF back to images, use the <a href="/tools/image-tools/image-converter">Image Format Converter</a>.</p>
     `,
     extraFaqs: [
-      { q: 'Will the PDF quality match my original screenshots?', a: 'Yes — screenshots are embedded at full resolution in the PDF. JPG embedding uses 95% quality for minimal compression. PNG embedding is lossless.' },
-      { q: 'What is the maximum number of screenshots I can convert?', a: 'Up to 50 images per PDF document. For larger sets, create multiple PDFs and merge them with the PDF Merge tool.' },
-      { q: 'Can I control the order of pages in the PDF?', a: 'Yes — drag and drop the screenshot thumbnails to reorder them before clicking convert.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Upload screenshots from your camera roll or screenshot album in any mobile browser.' },
-      { q: 'Are my screenshots stored after PDF creation?', a: 'No. PDF generation is entirely browser-based. No screenshots or the resulting PDF are sent to any server.' },
-      { q: 'Can I add titles or page numbers to the PDF?', a: 'Basic title and page number overlay options are available. For advanced PDF formatting, use a desktop PDF editor.' },
+      {
+        q: 'Will the PDF quality match my original screenshots?',
+        a: 'Yes — screenshots are embedded at full resolution in the PDF. JPG embedding uses 95% quality for minimal compression. PNG embedding is lossless.',
+      },
+      {
+        q: 'What is the maximum number of screenshots I can convert?',
+        a: 'Up to 50 images per PDF document. For larger sets, create multiple PDFs and merge them with the PDF Merge tool.',
+      },
+      {
+        q: 'Can I control the order of pages in the PDF?',
+        a: 'Yes — drag and drop the screenshot thumbnails to reorder them before clicking convert.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Upload screenshots from your camera roll or screenshot album in any mobile browser.',
+      },
+      {
+        q: 'Are my screenshots stored after PDF creation?',
+        a: 'No. PDF generation is entirely browser-based. No screenshots or the resulting PDF are sent to any server.',
+      },
+      {
+        q: 'Can I add titles or page numbers to the PDF?',
+        a: 'Basic title and page number overlay options are available. For advanced PDF formatting, use a desktop PDF editor.',
+      },
     ],
     proTips: [
       'For technical documentation, keep screenshots at their native resolution and use "match image size" — this preserves every pixel detail rather than scaling to a paper size.',
@@ -1469,10 +2078,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'thumbnail-maker': {
     slug: 'thumbnail-maker',
     metaTitle: 'Thumbnail Maker — Create Thumbnails Free Online | RoughTools',
-    metaDescription: 'Create custom thumbnails for YouTube, blogs, and social media. Free online thumbnail maker, no signup.',
+    metaDescription:
+      'Create custom thumbnails for YouTube, blogs, and social media. Free online thumbnail maker, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/thumbnail-maker',
-    ratingValue: '4.8',
-    reviewCount: '3421',
     aboutHTML: `
 <p>The <strong>Thumbnail Maker</strong> creates visually compelling thumbnail images for YouTube videos, blog posts, podcasts, online courses, and social media content. A great thumbnail is the single most important factor in click-through rate for video and article content — this tool gives you the controls to create thumbnails that stand out in crowded feeds without professional design software.</p>
 <p>Thumbnail creation is needed for:</p>
@@ -1488,12 +2096,30 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>All thumbnail creation runs in your browser — no images or designs are sent to any server. The finished thumbnail is downloaded directly from the Canvas API. For resizing an existing image to thumbnail dimensions without adding text or overlays, use the <a href="/tools/image-tools/image-resizer">Image Resizer</a> instead.</p>
     `,
     extraFaqs: [
-      { q: 'Will the thumbnail quality be good enough for YouTube?', a: 'Yes — YouTube recommends 1280×720px at under 2 MB (JPG). The tool generates thumbnails at exactly these specifications with high image quality.' },
-      { q: 'What is the best thumbnail size for YouTube?', a: '1280×720px (HD, 16:9 aspect ratio) is the YouTube standard. Under 2 MB file size, JPG format. YouTube displays thumbnails at 320×180 in lists, so text must be large enough to read at that size.' },
-      { q: 'Can I create thumbnails for multiple videos at once?', a: 'One thumbnail at a time. Design a template and reuse it by changing the text and background image for each new thumbnail.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Design thumbnails directly in any mobile browser — touch to position text and elements.' },
-      { q: 'Are my designs stored after creating the thumbnail?', a: 'No. All design work runs in your browser. Nothing is uploaded or stored.' },
-      { q: 'Can I save my thumbnail template to reuse it?', a: 'Save the canvas state by exporting the design as a PNG with full resolution — you can reload it as a background for future thumbnails. Full template saving is not currently supported.' },
+      {
+        q: 'Will the thumbnail quality be good enough for YouTube?',
+        a: 'Yes — YouTube recommends 1280×720px at under 2 MB (JPG). The tool generates thumbnails at exactly these specifications with high image quality.',
+      },
+      {
+        q: 'What is the best thumbnail size for YouTube?',
+        a: '1280×720px (HD, 16:9 aspect ratio) is the YouTube standard. Under 2 MB file size, JPG format. YouTube displays thumbnails at 320×180 in lists, so text must be large enough to read at that size.',
+      },
+      {
+        q: 'Can I create thumbnails for multiple videos at once?',
+        a: 'One thumbnail at a time. Design a template and reuse it by changing the text and background image for each new thumbnail.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Design thumbnails directly in any mobile browser — touch to position text and elements.',
+      },
+      {
+        q: 'Are my designs stored after creating the thumbnail?',
+        a: 'No. All design work runs in your browser. Nothing is uploaded or stored.',
+      },
+      {
+        q: 'Can I save my thumbnail template to reuse it?',
+        a: 'Save the canvas state by exporting the design as a PNG with full resolution — you can reload it as a background for future thumbnails. Full template saving is not currently supported.',
+      },
     ],
     proTips: [
       'Use maximum 3 words of text on a YouTube thumbnail — thumbnails display at 320px wide in search results where more words become unreadable.',
@@ -1507,10 +2133,9 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
   'white-background-maker': {
     slug: 'white-background-maker',
     metaTitle: 'White Background Maker Free Online | RoughTools',
-    metaDescription: 'Add a white background to any image or transparent PNG. Perfect for product photos. Free, instant, no signup.',
+    metaDescription:
+      'Add a white background to any image or transparent PNG. Perfect for product photos. Free, instant, no signup.',
     canonicalUrl: 'https://roughtools.com/tools/image-tools/white-background-maker',
-    ratingValue: '4.8',
-    reviewCount: '3198',
     aboutHTML: `
 <p>The <strong>White Background Maker</strong> adds a solid white background to images with transparent areas (PNG files) or replaces existing backgrounds with clean white — the standard background used by Amazon, eBay, Etsy, and most e-commerce platforms for product listings. Professional product photography requires a pure white background, and this tool delivers it instantly without a photo studio or expensive software.</p>
 <p>A white background is essential for:</p>
@@ -1526,23 +2151,40 @@ export const imageToolSupplements: Record<string, ImageToolSupplement> = {
 <p>For transparent PNG inputs, processing runs entirely in your browser — no uploads needed. For non-transparent images requiring AI background removal, images are processed on our secure server and immediately deleted. No product images are stored or shared. After adding a white background, use the <a href="/tools/image-tools/image-compressor">Image Compressor</a> to reduce file size to meet e-commerce platform upload limits.</p>
     `,
     extraFaqs: [
-      { q: 'Will the white background change my product image quality?', a: 'For transparent PNGs, quality is fully preserved — only background pixels change. For AI background removal, product edges may have minor smoothing at high magnification.' },
-      { q: 'What is the maximum image size supported?', a: 'Up to 20 MB for transparent PNG (browser-based). Up to 10 MB for AI background replacement (server-based).' },
-      { q: 'Can I add white backgrounds to multiple product images at once?', a: 'Batch processing is not currently available. Process each product image individually.' },
-      { q: 'Does this work on iPhone and Android?', a: 'Yes. Upload product photos from your camera roll and download the white background result in any mobile browser.' },
-      { q: 'Are my product images stored after processing?', a: 'Transparent PNG processing is browser-based and nothing is uploaded. AI background removal is server-side with immediate deletion after processing.' },
-      { q: 'What white color should I use for Amazon product images?', a: 'Use pure white: #FFFFFF (RGB 255, 255, 255). Amazon requires the background to be pure white at 255 on all channels — off-white or near-white backgrounds may fail their review.' },
+      {
+        q: 'Will the white background change my product image quality?',
+        a: 'For transparent PNGs, quality is fully preserved — only background pixels change. For AI background removal, product edges may have minor smoothing at high magnification.',
+      },
+      {
+        q: 'What is the maximum image size supported?',
+        a: 'Up to 20 MB for transparent PNG (browser-based). Up to 10 MB for AI background replacement (server-based).',
+      },
+      {
+        q: 'Can I add white backgrounds to multiple product images at once?',
+        a: 'Batch processing is not currently available. Process each product image individually.',
+      },
+      {
+        q: 'Does this work on iPhone and Android?',
+        a: 'Yes. Upload product photos from your camera roll and download the white background result in any mobile browser.',
+      },
+      {
+        q: 'Are my product images stored after processing?',
+        a: 'Transparent PNG processing is browser-based and nothing is uploaded. AI background removal is server-side with immediate deletion after processing.',
+      },
+      {
+        q: 'What white color should I use for Amazon product images?',
+        a: 'Use pure white: #FFFFFF (RGB 255, 255, 255). Amazon requires the background to be pure white at 255 on all channels — off-white or near-white backgrounds may fail their review.',
+      },
     ],
     proTips: [
-      'For Amazon main product images, verify the background is pure #FFFFFF by checking the pixel values in the corners with the Image Color Picker — any value below 255 on any channel may fail Amazon\'s automated image review.',
+      "For Amazon main product images, verify the background is pure #FFFFFF by checking the pixel values in the corners with the Image Color Picker — any value below 255 on any channel may fail Amazon's automated image review.",
       'Photograph products on a white foam board with soft diffused lighting from two sides — this reduces the background replacement work needed and produces cleaner edges on the product.',
       'After adding a white background, compress the JPG to under 1 MB before uploading to Amazon — their system auto-compresses oversized images in ways you cannot control, which may reduce quality.',
       'For products with fine details at the edges (jewelry, fabric textures, hair accessories), review the edges at 200% zoom after AI background removal — manually clean any missed background pixels before downloading.',
     ],
   },
-
-}
+};
 
 export function getImageToolSupplement(slug: string): ImageToolSupplement | undefined {
-  return imageToolSupplements[slug]
+  return imageToolSupplements[slug];
 }
