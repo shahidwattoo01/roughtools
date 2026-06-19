@@ -100,7 +100,7 @@ const nextConfig = {
 
   webpack: (config, { dev, isServer }) => {
     if (isServer) {
-      const serverOnlyPkgs = ['pdfjs-dist', 'canvas', 'pdf-parse', 'mammoth', 'docx', 'xlsx', 'jszip', 'pdf-lib', 'pptxgenjs']
+      const serverOnlyPkgs = ['pdfjs-dist', 'canvas', '@napi-rs/canvas', 'pdf-parse', 'mammoth', 'docx', 'xlsx', 'jszip', 'pdf-lib', 'pptxgenjs']
       const existingExternals = Array.isArray(config.externals)
         ? config.externals
         : config.externals
@@ -186,7 +186,7 @@ const nextConfig = {
     // ── Server-only heavy packages ─────────────────────────────
     // Pre-bundle so each cold-start doesn't re-parse them.
     serverComponentsExternalPackages: [
-      'pdfjs-dist', 'canvas', 'pdf-parse',
+      'pdfjs-dist', 'canvas', '@napi-rs/canvas', 'pdf-parse',
       'mammoth', 'docx', 'xlsx', 'jszip',
       'pdf-lib', 'pptxgenjs', 'fabric',
     ],
