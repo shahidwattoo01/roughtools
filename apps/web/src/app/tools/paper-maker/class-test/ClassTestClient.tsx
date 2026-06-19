@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { BOARDS, getSubjectsByClass } from '../data/boards';
-import type { BoardId, ClassLevel } from '../data/boards';
+import { getSubjectsByClass } from '../data/boards';
+import type { ClassLevel } from '../data/boards';
 import { QUESTIONS, sampleQuestions } from '../data/questions';
 import type { Question } from '../data/questions';
 
@@ -11,7 +11,6 @@ type Step = 1 | 2 | 3;
 export default function ClassTestClient() {
   const [step, setStep] = useState<Step>(1);
   const [classLevel, setClassLevel] = useState<ClassLevel>(9);
-  const [boardId, setBoardId] = useState<BoardId>('lahore');
   const [subjectId, setSubjectId] = useState('');
   const [chapters, setChapters] = useState<number[]>([]);
   const [mcqCount, setMcqCount] = useState(10);
@@ -99,7 +98,7 @@ export default function ClassTestClient() {
         {step === 1 && (
           <>
             <div className="bg-white dark:bg-[#1e1e1e] rounded-2xl border border-gray-200 dark:border-white/10 p-6">
-              <h2 className="font-bold text-gray-900 dark:text-white mb-4">Select Class & Board</h2>
+              <h2 className="font-bold text-gray-900 dark:text-white mb-4">Select Class</h2>
               <div className="grid grid-cols-6 gap-2 mb-4">
                 {([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as ClassLevel[]).map((cl) => (
                   <button
@@ -112,21 +111,6 @@ export default function ClassTestClient() {
                     className={`py-2.5 rounded-xl border-2 font-bold text-sm transition-all ${classLevel === cl ? 'border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600' : 'border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-sky-300'}`}
                   >
                     {cl}
-                  </button>
-                ))}
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                {BOARDS.map((b) => (
-                  <button
-                    key={b.id}
-                    onClick={() => setBoardId(b.id)}
-                    className={`p-3 rounded-xl border-2 text-left text-sm transition-all ${boardId === b.id ? 'border-sky-500 bg-sky-50 dark:bg-sky-950/40' : 'border-gray-200 dark:border-white/10 hover:border-sky-300'}`}
-                  >
-                    <div
-                      className={`font-semibold ${boardId === b.id ? 'text-sky-700 dark:text-sky-300' : 'text-gray-900 dark:text-white'}`}
-                    >
-                      {b.name}
-                    </div>
                   </button>
                 ))}
               </div>
@@ -329,8 +313,7 @@ export default function ClassTestClient() {
                   </div>
                 )}
                 <div className="text-center text-sm text-gray-600 mb-3">
-                  {BOARDS.find((b) => b.id === boardId)?.name} — Class Test{' '}
-                  {new Date().getFullYear()}
+                  Class Test {new Date().getFullYear()}
                 </div>
                 <div className="grid grid-cols-3 text-sm border border-gray-300">
                   <div className="p-2 border-r border-gray-300">

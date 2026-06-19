@@ -1,15 +1,8 @@
 'use client';
 
 import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
-import { BOARDS, SUBJECTS, getSubjectsByClass, getDefaultPattern } from '../data/boards';
-import type {
-  BoardId,
-  ClassLevel,
-  Subject,
-  PatternSection,
-  QuestionType,
-  Difficulty,
-} from '../data/boards';
+import { SUBJECTS, getSubjectsByClass, getDefaultPattern } from '../data/boards';
+import type { ClassLevel, Subject, PatternSection, QuestionType, Difficulty } from '../data/boards';
 import { QUESTIONS, sampleQuestions } from '../data/questions';
 import type { Question } from '../data/questions';
 import {
@@ -24,7 +17,6 @@ import {
 
 interface PaperConfig {
   classLevel: ClassLevel;
-  boardId: BoardId;
   subjectId: string;
   chapters: number[];
   sections: PatternSection[];
@@ -45,7 +37,7 @@ interface GeneratedPaper {
 // ─── Step indicators ─────────────────────────────────────────────
 
 const STEPS = [
-  { id: 1, label: 'Class & Board' },
+  { id: 1, label: 'Select Class' },
   { id: 2, label: 'Subject & Chapters' },
   { id: 3, label: 'Paper Setup' },
   { id: 4, label: 'Branding' },
@@ -67,7 +59,6 @@ export default function PaperGeneratorClient() {
 
   // form state
   const [classLevel, setClassLevel] = useState<ClassLevel>(9);
-  const [boardId, setBoardId] = useState<BoardId>('lahore');
   const [subjectId, setSubjectId] = useState('');
   const [selectedChapters, setSelectedChapters] = useState<number[]>([]);
   const [sections, setSections] = useState<PatternSection[]>([]);
@@ -221,7 +212,6 @@ export default function PaperGeneratorClient() {
 
     const config: PaperConfig = {
       classLevel,
-      boardId,
       subjectId,
       chapters: selectedChapters,
       sections,
@@ -266,7 +256,6 @@ export default function PaperGeneratorClient() {
     }, 600);
   }, [
     classLevel,
-    boardId,
     subjectId,
     selectedChapters,
     sections,
@@ -380,30 +369,6 @@ export default function PaperGeneratorClient() {
                     <div className="text-[10px] font-normal text-gray-500 mt-0.5">
                       {cl <= 5 ? 'Primary' : cl <= 8 ? 'Middle' : cl <= 10 ? 'Matric' : 'Inter'}
                     </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-white dark:bg-[#1e1e1e] rounded-2xl border border-gray-200 dark:border-white/10 p-6">
-              <h2 className="text-lg font-bold mb-5 text-gray-900 dark:text-white">Select Board</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {BOARDS.map((b) => (
-                  <button
-                    key={b.id}
-                    onClick={() => setBoardId(b.id)}
-                    className={`p-4 rounded-xl border-2 text-left transition-all ${
-                      boardId === b.id
-                        ? 'border-sky-500 bg-sky-50 dark:bg-sky-950/40'
-                        : 'border-gray-200 dark:border-white/10 hover:border-sky-300'
-                    }`}
-                  >
-                    <div
-                      className={`font-semibold text-sm ${boardId === b.id ? 'text-sky-700 dark:text-sky-300' : 'text-gray-900 dark:text-white'}`}
-                    >
-                      {b.name}
-                    </div>
-                    <div className="text-xs text-gray-500 mt-0.5">{b.province}</div>
                   </button>
                 ))}
               </div>
@@ -1040,7 +1005,6 @@ export default function PaperGeneratorClient() {
                     label: 'Class',
                     value: `Class ${classLevel} (${classLevel <= 10 ? 'Matric' : 'Intermediate'})`,
                   },
-                  { label: 'Board', value: BOARDS.find((b) => b.id === boardId)?.name || boardId },
                   { label: 'Subject', value: currentSubject?.name || subjectId },
                   { label: 'Total Marks', value: String(totalMarks) },
                   { label: 'Time', value: `${timeMinutes} min` },
@@ -1149,7 +1113,6 @@ export default function PaperGeneratorClient() {
 
 function PaperPreview({ paper }: { paper: GeneratedPaper }) {
   const { config, sections } = paper;
-  const board = BOARDS.find((b) => b.id === config.boardId);
   const subject = SUBJECTS.find((s) => s.id === config.subjectId);
 
   return (
@@ -1163,7 +1126,7 @@ function PaperPreview({ paper }: { paper: GeneratedPaper }) {
             </div>
           )}
           <div className="text-center text-sm text-gray-600 mb-4 print:text-black">
-            {board?.name} — Annual Examination {new Date().getFullYear()}
+            Annual Examination {new Date().getFullYear()}
           </div>
 
           <div className="grid grid-cols-3 text-sm border border-gray-300 print:border-black">

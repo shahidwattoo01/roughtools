@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { BOARDS, getSubjectsByClass } from '../data/boards';
-import type { BoardId, ClassLevel } from '../data/boards';
+import { getSubjectsByClass } from '../data/boards';
+import type { ClassLevel } from '../data/boards';
 import { QUESTIONS, sampleQuestions } from '../data/questions';
 import type { Question } from '../data/questions';
 
@@ -33,7 +33,6 @@ interface SetPaper {
 
 export default function PaperShufflerClient() {
   const [classLevel, setClassLevel] = useState<ClassLevel>(9);
-  const [boardId, setBoardId] = useState<BoardId>('lahore');
   const [subjectId, setSubjectId] = useState('physics');
   const [mcqCount, setMcqCount] = useState(15);
   const [shortCount, setShortCount] = useState(6);
@@ -93,20 +92,6 @@ export default function PaperShufflerClient() {
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((c) => (
                       <option key={c} value={c}>
                         Class {c}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-gray-500 mb-1.5">Board</label>
-                  <select
-                    value={boardId}
-                    onChange={(e) => setBoardId(e.target.value as BoardId)}
-                    className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg bg-white dark:bg-white/5 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500"
-                  >
-                    {BOARDS.map((b) => (
-                      <option key={b.id} value={b.id}>
-                        {b.name}
                       </option>
                     ))}
                   </select>
@@ -268,8 +253,7 @@ export default function PaperShufflerClient() {
                     </div>
                   )}
                   <div className="text-center text-sm text-gray-600 mb-2">
-                    {BOARDS.find((b) => b.id === boardId)?.name} — {subject?.name} — Class{' '}
-                    {classLevel}
+                    {subject?.name} — Class {classLevel}
                   </div>
                   <div className="text-center">
                     <span className="inline-block bg-gray-900 text-white font-black text-2xl px-6 py-1 rounded-lg">

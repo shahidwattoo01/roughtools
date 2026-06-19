@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { BOARDS, getSubjectsByClass } from '../data/boards';
-import type { BoardId, ClassLevel } from '../data/boards';
+import { getSubjectsByClass } from '../data/boards';
+import type { ClassLevel } from '../data/boards';
 import { QUESTIONS, sampleQuestions } from '../data/questions';
 import type { Question } from '../data/questions';
 
@@ -15,7 +15,6 @@ function toUrduQuestion(_q: string): string {
 
 export default function BilingualClient() {
   const [classLevel, setClassLevel] = useState<ClassLevel>(9);
-  const [boardId, setBoardId] = useState<BoardId>('lahore');
   const [subjectId, setSubjectId] = useState('physics');
   const [medium, setMedium] = useState<PaperMedium>('bilingual');
   const [mcqCount, setMcqCount] = useState(15);
@@ -25,7 +24,6 @@ export default function BilingualClient() {
 
   const subjects = useMemo(() => getSubjectsByClass(classLevel), [classLevel]);
   const subject = subjects.find((s) => s.id === subjectId);
-  const board = BOARDS.find((b) => b.id === boardId);
 
   const generate = () => {
     const mcqPool = QUESTIONS.filter(
@@ -100,20 +98,6 @@ export default function BilingualClient() {
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((c) => (
                       <option key={c} value={c}>
                         Class {c}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-gray-500 mb-1.5">Board</label>
-                  <select
-                    value={boardId}
-                    onChange={(e) => setBoardId(e.target.value as BoardId)}
-                    className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg bg-white dark:bg-white/5 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500"
-                  >
-                    {BOARDS.map((b) => (
-                      <option key={b.id} value={b.id}>
-                        {b.name}
                       </option>
                     ))}
                   </select>
@@ -218,15 +202,11 @@ export default function BilingualClient() {
                   </div>
                 )}
                 <div className="text-center text-sm text-gray-600 mb-3">
-                  {showEn && (
-                    <span>
-                      {board?.name} — Annual Examination {new Date().getFullYear()}
-                    </span>
-                  )}
+                  {showEn && <span>Annual Examination {new Date().getFullYear()}</span>}
                   {medium === 'bilingual' && <span className="mx-2 text-gray-400">|</span>}
                   {showUr && (
                     <span style={{ fontFamily: 'serif', direction: 'rtl' }}>
-                      {board?.nameUrdu} — سالانہ امتحان {new Date().getFullYear()}
+                      سالانہ امتحان {new Date().getFullYear()}
                     </span>
                   )}
                 </div>
