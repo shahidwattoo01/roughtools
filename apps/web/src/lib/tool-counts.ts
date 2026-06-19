@@ -14,10 +14,10 @@
  */
 
 /** Total real tool count across all category hubs (authoritative). */
-export const TOTAL_REAL_TOOLS = 604 as const
+export const TOTAL_REAL_TOOLS = 611 as const;
 
 /**
  * Calculators count — kept in sync with calculator-tool-configs.ts.
  * (FINANCIAL + FITNESS + MATH + OTHER)
  */
-export const TOTAL_CALC_COUNT = 203 as const
+export const TOTAL_CALC_COUNT = 203 as const;

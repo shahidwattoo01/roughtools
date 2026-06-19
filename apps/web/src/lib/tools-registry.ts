@@ -3128,7 +3128,81 @@ const REGISTRY_TOOLS: Tool[] = [
     priority: 0.85,
   },
 
-  // ─── NOTES MAKER ────────────────────────────────────────────
+  // ─── PAPER MAKER ────────────────────────────────────────────
+  {
+    slug: 'generate',
+    name: 'Exam Paper Generator',
+    category: 'paper-maker',
+    description:
+      'Generate complete board-pattern exam papers for Classes 1–12. Select class, subject and chapters — download a ready-to-print PDF.',
+    keywords: [
+      'exam paper generator',
+      'paper maker',
+      'question paper',
+      'pakistani board',
+      'matric paper',
+      'intermediate paper',
+    ],
+    popular: true,
+    isNew: true,
+    priority: 0.9,
+  },
+  {
+    slug: 'mcq-bank',
+    name: 'MCQ Question Bank',
+    category: 'paper-maker',
+    description:
+      'Browse and filter MCQs by subject, chapter, and difficulty. Add custom questions with image upload support.',
+    keywords: [
+      'mcq bank',
+      'multiple choice questions',
+      'question bank',
+      'pakistan mcqs',
+      'matric mcqs',
+    ],
+    isNew: true,
+    priority: 0.85,
+  },
+  {
+    slug: 'class-test',
+    name: 'Class Test Builder',
+    category: 'paper-maker',
+    description:
+      'Build short class tests in 30 seconds. Set custom MCQ and short question counts, time, and marks.',
+    keywords: ['class test', 'test builder', 'short test', 'quiz maker', 'pakistan class test'],
+    isNew: true,
+    priority: 0.83,
+  },
+  {
+    slug: 'answer-key',
+    name: 'Answer Key Generator',
+    category: 'paper-maker',
+    description:
+      'Auto-generate formatted answer keys from the question bank, or enter answers manually.',
+    keywords: ['answer key generator', 'answer key', 'marking scheme', 'pakistan exam answer key'],
+    isNew: true,
+    priority: 0.8,
+  },
+  {
+    slug: 'paper-shuffler',
+    name: 'Paper Shuffler',
+    category: 'paper-maker',
+    description:
+      'Create Set A, B, C, D with shuffled questions and MCQ options — prevents cheating in exams.',
+    keywords: ['paper shuffler', 'exam sets', 'question shuffler', 'anti-cheating exam'],
+    isNew: true,
+    priority: 0.8,
+  },
+  {
+    slug: 'bilingual',
+    name: 'Bilingual Paper Maker',
+    category: 'paper-maker',
+    description:
+      'Generate exam papers in English only, Urdu only, or bilingual format with both languages side by side.',
+    keywords: ['bilingual paper', 'urdu paper', 'english urdu exam', 'pakistan bilingual paper'],
+    isNew: true,
+    priority: 0.8,
+  },
   {
     slug: 'notes',
     name: 'Notes Maker',
@@ -4536,9 +4610,9 @@ export const TOTAL_TOOLS = ALL_TOOLS.length;
  *   Calculators 203 · Engineering 126 · Medical 113 · Image Tools 38
  *   PDF 31 · Developer 19 · Text 10 · Security 9 · Converters 8
  *   Legal 8 · Real Estate 8 · Network 7 · Document Tools 11
- *   Business 6 · Environment 6 · IQ Test 1
- *   Total: 604
+ *   Business 6 · Environment 6 · IQ Test 1 · Paper Maker 7
+ *   Total: 611
  *
  * Update this when new hub tools are added. Registry-only tools use TOTAL_TOOLS.
  */
-export const TOTAL_REAL_TOOLS = 604 as const;
+export const TOTAL_REAL_TOOLS = 611 as const;
