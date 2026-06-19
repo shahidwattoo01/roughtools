@@ -31,8 +31,7 @@ const CATEGORIES: Category[] = [
   { slug: 'real-estate', label: 'Real Estate', emoji: 'ðŸ ', count: 42 },
   { slug: 'security', label: 'Security', emoji: 'ðŸ”’', count: 8 },
   { slug: 'document-tools', label: 'Documents', emoji: 'ðŸ”‹', count: 9 },
-  { slug: 'paper-maker', label: 'Paper Maker', emoji: '📝', count: 6 },
-  { slug: 'notes-maker', label: 'Notes Maker', emoji: '📝', count: 1 },
+  { slug: 'paper-maker', label: 'Paper Maker', emoji: '📝', count: 7 },
 ];
 
 interface CategoryNavProps {

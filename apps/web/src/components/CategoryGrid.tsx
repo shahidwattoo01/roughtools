@@ -22,7 +22,6 @@ import {
   IconArrowsExchange,
   IconBriefcase,
   IconNetwork,
-  IconNotebook,
 } from '@tabler/icons-react';
 import { TOTAL_CALC_COUNT } from '@/lib/tool-counts';
 
@@ -176,21 +175,12 @@ const CATEGORIES = [
   },
   {
     name: 'Paper Maker',
-    count: 6,
+    count: 7,
     href: '/tools/paper-maker',
     icon: IconFileText,
     bg: '#e0f2fe',
     color: '#0369a1',
     darkBg: 'rgba(3,105,161,0.18)',
-  },
-  {
-    name: 'Notes Maker',
-    count: 1,
-    href: '/tools/notes-maker',
-    icon: IconNotebook,
-    bg: '#ede9fe',
-    color: '#7c3aed',
-    darkBg: 'rgba(124,58,237,0.18)',
   },
 ];
 

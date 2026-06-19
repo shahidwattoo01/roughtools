@@ -57,6 +57,14 @@ const TOOLS = [
     badge: 'Live',
     badgeColor: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
   },
+  {
+    name: 'Notes Maker',
+    desc: 'Block-based note editor for Classes 1–12. Headings, bullets, formulas, flashcards, definitions — saved offline, print-ready.',
+    emoji: '📝',
+    href: '/tools/notes-maker/app',
+    badge: 'Live',
+    badgeColor: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+  },
 ];
 
 const BOARDS = [

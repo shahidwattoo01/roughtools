@@ -28,8 +28,7 @@ export type ToolCategory =
   | 'engineering'
   | 'medical'
   | 'iq-test'
-  | 'paper-maker'
-  | 'notes-maker';
+  | 'paper-maker';
 
 export interface Tool {
   slug: string;
@@ -3133,7 +3132,7 @@ const REGISTRY_TOOLS: Tool[] = [
   {
     slug: 'notes',
     name: 'Notes Maker',
-    category: 'notes-maker',
+    category: 'paper-maker',
     description:
       'Free block-based note editor for Pakistani students (Classes 1–12). Headings, bullets, formulas, flashcards, definitions — all saved offline, print-ready.',
     keywords: [

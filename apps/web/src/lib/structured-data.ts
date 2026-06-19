@@ -282,7 +282,6 @@ function getCategoryApplicationType(category: ToolCategory): string {
     medical: 'HealthApplication',
     'iq-test': 'UtilitiesApplication',
     'paper-maker': 'EducationalApplication',
-    'notes-maker': 'EducationalApplication',
   };
   return types[category] || 'WebApplication';
 }
