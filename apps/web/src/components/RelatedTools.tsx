@@ -33,6 +33,7 @@ const CAT_COLOR: Record<ToolCategory, string> = {
   environment: '#84cc16',
   'iq-test': '#a21caf',
   'paper-maker': '#0369a1',
+  'notes-maker': '#7c3aed',
 };
 
 // ─── Tiny SVG icons ───────────────────────────────────────────────────────────

@@ -206,6 +206,7 @@ export const POPULAR_TOOL_SLUGS_BY_CATEGORY: Record<ToolCategory, string[]> = {
   ],
   'iq-test': [],
   'paper-maker': [],
+  'notes-maker': [],
 };
 
 // ─── CORE FUNCTIONS ──────────────────────────────────────────

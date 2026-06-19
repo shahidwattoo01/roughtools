@@ -140,8 +140,15 @@ const ALL_CATEGORIES = [
     name: 'Paper Maker',
     desc: 'Generate exam papers, question banks, and class tests for Pakistani boards',
     href: '/tools/paper-maker',
-    count: 1,
+    count: 6,
     accent: '#0369a1',
+  },
+  {
+    name: 'Notes Maker',
+    desc: 'Block-based note editor for Pakistani students — headings, formulas, flashcards, offline',
+    href: '/tools/notes-maker',
+    count: 1,
+    accent: '#7c3aed',
   },
 ] as const;
 

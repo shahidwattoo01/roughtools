@@ -28,7 +28,8 @@ export type ToolCategory =
   | 'engineering'
   | 'medical'
   | 'iq-test'
-  | 'paper-maker';
+  | 'paper-maker'
+  | 'notes-maker';
 
 export interface Tool {
   slug: string;
@@ -3126,6 +3127,28 @@ const REGISTRY_TOOLS: Tool[] = [
       'MACRS depreciation',
     ],
     priority: 0.85,
+  },
+
+  // ─── NOTES MAKER ────────────────────────────────────────────
+  {
+    slug: 'notes',
+    name: 'Notes Maker',
+    category: 'notes-maker',
+    description:
+      'Free block-based note editor for Pakistani students (Classes 1–12). Headings, bullets, formulas, flashcards, definitions — all saved offline, print-ready.',
+    keywords: [
+      'notes maker',
+      'student notes',
+      'study notes',
+      'flashcards',
+      'class notes',
+      'pakistan notes',
+      'note editor',
+      'offline notes',
+    ],
+    popular: true,
+    isNew: true,
+    priority: 0.9,
   },
 
   // ─── MEDICAL ───────────────────────────────────────────────────────────

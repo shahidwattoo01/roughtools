@@ -23,6 +23,7 @@ export const OG_CATEGORY_GRADIENTS: Record<ToolCategory, { from: string; to: str
   medical: { from: '#10b981', to: '#065f46' },
   'iq-test': { from: '#a21caf', to: '#581c87' },
   'paper-maker': { from: '#0369a1', to: '#1e3a5f' },
+  'notes-maker': { from: '#7c3aed', to: '#4c1d95' },
 };
 
 export const OG_CATEGORY_EMOJIS: Record<ToolCategory, string> = {
@@ -43,6 +44,7 @@ export const OG_CATEGORY_EMOJIS: Record<ToolCategory, string> = {
   medical: '🩺',
   'iq-test': '🧠',
   'paper-maker': '📝',
+  'notes-maker': '📝',
 };
 
 export const OG_CATEGORY_LABELS: Record<ToolCategory, string> = {
@@ -63,6 +65,7 @@ export const OG_CATEGORY_LABELS: Record<ToolCategory, string> = {
   medical: 'Medical & Health Tools',
   'iq-test': 'IQ Test — Cognitive Assessment',
   'paper-maker': 'Paper Maker — Exam Paper Generator',
+  'notes-maker': 'Notes Maker — Student Notes Editor',
 };
 
 /** Get OG image URL for a tool */

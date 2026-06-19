@@ -222,6 +222,19 @@ const CAT_ICON: Record<ToolCategory, React.ReactNode> = {
       <line x1="16" y1="17" x2="8" y2="17" />
     </svg>
   ),
+  'notes-maker': (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 20h9" />
+      <path d="M16.376 3.622a1 1 0 013.002 3.002L7.368 18.635a2 2 0 01-.855.506l-2.872.864a.5.5 0 01-.62-.62l.864-2.872a2 2 0 01.506-.855z" />
+    </svg>
+  ),
 };
 
 // ─── Category accent colors ───────────────────────────────────
@@ -243,6 +256,7 @@ const CAT_COLOR: Record<ToolCategory, string> = {
   medical: '#14b8a6',
   'iq-test': '#a21caf',
   'paper-maker': '#0369a1',
+  'notes-maker': '#7c3aed',
 };
 
 const CAT_LABEL: Record<ToolCategory, string> = {
@@ -263,6 +277,7 @@ const CAT_LABEL: Record<ToolCategory, string> = {
   medical: 'Medical',
   'iq-test': 'IQ Test',
   'paper-maker': 'Paper Maker',
+  'notes-maker': 'Notes Maker',
 };
 
 // ─── Props ────────────────────────────────────────────────────

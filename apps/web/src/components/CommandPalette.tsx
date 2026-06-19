@@ -262,6 +262,20 @@ const CAT_ICONS: Record<ToolCategory, React.ReactNode> = {
       <path d="M9.5 2A2.5 2.5 0 0112 4.5v15a2.5 2.5 0 01-4.96.44 2.5 2.5 0 01-2.96-3.08 3 3 0 01-.34-5.58 2.5 2.5 0 013.76-3.28M14.5 2A2.5 2.5 0 0112 4.5v15a2.5 2.5 0 004.96.44 2.5 2.5 0 002.96-3.08 3 3 0 00.34-5.58 2.5 2.5 0 00-3.76-3.28" />
     </svg>
   ),
+  'notes-maker': (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="w-4 h-4"
+    >
+      <path d="M12 20h9" />
+      <path d="M16.376 3.622a1 1 0 013.002 3.002L7.368 18.635a2 2 0 01-.855.506l-2.872.864a.5.5 0 01-.62-.62l.864-2.872a2 2 0 01.506-.855z" />
+    </svg>
+  ),
   'paper-maker': (
     <svg
       viewBox="0 0 24 24"
@@ -300,6 +314,7 @@ const CAT_LABELS: Record<ToolCategory, string> = {
   medical: 'Medical',
   'iq-test': 'IQ Test',
   'paper-maker': 'Paper Maker',
+  'notes-maker': 'Notes Maker',
 };
 
 // Category accent colors
@@ -321,6 +336,7 @@ const CAT_COLORS: Record<ToolCategory, string> = {
   medical: '#14b8a6',
   'iq-test': '#a21caf',
   'paper-maker': '#0369a1',
+  'notes-maker': '#7c3aed',
 };
 
 // ─── Search logic ─────────────────────────────────────────────
