@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { SUBJECTS } from '../data/boards';
 import { QUESTIONS } from '../data/questions';
 import type { Question } from '../data/questions';
@@ -54,6 +54,15 @@ export default function MCQBankClient() {
   const [formOpen, setFormOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(emptyForm());
+  const imageFileRef = useRef<HTMLInputElement>(null);
+
+  const handleImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => setForm((f) => ({ ...f, imageUrl: reader.result as string }));
+    reader.readAsDataURL(file);
+  };
 
   useEffect(() => {
     setCustomQuestions(loadCustomQuestions());
@@ -331,15 +340,39 @@ export default function MCQBankClient() {
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-500 mb-1">
-                  Image URL (optional)
+                  Image (optional)
                 </label>
-                <input
-                  type="url"
-                  value={form.imageUrl}
-                  onChange={(e) => setForm((f) => ({ ...f, imageUrl: e.target.value }))}
-                  placeholder="https://..."
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg bg-white dark:bg-white/5 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500"
-                />
+                <div className="flex gap-2 items-center">
+                  <input
+                    type="text"
+                    value={form.imageUrl}
+                    onChange={(e) => setForm((f) => ({ ...f, imageUrl: e.target.value }))}
+                    placeholder="Paste image URL..."
+                    className="flex-1 px-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg bg-white dark:bg-white/5 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => imageFileRef.current?.click()}
+                    className="flex items-center gap-1.5 px-3 py-2 border border-gray-300 dark:border-white/20 rounded-lg text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors whitespace-nowrap font-medium"
+                  >
+                    📷 Upload
+                  </button>
+                  <input
+                    ref={imageFileRef}
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleImageFile}
+                  />
+                </div>
+                {form.imageUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={form.imageUrl}
+                    alt="preview"
+                    className="mt-2 max-h-32 rounded-lg border border-gray-200 dark:border-white/10 object-contain"
+                  />
+                )}
               </div>
             </div>
             <div className="flex gap-3">

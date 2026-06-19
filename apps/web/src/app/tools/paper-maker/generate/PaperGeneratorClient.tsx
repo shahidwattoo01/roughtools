@@ -1,10 +1,24 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { BOARDS, SUBJECTS, getSubjectsByClass, getDefaultPattern } from '../data/boards';
-import type { BoardId, ClassLevel, Subject, PatternSection, QuestionType } from '../data/boards';
+import type {
+  BoardId,
+  ClassLevel,
+  Subject,
+  PatternSection,
+  QuestionType,
+  Difficulty,
+} from '../data/boards';
 import { QUESTIONS, sampleQuestions } from '../data/questions';
 import type { Question } from '../data/questions';
+import {
+  loadCustomQuestions,
+  saveCustomQuestion,
+  updateCustomQuestion,
+  deleteCustomQuestion,
+  isCustomQuestion,
+} from '../data/customQuestions';
 
 // ─── Types ───────────────────────────────────────────────────────
 
@@ -64,6 +78,26 @@ export default function PaperGeneratorClient() {
   const [shuffle, setShuffle] = useState(false);
   const [includeAnswerKey, setIncludeAnswerKey] = useState(true);
 
+  // ── Custom question management ──
+  const [customQuestions, setCustomQuestions] = useState<Question[]>([]);
+  const [showQForm, setShowQForm] = useState(false);
+  const [editingQ, setEditingQ] = useState<Question | null>(null);
+  const [qType, setQType] = useState<QuestionType>('mcq');
+  const [qText, setQText] = useState('');
+  const [qOptA, setQOptA] = useState('');
+  const [qOptB, setQOptB] = useState('');
+  const [qOptC, setQOptC] = useState('');
+  const [qOptD, setQOptD] = useState('');
+  const [qAnswer, setQAnswer] = useState('A');
+  const [qChapter, setQChapter] = useState(1);
+  const [qDifficulty, setQDifficulty] = useState<Difficulty>('medium');
+  const [qImageUrl, setQImageUrl] = useState('');
+  const imageFileRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setCustomQuestions(loadCustomQuestions());
+  }, []);
+
   const subjects = useMemo(() => getSubjectsByClass(classLevel), [classLevel]);
   const currentSubject: Subject | undefined = subjects.find((s) => s.id === subjectId);
 
@@ -98,6 +132,89 @@ export default function PaperGeneratorClient() {
 
   const totalMarks = useMemo(() => calcTotalMarks(sections), [sections]);
 
+  const resetQForm = useCallback(() => {
+    setEditingQ(null);
+    setQType('mcq');
+    setQText('');
+    setQOptA('');
+    setQOptB('');
+    setQOptC('');
+    setQOptD('');
+    setQAnswer('A');
+    setQChapter(1);
+    setQDifficulty('medium');
+    setQImageUrl('');
+    setShowQForm(false);
+  }, []);
+
+  const openEditQ = useCallback((q: Question) => {
+    setEditingQ(q);
+    setQType(q.type);
+    setQText(q.question);
+    setQOptA(q.options?.[0] ?? '');
+    setQOptB(q.options?.[1] ?? '');
+    setQOptC(q.options?.[2] ?? '');
+    setQOptD(q.options?.[3] ?? '');
+    setQAnswer(q.answer);
+    setQChapter(q.chapter);
+    setQDifficulty(q.difficulty);
+    setQImageUrl(q.imageUrl ?? '');
+    setShowQForm(true);
+  }, []);
+
+  const saveQForm = useCallback(() => {
+    if (!qText.trim() || !subjectId) return;
+    const base = {
+      classLevel,
+      subjectId,
+      chapter: qChapter,
+      topic: '',
+      type: qType,
+      difficulty: qDifficulty,
+      marks: qType === 'mcq' ? 1 : qType === 'short' ? 5 : 10,
+      medium: 'english' as const,
+      question: qText.trim(),
+      answer: qAnswer,
+      options: qType === 'mcq' ? [qOptA, qOptB, qOptC, qOptD].filter(Boolean) : undefined,
+      imageUrl: qImageUrl || undefined,
+    };
+    if (editingQ && isCustomQuestion(editingQ.id)) {
+      updateCustomQuestion(editingQ.id, base);
+    } else {
+      saveCustomQuestion(base);
+    }
+    setCustomQuestions(loadCustomQuestions());
+    resetQForm();
+  }, [
+    qText,
+    subjectId,
+    classLevel,
+    qChapter,
+    qType,
+    qDifficulty,
+    qAnswer,
+    qOptA,
+    qOptB,
+    qOptC,
+    qOptD,
+    qImageUrl,
+    editingQ,
+    resetQForm,
+  ]);
+
+  const deleteQ = useCallback((id: string) => {
+    deleteCustomQuestion(id);
+    setCustomQuestions(loadCustomQuestions());
+  }, []);
+
+  const handleImageFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => setQImageUrl(reader.result as string);
+    reader.readAsDataURL(file);
+  }, []);
+
   const handleGenerate = useCallback(() => {
     if (!currentSubject) return;
     setGenerating(true);
@@ -130,7 +247,8 @@ export default function PaperGeneratorClient() {
         matching: ['matching'],
       };
       const types = typeMap[sec.questionType] || [sec.questionType];
-      const pool = QUESTIONS.filter(
+      const allQ = [...QUESTIONS, ...loadCustomQuestions()];
+      const pool = allQ.filter(
         (q) =>
           q.classLevel === classLevel &&
           q.subjectId === subjectId &&
@@ -395,6 +513,275 @@ export default function PaperGeneratorClient() {
                       </div>
                     </label>
                   ))}
+                </div>
+              </div>
+            )}
+
+            {/* ── Custom Questions Panel ── */}
+            {subjectId && (
+              <div className="bg-white dark:bg-[#1e1e1e] rounded-2xl border border-gray-200 dark:border-white/10 p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                      ✏️ Custom Questions
+                    </h2>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      Add your own MCQs, short or long questions — they are merged into the paper
+                      pool.
+                      {customQuestions.filter(
+                        (q) => q.classLevel === classLevel && q.subjectId === subjectId
+                      ).length > 0 && (
+                        <span className="ml-1 text-sky-600 font-semibold">
+                          (
+                          {
+                            customQuestions.filter(
+                              (q) => q.classLevel === classLevel && q.subjectId === subjectId
+                            ).length
+                          }{' '}
+                          added)
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      resetQForm();
+                      setShowQForm(true);
+                    }}
+                    className="flex items-center gap-1.5 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-sm font-bold rounded-xl transition-colors"
+                  >
+                    ➕ Add Question
+                  </button>
+                </div>
+
+                {/* Add/Edit Form */}
+                {showQForm && (
+                  <div className="border border-sky-200 dark:border-sky-800 rounded-xl p-4 mb-4 bg-sky-50/50 dark:bg-sky-950/20 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-bold text-sky-800 dark:text-sky-300 text-sm">
+                        {editingQ ? 'Edit Question' : 'New Question'}
+                      </h3>
+                      <button
+                        onClick={resetQForm}
+                        className="text-gray-400 hover:text-gray-600 text-lg leading-none"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    {/* Type selector */}
+                    <div className="flex gap-2">
+                      {(['mcq', 'short', 'long'] as QuestionType[]).map((t) => (
+                        <button
+                          key={t}
+                          onClick={() => setQType(t)}
+                          className={`px-3 py-1.5 rounded-lg text-xs font-bold capitalize border-2 transition-all ${qType === t ? 'border-sky-500 bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300' : 'border-gray-200 dark:border-white/10 text-gray-500 hover:border-sky-300'}`}
+                        >
+                          {t === 'mcq' ? '☑ MCQ' : t === 'short' ? '📝 Short' : '📄 Long'}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Chapter + Difficulty */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-500 mb-1">
+                          Chapter
+                        </label>
+                        <select
+                          value={qChapter}
+                          onChange={(e) => setQChapter(Number(e.target.value))}
+                          className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg bg-white dark:bg-white/5 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500"
+                        >
+                          {(currentSubject?.chapters ?? []).map((ch) => (
+                            <option key={ch.number} value={ch.number}>
+                              Ch.{ch.number}: {ch.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-500 mb-1">
+                          Difficulty
+                        </label>
+                        <select
+                          value={qDifficulty}
+                          onChange={(e) => setQDifficulty(e.target.value as Difficulty)}
+                          className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg bg-white dark:bg-white/5 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500"
+                        >
+                          <option value="easy">Easy</option>
+                          <option value="medium">Medium</option>
+                          <option value="hard">Hard</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Question text */}
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 mb-1">
+                        Question Text *
+                      </label>
+                      <textarea
+                        value={qText}
+                        onChange={(e) => setQText(e.target.value)}
+                        rows={2}
+                        placeholder="Type your question here..."
+                        className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg bg-white dark:bg-white/5 text-sm text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-500 resize-none"
+                      />
+                    </div>
+
+                    {/* MCQ Options */}
+                    {qType === 'mcq' && (
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          ['A', qOptA, setQOptA],
+                          ['B', qOptB, setQOptB],
+                          ['C', qOptC, setQOptC],
+                          ['D', qOptD, setQOptD],
+                        ].map(([label, val, setter]) => (
+                          <div key={label as string} className="flex items-center gap-2">
+                            <span className="w-5 h-5 rounded-full border border-gray-400 flex items-center justify-center text-[10px] font-bold flex-shrink-0">
+                              {label as string}
+                            </span>
+                            <input
+                              type="text"
+                              value={val as string}
+                              onChange={(e) => (setter as (v: string) => void)(e.target.value)}
+                              placeholder={`Option ${label as string}`}
+                              className="flex-1 px-2 py-1.5 border border-gray-200 dark:border-white/10 rounded-lg bg-white dark:bg-white/5 text-sm text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                            />
+                          </div>
+                        ))}
+                        <div className="col-span-2">
+                          <label className="block text-xs font-semibold text-gray-500 mb-1">
+                            Correct Answer
+                          </label>
+                          <div className="flex gap-2">
+                            {['A', 'B', 'C', 'D'].map((l) => (
+                              <button
+                                key={l}
+                                onClick={() => setQAnswer(l)}
+                                className={`w-9 h-9 rounded-lg font-bold text-sm border-2 transition-all ${qAnswer === l ? 'bg-green-500 border-green-500 text-white' : 'border-gray-300 dark:border-white/20 text-gray-500 hover:border-green-400'}`}
+                              >
+                                {l}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Image upload */}
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 mb-1">
+                        Image (optional)
+                      </label>
+                      <div className="flex gap-2 items-center">
+                        <input
+                          type="text"
+                          value={qImageUrl}
+                          onChange={(e) => setQImageUrl(e.target.value)}
+                          placeholder="Paste image URL..."
+                          className="flex-1 px-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg bg-white dark:bg-white/5 text-sm text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                        />
+                        <button
+                          onClick={() => imageFileRef.current?.click()}
+                          className="flex items-center gap-1.5 px-3 py-2 border border-gray-300 dark:border-white/20 rounded-lg text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors whitespace-nowrap font-medium"
+                        >
+                          📷 Upload
+                        </button>
+                        <input
+                          ref={imageFileRef}
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={handleImageFile}
+                        />
+                      </div>
+                      {qImageUrl && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={qImageUrl}
+                          alt="preview"
+                          className="mt-2 max-h-32 rounded-lg border border-gray-200 dark:border-white/10 object-contain"
+                        />
+                      )}
+                    </div>
+
+                    <div className="flex justify-end gap-2 pt-1">
+                      <button
+                        onClick={resetQForm}
+                        className="px-4 py-2 border border-gray-300 dark:border-white/20 rounded-lg text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={saveQForm}
+                        disabled={!qText.trim()}
+                        className="px-5 py-2 bg-sky-600 hover:bg-sky-700 disabled:opacity-40 text-white text-sm font-bold rounded-lg transition-colors"
+                      >
+                        {editingQ ? '💾 Update' : '✓ Save Question'}
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* List of custom questions for this subject */}
+                {customQuestions.filter(
+                  (q) => q.classLevel === classLevel && q.subjectId === subjectId
+                ).length === 0 &&
+                  !showQForm && (
+                    <div className="text-center py-6 text-gray-400 text-sm border-2 border-dashed border-gray-200 dark:border-white/10 rounded-xl">
+                      No custom questions yet. Click <strong>➕ Add Question</strong> to create one.
+                    </div>
+                  )}
+                <div className="space-y-2 mt-2">
+                  {customQuestions
+                    .filter((q) => q.classLevel === classLevel && q.subjectId === subjectId)
+                    .map((q) => (
+                      <div
+                        key={q.id}
+                        className="flex items-start gap-3 p-3 bg-sky-50 dark:bg-sky-950/20 border border-sky-200 dark:border-sky-800 rounded-xl"
+                      >
+                        <span
+                          className={`text-[10px] font-bold px-1.5 py-0.5 rounded flex-shrink-0 mt-0.5 ${q.type === 'mcq' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300' : q.type === 'short' ? 'bg-yellow-100 text-yellow-700' : 'bg-purple-100 text-purple-700'}`}
+                        >
+                          {q.type.toUpperCase()}
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm text-gray-800 dark:text-gray-200 leading-snug truncate">
+                            {q.question}
+                          </p>
+                          <p className="text-xs text-gray-400 mt-0.5">
+                            Ch.{q.chapter} · {q.difficulty}
+                          </p>
+                          {q.imageUrl && (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={q.imageUrl}
+                              alt=""
+                              className="mt-1.5 max-h-20 rounded object-contain"
+                            />
+                          )}
+                        </div>
+                        <div className="flex gap-1 flex-shrink-0">
+                          <button
+                            onClick={() => openEditQ(q)}
+                            className="p-1.5 text-gray-400 hover:text-sky-600 transition-colors"
+                            title="Edit"
+                          >
+                            ✏️
+                          </button>
+                          <button
+                            onClick={() => deleteQ(q.id)}
+                            className="p-1.5 text-gray-400 hover:text-red-500 transition-colors"
+                            title="Delete"
+                          >
+                            🗑️
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </div>
             )}
