@@ -1,35 +1,39 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { SearchBar } from '@/components/SearchBar'
-import { ToolGrid } from '@/components/ToolCard'
-import { getFeaturedTools } from '@/lib/relatedTools'
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { SearchBar } from '@/components/SearchBar';
+import { ToolGrid } from '@/components/ToolCard';
+import { getFeaturedTools } from '@/lib/relatedTools';
 
 export const metadata: Metadata = {
   title: '404 — Page Not Found | RoughTools',
-  description: 'This page could not be found. Try searching for a tool or browse our 604+ free online tools.',
+  description:
+    'This page could not be found. Try searching for a tool or browse our 611+ free online tools.',
   robots: { index: false, follow: true },
-}
+};
 
 export default function NotFound() {
-  const popularTools = getFeaturedTools(6)
+  const popularTools = getFeaturedTools(6);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-[#121212] flex flex-col">
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-16 text-center">
         {/* 404 visual */}
-        <div className="text-8xl font-black text-indigo-100 dark:text-white/5 mb-2 select-none" aria-hidden="true">
+        <div
+          className="text-8xl font-black text-indigo-100 dark:text-white/5 mb-2 select-none"
+          aria-hidden="true"
+        >
           404
         </div>
 
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Page not found</h1>
         <p className="text-gray-500 dark:text-white/50 max-w-md mb-8">
-          The page you&apos;re looking for doesn&apos;t exist or may have moved.
-          Try searching for a tool below.
+          The page you&apos;re looking for doesn&apos;t exist or may have moved. Try searching for a
+          tool below.
         </p>
 
         {/* Search */}
         <div className="w-full max-w-xl mb-12">
-          <SearchBar placeholder="Search 604+ tools..." size="lg" />
+          <SearchBar placeholder="Search 611+ tools..." size="lg" />
         </div>
 
         {/* Popular tools */}
@@ -51,5 +55,5 @@ export default function NotFound() {
         </div>
       </main>
     </div>
-  )
+  );
 }

@@ -1,19 +1,19 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface ReferralStats {
-  code: string | null
-  totalReferrals: number
-  successfulReferrals: number
-  totalEarnedCents: number
+  code: string | null;
+  totalReferrals: number;
+  successfulReferrals: number;
+  totalEarnedCents: number;
 }
 
 interface ToolUsage {
-  toolSlug: string
-  count: number
+  toolSlug: string;
+  count: number;
 }
 
 function SkeletonCard() {
@@ -23,48 +23,57 @@ function SkeletonCard() {
       <div className="h-7 bg-gray-200 rounded w-1/2 mb-3" />
       <div className="h-3 bg-gray-200 rounded w-2/3" />
     </div>
-  )
+  );
 }
 
 export default function DashboardPage() {
-  const router = useRouter()
-  const [referral, setReferral] = useState<ReferralStats | null>(null)
-  const [topTools, setTopTools] = useState<ToolUsage[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const router = useRouter();
+  const [referral, setReferral] = useState<ReferralStats | null>(null);
+  const [topTools, setTopTools] = useState<ToolUsage[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 8000)
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
 
     async function load() {
       try {
         const [subRes, refRes, analyticsRes] = await Promise.all([
           fetch('/api/billing/subscription', { credentials: 'include', signal: controller.signal }),
           fetch('/api/referral/stats', { credentials: 'include', signal: controller.signal }),
-          fetch('/api/analytics/popular?limit=5', { credentials: 'include', signal: controller.signal }),
-        ])
+          fetch('/api/analytics/popular?limit=5', {
+            credentials: 'include',
+            signal: controller.signal,
+          }),
+        ]);
 
-        if (subRes.status === 401) { router.push('/auth/signin'); return }
+        if (subRes.status === 401) {
+          router.push('/auth/signin');
+          return;
+        }
 
-        if (refRes.ok) setReferral(await refRes.json())
+        if (refRes.ok) setReferral(await refRes.json());
         if (analyticsRes.ok) {
-          const data = await analyticsRes.json()
-          setTopTools(data.tools ?? [])
+          const data = await analyticsRes.json();
+          setTopTools(data.tools ?? []);
         }
       } catch (err) {
         if ((err as Error).name !== 'AbortError') {
-          setError(true)
+          setError(true);
         }
       } finally {
-        clearTimeout(timeout)
-        setLoading(false)
+        clearTimeout(timeout);
+        setLoading(false);
       }
     }
 
-    load()
-    return () => { controller.abort(); clearTimeout(timeout) }
-  }, [router])
+    load();
+    return () => {
+      controller.abort();
+      clearTimeout(timeout);
+    };
+  }, [router]);
 
   if (loading) {
     return (
@@ -79,7 +88,7 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   if (error) {
@@ -88,17 +97,20 @@ export default function DashboardPage() {
         <div className="text-center px-4">
           <p className="text-gray-500 mb-4">Could not load your dashboard. Please try again.</p>
           <button
-            onClick={() => { setError(false); setLoading(true) }}
+            onClick={() => {
+              setError(false);
+              setLoading(true);
+            }}
             className="text-sm text-blue-600 hover:underline"
           >
             Retry
           </button>
         </div>
       </div>
-    )
+    );
   }
 
-  const planLabel = 'Free Forever'
+  const planLabel = 'Free Forever';
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -117,7 +129,7 @@ export default function DashboardPage() {
               </span>
             </div>
             <p className="text-xs text-gray-400">
-              All 604+ tools, no signup required, no watermarks.
+              All 611+ tools, no signup required, no watermarks.
             </p>
           </div>
 
@@ -129,9 +141,13 @@ export default function DashboardPage() {
               <span className="text-sm text-gray-400 font-normal ml-1">successful</span>
             </p>
             <p className="text-sm text-gray-500 mb-3">
-              {referral?.totalReferrals ?? 0} total · ${((referral?.totalEarnedCents ?? 0) / 100).toFixed(2)} earned
+              {referral?.totalReferrals ?? 0} total · $
+              {((referral?.totalEarnedCents ?? 0) / 100).toFixed(2)} earned
             </p>
-            <Link href="/dashboard/referral" className="text-sm text-blue-600 font-medium hover:underline">
+            <Link
+              href="/dashboard/referral"
+              className="text-sm text-blue-600 font-medium hover:underline"
+            >
               Get your link →
             </Link>
           </div>
@@ -146,7 +162,11 @@ export default function DashboardPage() {
                 { label: 'API Keys', href: '/dashboard/api-keys' },
                 { label: 'All Tools', href: '/tools' },
               ].map(({ label, href }) => (
-                <Link key={href} href={href} className="flex items-center text-sm text-gray-700 hover:text-blue-600 transition-colors">
+                <Link
+                  key={href}
+                  href={href}
+                  className="flex items-center text-sm text-gray-700 hover:text-blue-600 transition-colors"
+                >
                   {label}
                 </Link>
               ))}
@@ -175,5 +195,5 @@ export default function DashboardPage() {
         )}
       </div>
     </div>
-  )
+  );
 }

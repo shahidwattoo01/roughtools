@@ -1,58 +1,92 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { generateHomeMetadata } from '@/lib/seo'
-import { JsonLd } from '@/components/JsonLd'
-import { getWebsiteSchema, getOrganizationSchema, getPricingSchema, getFAQSchema, getItemListSchema } from '@/lib/structured-data'
-import { TOTAL_REAL_TOOLS } from '@/lib/tool-counts'
-import { CategoryGrid } from '@/components/CategoryGrid'
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { generateHomeMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
 import {
-  IconStar,
-  IconLayoutGrid,
-  IconBolt,
-} from '@tabler/icons-react'
+  getWebsiteSchema,
+  getOrganizationSchema,
+  getPricingSchema,
+  getFAQSchema,
+  getItemListSchema,
+} from '@/lib/structured-data';
+import { TOTAL_REAL_TOOLS } from '@/lib/tool-counts';
+import { CategoryGrid } from '@/components/CategoryGrid';
+import { IconStar, IconLayoutGrid, IconBolt } from '@tabler/icons-react';
 
-export const metadata: Metadata = generateHomeMetadata()
+export const metadata: Metadata = generateHomeMetadata();
 
 const POPULAR_TOOLS = [
   // PDF — highest global search volume
-  { label: 'Compress PDF',          href: '/tools/pdf/compress-pdf' },
-  { label: 'PDF to Word',           href: '/tools/pdf/pdf-to-word' },
-  { label: 'Merge PDF',             href: '/tools/pdf/merge-pdf' },
-  { label: 'JPG to PDF',            href: '/tools/pdf/jpg-to-pdf' },
+  { label: 'Compress PDF', href: '/tools/pdf/compress-pdf' },
+  { label: 'PDF to Word', href: '/tools/pdf/pdf-to-word' },
+  { label: 'Merge PDF', href: '/tools/pdf/merge-pdf' },
+  { label: 'JPG to PDF', href: '/tools/pdf/jpg-to-pdf' },
   // Calculators — universally searched
-  { label: 'BMI Calculator',        href: '/tools/calculators/bmi-calculator' },
-  { label: 'Percentage Calculator',  href: '/tools/calculators/percentage-calculator' },
-  { label: 'Age Calculator',         href: '/tools/calculators/age-calculator' },
-  { label: 'Loan Calculator',        href: '/tools/calculators/loan-calculator' },
+  { label: 'BMI Calculator', href: '/tools/calculators/bmi-calculator' },
+  { label: 'Percentage Calculator', href: '/tools/calculators/percentage-calculator' },
+  { label: 'Age Calculator', href: '/tools/calculators/age-calculator' },
+  { label: 'Loan Calculator', href: '/tools/calculators/loan-calculator' },
   // Image — high traffic / AI-trending
-  { label: 'Background Remover',    href: '/tools/image-tools/background-remover' },
-  { label: 'Image Compressor',      href: '/tools/image-tools/image-compressor' },
+  { label: 'Background Remover', href: '/tools/image-tools/background-remover' },
+  { label: 'Image Compressor', href: '/tools/image-tools/image-compressor' },
   // Text & Developer essentials
-  { label: 'Word Counter',           href: '/tools/text/word-counter' },
-  { label: 'JSON Formatter',         href: '/tools/developer/json-formatter' },
-]
+  { label: 'Word Counter', href: '/tools/text/word-counter' },
+  { label: 'JSON Formatter', href: '/tools/developer/json-formatter' },
+];
 
 const HOME_FAQS = [
-  { question: 'Is RoughTools free?', answer: 'Yes, all 604+ tools are completely free with no signup required. You can use every tool directly in your browser without creating an account.' },
-  { question: 'Do I need to create an account?', answer: 'No account needed. All tools work directly in your browser. Some tools have a daily usage limit (20 uses/day) which resets at midnight.' },
-  { question: 'Is my data safe?', answer: 'Yes. Most tools run entirely in your browser — no files are sent to our servers. For server-side tools like PDF processing, files are automatically deleted within 1 hour.' },
-  { question: 'What kinds of tools does RoughTools offer?', answer: 'RoughTools offers 604+ tools across 16 categories: PDF tools, calculators, medical calculators, engineering calculators, image tools, developer tools, text tools, unit converters, network tools, legal tools, real estate tools, business tools, security tools, document tools, environment tools, and an IQ test.' },
-  { question: 'Does RoughTools work on mobile?', answer: 'Yes, all tools are fully responsive and work on smartphones and tablets as well as desktop computers.' },
-  { question: 'Are there any watermarks on downloads?', answer: 'No watermarks on free tier. Files are returned clean, with no branding added.' },
-]
+  {
+    question: 'Is RoughTools free?',
+    answer:
+      'Yes, all 611+ tools are completely free with no signup required. You can use every tool directly in your browser without creating an account.',
+  },
+  {
+    question: 'Do I need to create an account?',
+    answer:
+      'No account needed. All tools work directly in your browser. Some tools have a daily usage limit (20 uses/day) which resets at midnight.',
+  },
+  {
+    question: 'Is my data safe?',
+    answer:
+      'Yes. Most tools run entirely in your browser — no files are sent to our servers. For server-side tools like PDF processing, files are automatically deleted within 1 hour.',
+  },
+  {
+    question: 'What kinds of tools does RoughTools offer?',
+    answer:
+      'RoughTools offers 611+ tools across 17 categories: PDF tools, calculators, medical calculators, engineering calculators, image tools, developer tools, text tools, unit converters, network tools, legal tools, real estate tools, business tools, security tools, document tools, environment tools, IQ test, and Paper Maker.',
+  },
+  {
+    question: 'Does RoughTools work on mobile?',
+    answer:
+      'Yes, all tools are fully responsive and work on smartphones and tablets as well as desktop computers.',
+  },
+  {
+    question: 'Are there any watermarks on downloads?',
+    answer: 'No watermarks on free tier. Files are returned clean, with no branding added.',
+  },
+];
 
 const HOME_ITEM_LIST = [
-  { name: 'Compress PDF',          url: 'https://www.roughtools.com/tools/pdf/compress-pdf' },
-  { name: 'PDF to Word',           url: 'https://www.roughtools.com/tools/pdf/pdf-to-word' },
-  { name: 'Merge PDF',             url: 'https://www.roughtools.com/tools/pdf/merge-pdf' },
-  { name: 'BMI Calculator',        url: 'https://www.roughtools.com/tools/calculators/bmi-calculator' },
-  { name: 'Background Remover',    url: 'https://www.roughtools.com/tools/image-tools/background-remover' },
-  { name: 'Percentage Calculator', url: 'https://www.roughtools.com/tools/calculators/percentage-calculator' },
-  { name: 'Loan Calculator',       url: 'https://www.roughtools.com/tools/calculators/loan-calculator' },
-  { name: 'Age Calculator',        url: 'https://www.roughtools.com/tools/calculators/age-calculator' },
-  { name: 'Image Compressor',      url: 'https://www.roughtools.com/tools/image-tools/image-compressor' },
-  { name: 'JSON Formatter',        url: 'https://www.roughtools.com/tools/developer/json-formatter' },
-]
+  { name: 'Compress PDF', url: 'https://www.roughtools.com/tools/pdf/compress-pdf' },
+  { name: 'PDF to Word', url: 'https://www.roughtools.com/tools/pdf/pdf-to-word' },
+  { name: 'Merge PDF', url: 'https://www.roughtools.com/tools/pdf/merge-pdf' },
+  { name: 'BMI Calculator', url: 'https://www.roughtools.com/tools/calculators/bmi-calculator' },
+  {
+    name: 'Background Remover',
+    url: 'https://www.roughtools.com/tools/image-tools/background-remover',
+  },
+  {
+    name: 'Percentage Calculator',
+    url: 'https://www.roughtools.com/tools/calculators/percentage-calculator',
+  },
+  { name: 'Loan Calculator', url: 'https://www.roughtools.com/tools/calculators/loan-calculator' },
+  { name: 'Age Calculator', url: 'https://www.roughtools.com/tools/calculators/age-calculator' },
+  {
+    name: 'Image Compressor',
+    url: 'https://www.roughtools.com/tools/image-tools/image-compressor',
+  },
+  { name: 'JSON Formatter', url: 'https://www.roughtools.com/tools/developer/json-formatter' },
+];
 
 export default function HomePage() {
   const schemas = [
@@ -61,26 +95,28 @@ export default function HomePage() {
     getPricingSchema(),
     getFAQSchema(HOME_FAQS),
     getItemListSchema(HOME_ITEM_LIST),
-  ]
+  ];
 
   return (
     <>
       <JsonLd data={schemas} />
 
       <div className="bg-[#f5f5f3] dark:bg-[#121212] min-h-screen text-[#1a1a1a] dark:text-[#f0f0f0]">
-
         {/* ── HERO ─────────────────────────────────────────────── */}
         <section className="max-w-[900px] mx-auto px-8 pt-14 pb-10">
-
           {/* Pill badge */}
-          <div className="inline-flex items-center gap-1.5 bg-[#e8f5ee] dark:bg-[#1a6b3c]/20 text-[#1a6b3c] dark:text-[#6fcf97] rounded-full px-3.5 py-1.5 text-[13px] mb-5" suppressHydrationWarning>
+          <div
+            className="inline-flex items-center gap-1.5 bg-[#e8f5ee] dark:bg-[#1a6b3c]/20 text-[#1a6b3c] dark:text-[#6fcf97] rounded-full px-3.5 py-1.5 text-[13px] mb-5"
+            suppressHydrationWarning
+          >
             <IconStar size={13} aria-hidden="true" />
             {TOTAL_REAL_TOOLS}+ tools, completely free
           </div>
 
           {/* H1 */}
           <h1 className="text-[42px] font-medium leading-[1.15] text-[#1a1a1a] dark:text-[#f0f0f0] mb-6 max-w-[580px]">
-            Your all-in-one<br />
+            Your all-in-one
+            <br />
             <em className="not-italic text-[#1a6b3c] dark:text-[#6fcf97]">online toolbox</em>
           </h1>
 
@@ -105,13 +141,15 @@ export default function HomePage() {
           {/* Stats */}
           <div className="flex gap-10 mt-8 flex-wrap">
             {[
-              { num: `${TOTAL_REAL_TOOLS}+`, label: 'Free tools',        green: false },
-              { num: '16',              label: 'Categories',         green: false },
-              { num: '0',               label: 'Sign-ups needed',    green: false },
-              { num: '100%',            label: 'Free forever',       green: true  },
+              { num: `${TOTAL_REAL_TOOLS}+`, label: 'Free tools', green: false },
+              { num: '17', label: 'Categories', green: false },
+              { num: '0', label: 'Sign-ups needed', green: false },
+              { num: '100%', label: 'Free forever', green: true },
             ].map(({ num, label, green }) => (
               <div key={label}>
-                <div className={`text-[26px] font-medium ${green ? 'text-[#1a6b3c] dark:text-[#6fcf97]' : 'text-[#1a1a1a] dark:text-[#f0f0f0]'}`}>
+                <div
+                  className={`text-[26px] font-medium ${green ? 'text-[#1a6b3c] dark:text-[#6fcf97]' : 'text-[#1a1a1a] dark:text-[#f0f0f0]'}`}
+                >
                   {num}
                 </div>
                 <div className="text-[13px] text-[#555] dark:text-[#aaa] mt-0.5">{label}</div>
@@ -146,16 +184,22 @@ export default function HomePage() {
                            transition-colors"
               >
                 <span className="truncate">{tool.label}</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}
-                  strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 flex-shrink-0 opacity-50">
-                  <path d="M5 12h14M13 5l7 7-7 7"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-3.5 h-3.5 flex-shrink-0 opacity-50"
+                >
+                  <path d="M5 12h14M13 5l7 7-7 7" />
                 </svg>
               </Link>
             ))}
           </div>
         </section>
-
       </div>
     </>
-  )
+  );
 }

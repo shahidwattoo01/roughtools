@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://roughtools.com'
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://roughtools.com';
 
 const LLMS_TXT = `# RoughTools — Free Online Tools
 
@@ -12,7 +12,7 @@ const LLMS_TXT = `# RoughTools — Free Online Tools
 - Tools available: 250+
 - No account required: Yes
 - Privacy: Most tools run entirely in your browser — your data never leaves your device
-- Pricing: Free forever — all 604+ tools, no signup required, no watermarks
+- Pricing: Free forever — all 611+ tools, no signup required, no watermarks
 - Blog: ${BASE_URL}/blog — guides, tutorials, tips for using free online tools
 
 ## Tool Categories
@@ -94,7 +94,7 @@ Password generator (customizable rules), QR code generator (URL/WiFi/vCard/text,
 - Terms of Service: ${BASE_URL}/terms-of-service
 - Contact: ${BASE_URL}/contact
 - Support: shahidwattoo0111@gmail.com
-`
+`;
 
 export function GET() {
   return new NextResponse(LLMS_TXT, {
@@ -102,5 +102,5 @@ export function GET() {
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'public, max-age=86400',
     },
-  })
+  });
 }

@@ -61,7 +61,7 @@ export function getOrganizationSchema() {
     sameAs: ['https://www.reddit.com/r/roughtools', 'https://github.com/shahidwattoo01/roughtools'],
     foundingDate: '2024',
     numberOfEmployees: { '@type': 'QuantitativeValue', value: 1 },
-    slogan: '604+ free online tools — no signup required',
+    slogan: '611+ free online tools — no signup required',
   };
 }
 

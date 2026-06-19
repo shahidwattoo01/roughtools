@@ -6,9 +6,9 @@
 export const SEO_CONFIG = {
   siteName: 'RoughTools',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.roughtools.com',
-  defaultTitle: 'RoughTools — 604+ Free Online Tools: PDF, Calculators & More',
+  defaultTitle: 'RoughTools — 611+ Free Online Tools: PDF, Calculators & More',
   defaultDescription:
-    'Free online tools for everyone. 604+ tools — PDF converter, 203 calculators, developer tools, unit converters, IQ test, and more. No signup required.',
+    'Free online tools for everyone. 611+ tools — PDF converter, 203 calculators, developer tools, unit converters, IQ test, and more. No signup required.',
   defaultKeywords: [
     'free online tools',
     'pdf tools',
