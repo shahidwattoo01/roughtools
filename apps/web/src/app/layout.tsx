@@ -1,24 +1,23 @@
-﻿import type { Metadata, Viewport } from 'next'
-import localFont from 'next/font/local'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
-import { JsonLd } from '@/components/JsonLd'
-import { getWebsiteSchema, getOrganizationSchema } from '@/lib/structured-data'
-import { generateHomeMetadata } from '@/lib/seo'
-import { SEO_CONFIG } from '@/lib/seo-config'
-import dynamic from 'next/dynamic'
-import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
-import { PageTracker } from '@/hooks/usePageTracking'
-import { AdSenseScript } from '@/components/analytics/AdSense'
-import Footer from '@/components/Footer'
-import { FontLoader } from '@/components/FontLoader'
-import SiteHeader from '@/components/SiteHeader'
-import { ScrollReveal } from '@/components/ScrollReveal'
-import { CommandPaletteProvider } from '@/components/CommandPalette'
-import { Toaster } from '@/components/Toaster'
-import { ThemeProvider } from '@/components/ThemeProvider'
-import Providers from '@/components/Providers'
-import './globals.css'
+﻿import type { Metadata, Viewport } from 'next';
+import localFont from 'next/font/local';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { JsonLd } from '@/components/JsonLd';
+import { getWebsiteSchema, getOrganizationSchema } from '@/lib/structured-data';
+import { generateHomeMetadata } from '@/lib/seo';
+import { SEO_CONFIG } from '@/lib/seo-config';
+import dynamic from 'next/dynamic';
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
+import { PageTracker } from '@/hooks/usePageTracking';
+import Footer from '@/components/Footer';
+import { FontLoader } from '@/components/FontLoader';
+import SiteHeader from '@/components/SiteHeader';
+import { ScrollReveal } from '@/components/ScrollReveal';
+import { CommandPaletteProvider } from '@/components/CommandPalette';
+import { Toaster } from '@/components/Toaster';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import Providers from '@/components/Providers';
+import './globals.css';
 
 // ─── FONTS ────────────────────────────────────────────────────
 // ⚡ PERF: 3 weights instead of 5 (removes 2 font-file round-trips).
@@ -33,16 +32,16 @@ const inter = localFont({
   display: 'swap',
   variable: '--font-inter',
   preload: true,
-})
+});
 
 // ─── LAZY-LOADED non-critical UI ──────────────────────────────
 // ChatbotLoader defers the chatbot until page is idle (desktop) or
 // first user interaction (mobile) so it doesn't compete with AdSense.
-const ChatbotLoader  = dynamic(() => import('@/components/ChatbotLoader'), { ssr: false })
-const CookieConsent  = dynamic(() => import('@/components/CookieConsent'), { ssr: false })
+const ChatbotLoader = dynamic(() => import('@/components/ChatbotLoader'), { ssr: false });
+const CookieConsent = dynamic(() => import('@/components/CookieConsent'), { ssr: false });
 
 // ─── ROOT METADATA ────────────────────────────────────────────
-export const metadata: Metadata = generateHomeMetadata()
+export const metadata: Metadata = generateHomeMetadata();
 
 // ─── VIEWPORT CONFIG ─────────────────────────────────────────
 export const viewport: Viewport = {
@@ -54,10 +53,10 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   colorScheme: 'light dark',
-}
+};
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -119,11 +118,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Google Analytics 4 — loads after the consent default above */}
         <GoogleAnalytics />
 
-        {/*
-          AdSense — now consent-gated inside AdSenseScript itself.
-          The script tag is only injected client-side after the user accepts.
-        */}
-        <AdSenseScript />
+        {/* Google AdSense — in <head> so Google's crawler can verify it */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4969790536067353"
+          crossOrigin="anonymous"
+        />
       </head>
 
       <body
@@ -146,39 +147,37 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </a>
 
         <Providers>
-        <ThemeProvider>
-        {/* Command Palette — wraps everything so Cmd+K works globally */}
-        <CommandPaletteProvider>
-        {/* Global sticky header */}
-        <SiteHeader />
+          <ThemeProvider>
+            {/* Command Palette — wraps everything so Cmd+K works globally */}
+            <CommandPaletteProvider>
+              {/* Global sticky header */}
+              <SiteHeader />
 
-        <main id="main-content">
-          {children}
-        </main>
+              <main id="main-content">{children}</main>
 
-        <Footer />
+              <Footer />
 
-        {/* Floating chatbot — idle-deferred so ads load first */}
-        <ChatbotLoader />
+              {/* Floating chatbot — idle-deferred so ads load first */}
+              <ChatbotLoader />
 
-        {/* Scroll reveal — activates .reveal elements */}
-        <ScrollReveal />
+              {/* Scroll reveal — activates .reveal elements */}
+              <ScrollReveal />
 
-        {/* Vercel Analytics (Phase 9) */}
-        <Analytics />
+              {/* Vercel Analytics (Phase 9) */}
+              <Analytics />
 
-        {/* Vercel Speed Insights — Core Web Vitals (Phase 2.4) */}
-        <SpeedInsights />
+              {/* Vercel Speed Insights — Core Web Vitals (Phase 2.4) */}
+              <SpeedInsights />
 
-        {/* GDPR Cookie Consent Banner (required for AdSense) */}
-        <CookieConsent />
+              {/* GDPR Cookie Consent Banner (required for AdSense) */}
+              <CookieConsent />
 
-        {/* Toast notifications — bottom-right, auto-dismiss 3s */}
-        <Toaster />
-        </CommandPaletteProvider>
-        </ThemeProvider>
+              {/* Toast notifications — bottom-right, auto-dismiss 3s */}
+              <Toaster />
+            </CommandPaletteProvider>
+          </ThemeProvider>
         </Providers>
       </body>
     </html>
-  )
+  );
 }
