@@ -110,41 +110,89 @@ async function toHtml(buffer: Buffer, baseName: string): Promise<NextResponse> {
   });
 }
 
-/* ── PDF → JPG (renders each page with canvas) ───────────────────── */
-async function toJpg(buffer: Buffer, baseName: string, dpi: number): Promise<NextResponse> {
-  // @napi-rs/canvas ships pre-built binaries for Vercel's Linux x64 Lambda runtime
+/* ── PDF → JPG / PNG ─────────────────────────────────────────────── */
+async function toJpg(
+  buffer: Buffer,
+  baseName: string,
+  dpi: number,
+  fmt: 'jpg' | 'png'
+): Promise<NextResponse> {
+  // @napi-rs/canvas ships pre-built Linux x64 binaries — works on Vercel Lambda
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { createCanvas } = require('@napi-rs/canvas');
+  const { createCanvas } = require('@napi-rs/canvas') as {
+    createCanvas: (
+      w: number,
+      h: number
+    ) => {
+      getContext: (t: string) => unknown;
+      toBuffer: (mime: string, quality?: number) => Buffer;
+      width: number;
+      height: number;
+    };
+  };
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const pdfjsLib = require('pdfjs-dist/legacy/build/pdf.js');
+  const pdfjsLib = require('pdfjs-dist/legacy/build/pdf.js') as {
+    GlobalWorkerOptions: { workerSrc: string };
+    getDocument: (o: unknown) => {
+      promise: Promise<{
+        numPages: number;
+        getPage: (n: number) => Promise<{
+          getViewport: (o: { scale: number }) => { width: number; height: number };
+          render: (o: unknown) => { promise: Promise<void> };
+        }>;
+      }>;
+    };
+  };
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const JSZip = require('jszip');
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = '';
 
+  // pdfjs needs a CanvasFactory in Node.js — provide one using @napi-rs/canvas
+  const NodeCanvasFactory = {
+    create(width: number, height: number) {
+      const canvas = createCanvas(width, height);
+      return { canvas, context: canvas.getContext('2d') };
+    },
+    reset(cc: { canvas: { width: number; height: number } }, width: number, height: number) {
+      cc.canvas.width = width;
+      cc.canvas.height = height;
+    },
+    destroy(cc: { canvas: { width: number; height: number } }) {
+      cc.canvas.width = 0;
+      cc.canvas.height = 0;
+    },
+  };
+
   const pdf = await pdfjsLib.getDocument({
     data: new Uint8Array(buffer),
     useWorkerFetch: false,
     isEvalSupported: false,
+    canvasFactory: NodeCanvasFactory,
   }).promise;
 
   const scale = dpi / 72;
   const zip = new JSZip();
+  const ext = fmt;
 
   for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i);
     const viewport = page.getViewport({ scale });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const canvas = (createCanvas as any)(Math.round(viewport.width), Math.round(viewport.height));
-    const ctx = canvas.getContext('2d');
+    const cc = NodeCanvasFactory.create(Math.round(viewport.width), Math.round(viewport.height));
 
-    await page.render({
-      canvasContext: ctx,
-      viewport,
-    }).promise;
+    await page.render({ canvasContext: cc.context, viewport, canvasFactory: NodeCanvasFactory })
+      .promise;
 
-    const jpgBuf = canvas.toBuffer('image/jpeg', { quality: 0.92 });
-    zip.file(`${baseName}-page-${i}.jpg`, jpgBuf);
+    // @napi-rs/canvas toBuffer: quality is 0-100 integer for JPEG
+    const imgBuf =
+      fmt === 'png'
+        ? (cc.canvas as unknown as { toBuffer: (m: string) => Buffer }).toBuffer('image/png')
+        : (cc.canvas as unknown as { toBuffer: (m: string, q: number) => Buffer }).toBuffer(
+            'image/jpeg',
+            92
+          );
+
+    zip.file(`${baseName}-page-${i}.${ext}`, imgBuf);
   }
 
   const zipBuf: Buffer = await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' });
@@ -258,7 +306,7 @@ export async function POST(req: NextRequest) {
     if (format === 'docx') return toDocx(buffer, baseName);
     if (format === 'xlsx') return toXlsx(buffer, baseName);
     if (format === 'html') return toHtml(buffer, baseName);
-    if (format === 'jpg' || format === 'png') return toJpg(buffer, baseName, dpi);
+    if (format === 'jpg' || format === 'png') return toJpg(buffer, baseName, dpi, format);
     if (format === 'pptx') return toPptx(buffer, baseName);
 
     // Plain text fallback
