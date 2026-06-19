@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 /**
  * SiteHeader — matches roughtools_homepage_fixed.html exactly
@@ -6,13 +6,13 @@
  * + Ticker bar below in green #1a6b3c
  */
 
-import { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
-import { useTheme } from 'next-themes'
-import { useSession } from 'next-auth/react'
-import { CommandPaletteTrigger } from '@/components/CommandPalette'
-import { SOCIAL_LINKS } from '@/lib/social-config'
-import { TOTAL_REAL_TOOLS, TOTAL_CALC_COUNT } from '@/lib/tool-counts'
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import { useSession } from 'next-auth/react';
+import { CommandPaletteTrigger } from '@/components/CommandPalette';
+import { SOCIAL_LINKS } from '@/lib/social-config';
+import { TOTAL_REAL_TOOLS, TOTAL_CALC_COUNT } from '@/lib/tool-counts';
 import {
   IconLayoutGrid,
   IconBrandX,
@@ -24,58 +24,63 @@ import {
   IconTools,
   IconUserOff,
   IconBrowser,
-} from '@tabler/icons-react'
+} from '@tabler/icons-react';
 
 /* ─── Category data for drawer ─────────────────────────────── */
 // Counts sourced from each category's hub page (authoritative)
 const DRAWER_CATS = [
-  { name: 'Calculators',      href: '/tools/calculators',   count: TOTAL_CALC_COUNT },
-  { name: 'Engineering',      href: '/tools/engineering',   count: 126 },
-  { name: 'Medical & Health', href: '/tools/medical',       count: 113 },
-  { name: 'Image Tools',      href: '/tools/image-tools',   count: 38  },
-  { name: 'PDF Tools',        href: '/tools/pdf',           count: 31  },
-  { name: 'Developer Tools',  href: '/tools/developer',     count: 19  },
-  { name: 'Text Tools',       href: '/tools/text',          count: 10  },
-  { name: 'Security',         href: '/tools/security',      count: 9   },
-  { name: 'Unit Converters',  href: '/tools/converters',    count: 8   },
-  { name: 'Legal Tools',      href: '/tools/legal-tools',   count: 8   },
-  { name: 'Real Estate',      href: '/tools/real-estate',   count: 8   },
-  { name: 'Network Tools',    href: '/tools/network',       count: 7   },
-  { name: 'Document Tools',   href: '/tools/document-tools',count: 11  },
-  { name: 'Business',         href: '/tools/business',      count: 6   },
-  { name: 'Environment',      href: '/tools/environment',   count: 6   },
-  { name: 'IQ Test',          href: '/tools/iq-test',       count: 1   },
-]
+  { name: 'Calculators', href: '/tools/calculators', count: TOTAL_CALC_COUNT },
+  { name: 'Engineering', href: '/tools/engineering', count: 126 },
+  { name: 'Medical & Health', href: '/tools/medical', count: 113 },
+  { name: 'Image Tools', href: '/tools/image-tools', count: 38 },
+  { name: 'PDF Tools', href: '/tools/pdf', count: 31 },
+  { name: 'Developer Tools', href: '/tools/developer', count: 19 },
+  { name: 'Text Tools', href: '/tools/text', count: 10 },
+  { name: 'Security', href: '/tools/security', count: 9 },
+  { name: 'Unit Converters', href: '/tools/converters', count: 8 },
+  { name: 'Legal Tools', href: '/tools/legal-tools', count: 8 },
+  { name: 'Real Estate', href: '/tools/real-estate', count: 8 },
+  { name: 'Network Tools', href: '/tools/network', count: 7 },
+  { name: 'Document Tools', href: '/tools/document-tools', count: 11 },
+  { name: 'Business', href: '/tools/business', count: 6 },
+  { name: 'Environment', href: '/tools/environment', count: 6 },
+  { name: 'IQ Test', href: '/tools/iq-test', count: 1 },
+  { name: 'Paper Maker', href: '/tools/paper-maker', count: 7 },
+];
 
 /* ─── Component ─────────────────────────────────────────────── */
 export default function SiteHeader() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [mounted, setMounted]   = useState(false)
-  const { resolvedTheme, setTheme } = useTheme()
-  const { data: session, status } = useSession()
-  const drawerRef               = useRef<HTMLDivElement>(null)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+  const { data: session, status } = useSession();
+  const drawerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => { setMounted(true) }, [])
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close drawer on outside click
   useEffect(() => {
     const h = (e: MouseEvent) => {
       if (drawerRef.current && !drawerRef.current.contains(e.target as Node)) {
-        setMenuOpen(false)
+        setMenuOpen(false);
       }
-    }
-    if (menuOpen) document.addEventListener('mousedown', h)
-    return () => document.removeEventListener('mousedown', h)
-  }, [menuOpen])
+    };
+    if (menuOpen) document.addEventListener('mousedown', h);
+    return () => document.removeEventListener('mousedown', h);
+  }, [menuOpen]);
 
   // Lock scroll when drawer is open
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
 
-  const isDark = mounted && resolvedTheme === 'dark'
-  const toggleTheme = () => setTheme(isDark ? 'light' : 'dark')
+  const isDark = mounted && resolvedTheme === 'dark';
+  const toggleTheme = () => setTheme(isDark ? 'light' : 'dark');
 
   return (
     <>
@@ -101,7 +106,10 @@ export default function SiteHeader() {
           <Link
             href="/"
             className="hidden md:flex items-center px-3 py-1.5 rounded-lg text-[#ccc] hover:text-white text-sm transition-colors"
-            style={{ background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.12)' }}
+            style={{
+              background: 'rgba(255,255,255,0.08)',
+              border: '0.5px solid rgba(255,255,255,0.12)',
+            }}
           >
             Home
           </Link>
@@ -123,7 +131,10 @@ export default function SiteHeader() {
           <Link
             href="/tools"
             className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-white text-sm"
-            style={{ background: 'rgba(255,255,255,0.10)', border: '0.5px solid rgba(255,255,255,0.20)' }}
+            style={{
+              background: 'rgba(255,255,255,0.10)',
+              border: '0.5px solid rgba(255,255,255,0.20)',
+            }}
           >
             <IconLayoutGrid size={14} aria-hidden="true" />
             All Tools
@@ -140,9 +151,14 @@ export default function SiteHeader() {
           {/* X */}
           {SOCIAL_LINKS.twitter && (
             <a
-              href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer"
+              href={SOCIAL_LINKS.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-[34px] h-[34px] rounded-lg flex items-center justify-center text-[#ccc] hover:text-white transition-colors"
-              style={{ background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.12)' }}
+              style={{
+                background: 'rgba(255,255,255,0.08)',
+                border: '0.5px solid rgba(255,255,255,0.12)',
+              }}
               aria-label="Twitter / X"
             >
               <IconBrandX size={15} aria-hidden="true" />
@@ -152,9 +168,14 @@ export default function SiteHeader() {
           {/* GitHub */}
           {SOCIAL_LINKS.github && (
             <a
-              href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer"
+              href={SOCIAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-[34px] h-[34px] rounded-lg flex items-center justify-center text-[#ccc] hover:text-white transition-colors"
-              style={{ background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.12)' }}
+              style={{
+                background: 'rgba(255,255,255,0.08)',
+                border: '0.5px solid rgba(255,255,255,0.12)',
+              }}
               aria-label="GitHub"
             >
               <IconBrandGithub size={15} aria-hidden="true" />
@@ -165,32 +186,42 @@ export default function SiteHeader() {
           <button
             onClick={toggleTheme}
             className="w-[34px] h-[34px] rounded-lg flex items-center justify-center text-[#ccc] hover:text-white transition-colors cursor-pointer"
-            style={{ background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.12)' }}
+            style={{
+              background: 'rgba(255,255,255,0.08)',
+              border: '0.5px solid rgba(255,255,255,0.12)',
+            }}
             aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
           >
-            {mounted && isDark
-              ? <IconSun size={15} aria-hidden="true" />
-              : <IconMoon size={15} aria-hidden="true" />
-            }
+            {mounted && isDark ? (
+              <IconSun size={15} aria-hidden="true" />
+            ) : (
+              <IconMoon size={15} aria-hidden="true" />
+            )}
           </button>
 
           {/* Auth buttons */}
-          {mounted && status !== 'loading' && (
-            session ? (
+          {mounted &&
+            status !== 'loading' &&
+            (session ? (
               <Link
                 href="/account"
                 className="w-[34px] h-[34px] rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
                 style={{ background: '#1a6b3c' }}
                 aria-label="My account"
               >
-                {session.user?.name?.[0]?.toUpperCase() ?? session.user?.email?.[0]?.toUpperCase() ?? 'U'}
+                {session.user?.name?.[0]?.toUpperCase() ??
+                  session.user?.email?.[0]?.toUpperCase() ??
+                  'U'}
               </Link>
             ) : (
               <>
                 <Link
                   href="/signin"
                   className="hidden sm:flex items-center px-3 py-1.5 rounded-lg text-[#ccc] hover:text-white text-sm transition-colors"
-                  style={{ background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.12)' }}
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '0.5px solid rgba(255,255,255,0.12)',
+                  }}
                 >
                   Log in
                 </Link>
@@ -202,14 +233,16 @@ export default function SiteHeader() {
                   Sign up
                 </Link>
               </>
-            )
-          )}
+            ))}
 
           {/* Menu */}
           <button
-            onClick={() => setMenuOpen(o => !o)}
+            onClick={() => setMenuOpen((o) => !o)}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-white text-sm cursor-pointer"
-            style={{ background: 'rgba(255,255,255,0.10)', border: '0.5px solid rgba(255,255,255,0.20)' }}
+            style={{
+              background: 'rgba(255,255,255,0.10)',
+              border: '0.5px solid rgba(255,255,255,0.20)',
+            }}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
           >
@@ -266,11 +299,19 @@ export default function SiteHeader() {
           style={{ borderBottom: '0.5px solid rgba(255,255,255,0.10)' }}
         >
           <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-xs"
-              style={{ background: '#1a6b3c' }}>RT</div>
+            <div
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-xs"
+              style={{ background: '#1a6b3c' }}
+            >
+              RT
+            </div>
             <span className="text-white font-semibold text-sm">RoughTools</span>
           </Link>
-          <button onClick={() => setMenuOpen(false)} className="text-[#aaa] hover:text-white cursor-pointer" aria-label="Close menu">
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="text-[#aaa] hover:text-white cursor-pointer"
+            aria-label="Close menu"
+          >
             <IconX size={18} aria-hidden="true" />
           </button>
         </div>
@@ -299,7 +340,10 @@ export default function SiteHeader() {
         </nav>
 
         {/* Drawer footer */}
-        <div className="px-5 py-4 flex-shrink-0" style={{ borderTop: '0.5px solid rgba(255,255,255,0.08)' }}>
+        <div
+          className="px-5 py-4 flex-shrink-0"
+          style={{ borderTop: '0.5px solid rgba(255,255,255,0.08)' }}
+        >
           <Link
             href="/tools"
             onClick={() => setMenuOpen(false)}
@@ -311,5 +355,5 @@ export default function SiteHeader() {
         </div>
       </aside>
     </>
-  )
+  );
 }
