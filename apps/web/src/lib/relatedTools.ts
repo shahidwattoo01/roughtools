@@ -4,7 +4,7 @@
 // "Every page shows 4 related tools"
 // ============================================================
 
-import { ALL_TOOLS, Tool, ToolCategory, getToolsByCategory } from './tools-registry'
+import { ALL_TOOLS, Tool, ToolCategory, getToolsByCategory } from './tools-registry';
 
 // ─── EXPLICIT RELATED TOOL MAPPINGS ─────────────────────────
 // Hand-curated for highest-traffic tools. Falls back to same-category.
@@ -24,18 +24,78 @@ const RELATED_MAP: Record<string, string[]> = {
   'ocr-pdf': ['compress-pdf', 'pdf-to-word', 'repair-pdf', 'rotate-pdf'],
 
   // Calculators
-  'bmi-calculator': ['calorie-calculator', 'body-fat-calculator', 'age-calculator', 'due-date-calculator'],
-  'loan-calculator': ['mortgage-calculator', 'compound-interest-calculator', 'roi-calculator', 'salary-calculator'],
-  'mortgage-calculator': ['loan-calculator', 'compound-interest-calculator', 'inflation-calculator', 'retirement-calculator'],
-  'compound-interest-calculator': ['loan-calculator', 'retirement-calculator', 'roi-calculator', 'inflation-calculator'],
-  'age-calculator': ['date-difference-calculator', 'due-date-calculator', 'ovulation-calculator', 'bmi-calculator'],
-  'percentage-calculator': ['discount-calculator', 'tip-calculator', 'tax-calculator', 'salary-calculator'],
-  'currency-converter': ['tip-calculator', 'percentage-calculator', 'salary-calculator', 'compound-interest-calculator'],
-  'tax-calculator': ['salary-calculator', 'percentage-calculator', 'roi-calculator', 'retirement-calculator'],
-  'salary-calculator': ['tax-calculator', 'tip-calculator', 'retirement-calculator', 'loan-calculator'],
-  'tip-calculator': ['percentage-calculator', 'discount-calculator', 'currency-converter', 'tax-calculator'],
-  'retirement-calculator': ['compound-interest-calculator', 'inflation-calculator', 'salary-calculator', 'roi-calculator'],
-  'calorie-calculator': ['bmi-calculator', 'body-fat-calculator', 'age-calculator', 'due-date-calculator'],
+  'bmi-calculator': [
+    'calorie-calculator',
+    'body-fat-calculator',
+    'age-calculator',
+    'due-date-calculator',
+  ],
+  'loan-calculator': [
+    'mortgage-calculator',
+    'compound-interest-calculator',
+    'roi-calculator',
+    'salary-calculator',
+  ],
+  'mortgage-calculator': [
+    'loan-calculator',
+    'compound-interest-calculator',
+    'inflation-calculator',
+    'retirement-calculator',
+  ],
+  'compound-interest-calculator': [
+    'loan-calculator',
+    'retirement-calculator',
+    'roi-calculator',
+    'inflation-calculator',
+  ],
+  'age-calculator': [
+    'date-difference-calculator',
+    'due-date-calculator',
+    'ovulation-calculator',
+    'bmi-calculator',
+  ],
+  'percentage-calculator': [
+    'discount-calculator',
+    'tip-calculator',
+    'tax-calculator',
+    'salary-calculator',
+  ],
+  'currency-converter': [
+    'tip-calculator',
+    'percentage-calculator',
+    'salary-calculator',
+    'compound-interest-calculator',
+  ],
+  'tax-calculator': [
+    'salary-calculator',
+    'percentage-calculator',
+    'roi-calculator',
+    'retirement-calculator',
+  ],
+  'salary-calculator': [
+    'tax-calculator',
+    'tip-calculator',
+    'retirement-calculator',
+    'loan-calculator',
+  ],
+  'tip-calculator': [
+    'percentage-calculator',
+    'discount-calculator',
+    'currency-converter',
+    'tax-calculator',
+  ],
+  'retirement-calculator': [
+    'compound-interest-calculator',
+    'inflation-calculator',
+    'salary-calculator',
+    'roi-calculator',
+  ],
+  'calorie-calculator': [
+    'bmi-calculator',
+    'body-fat-calculator',
+    'age-calculator',
+    'due-date-calculator',
+  ],
 
   // Developer
   'json-formatter': ['xml-formatter', 'yaml-validator', 'diff-checker', 'base64-encoder'],
@@ -60,10 +120,25 @@ const RELATED_MAP: Record<string, string[]> = {
   'website-speed-test': ['http-headers-checker', 'dns-lookup', 'ping-tool', 'whois-lookup'],
 
   // Converters
-  'temperature-converter': ['length-converter', 'weight-converter', 'speed-converter', 'volume-converter'],
-  'length-converter': ['weight-converter', 'area-converter', 'speed-converter', 'temperature-converter'],
-  'weight-converter': ['length-converter', 'area-converter', 'digital-storage-converter', 'speed-converter'],
-}
+  'temperature-converter': [
+    'length-converter',
+    'weight-converter',
+    'speed-converter',
+    'volume-converter',
+  ],
+  'length-converter': [
+    'weight-converter',
+    'area-converter',
+    'speed-converter',
+    'temperature-converter',
+  ],
+  'weight-converter': [
+    'length-converter',
+    'area-converter',
+    'digital-storage-converter',
+    'speed-converter',
+  ],
+};
 
 // ─── FEATURED TOOLS FOR HOMEPAGE ────────────────────────────
 export const FEATURED_TOOL_SLUGS = [
@@ -79,27 +154,59 @@ export const FEATURED_TOOL_SLUGS = [
   'temperature-converter',
   'compound-interest-calculator',
   'regex-tester',
-]
+];
 
 // ─── POPULAR TOOLS FOR HOMEPAGE HERO ────────────────────────
 export const POPULAR_TOOL_SLUGS_BY_CATEGORY: Record<ToolCategory, string[]> = {
   pdf: ['compress-pdf', 'merge-pdf', 'pdf-to-word', 'split-pdf'],
-  calculators: ['bmi-calculator', 'mortgage-calculator', 'compound-interest-calculator', 'age-calculator'],
+  calculators: [
+    'bmi-calculator',
+    'mortgage-calculator',
+    'compound-interest-calculator',
+    'age-calculator',
+  ],
   developer: ['json-formatter', 'base64-encoder', 'regex-tester', 'ip-checker'],
   text: ['word-counter', 'grammar-checker', 'case-converter', 'text-summarizer'],
-  converters: ['temperature-converter', 'length-converter', 'weight-converter', 'currency-converter'],
+  converters: [
+    'temperature-converter',
+    'length-converter',
+    'weight-converter',
+    'currency-converter',
+  ],
   network: ['dns-lookup', 'whois-lookup', 'website-speed-test', 'ip-checker'],
   'legal-tools': [],
   'real-estate': [],
-  'image-tools': ['background-remover', 'image-compressor', 'passport-photo-maker', 'image-converter', 'image-upscaler'],
+  'image-tools': [
+    'background-remover',
+    'image-compressor',
+    'passport-photo-maker',
+    'image-converter',
+    'image-upscaler',
+  ],
   security: ['qr-code-generator', 'password-generator', 'url-shortener', 'temporary-email'],
-  'document-tools': ['invoice-generator', 'resume-builder', 'cover-letter-builder', 'proposal-generator'],
+  'document-tools': [
+    'invoice-generator',
+    'resume-builder',
+    'cover-letter-builder',
+    'proposal-generator',
+  ],
   environment: [],
   business: [],
-  engineering: ['ohms-law-calculator', 'beam-deflection-calculator', 'gear-ratio-calculator', 'reynolds-number-calculator'],
-  medical: ['bmi-calculator', 'heart-score-calculator', 'egfr-ckd-epi-calculator', 'phq9-depression-screen'],
+  engineering: [
+    'ohms-law-calculator',
+    'beam-deflection-calculator',
+    'gear-ratio-calculator',
+    'reynolds-number-calculator',
+  ],
+  medical: [
+    'bmi-calculator',
+    'heart-score-calculator',
+    'egfr-ckd-epi-calculator',
+    'phq9-depression-screen',
+  ],
   'iq-test': [],
-}
+  'paper-maker': [],
+};
 
 // ─── CORE FUNCTIONS ──────────────────────────────────────────
 
@@ -109,35 +216,35 @@ export const POPULAR_TOOL_SLUGS_BY_CATEGORY: Record<ToolCategory, string[]> = {
  */
 export function getRelatedTools(toolSlug: string, limit = 4): Tool[] {
   // 1. Check curated map
-  const curatedSlugs = RELATED_MAP[toolSlug]
+  const curatedSlugs = RELATED_MAP[toolSlug];
   if (curatedSlugs) {
     const tools = curatedSlugs
       .slice(0, limit)
       .map((slug) => ALL_TOOLS.find((t) => t.slug === slug))
-      .filter((t): t is Tool => t !== undefined)
+      .filter((t): t is Tool => t !== undefined);
 
-    if (tools.length === limit) return tools
+    if (tools.length === limit) return tools;
   }
 
   // 2. Fallback: same category, excluding self
-  const currentTool = ALL_TOOLS.find((t) => t.slug === toolSlug)
-  if (!currentTool) return []
+  const currentTool = ALL_TOOLS.find((t) => t.slug === toolSlug);
+  if (!currentTool) return [];
 
   const sameCategory = getToolsByCategory(currentTool.category)
     .filter((t) => t.slug !== toolSlug)
     .sort((a, b) => (b.priority ?? 0.5) - (a.priority ?? 0.5))
-    .slice(0, limit)
+    .slice(0, limit);
 
   // 3. If not enough in category, fill with popular tools from other categories
   if (sameCategory.length < limit) {
     const others = ALL_TOOLS.filter(
       (t) => t.slug !== toolSlug && t.category !== currentTool.category && t.popular
-    ).slice(0, limit - sameCategory.length)
+    ).slice(0, limit - sameCategory.length);
 
-    return [...sameCategory, ...others]
+    return [...sameCategory, ...others];
   }
 
-  return sameCategory
+  return sameCategory;
 }
 
 /**
@@ -145,9 +252,7 @@ export function getRelatedTools(toolSlug: string, limit = 4): Tool[] {
  * Sorted by priority (popular first).
  */
 export function getCategoryTools(category: ToolCategory): Tool[] {
-  return getToolsByCategory(category).sort(
-    (a, b) => (b.priority ?? 0.5) - (a.priority ?? 0.5)
-  )
+  return getToolsByCategory(category).sort((a, b) => (b.priority ?? 0.5) - (a.priority ?? 0.5));
 }
 
 /**
@@ -156,15 +261,15 @@ export function getCategoryTools(category: ToolCategory): Tool[] {
 export function getFeaturedTools(limit = 12): Tool[] {
   return FEATURED_TOOL_SLUGS.slice(0, limit)
     .map((slug) => ALL_TOOLS.find((t) => t.slug === slug))
-    .filter((t): t is Tool => t !== undefined)
+    .filter((t): t is Tool => t !== undefined);
 }
 
 /**
  * Get popular tools per category for homepage sections.
  */
 export function getHomepageSections(): Array<{
-  category: ToolCategory
-  tools: Tool[]
+  category: ToolCategory;
+  tools: Tool[];
 }> {
   return (Object.entries(POPULAR_TOOL_SLUGS_BY_CATEGORY) as [ToolCategory, string[]][])
     .filter(([, slugs]) => slugs.length > 0)
@@ -173,5 +278,5 @@ export function getHomepageSections(): Array<{
       tools: slugs
         .map((slug) => ALL_TOOLS.find((t) => t.slug === slug))
         .filter((t): t is Tool => t !== undefined),
-    }))
+    }));
 }

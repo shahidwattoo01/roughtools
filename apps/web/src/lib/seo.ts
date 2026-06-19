@@ -267,6 +267,7 @@ export function getCategoryLabel(category: ToolCategory): string {
     engineering: 'Engineering Tools',
     medical: 'Medical & Health Tools',
     'iq-test': 'IQ Test',
+    'paper-maker': 'Paper Maker',
   };
   return labels[category] || category;
 }

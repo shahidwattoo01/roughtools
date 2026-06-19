@@ -1,4 +1,4 @@
-﻿'use client'
+﻿'use client';
 
 // ============================================================
 // ROUGHTOOLS â€” CategoryNav Component (Phase 3.7)
@@ -7,16 +7,16 @@
 // Critical for internal linking & SEO crawlability
 // ============================================================
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils'
-import type { ToolCategory } from '@/lib/tools-registry'
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import type { ToolCategory } from '@/lib/tools-registry';
 
 interface Category {
-  slug: ToolCategory
-  label: string
-  emoji: string
-  count: number
+  slug: ToolCategory;
+  label: string;
+  emoji: string;
+  count: number;
 }
 
 const CATEGORIES: Category[] = [
@@ -30,22 +30,19 @@ const CATEGORIES: Category[] = [
   { slug: 'legal-tools', label: 'Legal Tools', emoji: 'âš–ï¸', count: 50 },
   { slug: 'real-estate', label: 'Real Estate', emoji: 'ðŸ ', count: 42 },
   { slug: 'security', label: 'Security', emoji: 'ðŸ”’', count: 8 },
-  { slug: 'document-tools', label: 'Documents', emoji: 'ðŸ“‹', count: 9 },
-]
+  { slug: 'document-tools', label: 'Documents', emoji: 'ðŸ”‹', count: 9 },
+  { slug: 'paper-maker', label: 'Paper Maker', emoji: '📝', count: 1 },
+];
 
 interface CategoryNavProps {
-  variant?: 'tabs' | 'pills' | 'sidebar'
-  className?: string
+  variant?: 'tabs' | 'pills' | 'sidebar';
+  className?: string;
   /** Highlight the active category */
-  activeCategory?: ToolCategory
+  activeCategory?: ToolCategory;
 }
 
-export function CategoryNav({
-  variant = 'tabs',
-  className,
-  activeCategory,
-}: CategoryNavProps) {
-  const pathname = usePathname()
+export function CategoryNav({ variant = 'tabs', className, activeCategory }: CategoryNavProps) {
+  const pathname = usePathname();
 
   if (variant === 'tabs') {
     return (
@@ -53,14 +50,10 @@ export function CategoryNav({
         aria-label="Tool categories"
         className={cn('overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0', className)}
       >
-        <ul
-          className="flex gap-2 min-w-max pb-px"
-          role="tablist"
-        >
+        <ul className="flex gap-2 min-w-max pb-px" role="tablist">
           {CATEGORIES.map((cat) => {
-            const href = `/tools/${cat.slug}`
-            const isActive =
-              activeCategory === cat.slug || pathname.startsWith(href)
+            const href = `/tools/${cat.slug}`;
+            const isActive = activeCategory === cat.slug || pathname.startsWith(href);
 
             return (
               <li key={cat.slug} role="presentation">
@@ -83,20 +76,18 @@ export function CategoryNav({
                   <span
                     className={cn(
                       'text-xs rounded-full px-1.5 py-0.5',
-                      isActive
-                        ? 'bg-white/20 text-white'
-                        : 'bg-gray-100 text-gray-500'
+                      isActive ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-500'
                     )}
                   >
                     {cat.count}
                   </span>
                 </Link>
               </li>
-            )
+            );
           })}
         </ul>
       </nav>
-    )
+    );
   }
 
   if (variant === 'pills') {
@@ -104,8 +95,8 @@ export function CategoryNav({
       <nav aria-label="Tool categories" className={className}>
         <ul className="flex flex-wrap gap-2">
           {CATEGORIES.map((cat) => {
-            const href = `/tools/${cat.slug}`
-            const isActive = activeCategory === cat.slug
+            const href = `/tools/${cat.slug}`;
+            const isActive = activeCategory === cat.slug;
 
             return (
               <li key={cat.slug}>
@@ -123,11 +114,11 @@ export function CategoryNav({
                   {cat.label}
                 </Link>
               </li>
-            )
+            );
           })}
         </ul>
       </nav>
-    )
+    );
   }
 
   // Sidebar variant
@@ -138,8 +129,8 @@ export function CategoryNav({
       </p>
       <ul className="space-y-0.5">
         {CATEGORIES.map((cat) => {
-          const href = `/tools/${cat.slug}`
-          const isActive = activeCategory === cat.slug || pathname.startsWith(href)
+          const href = `/tools/${cat.slug}`;
+          const isActive = activeCategory === cat.slug || pathname.startsWith(href);
 
           return (
             <li key={cat.slug}>
@@ -161,9 +152,9 @@ export function CategoryNav({
                 <span className="text-xs text-gray-400">{cat.count}</span>
               </Link>
             </li>
-          )
+          );
         })}
       </ul>
     </nav>
-  )
+  );
 }

@@ -3,7 +3,7 @@
 // Helpers for dynamic Open Graph image generation
 // ============================================================
 
-import { ToolCategory } from './tools-registry'
+import { ToolCategory } from './tools-registry';
 
 export const OG_CATEGORY_GRADIENTS: Record<ToolCategory, { from: string; to: string }> = {
   pdf: { from: '#ef4444', to: '#b91c1c' },
@@ -22,7 +22,8 @@ export const OG_CATEGORY_GRADIENTS: Record<ToolCategory, { from: string; to: str
   engineering: { from: '#0ea5e9', to: '#1e40af' },
   medical: { from: '#10b981', to: '#065f46' },
   'iq-test': { from: '#a21caf', to: '#581c87' },
-}
+  'paper-maker': { from: '#0369a1', to: '#1e3a5f' },
+};
 
 export const OG_CATEGORY_EMOJIS: Record<ToolCategory, string> = {
   pdf: '📄',
@@ -41,7 +42,8 @@ export const OG_CATEGORY_EMOJIS: Record<ToolCategory, string> = {
   engineering: '⚙️',
   medical: '🩺',
   'iq-test': '🧠',
-}
+  'paper-maker': '📝',
+};
 
 export const OG_CATEGORY_LABELS: Record<ToolCategory, string> = {
   pdf: 'PDF Tools',
@@ -60,16 +62,17 @@ export const OG_CATEGORY_LABELS: Record<ToolCategory, string> = {
   engineering: 'Engineering Tools',
   medical: 'Medical & Health Tools',
   'iq-test': 'IQ Test — Cognitive Assessment',
-}
+  'paper-maker': 'Paper Maker — Exam Paper Generator',
+};
 
 /** Get OG image URL for a tool */
 export function getToolOgImageUrl(category: string, slug: string): string {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://roughtools.com'
-  return `${base}/tools/${category}/${slug}/opengraph-image`
+  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://roughtools.com';
+  return `${base}/tools/${category}/${slug}/opengraph-image`;
 }
 
 /** Get OG image URL for a category */
 export function getCategoryOgImageUrl(category: string): string {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://roughtools.com'
-  return `${base}/tools/${category}/opengraph-image`
+  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://roughtools.com';
+  return `${base}/tools/${category}/opengraph-image`;
 }

@@ -27,7 +27,8 @@ export type ToolCategory =
   | 'environment'
   | 'engineering'
   | 'medical'
-  | 'iq-test';
+  | 'iq-test'
+  | 'paper-maker';
 
 export interface Tool {
   slug: string;

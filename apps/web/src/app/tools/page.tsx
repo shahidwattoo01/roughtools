@@ -1,15 +1,15 @@
-import Link from 'next/link'
-import ToolAdUnit from '@/components/ToolAdUnit'
-import type { Metadata } from 'next'
-import { TOTAL_REAL_TOOLS, TOTAL_CALC_COUNT } from '@/lib/tool-counts'
+import Link from 'next/link';
+import ToolAdUnit from '@/components/ToolAdUnit';
+import type { Metadata } from 'next';
+import { TOTAL_REAL_TOOLS, TOTAL_CALC_COUNT } from '@/lib/tool-counts';
 
 export const metadata: Metadata = {
   title: `All Tools — ${TOTAL_REAL_TOOLS}+ Free Online Tools | RoughTools`,
-  description: `${TOTAL_REAL_TOOLS}+ free online tools across 16 categories: calculators, converters, developer tools, PDF tools, and more. No signup required.`,
+  description: `${TOTAL_REAL_TOOLS}+ free online tools across 17 categories: calculators, converters, developer tools, PDF tools, and more. No signup required.`,
   alternates: { canonical: 'https://roughtools.com/tools' },
   openGraph: {
     title: `All Tools — ${TOTAL_REAL_TOOLS}+ Free Online Tools | RoughTools`,
-    description: `${TOTAL_REAL_TOOLS}+ free online tools across 16 categories. No signup required.`,
+    description: `${TOTAL_REAL_TOOLS}+ free online tools across 17 categories. No signup required.`,
     url: 'https://roughtools.com/tools',
     type: 'website',
     siteName: 'RoughTools',
@@ -17,10 +17,10 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: `All Tools — ${TOTAL_REAL_TOOLS}+ Free Online Tools | RoughTools`,
-    description: `${TOTAL_REAL_TOOLS}+ free online tools across 16 categories. No signup required.`,
+    description: `${TOTAL_REAL_TOOLS}+ free online tools across 17 categories. No signup required.`,
   },
   robots: { index: true, follow: true },
-}
+};
 
 // Counts must stay in sync with CategoryGrid.tsx and tool-counts.ts (sum = TOTAL_REAL_TOOLS)
 const ALL_CATEGORIES = [
@@ -136,14 +136,20 @@ const ALL_CATEGORIES = [
     count: 1,
     accent: '#7c3aed',
   },
-] as const
+  {
+    name: 'Paper Maker',
+    desc: 'Generate exam papers, question banks, and class tests for Pakistani boards',
+    href: '/tools/paper-maker',
+    count: 1,
+    accent: '#0369a1',
+  },
+] as const;
 
-const CATEGORY_COUNT = ALL_CATEGORIES.length // 16
+const CATEGORY_COUNT = ALL_CATEGORIES.length; // 17
 
 export default function AllToolsPage() {
   return (
     <div className="min-h-screen bg-[#f5f5f3] dark:bg-[#121212]">
-
       {/* ── Hero ──────────────────────────────────────────── */}
       <section className="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 text-center">
@@ -157,17 +163,20 @@ export default function AllToolsPage() {
             </span>
           </h1>
           <p className="text-lg text-white/70 max-w-xl mx-auto mb-8">
-            {TOTAL_REAL_TOOLS}+ free online tools across {CATEGORY_COUNT} categories. No signup required.
+            {TOTAL_REAL_TOOLS}+ free online tools across {CATEGORY_COUNT} categories. No signup
+            required.
           </p>
           <div className="flex items-center justify-center gap-8">
             {[
               { value: `${TOTAL_REAL_TOOLS}+`, label: 'Tools' },
-              { value: `${CATEGORY_COUNT}`,    label: 'Categories' },
-              { value: 'Free',                 label: 'Always' },
-            ].map(s => (
+              { value: `${CATEGORY_COUNT}`, label: 'Categories' },
+              { value: 'Free', label: 'Always' },
+            ].map((s) => (
               <div key={s.label} className="text-center">
                 <div className="text-2xl font-black text-white">{s.value}</div>
-                <div className="text-xs text-white/50 uppercase tracking-widest mt-0.5">{s.label}</div>
+                <div className="text-xs text-white/50 uppercase tracking-widest mt-0.5">
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>
@@ -183,9 +192,10 @@ export default function AllToolsPage() {
             { icon: '🌐', text: 'Works in your browser' },
             { icon: '📱', text: 'Mobile friendly' },
             { icon: '🚫', text: 'No watermarks, ever' },
-          ].map(b => (
+          ].map((b) => (
             <span key={b.text} className="flex items-center gap-1.5 font-medium">
-              <span>{b.icon}</span>{b.text}
+              <span>{b.icon}</span>
+              {b.text}
             </span>
           ))}
         </div>
@@ -199,7 +209,7 @@ export default function AllToolsPage() {
       {/* ── Category grid ─────────────────────────────────── */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {ALL_CATEGORIES.map(cat => (
+          {ALL_CATEGORIES.map((cat) => (
             <Link
               key={cat.name}
               href={cat.href}
@@ -241,9 +251,12 @@ export default function AllToolsPage() {
                   <svg
                     className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                     style={{ color: cat.accent }}
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
                   >
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                    <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </div>
               </div>
@@ -260,18 +273,18 @@ export default function AllToolsPage() {
       {/* ── SEO section ───────────────────────────────────── */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
         <div className="bg-white dark:bg-[#1e1e1e] rounded-3xl border border-gray-100 dark:border-white/10 p-8 sm:p-10">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Why RoughTools?
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Why RoughTools?</h2>
           <div className="grid sm:grid-cols-2 gap-6 text-sm text-gray-600 dark:text-[#aaa] leading-relaxed">
             <div>
               <p className="mb-3">
-                RoughTools gives you {TOTAL_REAL_TOOLS}+ professional-grade tools completely free — no paywalls,
-                no sign-up, no watermarks. Every tool runs entirely in your browser for maximum privacy.
+                RoughTools gives you {TOTAL_REAL_TOOLS}+ professional-grade tools completely free —
+                no paywalls, no sign-up, no watermarks. Every tool runs entirely in your browser for
+                maximum privacy.
               </p>
               <p>
-                From legal documents and medical calculators to image editing and developer utilities,
-                we cover every use case with tools designed to be fast, accurate, and beautiful.
+                From legal documents and medical calculators to image editing and developer
+                utilities, we cover every use case with tools designed to be fast, accurate, and
+                beautiful.
               </p>
             </div>
             <ul className="space-y-2">
@@ -282,7 +295,7 @@ export default function AllToolsPage() {
                 'Works entirely in your browser',
                 'Mobile-friendly and responsive',
                 'No watermarks on any output',
-              ].map(point => (
+              ].map((point) => (
                 <li key={point} className="flex items-start gap-2">
                   <span className="text-green-500 font-bold mt-0.5 flex-shrink-0">✓</span>
                   <span>{point}</span>
@@ -293,5 +306,5 @@ export default function AllToolsPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

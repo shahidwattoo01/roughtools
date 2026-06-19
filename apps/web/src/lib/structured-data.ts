@@ -244,13 +244,6 @@ export function getPricingSchema() {
       price: '0',
       priceCurrency: 'USD',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: 4.8,
-      ratingCount: 1200,
-      bestRating: 5,
-      worstRating: 1,
-    },
   };
 }
 
@@ -288,6 +281,7 @@ function getCategoryApplicationType(category: ToolCategory): string {
     engineering: 'UtilitiesApplication',
     medical: 'HealthApplication',
     'iq-test': 'UtilitiesApplication',
+    'paper-maker': 'EducationalApplication',
   };
   return types[category] || 'WebApplication';
 }
