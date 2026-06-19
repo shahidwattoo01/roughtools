@@ -8,7 +8,7 @@ export type BoardId =
   | 'sindh'
   | 'balochistan'
   | 'kp';
-export type ClassLevel = 9 | 10 | 11 | 12;
+export type ClassLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 export type Medium = 'english' | 'urdu' | 'bilingual';
 export type SubjectGroup = 'science' | 'arts' | 'commerce' | 'ics' | 'general';
 export type QuestionType = 'mcq' | 'short' | 'long' | 'fill' | 'truefalse' | 'matching';
@@ -57,73 +57,456 @@ export interface PatternSection {
   instructions: string;
 }
 
+const ALL_CLASSES: ClassLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
 export const BOARDS: Board[] = [
   {
     id: 'lahore',
     name: 'Lahore Board',
     nameUrdu: 'لاہور بورڈ',
     province: 'Punjab',
-    classes: [9, 10, 11, 12],
+    classes: ALL_CLASSES,
   },
   {
     id: 'faisalabad',
     name: 'Faisalabad Board',
     nameUrdu: 'فیصل آباد بورڈ',
     province: 'Punjab',
-    classes: [9, 10, 11, 12],
+    classes: ALL_CLASSES,
   },
   {
     id: 'multan',
     name: 'Multan Board',
     nameUrdu: 'ملتان بورڈ',
     province: 'Punjab',
-    classes: [9, 10, 11, 12],
+    classes: ALL_CLASSES,
   },
   {
     id: 'gujranwala',
     name: 'Gujranwala Board',
     nameUrdu: 'گوجرانوالہ بورڈ',
     province: 'Punjab',
-    classes: [9, 10, 11, 12],
+    classes: ALL_CLASSES,
   },
   {
     id: 'rawalpindi',
     name: 'Rawalpindi Board',
     nameUrdu: 'راولپنڈی بورڈ',
     province: 'Punjab',
-    classes: [9, 10, 11, 12],
+    classes: ALL_CLASSES,
   },
   {
     id: 'federal',
     name: 'Federal Board',
     nameUrdu: 'فیڈرل بورڈ',
     province: 'Federal',
-    classes: [9, 10, 11, 12],
+    classes: ALL_CLASSES,
   },
   {
     id: 'sindh',
     name: 'Sindh Board',
     nameUrdu: 'سندھ بورڈ',
     province: 'Sindh',
-    classes: [9, 10, 11, 12],
+    classes: ALL_CLASSES,
   },
   {
     id: 'balochistan',
     name: 'Balochistan Board',
     nameUrdu: 'بلوچستان بورڈ',
     province: 'Balochistan',
-    classes: [9, 10, 11, 12],
+    classes: ALL_CLASSES,
   },
   {
     id: 'kp',
     name: 'KP Board',
     nameUrdu: 'خیبر پختونخوا بورڈ',
     province: 'KPK',
-    classes: [9, 10, 11, 12],
+    classes: ALL_CLASSES,
   },
 ];
 
 export const SUBJECTS: Subject[] = [
+  {
+    id: 'gk',
+    name: 'General Knowledge',
+    nameUrdu: 'عمومی علم',
+    classes: [1, 2, 3],
+    boards: 'all',
+    groups: ['general'],
+    chapters: [
+      {
+        number: 1,
+        name: 'My Body & Health',
+        nameUrdu: 'میرا جسم اور صحت',
+        topics: ['Body parts', 'Senses', 'Healthy habits', 'Food & nutrition'],
+      },
+      {
+        number: 2,
+        name: 'Animals & Plants',
+        nameUrdu: 'جانور اور پودے',
+        topics: ['Pet animals', 'Wild animals', 'Plants around us', 'Trees & flowers'],
+      },
+      {
+        number: 3,
+        name: 'My Community',
+        nameUrdu: 'میری برادری',
+        topics: ['Family', 'Neighbours', 'School', 'Community helpers'],
+      },
+      {
+        number: 4,
+        name: 'The World Around Me',
+        nameUrdu: 'میرے اردگرد کی دنیا',
+        topics: ['Weather & seasons', 'Day & night', 'Water & air', 'Keeping clean'],
+      },
+    ],
+  },
+  {
+    id: 'general-science',
+    name: 'General Science',
+    nameUrdu: 'عمومی سائنس',
+    classes: [3, 4, 5, 6, 7, 8],
+    boards: 'all',
+    groups: ['science', 'general'],
+    chapters: [
+      {
+        number: 1,
+        name: 'Living Things & Plants',
+        nameUrdu: 'جاندار اور پودے',
+        topics: [
+          'Characteristics of living things',
+          'Parts of a plant',
+          'Photosynthesis basics',
+          'Plant reproduction',
+          'Plant adaptations',
+        ],
+      },
+      {
+        number: 2,
+        name: 'Animals & Humans',
+        nameUrdu: 'جانور اور انسان',
+        topics: [
+          'Animal classification',
+          'Human body systems',
+          'Nutrition & digestion',
+          'Respiration',
+          'Animal adaptations',
+        ],
+      },
+      {
+        number: 3,
+        name: 'Our Environment',
+        nameUrdu: 'ہمارا ماحول',
+        topics: ['Ecosystem', 'Food chain', 'Pollution', 'Conservation', 'Natural resources'],
+      },
+      {
+        number: 4,
+        name: 'Matter & Materials',
+        nameUrdu: 'مادہ اور مواد',
+        topics: [
+          'States of matter',
+          'Properties of materials',
+          'Mixtures & solutions',
+          'Changes in matter',
+        ],
+      },
+      {
+        number: 5,
+        name: 'Energy & Forces',
+        nameUrdu: 'توانائی اور قوتیں',
+        topics: [
+          'Types of energy',
+          'Light & sound',
+          'Magnets & electricity',
+          'Forces & motion',
+          'Simple machines',
+        ],
+      },
+      {
+        number: 6,
+        name: 'Earth & Space',
+        nameUrdu: 'زمین اور خلاء',
+        topics: [
+          'Solar system',
+          'Earth layers',
+          'Weather & climate',
+          'Rocks & minerals',
+          'Day, night & seasons',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'social-studies',
+    name: 'Social Studies',
+    nameUrdu: 'معاشرتی علوم',
+    classes: [3, 4, 5, 6, 7, 8],
+    boards: 'all',
+    groups: ['arts', 'general'],
+    chapters: [
+      {
+        number: 1,
+        name: 'My Country Pakistan',
+        nameUrdu: 'میرا ملک پاکستان',
+        topics: [
+          'Location & borders',
+          'Provinces & capitals',
+          'National symbols',
+          'Culture & traditions',
+          'National heroes',
+        ],
+      },
+      {
+        number: 2,
+        name: 'Historical Events',
+        nameUrdu: 'تاریخی واقعات',
+        topics: [
+          'Creation of Pakistan 1947',
+          'Two-nation theory',
+          'Quaid-e-Azam',
+          'Allama Iqbal',
+          'Independence movement',
+        ],
+      },
+      {
+        number: 3,
+        name: 'Geography of Pakistan',
+        nameUrdu: 'پاکستان کی جغرافیہ',
+        topics: [
+          'Mountains & rivers',
+          'Climate zones',
+          'Natural resources',
+          'Agriculture',
+          'Major cities',
+        ],
+      },
+      {
+        number: 4,
+        name: 'Government & Democracy',
+        nameUrdu: 'حکومت اور جمہوریت',
+        topics: [
+          'Types of government',
+          'Constitution of Pakistan',
+          'Rights & duties',
+          'Parliament',
+          'Local government',
+        ],
+      },
+      {
+        number: 5,
+        name: 'Economics & Development',
+        nameUrdu: 'معاشیات اور ترقی',
+        topics: [
+          'Trade & industry',
+          'Agriculture economy',
+          'Education & health',
+          'Development challenges',
+          'International relations',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'mathematics',
+    name: 'Mathematics',
+    nameUrdu: 'ریاضی',
+    classes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    boards: 'all',
+    groups: ['science', 'ics', 'arts', 'commerce', 'general'],
+    chapters: [
+      {
+        number: 1,
+        name: 'Numbers 1-100',
+        nameUrdu: '1 سے 100 تک گنتی',
+        topics: ['Counting', 'Number names', 'Before & after', 'Comparing numbers'],
+      },
+      {
+        number: 2,
+        name: 'Addition & Subtraction',
+        nameUrdu: 'جمع اور تفریق',
+        topics: ['Simple addition', 'Simple subtraction', 'Word problems', 'Number bonds'],
+      },
+      {
+        number: 3,
+        name: 'Multiplication & Division',
+        nameUrdu: 'ضرب اور تقسیم',
+        topics: ['Multiplication tables', 'Division basics', 'Word problems', 'Factors'],
+      },
+      {
+        number: 4,
+        name: 'Shapes & Patterns',
+        nameUrdu: 'اشکال اور نمونے',
+        topics: ['2D shapes', '3D shapes', 'Symmetry', 'Patterns & sequences'],
+      },
+      {
+        number: 5,
+        name: 'Measurement',
+        nameUrdu: 'پیمائش',
+        topics: ['Length', 'Weight', 'Capacity', 'Time', 'Money'],
+      },
+      {
+        number: 6,
+        name: 'Fractions',
+        nameUrdu: 'کسر',
+        topics: ['Half & quarter', 'Simple fractions', 'Comparing fractions', 'Adding fractions'],
+      },
+      {
+        number: 7,
+        name: 'Matrices & Determinants',
+        nameUrdu: 'میٹرکس اور تعینات',
+        topics: ['Types of matrices', 'Operations', 'Determinant', 'Inverse matrix'],
+      },
+      {
+        number: 8,
+        name: 'Real & Complex Numbers',
+        nameUrdu: 'حقیقی اور مختلط اعداد',
+        topics: ['Properties', 'Complex numbers', 'Argand plane', 'Absolute value'],
+      },
+      {
+        number: 9,
+        name: 'Logarithms',
+        nameUrdu: 'لوگارتھم',
+        topics: ['Laws', 'Common log', 'Natural log', 'Applications'],
+      },
+      {
+        number: 10,
+        name: 'Linear Equations',
+        nameUrdu: 'خطی معادلے',
+        topics: ['One variable', 'Two variables', 'System of equations', 'Word problems'],
+      },
+    ],
+  },
+  {
+    id: 'english',
+    name: 'English',
+    nameUrdu: 'انگریزی',
+    classes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    boards: 'all',
+    groups: ['science', 'arts', 'commerce', 'ics', 'general'],
+    chapters: [
+      {
+        number: 1,
+        name: 'Alphabet & Phonics',
+        nameUrdu: 'حروف اور آواز',
+        topics: ['Letters A-Z', 'Vowels & consonants', 'Phonics sounds', 'Letter recognition'],
+      },
+      {
+        number: 2,
+        name: 'Simple Sentences',
+        nameUrdu: 'سادہ جملے',
+        topics: ['Nouns', 'Verbs', 'Sentence structure', 'Punctuation'],
+      },
+      {
+        number: 3,
+        name: 'Reading Stories',
+        nameUrdu: 'کہانیاں پڑھنا',
+        topics: ['Reading comprehension', 'Main idea', 'Characters', 'Sequence of events'],
+      },
+      {
+        number: 4,
+        name: 'Basic Grammar',
+        nameUrdu: 'بنیادی گرامر',
+        topics: ['Tenses', 'Voice', 'Narration', 'Modals', 'Conditionals'],
+      },
+      {
+        number: 5,
+        name: 'Writing Skills',
+        nameUrdu: 'تحریری مہارت',
+        topics: ['Essay', 'Paragraph', 'Letter', 'Story writing'],
+      },
+      {
+        number: 6,
+        name: 'Vocabulary',
+        nameUrdu: 'ذخیرہ الفاظ',
+        topics: ['Synonyms', 'Antonyms', 'Idioms', 'Phrasal verbs'],
+      },
+      {
+        number: 7,
+        name: 'Literature',
+        nameUrdu: 'ادب',
+        topics: ['Prose', 'Poetry', 'Characters', 'Theme', 'Summary'],
+      },
+    ],
+  },
+  {
+    id: 'urdu',
+    name: 'Urdu',
+    nameUrdu: 'اردو',
+    classes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    boards: 'all',
+    groups: ['science', 'arts', 'commerce', 'ics', 'general'],
+    chapters: [
+      {
+        number: 1,
+        name: 'حروف تہجی',
+        nameUrdu: 'حروف تہجی',
+        topics: ['حروف کی پہچان', 'آوازیں', 'الفاظ بنانا'],
+      },
+      {
+        number: 2,
+        name: 'نثر',
+        nameUrdu: 'نثر',
+        topics: ['سبق کا خلاصہ', 'مرکزی خیال', 'مصنف کا تعارف'],
+      },
+      {
+        number: 3,
+        name: 'شاعری',
+        nameUrdu: 'شاعری',
+        topics: ['تشریح', 'مرکزی خیال', 'شاعر کا تعارف', 'صنائع بدائع'],
+      },
+      {
+        number: 4,
+        name: 'قواعد',
+        nameUrdu: 'قواعد',
+        topics: ['اسم', 'فعل', 'صفت', 'ضمیر', 'فاعل و مفعول'],
+      },
+      {
+        number: 5,
+        name: 'تحریر',
+        nameUrdu: 'تحریر',
+        topics: ['مضمون نگاری', 'خط نویسی', 'درخواست', 'کہانی'],
+      },
+    ],
+  },
+  {
+    id: 'islamiat',
+    name: 'Islamiat',
+    nameUrdu: 'اسلامیات',
+    classes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    boards: 'all',
+    groups: ['science', 'arts', 'commerce', 'ics', 'general'],
+    chapters: [
+      {
+        number: 1,
+        name: 'Basic Beliefs',
+        nameUrdu: 'بنیادی عقائد',
+        topics: ['Kalima', 'Five pillars', 'Belief in Allah', 'Angels & books'],
+      },
+      {
+        number: 2,
+        name: 'Quran & Hadith',
+        nameUrdu: 'قرآن و حدیث',
+        topics: ['Tafseer', 'Translation', 'Key teachings'],
+      },
+      {
+        number: 3,
+        name: 'Seerat-un-Nabi',
+        nameUrdu: 'سیرت النبی ﷺ',
+        topics: ['Early life', 'Migration', 'Battles', 'Character'],
+      },
+      {
+        number: 4,
+        name: 'Islamic Beliefs',
+        nameUrdu: 'اسلامی عقائد',
+        topics: ['Tawheed', 'Risalat', 'Akhrat', 'Angels'],
+      },
+      {
+        number: 5,
+        name: 'Islamic Law',
+        nameUrdu: 'اسلامی قانون',
+        topics: ['Worship', 'Ethics', 'Social system', 'Economic system'],
+      },
+    ],
+  },
   {
     id: 'physics',
     name: 'Physics',
@@ -317,68 +700,10 @@ export const SUBJECTS: Subject[] = [
     ],
   },
   {
-    id: 'mathematics',
-    name: 'Mathematics',
-    nameUrdu: 'ریاضی',
-    classes: [9, 10, 11, 12],
-    boards: 'all',
-    groups: ['science', 'ics', 'arts', 'commerce'],
-    chapters: [
-      {
-        number: 1,
-        name: 'Matrices & Determinants',
-        nameUrdu: 'میٹرکس اور تعینات',
-        topics: ['Types of matrices', 'Operations', 'Determinant', 'Inverse matrix'],
-      },
-      {
-        number: 2,
-        name: 'Real & Complex Numbers',
-        nameUrdu: 'حقیقی اور مختلط اعداد',
-        topics: ['Properties', 'Complex numbers', 'Argand plane', 'Absolute value'],
-      },
-      {
-        number: 3,
-        name: 'Logarithms',
-        nameUrdu: 'لوگارتھم',
-        topics: ['Laws', 'Common log', 'Natural log', 'Applications'],
-      },
-      {
-        number: 4,
-        name: 'Algebraic Expressions',
-        nameUrdu: 'الجبری اظہار',
-        topics: ['Factorization', 'HCF/LCM', 'Algebraic fractions'],
-      },
-      {
-        number: 5,
-        name: 'Factorization',
-        nameUrdu: 'تخصیص',
-        topics: ['Factor theorem', 'Remainder theorem', 'Synthetic division'],
-      },
-      {
-        number: 6,
-        name: 'Algebraic Manipulation',
-        nameUrdu: 'الجبری ترتیب',
-        topics: ['HCF', 'LCM', 'Square root of algebraic expressions'],
-      },
-      {
-        number: 7,
-        name: 'Linear Equations',
-        nameUrdu: 'خطی معادلے',
-        topics: ['One variable', 'Two variables', 'System of equations', 'Word problems'],
-      },
-      {
-        number: 8,
-        name: 'Linear Graphs',
-        nameUrdu: 'خطی گراف',
-        topics: ['Cartesian plane', 'Slope', 'Intercepts', 'Simultaneous equations'],
-      },
-    ],
-  },
-  {
     id: 'computer',
     name: 'Computer Science',
     nameUrdu: 'کمپیوٹر سائنس',
-    classes: [9, 10, 11, 12],
+    classes: [6, 7, 8, 9, 10, 11, 12],
     boards: 'all',
     groups: ['science', 'ics'],
     chapters: [
@@ -423,114 +748,6 @@ export const SUBJECTS: Subject[] = [
         name: 'Programming',
         nameUrdu: 'پروگرامنگ',
         topics: ['Algorithms', 'Flowcharts', 'Basic programming', 'Debugging'],
-      },
-    ],
-  },
-  {
-    id: 'english',
-    name: 'English',
-    nameUrdu: 'انگریزی',
-    classes: [9, 10, 11, 12],
-    boards: 'all',
-    groups: ['science', 'arts', 'commerce', 'ics', 'general'],
-    chapters: [
-      {
-        number: 1,
-        name: 'Reading Comprehension',
-        nameUrdu: 'متن کا فہم',
-        topics: ['Unseen passage', 'Main idea', 'Inference', 'Vocabulary in context'],
-      },
-      {
-        number: 2,
-        name: 'Grammar',
-        nameUrdu: 'گرامر',
-        topics: ['Tenses', 'Voice', 'Narration', 'Modals', 'Conditionals'],
-      },
-      {
-        number: 3,
-        name: 'Vocabulary',
-        nameUrdu: 'ذخیرہ الفاظ',
-        topics: ['Synonyms', 'Antonyms', 'Idioms', 'Phrasal verbs'],
-      },
-      {
-        number: 4,
-        name: 'Writing Skills',
-        nameUrdu: 'تحریری مہارت',
-        topics: ['Essay', 'Paragraph', 'Letter', 'Story writing'],
-      },
-      {
-        number: 5,
-        name: 'Literature',
-        nameUrdu: 'ادب',
-        topics: ['Prose', 'Poetry', 'Characters', 'Theme', 'Summary'],
-      },
-    ],
-  },
-  {
-    id: 'urdu',
-    name: 'Urdu',
-    nameUrdu: 'اردو',
-    classes: [9, 10, 11, 12],
-    boards: 'all',
-    groups: ['science', 'arts', 'commerce', 'ics', 'general'],
-    chapters: [
-      {
-        number: 1,
-        name: 'نثر',
-        nameUrdu: 'نثر',
-        topics: ['سبق کا خلاصہ', 'مرکزی خیال', 'مصنف کا تعارف'],
-      },
-      {
-        number: 2,
-        name: 'شاعری',
-        nameUrdu: 'شاعری',
-        topics: ['تشریح', 'مرکزی خیال', 'شاعر کا تعارف', 'صنائع بدائع'],
-      },
-      {
-        number: 3,
-        name: 'قواعد',
-        nameUrdu: 'قواعد',
-        topics: ['اسم', 'فعل', 'صفت', 'ضمیر', 'فاعل و مفعول'],
-      },
-      {
-        number: 4,
-        name: 'تحریر',
-        nameUrdu: 'تحریر',
-        topics: ['مضمون نگاری', 'خط نویسی', 'درخواست', 'کہانی'],
-      },
-    ],
-  },
-  {
-    id: 'islamiat',
-    name: 'Islamiat',
-    nameUrdu: 'اسلامیات',
-    classes: [9, 10, 11, 12],
-    boards: 'all',
-    groups: ['science', 'arts', 'commerce', 'ics', 'general'],
-    chapters: [
-      {
-        number: 1,
-        name: 'Quran & Hadith',
-        nameUrdu: 'قرآن و حدیث',
-        topics: ['Tafseer', 'Translation', 'Key teachings'],
-      },
-      {
-        number: 2,
-        name: 'Seerat-un-Nabi',
-        nameUrdu: 'سیرت النبی ﷺ',
-        topics: ['Early life', 'Migration', 'Battles', 'Character'],
-      },
-      {
-        number: 3,
-        name: 'Islamic Beliefs',
-        nameUrdu: 'اسلامی عقائد',
-        topics: ['Tawheed', 'Risalat', 'Akhrat', 'Angels'],
-      },
-      {
-        number: 4,
-        name: 'Islamic Law',
-        nameUrdu: 'اسلامی قانون',
-        topics: ['Worship', 'Ethics', 'Social system', 'Economic system'],
       },
     ],
   },
@@ -641,6 +858,64 @@ export const BOARD_PATTERNS: BoardPattern[] = [
 ];
 
 export function getDefaultPattern(classLevel: ClassLevel, _subjectId: string): PatternSection[] {
+  if (classLevel <= 5) {
+    // Primary
+    return [
+      {
+        title: 'Section A — Objective (MCQs)',
+        questionType: 'mcq',
+        totalQuestions: 10,
+        attemptQuestions: 10,
+        marksPerQuestion: 1,
+        instructions: 'Circle the letter (A, B, C, or D) of the correct answer.',
+      },
+      {
+        title: 'Section B — Short Answer Questions',
+        questionType: 'short',
+        totalQuestions: 5,
+        attemptQuestions: 5,
+        marksPerQuestion: 2,
+        instructions: 'Answer all questions. Each carries 2 marks.',
+      },
+      {
+        title: 'Section C — Long Answer Questions',
+        questionType: 'long',
+        totalQuestions: 2,
+        attemptQuestions: 2,
+        marksPerQuestion: 5,
+        instructions: 'Answer both questions. Each carries 5 marks.',
+      },
+    ];
+  }
+  if (classLevel <= 8) {
+    // Middle
+    return [
+      {
+        title: 'Section A — Objective (MCQs)',
+        questionType: 'mcq',
+        totalQuestions: 12,
+        attemptQuestions: 12,
+        marksPerQuestion: 1,
+        instructions: 'Circle the letter (A, B, C, or D) of the correct answer.',
+      },
+      {
+        title: 'Section B — Short Answer Questions',
+        questionType: 'short',
+        totalQuestions: 6,
+        attemptQuestions: 6,
+        marksPerQuestion: 4,
+        instructions: 'Answer all questions. Each carries 4 marks.',
+      },
+      {
+        title: 'Section C — Long Answer / Essay Questions',
+        questionType: 'long',
+        totalQuestions: 3,
+        attemptQuestions: 3,
+        marksPerQuestion: 6,
+        instructions: 'Answer all questions. Each carries 6 marks.',
+      },
+    ];
+  }
   if (classLevel <= 10) {
     return [
       {

@@ -100,8 +100,8 @@ export default function ClassTestClient() {
           <>
             <div className="bg-white dark:bg-[#1e1e1e] rounded-2xl border border-gray-200 dark:border-white/10 p-6">
               <h2 className="font-bold text-gray-900 dark:text-white mb-4">Select Class & Board</h2>
-              <div className="grid grid-cols-4 gap-2 mb-4">
-                {([9, 10, 11, 12] as ClassLevel[]).map((cl) => (
+              <div className="grid grid-cols-6 gap-2 mb-4">
+                {([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as ClassLevel[]).map((cl) => (
                   <button
                     key={cl}
                     onClick={() => {
@@ -109,9 +109,9 @@ export default function ClassTestClient() {
                       setSubjectId('');
                       setChapters([]);
                     }}
-                    className={`py-3 rounded-xl border-2 font-bold text-sm transition-all ${classLevel === cl ? 'border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600' : 'border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-sky-300'}`}
+                    className={`py-2.5 rounded-xl border-2 font-bold text-sm transition-all ${classLevel === cl ? 'border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600' : 'border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-sky-300'}`}
                   >
-                    Class {cl}
+                    {cl}
                   </button>
                 ))}
               </div>

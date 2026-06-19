@@ -196,7 +196,7 @@ export default function PaperGeneratorClient() {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-2xl font-black tracking-tight">📄 Exam Paper Generator</h1>
           <p className="text-white/60 text-sm mt-1">
-            Create board-pattern papers for Pakistani Matric & Intermediate
+            Create board-pattern papers for Pakistani Classes 1–12
           </p>
         </div>
       </div>
@@ -247,20 +247,20 @@ export default function PaperGeneratorClient() {
           <div className="space-y-6">
             <div className="bg-white dark:bg-[#1e1e1e] rounded-2xl border border-gray-200 dark:border-white/10 p-6">
               <h2 className="text-lg font-bold mb-5 text-gray-900 dark:text-white">Select Class</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {([9, 10, 11, 12] as ClassLevel[]).map((cl) => (
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+                {([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as ClassLevel[]).map((cl) => (
                   <button
                     key={cl}
                     onClick={() => handleClassChange(cl)}
-                    className={`py-4 rounded-xl border-2 font-bold text-xl transition-all ${
+                    className={`py-3 rounded-xl border-2 font-bold text-base transition-all ${
                       classLevel === cl
                         ? 'border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400'
                         : 'border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-sky-300'
                     }`}
                   >
-                    <div>Class {cl}</div>
-                    <div className="text-xs font-normal text-gray-500 mt-1">
-                      {cl <= 10 ? 'Matric' : 'Intermediate'}
+                    <div>{cl}</div>
+                    <div className="text-[10px] font-normal text-gray-500 mt-0.5">
+                      {cl <= 5 ? 'Primary' : cl <= 8 ? 'Middle' : cl <= 10 ? 'Matric' : 'Inter'}
                     </div>
                   </button>
                 ))}

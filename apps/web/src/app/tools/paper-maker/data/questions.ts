@@ -2,7 +2,7 @@ import type { QuestionType, Difficulty } from './boards';
 
 export interface Question {
   id: string;
-  classLevel: 9 | 10 | 11 | 12;
+  classLevel: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
   subjectId: string;
   chapter: number;
   topic: string;
@@ -11,15 +11,16 @@ export interface Question {
   marks: number;
   medium: 'english' | 'urdu';
   question: string;
-  options?: string[]; // MCQ options A-D
+  options?: string[];
   answer: string;
-  colA?: string[]; // column matching — left column
-  colB?: string[]; // column matching — right column
+  imageUrl?: string;
+  colA?: string[];
+  colB?: string[];
 }
 
 let _id = 0;
 const q = (
-  classLevel: 9 | 10 | 11 | 12,
+  classLevel: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12,
   subjectId: string,
   chapter: number,
   topic: string,
@@ -44,12 +45,11 @@ const q = (
   options,
 });
 
-// ───────────────────────────────────────────────────────────────
-// PHYSICS  (Class 9)
-// ───────────────────────────────────────────────────────────────
 export const QUESTIONS: Question[] = [
-  // Physics Ch1 — Measurement
-  q(9, 'physics', 1, 'Units', 'mcq', 'easy', 1, 'The SI unit of length is:', 'B', [
+  // ───────────────────────────────────────────────────────────────
+  // PHYSICS Class 9 — Ch1 Physical Quantities & Measurement
+  // ───────────────────────────────────────────────────────────────
+  q(9, 'physics', 1, 'Units', 'mcq', 'easy', 1, 'The SI unit of length is:', 'A', [
     'metre',
     'kilogram',
     'second',
@@ -96,6 +96,193 @@ export const QUESTIONS: Question[] = [
     'physics',
     1,
     'Base quantities',
+    'mcq',
+    'easy',
+    1,
+    'Which of the following is a derived unit?',
+    'C',
+    ['metre', 'kilogram', 'newton', 'second']
+  ),
+  q(
+    9,
+    'physics',
+    1,
+    'Scientific notation',
+    'mcq',
+    'easy',
+    1,
+    'The number of significant figures in 0.0045 is:',
+    'C',
+    ['4', '3', '2', '6']
+  ),
+  q(9, 'physics', 1, 'Units', 'mcq', 'medium', 1, 'The SI unit of temperature is:', 'D', [
+    'Celsius',
+    'Fahrenheit',
+    'Centigrade',
+    'Kelvin',
+  ]),
+  q(
+    9,
+    'physics',
+    1,
+    'Base quantities',
+    'mcq',
+    'medium',
+    1,
+    'How many base quantities are there in SI system?',
+    'B',
+    ['5', '7', '8', '6']
+  ),
+  q(
+    9,
+    'physics',
+    1,
+    'Errors',
+    'mcq',
+    'medium',
+    1,
+    'The least count of a vernier callipers is:',
+    'B',
+    ['0.1 cm', '0.01 cm', '1 mm', '0.001 m']
+  ),
+  q(9, 'physics', 1, 'Scientific notation', 'mcq', 'easy', 1, 'Which prefix means 10⁻³?', 'B', [
+    'mega',
+    'milli',
+    'micro',
+    'nano',
+  ]),
+  q(9, 'physics', 1, 'Units', 'mcq', 'easy', 1, 'The SI unit of mass is:', 'B', [
+    'newton',
+    'kilogram',
+    'gram',
+    'pound',
+  ]),
+  q(9, 'physics', 1, 'Base quantities', 'mcq', 'hard', 1, 'Candela is the SI unit of:', 'D', [
+    'temperature',
+    'current',
+    'mass',
+    'luminous intensity',
+  ]),
+  q(9, 'physics', 1, 'Errors', 'mcq', 'medium', 1, 'Random errors can be reduced by:', 'A', [
+    'taking multiple readings',
+    'using better instruments',
+    'calibrating',
+    'all of the above',
+  ]),
+  q(9, 'physics', 1, 'Scientific notation', 'mcq', 'medium', 1, '1 nanometre equals:', 'C', [
+    '10⁻⁶ m',
+    '10⁻⁸ m',
+    '10⁻⁹ m',
+    '10⁻¹² m',
+  ]),
+  q(
+    9,
+    'physics',
+    1,
+    'Base quantities',
+    'mcq',
+    'easy',
+    1,
+    'The study of motion without discussing its cause is called:',
+    'A',
+    ['kinematics', 'dynamics', 'statics', 'mechanics']
+  ),
+  q(
+    9,
+    'physics',
+    1,
+    'Units',
+    'mcq',
+    'hard',
+    1,
+    'Which of the following is NOT an SI base unit?',
+    'D',
+    ['metre', 'ampere', 'mole', 'newton']
+  ),
+  q(9, 'physics', 1, 'Errors', 'mcq', 'easy', 1, 'A systematic error is one that:', 'B', [
+    'varies randomly',
+    'is consistent and repeatable',
+    'cannot be measured',
+    'occurs only once',
+  ]),
+  q(9, 'physics', 1, 'Scientific notation', 'mcq', 'easy', 1, 'Prefix "kilo" represents:', 'B', [
+    '10²',
+    '10³',
+    '10⁶',
+    '10⁻³',
+  ]),
+  q(
+    9,
+    'physics',
+    1,
+    'Base quantities',
+    'mcq',
+    'medium',
+    1,
+    'The amount of substance in SI is measured in:',
+    'C',
+    ['gram', 'litre', 'mole', 'kilogram']
+  ),
+  q(
+    9,
+    'physics',
+    1,
+    'Base quantities',
+    'mcq',
+    'hard',
+    1,
+    'Which quantity has dimensions [M L T⁻²]?',
+    'B',
+    ['energy', 'force', 'momentum', 'velocity']
+  ),
+  q(9, 'physics', 1, 'Units', 'mcq', 'easy', 1, 'One light year is a unit of:', 'C', [
+    'time',
+    'speed',
+    'distance',
+    'energy',
+  ]),
+  q(
+    9,
+    'physics',
+    1,
+    'Errors',
+    'mcq',
+    'medium',
+    1,
+    'The difference between measured and true value is called:',
+    'A',
+    ['error', 'accuracy', 'precision', 'calibration']
+  ),
+  q(
+    9,
+    'physics',
+    1,
+    'Scientific notation',
+    'mcq',
+    'easy',
+    1,
+    '0.000001 in scientific notation is:',
+    'B',
+    ['1 × 10⁻⁵', '1 × 10⁻⁶', '1 × 10⁻⁷', '1 × 10⁻⁴']
+  ),
+  q(
+    9,
+    'physics',
+    1,
+    'Base quantities',
+    'mcq',
+    'medium',
+    1,
+    'Which device measures time most accurately?',
+    'D',
+    ['stopwatch', 'sundial', 'water clock', 'atomic clock']
+  ),
+  // short & long
+  q(
+    9,
+    'physics',
+    1,
+    'Base quantities',
     'short',
     'easy',
     3,
@@ -117,6 +304,28 @@ export const QUESTIONS: Question[] = [
     9,
     'physics',
     1,
+    'Errors',
+    'short',
+    'medium',
+    3,
+    'Define systematic error and random error. How can each be minimized?',
+    'Systematic: consistent bias (use calibrated instruments). Random: irregular variations (take mean of many readings).'
+  ),
+  q(
+    9,
+    'physics',
+    1,
+    'Units',
+    'short',
+    'easy',
+    3,
+    'List any five SI base units with their symbols and physical quantities.',
+    'Length-metre(m), Mass-kilogram(kg), Time-second(s), Current-ampere(A), Temperature-kelvin(K).'
+  ),
+  q(
+    9,
+    'physics',
+    1,
     'Units',
     'long',
     'medium',
@@ -124,8 +333,19 @@ export const QUESTIONS: Question[] = [
     'Write a comprehensive note on the international system of units (SI). List all seven base quantities with their SI units and symbols. Also explain the importance of using a standard system of units.',
     'SI has 7 base units: length-metre(m), mass-kilogram(kg), time-second(s), current-ampere(A), temperature-kelvin(K), amount-mole(mol), luminosity-candela(cd). Standard units ensure consistency worldwide.'
   ),
+  q(
+    9,
+    'physics',
+    1,
+    'Errors',
+    'long',
+    'hard',
+    8,
+    'Define and explain the types of errors in measurement. Describe the methods to calculate percentage error and how significant figures affect the accuracy of results.',
+    'Types: systematic (instrument error, personal error) and random. Percentage error = (absolute error/measured value)×100. Significant figures indicate precision.'
+  ),
 
-  // Physics Ch2 — Kinematics
+  // ── Physics Ch2 Kinematics
   q(9, 'physics', 2, 'Speed & velocity', 'mcq', 'easy', 1, 'Speed is a _____ quantity.', 'B', [
     'vector',
     'scalar',
@@ -173,6 +393,233 @@ export const QUESTIONS: Question[] = [
     'physics',
     2,
     'Distance & displacement',
+    'mcq',
+    'easy',
+    1,
+    'Displacement is a _____ quantity.',
+    'A',
+    ['vector', 'scalar', 'fundamental', 'none']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Speed & velocity',
+    'mcq',
+    'medium',
+    1,
+    'A body covers 60 m in 10 s. Its speed is:',
+    'B',
+    ['0.6 m/s', '6 m/s', '600 m/s', '60 m/s']
+  ),
+  q(9, 'physics', 2, 'Acceleration', 'mcq', 'medium', 1, 'The unit of acceleration is:', 'C', [
+    'm/s',
+    'm²/s',
+    'm/s²',
+    'ms',
+  ]),
+  q(
+    9,
+    'physics',
+    2,
+    'Equations of motion',
+    'mcq',
+    'hard',
+    1,
+    'A car starts from rest and travels 20 m in 4 s with uniform acceleration. The acceleration is:',
+    'B',
+    ['1 m/s²', '2.5 m/s²', '5 m/s²', '10 m/s²']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Graphs',
+    'mcq',
+    'hard',
+    1,
+    'The area under a velocity–time graph gives:',
+    'D',
+    ['speed', 'acceleration', 'force', 'distance travelled']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Distance & displacement',
+    'mcq',
+    'medium',
+    1,
+    'A person walks 3 m north then 4 m east. The displacement is:',
+    'C',
+    ['3 m', '4 m', '5 m', '7 m']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Speed & velocity',
+    'mcq',
+    'easy',
+    1,
+    'Average velocity = total displacement / total:',
+    'B',
+    ['distance', 'time', 'acceleration', 'force']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Acceleration',
+    'mcq',
+    'easy',
+    1,
+    'Negative acceleration is also called:',
+    'A',
+    ['deceleration', 'velocity', 'momentum', 'force']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Equations of motion',
+    'mcq',
+    'medium',
+    1,
+    'First equation of motion is:',
+    'A',
+    ['v = u + at', 's = ut + ½at²', 'v² = u² + 2as', 's = vt']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Distance & displacement',
+    'mcq',
+    'easy',
+    1,
+    'Which of the following is a scalar quantity?',
+    'B',
+    ['displacement', 'distance', 'velocity', 'force']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Graphs',
+    'mcq',
+    'medium',
+    1,
+    'A horizontal line on a velocity–time graph indicates:',
+    'C',
+    ['uniform acceleration', 'rest', 'uniform velocity', 'increasing speed']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Speed & velocity',
+    'mcq',
+    'hard',
+    1,
+    'If a body travels equal distances in equal times, its motion is:',
+    'A',
+    ['uniform', 'non-uniform', 'accelerated', 'decelerated']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Acceleration',
+    'mcq',
+    'medium',
+    1,
+    'A body thrown upward has acceleration of:',
+    'D',
+    ['0 m/s²', '5 m/s²', 'upward 10 m/s²', 'downward 10 m/s²']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Equations of motion',
+    'mcq',
+    'hard',
+    1,
+    'A body starts from rest and accelerates at 5 m/s². Distance in 4 s is:',
+    'C',
+    ['20 m', '30 m', '40 m', '50 m']
+  ),
+  q(9, 'physics', 2, 'Graphs', 'mcq', 'easy', 1, 'The slope of velocity-time graph gives:', 'A', [
+    'acceleration',
+    'speed',
+    'force',
+    'distance',
+  ]),
+  q(
+    9,
+    'physics',
+    2,
+    'Distance & displacement',
+    'mcq',
+    'medium',
+    1,
+    'If a body returns to its starting point, displacement is:',
+    'A',
+    ['zero', 'maximum', 'equal to distance', 'negative']
+  ),
+  q(9, 'physics', 2, 'Speed & velocity', 'mcq', 'medium', 1, 'Instantaneous speed is:', 'C', [
+    'average speed',
+    'total distance/time',
+    'speed at a given instant',
+    'initial speed',
+  ]),
+  q(9, 'physics', 2, 'Equations of motion', 'mcq', 'easy', 1, 'Third equation of motion is:', 'C', [
+    'v=u+at',
+    's=ut+½at²',
+    'v²=u²+2as',
+    's=(u+v)/2×t',
+  ]),
+  q(9, 'physics', 2, 'Acceleration', 'mcq', 'easy', 1, 'The SI unit of velocity is:', 'B', [
+    'm/s²',
+    'm/s',
+    'm',
+    'km/h',
+  ]),
+  q(
+    9,
+    'physics',
+    2,
+    'Distance & displacement',
+    'mcq',
+    'hard',
+    1,
+    'Which pair consists of only vector quantities?',
+    'D',
+    [
+      'speed and distance',
+      'time and mass',
+      'distance and displacement',
+      'velocity and acceleration',
+    ]
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Graphs',
+    'mcq',
+    'medium',
+    1,
+    'For a body at rest, the displacement–time graph is:',
+    'B',
+    ['a diagonal line', 'a horizontal line', 'a vertical line', 'a curve']
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Distance & displacement',
     'short',
     'easy',
     3,
@@ -194,6 +641,28 @@ export const QUESTIONS: Question[] = [
     9,
     'physics',
     2,
+    'Speed & velocity',
+    'short',
+    'medium',
+    3,
+    'Define speed, velocity, and acceleration. What is the difference between uniform and non-uniform motion?',
+    'Speed: distance/time (scalar). Velocity: displacement/time (vector). Acceleration: rate of change of velocity. Uniform: constant speed. Non-uniform: changing speed.'
+  ),
+  q(
+    9,
+    'physics',
+    2,
+    'Graphs',
+    'short',
+    'hard',
+    3,
+    'Sketch a velocity-time graph for a body that starts from rest, accelerates uniformly, then decelerates to rest. Label all parts.',
+    '[Triangular v-t graph: starts at origin, rises linearly to peak, then decreases linearly to zero. Area = distance.]'
+  ),
+  q(
+    9,
+    'physics',
+    2,
     'Equations of motion',
     'long',
     'hard',
@@ -201,8 +670,19 @@ export const QUESTIONS: Question[] = [
     'Derive the three equations of motion for a uniformly accelerating body using a velocity-time graph. Also solve: A ball is thrown vertically upward with velocity 20 m/s. Find maximum height and time of flight. (g = 10 m/s²)',
     'Derivation of v=u+at, s=(u+v)t/2, v²=u²+2as from v-t graph. Ball: H=v²/2g=20 m; T=2u/g=4 s.'
   ),
+  q(
+    9,
+    'physics',
+    2,
+    'Acceleration',
+    'long',
+    'medium',
+    8,
+    'A train starts from rest and attains a velocity of 72 km/h in 100 seconds. It then travels at constant speed for 300 s, then decelerates to rest in 200 s. Draw a v-t graph and calculate total distance.',
+    '72 km/h = 20 m/s. d1 = ½×20×100=1000 m; d2=20×300=6000 m; d3=½×20×200=2000 m. Total=9000 m.'
+  ),
 
-  // Physics Ch3 — Dynamics
+  // ── Physics Ch3 Dynamics
   q(
     9,
     'physics',
@@ -233,6 +713,222 @@ export const QUESTIONS: Question[] = [
     'A',
     ['less than', 'greater than', 'equal to', 'unrelated to']
   ),
+  q(9, 'physics', 3, "Newton's laws", 'mcq', 'easy', 1, "Newton's second law states F = :", 'B', [
+    'mv',
+    'ma',
+    'm/a',
+    'a/m',
+  ]),
+  q(
+    9,
+    'physics',
+    3,
+    'Collision',
+    'mcq',
+    'medium',
+    1,
+    'In a perfectly elastic collision, kinetic energy is:',
+    'A',
+    ['conserved', 'lost', 'gained', 'doubled']
+  ),
+  q(9, 'physics', 3, 'Momentum', 'mcq', 'easy', 1, 'Momentum = mass × :', 'B', [
+    'acceleration',
+    'velocity',
+    'force',
+    'distance',
+  ]),
+  q(
+    9,
+    'physics',
+    3,
+    'Friction',
+    'mcq',
+    'easy',
+    1,
+    'Which type of friction acts on a stationary object being pushed?',
+    'A',
+    ['static friction', 'kinetic friction', 'rolling friction', 'fluid friction']
+  ),
+  q(
+    9,
+    'physics',
+    3,
+    "Newton's laws",
+    'mcq',
+    'hard',
+    1,
+    'A 5 kg object accelerates at 3 m/s². The net force is:',
+    'B',
+    ['3 N', '15 N', '5 N', '8 N']
+  ),
+  q(
+    9,
+    'physics',
+    3,
+    'Collision',
+    'mcq',
+    'hard',
+    1,
+    'Law of conservation of momentum states that total momentum is constant when:',
+    'C',
+    ['net force is maximum', 'acceleration is zero', 'no external force acts', 'speed is constant']
+  ),
+  q(9, 'physics', 3, 'Friction', 'mcq', 'medium', 1, 'Lubricants are used to:', 'D', [
+    'increase friction',
+    'create sparks',
+    'stop motion',
+    'reduce friction',
+  ]),
+  q(
+    9,
+    'physics',
+    3,
+    "Newton's laws",
+    'mcq',
+    'medium',
+    1,
+    "Newton's third law states every action has an equal and _____ reaction.",
+    'B',
+    ['same direction', 'opposite', 'stronger', 'weaker']
+  ),
+  q(
+    9,
+    'physics',
+    3,
+    'Momentum',
+    'mcq',
+    'hard',
+    1,
+    'A 2 kg ball moving at 5 m/s has momentum:',
+    'C',
+    ['2.5 kg·m/s', '5 kg·m/s', '10 kg·m/s', '25 kg·m/s']
+  ),
+  q(
+    9,
+    'physics',
+    3,
+    'Friction',
+    'mcq',
+    'easy',
+    1,
+    'Friction always acts _____ to the direction of motion.',
+    'B',
+    ['parallel', 'opposite', 'perpendicular', 'at 45°']
+  ),
+  q(
+    9,
+    'physics',
+    3,
+    'Collision',
+    'mcq',
+    'medium',
+    1,
+    'In an inelastic collision, kinetic energy is:',
+    'B',
+    ['conserved', 'not conserved', 'doubled', 'halved']
+  ),
+  q(9, 'physics', 3, "Newton's laws", 'mcq', 'easy', 1, 'Inertia depends on:', 'A', [
+    'mass',
+    'weight',
+    'speed',
+    'shape',
+  ]),
+  q(9, 'physics', 3, 'Momentum', 'mcq', 'medium', 1, 'Impulse is defined as:', 'C', [
+    'force × distance',
+    'force / time',
+    'force × time',
+    'mass × acceleration',
+  ]),
+  q(9, 'physics', 3, 'Friction', 'mcq', 'medium', 1, 'Coefficient of friction has:', 'A', [
+    'no units',
+    'SI unit kg',
+    'SI unit N',
+    'SI unit m/s',
+  ]),
+  q(
+    9,
+    'physics',
+    3,
+    "Newton's laws",
+    'mcq',
+    'hard',
+    1,
+    'Which law explains why a rocket works in space?',
+    'C',
+    ["Newton's 1st law", "Newton's 2nd law", "Newton's 3rd law", 'Law of gravitation']
+  ),
+  q(
+    9,
+    'physics',
+    3,
+    'Collision',
+    'mcq',
+    'easy',
+    1,
+    'Which quantity is ALWAYS conserved in every collision?',
+    'A',
+    ['momentum', 'kinetic energy', 'speed', 'velocity']
+  ),
+  q(
+    9,
+    'physics',
+    3,
+    'Friction',
+    'mcq',
+    'hard',
+    1,
+    'Static friction is generally _____ kinetic friction.',
+    'A',
+    ['greater than', 'less than', 'equal to', 'not related to']
+  ),
+  q(
+    9,
+    'physics',
+    3,
+    'Momentum',
+    'mcq',
+    'easy',
+    1,
+    'The unit of impulse is the same as the unit of:',
+    'B',
+    ['force', 'momentum', 'energy', 'power']
+  ),
+  q(9, 'physics', 3, "Newton's laws", 'mcq', 'medium', 1, 'Weight of an object is:', 'C', [
+    'mass × distance',
+    'mass × speed',
+    'mass × gravitational acceleration',
+    'mass / g',
+  ]),
+  q(
+    9,
+    'physics',
+    3,
+    'Collision',
+    'mcq',
+    'medium',
+    1,
+    'During collision of two bodies in absence of external forces:',
+    'A',
+    ['momentum is conserved', 'KE is always conserved', 'both mass change', 'speed doubles']
+  ),
+  q(9, 'physics', 3, 'Friction', 'mcq', 'easy', 1, 'Tyres are made rough to:', 'B', [
+    'reduce friction',
+    'increase friction',
+    'reduce speed',
+    'increase speed',
+  ]),
+  q(
+    9,
+    'physics',
+    3,
+    "Newton's laws",
+    'mcq',
+    'hard',
+    1,
+    'If mass of an object is doubled and acceleration halved, force is:',
+    'A',
+    ['same', 'doubled', 'halved', 'quadrupled']
+  ),
   q(
     9,
     'physics',
@@ -260,14 +956,148 @@ export const QUESTIONS: Question[] = [
     'physics',
     3,
     'Friction',
+    'short',
+    'medium',
+    3,
+    'Define friction. What are the advantages and disadvantages of friction in daily life?',
+    'Friction opposes relative motion. Advantages: walking, writing, brakes. Disadvantages: energy loss, wear and tear.'
+  ),
+  q(
+    9,
+    'physics',
+    3,
+    'Collision',
+    'short',
+    'hard',
+    3,
+    'Differentiate between elastic and inelastic collisions. Give one example of each.',
+    'Elastic: KE conserved (billiard balls). Inelastic: KE not conserved but momentum conserved (clay balls sticking).'
+  ),
+  q(
+    9,
+    'physics',
+    3,
+    'Friction',
     'long',
     'medium',
     8,
     'Explain the concept of friction. Describe its types, advantages, and disadvantages in everyday life. Also explain methods to reduce friction.',
     'Static, kinetic, rolling friction. Advantages: walking, brakes. Disadvantages: energy waste, wear. Reduce: lubricants, ball bearings, streamlining.'
   ),
+  q(
+    9,
+    'physics',
+    3,
+    "Newton's laws",
+    'long',
+    'hard',
+    8,
+    "State and prove Newton's laws of motion. A 10 kg object is pulled by two forces: 30 N east and 10 N west. Find acceleration.",
+    'Net force = 30-10 = 20 N east. a = F/m = 20/10 = 2 m/s² east.'
+  ),
 
-  // Physics Ch5 — Gravitation
+  // ── Physics Ch4
+  q(9, 'physics', 4, 'Torque', 'mcq', 'easy', 1, 'Torque is the product of force and:', 'B', [
+    'mass',
+    'moment arm',
+    'velocity',
+    'acceleration',
+  ]),
+  q(
+    9,
+    'physics',
+    4,
+    'Equilibrium',
+    'mcq',
+    'medium',
+    1,
+    'A body is in equilibrium when the net force and net torque are both:',
+    'A',
+    ['zero', 'maximum', 'equal', 'positive']
+  ),
+  q(9, 'physics', 4, 'Torque', 'mcq', 'medium', 1, 'The SI unit of torque is:', 'C', [
+    'kg·m',
+    'N/m',
+    'N·m',
+    'J/m',
+  ]),
+  q(
+    9,
+    'physics',
+    4,
+    'Centre of gravity',
+    'mcq',
+    'easy',
+    1,
+    'Centre of gravity of a uniform rod is at its:',
+    'B',
+    ['end', 'middle', 'quarter point', 'three-quarter point']
+  ),
+  q(9, 'physics', 4, 'Couple', 'mcq', 'hard', 1, 'A couple consists of two forces that are:', 'D', [
+    'equal and in same direction',
+    'unequal and parallel',
+    'equal and perpendicular',
+    'equal, parallel, and opposite',
+  ]),
+  q(
+    9,
+    'physics',
+    4,
+    'Equilibrium',
+    'mcq',
+    'medium',
+    1,
+    'First condition of equilibrium states:',
+    'A',
+    ['ΣF = 0', 'Στ = 0', 'F = ma', 'both A and B']
+  ),
+  q(
+    9,
+    'physics',
+    4,
+    'Torque',
+    'mcq',
+    'hard',
+    1,
+    'A force of 10 N acts at a perpendicular distance of 0.5 m. Torque is:',
+    'C',
+    ['2 N·m', '10 N·m', '5 N·m', '0.5 N·m']
+  ),
+  q(
+    9,
+    'physics',
+    4,
+    'Torque',
+    'short',
+    'medium',
+    3,
+    'Define torque. A spanner of length 25 cm exerts a force of 40 N perpendicular to it. Calculate the torque.',
+    'Torque = F × d = 40 × 0.25 = 10 N·m.'
+  ),
+  q(
+    9,
+    'physics',
+    4,
+    'Equilibrium',
+    'short',
+    'medium',
+    3,
+    'State the two conditions of equilibrium. Give one example where both conditions apply.',
+    '1st: ΣF = 0. 2nd: Στ = 0. Example: a uniform beam balanced on a fulcrum with equal weights on both sides.'
+  ),
+  q(
+    9,
+    'physics',
+    4,
+    'Centre of gravity',
+    'long',
+    'medium',
+    8,
+    'Define centre of gravity. Explain with experiments how to find the centre of gravity of an irregular lamina. What is its significance in stability of vehicles?',
+    'CG: point where all weight acts. Method: suspend lamina from two points, draw plumb lines, intersection = CG. Low CG = stable vehicle.'
+  ),
+
+  // ── Physics Ch5 Gravitation
   q(
     9,
     'physics',
@@ -296,6 +1126,96 @@ export const QUESTIONS: Question[] = [
     9,
     'physics',
     5,
+    'Law of gravitation',
+    'mcq',
+    'medium',
+    1,
+    'The value of gravitational constant G is:',
+    'C',
+    ['6.67 × 10⁻⁸ N·m²/kg²', '9.8 m/s²', '6.67 × 10⁻¹¹ N·m²/kg²', '6.67 × 10⁻¹⁰ N·m²/kg²']
+  ),
+  q(
+    9,
+    'physics',
+    5,
+    'Satellites',
+    'mcq',
+    'medium',
+    1,
+    'Geostationary satellites orbit the Earth every:',
+    'B',
+    ['12 hours', '24 hours', '48 hours', '1 month']
+  ),
+  q(
+    9,
+    'physics',
+    5,
+    'Orbital velocity',
+    'mcq',
+    'hard',
+    1,
+    'The orbital speed of a satellite depends on its:',
+    'A',
+    ['height above Earth', 'mass of satellite', 'shape of satellite', 'temperature']
+  ),
+  q(9, 'physics', 5, 'Mass & weight', 'mcq', 'easy', 1, 'Mass of a body is measured in:', 'B', [
+    'newton',
+    'kilogram',
+    'gram-weight',
+    'pound-weight',
+  ]),
+  q(
+    9,
+    'physics',
+    5,
+    'Law of gravitation',
+    'mcq',
+    'medium',
+    1,
+    'Gravitational force between two bodies is directly proportional to the product of their:',
+    'C',
+    ['velocities', 'accelerations', 'masses', 'volumes']
+  ),
+  q(
+    9,
+    'physics',
+    5,
+    'Satellites',
+    'mcq',
+    'easy',
+    1,
+    'Which of the following is an artificial satellite?',
+    'D',
+    ['Moon', 'Sun', 'Mars', 'GPS satellite']
+  ),
+  q(
+    9,
+    'physics',
+    5,
+    'Orbital velocity',
+    'mcq',
+    'medium',
+    1,
+    'For a satellite to remain in orbit, gravitational force equals:',
+    'A',
+    ['centripetal force', 'centrifugal force', 'normal force', 'friction']
+  ),
+  q(
+    9,
+    'physics',
+    5,
+    'Mass & weight',
+    'mcq',
+    'hard',
+    1,
+    'An object has mass 5 kg. Its weight on Earth (g=10 m/s²) is:',
+    'C',
+    ['5 N', '10 N', '50 N', '100 N']
+  ),
+  q(
+    9,
+    'physics',
+    5,
     'Satellites',
     'short',
     'medium',
@@ -303,9 +1223,390 @@ export const QUESTIONS: Question[] = [
     'Differentiate between artificial and natural satellites. Give two examples of each.',
     'Natural: Moon, planets. Artificial: GPS, weather satellites. Artificial are man-made and orbit Earth for communication, research, navigation.'
   ),
+  q(
+    9,
+    'physics',
+    5,
+    'Law of gravitation',
+    'short',
+    'medium',
+    3,
+    "State Newton's law of gravitation and write its mathematical form. Identify each symbol.",
+    'F = Gm₁m₂/r². F=gravitational force, G=6.67×10⁻¹¹ N·m²/kg², m₁ m₂=masses, r=distance between centres.'
+  ),
+  q(
+    9,
+    'physics',
+    5,
+    'Law of gravitation',
+    'long',
+    'hard',
+    8,
+    "State Newton's law of gravitation. Derive the expression for g (gravitational acceleration) on the Earth's surface. Calculate the value of g if M=6×10²⁴ kg, R=6.4×10⁶ m, G=6.67×10⁻¹¹.",
+    'g = GM/R² = 6.67×10⁻¹¹×6×10²⁴/(6.4×10⁶)² ≈ 9.8 m/s².'
+  ),
+
+  // ── Physics Ch6 Work & Energy
+  q(
+    9,
+    'physics',
+    6,
+    'Work',
+    'mcq',
+    'easy',
+    1,
+    'Work done is zero when force and displacement are:',
+    'B',
+    ['parallel', 'perpendicular', 'in same direction', 'opposite']
+  ),
+  q(
+    9,
+    'physics',
+    6,
+    'Kinetic energy',
+    'mcq',
+    'medium',
+    1,
+    'If mass of a moving body is doubled, kinetic energy becomes:',
+    'B',
+    ['same', 'doubled', 'halved', 'four times']
+  ),
+  q(
+    9,
+    'physics',
+    6,
+    'Potential energy',
+    'mcq',
+    'easy',
+    1,
+    'Gravitational potential energy = mgh. What is h?',
+    'C',
+    ['horizontal distance', 'mass', 'height above reference', 'acceleration']
+  ),
+  q(9, 'physics', 6, 'Power', 'mcq', 'medium', 1, 'The SI unit of power is:', 'A', [
+    'watt',
+    'joule',
+    'newton',
+    'pascal',
+  ]),
+  q(
+    9,
+    'physics',
+    6,
+    'Conservation',
+    'mcq',
+    'hard',
+    1,
+    'A ball of mass 1 kg falls from height 5 m. Its KE just before hitting ground (g=10) is:',
+    'B',
+    ['5 J', '50 J', '10 J', '100 J']
+  ),
+  q(9, 'physics', 6, 'Work', 'mcq', 'easy', 1, 'The SI unit of work is:', 'B', [
+    'watt',
+    'joule',
+    'newton',
+    'pascal',
+  ]),
+  q(
+    9,
+    'physics',
+    6,
+    'Kinetic energy',
+    'mcq',
+    'easy',
+    1,
+    'KE = ½mv². If velocity doubles, KE becomes:',
+    'C',
+    ['same', 'double', '4 times', '8 times']
+  ),
+  q(
+    9,
+    'physics',
+    6,
+    'Power',
+    'mcq',
+    'hard',
+    1,
+    'A machine does 600 J of work in 2 minutes. Its power is:',
+    'A',
+    ['5 W', '300 W', '600 W', '1200 W']
+  ),
+  q(
+    9,
+    'physics',
+    6,
+    'Conservation',
+    'mcq',
+    'medium',
+    1,
+    'The law of conservation of energy states that energy can be:',
+    'D',
+    ['created from nothing', 'destroyed', 'created or destroyed', 'neither created nor destroyed']
+  ),
+  q(
+    9,
+    'physics',
+    6,
+    'Potential energy',
+    'mcq',
+    'medium',
+    1,
+    'Elastic potential energy is stored in:',
+    'B',
+    ['falling bodies', 'compressed springs', 'magnets', 'electric charges']
+  ),
+  q(
+    9,
+    'physics',
+    6,
+    'Work',
+    'short',
+    'easy',
+    3,
+    'Define work done. A force of 20 N moves a body 5 m in the direction of force. Calculate the work done.',
+    'W = F × d = 20 × 5 = 100 J.'
+  ),
+  q(
+    9,
+    'physics',
+    6,
+    'Conservation',
+    'short',
+    'medium',
+    3,
+    'State the law of conservation of energy. How does it apply to a freely falling body?',
+    'Energy cannot be created or destroyed; only converted. Falling body: PE converts to KE. Total energy = constant.'
+  ),
+  q(
+    9,
+    'physics',
+    6,
+    'Work',
+    'long',
+    'medium',
+    8,
+    'Explain the work-energy theorem. A car of mass 1000 kg accelerates from rest to 20 m/s. Calculate: (a) KE gained, (b) work done by engine, (c) power if time = 10 s.',
+    'W-E theorem: net work = ΔKE. (a) KE=½mv²=½×1000×400=200000 J. (b) W=200000 J. (c) P=W/t=20000 W=20 kW.'
+  ),
+
+  // ── Physics Ch7 Properties of Matter
+  q(9, 'physics', 7, 'Pressure', 'mcq', 'easy', 1, 'Pressure = Force / :', 'B', [
+    'volume',
+    'area',
+    'mass',
+    'length',
+  ]),
+  q(
+    9,
+    'physics',
+    7,
+    'Archimedes principle',
+    'mcq',
+    'medium',
+    1,
+    "Archimedes' principle states that buoyant force equals:",
+    'A',
+    ['weight of displaced fluid', 'weight of object', 'mass of object', 'volume of object']
+  ),
+  q(
+    9,
+    'physics',
+    7,
+    'Elasticity',
+    'mcq',
+    'medium',
+    1,
+    "Hooke's law states stress is proportional to _____ within elastic limit.",
+    'C',
+    ['force', 'pressure', 'strain', 'volume']
+  ),
+  q(
+    9,
+    'physics',
+    7,
+    'Pressure',
+    'mcq',
+    'easy',
+    1,
+    'Atmospheric pressure at sea level is approximately:',
+    'B',
+    ['1000 Pa', '101325 Pa', '10 Pa', '1 N/m²']
+  ),
+  q(
+    9,
+    'physics',
+    7,
+    'Kinetic theory',
+    'mcq',
+    'easy',
+    1,
+    'According to kinetic theory, gas molecules move in:',
+    'A',
+    ['random directions', 'straight lines only', 'circles', 'fixed paths']
+  ),
+  q(
+    9,
+    'physics',
+    7,
+    'Archimedes principle',
+    'mcq',
+    'hard',
+    1,
+    'A block of wood floats in water because:',
+    'C',
+    ['it is light', 'water is heavy', 'buoyant force equals its weight', 'it has air inside']
+  ),
+  q(
+    9,
+    'physics',
+    7,
+    'Pressure',
+    'short',
+    'easy',
+    3,
+    "State and explain Pascal's law. Give one application.",
+    'Pressure applied to enclosed fluid is transmitted equally in all directions. Application: hydraulic press, car brakes.'
+  ),
+  q(
+    9,
+    'physics',
+    7,
+    'Archimedes principle',
+    'long',
+    'medium',
+    8,
+    "State Archimedes' principle. Explain with experiment how to verify it. Derive the condition for floating of a body.",
+    'Buoyant force = weight of displaced liquid. Submerge object in water, measure displaced water weight = loss in object weight. Floats when buoyant force ≥ weight.'
+  ),
+
+  // ── Physics Ch8 Thermal Properties
+  q(9, 'physics', 8, 'Temperature', 'mcq', 'easy', 1, 'The SI unit of temperature is:', 'D', [
+    'Celsius',
+    'Fahrenheit',
+    'Centigrade',
+    'Kelvin',
+  ]),
+  q(
+    9,
+    'physics',
+    8,
+    'Heat capacity',
+    'mcq',
+    'medium',
+    1,
+    'Specific heat capacity is the heat required to raise temperature of 1 kg by:',
+    'C',
+    ['10 K', '100 K', '1 K', '1°C and 1K']
+  ),
+  q(9, 'physics', 8, 'Expansion', 'mcq', 'medium', 1, 'When metals are heated, they:', 'A', [
+    'expand',
+    'contract',
+    'stay same',
+    'melt immediately',
+  ]),
+  q(
+    9,
+    'physics',
+    8,
+    'Transfer of heat',
+    'mcq',
+    'easy',
+    1,
+    'Heat transfer through fluids by movement of particles is called:',
+    'B',
+    ['conduction', 'convection', 'radiation', 'reflection']
+  ),
+  q(9, 'physics', 8, 'Temperature', 'mcq', 'hard', 1, '0°C in Kelvin is:', 'C', [
+    '0 K',
+    '100 K',
+    '273 K',
+    '373 K',
+  ]),
+  q(
+    9,
+    'physics',
+    8,
+    'Heat capacity',
+    'short',
+    'medium',
+    3,
+    'Define specific heat capacity. Water has specific heat 4200 J/kg·K. How much heat is needed to raise 2 kg of water by 5°C?',
+    'Q = mcΔT = 2 × 4200 × 5 = 42000 J = 42 kJ.'
+  ),
+  q(
+    9,
+    'physics',
+    8,
+    'Expansion',
+    'long',
+    'medium',
+    8,
+    'Explain thermal expansion in solids, liquids, and gases. Describe one application and one disadvantage of thermal expansion.',
+    'Solids: linear/volumetric expansion. Liquids: volume expansion greater. Gases: greatest expansion. Application: thermometers. Disadvantage: railway track gaps needed.'
+  ),
+
+  // ── Physics Ch9 Transfer of Heat
+  q(9, 'physics', 9, 'Conduction', 'mcq', 'easy', 1, 'Heat conduction is best in:', 'A', [
+    'metals',
+    'wood',
+    'plastic',
+    'air',
+  ]),
+  q(9, 'physics', 9, 'Radiation', 'mcq', 'medium', 1, 'Heat radiation does not require a:', 'C', [
+    'source',
+    'medium',
+    'material medium',
+    'detector',
+  ]),
+  q(
+    9,
+    'physics',
+    9,
+    'Convection',
+    'mcq',
+    'easy',
+    1,
+    'Land breeze flows from land to sea during:',
+    'B',
+    ['day', 'night', 'morning', 'afternoon']
+  ),
+  q(
+    9,
+    'physics',
+    9,
+    'Greenhouse effect',
+    'mcq',
+    'medium',
+    1,
+    'The greenhouse effect is caused mainly by increase in:',
+    'D',
+    ['oxygen', 'nitrogen', 'water vapour', 'carbon dioxide']
+  ),
+  q(
+    9,
+    'physics',
+    9,
+    'Conduction',
+    'short',
+    'medium',
+    3,
+    'Compare conduction, convection, and radiation as modes of heat transfer.',
+    'Conduction: through solids, particle vibration. Convection: through fluids, particle movement. Radiation: no medium needed, electromagnetic waves.'
+  ),
+  q(
+    9,
+    'physics',
+    9,
+    'Greenhouse effect',
+    'long',
+    'medium',
+    8,
+    'Explain the greenhouse effect. How does it lead to global warming? Suggest measures to reduce its impact.',
+    'CO₂, CH₄ trap infrared radiation from Earth. Temperature rises → climate change, sea level rise. Reduce: renewable energy, reforestation, reduce CO₂ emissions.'
+  ),
 
   // ───────────────────────────────────────────────────────────────
-  // CHEMISTRY (Class 9)
+  // CHEMISTRY Class 9
   // ───────────────────────────────────────────────────────────────
   q(
     9,
@@ -316,7 +1617,7 @@ export const QUESTIONS: Question[] = [
     'easy',
     1,
     'The smallest particle of an element that takes part in a chemical reaction is called:',
-    ' A',
+    'A',
     ['Atom', 'Molecule', 'Ion', 'Electron']
   ),
   q(
@@ -331,6 +1632,274 @@ export const QUESTIONS: Question[] = [
     'D',
     ['Pure water', 'Table salt', 'Copper', 'Sea water']
   ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Branches',
+    'mcq',
+    'easy',
+    1,
+    'The branch of chemistry that deals with carbon compounds is:',
+    'B',
+    ['inorganic', 'organic', 'physical', 'analytical']
+  ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Matter',
+    'mcq',
+    'medium',
+    1,
+    'A compound differs from a mixture in that:',
+    'A',
+    [
+      'it has fixed composition',
+      'its components can be separated easily',
+      'it has variable properties',
+      'it is always a liquid',
+    ]
+  ),
+  q(9, 'chemistry', 1, 'Atom', 'mcq', 'medium', 1, 'The chemical formula of water is:', 'C', [
+    'HO',
+    'H₂O₂',
+    'H₂O',
+    'H₃O',
+  ]),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Molecule',
+    'mcq',
+    'easy',
+    1,
+    'A molecule of oxygen gas contains _____ atoms.',
+    'B',
+    ['1', '2', '3', '4']
+  ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Matter',
+    'mcq',
+    'medium',
+    1,
+    'Which of the following is a pure substance?',
+    'C',
+    ['Air', 'Seawater', 'Copper', 'Milk']
+  ),
+  q(9, 'chemistry', 1, 'Branches', 'mcq', 'medium', 1, 'Biochemistry is the study of:', 'D', [
+    'rocks',
+    'gases',
+    'metals',
+    'living organisms',
+  ]),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Atom',
+    'mcq',
+    'hard',
+    1,
+    "Dalton's atomic theory states atoms of the same element are:",
+    'A',
+    ['identical', 'different', 'variable', 'random']
+  ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Molecule',
+    'mcq',
+    'easy',
+    1,
+    'The chemical formula of table salt is:',
+    'B',
+    ['Na₂Cl', 'NaCl', 'NaCl₂', 'Na₂Cl₂']
+  ),
+  q(9, 'chemistry', 1, 'Branches', 'mcq', 'easy', 1, 'Analytical chemistry involves:', 'C', [
+    'making new compounds',
+    'studying energy changes',
+    'identifying substances',
+    'studying atomic structure',
+  ]),
+  q(9, 'chemistry', 1, 'Matter', 'mcq', 'easy', 1, 'Elements are substances that:', 'A', [
+    'cannot be broken down further by chemical means',
+    'are always gases',
+    'are always metals',
+    'have variable composition',
+  ]),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Atom',
+    'mcq',
+    'medium',
+    1,
+    'Which scientist proposed the nuclear model of atom?',
+    'D',
+    ['Dalton', 'Thomson', 'Bohr', 'Rutherford']
+  ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Matter',
+    'mcq',
+    'hard',
+    1,
+    'Which of the following is a heterogeneous mixture?',
+    'B',
+    ['salt solution', 'sand and water', 'air', 'sugar solution']
+  ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Molecule',
+    'mcq',
+    'medium',
+    1,
+    'The molecular formula of glucose is:',
+    'C',
+    ['C₆H₁₂O₅', 'C₁₂H₂₂O₁₁', 'C₆H₁₂O₆', 'C₆H₆O₆']
+  ),
+  q(9, 'chemistry', 1, 'Branches', 'mcq', 'medium', 1, 'Nuclear chemistry deals with:', 'B', [
+    'organic reactions',
+    'radioactivity and nuclear reactions',
+    'surface chemistry',
+    'polymers',
+  ]),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Matter',
+    'mcq',
+    'medium',
+    1,
+    'Physical properties of matter can be observed without:',
+    'A',
+    ['changing the composition', 'measuring mass', 'using equipment', 'making solutions']
+  ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Atom',
+    'mcq',
+    'easy',
+    1,
+    'An ion is formed when an atom gains or loses:',
+    'C',
+    ['neutrons', 'protons', 'electrons', 'nuclei']
+  ),
+  q(9, 'chemistry', 1, 'Molecule', 'mcq', 'hard', 1, 'Atomicity of phosphorus (P₄) is:', 'D', [
+    '1',
+    '2',
+    '3',
+    '4',
+  ]),
+  q(9, 'chemistry', 1, 'Matter', 'mcq', 'easy', 1, 'Distillation is used to separate:', 'B', [
+    'insoluble solids',
+    'liquids with different boiling points',
+    'magnetic materials',
+    'crystals',
+  ]),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Branches',
+    'mcq',
+    'hard',
+    1,
+    'Industrial chemistry applies chemistry to:',
+    'C',
+    ['academic research', 'theoretical models', 'large-scale manufacturing', 'laboratory testing']
+  ),
+  q(9, 'chemistry', 1, 'Atom', 'mcq', 'medium', 1, 'The modern symbol of element Gold is:', 'B', [
+    'Go',
+    'Au',
+    'Gd',
+    'Ag',
+  ]),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Molecule',
+    'mcq',
+    'easy',
+    1,
+    'Diatomic molecules contain _____ atoms.',
+    'B',
+    ['1', '2', '3', '4']
+  ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Matter',
+    'mcq',
+    'medium',
+    1,
+    'A substance that dissolves in water is called:',
+    'A',
+    ['soluble', 'insoluble', 'suspension', 'colloidal']
+  ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Atom',
+    'mcq',
+    'hard',
+    1,
+    'Which of these particles is found outside the nucleus?',
+    'C',
+    ['proton', 'neutron', 'electron', 'positron']
+  ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Atom',
+    'short',
+    'easy',
+    3,
+    'Define atom and molecule. How do they differ from each other? Give one example of each.',
+    'Atom: smallest unit of element (e.g., H). Molecule: group of atoms bonded together (e.g., H₂O). Atoms may or may not exist freely; molecules always exist as groups.'
+  ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Matter',
+    'short',
+    'medium',
+    3,
+    'Differentiate between elements, compounds, and mixtures with one example each.',
+    'Element: one type of atom (Fe). Compound: fixed ratio of elements (NaCl). Mixture: variable combination (air).'
+  ),
+  q(
+    9,
+    'chemistry',
+    1,
+    'Branches',
+    'long',
+    'medium',
+    8,
+    'Describe the major branches of chemistry. Write a brief note on the importance of chemistry in daily life.',
+    'Branches: Organic, Inorganic, Physical, Analytical, Biochemistry, Industrial. Importance: medicines, plastics, fertilizers, energy.'
+  ),
+
+  // ── Chemistry Ch2
   q(
     9,
     'chemistry',
@@ -365,8 +1934,121 @@ export const QUESTIONS: Question[] = [
     1,
     'The maximum number of electrons in the third shell is:',
     'C',
-    ['8', '18', '18', '32']
+    ['8', '16', '18', '32']
   ),
+  q(
+    9,
+    'chemistry',
+    2,
+    'Atomic number',
+    'mcq',
+    'easy',
+    1,
+    'Atomic number equals the number of:',
+    'A',
+    ['protons', 'neutrons', 'electrons + protons', 'nucleons']
+  ),
+  q(9, 'chemistry', 2, 'Mass number', 'mcq', 'easy', 1, 'Mass number = protons + :', 'B', [
+    'electrons',
+    'neutrons',
+    'ions',
+    'charges',
+  ]),
+  q(
+    9,
+    'chemistry',
+    2,
+    'Sub-atomic particles',
+    'mcq',
+    'medium',
+    1,
+    'Which particle has a mass approximately equal to that of a proton?',
+    'C',
+    ['electron', 'positron', 'neutron', 'alpha particle']
+  ),
+  q(
+    9,
+    'chemistry',
+    2,
+    'Isotopes',
+    'mcq',
+    'hard',
+    1,
+    'Isotope used in radiotherapy of cancer is:',
+    'D',
+    ['C-12', 'H-3', 'O-16', 'Co-60']
+  ),
+  q(
+    9,
+    'chemistry',
+    2,
+    'Electronic config',
+    'mcq',
+    'easy',
+    1,
+    'Maximum electrons in first shell are:',
+    'A',
+    ['2', '8', '18', '32']
+  ),
+  q(
+    9,
+    'chemistry',
+    2,
+    'Atomic number',
+    'mcq',
+    'medium',
+    1,
+    'The atomic number of carbon is:',
+    'B',
+    ['4', '6', '12', '14']
+  ),
+  q(
+    9,
+    'chemistry',
+    2,
+    'Sub-atomic particles',
+    'mcq',
+    'hard',
+    1,
+    'The proton was discovered by:',
+    'C',
+    ['Dalton', 'Chadwick', 'Rutherford', 'Thomson']
+  ),
+  q(
+    9,
+    'chemistry',
+    2,
+    'Structure',
+    'short',
+    'medium',
+    3,
+    'Describe the structure of an atom with the help of a diagram. Name the sub-atomic particles and give their charges.',
+    'Nucleus has protons(+) and neutrons(neutral). Electrons(-) orbit the nucleus in shells. Proton mass ≈ neutron mass >> electron mass.'
+  ),
+  q(
+    9,
+    'chemistry',
+    2,
+    'Isotopes',
+    'short',
+    'medium',
+    3,
+    'Define isotopes. Write the isotopes of hydrogen with their mass numbers.',
+    'Isotopes: same atomic number, different mass numbers. Hydrogen isotopes: Protium (1), Deuterium (2), Tritium (3).'
+  ),
+  q(
+    9,
+    'chemistry',
+    2,
+    'Electronic config',
+    'long',
+    'medium',
+    8,
+    'Explain electronic configuration of elements. Write the electronic configuration of Na (Z=11) and Cl (Z=17). How do these configurations determine their chemical properties?',
+    'Na: 2,8,1 — 1 valence electron, easily loses it (metallic). Cl: 2,8,7 — 7 valence electrons, gains 1 (non-metallic). They react to form NaCl.'
+  ),
+
+  // ── Chemistry Ch3
   q(
     9,
     'chemistry',
@@ -391,6 +2073,109 @@ export const QUESTIONS: Question[] = [
     'B',
     ['increases', 'decreases', 'remains same', 'first increases then decreases']
   ),
+  q(
+    9,
+    'chemistry',
+    3,
+    'Groups',
+    'mcq',
+    'easy',
+    1,
+    'How many groups are there in the modern periodic table?',
+    'C',
+    ['7', '9', '18', '32']
+  ),
+  q(
+    9,
+    'chemistry',
+    3,
+    'Periods',
+    'mcq',
+    'easy',
+    1,
+    'How many periods are there in the modern periodic table?',
+    'B',
+    ['5', '7', '9', '18']
+  ),
+  q(
+    9,
+    'chemistry',
+    3,
+    'Metals vs non-metals',
+    'mcq',
+    'medium',
+    1,
+    'Non-metals are generally located on the _____ side of periodic table.',
+    'D',
+    ['left', 'bottom', 'center', 'right']
+  ),
+  q(
+    9,
+    'chemistry',
+    3,
+    'Properties trends',
+    'mcq',
+    'hard',
+    1,
+    'Electronegativity across a period from left to right:',
+    'A',
+    ['increases', 'decreases', 'stays same', 'varies randomly']
+  ),
+  q(9, 'chemistry', 3, 'Groups', 'mcq', 'medium', 1, 'The noble gases are in group:', 'D', [
+    '1',
+    '2',
+    '16',
+    '18',
+  ]),
+  q(
+    9,
+    'chemistry',
+    3,
+    'Periods',
+    'mcq',
+    'medium',
+    1,
+    'Elements in the same period have the same number of:',
+    'B',
+    ['valence electrons', 'electron shells', 'protons', 'neutrons']
+  ),
+  q(
+    9,
+    'chemistry',
+    3,
+    'Metals vs non-metals',
+    'mcq',
+    'easy',
+    1,
+    'Which of the following is a metal?',
+    'A',
+    ['Sodium', 'Chlorine', 'Oxygen', 'Sulfur']
+  ),
+  q(
+    9,
+    'chemistry',
+    3,
+    'Properties trends',
+    'mcq',
+    'medium',
+    1,
+    'Down a group, ionization energy generally:',
+    'B',
+    ['increases', 'decreases', 'stays same', 'fluctuates']
+  ),
+  q(
+    9,
+    'chemistry',
+    3,
+    'Periodic Table',
+    'long',
+    'medium',
+    8,
+    'Write a detailed note on the Periodic Table. Explain periods and groups, and describe how the properties of elements change across a period and down a group.',
+    'Modern periodic table has 7 periods and 18 groups. Across period: atomic radius decreases, electronegativity increases. Down group: atomic radius increases, metallic character increases.'
+  ),
+
+  // ── Chemistry Ch4
   q(9, 'chemistry', 4, 'Ionic bond', 'mcq', 'easy', 1, 'An ionic bond is formed by:', 'B', [
     'sharing of electrons',
     'transfer of electrons',
@@ -412,35 +2197,50 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'chemistry',
+    4,
+    'Electronegativity',
+    'mcq',
+    'medium',
     1,
-    'Atom',
-    'short',
+    'The most electronegative element is:',
+    'C',
+    ['oxygen', 'chlorine', 'fluorine', 'nitrogen']
+  ),
+  q(9, 'chemistry', 4, 'Polarity', 'mcq', 'medium', 1, 'Water is a polar molecule because:', 'A', [
+    'it has bent shape',
+    'it is a liquid',
+    'it conducts electricity',
+    'it has high boiling point',
+  ]),
+  q(9, 'chemistry', 4, 'Ionic bond', 'mcq', 'hard', 1, 'NaCl is an ionic compound because:', 'B', [
+    'Na is a metal',
+    'Na loses electron and Cl gains electron',
+    'Cl is a non-metal',
+    'both are solids',
+  ]),
+  q(
+    9,
+    'chemistry',
+    4,
+    'Covalent bond',
+    'mcq',
     'easy',
-    3,
-    'Define atom and molecule. How do they differ from each other? Give one example of each.',
-    'Atom: smallest unit of element (e.g., H). Molecule: group of atoms bonded together (e.g., H₂O). Atoms may or may not exist freely; molecules always exist as groups.'
+    1,
+    'A single covalent bond involves sharing of _____ electrons.',
+    'B',
+    ['1', '2', '3', '4']
   ),
   q(
     9,
     'chemistry',
-    2,
-    'Structure',
-    'short',
-    'medium',
-    3,
-    'Describe the structure of an atom with the help of a diagram. Name the sub-atomic particles and give their charges.',
-    'Nucleus has protons(+) and neutrons(neutral). Electrons(-) orbit the nucleus in shells. Proton mass ≈ neutron mass >> electron mass.'
-  ),
-  q(
-    9,
-    'chemistry',
-    3,
-    'Periodic Table',
-    'long',
-    'medium',
-    8,
-    'Write a detailed note on the Periodic Table. Explain periods and groups, and describe how the properties of elements change across a period and down a group.',
-    'Modern periodic table has 7 periods and 18 groups. Across period: atomic radius decreases, electronegativity increases. Down group: atomic radius increases, metallic character increases.'
+    4,
+    'Electronegativity',
+    'mcq',
+    'easy',
+    1,
+    'Electronegativity is the ability of an atom to attract:',
+    'A',
+    ['shared electrons', 'protons', 'neutrons', 'free electrons']
   ),
   q(
     9,
@@ -448,14 +2248,133 @@ export const QUESTIONS: Question[] = [
     4,
     'Chemical bonding',
     'long',
-    'hard',
+    'medium',
     8,
     'Define ionic and covalent bonds. Explain how they are formed with examples. Compare their physical properties (melting point, conductivity, solubility).',
     'Ionic: electron transfer, NaCl. Covalent: electron sharing, H₂O. Ionic: high MP, conducts in solution; Covalent: low MP, poor conductor.'
   ),
 
+  // ── Chemistry Ch5-8 (selected)
+  q(
+    9,
+    'chemistry',
+    5,
+    'Gases',
+    'mcq',
+    'easy',
+    1,
+    'Gas molecules have _____ intermolecular forces compared to solids.',
+    'A',
+    ['weaker', 'stronger', 'equal', 'no difference']
+  ),
+  q(9, 'chemistry', 5, 'Liquids', 'mcq', 'medium', 1, 'Surface tension is a property of:', 'B', [
+    'gases',
+    'liquids',
+    'solids',
+    'plasma',
+  ]),
+  q(9, 'chemistry', 5, 'Solids', 'mcq', 'easy', 1, 'Solids have definite:', 'C', [
+    'colour',
+    'smell',
+    'shape and volume',
+    'mass only',
+  ]),
+  q(
+    9,
+    'chemistry',
+    6,
+    'Solutions',
+    'mcq',
+    'easy',
+    1,
+    'A solution in which water is the solvent is called:',
+    'B',
+    ['organic solution', 'aqueous solution', 'suspension', 'colloid']
+  ),
+  q(9, 'chemistry', 6, 'Concentration', 'mcq', 'medium', 1, 'Molarity is expressed in:', 'A', [
+    'mol/L',
+    'g/L',
+    'kg/mol',
+    'L/mol',
+  ]),
+  q(
+    9,
+    'chemistry',
+    7,
+    'Electrolysis',
+    'mcq',
+    'easy',
+    1,
+    'During electrolysis, positive ions move toward:',
+    'B',
+    ['anode', 'cathode', 'both electrodes', 'salt bridge']
+  ),
+  q(
+    9,
+    'chemistry',
+    7,
+    'Galvanic cell',
+    'mcq',
+    'medium',
+    1,
+    'In a galvanic cell, chemical energy is converted to:',
+    'C',
+    ['heat', 'light', 'electrical energy', 'mechanical energy']
+  ),
+  q(9, 'chemistry', 8, 'Acids & bases', 'mcq', 'easy', 1, 'An acid turns blue litmus:', 'A', [
+    'red',
+    'blue',
+    'green',
+    'yellow',
+  ]),
+  q(9, 'chemistry', 8, 'pH', 'mcq', 'easy', 1, 'Pure water has a pH of:', 'B', [
+    '0',
+    '7',
+    '14',
+    '1',
+  ]),
+  q(9, 'chemistry', 8, 'Oxidation', 'mcq', 'medium', 1, 'Oxidation involves:', 'A', [
+    'loss of electrons',
+    'gain of electrons',
+    'loss of protons',
+    'gain of neutrons',
+  ]),
+  q(
+    9,
+    'chemistry',
+    3,
+    'Periodic Table',
+    'short',
+    'medium',
+    3,
+    'Define periods and groups in the periodic table. What is the significance of valence electrons?',
+    'Periods: horizontal rows (7 total). Groups: vertical columns (18 total). Valence electrons determine chemical reactivity.'
+  ),
+  q(
+    9,
+    'chemistry',
+    8,
+    'Acids & bases',
+    'short',
+    'easy',
+    3,
+    'Define acids and bases according to Arrhenius. Give two examples of each.',
+    'Acid: produces H⁺ in water (HCl, H₂SO₄). Base: produces OH⁻ in water (NaOH, KOH).'
+  ),
+  q(
+    9,
+    'chemistry',
+    8,
+    'Acids & bases',
+    'long',
+    'medium',
+    8,
+    'Explain acids, bases, and salts. Define pH scale. How is neutralization used in daily life?',
+    'Acid: pH<7. Base: pH>7. Neutral: pH=7. Neutralization: acid+base→salt+water. Used in antacids, soil treatment.'
+  ),
+
   // ───────────────────────────────────────────────────────────────
-  // BIOLOGY (Class 9)
+  // BIOLOGY Class 9
   // ───────────────────────────────────────────────────────────────
   q(9, 'biology', 1, 'Branches', 'mcq', 'easy', 1, 'The study of plants is called:', 'B', [
     'Zoology',
@@ -483,6 +2402,237 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'biology',
+    1,
+    'Branches',
+    'mcq',
+    'medium',
+    1,
+    'Genetics is the branch of biology that deals with:',
+    'C',
+    ['plants', 'animals', 'heredity', 'ecosystems']
+  ),
+  q(
+    9,
+    'biology',
+    1,
+    'Scientific method',
+    'mcq',
+    'easy',
+    1,
+    'The first step in the scientific method is:',
+    'A',
+    ['observation', 'hypothesis', 'experiment', 'conclusion']
+  ),
+  q(9, 'biology', 1, 'Branches', 'mcq', 'medium', 1, 'Microbiology studies:', 'D', [
+    'birds',
+    'fish',
+    'fossils',
+    'microorganisms',
+  ]),
+  q(
+    9,
+    'biology',
+    1,
+    'Organization of life',
+    'mcq',
+    'medium',
+    1,
+    'Which is the highest level of biological organization?',
+    'D',
+    ['cell', 'tissue', 'organ', 'biosphere']
+  ),
+  q(9, 'biology', 1, 'Scientific method', 'mcq', 'medium', 1, 'A hypothesis is a:', 'B', [
+    'proven fact',
+    'testable explanation',
+    'final conclusion',
+    'random guess',
+  ]),
+  q(9, 'biology', 1, 'Branches', 'mcq', 'hard', 1, 'Paleontology is the study of:', 'C', [
+    'living plants',
+    'microbes',
+    'fossils',
+    'ecological systems',
+  ]),
+  q(
+    9,
+    'biology',
+    1,
+    'Organization of life',
+    'mcq',
+    'easy',
+    1,
+    'A group of similar cells performing same function is called:',
+    'B',
+    ['organ', 'tissue', 'organism', 'system']
+  ),
+  q(9, 'biology', 1, 'Branches', 'mcq', 'easy', 1, 'Anatomy is the study of:', 'A', [
+    'internal structures',
+    'microbes',
+    'heredity',
+    'ecosystems',
+  ]),
+  q(
+    9,
+    'biology',
+    1,
+    'Scientific method',
+    'mcq',
+    'hard',
+    1,
+    'In an experiment, the variable that is changed on purpose is the:',
+    'C',
+    ['dependent variable', 'controlled variable', 'independent variable', 'constant']
+  ),
+  q(9, 'biology', 1, 'Branches', 'mcq', 'medium', 1, 'Pharmacology is related to:', 'B', [
+    'farming',
+    'drugs and medicines',
+    'fossils',
+    'genetics',
+  ]),
+  q(
+    9,
+    'biology',
+    1,
+    'Organization of life',
+    'mcq',
+    'medium',
+    1,
+    'Heart, arteries, and veins together form the:',
+    'C',
+    ['digestive system', 'nervous system', 'circulatory system', 'respiratory system']
+  ),
+  q(
+    9,
+    'biology',
+    1,
+    'Scientific method',
+    'mcq',
+    'easy',
+    1,
+    'Data collected during an experiment is called:',
+    'A',
+    ['results', 'hypothesis', 'observation', 'conclusion']
+  ),
+  q(9, 'biology', 1, 'Branches', 'mcq', 'medium', 1, 'Environmental biology deals with:', 'D', [
+    'atomic structure',
+    'chemical bonds',
+    'cell division',
+    'organisms and their environment',
+  ]),
+  q(
+    9,
+    'biology',
+    1,
+    'Organization of life',
+    'mcq',
+    'hard',
+    1,
+    'Which level of organization is between tissue and organ system?',
+    'B',
+    ['cell', 'organ', 'organism', 'biosphere']
+  ),
+  q(9, 'biology', 1, 'Branches', 'mcq', 'easy', 1, 'Entomology is the study of:', 'C', [
+    'birds',
+    'mammals',
+    'insects',
+    'reptiles',
+  ]),
+  q(
+    9,
+    'biology',
+    1,
+    'Scientific method',
+    'mcq',
+    'medium',
+    1,
+    'A theory is different from a hypothesis because a theory:',
+    'A',
+    [
+      'is supported by extensive evidence',
+      'is an untested idea',
+      'is always wrong',
+      'is a single observation',
+    ]
+  ),
+  q(9, 'biology', 1, 'Organization of life', 'mcq', 'easy', 1, 'The basic unit of life is:', 'A', [
+    'cell',
+    'tissue',
+    'atom',
+    'organ',
+  ]),
+  q(9, 'biology', 1, 'Branches', 'mcq', 'hard', 1, 'Immunology is concerned with:', 'B', [
+    'bones',
+    'immune system',
+    'reproduction',
+    'respiration',
+  ]),
+  q(
+    9,
+    'biology',
+    1,
+    'Branches',
+    'short',
+    'easy',
+    3,
+    'Define biology and list any four branches of biology with their areas of study.',
+    'Biology is the study of living organisms. Branches: Zoology (animals), Botany (plants), Microbiology (microorganisms), Genetics (heredity).'
+  ),
+  q(
+    9,
+    'biology',
+    1,
+    'Organization of life',
+    'short',
+    'medium',
+    3,
+    'Describe the levels of biological organization from cell to biosphere.',
+    'Cell → Tissue → Organ → Organ system → Organism → Population → Community → Ecosystem → Biosphere.'
+  ),
+  q(
+    9,
+    'biology',
+    1,
+    'Scientific method',
+    'short',
+    'medium',
+    3,
+    'What is the scientific method? List its main steps in order.',
+    'Observation → Problem identification → Hypothesis → Experiment → Data collection → Analysis → Conclusion.'
+  ),
+  q(
+    9,
+    'biology',
+    1,
+    'Branches',
+    'long',
+    'medium',
+    8,
+    'Write a note on the importance of biology in everyday life. Mention at least five branches and their practical applications.',
+    'Botany: crops and medicine. Zoology: animal farming. Microbiology: vaccines. Genetics: GM crops. Physiology: medical treatment. Medicine, agriculture, environment, biotechnology.'
+  ),
+
+  // ── Biology Ch2-8 (key MCQs)
+  q(
+    9,
+    'biology',
+    2,
+    'Hypothesis',
+    'mcq',
+    'medium',
+    1,
+    'A variable that is kept constant in an experiment is called:',
+    'C',
+    ['dependent', 'independent', 'experimental', 'controlled']
+  ),
+  q(9, 'biology', 2, 'Data analysis', 'mcq', 'easy', 1, 'A bar chart is used to represent:', 'A', [
+    'categorical data',
+    'continuous data',
+    'scatter data',
+    'frequency',
+  ]),
+  q(
+    9,
+    'biology',
     3,
     'Classification',
     'mcq',
@@ -504,6 +2654,77 @@ export const QUESTIONS: Question[] = [
     'B',
     ['Morphology', 'Taxonomy', 'Physiology', 'Ecology']
   ),
+  q(
+    9,
+    'biology',
+    3,
+    'Five kingdoms',
+    'mcq',
+    'medium',
+    1,
+    'Fungi differ from plants because fungi:',
+    'D',
+    ['have cell walls', 'are multicellular', 'lack chlorophyll', 'grow in soil']
+  ),
+  q(
+    9,
+    'biology',
+    3,
+    'Binomial nomenclature',
+    'mcq',
+    'hard',
+    1,
+    'In binomial nomenclature, the first name represents:',
+    'A',
+    ['genus', 'species', 'family', 'order']
+  ),
+  q(
+    9,
+    'biology',
+    3,
+    'Classification',
+    'mcq',
+    'medium',
+    1,
+    'Viruses are not included in the five kingdom system because they:',
+    'C',
+    ['are too small', 'have no DNA', 'are non-living outside a host', 'have no proteins']
+  ),
+  q(
+    9,
+    'biology',
+    3,
+    'Taxonomy',
+    'mcq',
+    'easy',
+    1,
+    'The correct taxonomic hierarchy from broadest to most specific is:',
+    'B',
+    [
+      'Species, Genus, Family, Order, Class, Phylum, Kingdom',
+      'Kingdom, Phylum, Class, Order, Family, Genus, Species',
+      'Kingdom, Class, Phylum, Order, Family, Genus, Species',
+      'Phylum, Kingdom, Class, Order, Family, Species, Genus',
+    ]
+  ),
+  q(9, 'biology', 3, 'Five kingdoms', 'mcq', 'easy', 1, 'Which kingdom includes mushrooms?', 'D', [
+    'Monera',
+    'Protista',
+    'Animalia',
+    'Fungi',
+  ]),
+  q(
+    9,
+    'biology',
+    3,
+    'Binomial nomenclature',
+    'mcq',
+    'medium',
+    1,
+    'The scientific name of humans is:',
+    'A',
+    ['Homo sapiens', 'Homo erectus', 'Pan troglodytes', 'Canis lupus']
+  ),
   q(9, 'biology', 4, 'Cell organelles', 'mcq', 'easy', 1, 'The powerhouse of the cell is:', 'D', [
     'Nucleus',
     'Ribosome',
@@ -516,6 +2737,66 @@ export const QUESTIONS: Question[] = [
     'Mendel',
     'Watson & Crick',
   ]),
+  q(9, 'biology', 4, 'Prokaryotes', 'mcq', 'medium', 1, 'Prokaryotic cells lack a:', 'B', [
+    'cell wall',
+    'true nucleus',
+    'ribosome',
+    'cytoplasm',
+  ]),
+  q(9, 'biology', 4, 'Eukaryotes', 'mcq', 'easy', 1, 'Animal cells lack:', 'C', [
+    'mitochondria',
+    'nucleus',
+    'cell wall',
+    'ribosome',
+  ]),
+  q(
+    9,
+    'biology',
+    4,
+    'Cell organelles',
+    'mcq',
+    'medium',
+    1,
+    'The site of protein synthesis in a cell is:',
+    'A',
+    ['ribosome', 'nucleus', 'mitochondria', 'lysosome']
+  ),
+  q(9, 'biology', 4, 'Tissues', 'mcq', 'easy', 1, 'Muscle tissue is an example of:', 'B', [
+    'connective tissue',
+    'muscular tissue',
+    'nervous tissue',
+    'epithelial tissue',
+  ]),
+  q(
+    9,
+    'biology',
+    4,
+    'Cell organelles',
+    'mcq',
+    'hard',
+    1,
+    'Which organelle is responsible for packaging and transporting proteins?',
+    'C',
+    ['mitochondria', 'ribosome', 'Golgi apparatus', 'nucleus']
+  ),
+  q(9, 'biology', 4, 'Cell theory', 'mcq', 'easy', 1, 'All living things are made of:', 'A', [
+    'cells',
+    'atoms',
+    'molecules',
+    'tissues',
+  ]),
+  q(9, 'biology', 4, 'Prokaryotes', 'mcq', 'easy', 1, 'Bacteria are examples of:', 'B', [
+    'eukaryotes',
+    'prokaryotes',
+    'viruses',
+    'fungi',
+  ]),
+  q(9, 'biology', 4, 'Cell organelles', 'mcq', 'medium', 1, 'Chloroplasts are found in:', 'D', [
+    'animal cells only',
+    'fungi cells',
+    'bacterial cells',
+    'plant cells only',
+  ]),
   q(
     9,
     'biology',
@@ -527,6 +2808,66 @@ export const QUESTIONS: Question[] = [
     'Mitosis produces _____ daughter cells with _____ chromosomes each.',
     'B',
     ['4 / haploid', '2 / diploid', '4 / diploid', '2 / haploid']
+  ),
+  q(9, 'biology', 5, 'Meiosis', 'mcq', 'medium', 1, 'Meiosis occurs in:', 'C', [
+    'skin cells',
+    'liver cells',
+    'reproductive cells',
+    'blood cells',
+  ]),
+  q(9, 'biology', 5, 'Cancer', 'mcq', 'easy', 1, 'Cancer is caused by:', 'A', [
+    'uncontrolled cell division',
+    'slow cell growth',
+    'cell death',
+    'normal mitosis',
+  ]),
+  q(9, 'biology', 5, 'Interphase', 'mcq', 'hard', 1, 'DNA replication occurs during:', 'B', [
+    'mitosis',
+    'interphase',
+    'meiosis',
+    'cytokinesis',
+  ]),
+  q(9, 'biology', 6, 'Properties', 'mcq', 'easy', 1, 'Enzymes are made of:', 'A', [
+    'proteins',
+    'lipids',
+    'carbohydrates',
+    'nucleic acids',
+  ]),
+  q(
+    9,
+    'biology',
+    6,
+    'Factors',
+    'mcq',
+    'medium',
+    1,
+    'Optimum temperature for most human enzymes is around:',
+    'C',
+    ['20°C', '25°C', '37°C', '45°C']
+  ),
+  q(
+    9,
+    'biology',
+    6,
+    'Mode of action',
+    'mcq',
+    'medium',
+    1,
+    'The lock and key model describes:',
+    'B',
+    ['DNA replication', 'enzyme-substrate specificity', 'cell division', 'protein synthesis']
+  ),
+  q(
+    9,
+    'biology',
+    6,
+    'Inhibition',
+    'mcq',
+    'hard',
+    1,
+    'A competitive inhibitor competes with the substrate for the:',
+    'A',
+    ['active site', 'allosteric site', 'coenzyme', 'end product']
   ),
   q(
     9,
@@ -543,14 +2884,69 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'biology',
-    1,
-    'Branches',
-    'short',
+    7,
+    'Respiration',
+    'mcq',
     'easy',
-    3,
-    'Define biology and list any four branches of biology with their areas of study.',
-    'Biology is the study of living organisms. Branches: Zoology (animals), Botany (plants), Microbiology (microorganisms), Genetics (heredity).'
+    1,
+    'Anaerobic respiration in yeast produces:',
+    'B',
+    ['CO₂ and water', 'ethanol and CO₂', 'lactic acid', 'glucose']
   ),
+  q(9, 'biology', 7, 'ATP', 'mcq', 'medium', 1, 'ATP stands for:', 'A', [
+    'Adenosine triphosphate',
+    'Adenine triphosphate',
+    'Alanine triprotein',
+    'Amino triphosphate',
+  ]),
+  q(
+    9,
+    'biology',
+    7,
+    'Fermentation',
+    'mcq',
+    'easy',
+    1,
+    'Fermentation is a type of _____ respiration.',
+    'B',
+    ['aerobic', 'anaerobic', 'both', 'neither']
+  ),
+  q(
+    9,
+    'biology',
+    8,
+    'Nutrients',
+    'mcq',
+    'easy',
+    1,
+    'Vitamins are required in the diet in _____ quantities.',
+    'B',
+    ['large', 'small', 'equal', 'variable']
+  ),
+  q(9, 'biology', 8, 'Digestion', 'mcq', 'medium', 1, 'Digestion of starch begins in:', 'A', [
+    'mouth',
+    'stomach',
+    'small intestine',
+    'large intestine',
+  ]),
+  q(
+    9,
+    'biology',
+    8,
+    'Absorption',
+    'mcq',
+    'medium',
+    1,
+    'Most absorption of nutrients occurs in:',
+    'C',
+    ['stomach', 'large intestine', 'small intestine', 'oesophagus']
+  ),
+  q(9, 'biology', 8, 'Malnutrition', 'mcq', 'easy', 1, 'Scurvy is caused by deficiency of:', 'D', [
+    'vitamin A',
+    'vitamin B',
+    'vitamin D',
+    'vitamin C',
+  ]),
   q(
     9,
     'biology',
@@ -565,13 +2961,24 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'biology',
+    3,
+    'Biodiversity',
+    'short',
+    'medium',
+    3,
+    'What is binomial nomenclature? Write the scientific names of two common organisms.',
+    'Two-part naming system: Genus species, italicized. Examples: Homo sapiens (humans), Rosa indica (rose).'
+  ),
+  q(
+    9,
+    'biology',
     7,
     'Photosynthesis',
     'long',
     'medium',
     8,
-    'What is photosynthesis? Write its word equation and balanced chemical equation. Describe the factors that affect the rate of photosynthesis and explain the significance of photosynthesis in nature.',
-    '6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂. Factors: light intensity, CO₂ concentration, temperature, water. Significance: primary food source, O₂ production, carbon cycle.'
+    'What is photosynthesis? Write its word equation and balanced chemical equation. Describe the factors that affect the rate of photosynthesis.',
+    '6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂. Factors: light intensity, CO₂ concentration, temperature, water.'
   ),
   q(
     9,
@@ -586,12 +2993,12 @@ export const QUESTIONS: Question[] = [
   ),
 
   // ───────────────────────────────────────────────────────────────
-  // MATHEMATICS (Class 9)
+  // MATHEMATICS Class 9
   // ───────────────────────────────────────────────────────────────
   q(
     9,
     'mathematics',
-    1,
+    7,
     'Types of matrices',
     'mcq',
     'easy',
@@ -603,7 +3010,7 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'mathematics',
-    1,
+    7,
     'Operations',
     'mcq',
     'easy',
@@ -612,19 +3019,19 @@ export const QUESTIONS: Question[] = [
     'A',
     ['3×2', '2×3', '3×3', '2×2']
   ),
-  q(9, 'mathematics', 2, 'Complex numbers', 'mcq', 'medium', 1, 'The value of i² is:', 'B', [
+  q(9, 'mathematics', 8, 'Complex numbers', 'mcq', 'medium', 1, 'The value of i² is:', 'B', [
     '1',
     '−1',
     'i',
     '0',
   ]),
-  q(9, 'mathematics', 3, 'Logarithms', 'mcq', 'easy', 1, 'log₁₀ 1000 = ?', 'C', [
+  q(9, 'mathematics', 9, 'Logarithms', 'mcq', 'easy', 1, 'log₁₀ 1000 = ?', 'C', [
     '1',
     '2',
     '3',
     '4',
   ]),
-  q(9, 'mathematics', 3, 'Laws', 'mcq', 'medium', 1, 'log(AB) equals:', 'A', [
+  q(9, 'mathematics', 9, 'Laws', 'mcq', 'medium', 1, 'log(AB) equals:', 'A', [
     'log A + log B',
     'log A − log B',
     'log A × log B',
@@ -633,7 +3040,7 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'mathematics',
-    7,
+    10,
     'Linear Equations',
     'mcq',
     'easy',
@@ -645,7 +3052,7 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'mathematics',
-    7,
+    10,
     'Word problems',
     'mcq',
     'medium',
@@ -657,7 +3064,128 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'mathematics',
+    7,
+    'Determinant',
+    'mcq',
+    'medium',
     1,
+    'The determinant of matrix [[2,3],[1,4]] is:',
+    'C',
+    ['5', '6', '5', '8']
+  ),
+  q(
+    9,
+    'mathematics',
+    7,
+    'Inverse matrix',
+    'mcq',
+    'hard',
+    1,
+    'A matrix has an inverse if its determinant is:',
+    'B',
+    ['zero', 'non-zero', 'negative', 'positive only']
+  ),
+  q(
+    9,
+    'mathematics',
+    8,
+    'Properties',
+    'mcq',
+    'easy',
+    1,
+    'The additive identity for real numbers is:',
+    'A',
+    ['0', '1', '-1', '∞']
+  ),
+  q(9, 'mathematics', 9, 'Laws', 'mcq', 'medium', 1, 'log(A/B) equals:', 'B', [
+    'log A × log B',
+    'log A − log B',
+    'log A + log B',
+    'log B − log A',
+  ]),
+  q(9, 'mathematics', 9, 'Laws', 'mcq', 'easy', 1, 'log A^n equals:', 'C', [
+    'A log n',
+    'log A/n',
+    'n log A',
+    'log n/A',
+  ]),
+  q(
+    9,
+    'mathematics',
+    10,
+    'System of equations',
+    'mcq',
+    'medium',
+    1,
+    'The system x + y = 5 and x − y = 1 has solution:',
+    'B',
+    ['x=1, y=4', 'x=3, y=2', 'x=2, y=3', 'x=4, y=1']
+  ),
+  q(9, 'mathematics', 8, 'Complex numbers', 'mcq', 'hard', 1, 'The modulus of 3 + 4i is:', 'C', [
+    '3',
+    '4',
+    '5',
+    '7',
+  ]),
+  q(
+    9,
+    'mathematics',
+    7,
+    'Types of matrices',
+    'mcq',
+    'medium',
+    1,
+    'A matrix with all elements zero is called:',
+    'A',
+    ['null matrix', 'unit matrix', 'scalar matrix', 'diagonal matrix']
+  ),
+  q(9, 'mathematics', 9, 'Laws', 'mcq', 'hard', 1, 'log₂ 32 = ?', 'D', ['2', '3', '4', '5']),
+  q(
+    9,
+    'mathematics',
+    10,
+    'Two variables',
+    'mcq',
+    'easy',
+    1,
+    'In y = 2x + 3, the gradient is:',
+    'B',
+    ['3', '2', '1', '0']
+  ),
+  q(
+    9,
+    'mathematics',
+    8,
+    'Properties',
+    'mcq',
+    'medium',
+    1,
+    'The multiplicative inverse of 5 is:',
+    'C',
+    ['5', '−5', '1/5', '−1/5']
+  ),
+  q(9, 'mathematics', 10, 'One variable', 'mcq', 'easy', 1, 'Solve: 3x + 6 = 0:', 'A', [
+    'x=−2',
+    'x=2',
+    'x=3',
+    'x=−3',
+  ]),
+  q(
+    9,
+    'mathematics',
+    7,
+    'Operations',
+    'mcq',
+    'hard',
+    1,
+    'If A = [[1,2],[3,4]] and B = [[2,0],[1,3]], then A+B is:',
+    'B',
+    ['[[2,2],[4,8]]', '[[3,2],[4,7]]', '[[3,0],[4,7]]', '[[1,2],[3,7]]']
+  ),
+  q(
+    9,
+    'mathematics',
+    7,
     'Determinant',
     'short',
     'medium',
@@ -668,7 +3196,7 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'mathematics',
-    3,
+    9,
     'Logarithms',
     'short',
     'medium',
@@ -679,17 +3207,39 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'mathematics',
-    7,
+    8,
+    'Complex numbers',
+    'short',
+    'hard',
+    3,
+    'Find the sum and product of (3+2i) and (1−4i).',
+    'Sum: (3+1)+(2-4)i = 4−2i. Product: 3−12i+2i−8i²=3−10i+8=11−10i.'
+  ),
+  q(
+    9,
+    'mathematics',
+    10,
     'System of equations',
     'long',
     'medium',
     8,
     'Solve the following system of equations by elimination method: 3x + 2y = 16, 5x − 3y = 9. Also verify your solution.',
-    'Multiply first by 3 and second by 2: 9x+6y=48, 10x−6y=18. Add: 19x=66, x=66/19... [detailed steps]. Verify by substitution.'
+    'Multiply first by 3, second by 2: 9x+6y=48, 10x−6y=18. Add: 19x=66, x=66/19... Verify by substitution.'
+  ),
+  q(
+    9,
+    'mathematics',
+    7,
+    'Matrices & Determinants',
+    'long',
+    'hard',
+    8,
+    'Define matrices and their types. Solve: Given A=[[2,1],[3,4]] and B=[[1,2],[0,3]], find A+B, A-B, and AB.',
+    'A+B=[[3,3],[3,7]]. A-B=[[1,-1],[3,1]]. AB=[[2+0,4+3],[3+0,6+12]]=[[2,7],[3,18]].'
   ),
 
   // ───────────────────────────────────────────────────────────────
-  // COMPUTER SCIENCE (Class 9)
+  // COMPUTER SCIENCE Class 9
   // ───────────────────────────────────────────────────────────────
   q(
     9,
@@ -742,6 +3292,90 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'computer',
+    1,
+    'History',
+    'mcq',
+    'easy',
+    1,
+    'ENIAC was a computer of which generation?',
+    'A',
+    ['First', 'Second', 'Third', 'Fourth']
+  ),
+  q(9, 'computer', 2, 'Conversion', 'mcq', 'medium', 1, 'Binary 1111 in decimal is:', 'D', [
+    '13',
+    '14',
+    '12',
+    '15',
+  ]),
+  q(
+    9,
+    'computer',
+    3,
+    'Input devices',
+    'mcq',
+    'easy',
+    1,
+    'Which of the following is an input device?',
+    'B',
+    ['monitor', 'keyboard', 'printer', 'speaker']
+  ),
+  q(
+    9,
+    'computer',
+    3,
+    'Output devices',
+    'mcq',
+    'easy',
+    1,
+    'Which of the following is an output device?',
+    'C',
+    ['keyboard', 'mouse', 'monitor', 'scanner']
+  ),
+  q(
+    9,
+    'computer',
+    4,
+    'Formulas',
+    'mcq',
+    'medium',
+    1,
+    'In a spreadsheet, formulas start with:',
+    'A',
+    ['=', '#', '$', '@']
+  ),
+  q(9, 'computer', 5, 'DBMS', 'mcq', 'easy', 1, 'DBMS stands for:', 'B', [
+    'Data Basic Management System',
+    'Database Management System',
+    'Data Binary Management System',
+    'Database Making System',
+  ]),
+  q(9, 'computer', 6, 'Internet', 'mcq', 'easy', 1, 'HTTP stands for:', 'C', [
+    'Hyper Text Transfer Procedure',
+    'High Text Transfer Protocol',
+    'Hyper Text Transfer Protocol',
+    'Hyper Text Translate Protocol',
+  ]),
+  q(9, 'computer', 7, 'Algorithms', 'mcq', 'medium', 1, 'An algorithm is:', 'A', [
+    'a set of step-by-step instructions',
+    'a programming language',
+    'a computer chip',
+    'a type of database',
+  ]),
+  q(
+    9,
+    'computer',
+    1,
+    'Classification',
+    'mcq',
+    'medium',
+    1,
+    'Which type of computer is used by large organizations for massive data processing?',
+    'D',
+    ['microcomputer', 'minicomputer', 'laptop', 'mainframe']
+  ),
+  q(
+    9,
+    'computer',
     2,
     'Number systems',
     'short',
@@ -764,6 +3398,28 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'computer',
+    6,
+    'Networking',
+    'short',
+    'medium',
+    3,
+    'Define LAN, WAN, and MAN. Give one example of each.',
+    'LAN: Local Area Network (school lab). MAN: Metropolitan Area Network (city network). WAN: Wide Area Network (internet).'
+  ),
+  q(
+    9,
+    'computer',
+    7,
+    'Algorithms',
+    'short',
+    'medium',
+    3,
+    'What is an algorithm? Write an algorithm to find the larger of two numbers.',
+    'Step-by-step problem-solving procedure. 1. Input A, B. 2. If A>B, print A is larger. 3. Else print B is larger.'
+  ),
+  q(
+    9,
+    'computer',
     1,
     'History',
     'long',
@@ -772,11 +3428,22 @@ export const QUESTIONS: Question[] = [
     'Describe the five generations of computers. For each generation state the technology used, size, speed, and give one example.',
     '1G: vacuum tubes, ENIAC. 2G: transistors, IBM 1401. 3G: ICs, IBM 360. 4G: microprocessors, PC. 5G: AI, quantum computing.'
   ),
+  q(
+    9,
+    'computer',
+    5,
+    'Database',
+    'long',
+    'medium',
+    8,
+    'Define a database and DBMS. Explain the components of a database: tables, fields, records, and queries. Give a practical example.',
+    'Database: organized collection of related data. DBMS: software to manage it. Table: rows and columns. Field: column. Record: row. Query: retrieval command. Example: student database.'
+  ),
 
   // ───────────────────────────────────────────────────────────────
-  // ENGLISH (Class 9)
+  // ENGLISH Class 9
   // ───────────────────────────────────────────────────────────────
-  q(9, 'english', 2, 'Tenses', 'mcq', 'easy', 1, 'He _____ to school every day.', 'A', [
+  q(9, 'english', 4, 'Tenses', 'mcq', 'easy', 1, 'He _____ to school every day.', 'A', [
     'goes',
     'go',
     'going',
@@ -785,13 +3452,13 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'english',
-    2,
+    4,
     'Voice',
     'mcq',
     'medium',
     1,
     'Passive voice of "She writes a letter" is:',
-    'C',
+    'A',
     [
       'A letter is written by her',
       'A letter will be written by her',
@@ -802,7 +3469,7 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'english',
-    2,
+    4,
     'Narration',
     'mcq',
     'medium',
@@ -811,13 +3478,13 @@ export const QUESTIONS: Question[] = [
     'B',
     ['He said he is happy', 'He said he was happy', 'He says he was happy', 'He said I am happy']
   ),
-  q(9, 'english', 3, 'Synonyms', 'mcq', 'easy', 1, 'Synonym of "benevolent" is:', 'A', [
+  q(9, 'english', 6, 'Synonyms', 'mcq', 'easy', 1, 'Synonym of "benevolent" is:', 'A', [
     'kind',
     'cruel',
     'angry',
     'sad',
   ]),
-  q(9, 'english', 3, 'Antonyms', 'mcq', 'easy', 1, 'Antonym of "abundant" is:', 'D', [
+  q(9, 'english', 6, 'Antonyms', 'mcq', 'easy', 1, 'Antonym of "abundant" is:', 'D', [
     'plentiful',
     'rich',
     'ample',
@@ -826,7 +3493,107 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'english',
-    2,
+    4,
+    'Tenses',
+    'mcq',
+    'medium',
+    1,
+    'Which tense is used in "She has been studying for 3 hours"?',
+    'C',
+    ['Simple present', 'Present perfect', 'Present perfect continuous', 'Past continuous']
+  ),
+  q(
+    9,
+    'english',
+    4,
+    'Voice',
+    'mcq',
+    'medium',
+    1,
+    'Active voice: "They are building a bridge." Passive voice is:',
+    'B',
+    [
+      'The bridge is been built by them',
+      'A bridge is being built by them',
+      'A bridge was built by them',
+      'The bridge will be built',
+    ]
+  ),
+  q(
+    9,
+    'english',
+    4,
+    'Narration',
+    'mcq',
+    'hard',
+    1,
+    'Change to indirect: "She said, \'I will come tomorrow.\'":',
+    'A',
+    [
+      'She said she would come the next day',
+      'She says she will come tomorrow',
+      'She said she will come tomorrow',
+      'She told she would come next day',
+    ]
+  ),
+  q(9, 'english', 6, 'Idioms', 'mcq', 'medium', 1, '"Bite the bullet" means:', 'C', [
+    'to eat something hard',
+    'to shoot',
+    'to endure pain bravely',
+    'to fight',
+  ]),
+  q(9, 'english', 6, 'Synonyms', 'mcq', 'easy', 1, 'Synonym of "melancholy" is:', 'B', [
+    'happy',
+    'sad',
+    'angry',
+    'excited',
+  ]),
+  q(9, 'english', 4, 'Modals', 'mcq', 'easy', 1, 'Which modal expresses obligation?', 'A', [
+    'must',
+    'would',
+    'could',
+    'might',
+  ]),
+  q(
+    9,
+    'english',
+    4,
+    'Conditionals',
+    'mcq',
+    'medium',
+    1,
+    '"If it rains, we will stay home" is a _____ conditional.',
+    'B',
+    ['zero', 'first', 'second', 'third']
+  ),
+  q(
+    9,
+    'english',
+    3,
+    'Main idea',
+    'mcq',
+    'medium',
+    1,
+    'The topic sentence of a paragraph usually comes:',
+    'A',
+    ['at the beginning', 'in the middle', 'at the end', 'anywhere']
+  ),
+  q(9, 'english', 7, 'Poetry', 'mcq', 'easy', 1, 'A stanza is a group of _____ in a poem.', 'C', [
+    'words',
+    'sentences',
+    'lines',
+    'paragraphs',
+  ]),
+  q(9, 'english', 6, 'Phrasal verbs', 'mcq', 'medium', 1, '"Call off" means:', 'D', [
+    'to call someone',
+    'to shout',
+    'to make a call',
+    'to cancel',
+  ]),
+  q(
+    9,
+    'english',
+    4,
     'Grammar',
     'short',
     'medium',
@@ -838,27 +3605,38 @@ export const QUESTIONS: Question[] = [
     9,
     'english',
     4,
+    'Tenses',
+    'short',
+    'medium',
+    3,
+    'Write the formula and one example for: (a) Past perfect tense (b) Future continuous tense.',
+    '(a) had + past participle: She had eaten. (b) will be + Ving: I will be sleeping.'
+  ),
+  q(
+    9,
+    'english',
+    5,
     'Essay',
     'long',
     'medium',
     8,
     'Write a well-structured essay on "The Importance of Education" in approximately 250 words. Use appropriate vocabulary and linking phrases.',
-    '[Essay covering: Education as foundation of life, develops critical thinking, economic benefits, social awareness, national development. Include intro, body paragraphs, conclusion.]'
+    '[Essay covering: Education as foundation of life, develops critical thinking, economic benefits, social awareness, national development.]'
   ),
   q(
     9,
     'english',
-    2,
+    4,
     'Grammar',
     'long',
     'hard',
     8,
     'Explain the twelve tenses with their formulas and one example each. Then identify the tense in the following sentences: (a) I have been studying. (b) She will have left by then. (c) They are playing cricket.',
-    '[Detailed explanation of all 12 tenses. (a) Present Perfect Continuous; (b) Future Perfect; (c) Present Continuous.]'
+    '(a) Present Perfect Continuous; (b) Future Perfect; (c) Present Continuous.'
   ),
 
   // ───────────────────────────────────────────────────────────────
-  // CLASS 10 — PHYSICS
+  // CLASS 10 — PHYSICS (selected)
   // ───────────────────────────────────────────────────────────────
   q(
     10,
@@ -937,9 +3715,7 @@ export const QUESTIONS: Question[] = [
     'Series: R=R₁+R₂+R₃. Parallel: 1/R=1/R₁+1/R₂+1/R₃. Req=2Ω, I=6A, I₁=3A, I₂=2A, I₃=1A.'
   ),
 
-  // ───────────────────────────────────────────────────────────────
-  // CLASS 10 — CHEMISTRY
-  // ───────────────────────────────────────────────────────────────
+  // ── Class 10 Chemistry
   q(10, 'chemistry', 9, 'Acids', 'mcq', 'easy', 1, 'An acid has pH:', 'A', [
     'less than 7',
     'greater than 7',
@@ -983,13 +3759,11 @@ export const QUESTIONS: Question[] = [
     'long',
     'medium',
     8,
-    'Write a comprehensive note on carbohydrates. Define them, classify them into monosaccharides, disaccharides, and polysaccharides with examples and biological importance.',
+    'Write a comprehensive note on carbohydrates. Define them, classify them with examples and biological importance.',
     'Carbohydrates: CₙH₂ₙOₙ. Monosaccharide: glucose, fructose. Disaccharide: sucrose, lactose. Polysaccharide: starch, cellulose. Importance: energy source.'
   ),
 
-  // ───────────────────────────────────────────────────────────────
-  // CLASS 10 — BIOLOGY
-  // ───────────────────────────────────────────────────────────────
+  // ── Class 10 Biology
   q(10, 'biology', 11, 'Genetics', 'mcq', 'easy', 1, 'DNA stands for:', 'A', [
     'Deoxyribonucleic acid',
     'Deoxyribose nucleic acid',
@@ -1028,7 +3802,7 @@ export const QUESTIONS: Question[] = [
     'medium',
     8,
     'Define biotechnology. Explain the applications of biotechnology in medicine, agriculture, and industry with specific examples.',
-    'Biotechnology uses organisms for practical purposes. Medicine: insulin production, vaccines, gene therapy. Agriculture: GM crops (Bt cotton, Golden Rice). Industry: fermentation, bioremediation.'
+    'Biotechnology uses organisms for practical purposes. Medicine: insulin production, vaccines, gene therapy. Agriculture: GM crops. Industry: fermentation, bioremediation.'
   ),
 
   // ───────────────────────────────────────────────────────────────
@@ -1061,8 +3835,8 @@ export const QUESTIONS: Question[] = [
     'medium',
     1,
     'Pakistan gained independence on:',
-    'C',
-    ['14 July 1947', '14 August 1947', '14 September 1947', '14 October 1947']
+    'B',
+    ['13 August 1947', '14 August 1947', '14 September 1947', '14 October 1947']
   ),
   q(
     9,
@@ -1101,7 +3875,7 @@ export const QUESTIONS: Question[] = [
     'medium',
     8,
     'Describe the role of Quaid-e-Azam Muhammad Ali Jinnah in the creation of Pakistan. How did the two-nation theory become the basis for the demand of a separate homeland?',
-    'Jinnah joined Muslim League 1913, led 1940 Lahore Resolution demanding Pakistan. Two-nation theory: Hindus and Muslims are two distinct nations with different religion, culture, history. Led to partition and creation of Pakistan on 14 Aug 1947.'
+    'Jinnah joined Muslim League 1913, led 1940 Lahore Resolution demanding Pakistan. Two-nation theory: Hindus and Muslims are two distinct nations. Led to partition and creation of Pakistan on 14 Aug 1947.'
   ),
 
   // ───────────────────────────────────────────────────────────────
@@ -1110,7 +3884,7 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'islamiat',
-    1,
+    2,
     'Quran',
     'mcq',
     'easy',
@@ -1119,7 +3893,7 @@ export const QUESTIONS: Question[] = [
     'C',
     ['99', '100', '114', '120']
   ),
-  q(9, 'islamiat', 2, 'Seerat', 'mcq', 'easy', 1, 'The Holy Prophet (ﷺ) was born in:', 'A', [
+  q(9, 'islamiat', 3, 'Seerat', 'mcq', 'easy', 1, 'The Holy Prophet (ﷺ) was born in:', 'A', [
     'Makkah',
     'Madinah',
     'Taif',
@@ -1128,7 +3902,7 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'islamiat',
-    3,
+    4,
     'Beliefs',
     'mcq',
     'medium',
@@ -1140,24 +3914,1229 @@ export const QUESTIONS: Question[] = [
   q(
     9,
     'islamiat',
-    2,
+    3,
     'Seerat',
     'short',
     'easy',
     3,
     'Describe the early life of the Holy Prophet (ﷺ) before his first revelation. Mention any three key events.',
-    'Born 571 CE Makkah. Father Abdullah died before birth; mother Amina died when he was 6. Raised by grandfather Abdul Muttalib, then uncle Abu Talib. Known as Al-Ameen. Married Hazrat Khadija (RA) at 25.'
+    'Born 571 CE Makkah. Father Abdullah died before birth; mother Amina died when he was 6. Raised by grandfather Abdul Muttalib, then uncle Abu Talib. Known as Al-Ameen.'
   ),
   q(
     9,
     'islamiat',
-    3,
+    4,
     'Islamic beliefs',
     'long',
     'medium',
     8,
     "Explain the six articles of faith (Arkan-e-Iman) in Islam. Describe the importance of each article and how it impacts a Muslim's life.",
-    '1. Tawheed (oneness of Allah), 2. Malaika (angels), 3. Kutub (holy books), 4. Rusul (prophets), 5. Akhrat (Day of Judgment), 6. Taqdeer (divine decree). Each shapes worldview, ethics, and worship.'
+    '1. Tawheed, 2. Malaika, 3. Kutub, 4. Rusul, 5. Akhrat, 6. Taqdeer. Each shapes worldview, ethics, and worship.'
+  ),
+
+  // ───────────────────────────────────────────────────────────────
+  // GENERAL SCIENCE Classes 3-8
+  // ───────────────────────────────────────────────────────────────
+  // Ch1 Living Things & Plants
+  q(
+    5,
+    'general-science',
+    1,
+    'Parts of a plant',
+    'mcq',
+    'easy',
+    1,
+    'Which part of a plant absorbs water from the soil?',
+    'B',
+    ['leaves', 'roots', 'stem', 'flowers']
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Photosynthesis basics',
+    'mcq',
+    'easy',
+    1,
+    'Plants make their food using:',
+    'C',
+    ['soil and water', 'air and sugar', 'sunlight, water, and CO₂', 'only water']
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Characteristics of living things',
+    'mcq',
+    'easy',
+    1,
+    'Which is NOT a characteristic of living things?',
+    'D',
+    ['growth', 'respiration', 'reproduction', 'rusting']
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Plant reproduction',
+    'mcq',
+    'medium',
+    1,
+    'Seeds are produced in the:',
+    'A',
+    ['fruit', 'stem', 'root', 'leaf']
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Plant adaptations',
+    'mcq',
+    'medium',
+    1,
+    'Cactus stores water in its:',
+    'C',
+    ['roots', 'leaves', 'stem', 'seeds']
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Parts of a plant',
+    'mcq',
+    'easy',
+    1,
+    'The green colour in leaves comes from:',
+    'B',
+    ['water', 'chlorophyll', 'sugar', 'minerals']
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Photosynthesis basics',
+    'mcq',
+    'medium',
+    1,
+    'The gas released by plants during photosynthesis is:',
+    'A',
+    ['oxygen', 'carbon dioxide', 'nitrogen', 'hydrogen']
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Characteristics of living things',
+    'mcq',
+    'medium',
+    1,
+    'Which process do all living things carry out to get energy?',
+    'C',
+    ['photosynthesis', 'transpiration', 'respiration', 'excretion']
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Plant adaptations',
+    'mcq',
+    'hard',
+    1,
+    'A plant that lives in water is called:',
+    'D',
+    ['xerophyte', 'halophyte', 'epiphyte', 'hydrophyte']
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Parts of a plant',
+    'mcq',
+    'easy',
+    1,
+    'Leaves exchange gases through tiny pores called:',
+    'B',
+    ['roots', 'stomata', 'petals', 'xylem']
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Parts of a plant',
+    'short',
+    'easy',
+    2,
+    'Name the main parts of a plant and state the function of each.',
+    'Roots: absorb water/minerals. Stem: support and transport. Leaves: photosynthesis. Flowers: reproduction.'
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Photosynthesis basics',
+    'short',
+    'medium',
+    3,
+    'Explain photosynthesis in simple words. What does a plant need to make food?',
+    'Plants use sunlight, water (from roots), and CO₂ (from air) to make glucose (food) and release O₂.'
+  ),
+  q(
+    5,
+    'general-science',
+    1,
+    'Characteristics of living things',
+    'long',
+    'medium',
+    5,
+    'Describe five characteristics of living things with examples from daily life.',
+    'Movement, respiration, nutrition, growth, reproduction, excretion, sensitivity. Examples: animals move, plants grow, bacteria reproduce.'
+  ),
+
+  // Ch2 Animals & Humans
+  q(
+    5,
+    'general-science',
+    2,
+    'Animal classification',
+    'mcq',
+    'easy',
+    1,
+    'Animals that feed their young with milk are called:',
+    'B',
+    ['reptiles', 'mammals', 'birds', 'amphibians']
+  ),
+  q(
+    5,
+    'general-science',
+    2,
+    'Human body systems',
+    'mcq',
+    'medium',
+    1,
+    'The heart is part of which system?',
+    'C',
+    ['digestive', 'respiratory', 'circulatory', 'nervous']
+  ),
+  q(
+    5,
+    'general-science',
+    2,
+    'Nutrition & digestion',
+    'mcq',
+    'easy',
+    1,
+    'Which nutrient provides the most energy?',
+    'A',
+    ['carbohydrates', 'proteins', 'vitamins', 'minerals']
+  ),
+  q(5, 'general-science', 2, 'Respiration', 'mcq', 'easy', 1, 'We breathe using our:', 'D', [
+    'heart',
+    'stomach',
+    'kidneys',
+    'lungs',
+  ]),
+  q(
+    5,
+    'general-science',
+    2,
+    'Animal adaptations',
+    'mcq',
+    'medium',
+    1,
+    'Birds have hollow bones to help them:',
+    'B',
+    ['swim', 'fly', 'run', 'climb']
+  ),
+  q(
+    5,
+    'general-science',
+    2,
+    'Animal classification',
+    'mcq',
+    'medium',
+    1,
+    'Insects have _____ legs.',
+    'C',
+    ['4', '8', '2', '6']
+  ),
+  q(
+    5,
+    'general-science',
+    2,
+    'Human body systems',
+    'mcq',
+    'easy',
+    1,
+    'The brain is part of which system?',
+    'A',
+    ['nervous system', 'digestive system', 'respiratory system', 'circulatory system']
+  ),
+  q(
+    5,
+    'general-science',
+    2,
+    'Nutrition & digestion',
+    'mcq',
+    'medium',
+    1,
+    'Digestion of food mainly happens in:',
+    'B',
+    ['mouth', 'small intestine', 'large intestine', 'stomach']
+  ),
+  q(5, 'general-science', 2, 'Respiration', 'mcq', 'medium', 1, 'The gas we breathe in is:', 'A', [
+    'oxygen',
+    'carbon dioxide',
+    'nitrogen',
+    'hydrogen',
+  ]),
+  q(5, 'general-science', 2, 'Animal adaptations', 'mcq', 'easy', 1, 'Fish breathe through:', 'C', [
+    'lungs',
+    'nostrils',
+    'gills',
+    'skin',
+  ]),
+  q(
+    5,
+    'general-science',
+    2,
+    'Animal classification',
+    'short',
+    'easy',
+    2,
+    'Name four groups of vertebrates and give one example of each.',
+    'Mammals (dog), Birds (eagle), Reptiles (lizard), Fish (salmon), Amphibians (frog).'
+  ),
+  q(
+    5,
+    'general-science',
+    2,
+    'Human body systems',
+    'short',
+    'medium',
+    3,
+    'Name three systems of the human body and explain the function of each.',
+    'Circulatory: pumps blood. Digestive: breaks down food. Respiratory: takes in oxygen, removes CO₂.'
+  ),
+  q(
+    5,
+    'general-science',
+    2,
+    'Animal classification',
+    'long',
+    'medium',
+    5,
+    'Compare vertebrates and invertebrates. Give five examples of each with their key features.',
+    'Vertebrates (have backbone): mammals, birds, fish, reptiles, amphibians. Invertebrates (no backbone): insects, worms, crabs, starfish, snails.'
+  ),
+
+  // Ch3 Our Environment
+  q(
+    5,
+    'general-science',
+    3,
+    'Food chain',
+    'mcq',
+    'easy',
+    1,
+    'In a food chain, energy flows from:',
+    'A',
+    ['plants to animals', 'animals to plants', 'soil to plants', 'sun to soil']
+  ),
+  q(
+    5,
+    'general-science',
+    3,
+    'Pollution',
+    'mcq',
+    'easy',
+    1,
+    'Which gas is mainly responsible for air pollution from vehicles?',
+    'B',
+    ['oxygen', 'carbon monoxide', 'nitrogen', 'hydrogen']
+  ),
+  q(
+    5,
+    'general-science',
+    3,
+    'Ecosystem',
+    'mcq',
+    'medium',
+    1,
+    'The non-living parts of an ecosystem are called:',
+    'C',
+    ['biotic factors', 'consumers', 'abiotic factors', 'decomposers']
+  ),
+  q(
+    5,
+    'general-science',
+    3,
+    'Conservation',
+    'mcq',
+    'medium',
+    1,
+    'Cutting down forests is called:',
+    'D',
+    ['afforestation', 'reforestation', 'conservation', 'deforestation']
+  ),
+  q(
+    5,
+    'general-science',
+    3,
+    'Natural resources',
+    'mcq',
+    'easy',
+    1,
+    'Which of these is a renewable resource?',
+    'A',
+    ['solar energy', 'coal', 'petroleum', 'natural gas']
+  ),
+  q(
+    5,
+    'general-science',
+    3,
+    'Food chain',
+    'mcq',
+    'medium',
+    1,
+    'Organisms that break down dead matter are called:',
+    'B',
+    ['producers', 'decomposers', 'consumers', 'predators']
+  ),
+  q(
+    5,
+    'general-science',
+    3,
+    'Pollution',
+    'mcq',
+    'medium',
+    1,
+    'Water pollution can be reduced by:',
+    'C',
+    ['burning waste', 'deforestation', 'treating sewage before release', 'using more fertilizers']
+  ),
+  q(
+    5,
+    'general-science',
+    3,
+    'Ecosystem',
+    'mcq',
+    'hard',
+    1,
+    'Which is an example of a terrestrial ecosystem?',
+    'D',
+    ['pond', 'ocean', 'river', 'forest']
+  ),
+  q(
+    5,
+    'general-science',
+    3,
+    'Natural resources',
+    'mcq',
+    'easy',
+    1,
+    'Forests provide us with:',
+    'A',
+    ['oxygen and wood', 'coal and oil', 'minerals and metals', 'plastic']
+  ),
+  q(
+    5,
+    'general-science',
+    3,
+    'Conservation',
+    'mcq',
+    'medium',
+    1,
+    'Planting more trees is called:',
+    'B',
+    ['deforestation', 'afforestation', 'irrigation', 'cultivation']
+  ),
+  q(
+    5,
+    'general-science',
+    3,
+    'Food chain',
+    'short',
+    'easy',
+    2,
+    'Write a food chain starting from grass. Identify producers and consumers.',
+    'Grass → Grasshopper → Frog → Snake → Eagle. Grass: producer. Others: consumers.'
+  ),
+  q(
+    5,
+    'general-science',
+    3,
+    'Pollution',
+    'short',
+    'medium',
+    3,
+    'What is pollution? Name three types and suggest one way to reduce each.',
+    'Air pollution (use less fuel), Water pollution (treat sewage), Soil pollution (avoid chemicals).'
+  ),
+
+  // Ch4-6 (selected)
+  q(
+    5,
+    'general-science',
+    4,
+    'States of matter',
+    'mcq',
+    'easy',
+    1,
+    'Which state of matter has a fixed shape and volume?',
+    'A',
+    ['solid', 'liquid', 'gas', 'plasma']
+  ),
+  q(
+    5,
+    'general-science',
+    4,
+    'Properties of materials',
+    'mcq',
+    'easy',
+    1,
+    'A material that allows electricity to pass through is called:',
+    'B',
+    ['insulator', 'conductor', 'semiconductor', 'resistor']
+  ),
+  q(
+    5,
+    'general-science',
+    4,
+    'Changes in matter',
+    'mcq',
+    'medium',
+    1,
+    'Ice melting into water is a _____ change.',
+    'A',
+    ['physical', 'chemical', 'biological', 'nuclear']
+  ),
+  q(
+    5,
+    'general-science',
+    5,
+    'Types of energy',
+    'mcq',
+    'easy',
+    1,
+    'Which form of energy does the Sun provide?',
+    'C',
+    ['chemical', 'mechanical', 'light and heat', 'electrical']
+  ),
+  q(
+    5,
+    'general-science',
+    5,
+    'Magnets & electricity',
+    'mcq',
+    'easy',
+    1,
+    'A material attracted by a magnet is:',
+    'B',
+    ['plastic', 'iron', 'wood', 'rubber']
+  ),
+  q(
+    5,
+    'general-science',
+    5,
+    'Forces & motion',
+    'mcq',
+    'medium',
+    1,
+    'The force that opposes motion is called:',
+    'A',
+    ['friction', 'gravity', 'tension', 'magnetism']
+  ),
+  q(
+    5,
+    'general-science',
+    6,
+    'Solar system',
+    'mcq',
+    'easy',
+    1,
+    'How many planets are there in our solar system?',
+    'C',
+    ['7', '6', '8', '9']
+  ),
+  q(
+    5,
+    'general-science',
+    6,
+    'Day, night & seasons',
+    'mcq',
+    'medium',
+    1,
+    "Day and night are caused by Earth's:",
+    'B',
+    ['revolution around Sun', 'rotation on its axis', 'orbit shape', 'tilt']
+  ),
+  q(
+    5,
+    'general-science',
+    6,
+    'Earth layers',
+    'mcq',
+    'medium',
+    1,
+    'The outermost layer of Earth is called:',
+    'A',
+    ['crust', 'mantle', 'outer core', 'inner core']
+  ),
+  q(
+    5,
+    'general-science',
+    4,
+    'States of matter',
+    'short',
+    'easy',
+    2,
+    'Name and describe the three states of matter with one example each.',
+    'Solid (fixed shape/volume, e.g. ice), Liquid (fixed volume, e.g. water), Gas (no fixed shape, e.g. steam).'
+  ),
+  q(
+    5,
+    'general-science',
+    5,
+    'Types of energy',
+    'short',
+    'medium',
+    3,
+    'Name five forms of energy and give one example of each in daily life.',
+    'Light (sun), Heat (fire), Sound (music), Electrical (fan), Kinetic (moving ball).'
+  ),
+  q(
+    5,
+    'general-science',
+    6,
+    'Solar system',
+    'long',
+    'medium',
+    5,
+    'Describe the solar system. Name all eight planets in order from the Sun and state one fact about each.',
+    'Mercury (smallest), Venus (hottest), Earth (has life), Mars (red), Jupiter (largest), Saturn (rings), Uranus (tilted), Neptune (farthest).'
+  ),
+
+  // ───────────────────────────────────────────────────────────────
+  // SOCIAL STUDIES Classes 3-8
+  // ───────────────────────────────────────────────────────────────
+  q(
+    5,
+    'social-studies',
+    1,
+    'Location & borders',
+    'mcq',
+    'easy',
+    1,
+    'The capital of Pakistan is:',
+    'C',
+    ['Lahore', 'Karachi', 'Islamabad', 'Peshawar']
+  ),
+  q(
+    5,
+    'social-studies',
+    1,
+    'Provinces & capitals',
+    'mcq',
+    'easy',
+    1,
+    'How many provinces does Pakistan have?',
+    'B',
+    ['3', '4', '5', '6']
+  ),
+  q(
+    5,
+    'social-studies',
+    1,
+    'National symbols',
+    'mcq',
+    'medium',
+    1,
+    'The national flower of Pakistan is:',
+    'A',
+    ['Jasmine', 'Rose', 'Lily', 'Sunflower']
+  ),
+  q(
+    5,
+    'social-studies',
+    1,
+    'Culture & traditions',
+    'mcq',
+    'easy',
+    1,
+    'Eid-ul-Fitr is celebrated after:',
+    'D',
+    ['Hajj', 'Muharram', 'Shaban', 'Ramadan']
+  ),
+  q(
+    5,
+    'social-studies',
+    1,
+    'National heroes',
+    'mcq',
+    'medium',
+    1,
+    'Who is the founder of Pakistan?',
+    'A',
+    ['Quaid-e-Azam Muhammad Ali Jinnah', 'Allama Iqbal', 'Liaquat Ali Khan', 'Sir Syed Ahmed Khan']
+  ),
+  q(
+    5,
+    'social-studies',
+    2,
+    'Creation of Pakistan 1947',
+    'mcq',
+    'easy',
+    1,
+    'Pakistan was created in:',
+    'B',
+    ['1945', '1947', '1949', '1950']
+  ),
+  q(5, 'social-studies', 2, 'Quaid-e-Azam', 'mcq', 'medium', 1, 'Quaid-e-Azam means:', 'C', [
+    'great leader',
+    'founder',
+    'first president',
+    'great general',
+  ]),
+  q(
+    5,
+    'social-studies',
+    3,
+    'Mountains & rivers',
+    'mcq',
+    'easy',
+    1,
+    'The longest river in Pakistan is:',
+    'D',
+    ['Ravi', 'Chenab', 'Jhelum', 'Indus']
+  ),
+  q(
+    5,
+    'social-studies',
+    3,
+    'Major cities',
+    'mcq',
+    'easy',
+    1,
+    'The largest city in Pakistan by population is:',
+    'A',
+    ['Karachi', 'Lahore', 'Islamabad', 'Rawalpindi']
+  ),
+  q(
+    5,
+    'social-studies',
+    4,
+    'Rights & duties',
+    'mcq',
+    'medium',
+    1,
+    'Which of the following is a duty of a Pakistani citizen?',
+    'B',
+    ['demand services', 'pay taxes', 'protest only', 'criticize government']
+  ),
+  q(
+    5,
+    'social-studies',
+    1,
+    'National symbols',
+    'short',
+    'easy',
+    2,
+    'Name the national symbols of Pakistan (flag, anthem, language, animal, bird).',
+    'Flag: green and white crescent & star. Language: Urdu. Animal: Markhor. Bird: Chukar. Flower: Jasmine.'
+  ),
+  q(
+    5,
+    'social-studies',
+    2,
+    'Creation of Pakistan 1947',
+    'short',
+    'medium',
+    3,
+    'Why was Pakistan created? Describe the role of Quaid-e-Azam briefly.',
+    'Muslims needed a separate homeland for religious and cultural freedom. Quaid-e-Azam led the independence movement and Pakistan was created on 14 August 1947.'
+  ),
+  q(
+    5,
+    'social-studies',
+    3,
+    'Mountains & rivers',
+    'short',
+    'medium',
+    3,
+    'Name the major rivers and mountain ranges of Pakistan.',
+    'Rivers: Indus, Jhelum, Chenab, Ravi, Sutlej. Mountains: Karakoram, Himalayas, Hindu Kush.'
+  ),
+  q(
+    5,
+    'social-studies',
+    1,
+    'My Country Pakistan',
+    'long',
+    'medium',
+    5,
+    'Write an essay about Pakistan. Include location, provinces, capital, language, culture, and famous places.',
+    'Pakistan is in South Asia, borders India, Afghanistan, Iran, China. 4 provinces + territories. Capital Islamabad. Urdu. Famous: K2, Mohenjo-daro, Lahore Fort.'
+  ),
+
+  // ───────────────────────────────────────────────────────────────
+  // GENERAL KNOWLEDGE Classes 1-3
+  // ───────────────────────────────────────────────────────────────
+  q(2, 'gk', 1, 'Body parts', 'mcq', 'easy', 1, 'How many senses do humans have?', 'C', [
+    '3',
+    '4',
+    '5',
+    '6',
+  ]),
+  q(2, 'gk', 1, 'Senses', 'mcq', 'easy', 1, 'We use our eyes to:', 'A', [
+    'see',
+    'hear',
+    'smell',
+    'taste',
+  ]),
+  q(2, 'gk', 1, 'Healthy habits', 'mcq', 'easy', 1, 'We should brush our teeth:', 'B', [
+    'once a week',
+    'twice a day',
+    'once a month',
+    'never',
+  ]),
+  q(2, 'gk', 1, 'Food & nutrition', 'mcq', 'easy', 1, 'Which food gives us energy?', 'C', [
+    'water',
+    'vegetables',
+    'bread and rice',
+    'medicine',
+  ]),
+  q(2, 'gk', 2, 'Pet animals', 'mcq', 'easy', 1, 'Which animal gives us milk?', 'A', [
+    'cow',
+    'lion',
+    'eagle',
+    'fish',
+  ]),
+  q(2, 'gk', 2, 'Wild animals', 'mcq', 'easy', 1, 'The king of the jungle is:', 'B', [
+    'elephant',
+    'lion',
+    'tiger',
+    'bear',
+  ]),
+  q(
+    2,
+    'gk',
+    2,
+    'Plants around us',
+    'mcq',
+    'easy',
+    1,
+    'Which part of a plant do we eat as a vegetable?',
+    'C',
+    ['flower', 'root only', 'various parts', 'only seeds']
+  ),
+  q(2, 'gk', 3, 'Family', 'mcq', 'easy', 1, 'Who is the mother of your mother?', 'A', [
+    'grandmother',
+    'aunt',
+    'sister',
+    'cousin',
+  ]),
+  q(
+    2,
+    'gk',
+    3,
+    'Community helpers',
+    'mcq',
+    'easy',
+    1,
+    'A person who treats sick people is a:',
+    'B',
+    ['teacher', 'doctor', 'farmer', 'pilot']
+  ),
+  q(
+    2,
+    'gk',
+    4,
+    'Weather & seasons',
+    'mcq',
+    'easy',
+    1,
+    'How many seasons are there in a year?',
+    'C',
+    ['2', '3', '4', '5']
+  ),
+  q(2, 'gk', 4, 'Day & night', 'mcq', 'easy', 1, 'The sun rises in the:', 'A', [
+    'east',
+    'west',
+    'north',
+    'south',
+  ]),
+  q(2, 'gk', 4, 'Water & air', 'mcq', 'easy', 1, 'We need water to:', 'D', [
+    'fly',
+    'make fire',
+    'make darkness',
+    'drink and stay alive',
+  ]),
+  q(
+    2,
+    'gk',
+    1,
+    'Body parts',
+    'short',
+    'easy',
+    1,
+    'Name five body parts and what they do.',
+    'Eyes (see), Ears (hear), Nose (smell), Mouth (eat/speak), Hands (touch/work).'
+  ),
+  q(
+    2,
+    'gk',
+    3,
+    'Community helpers',
+    'short',
+    'easy',
+    1,
+    'Name four community helpers and their jobs.',
+    'Doctor (treats sick), Teacher (teaches), Farmer (grows food), Police (maintains order).'
+  ),
+
+  // ───────────────────────────────────────────────────────────────
+  // MATHEMATICS Classes 1-8
+  // ───────────────────────────────────────────────────────────────
+  // Classes 1-2
+  q(1, 'mathematics', 1, 'Counting', 'mcq', 'easy', 1, 'What comes after 9?', 'B', [
+    '8',
+    '10',
+    '11',
+    '7',
+  ]),
+  q(1, 'mathematics', 1, 'Number names', 'mcq', 'easy', 1, 'The number 5 in words is:', 'C', [
+    'three',
+    'four',
+    'five',
+    'six',
+  ]),
+  q(1, 'mathematics', 2, 'Simple addition', 'mcq', 'easy', 1, '3 + 4 = ?', 'A', [
+    '7',
+    '6',
+    '8',
+    '5',
+  ]),
+  q(1, 'mathematics', 2, 'Simple subtraction', 'mcq', 'easy', 1, '8 − 3 = ?', 'B', [
+    '4',
+    '5',
+    '6',
+    '7',
+  ]),
+  q(2, 'mathematics', 3, 'Multiplication tables', 'mcq', 'easy', 1, '4 × 3 = ?', 'C', [
+    '10',
+    '11',
+    '12',
+    '13',
+  ]),
+  q(2, 'mathematics', 3, 'Division basics', 'mcq', 'easy', 1, '12 ÷ 4 = ?', 'A', [
+    '3',
+    '4',
+    '5',
+    '6',
+  ]),
+  q(2, 'mathematics', 4, '2D shapes', 'mcq', 'easy', 1, 'A shape with 3 sides is called a:', 'B', [
+    'square',
+    'triangle',
+    'rectangle',
+    'circle',
+  ]),
+  q(2, 'mathematics', 5, 'Length', 'mcq', 'easy', 1, 'We measure length in:', 'A', [
+    'metres',
+    'kilograms',
+    'litres',
+    'seconds',
+  ]),
+  q(2, 'mathematics', 5, 'Time', 'mcq', 'easy', 1, 'How many minutes are in an hour?', 'C', [
+    '30',
+    '50',
+    '60',
+    '100',
+  ]),
+  q(2, 'mathematics', 6, 'Fractions', 'mcq', 'easy', 1, '½ means:', 'B', [
+    'one third',
+    'one half',
+    'one quarter',
+    'two thirds',
+  ]),
+  // Classes 3-5
+  q(
+    3,
+    'mathematics',
+    1,
+    'Comparing numbers',
+    'mcq',
+    'easy',
+    1,
+    'Which is greater: 456 or 465?',
+    'B',
+    ['456', '465', 'they are equal', 'cannot compare']
+  ),
+  q(3, 'mathematics', 2, 'Simple addition', 'mcq', 'medium', 1, '234 + 567 = ?', 'C', [
+    '700',
+    '790',
+    '801',
+    '810',
+  ]),
+  q(4, 'mathematics', 3, 'Multiplication tables', 'mcq', 'easy', 1, '7 × 8 = ?', 'C', [
+    '54',
+    '55',
+    '56',
+    '57',
+  ]),
+  q(4, 'mathematics', 3, 'Division basics', 'mcq', 'medium', 1, '72 ÷ 9 = ?', 'A', [
+    '8',
+    '7',
+    '9',
+    '6',
+  ]),
+  q(
+    4,
+    'mathematics',
+    4,
+    '2D shapes',
+    'mcq',
+    'easy',
+    1,
+    'A square has _____ sides of _____ length.',
+    'A',
+    ['4, equal', '3, equal', '4, different', '6, equal']
+  ),
+  q(5, 'mathematics', 6, 'Fractions', 'mcq', 'easy', 1, '½ + ¼ = ?', 'C', [
+    '1/6',
+    '2/8',
+    '3/4',
+    '1/3',
+  ]),
+  q(
+    5,
+    'mathematics',
+    6,
+    'Fractions',
+    'mcq',
+    'medium',
+    1,
+    'Which fraction is greater: 2/3 or 3/4?',
+    'B',
+    ['2/3', '3/4', 'they are equal', 'cannot compare']
+  ),
+  q(5, 'mathematics', 5, 'Length', 'mcq', 'easy', 1, '1 kilometre = _____ metres.', 'D', [
+    '10',
+    '100',
+    '500',
+    '1000',
+  ]),
+  // Classes 6-8
+  q(
+    6,
+    'mathematics',
+    7,
+    'Types of matrices',
+    'mcq',
+    'easy',
+    1,
+    'A 2×3 matrix has _____ rows and _____ columns.',
+    'A',
+    ['2, 3', '3, 2', '2, 2', '3, 3']
+  ),
+  q(
+    7,
+    'mathematics',
+    8,
+    'Properties',
+    'mcq',
+    'medium',
+    1,
+    'The product of a number and its multiplicative inverse is:',
+    'A',
+    ['1', '0', '−1', 'the number itself']
+  ),
+  q(8, 'mathematics', 9, 'Laws', 'mcq', 'easy', 1, 'log₁₀ 100 = ?', 'B', ['1', '2', '3', '10']),
+  q(8, 'mathematics', 10, 'Linear Equations', 'mcq', 'medium', 1, 'Solve: 5x − 10 = 0:', 'C', [
+    'x=−2',
+    'x=1',
+    'x=2',
+    'x=5',
+  ]),
+  q(
+    3,
+    'mathematics',
+    2,
+    'Word problems',
+    'short',
+    'easy',
+    2,
+    'A basket has 15 apples. 6 are eaten. How many remain?',
+    '15 − 6 = 9 apples remain.'
+  ),
+  q(
+    5,
+    'mathematics',
+    3,
+    'Multiplication tables',
+    'short',
+    'medium',
+    3,
+    'Write the multiplication table of 7 up to 10.',
+    '7×1=7, 7×2=14, 7×3=21, 7×4=28, 7×5=35, 7×6=42, 7×7=49, 7×8=56, 7×9=63, 7×10=70.'
+  ),
+  q(
+    6,
+    'mathematics',
+    6,
+    'Fractions',
+    'short',
+    'medium',
+    3,
+    'Simplify: 3/6 + 2/4 − 1/3.',
+    '3/6=1/2, 2/4=1/2, 1/3. LCM=6: 3/6+3/6−2/6=4/6=2/3.'
+  ),
+  q(
+    8,
+    'mathematics',
+    10,
+    'System of equations',
+    'long',
+    'medium',
+    6,
+    'Solve by substitution: x + y = 10 and 2x − y = 5.',
+    'From 1st: y=10−x. Sub in 2nd: 2x−(10−x)=5, 3x=15, x=5, y=5.'
+  ),
+
+  // ───────────────────────────────────────────────────────────────
+  // ENGLISH Classes 1-8
+  // ───────────────────────────────────────────────────────────────
+  q(
+    1,
+    'english',
+    1,
+    'Letters A-Z',
+    'mcq',
+    'easy',
+    1,
+    'How many letters are in the English alphabet?',
+    'C',
+    ['24', '25', '26', '27']
+  ),
+  q(1, 'english', 1, 'Vowels & consonants', 'mcq', 'easy', 1, 'Which of these is a vowel?', 'A', [
+    'a',
+    'b',
+    'c',
+    'd',
+  ]),
+  q(2, 'english', 2, 'Nouns', 'mcq', 'easy', 1, 'A noun is the name of a:', 'B', [
+    'action',
+    'person place or thing',
+    'describing word',
+    'joining word',
+  ]),
+  q(2, 'english', 2, 'Verbs', 'mcq', 'easy', 1, '"She runs fast." The verb is:', 'A', [
+    'runs',
+    'she',
+    'fast',
+    'the',
+  ]),
+  q(
+    3,
+    'english',
+    3,
+    'Reading comprehension',
+    'mcq',
+    'easy',
+    1,
+    'The main idea of a paragraph is usually found in the:',
+    'A',
+    ['topic sentence', 'last word', 'title only', 'margins']
+  ),
+  q(4, 'english', 4, 'Tenses', 'mcq', 'easy', 1, 'Which sentence is in past tense?', 'B', [
+    'I eat rice',
+    'I ate rice',
+    'I will eat rice',
+    'I am eating rice',
+  ]),
+  q(
+    5,
+    'english',
+    5,
+    'Essay',
+    'mcq',
+    'easy',
+    1,
+    'An essay has three parts: introduction, body, and:',
+    'C',
+    ['title', 'summary', 'conclusion', 'heading']
+  ),
+  q(6, 'english', 6, 'Synonyms', 'mcq', 'easy', 1, 'Synonym of "happy" is:', 'A', [
+    'joyful',
+    'sad',
+    'angry',
+    'tired',
+  ]),
+  q(
+    7,
+    'english',
+    4,
+    'Voice',
+    'mcq',
+    'medium',
+    1,
+    'Passive voice of "The cat chased the mouse" is:',
+    'B',
+    [
+      'The mouse was chasing the cat',
+      'The mouse was chased by the cat',
+      'The mouse is chased',
+      'The cat was chased',
+    ]
+  ),
+  q(
+    8,
+    'english',
+    4,
+    'Narration',
+    'mcq',
+    'medium',
+    1,
+    'Direct: "She said, \'I like tea.\'". Indirect:',
+    'A',
+    [
+      'She said she liked tea',
+      'She said she likes tea',
+      'She says she liked tea',
+      'She told she like tea',
+    ]
+  ),
+  q(
+    2,
+    'english',
+    2,
+    'Simple Sentences',
+    'short',
+    'easy',
+    1,
+    'Write three simple sentences about your school.',
+    'My school is big. I study in class two. My teacher is kind.'
+  ),
+  q(
+    5,
+    'english',
+    3,
+    'Reading Stories',
+    'short',
+    'medium',
+    2,
+    'Read a short story and write the main characters and lesson learned. (Answer will vary based on assigned story.)',
+    '[Character names + moral of the story.]'
+  ),
+  q(
+    8,
+    'english',
+    4,
+    'Basic Grammar',
+    'long',
+    'medium',
+    6,
+    'Explain active and passive voice. Change these to passive: (a) She sings a song. (b) They are building a house. (c) He had written a letter.',
+    '(a) A song is sung by her. (b) A house is being built by them. (c) A letter had been written by him.'
   ),
 ];
 

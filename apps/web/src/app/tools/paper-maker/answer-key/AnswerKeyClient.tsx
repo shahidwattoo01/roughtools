@@ -85,7 +85,7 @@ export default function AnswerKeyClient() {
                   onChange={(e) => setClassLevel(Number(e.target.value) as ClassLevel)}
                   className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg bg-white dark:bg-white/5 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500"
                 >
-                  {[9, 10, 11, 12].map((c) => (
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((c) => (
                     <option key={c} value={c}>
                       Class {c}
                     </option>
