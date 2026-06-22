@@ -29,7 +29,7 @@ const badge: React.CSSProperties = {
 const divider: React.CSSProperties = { border: 'none', borderTop: '1px solid rgba(255,255,255,0.07)', margin: '40px 0' }
 
 export default function PrivacyPolicy() {
-  const lastUpdated = 'January 2025'
+  const lastUpdated = 'June 2026'
 
   return (
     <div className="min-h-screen bg-[#0a0a1a]">
