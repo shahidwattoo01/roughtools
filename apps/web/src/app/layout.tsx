@@ -118,6 +118,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Google Analytics 4 — loads after the consent default above */}
         <GoogleAnalytics />
 
+        {/* Monetag site verification */}
+        <meta name="monetag" content="65537eeda9695bec35087798f99dd051" />
+
         {/* Google AdSense — in <head> so Google's crawler can verify it */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
